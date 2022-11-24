@@ -1,0 +1,74 @@
+{
+       "resourceType": "Communication",
+       "meta": {
+              "profile": [
+                     "https://gematik.de/fhir/StructureDefinition/ErxCommunicationReply"
+              ],
+              "tag": [
+                     {
+                            "code": "patient-provider",
+                            "display": "Antwort der Apotheke mit der Bitte um Rückruf"
+                     }
+              ]
+       },
+       "basedOn": [
+              {
+                     "reference": "Task/4711"
+              }
+       ],
+       "status": "unknown",
+       "topic": {
+              "coding": {
+                     "system": "http://terminology.hl7.org/CodeSystem/communication-topic",
+                     "code": "phone-consult",
+                     "display": "Phone consult"
+              },
+              "text": "Bitte rufen sie zurück!"
+       },
+       "sent": "2020-03-12T18:01:10+00:00",
+       "recipient": [
+              {
+                     "identifier": {
+                            "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+                            "value": "X234567890"
+                     }
+              }
+       ],
+       "sender": {
+              "identifier": {
+                     "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+                     "value": "606358757"
+              }
+       },
+       "payload": [
+              {
+                     "extension": [
+                            {
+                                   "url": "https://gematik.de/fhir/StructureDefinition/SupplyOptionsType",
+                                   "extension": [
+                                          {
+                                                 "url": "onPremise",
+                                                 "valueBoolean": true
+                                          },
+                                          {
+                                                 "url": "delivery",
+                                                 "valueBoolean": true
+                                          },
+                                          {
+                                                 "url": "shipment",
+                                                 "valueBoolean": true
+                                          }
+                                   ]
+                            },
+                            {
+                                   "url": "https://gematik.de/fhir/StructureDefinition/AvailabilityStatus",
+                                   "valueCoding": {
+                                          "system": "https://gematik.de/fhir/CodeSystem/AvailabilityStatus",
+                                          "code": "10"
+                                   }
+                            }
+                     ],
+                     "contentString": "Hallo, wir haben das Medikament vorraetig. Kommen Sie gern in die Filiale oder wir schicken einen Boten."
+              }
+       ]
+}
