@@ -11,13 +11,13 @@ In diesem Repository sind Beispiele für den Kontext "E-Rezept" zu finden. Nach 
 
 Die jeweilgen Beteiligten stellen hier ihre Beispiele bereit. Folgende Ordnerstruktur ist vorgesehen
 
-
-
-```
+``` http
 E-Rezept-Examples
 │   README.md
 │
 └─eRezept(KBV)
+│   │   README.md
+│   │   ReleaseNotes.md
 │   │
 │   └──1.0.0
 │   │    │
@@ -47,17 +47,7 @@ E-Rezept-Examples
 │   ...
 │
 │
-└───eRezeptAbgabedaten(ABDA)
-│   │
-│   └─1.0.0
-│   └─1.0.1
-│   │   │
-│   │   └─invalid
-│   │   └─valid
-│   │       │ example1.json
-│   │       │ example2.json
-│   │       │ ...
-│   │
-│   ...
+└─── ...
+│
 ...
 ```
