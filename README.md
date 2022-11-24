@@ -1,15 +1,42 @@
-# Beispiele für das E-Rezept
+<img width="200" height="37" src="images/Gematik_Logo_Flag.png"/> <br/>
 
-In diesem Repository sind Beispiele für den Kontext "E-Rezept" zu finden. Nach der Ordnerstruktur finden sich hier Beispiele für folgende FHIR-Spezifikationen:
+# E-Rezept Examples
 
-* E-Rezept-Patientenrechnung (gematik)
-* E-Rezept-Workflow (gematik)
-* eRezept (KBV)
-* eRezeptAbgabedaten (ABDA)
-* eRezeptAbgabedatenPKV (ABDA)
-* eRezeptAbrechnungsdaten (GKVSV)
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Die jeweilgen Beteiligten stellen hier ihre Beispiele bereit. Folgende Ordnerstruktur ist vorgesehen
+## About The Project
+
+This repository provides software engineers with ePrescription (E-Rezept) examples for testing and hardening of applications. Each supplier of FHIR-specifications uploads their examples into this location. The top-level folders carry the name of the representative simplifier project.
+
+* [E-Rezept-Patientenrechnung (gematik)](https://simplifier.net/erezept-patientenrechnung)
+* [E-Rezept-Workflow (gematik)](https://simplifier.net/erezept-workflow)
+* [eRezept (KBV)](https://simplifier.net/eRezept)
+* [eRezeptAbgabedaten (ABDA)](https://simplifier.net/erezeptabgabedaten)
+* [eRezeptAbgabedatenPKV (ABDA)](https://simplifier.net/erezeptabgabedatenpkv)
+* [eRezeptAbrechnungsdaten (GKVSV)](https://simplifier.net/eRezeptAbrechnungsdaten)
+
+## Usage
+
+This project carries the following folder structure: project/version/(in)valid/example.json
+See the following example:
 
 ``` http
 E-Rezept-Examples
@@ -51,3 +78,15 @@ E-Rezept-Examples
 │
 ...
 ```
+
+## Contributing
+
+If you want to contribute, please check our [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+
+## License
+<!-- Refer to Guideline 'License' -->
+//TODO
+
+## Contact
+If you have questions or want to get in contact please use the "issues" function on GitHub.
