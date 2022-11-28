@@ -82,6 +82,7 @@ E-Rezept-Examples
 ## Contributing
 
 If you want to contribute, please check our [`CONTRIBUTING.md`](CONTRIBUTING.md).
+We strongly encourage contributing examples to this repository.
 
 
 ## License
