@@ -1,0 +1,82 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="504e3bb8-6e78-4cdc-9a67-fa67f0ade97e"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PZN Bsp Impfstoff V2"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="5a009cbb-dca9-4dad-b92b-8f9601ee0d31"/>
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"/>
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+          <code value="00"/>
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="true"/>
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N1"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+          <code value="11011981"/>
+        </coding>
+        <text value="FSME IMMUN 0.5ML ERW, 1 St"/>
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+          <code value="FER"/>
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <value value="1"/>
+          <unit value="St"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <batch>
+        <lotNumber value="A9876543210123-45678"/>
+        <expirationDate value="2022-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID"/>
+    <value value="160.100.000.000.009.15"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#5a009cbb-dca9-4dad-b92b-8f9601ee0d31"/>
+    <display value="FSME IMMUN 0.5ML ERW, 1 St"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/NamingSystem/gkv/kvid-10"/>
+      <value value="K030182229"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/NamingSystem/TelematikID"/>
+        <value value="3-07.2.1234560000.10.789"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2021-05-27"/>
+</MedicationDispense>
