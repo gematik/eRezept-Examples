@@ -1,0 +1,374 @@
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="ff8fe79e-2d23-4d4d-8e5b-9c097b59f187" />
+  <meta>
+    <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_Bundle|1.0.6" />
+    <tag>
+      <display value="Beispiel der TA7/eAbrechnungsdaten." />
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge." />
+    </tag>
+  </meta>
+  <identifier>
+    <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_TA7_Dateinummer">
+      <valueString value="00061" />
+    </extension>
+    <system value="https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Dateiname" />
+    <value value="ARZFHR21061" />
+  </identifier>
+  <type value="document" />
+  <timestamp value="2021-06-10T10:00:00Z" />
+  <entry>
+    <fullUrl value="urn:uuid:c72563e0-c727-4102-a806-1a0cbedcf239" />
+    <resource>
+      <Composition>
+        <id value="c72563e0-c727-4102-a806-1a0cbedcf239" />
+        <meta>
+          <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_Composition|1.0.6" />
+        </meta>
+        <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_TA7_IK_Empfaenger">
+          <valueIdentifier>
+            <system value="http://fhir.de/NamingSystem/arge-ik/iknr" />
+            <value value="107436557" />
+          </valueIdentifier>
+        </extension>
+        <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_TA7_IK_Kostentraeger">
+          <valueIdentifier>
+            <system value="http://fhir.de/NamingSystem/arge-ik/iknr" />
+            <value value="121191241" />
+          </valueIdentifier>
+        </extension>
+        <status value="final" />
+        <type>
+          <coding>
+            <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7" />
+            <code value="SR" />
+            <display value="Sammelrechnung" />
+          </coding>
+        </type>
+        <date value="2021-05-31" />
+        <author>
+          <identifier>
+            <system value="http://fhir.de/NamingSystem/arge-ik/iknr" />
+            <value value="987654321" />
+          </identifier>
+        </author>
+        <title value="elektronische Sammelrechnung" />
+        <section>
+          <code>
+            <coding>
+              <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7" />
+              <code value="LSR" />
+              <display value="Liste der Sammelrechnungen" />
+            </coding>
+          </code>
+          <entry>
+            <reference value="urn:uuid:234822d1-50e1-417c-8cbf-4a825ece5b5a" />
+          </entry>
+        </section>
+        <section>
+          <code>
+            <coding>
+              <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7" />
+              <code value="R" />
+              <display value="Rechnungen" />
+            </coding>
+          </code>
+          <entry>
+            <reference value="urn:uuid:7fce8e8e-8189-4967-b9fe-8dabd1e7576f" />
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:234822d1-50e1-417c-8cbf-4a825ece5b5a" />
+    <resource>
+      <List>
+        <id value="234822d1-50e1-417c-8cbf-4a825ece5b5a" />
+        <meta>
+          <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_List|1.0.6" />
+        </meta>
+        <status value="current" />
+        <mode value="working" />
+        <entry>
+          <item>
+            <reference value="Bundle/ff8fe79e-2d23-4d4d-8e5b-9c097b59f187" />
+          </item>
+        </entry>
+      </List>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:7fce8e8e-8189-4967-b9fe-8dabd1e7576f" />
+    <resource>
+      <Invoice>
+        <id value="7fce8e8e-8189-4967-b9fe-8dabd1e7576f" />
+        <meta>
+          <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Rechnung|1.0.6" />
+        </meta>
+        <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_TA7_Abrechnungszeitraum">
+          <valueDateTime value="2021-05-31" />
+        </extension>
+        <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_RezeptBundleReferenz">
+          <extension url="lineItem">
+            <valueReference>
+              <reference value="urn:uuid:4d521ac4-089f-4eb8-af62-089184ae3517" />
+            </valueReference>
+          </extension>
+        </extension>
+        <identifier>
+          <system value="https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Sammelrechnungsnummer" />
+          <value value="121191241-05-100621" />
+        </identifier>
+        <status value="issued" />
+        <type>
+          <coding>
+            <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Rechnungsart" />
+            <code value="6" />
+          </coding>
+        </type>
+        <recipient>
+          <identifier>
+            <system value="http://fhir.de/NamingSystem/arge-ik/iknr" />
+            <value value="121191241" />
+          </identifier>
+        </recipient>
+        <date value="2021-06-10" />
+      </Invoice>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:4d521ac4-089f-4eb8-af62-089184ae3517" />
+    <resource>
+      <Bundle>
+        <id value="4d521ac4-089f-4eb8-af62-089184ae3517" />
+        <meta>
+          <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_RezeptBundle|1.0.6" />
+        </meta>
+        <type value="collection" />
+        <entry>
+          <link>
+            <relation value="item" />
+            <url value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle" />
+          </link>
+          <fullUrl value="urn:uuid:b90df913-2c11-40d1-b030-ba9b8952c5c9" />
+          <resource>
+            <Binary>
+              <id value="b90df913-2c11-40d1-b030-ba9b8952c5c9" />
+              <meta>
+                <profile value="https://gematik.de/fhir/StructureDefinition/ErxBinary" />
+              </meta>
+              <contentType value="application/pkcs7-mime" />
+              <data value="VmVyb3JkbnVuZ3NkYXRlbiBCZWlzcGllbCBFcnN0ZWxsdW5nIEJlaXNwaWVsIGVBYnJlY2hudW5nc2RhdGVu" />
+            </Binary>
+          </resource>
+        </entry>
+        <entry>
+          <link>
+            <relation value="item" />
+            <url value="https://gematik.de/fhir/StructureDefinition/ErxReceipt" />
+          </link>
+          <fullUrl value="urn:uuid:35ea5ddd-796d-4a30-9b0e-91adf593e688" />
+          <resource>
+            <Bundle>
+              <id value="35ea5ddd-796d-4a30-9b0e-91adf593e688" />
+              <meta>
+                <profile value="https://gematik.de/fhir/StructureDefinition/ErxReceipt" />
+              </meta>
+              <identifier>
+                <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID" />
+                <value value="160.100.000.000.020.79" />
+              </identifier>
+              <type value="document" />
+              <timestamp value="2021-05-27T09:30:00Z" />
+              <link>
+                <relation value="self" />
+                <url value="https://gematik.erppre.de:443/Task/160.100.000.000.020.79/$close" />
+              </link>
+              <entry>
+                <fullUrl value="urn:uuid:be3b4bf7-41b9-4116-be84-36c14c59e5ce" />
+                <resource>
+                  <Composition>
+                    <id value="be3b4bf7-41b9-4116-be84-36c14c59e5ce" />
+                    <meta>
+                      <profile value="https://gematik.de/fhir/StructureDefinition/ErxComposition" />
+                    </meta>
+                    <extension url="https://gematik.de/fhir/StructureDefinition/BeneficiaryExtension">
+                      <valueIdentifier>
+                        <system value="https://gematik.de/fhir/NamingSystem/TelematikID" />
+                        <value value="606358757" />
+                      </valueIdentifier>
+                    </extension>
+                    <status value="final" />
+                    <type>
+                      <coding>
+                        <system value="https://gematik.de/fhir/CodeSystem/Documenttype" />
+                        <code value="3" />
+                        <display value="Receipt" />
+                      </coding>
+                    </type>
+                    <date value="2021-05-27T09:30:00Z" />
+                    <author>
+                      <reference value="https://gematik.erppre.de:443/Device" />
+                    </author>
+                    <title value="Quittung" />
+                    <event>
+                      <period>
+                        <start value="2021-05-27T08:45:00Z" />
+                        <end value="2021-05-27T09:30:00Z" />
+                      </period>
+                    </event>
+                  </Composition>
+                </resource>
+              </entry>
+              <entry>
+                <fullUrl value="https://gematik.erppre.de:443/Device" />
+                <resource>
+                  <Device>
+                    <id value="1" />
+                    <meta>
+                      <profile value="https://gematik.de/fhir/StructureDefinition/ErxDevice" />
+                    </meta>
+                    <status value="active" />
+                    <serialNumber value="0.3.1" />
+                    <deviceName>
+                      <name value="E-Rezept Fachdienst" />
+                      <type value="user-friendly-name" />
+                    </deviceName>
+                    <version>
+                      <value value="0.3.1" />
+                    </version>
+                    <contact>
+                      <system value="email" />
+                      <value value="betrieb@gematik.de" />
+                    </contact>
+                  </Device>
+                </resource>
+              </entry>
+              <signature>
+                <type>
+                  <system value="urn:iso-astm:E1762-95:2013" />
+                  <code value="1.2.840.10065.1.12.1.1" />
+                </type>
+                <when value="2021-05-27T09:30:00Z" />
+                <who>
+                  <reference value="https://gematik.erppre.de:443/Device" />
+                </who>
+                <sigFormat value="application/pkcs7-mime" />
+                <data value="MIINNQYJKoZIhvcNAQcCoIINJjCCDSICAQExDTALBglghkgBZQMEAgEwggd5BgkqhkiG9w0BBwGgggdqBIIHZjw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi04Ij8+CjxCdW5kbGUgeG1sbnM9Imh0dHA6Ly9obDcub3JnL2ZoaXIiPjxpZCB2YWx1ZT0iYTBkNTJmMDAtMDAwMC0wMDAwLTAwMDMtMDAwMDAwMDAwMDAwIi8+PG1ldGE+PHByb2ZpbGUgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vRXJ4UmVjZWlwdCIvPjwvbWV0YT48aWRlbnRpZmllcj48c3lzdGVtIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9OYW1pbmdTeXN0ZW0vUHJlc2NyaXB0aW9uSUQiLz48dmFsdWUgdmFsdWU9IjE2MC4wMDAuMDAwLjAxMi4yNDUuODUiLz48L2lkZW50aWZpZXI+PHR5cGUgdmFsdWU9ImRvY3VtZW50Ii8+PHRpbWVzdGFtcCB2YWx1ZT0iMjAyMS0wNi0wOFQxNDowNDoxOC45ODgrMDA6MDAiLz48bGluaz48cmVsYXRpb24gdmFsdWU9InNlbGYiLz48dXJsIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZXJwcHJlLmRlOjQ0My9UYXNrLzE2MC4wMDAuMDAwLjAxMi4yNDUuODUvJGNsb3NlLyIvPjwvbGluaz48ZW50cnk+PHJlc291cmNlPjxDb21wb3NpdGlvbj48aWQgdmFsdWU9IjZhYTMyMjdmLTlhNDUtNDVhNS05YTQ0LTJmYjE1ZTMyNjgzMCIvPjxtZXRhPjxwcm9maWxlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0VyeENvbXBvc2l0aW9uIi8+PC9tZXRhPjxleHRlbnNpb24gdXJsPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0JlbmVmaWNpYXJ5RXh0ZW5zaW9uIj48dmFsdWVJZGVudGlmaWVyPjxzeXN0ZW0gdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL05hbWluZ1N5c3RlbS9UZWxlbWF0aWtJRCIvPjx2YWx1ZSB2YWx1ZT0iMy1TTUMtQi1UZXN0a2FydGUtLTg4MzExMDAwMDA5NDA1MyIvPjwvdmFsdWVJZGVudGlmaWVyPjwvZXh0ZW5zaW9uPjxzdGF0dXMgdmFsdWU9ImZpbmFsIi8+PHR5cGU+PGNvZGluZz48c3lzdGVtIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9Db2RlU3lzdGVtL0RvY3VtZW50dHlwZSIvPjxjb2RlIHZhbHVlPSIzIi8+PGRpc3BsYXkgdmFsdWU9IlJlY2VpcHQiLz48L2NvZGluZz48L3R5cGU+PGRhdGUgdmFsdWU9IjIwMjEtMDYtMDhUMTQ6MDQ6MTguOTg4KzAwOjAwIi8+PGF1dGhvcj48cmVmZXJlbmNlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZXJwcHJlLmRlOjQ0My9EZXZpY2UiLz48L2F1dGhvcj48dGl0bGUgdmFsdWU9IlF1aXR0dW5nIi8+PGV2ZW50PjxwZXJpb2Q+PHN0YXJ0IHZhbHVlPSIyMDIxLTA2LTA4VDEyOjQ4OjM2LjU1MiswMDowMCIvPjxlbmQgdmFsdWU9IjIwMjEtMDYtMDhUMTQ6MDQ6MTguOTg4KzAwOjAwIi8+PC9wZXJpb2Q+PC9ldmVudD48L0NvbXBvc2l0aW9uPjwvcmVzb3VyY2U+PC9lbnRyeT48ZW50cnk+PGZ1bGxVcmwgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5lcnBwcmUuZGU6NDQzL0RldmljZSIvPjxyZXNvdXJjZT48RGV2aWNlPjxpZCB2YWx1ZT0iMSIvPjxtZXRhPjxwcm9maWxlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0VyeERldmljZSIvPjwvbWV0YT48c3RhdHVzIHZhbHVlPSJhY3RpdmUiLz48c2VyaWFsTnVtYmVyIHZhbHVlPSIwLjMuMSIvPjxkZXZpY2VOYW1lPjxuYW1lIHZhbHVlPSJFLVJlemVwdCBGYWNoZGllbnN0Ii8+PHR5cGUgdmFsdWU9InVzZXItZnJpZW5kbHktbmFtZSIvPjwvZGV2aWNlTmFt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" />
+              </signature>
+            </Bundle>
+          </resource>
+        </entry>
+        <entry>
+          <link>
+            <relation value="item" />
+            <url value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-AbgabedatenBundle" />
+          </link>
+          <fullUrl value="urn:uuid:1e687ede-6b80-4bc4-93c7-a831194ccb66" />
+          <resource>
+            <Binary>
+              <id value="1e687ede-6b80-4bc4-93c7-a831194ccb66" />
+              <meta>
+                <profile value="https://gematik.de/fhir/StructureDefinition/ErxBinary" />
+              </meta>
+              <contentType value="application/pkcs7-mime" />
+              <data value="ZUFiZ2FiZWRhdGVuIEJlaXNwaWVsIEVyc3RlbGx1bmcgQmVpc3BpZWwgZUFicmVjaG51bmdzZGF0ZW4=" />
+            </Binary>
+          </resource>
+        </entry>
+        <entry>
+          <link>
+            <relation value="item" />
+            <url value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_ERP_eAbrechnungsdaten" />
+          </link>
+          <fullUrl value="urn:uuid:034a0ded-cd92-4597-aeaa-d6082742eafd" />
+          <resource>
+            <Invoice>
+              <id value="034a0ded-cd92-4597-aeaa-d6082742eafd" />
+              <meta>
+                <profile value="https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_ERP_eAbrechnungsdaten|1.0.6" />
+              </meta>
+              <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Irrlaeufer">
+                <valueBoolean value="false" />
+              </extension>
+              <identifier>
+                <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID" />
+                <value value="160.100.000.000.020.79" />
+              </identifier>
+              <identifier>
+                <system value="https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Belegnummer" />
+                <value value="2105000000613456789" />
+              </identifier>
+              <status value="issued" />
+              <issuer>
+                <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_LE_Sitz">
+                  <valueCoding>
+                    <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Leistungserbringer_Sitz" />
+                    <code value="1" />
+                  </valueCoding>
+                </extension>
+                <identifier>
+                  <type>
+                    <coding>
+                      <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Leistungserbringertyp" />
+                      <code value="A" />
+                    </coding>
+                  </type>
+                  <system value="http://fhir.de/NamingSystem/arge-ik/iknr" />
+                  <value value="308412345" />
+                </identifier>
+              </issuer>
+              <lineItem>
+                <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Positionstyp">
+                  <valueCodeableConcept>
+                    <coding>
+                      <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Positionstyp" />
+                      <code value="1" />
+                      <display value="übrige Position" />
+                    </coding>
+                  </valueCodeableConcept>
+                </extension>
+                <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_VAT_VALUE">
+                  <valueMoney>
+                    <value value="6.44" />
+                    <currency value="EUR" />
+                  </valueMoney>
+                </extension>
+                <extension url="https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Import">
+                  <valueCodeableConcept>
+                    <coding>
+                      <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Import" />
+                      <code value="0" />
+                    </coding>
+                  </valueCodeableConcept>
+                </extension>
+                <sequence value="1" />
+                <chargeItemCodeableConcept>
+                  <coding>
+                    <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" />
+                    <code value="UNC" />
+                  </coding>
+                </chargeItemCodeableConcept>
+                <priceComponent>
+                  <type value="deduction" />
+                  <code>
+                    <coding>
+                      <system value="https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_ZuAbschlagKey" />
+                      <code value="R001" />
+                    </coding>
+                  </code>
+                  <amount>
+                    <value value="-1.77" />
+                    <currency value="EUR" />
+                  </amount>
+                </priceComponent>
+              </lineItem>
+            </Invoice>
+          </resource>
+        </entry>
+      </Bundle>
+    </resource>
+  </entry>
+</Bundle>

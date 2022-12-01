@@ -1,0 +1,47 @@
+<Communication xmlns="http://hl7.org/fhir">
+	<id value="60071830-1fa2-11ec-9621-0242ac130002"/> 
+	<meta>
+		<profile value="https://gematik.de/fhir/StructureDefinition/ErxCommunicationReply|1.1.0" />
+		<tag>
+			<code value="patient-provider" />
+			<display value="Antwort der Apotheke zur Belieferfaehigkeit eines Rezepts Task/160.000.000.017.271.42 an die E-Rezept-App" />
+		</tag>
+	</meta>
+	<basedOn>
+        <reference value="Task/160.000.000.017.271.42" />
+    </basedOn>
+	<status value="unknown" />
+	<sent value="2020-03-12T18:01:10+00:00" />
+	<recipient>
+		<identifier>
+			<system value="http://fhir.de/NamingSystem/gkv/kvid-10" />
+			<value value="X234567890" />
+		</identifier>
+	</recipient>
+	<sender>
+		<identifier>
+			<system value="https://gematik.de/fhir/NamingSystem/TelematikID" />
+			<value value="3-abc-1234567890" />
+		</identifier>
+	</sender>
+	<payload>
+		<extension url="https://gematik.de/fhir/StructureDefinition/SupplyOptionsType">
+			<extension url="onPremise">
+				<valueBoolean value="true" />
+			</extension>
+			<extension url="delivery">
+				<valueBoolean value="true" />
+			</extension>
+			<extension url="shipment">
+				<valueBoolean value="true" />
+			</extension>
+		</extension>
+		<extension url="https://gematik.de/fhir/StructureDefinition/AvailabilityStatus">
+			<valueCoding>
+				<system value="https://gematik.de/fhir/CodeSystem/AvailabilityStatus" />
+				<code value="10" />
+			</valueCoding>
+		</extension>
+		<contentString value="Hallo, wir haben das Medikament vorraetig. Kommen Sie gern in die Filiale oder wir schicken einen Boten." />
+	</payload>
+</Communication>

@@ -1,0 +1,78 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+	<id value="521331b4-1fa2-11ec-9621-0242ac130002"/> 
+	<meta>
+		<profile value="https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.0" />
+		<tag>
+			<display value="Beispiel Abgabeinformationen für das dispensierte E-Rezept zur Anzeige in der E-Rezept-App" />
+		</tag> 
+	</meta>
+	<contained> 
+		<Medication>
+			<id value="0c2befb0-7381-4b5e-8bb4-37019902fead"/> 
+			<meta>
+				<profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" />
+			</meta>
+			<extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+				<valueCoding>
+					<system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category" />
+					<code value="00" />
+				</valueCoding>
+			</extension>
+			<extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+				<valueBoolean value="false" />
+			</extension>
+			<extension url="http://fhir.de/StructureDefinition/normgroesse">
+				<valueCode value="N1" />
+			</extension>
+			<code>
+				<coding>
+					<system value="http://fhir.de/CodeSystem/ifa/pzn" />
+					<code value="06313728" />
+				</coding>
+				<text value="Sumatriptan-1a Pharma 100 mg Tabletten" />
+			</code>
+			<form>
+				<coding>
+					<system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM" />
+					<code value="TAB" />
+				</coding>
+			</form>
+			<amount>
+				<numerator>
+					<value value="20"/>
+					<unit value="St"/>
+				</numerator>
+				<denominator>
+					<value value="1"/>
+				</denominator>
+			</amount>
+		</Medication> 
+	</contained> 
+	<identifier>
+		<system value="https://gematik.de/fhir/NamingSystem/PrescriptionID" />
+		<value value="160.000.033.491.280.78" />
+	</identifier>
+	<status value="completed"/> 
+	<medicationReference> 
+		<reference value="#0c2befb0-7381-4b5e-8bb4-37019902fead"/> 
+		<display value="Sumatriptan-1a Pharma 100 mg Tabletten"/> 
+	</medicationReference>
+	<subject>
+		<identifier>
+			<system value="http://fhir.de/NamingSystem/gkv/kvid-10" />
+			<value value="X234567890" />
+		</identifier>
+	</subject>
+	<performer>
+		<actor>
+			<identifier>
+				<system value="https://gematik.de/fhir/NamingSystem/TelematikID" />
+				<value value="3-abc-1234567890" />
+			</identifier>
+		</actor>
+	</performer>
+	<whenHandedOver value="2020-03-20"/>
+	<dosageInstruction>
+		<text value="1-0-1-0" />
+	</dosageInstruction> 
+</MedicationDispense> 
