@@ -1,0 +1,669 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "KBV-PR-ERP-Medication-Ingredient",
+  "url": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient",
+  "version": "1.1.0",
+  "name": "KBV_PR_ERP_Medication_Ingredient",
+  "status": "active",
+  "date": "2022-09-30",
+  "publisher": "Kassenärztliche Bundesvereinigung",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Medication",
+  "baseDefinition": "https://fhir.kbv.de/StructureDefinition/KBV_PR_Base_Medication|1.3.0",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Medication",
+        "path": "Medication",
+        "constraint": [
+          {
+            "key": "-erp-NormgroesseOderMenge",
+            "severity": "error",
+            "human": "Packungsgröße oder Normgröße müssen angegeben sein",
+            "expression": "extension('http://fhir.de/StructureDefinition/normgroesse').exists() or amount.exists()",
+            "source": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient"
+          }
+        ]
+      },
+      {
+        "id": "Medication.id",
+        "path": "Medication.id",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.meta",
+        "path": "Medication.meta",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.meta.versionId",
+        "path": "Medication.meta.versionId",
+        "max": "0"
+      },
+      {
+        "id": "Medication.meta.lastUpdated",
+        "path": "Medication.meta.lastUpdated",
+        "max": "0"
+      },
+      {
+        "id": "Medication.meta.source",
+        "path": "Medication.meta.source",
+        "max": "0"
+      },
+      {
+        "id": "Medication.meta.profile",
+        "path": "Medication.meta.profile",
+        "min": 1,
+        "max": "1",
+        "fixedCanonical": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.1.0",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.meta.security",
+        "path": "Medication.meta.security",
+        "max": "0"
+      },
+      {
+        "id": "Medication.meta.tag",
+        "path": "Medication.meta.tag",
+        "max": "0"
+      },
+      {
+        "id": "Medication.implicitRules",
+        "path": "Medication.implicitRules",
+        "max": "0"
+      },
+      {
+        "id": "Medication.language",
+        "path": "Medication.language",
+        "max": "0"
+      },
+      {
+        "id": "Medication.text",
+        "path": "Medication.text",
+        "max": "0"
+      },
+      {
+        "id": "Medication.contained",
+        "path": "Medication.contained",
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension",
+        "path": "Medication.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 2,
+        "max": "3"
+      },
+      {
+        "id": "Medication.extension:Kategorie",
+        "path": "Medication.extension",
+        "sliceName": "Kategorie",
+        "min": 0,
+        "max": "0"
+      },
+      {
+        "id": "Medication.extension:Arzneimittelkategorie",
+        "path": "Medication.extension",
+        "sliceName": "Arzneimittelkategorie",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Arzneimittelkategorie.value[x]",
+        "path": "Medication.extension.value[x]",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Arzneimittelkategorie.value[x]:valueCoding",
+        "path": "Medication.extension.value[x]",
+        "sliceName": "valueCoding",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Arzneimittelkategorie.value[x]:valueCoding.system",
+        "path": "Medication.extension.value[x].system",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Arzneimittelkategorie.value[x]:valueCoding.code",
+        "path": "Medication.extension.value[x].code",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Impfstoff",
+        "path": "Medication.extension",
+        "sliceName": "Impfstoff",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Impfstoff.value[x]",
+        "path": "Medication.extension.value[x]",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Impfstoff.value[x]:valueBoolean",
+        "path": "Medication.extension.value[x]",
+        "sliceName": "valueBoolean",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Normgroesse",
+        "path": "Medication.extension",
+        "sliceName": "Normgroesse",
+        "short": "Packungsgröße nach N-Bezeichnung",
+        "definition": "Beschreibung der therapiegerechten Packungsgröße (z. B. N1)",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.de/StructureDefinition/normgroesse"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Normgroesse.value[x]",
+        "path": "Medication.extension.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.extension:Normgroesse.value[x]:valueCode",
+        "path": "Medication.extension.value[x]",
+        "sliceName": "valueCode",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.identifier",
+        "path": "Medication.identifier",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code",
+        "path": "Medication.code",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code.coding",
+        "path": "Medication.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        },
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code.coding:pznCode",
+        "path": "Medication.code.coding",
+        "sliceName": "pznCode",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.coding:snomedCode",
+        "path": "Medication.code.coding",
+        "sliceName": "snomedCode",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.coding:atcCode",
+        "path": "Medication.code.coding",
+        "sliceName": "atcCode",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode",
+        "path": "Medication.code.coding",
+        "sliceName": "verordnungskategorieCode",
+        "min": 1,
+        "max": "1",
+        "patternCoding": {
+          "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode.system",
+        "path": "Medication.code.coding.system",
+        "min": 1,
+        "fixedUri": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode.version",
+        "path": "Medication.code.coding.version",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode.code",
+        "path": "Medication.code.coding.code",
+        "short": "Kennzeichnung Wirkstoffverordnung",
+        "definition": "Anhand des \"Fixed value\" kann die Medication als Wirkstoffverordnung identifiziert werden.",
+        "min": 1,
+        "fixedCode": "wirkstoff",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode.display",
+        "path": "Medication.code.coding.display",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.coding:verordnungskategorieCode.userSelected",
+        "path": "Medication.code.coding.userSelected",
+        "max": "0"
+      },
+      {
+        "id": "Medication.code.text",
+        "path": "Medication.code.text",
+        "max": "0"
+      },
+      {
+        "id": "Medication.status",
+        "path": "Medication.status",
+        "max": "0"
+      },
+      {
+        "id": "Medication.manufacturer",
+        "path": "Medication.manufacturer",
+        "max": "0"
+      },
+      {
+        "id": "Medication.form",
+        "path": "Medication.form",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.form.coding",
+        "path": "Medication.form.coding",
+        "max": "0"
+      },
+      {
+        "id": "Medication.form.text",
+        "path": "Medication.form.text",
+        "short": "Darreichungsform Freitext",
+        "definition": "Angabe der Darreichungsform als Freitext",
+        "min": 1,
+        "maxLength": 30,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount",
+        "path": "Medication.amount",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.numerator",
+        "path": "Medication.amount.numerator",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "-erp-begrenzungValue",
+            "severity": "error",
+            "human": "Die Packungsgröße darf aus maximal 7 Zeichen bestehen",
+            "expression": "value.toString().length()<=7",
+            "source": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient"
+          },
+          {
+            "key": "-erp-codeUndSystem",
+            "severity": "error",
+            "human": "Wenn ein Code eingegeben ist, muss auch das System hinterlegt sein.",
+            "expression": "code.exists() implies system.exists()",
+            "source": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.numerator.extension",
+        "path": "Medication.amount.numerator.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Medication.amount.numerator.extension:Packungsgroesse",
+        "path": "Medication.amount.numerator.extension",
+        "sliceName": "Packungsgroesse",
+        "short": "Packungsgröße nach abgeteilter Menge",
+        "definition": "Angabe zur Packungsgröße nach abgeteilter Menge (z.B. 100, 2x25), tritt nur in Verbindung mit „Einheit“ auf (z.B. 100 Stück).",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Medication.amount.numerator.extension:Packungsgroesse.value[x]",
+        "path": "Medication.amount.numerator.extension.value[x]",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.numerator.extension:Packungsgroesse.value[x]:valueString",
+        "path": "Medication.amount.numerator.extension.valueString",
+        "sliceName": "valueString",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.numerator.value",
+        "path": "Medication.amount.numerator.value",
+        "max": "0"
+      },
+      {
+        "id": "Medication.amount.numerator.comparator",
+        "path": "Medication.amount.numerator.comparator",
+        "max": "0"
+      },
+      {
+        "id": "Medication.amount.numerator.unit",
+        "path": "Medication.amount.numerator.unit",
+        "short": "Einheit",
+        "definition": "Einheit der Packungsgröße (z.B. St.). Tritt nur in Verbindung mit „Packungsgröße nach abgeteilter Menge“ auf - z.B. 100 St.",
+        "min": 1,
+        "maxLength": 12,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.numerator.system",
+        "path": "Medication.amount.numerator.system",
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": false
+      },
+      {
+        "id": "Medication.amount.numerator.code",
+        "path": "Medication.amount.numerator.code",
+        "short": "Packungseinheit (kodiert)",
+        "definition": "optionale kodierte Angabe zur Einheit der Packung gemäß unitsofmeasure.org",
+        "mustSupport": false
+      },
+      {
+        "id": "Medication.amount.denominator",
+        "path": "Medication.amount.denominator",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.denominator.value",
+        "path": "Medication.amount.denominator.value",
+        "min": 1,
+        "fixedDecimal": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.amount.denominator.comparator",
+        "path": "Medication.amount.denominator.comparator",
+        "max": "0"
+      },
+      {
+        "id": "Medication.amount.denominator.unit",
+        "path": "Medication.amount.denominator.unit",
+        "max": "0"
+      },
+      {
+        "id": "Medication.amount.denominator.system",
+        "path": "Medication.amount.denominator.system",
+        "max": "0"
+      },
+      {
+        "id": "Medication.amount.denominator.code",
+        "path": "Medication.amount.denominator.code",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient",
+        "path": "Medication.ingredient",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]",
+        "path": "Medication.ingredient.item[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept",
+        "path": "Medication.ingredient.item[x]",
+        "sliceName": "itemCodeableConcept",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding",
+        "path": "Medication.ingredient.item[x].coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "closed"
+        },
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode",
+        "path": "Medication.ingredient.item[x].coding",
+        "sliceName": "askCode",
+        "max": "1"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.system",
+        "path": "Medication.ingredient.item[x].coding.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.version",
+        "path": "Medication.ingredient.item[x].coding.version",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.code",
+        "path": "Medication.ingredient.item[x].coding.code",
+        "short": "Wirkstoffnummer",
+        "definition": "ASK-Nummer wenn vorhanden",
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.display",
+        "path": "Medication.ingredient.item[x].coding.display",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:askCode.userSelected",
+        "path": "Medication.ingredient.item[x].coding.userSelected",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.coding:snomedCode",
+        "path": "Medication.ingredient.item[x].coding",
+        "sliceName": "snomedCode",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemCodeableConcept.text",
+        "path": "Medication.ingredient.item[x].text",
+        "short": "Wirkstoffname",
+        "definition": "Wirkstoff- bzw. sonstiges Fertigarzneimittel oder Produkt nicht nach § 131 Abs. 4 SGB V gelistet",
+        "min": 1,
+        "maxLength": 80,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.item[x]:itemReference",
+        "path": "Medication.ingredient.item[x]",
+        "sliceName": "itemReference",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.isActive",
+        "path": "Medication.ingredient.isActive",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.strength",
+        "path": "Medication.ingredient.strength",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator",
+        "path": "Medication.ingredient.strength.numerator",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "-erp-begrenzungValue",
+            "severity": "error",
+            "human": "Die Wirkstärke darf aus maximal 15 Zeichen bestehen",
+            "expression": "value.toString().length()<=15",
+            "source": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator.value",
+        "path": "Medication.ingredient.strength.numerator.value",
+        "short": "Wirkstärke",
+        "definition": "Angabe der Wirkstärke erfolgt durch Wirkstoffmenge / Bezugsgrößenmenge",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator.comparator",
+        "path": "Medication.ingredient.strength.numerator.comparator",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator.unit",
+        "path": "Medication.ingredient.strength.numerator.unit",
+        "short": "Wirkstärkeneinheit",
+        "definition": "Einheit der Wirkstärke (bspw. mg/ml)",
+        "min": 1,
+        "maxLength": 15,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator.system",
+        "path": "Medication.ingredient.strength.numerator.system",
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": false
+      },
+      {
+        "id": "Medication.ingredient.strength.numerator.code",
+        "path": "Medication.ingredient.strength.numerator.code",
+        "short": "Wirkstärkeneinheit (kodiert)",
+        "definition": "optionale kodierte Angabe zur Wirkstärkeneinheit gemäß unitsofmeasure.org",
+        "mustSupport": false
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator",
+        "path": "Medication.ingredient.strength.denominator",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator.value",
+        "path": "Medication.ingredient.strength.denominator.value",
+        "min": 1,
+        "fixedDecimal": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator.comparator",
+        "path": "Medication.ingredient.strength.denominator.comparator",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator.unit",
+        "path": "Medication.ingredient.strength.denominator.unit",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator.system",
+        "path": "Medication.ingredient.strength.denominator.system",
+        "max": "0"
+      },
+      {
+        "id": "Medication.ingredient.strength.denominator.code",
+        "path": "Medication.ingredient.strength.denominator.code",
+        "max": "0"
+      }
+    ]
+  }
+}
