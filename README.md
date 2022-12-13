@@ -39,19 +39,19 @@ E-Rezept-Examples
 │   │
 │   └──Freitext-Verordnung
 │   │    │
-│   │    └─Freitext_Verordnung_V1
+│   │    └─Freitext_Verordnung_1
 │   │    │   │ example1.json
 │   │    │   │ example2.xml
 │   │    │   │ ...
 │   │    │
-│   │    └─Freitext_Verordnung_V2
+│   │    └─Freitext_Verordnung_2
 │   │        │ example1.json
 │   │        │ example2.xml
 │   │        │ ...
 │   │
 │   └──PZN-Verordnung_Noctu
 │   │    │
-│   │    └─PZN-Verordnung_Noctu_V1
+│   │    └─PZN-Verordnung_Noctu_1
 │   │    │   │ example1.json
 │   │    │   │ example2.json
 │   │    │   │ ...
