@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "metaJsonVersion": "1.0.0",
+    "lastUpdated": "2022-12-13T10:01:51.431544900Z",
+    "author": "gematik",
+    "source": "https://github.com/gematik/eRezept-Examples",
+    "standalone": false,
+    "content_valid": false,
+    "general_description": "In diesem Freitext_Verordnungsbeispiel gibt es das Problem, dass per Freitext ein BTM verordnet wird, aber keine Flag gesetzt ist."
+  },
+  "respective_files": [
+    {
+      "description": "Medikament ist ein Betäubungsmittel, allerdings ist in der Verordnung das Flag für ein BTM nicht gesetzt",
+      "file": "FT_V1_VerordnungArzt.xml",
+      "file_reference": [
+        {
+          "title": "Freitextmedikament in der Verordnung",
+          "description": "In der Verordnung des Arztes wurde per Freitext ein Medikament verschrieben, was ein Betäubungsmittel ist.",
+          "line": 160,
+          "value": "Metformin 850mg Tabletten N3"
+        },
+        {
+          "title": "Flag für BTM",
+          "description": "Die Verordnung gibt nicht an, dass es sich um ein Betäubungsmittel handelt."
+        }
+      ]
+    },
+    {
+      "description": "Abgabe wurde in der Apotheke fälschlicherweise durchgeführt.",
+      "file": "FT_V1_MedicationDispense.xml",
+      "file_reference": [
+        {
+          "title": "Status der Verordnung",
+          "description": "Status sollte 'cancelled' sein.",
+          "line": 62,
+          "value": "completed"
+        }
+      ]
+    }
+  ]
+}
