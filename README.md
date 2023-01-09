@@ -25,6 +25,8 @@
 ## About The Project
 
 This repository provides software engineers with end to end ePrescription (E-Rezept) examples for testing and hardening of applications. This project lives by contribution of functioning Examples by the community of gematik and vendors.
+It contains Standalone examples which are a copy of the examples that can be found on simplifier.net. These can be used as reference and/or building blocks for creating own examples.
+Further this repository contains "end to end" examples. Each folder contains files that fit a certain use case.
 
 ## Usage
 
@@ -34,34 +36,40 @@ See the following example:
 ``` text
 E-Rezept-Examples
 │   README.md
+└─End-to-End-Examples
+│  └─1_01.07.2021
+│  │   │
+│  │   └──Freitext-Verordnung
+│  │   │    │
+│  │   │    └─Freitext_Verordnung_1
+│  │   │    │   │ example1.json
+│  │   │    │   │ example2.xml
+│  │   │    │   │ ...
+│  │   │    │
+│  │   │    └─Freitext_Verordnung_2
+│  │   │        │ example1.json
+│  │   │        │ example2.xml
+│  │   │        │ ...
+│  │   │
+│  │   └──PZN-Verordnung_Noctu
+│  │   │    │
+│  │   │    └─PZN-Verordnung_Noctu_1
+│  │   │    │   │ example1.json
+│  │   │    │   │ example2.json
+│  │   │    │   │ ...
+│  │   │
+│  │   │
+│  │   ...
+│  │
+│  │
+│  └─── ...
 │
-└─1_01.07.2021
-│   │
-│   └──Freitext-Verordnung
-│   │    │
-│   │    └─Freitext_Verordnung_1
-│   │    │   │ example1.json
-│   │    │   │ example2.xml
-│   │    │   │ ...
-│   │    │
-│   │    └─Freitext_Verordnung_2
-│   │        │ example1.json
-│   │        │ example2.xml
-│   │        │ ...
-│   │
-│   └──PZN-Verordnung_Noctu
-│   │    │
-│   │    └─PZN-Verordnung_Noctu_1
-│   │    │   │ example1.json
-│   │    │   │ example2.json
-│   │    │   │ ...
-│   │
-│   │
-│   ...
-│
-│
-└─── ...
-│
+└─Standalone-Examples
+│  └─eRezept(KBV)
+│  │  └─1.0.2
+│  │  │  └─...
+│  │  └─1.1.0
+│  └─E-Rezept-Workflow(gematik)
 ...
 ```
 
