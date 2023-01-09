@@ -31,7 +31,7 @@ This repository provides software engineers with end to end ePrescription (E-Rez
 This project carries the following folder structure: startDateOfNewProfiles/UseCase/VersionOfUseCase/file
 See the following example:
 
-``` http
+``` text
 E-Rezept-Examples
 │   README.md
 │
@@ -72,8 +72,7 @@ We strongly encourage contributing examples to this repository.
 
 
 ## License
-<!-- Refer to Guideline 'License' -->
-//TODO
+This project is licensed under the Apache 2.0 license.
 
 ## Contact
 If you have questions or want to get in contact please use the "issues" function on GitHub.
