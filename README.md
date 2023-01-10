@@ -24,58 +24,52 @@
 
 ## About The Project
 
-This repository provides software engineers with ePrescription (E-Rezept) examples for testing and hardening of applications. Each supplier of FHIR-specifications uploads their examples into this location. The top-level folders carry the name of the representative simplifier project.
-
-* [E-Rezept-Patientenrechnung (gematik)](https://simplifier.net/erezept-patientenrechnung)
-* [E-Rezept-Workflow (gematik)](https://simplifier.net/erezept-workflow)
-* [eRezept (KBV)](https://simplifier.net/eRezept)
-* [eRezeptAbgabedaten (ABDA)](https://simplifier.net/erezeptabgabedaten)
-* [eRezeptAbgabedatenPKV (ABDA)](https://simplifier.net/erezeptabgabedatenpkv)
-* [eRezeptAbrechnungsdaten (GKVSV)](https://simplifier.net/eRezeptAbrechnungsdaten)
+This repository provides software engineers with end to end ePrescription (E-Rezept) examples for testing and hardening of applications. This project lives by contribution of functioning Examples by the community of gematik and vendors.
+It contains Standalone examples which are a copy of the examples that can be found on simplifier.net. These can be used as reference and/or building blocks for creating own examples.
+Further this repository contains "end to end" examples. Each folder contains files that fit a certain use case.
 
 ## Usage
 
-This project carries the following folder structure: project/version/(in)valid/example.json
+This project carries the following folder structure: startDateOfNewProfiles/UseCase/VersionOfUseCase/file
 See the following example:
 
-``` http
+``` text
 E-Rezept-Examples
 │   README.md
+└─End-to-End-Examples
+│  └─1_01.07.2021
+│  │   │
+│  │   └──Freitext-Verordnung
+│  │   │    │
+│  │   │    └─Freitext_Verordnung_1
+│  │   │    │   │ example1.json
+│  │   │    │   │ example2.xml
+│  │   │    │   │ ...
+│  │   │    │
+│  │   │    └─Freitext_Verordnung_2
+│  │   │        │ example1.json
+│  │   │        │ example2.xml
+│  │   │        │ ...
+│  │   │
+│  │   └──PZN-Verordnung_Noctu
+│  │   │    │
+│  │   │    └─PZN-Verordnung_Noctu_1
+│  │   │    │   │ example1.json
+│  │   │    │   │ example2.json
+│  │   │    │   │ ...
+│  │   │
+│  │   │
+│  │   ...
+│  │
+│  │
+│  └─── ...
 │
-└─eRezept(KBV)
-│   │   README.md
-│   │   ReleaseNotes.md
-│   │
-│   └──1.0.0
-│   │    │
-│   │    └─invalid
-│   │    │   │ example1.json
-│   │    │   │ example2.json
-│   │    │   │ ...
-│   │    │
-│   │    └─valid
-│   │        │ example1.json
-│   │        │ example2.json
-│   │        │ ...
-│   │
-│   └──1.0.1
-│   │    │
-│   │    └─invalid
-│   │    │   │ example1.json
-│   │    │   │ example2.json
-│   │    │   │ ...
-│   │    │
-│   │    └─valid
-│   │        │ example1.json
-│   │        │ example2.json
-│   │        │ ...
-│   │
-│   │
-│   ...
-│
-│
-└─── ...
-│
+└─Standalone-Examples
+│  └─eRezept(KBV)
+│  │  └─1.0.2
+│  │  │  └─...
+│  │  └─1.1.0
+│  └─E-Rezept-Workflow(gematik)
 ...
 ```
 
@@ -86,8 +80,7 @@ We strongly encourage contributing examples to this repository.
 
 
 ## License
-<!-- Refer to Guideline 'License' -->
-//TODO
+This project is licensed under the Apache 2.0 license.
 
 ## Contact
 If you have questions or want to get in contact please use the "issues" function on GitHub.
