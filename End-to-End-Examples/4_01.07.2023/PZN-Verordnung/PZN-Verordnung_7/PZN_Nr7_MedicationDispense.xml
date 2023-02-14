@@ -1,0 +1,94 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="e378bc5a-552f-4151-a072-366d4a9f6cec"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PZN Bsp 7"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="01417220-0b1b-4a4f-b29b-c127341a5059"/>
+      <meta>
+          <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+        </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category" />
+          <code value="00" />
+        </valueCoding>
+      </extension>
+        <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+          <valueCodeableConcept>
+           <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331" />
+            <code value="763158003" />
+            <display value="Medicinal product (product)" />
+           </coding>
+          </valueCodeableConcept>
+        </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N1"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+          <code value="01288434"/>
+        </coding>
+        <text value="Atmadisc 50 μg/250 μg Diskus Inh.-Pulver"/>
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+          <code value="IHP"/>
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="1" />
+          </extension>
+          <unit value="Diskus"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <batch>
+        <lotNumber value="A123456789-1"/>
+        <expirationDate value="2024-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="160.100.000.000.004.30"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#01417220-0b1b-4a4f-b29b-c127341a5059"/>
+    <display value="Atmadisc 50 μg/250 μg Diskus Inh.-Pulver"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10"/>
+      <value value="K220635158"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-07.2.1234560000.10.789"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2023-07-27"/>
+</MedicationDispense>

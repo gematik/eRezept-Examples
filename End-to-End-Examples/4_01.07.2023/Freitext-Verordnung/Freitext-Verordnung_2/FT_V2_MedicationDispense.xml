@@ -1,0 +1,94 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="5b829135-17d8-4534-9240-3ba68f96829f"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense Freitext Bsp V2 -&gt; PZN Abgabe"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="2fd1eaa4-364b-4bb2-8247-49fc0c4fb805"/>
+      <meta>
+          <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+        </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category" />
+          <code value="00" />
+        </valueCoding>
+      </extension>
+        <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+          <valueCodeableConcept>
+           <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331" />
+            <code value="763158003" />
+            <display value="Medicinal product (product)" />
+           </coding>
+          </valueCodeableConcept>
+        </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N3"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+          <code value="08999233"/>
+        </coding>
+        <text value="METFORMIN STADA 850 mg Filmtabletten 180 Stk"/>
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+          <code value="FTA"/>
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="180" />
+          </extension>
+          <unit value="Tabletten"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <batch>
+        <lotNumber value="P987654321-8"/>
+        <expirationDate value="2024-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="160.100.000.000.023.70"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#2fd1eaa4-364b-4bb2-8247-49fc0c4fb805"/>
+    <display value="METFORMIN STADA 850 mg Filmtabletten 180 Stk"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10"/>
+      <value value="S040464113"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-07.2.1234560000.10.789"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2023-07-27"/>
+</MedicationDispense>
