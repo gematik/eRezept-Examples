@@ -1,64 +1,88 @@
 <Bundle xmlns="http://hl7.org/fhir">
-    <id value="4a541a10-1dd5-11b2-802f-a94e94495476"/>
+    <id value="3428d416-149e-48a4-977c-394887b3d8dd" />
     <meta>
-        <profile value="https://gematik.de/fhir/StructureDefinition/ErxReceipt"/>
+        <profile value="https://gematik.de/fhir/StructureDefinition/ErxReceipt" />
     </meta>
     <identifier>
-        <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID"/>
-        <value value="160.000.764.737.300.50"/>
+        <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID" />
+        <value value="160.000.764.737.300.50" />
     </identifier>
-    <type value="document"/>
-    <timestamp value="2021-03-30T12:39:14.394960900+00:00"/>
+    <type value="document" />
+    <timestamp value="2021-07-31T07:31:34Z" />
+    <link>
+        <relation value="self" />
+        <url value="https://gematik.erppre.de:443/Task/160.000.764.737.300.50/$close" />
+    </link>
     <entry>
+        <fullUrl value="urn:uuid:d02307f6-9676-49aa-8d8d-b88151252cc7" />
         <resource>
             <Composition>
+                <id value="d02307f6-9676-49aa-8d8d-b88151252cc7" />
                 <meta>
-                    <profile value="https://gematik.de/fhir/StructureDefinition/ErxComposition"/>
+                    <profile value="https://gematik.de/fhir/StructureDefinition/ErxComposition" />
                 </meta>
                 <extension url="https://gematik.de/fhir/StructureDefinition/BeneficiaryExtension">
                     <valueIdentifier>
-                        <system value="https://gematik.de/fhir/NamingSystem/TelematikID"/>
-                        <value value="3-07.2.1234560000.10.789"/>
+                        <system value="https://gematik.de/fhir/NamingSystem/TelematikID" />
+                        <value value="606358757" />
                     </valueIdentifier>
                 </extension>
-                <status value="final"/>
+                <status value="final" />
                 <type>
                     <coding>
-                        <system value="https://gematik.de/fhir/CodeSystem/Documenttype"/>
-                        <code value="3"/>
-                        <display value="Receipt"/>
+                        <system value="https://gematik.de/fhir/CodeSystem/Documenttype" />
+                        <code value="3" />
+                        <display value="Receipt" />
                     </coding>
                 </type>
-                <date value="2021-03-30T12:39:14.394939900+00:00"/>
+                <date value="2021-07-31T09:31:34Z" />
                 <author>
-                    <reference value="ErxService"/>
+                    <reference value="https://gematik.erppre.de:443/Device" />
                 </author>
-                <title value="Quittung"/>
+                <title value="Quittung" />
                 <event>
                     <period>
-                        <start value="2021-03-30T11:30:01.000762900+00:00"/>
-                        <end value="2021-03-30T12:39:14.394939900+00:00"/>
+                        <start value="2021-07-31T07:23:34Z" />
+                        <end value="2021-07-31T07:31:34Z" />
                     </period>
                 </event>
             </Composition>
         </resource>
     </entry>
     <entry>
+        <fullUrl value="https://gematik.erppre.de:443/Device" />
         <resource>
             <Device>
-                <id value="ErxService"/>
+                <id value="1" />
                 <meta>
-                    <profile value="https://gematik.de/fhir/StructureDefinition/ErxDevice"/>
+                    <profile value="https://gematik.de/fhir/StructureDefinition/ErxDevice" />
                 </meta>
-                <status value="active"/>
+                <status value="active" />
+                <serialNumber value="0.3.1" />
                 <deviceName>
-                    <name value="E-Rezept Fachdienst Referenzimplementierung"/>
-                    <type value="user-friendly-name"/>
+                    <name value="E-Rezept Fachdienst" />
+                    <type value="user-friendly-name" />
                 </deviceName>
                 <version>
-                    <value value="0.14.0+1 dirty 056c0480525800bc3022a69c6abb40fafacf7187"/>
+                    <value value="0.3.1" />
                 </version>
+                <contact>
+                    <system value="email" />
+                    <value value="betrieb@gematik.de" />
+                </contact>
             </Device>
         </resource>
     </entry>
+    <signature>
+        <type>
+            <system value="urn:iso-astm:E1762-95:2013" />
+            <code value="1.2.840.10065.1.12.1.1" />
+        </type>
+        <when value="2021-07-31T14:04:18Z" />
+        <who>
+            <reference value="https://gematik.erppre.de:443/Device" />
+        </who>
+        <sigFormat value="application/pkcs7-mime" />
+        <data value="MIINNQYJKoZIhvcNAQcCoIINJjCCDSICAQExDTALBglghkgBZQMEAgEwggd5BgkqhkiG9w0BBwGgggdqBIIHZjw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi04Ij8+CjxCdW5kbGUgeG1sbnM9Imh0dHA6Ly9obDcub3JnL2ZoaXIiPjxpZCB2YWx1ZT0iYTBkNTJmMDAtMDAwMC0wMDAwLTAwMDMtMDAwMDAwMDAwMDAwIi8+PG1ldGE+PHByb2ZpbGUgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vRXJ4UmVjZWlwdCIvPjwvbWV0YT48aWRlbnRpZmllcj48c3lzdGVtIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9OYW1pbmdTeXN0ZW0vUHJlc2NyaXB0aW9uSUQiLz48dmFsdWUgdmFsdWU9IjE2MC4wMDAuMDAwLjAxMi4yNDUuODUiLz48L2lkZW50aWZpZXI+PHR5cGUgdmFsdWU9ImRvY3VtZW50Ii8+PHRpbWVzdGFtcCB2YWx1ZT0iMjAyMS0wNi0wOFQxNDowNDoxOC45ODgrMDA6MDAiLz48bGluaz48cmVsYXRpb24gdmFsdWU9InNlbGYiLz48dXJsIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZXJwcHJlLmRlOjQ0My9UYXNrLzE2MC4wMDAuMDAwLjAxMi4yNDUuODUvJGNsb3NlLyIvPjwvbGluaz48ZW50cnk+PHJlc291cmNlPjxDb21wb3NpdGlvbj48aWQgdmFsdWU9IjZhYTMyMjdmLTlhNDUtNDVhNS05YTQ0LTJmYjE1ZTMyNjgzMCIvPjxtZXRhPjxwcm9maWxlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0VyeENvbXBvc2l0aW9uIi8+PC9tZXRhPjxleHRlbnNpb24gdXJsPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0JlbmVmaWNpYXJ5RXh0ZW5zaW9uIj48dmFsdWVJZGVudGlmaWVyPjxzeXN0ZW0gdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL05hbWluZ1N5c3RlbS9UZWxlbWF0aWtJRCIvPjx2YWx1ZSB2YWx1ZT0iMy1TTUMtQi1UZXN0a2FydGUtLTg4MzExMDAwMDA5NDA1MyIvPjwvdmFsdWVJZGVudGlmaWVyPjwvZXh0ZW5zaW9uPjxzdGF0dXMgdmFsdWU9ImZpbmFsIi8+PHR5cGU+PGNvZGluZz48c3lzdGVtIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9Db2RlU3lzdGVtL0RvY3VtZW50dHlwZSIvPjxjb2RlIHZhbHVlPSIzIi8+PGRpc3BsYXkgdmFsdWU9IlJlY2VpcHQiLz48L2NvZGluZz48L3R5cGU+PGRhdGUgdmFsdWU9IjIwMjEtMDYtMDhUMTQ6MDQ6MTguOTg4KzAwOjAwIi8+PGF1dGhvcj48cmVmZXJlbmNlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZXJwcHJlLmRlOjQ0My9EZXZpY2UiLz48L2F1dGhvcj48dGl0bGUgdmFsdWU9IlF1aXR0dW5nIi8+PGV2ZW50PjxwZXJpb2Q+PHN0YXJ0IHZhbHVlPSIyMDIxLTA2LTA4VDEyOjQ4OjM2LjU1MiswMDowMCIvPjxlbmQgdmFsdWU9IjIwMjEtMDYtMDhUMTQ6MDQ6MTguOTg4KzAwOjAwIi8+PC9wZXJpb2Q+PC9ldmVudD48L0NvbXBvc2l0aW9uPjwvcmVzb3VyY2U+PC9lbnRyeT48ZW50cnk+PGZ1bGxVcmwgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5lcnBwcmUuZGU6NDQzL0RldmljZSIvPjxyZXNvdXJjZT48RGV2aWNlPjxpZCB2YWx1ZT0iMSIvPjxtZXRhPjxwcm9maWxlIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9TdHJ1Y3R1cmVEZWZpbml0aW9uL0VyeERldmljZSIvPjwvbWV0YT48c3RhdHVzIHZhbHVlPSJhY3RpdmUiLz48c2VyaWFsTnVtYmVyIHZhbHVlPSIwLjMuMSIvPjxkZXZpY2VOYW1lPjxuYW1lIHZhbHVlPSJFLVJlemVwdCBGYWNoZGllbnN0Ii8+PHR5cGUgdmFsdWU9InVzZXItZnJpZW5kbHktbmFtZSIvPjwvZGV2aWNlTmFt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" />
+    </signature>
 </Bundle>
