@@ -1,0 +1,47 @@
+<ChargeItem xmlns="http://hl7.org/fhir">
+    <id value="abc825bc-bc30-45f8-b109-1b343fff5c45" />
+    <meta>
+        <profile value="https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0" />
+        <tag>
+            <display value="Example of an ChargeItem." />
+        </tag>
+    </meta>
+    <contained>
+        <Binary xmlns="http://hl7.org/fhir">
+            <id value="ad80703d-8c62-44a3-b12b-2ea66eda0aa2" />
+            <contentType value="application/pkcs7-mime" />
+            <data value="UEtWLUFiZ2FiZWRhdGVuIHNpZ25pZXJ0IGFscyBiYXNlNjQ="/> <!-- signierte AbgabedatenPKV-->
+        </Binary>
+    </contained>
+    <identifier>
+        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+        <value value="200.424.187.927.272.20" />
+    </identifier>
+    <status value="billable" />
+    <code>
+        <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/data-absent-reason" />
+            <code value="not-applicable" />
+        </coding>
+    </code>
+    <subject>
+        <identifier>
+            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+            <value value="123456789" />
+            <assigner>
+                <display value="Allianz Private Krankenversicherung" />
+            </assigner>
+        </identifier>
+    </subject>
+    <enterer>
+        <identifier>
+            <system value="https://gematik.de/fhir/sid/telematik-id" />
+            <value value="3-15.2.1456789123.191" />
+        </identifier>
+    </enterer>
+    <enteredDate value="2023-07-03T11:30:00Z"/>
+    <supportingInformation>
+        <reference value="#ad80703d-8c62-44a3-b12b-2ea66eda0aa2"/>
+        <display value="Binary" />
+    </supportingInformation>
+</ChargeItem>
