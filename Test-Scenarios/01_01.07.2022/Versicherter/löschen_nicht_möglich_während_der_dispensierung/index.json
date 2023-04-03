@@ -1,0 +1,105 @@
+{
+  "id": "fcf07763-12da-4005-8b91-a9d66fc1a1cf",
+  "mainActor": "Versicherter",
+  "name": "Löschen nicht möglich während der Dispensierung",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=169",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=AF_10111",
+    "@Anwendungsfall=AF_10112",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=GKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF169_04",
+    "@Path=bad",
+    "@Afo=A_22102",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte kann das E-Rezept nicht löschen während die Apotheke das Rezept dispensiert",
+  "feature": "Direktzuweisung für GKV-Rezepte",
+  "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.000.021.503.61",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.000.021.503.61/$activate",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/169.000.000.021.503.61",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 169.000.000.021.503.61 with AccessCode 5bc7996d551142f60c5f004f5bc8945f707038233dcabcefa9d285833a67dc00",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/6_dmc_169.000.000.021.503.61.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/1dc578a8-86eb-4811-9833-da559981cb18",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/2ecd6e42-534e-41e3-b0b0-06bdeba33abf",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/8_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte kann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+    },
+    {
+      "name": "Sina hüllmann check the return code",
+      "dumps": [
+        {
+          "operation": "Response 403: OperationOutcome 20230316_125213",
+          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/9_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Sina hüllmann performable predicate"
+    }
+  ],
+  "requirements": ["A_22102"],
+  "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+}

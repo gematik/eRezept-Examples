@@ -1,0 +1,96 @@
+{
+  "id": "bf43a6f9-0aaf-4e42-a896-ba3e70268da1",
+  "mainActor": "Versicherter",
+  "name": "Löschen nicht möglich bis nach der Dispensierung",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=169",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=AF_10111",
+    "@Anwendungsfall=AF_10112",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=GKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF169_03",
+    "@Path=bad",
+    "@Afo=A_22102",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte kann E-Rezepte mit Direktzuweisung nicht löschen bis diese durch\n  eine Apotheke dispensiert wurden",
+  "feature": "Direktzuweisung für GKV-Rezepte",
+  "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.000.021.502.64",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.000.021.502.64/$activate",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/169.000.000.021.502.64",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 169.000.000.021.502.64 with AccessCode 095a0f4819a20e2efec0dc478e000f4724f5fdba09d4fd93adc265afa04a9b35",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/6_dmc_169.000.000.021.502.64.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/ec7c6b18-7ce9-45b9-8686-cac5c0966a7a",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/7_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte kann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+    },
+    {
+      "name": "Sina hüllmann check the return code",
+      "dumps": [
+        {
+          "operation": "Response 403: OperationOutcome 20230316_125209",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/8_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Sina hüllmann performable predicate"
+    }
+  ],
+  "requirements": ["A_22102"],
+  "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+}

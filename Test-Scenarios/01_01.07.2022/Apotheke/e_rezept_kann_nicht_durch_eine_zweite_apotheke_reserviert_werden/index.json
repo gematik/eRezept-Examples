@@ -1,0 +1,112 @@
+{
+  "id": "941ae19d-2607-494d-9e6a-82fc15e5541b",
+  "mainActor": "Apotheke",
+  "name": "E-Rezept kann nicht durch eine zweite Apotheke reserviert werden",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_09",
+    "@Path=bad",
+    "@Afo=A_19168",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Die Apotheke akzeptiert das Rezept. Anschließend versucht eine zweite Apotheke das Rezept einzulösen. Das wird durch den Fachdienst verhindert.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.823.75",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.823.75/$activate",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.006.300.823.75",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.006.300.823.75 with AccessCode cb1c93c9fa295747cab0860b86895c20a3d5a2a216e82dcad6448f68d5c1f5d8",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/6_dmc_160.000.006.300.823.75.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Stadtapotheke via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/856353f8-2442-4b0e-8905-32cfa1346c3e",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Stadtapotheke das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es einen Konflikt gibt"
+    },
+    {
+      "name": "Stadtapotheke check the return code",
+      "dumps": [
+        {
+          "operation": "Response 409: OperationOutcome 20230316_125029",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/8_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Stadtapotheke performable predicate"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+      "dumps": [
+        {
+          "operation": "POST /Task/160.000.006.300.823.75/$close?secret=475909be7bf8392db974c1071ee269cc6d4b180c66ef65e26845e264fd8fcc28",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/a0972460-0000-0000-0003-000000000000",
+          "file": "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/10_Response_Bundle.xml"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_19168"],
+  "useCases": ["A_18827", "A_18502", "A_18503"]
+}

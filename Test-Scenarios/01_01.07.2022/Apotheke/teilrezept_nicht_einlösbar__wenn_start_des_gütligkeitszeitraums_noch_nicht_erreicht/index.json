@@ -1,0 +1,93 @@
+{
+  "id": "825903c7-b382-4dc0-b446-1bcf6150a649",
+  "mainActor": "Apotheke",
+  "name": "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
+  "tags": [
+    "@Funktionalität=MVO",
+    "@Impl=done",
+    "@TCID=ERP_EE_MVO_07",
+    "@Afo=A_22635",
+    "@Path=bad",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile": "MVO/MVO.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 90 | 180 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.850.91",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.850.91/$activate",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.006.300.850.91",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.006.300.850.91 with AccessCode 5b300ece161cad9fcf795fe62a0b0cac19cfef05e905cb39df06d12ac2428e5a",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/6_dmc_160.000.006.300.850.91.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/36138afe-7092-4367-8675-1f627eb07f2d",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/7_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es noch nicht gültig ist"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Response 403: OperationOutcome 20230316_125339",
+          "file": "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/8_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_22635"]
+}

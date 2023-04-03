@@ -1,0 +1,106 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="a0852460-0000-0000-0003-000000000000"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/StructureDefinition/ErxReceipt|1.1.1"/>
+   </meta>
+   <identifier>
+      <system value="https://gematik.de/fhir/NamingSystem/PrescriptionID"/>
+      <value value="160.000.006.300.805.32"/>
+   </identifier>
+   <type value="document"/>
+   <timestamp value="2023-03-16T11:48:35.618+00:00"/>
+   <link>
+      <relation value="self"/>
+      <url value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Task/160.000.006.300.805.32/$close/"/>
+   </link>
+   <entry>
+      <fullUrl value="urn:uuid:c0c1787d-feb5-4318-a73a-a7189b384417"/>
+      <resource>
+         <Composition xmlns="http://hl7.org/fhir">
+            <meta>
+               <profile value="https://gematik.de/fhir/StructureDefinition/ErxComposition|1.1.1"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/StructureDefinition/BeneficiaryExtension">
+               <valueIdentifier>
+                  <system value="https://gematik.de/fhir/NamingSystem/TelematikID"/>
+                  <value value="3-SMC-B-Testkarte-883110000116873"/>
+               </valueIdentifier>
+            </extension>
+            <status value="final"/>
+            <type>
+               <coding>
+                  <system value="https://gematik.de/fhir/CodeSystem/Documenttype"/>
+                  <code value="3"/>
+                  <display value="Receipt"/>
+               </coding>
+            </type>
+            <date value="2023-03-16T11:48:35.617+00:00"/>
+            <author>
+               <reference value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Device/1"/>
+            </author>
+            <title value="Quittung"/>
+            <event>
+               <period>
+                  <start value="2023-03-16T11:48:34.896+00:00"/>
+                  <end value="2023-03-16T11:48:35.617+00:00"/>
+               </period>
+            </event>
+            <section>
+               <entry>
+                  <reference value="Binary/PrescriptionDigest-160.000.006.300.805.32"/>
+               </entry>
+            </section>
+         </Composition>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Device/1"/>
+      <resource>
+         <Device xmlns="http://hl7.org/fhir">
+            <id value="1"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/StructureDefinition/ErxDevice|1.1.1"/>
+            </meta>
+            <status value="active"/>
+            <serialNumber value="1.8.1"/>
+            <deviceName>
+               <name value="E-Rezept Fachdienst"/>
+               <type value="user-friendly-name"/>
+            </deviceName>
+            <version>
+               <value value="1.8.1"/>
+            </version>
+            <contact>
+               <system value="email"/>
+               <value value="betrieb@gematik.de"/>
+            </contact>
+         </Device>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Task/160.000.006.300.805.32/PrescriptionDigest"/>
+      <resource>
+         <Binary xmlns="http://hl7.org/fhir">
+            <id value="PrescriptionDigest-160.000.006.300.805.32"/>
+            <meta>
+               <versionId value="1"/>
+               <profile value="http://hl7.org/fhir/StructureDefinition/Binary|4.0.1"/>
+            </meta>
+            <contentType value="application/octet-stream"/>
+            <data value="hNGT/ND1g0TEwjMrmilLyjXa+3eZyc+uLUnCo6RPMtA="/>
+         </Binary>
+      </resource>
+   </entry>
+   <signature>
+      <type>
+         <system value="urn:iso-astm:E1762-95:2013"/>
+         <code value="1.2.840.10065.1.12.1.1"/>
+      </type>
+      <when value="2023-03-16T11:48:35.620+00:00"/>
+      <who>
+         <reference value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Device/1"/>
+      </who>
+      <sigFormat value="application/pkcs7-mime"/>
+      <data value="MIIUUQYJKoZIhvcNAQcCoIIUQjCCFD4CAQUxDTALBglghkgBZQMEAgEwggotBgkqhkiG9w0BBwGgggoeBIIKGjw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9InV0Zi04Ij8+CjxCdW5kbGUgeG1sbnM9Imh0dHA6Ly9obDcub3JnL2ZoaXIiPjxpZCB2YWx1ZT0iYTA4NTI0NjAtMDAwMC0wMDAwLTAwMDMtMDAwMDAwMDAwMDAwIi8+PG1ldGE+PHByb2ZpbGUgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vRXJ4UmVjZWlwdHwxLjEuMSIvPjwvbWV0YT48aWRlbnRpZmllcj48c3lzdGVtIHZhbHVlPSJodHRwczovL2dlbWF0aWsuZGUvZmhpci9OYW1pbmdTeXN0ZW0vUHJlc2NyaXB0aW9uSUQiLz48dmFsdWUgdmFsdWU9IjE2MC4wMDAuMDA2LjMwMC44MDUuMzIiLz48L2lkZW50aWZpZXI+PHR5cGUgdmFsdWU9ImRvY3VtZW50Ii8+PHRpbWVzdGFtcCB2YWx1ZT0iMjAyMy0wMy0xNlQxMTo0ODozNS42MTgrMDA6MDAiLz48bGluaz48cmVsYXRpb24gdmFsdWU9InNlbGYiLz48dXJsIHZhbHVlPSJodHRwczovL2VycC10ZXN0LnplbnRyYWwuZXJwLnNwbGl0ZG5zLnRpLWRpZW5zdGUuZGUvVGFzay8xNjAuMDAwLjAwNi4zMDAuODA1LjMyLyRjbG9zZS8iLz48L2xpbms+PGVudHJ5PjxmdWxsVXJsIHZhbHVlPSJ1cm46dXVpZDpjMGMxNzg3ZC1mZWI1LTQzMTgtYTczYS1hNzE4OWIzODQ0MTciLz48cmVzb3VyY2U+PENvbXBvc2l0aW9uPjxpZCB2YWx1ZT0iYzBjMTc4N2QtZmViNS00MzE4LWE3M2EtYTcxODliMzg0NDE3Ii8+PG1ldGE+PHByb2ZpbGUgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vRXJ4Q29tcG9zaXRpb258MS4xLjEiLz48L21ldGE+PGV4dGVuc2lvbiB1cmw9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vQmVuZWZpY2lhcnlFeHRlbnNpb24iPjx2YWx1ZUlkZW50aWZpZXI+PHN5c3RlbSB2YWx1ZT0iaHR0cHM6Ly9nZW1hdGlrLmRlL2ZoaXIvTmFtaW5nU3lzdGVtL1RlbGVtYXRpa0lEIi8+PHZhbHVlIHZhbHVlPSIzLVNNQy1CLVRlc3RrYXJ0ZS04ODMxMTAwMDAxMTY4NzMiLz48L3ZhbHVlSWRlbnRpZmllcj48L2V4dGVuc2lvbj48c3RhdHVzIHZhbHVlPSJmaW5hbCIvPjx0eXBlPjxjb2Rpbmc+PHN5c3RlbSB2YWx1ZT0iaHR0cHM6Ly9nZW1hdGlrLmRlL2ZoaXIvQ29kZVN5c3RlbS9Eb2N1bWVudHR5cGUiLz48Y29kZSB2YWx1ZT0iMyIvPjxkaXNwbGF5IHZhbHVlPSJSZWNlaXB0Ii8+PC9jb2Rpbmc+PC90eXBlPjxkYXRlIHZhbHVlPSIyMDIzLTAzLTE2VDExOjQ4OjM1LjYxNyswMDowMCIvPjxhdXRob3I+PHJlZmVyZW5jZSB2YWx1ZT0iaHR0cHM6Ly9lcnAtdGVzdC56ZW50cmFsLmVycC5zcGxpdGRucy50aS1kaWVuc3RlLmRlL0RldmljZS8xIi8+PC9hdXRob3I+PHRpdGxlIHZhbHVlPSJRdWl0dHVuZyIvPjxldmVudD48cGVyaW9kPjxzdGFydCB2YWx1ZT0iMjAyMy0wMy0xNlQxMTo0ODozNC44OTYrMDA6MDAiLz48ZW5kIHZhbHVlPSIyMDIzLTAzLTE2VDExOjQ4OjM1LjYxNyswMDowMCIvPjwvcGVyaW9kPjwvZXZlbnQ+PHNlY3Rpb24+PGVudHJ5PjxyZWZlcmVuY2UgdmFsdWU9IkJpbmFyeS9QcmVzY3JpcHRpb25EaWdlc3QtMTYwLjAwMC4wMDYuMzAwLjgwNS4zMiIvPjwvZW50cnk+PC9zZWN0aW9uPjwvQ29tcG9zaXRpb24+PC9yZXNvdXJjZT48L2VudHJ5PjxlbnRyeT48ZnVsbFVybCB2YWx1ZT0iaHR0cHM6Ly9lcnAtdGVzdC56ZW50cmFsLmVycC5zcGxpdGRucy50aS1kaWVuc3RlLmRlL0RldmljZS8xIi8+PHJlc291cmNlPjxEZXZpY2U+PGlkIHZhbHVlPSIxIi8+PG1ldGE+PHByb2ZpbGUgdmFsdWU9Imh0dHBzOi8vZ2VtYXRpay5kZS9maGlyL1N0cnVjdHVyZURlZmluaXRpb24vRXJ4RGV2aWNlfDEuMS4xIi8+PC9tZXRhPjxzdGF0dXMgdmFsdWU9ImFjdGl2ZSIvPjxzZXJpYWxOdW1iZXIgdmFsdWU9IjEuOC4xIi8+PGRldmljZU5hbWU+PG5hbWUgdmFsdWU9IkUtUmV6ZXB0IEZhY2hkaWVuc3QiLz48dHlwZSB2YWx1ZT0idXNlci1mcmllbmRseS1uYW1lIi8+PC9kZXZpY2VOYW1lPjx2ZXJzaW9uPjx2YWx1ZSB2YWx1ZT0iMS44LjEiLz48L3ZlcnNpb24+PGNvbnRhY3Q+PHN5c3RlbSB2YWx1ZT0iZW1haWwiLz48dmFsdWUgdmFsdWU9ImJldHJpZWJAZ2VtYXRpay5kZSIvPjwvY29udGFjdD48L0RldmljZT48L3Jlc291cmNlPjwvZW50cnk+PGVudHJ5PjxmdWxsVXJsIHZhbHVlPSJodHRwczovL2VycC10ZXN0LnplbnRyYWwuZXJwLnNwbGl0ZG5zLnRpLWRpZW5zdGUuZGUvVGFzay8xNjAuMDAwLjAwNi4zMDAuODA1LjMyL1ByZXNjcmlwdGlvbkRpZ2VzdCIvPjxyZXNvdXJjZT48QmluYXJ5PjxpZCB2YWx1ZT0iUHJlc2NyaXB0aW9uRGlnZXN0LTE2MC4wMDAuMDA2LjMwMC44MDUuMzIiLz48bWV0YT48dmVyc2lvbklkIHZhbHVlPSIxIi8+PHByb2ZpbGUgdmFsdWU9Imh0dHA6Ly9obDcub3JnL2ZoaXIvU3RydWN0dXJlRGVmaW5pdGlvbi9CaW5hcnl8NC4wLjEiLz48L21ldGE+PGNvbnRlbnRUeXBlIHZhbHVlPSJhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW0iLz48ZGF0YSB2YWx1ZT0iaE5HVC9ORDFnMFRFd2pNcm1pbEx5alhhKzNlWnljK3VMVW5DbzZSUE10QT0iLz48L0JpbmFyeT48L3Jlc291cmNlPjwvZW50cnk+PC9CdW5kbGU+CqCCAtkwggLVMIICfKADAgECAgJsGzAKBggqhkjOPQQDAjCBhDELMAkGA1UEBhMCREUx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"/>
+   </signature>
+</Bundle>
