@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="9309bacf-da87-416c-93dc-afb71e6d5c63"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV Rezeptur Bsp 10"/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="8abda918-22eb-4c77-a887-f6aaec1bbd3a"/>
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+          <code value="00"/>
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
+          <code value="freitext"/>
+        </coding>
+        <text value="1x 100 g Creme / Triamcinolonacetonid 0.1% / Basiscreme DAC Ad 100,0 g"/>
+      </code>
+      <batch>
+        <lotNumber value="A123456789-1"/>
+        <expirationDate value="2024-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="200.858.310.624.061.76"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#8abda918-22eb-4c77-a887-f6aaec1bbd3a"/>
+    <display value="Rezeptur"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/pkv/kvid-10"/>
+      <value value="P123464113"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-abc-1234567890"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2023-07-03"/>
+  <dosageInstruction>
+    <text value="1x täglich dünn auf die erkrankten Hautstellen auftragen"/>
+  </dosageInstruction>
+</MedicationDispense>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="01ce5139-197f-4520-8805-12a2a4a1c546"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_CloseOperationInputBundle|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV Wirkstoff (multiple medications)"/>
+    </tag>
+  </meta>
+  <type value="collection"/>
+  <entry>
+    <fullUrl value="urn:uuid:9c071f12-db40-4f7e-9b87-18cea3458c0d"/>
+    <resource>
+      <MedicationDispense>
+        <id value="9c071f12-db40-4f7e-9b87-18cea3458c0d"/>
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+          <tag>
+            <display value="Beispiel MedicationDispense PKV Wirkstoff 1/2"/>
+          </tag>
+        </meta>
+        <contained>
+          <Medication>
+            <id value="ebdb8f91-b514-4374-bd18-825f9437e2aa"/>
+            <meta>
+              <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+              <valueCodeableConcept>
+                <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                  <code value="763158003"/>
+                  <display value="Medicinal product (product)"/>
+                </coding>
+              </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+              <valueCoding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                <code value="00"/>
+              </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+              <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://fhir.de/StructureDefinition/normgroesse">
+              <valueCode value="N2"/>
+            </extension>
+            <code>
+              <coding>
+                <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                <code value="06437063"/>
+              </coding>
+              <text value="Doxycyclin 200-1a Pharma Tabletten - 20 St"/>
+            </code>
+            <form>
+              <coding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                <code value="TAB"/>
+              </coding>
+            </form>
+            <amount>
+              <numerator>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                  <valueString value="20"/>
+                </extension>
+                <unit value="Stück"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+              </denominator>
+            </amount>
+            <batch>
+              <lotNumber value="A123456789-1"/>
+              <expirationDate value="2024-12-31"/>
+            </batch>
+          </Medication>
+        </contained>
+        <identifier>
+          <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+          <value value="200.643.100.572.979.08"/>
+        </identifier>
+        <status value="completed"/>
+        <medicationReference>
+          <reference value="#ebdb8f91-b514-4374-bd18-825f9437e2aa"/>
+          <display value="Doxycyclin 200-1a Pharma Tabletten - 20 St"/>
+        </medicationReference>
+        <subject>
+          <identifier>
+            <system value="http://fhir.de/sid/pkv/kvid-10"/>
+            <value value="P123464315"/>
+          </identifier>
+        </subject>
+        <performer>
+          <actor>
+            <identifier>
+              <system value="https://gematik.de/fhir/sid/telematik-id"/>
+              <value value="3-abc-1234567890"/>
+            </identifier>
+          </actor>
+        </performer>
+        <whenHandedOver value="2023-07-03"/>
+      </MedicationDispense>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:40afa27e-9c66-48d0-8f09-4d2eb43fb44d"/>
+    <resource>
+      <MedicationDispense>
+        <id value="40afa27e-9c66-48d0-8f09-4d2eb43fb44d"/>
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+          <tag>
+            <display value="Beispiel MedicationDispense PKV Wirkstoff 2/2"/>
+          </tag>
+        </meta>
+        <contained>
+          <Medication>
+            <id value="a4048f3c-4803-46ad-b809-63cf53fed771"/>
+            <meta>
+              <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+              <valueCodeableConcept>
+                <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                  <code value="763158003"/>
+                  <display value="Medicinal product (product)"/>
+                </coding>
+              </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+              <valueCoding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                <code value="00"/>
+              </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+              <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://fhir.de/StructureDefinition/normgroesse">
+              <valueCode value="N2"/>
+            </extension>
+            <code>
+              <coding>
+                <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                <code value="06437057"/>
+              </coding>
+              <text value="Doxycyclin 200-1a Pharma Tabletten - 10 St"/>
+            </code>
+            <form>
+              <coding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                <code value="TAB"/>
+              </coding>
+            </form>
+            <amount>
+              <numerator>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                  <valueString value="10"/>
+                </extension>
+                <unit value="Stück"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+              </denominator>
+            </amount>
+            <batch>
+              <lotNumber value="A123456789-1"/>
+              <expirationDate value="2024-12-31"/>
+            </batch>
+          </Medication>
+        </contained>
+        <identifier>
+          <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+          <value value="200.643.100.572.979.08"/>
+        </identifier>
+        <status value="completed"/>
+        <medicationReference>
+          <reference value="#a4048f3c-4803-46ad-b809-63cf53fed771"/>
+          <display value="Doxycyclin 200-1a Pharma Tabletten - 10 St"/>
+        </medicationReference>
+        <subject>
+          <identifier>
+            <system value="http://fhir.de/sid/pkv/kvid-10"/>
+            <value value="P123464315"/>
+          </identifier>
+        </subject>
+        <performer>
+          <actor>
+            <identifier>
+              <system value="https://gematik.de/fhir/sid/telematik-id"/>
+              <value value="3-abc-1234567890"/>
+            </identifier>
+          </actor>
+        </performer>
+        <whenHandedOver value="2023-07-03"/>
+      </MedicationDispense>
+    </resource>
+  </entry>
+</Bundle>
