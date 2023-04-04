@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="01f65527-1929-49c5-a05e-c995b9115e08"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_CloseOperationInputBundle|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV PZN Bsp 7 (multiple medications)"/>
+    </tag>
+  </meta>
+  <type value="collection"/>
+  <entry>
+    <fullUrl value="urn:uuid:f43ae7da-3db3-427c-aa7b-1104a14b05dc"/>
+    <resource>
+      <MedicationDispense>
+        <id value="f43ae7da-3db3-427c-aa7b-1104a14b05dc"/>
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+          <tag>
+            <display value="Beispiel MedicationDispense PKV PZN Bsp 7 1/2"/>
+          </tag>
+        </meta>
+        <contained>
+          <Medication>
+            <id value="c9061528-a4ce-49f6-a83e-89ea67a1a192"/>
+            <meta>
+              <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+              <valueCodeableConcept>
+                <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                  <code value="763158003"/>
+                  <display value="Medicinal product (product)"/>
+                </coding>
+              </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+              <valueCoding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                <code value="00"/>
+              </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+              <valueBoolean value="false"/>
+            </extension>
+            <code>
+              <coding>
+                <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                <code value="11514676"/>
+              </coding>
+              <text value="Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"/>
+            </code>
+            <form>
+              <coding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                <code value="FTA"/>
+              </coding>
+            </form>
+            <amount>
+              <numerator>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                  <valueString value="10"/>
+                </extension>
+                <unit value="Stück"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+              </denominator>
+            </amount>
+            <batch>
+              <lotNumber value="A123456789-1"/>
+              <expirationDate value="2024-12-31"/>
+            </batch>
+          </Medication>
+        </contained>
+        <identifier>
+          <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+          <value value="200.339.908.107.779.64"/>
+        </identifier>
+        <status value="completed"/>
+        <medicationReference>
+          <reference value="#c9061528-a4ce-49f6-a83e-89ea67a1a192"/>
+          <display value="Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"/>
+        </medicationReference>
+        <subject>
+          <identifier>
+            <system value="http://fhir.de/sid/pkv/kvid-10"/>
+            <value value="P123464113"/>
+          </identifier>
+        </subject>
+        <performer>
+          <actor>
+            <identifier>
+              <system value="https://gematik.de/fhir/sid/telematik-id"/>
+              <value value="3-abc-1234567890"/>
+            </identifier>
+          </actor>
+        </performer>
+        <whenHandedOver value="2023-07-03"/>
+        <dosageInstruction>
+          <text value="1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"/>
+        </dosageInstruction>
+      </MedicationDispense>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="urn:uuid:00759ea9-0328-4448-bc7a-369f5d35a8d5"/>
+    <resource>
+      <MedicationDispense>
+        <id value="00759ea9-0328-4448-bc7a-369f5d35a8d5"/>
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+          <tag>
+            <display value="Beispiel MedicationDispense PKV PZN Bsp 7 2/2"/>
+          </tag>
+        </meta>
+        <contained>
+          <Medication>
+            <id value="8e1a2a63-cf6d-4fc9-be44-54f64022d222"/>
+            <meta>
+              <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+              <valueCodeableConcept>
+                <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                  <code value="763158003"/>
+                  <display value="Medicinal product (product)"/>
+                </coding>
+              </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+              <valueCoding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                <code value="00"/>
+              </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+              <valueBoolean value="false"/>
+            </extension>
+            <code>
+              <coding>
+                <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                <code value="11514676"/>
+              </coding>
+              <text value="Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"/>
+            </code>
+            <form>
+              <coding>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                <code value="FTA"/>
+              </coding>
+            </form>
+            <amount>
+              <numerator>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                  <valueString value="10"/>
+                </extension>
+                <unit value="Stück"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+              </denominator>
+            </amount>
+            <batch>
+              <lotNumber value="A123456789-2"/>
+              <expirationDate value="2024-12-31"/>
+            </batch>
+          </Medication>
+        </contained>
+        <identifier>
+          <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+          <value value="200.339.908.107.779.64"/>
+        </identifier>
+        <status value="completed"/>
+        <medicationReference>
+          <reference value="#8e1a2a63-cf6d-4fc9-be44-54f64022d222"/>
+          <display value="Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"/>
+        </medicationReference>
+        <subject>
+          <identifier>
+            <system value="http://fhir.de/sid/pkv/kvid-10"/>
+            <value value="P123464113"/>
+          </identifier>
+        </subject>
+        <performer>
+          <actor>
+            <identifier>
+              <system value="https://gematik.de/fhir/sid/telematik-id"/>
+              <value value="3-abc-1234567890"/>
+            </identifier>
+          </actor>
+        </performer>
+        <whenHandedOver value="2023-07-03"/>
+        <dosageInstruction>
+          <text value="1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"/>
+        </dosageInstruction>
+      </MedicationDispense>
+    </resource>
+  </entry>
+</Bundle>

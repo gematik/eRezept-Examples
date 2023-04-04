@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="a6370174-6209-4203-921f-7adcd3dbe5ba"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV Freitext"/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="2816d83e-e2aa-4e5b-ad4c-5f402a36643a"/>
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+          <code value="00"/>
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
+          <code value="freitext"/>
+        </coding>
+        <text value="Yellox 0,9 mg/ml 5ml Augentrpf. Croma/Bausch&amp;Lomb"/>
+      </code>
+      <batch>
+        <lotNumber value="A123456789-1"/>
+        <expirationDate value="2024-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="200.334.138.469.717.92"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#2816d83e-e2aa-4e5b-ad4c-5f402a36643a"/>
+    <display value="Yellox 0,9 mg/ml 5ml Augentrpf. Croma/Bausch&amp;Lomb"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/pkv/kvid-10"/>
+      <value value="P123464237"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-abc-1234567890"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2023-07-03"/>
+</MedicationDispense>

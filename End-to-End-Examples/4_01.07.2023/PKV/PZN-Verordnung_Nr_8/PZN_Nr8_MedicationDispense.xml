@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="ca8a8e17-5dec-4c1b-a556-b7815605097b"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV PZN Bsp 8"/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="44198295-e6ba-4149-b625-2b223d3457e0"/>
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+          <code value="00"/>
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
+          <code value="freitext"/>
+        </coding>
+        <text value="Efluelda Injektionssuspension 2022/2023 1 Fertigspr. ohne Kanüle"/>
+      </code>
+      <batch>
+        <lotNumber value="A123456789-1"/>
+        <expirationDate value="2024-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="200.108.757.032.088.60"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#44198295-e6ba-4149-b625-2b223d3457e0"/>
+    <display value="Auseinzelung"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/pkv/kvid-10"/>
+      <value value="P123464113"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-abc-1234567890"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2023-07-03"/>
+  <dosageInstruction>
+    <text value="1-0-0-0"/>
+  </dosageInstruction>
+</MedicationDispense>
