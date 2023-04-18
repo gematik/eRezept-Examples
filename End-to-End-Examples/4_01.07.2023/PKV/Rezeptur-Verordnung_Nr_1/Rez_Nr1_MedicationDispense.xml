@@ -11,8 +11,18 @@
     <Medication>
       <id value="8abda918-22eb-4c77-a887-f6aaec1bbd3a"/>
       <meta>
-        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.1.0"/>
       </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+        <valueCodeableConcept>
+          <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+            <code value="373873005:860781008=362943005"/>
+            <display value="Pharmaceutical / biologic product (product) : Has product characteristic (attribute) = Manual method (qualifier value)"/>
+          </coding>
+        </valueCodeableConcept>
+      </extension>
       <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
         <valueCoding>
           <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
@@ -25,14 +35,43 @@
       <code>
         <coding>
           <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
-          <code value="freitext"/>
+          <code value="rezeptur"/>
         </coding>
-        <text value="1x 100 g Creme / Triamcinolonacetonid 0.1% / Basiscreme DAC Ad 100,0 g"/>
       </code>
-      <batch>
-        <lotNumber value="A123456789-1"/>
-        <expirationDate value="2024-12-31"/>
-      </batch>
+      <form>
+        <text value="Creme"/>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="100"/>
+          </extension>
+          <unit value="g"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <ingredient>
+        <itemCodeableConcept>
+          <text value="Triamcinolonacetonid"/>
+        </itemCodeableConcept>
+        <strength>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount">
+            <valueString value="0.1%"/>
+          </extension>
+        </strength>
+      </ingredient>
+      <ingredient>
+        <itemCodeableConcept>
+          <text value="Basiscreme DAC"/>
+        </itemCodeableConcept>
+        <strength>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount">
+            <valueString value="Ad 100,0 g"/>
+          </extension>
+        </strength>
+      </ingredient>
     </Medication>
   </contained>
   <identifier>

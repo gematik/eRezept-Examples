@@ -11,8 +11,18 @@
     <Medication>
       <id value="96091647-180a-4222-8961-d551e2c2889a"/>
       <meta>
-        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.1.0"/>
       </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+        <valueCodeableConcept>
+          <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+            <code value="373873005:860781008=362943005"/>
+            <display value="Pharmaceutical / biologic product (product) : Has product characteristic (attribute) = Manual method (qualifier value)"/>
+          </coding>
+        </valueCodeableConcept>
+      </extension>
       <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
         <valueCoding>
           <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
@@ -25,14 +35,51 @@
       <code>
         <coding>
           <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
-          <code value="freitext"/>
+          <code value="rezeptur"/>
         </coding>
-        <text value="3x 500 ml Infusionslösung / Etoposid 180 mg / NaCl 0,9 % 500 ml"/>
       </code>
-      <batch>
-        <lotNumber value="A123456789-1"/>
-        <expirationDate value="2024-12-31"/>
-      </batch>
+      <form>
+        <text value="Infusionslösung"/>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="500"/>
+          </extension>
+          <unit value="ml"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <ingredient>
+        <itemCodeableConcept>
+          <text value="Etoposid"/>
+        </itemCodeableConcept>
+        <strength>
+          <numerator>
+            <value value="180"/>
+            <unit value="mg"/>
+          </numerator>
+          <denominator>
+            <value value="1"/>
+          </denominator>
+        </strength>
+      </ingredient>
+      <ingredient>
+        <itemCodeableConcept>
+          <text value="NaCl 0,9 %"/>
+        </itemCodeableConcept>
+        <strength>
+          <numerator>
+            <value value="500"/>
+            <unit value="ml"/>
+          </numerator>
+          <denominator>
+            <value value="1"/>
+          </denominator>
+        </strength>
+      </ingredient>
     </Medication>
   </contained>
   <identifier>
@@ -58,6 +105,11 @@
       </identifier>
     </actor>
   </performer>
+  <quantity>
+    <value value="3"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="{Package}"/>
+  </quantity>
   <whenHandedOver value="2023-07-06"/>
   <dosageInstruction>
     <text value="zur ärztlichen parenteralen Applikation gem. schr. Therapieplan"/>
