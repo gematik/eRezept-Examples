@@ -1,0 +1,126 @@
+{
+  "id": "31964b67-57af-44fe-add5-e5814f3622af",
+  "mainActor": "Apotheke",
+  "name": "Keine PKV-Abrechnungsinformationen bereitstellen bei ungültigem Secret",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_13",
+    "@Afo=A_22132",
+    "@Path=bad",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/8237f578-6a40-4dcd-ae89-592f7918e0cc",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/0_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/1_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/200.000.001.943.787.59",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/2_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/3_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/4_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/200.000.001.943.787.59/$activate",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/5_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/200.000.001.943.787.59",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/6_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 200.000.001.943.787.59 with AccessCode 3b03d6b4b34737a32078abdd64821f1ad60a9c178d88031f49526b1427cd8097",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/7_dmc_200.000.001.943.787.59.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/6d986c3b-049d-4437-9442-31cd8d80e4b8",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/8_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/200.000.001.943.787.59/$close?secret=e5701b09795d71b2022c5f0b3230ccda8bcbc55c1823aade5fb63684678bf284",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/c8eba81d-0000-0000-0003-000000000000",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/10_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen mit dem falschen Secret fgdkjfgd bereitstellen"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/11_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/12_signed_document.b64"
+        },
+        {
+          "operation": "POST /ChargeItem?task=200.000.001.943.787.59&secret=fgdkjfgd",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/13_Request_ChargeItem.xml"
+        },
+        {
+          "operation": "Response 403: OperationOutcome 20230418_084615",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen_bei_ungültigem_secret/14_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_22132"],
+  "useCases": ["A_18822", "A_18827"]
+}

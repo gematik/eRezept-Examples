@@ -1,0 +1,104 @@
+{
+  "id": "63945f1b-f5d6-4eee-a0fe-0a4c5503ea51",
+  "mainActor": "Fachdienst",
+  "name": "PKV E-Rezept als Direktzuweisung an GKV-Versicherten nicht möglich",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=209",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=PKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF209_08",
+    "@Afo=A_22347-01",
+    "@Path=bad",
+    "@Hauptdarsteller=Fachdienst"
+  ],
+  "description": "Eine GKV-Versicherte bekommt irrtümlich ein PKV-Rezept als Direktzuweisung verschrieben (WF 209). Der Fachdienst muss das ablehnen:\n  Der E-Rezept-Fachdienst MUSS beim Zugriff auf einen Task des Flowtype 200 mittels HTTP-POST-Operation über /Task/<id>/$activate prüfen, ob Coverage.type.coding.code mit dem Wert \"PKV\" belegt ist\n  und im Fehlerfall die Operation mit Http-Fehlercode 400 abbrechen, um sicherzustellen, dass dieser Workflow nur für E-Rezepte für PKV-Versicherte genutzt wird.",
+  "feature": "Direktzuweisung für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Versicherter_WF209.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/209.000.000.003.651.87",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/209.000.000.003.651.87/$activate",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/209.000.000.003.651.87",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 209.000.000.003.651.87 with AccessCode 5e3fe6bafae7a93402ebff71ef71dca77303c154c5807a0f375abd2a9b286114",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/6_dmc_209.000.000.003.651.87.png"
+        }
+      ]
+    },
+    {
+      "name": "Angenommen die GKV Versicherte Leonie Hütter hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Wenn die Versicherte Leonie Hütter die Versicherungsart GKV aufweist"
+    },
+    {
+      "name": "Leonie hütter performable predicate"
+    },
+    {
+      "name": "Dann darf die Ärztin Dr. Schraßer der Versicherten Leonie Hütter das folgende E-Rezept nicht ausstellen:\n| Name | Workflow |\n| Zytostatika_WF209 | 209 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/7_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/209.000.000.003.652.84",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/8_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/9_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/10_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/209.000.000.003.652.84/$activate",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/11_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230418_084717",
+          "file": "Fachdienst/pkv_e_rezept_als_direktzuweisung_an_gkv_versicherten_nicht_möglich/12_Response_OperationOutcome.xml"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22347-01"],
+  "useCases": ["A_18502", "A_18503"]
+}

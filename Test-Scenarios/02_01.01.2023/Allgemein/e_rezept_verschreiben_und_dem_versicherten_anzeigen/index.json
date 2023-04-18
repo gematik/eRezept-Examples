@@ -1,0 +1,81 @@
+{
+  "id": "2b6965b6-3d75-490c-8d69-f9f802b3b431",
+  "name": "E-Rezept verschreiben und dem Versicherten Anzeigen",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_01",
+    "@Path=happy",
+    "@Anwendungsfall=A_18506",
+    "@Anwendungsfall=A_18822",
+    "@Afo=A_19019"
+  ],
+  "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept soll im FdV angezeigt werden.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.326.771.84",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.326.771.84/$activate",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.326.771.84",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.326.771.84 with AccessCode 935063db4d5dff45e6868ac06202e56a25f58f8ddd8bcabdaac082c4af06a0f2",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/6_dmc_160.000.040.326.771.84.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/a0a46d35-c8cf-49d4-9c8d-de071313826f",
+          "file": "Allgemein/e_rezept_verschreiben_und_dem_versicherten_anzeigen/7_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_19019"],
+  "useCases": ["A_18827", "A_18502", "A_18503", "A_18506", "A_18822"]
+}

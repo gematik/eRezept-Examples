@@ -1,0 +1,78 @@
+{
+  "id": "df7cacf0-8066-47be-ab4b-fae899a65ce4",
+  "mainActor": "Arztpraxis",
+  "name": "Mehrfachverordnung für PKV-Versicherte als Direktzuweisung",
+  "tags": [
+    "@Funktionalität=MVO",
+    "@Impl=done",
+    "@TCID=ERP_EE_MVO_04",
+    "@Path=happy",
+    "@Workflow=209",
+    "@Versicherung=PKV",
+    "@Afo=A_22627-01",
+    "@Hauptdarsteller=Arztpraxis"
+  ],
+  "description": "Gutfall: Direktzuweisung für PKV-Versicherte  als Mehrfachverordnung (WF 209)",
+  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile": "MVO/MVO.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/209.000.000.003.643.14",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/209.000.000.003.643.14/$activate",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/209.000.000.003.643.14",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 209.000.000.003.643.14 with AccessCode ac834ebf6da5f95b49e148095ef8af33713e1d51541c61e74be632f9f0dbb84f",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/6_dmc_209.000.000.003.643.14.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/2fe8439f-7ce3-4f5f-9caf-8ee5286c8521",
+          "file": "Arztpraxis/mehrfachverordnung_für_pkv_versicherte_als_direktzuweisung/7_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22627-01"]
+}

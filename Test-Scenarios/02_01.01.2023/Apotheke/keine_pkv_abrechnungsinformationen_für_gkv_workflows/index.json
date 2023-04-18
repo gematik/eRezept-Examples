@@ -1,0 +1,141 @@
+{
+  "id": "5f7b5b63-6ed4-45df-b8c3-7d04c3753a3c",
+  "mainActor": "Apotheke",
+  "name": "Keine PKV-Abrechnungsinformationen für GKV Workflows",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_14",
+    "@Path=bad",
+    "@Afo=A_22731",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Keine PKV-Abrechnungsinformationen bereitstellen bei Workflow 169 und 160",
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/bcab7ffc-f4f3-4ba6-b12d-17b6205e6f5e",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/0_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/1_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/200.000.001.943.786.62",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/2_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/3_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/4_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/200.000.001.943.786.62/$activate",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/5_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/200.000.001.943.786.62",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/6_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 200.000.001.943.786.62 with AccessCode d524f1c342ed6f4faf0464c2e1b4436caa7a478af9c8785c0320edf7be470c7e",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/7_dmc_200.000.001.943.786.62.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/5afd5362-a28c-48b9-9ce3-43296c55f179",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/8_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/200.000.001.943.786.62/$close?secret=49194383beb993fd55cacc134b34ba7a1e6a24d08a49c77cb6178fa822275abc",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/c8eaa81d-0000-0000-0003-000000000000",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/10_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Workflow |\n| 169 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/11_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.001.775.757.34",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/12_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/13_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/14_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.001.775.757.34/$activate",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/15_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230418_084608",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/16_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil es kein PKV-Rezept ist"
+    }
+  ],
+  "requirements": ["A_22731"],
+  "useCases": ["A_18822", "A_18827"]
+}

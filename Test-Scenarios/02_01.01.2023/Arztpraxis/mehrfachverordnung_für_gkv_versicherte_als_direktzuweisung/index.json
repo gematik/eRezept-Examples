@@ -1,0 +1,78 @@
+{
+  "id": "e72374b0-067f-4b04-8720-61691405f012",
+  "mainActor": "Arztpraxis",
+  "name": "Mehrfachverordnung für GKV-Versicherte als Direktzuweisung",
+  "tags": [
+    "@Funktionalität=MVO",
+    "@Impl=done",
+    "@TCID=ERP_EE_MVO_03",
+    "@Path=happy",
+    "@Workflow=169",
+    "@Versicherung=GKV",
+    "@Afo=A_22627-01",
+    "@Hauptdarsteller=Arztpraxis"
+  ],
+  "description": "Gutfall: Direktzuweisung für GKV-Versicherte als Mehrfachverordnung (WF 169)",
+  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile": "MVO/MVO.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.001.775.756.37",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.001.775.756.37/$activate",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/169.000.001.775.756.37",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 169.000.001.775.756.37 with AccessCode 953bbea82c4462d4e40f77bd1f57c10ab97b2ab044a3df5439101badff0fc26f",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/6_dmc_169.000.001.775.756.37.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/1f938fbb-70c8-49b3-b62c-631324e84da9",
+          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte_als_direktzuweisung/7_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22627-01"]
+}
