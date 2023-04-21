@@ -1,0 +1,105 @@
+{
+  "id": "0a251b5e-d5e4-4a15-8190-66a0ce155f90",
+  "mainActor": "Versicherter",
+  "name": "Dispensierinformationen zum E-Rezept als Versicherter einsehen",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_02",
+    "@Path=happy",
+    "@Afo=A_19248-01",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.326.773.78",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.326.773.78/$activate",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.326.773.78",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.326.773.78 with AccessCode 9fc8bbb652c3a08b9a6d3423529e78273dfd18ddda12bed7fdf1f77f15bc787c",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/6_dmc_160.000.040.326.773.78.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/dd24bb6a-5cb2-45d3-856a-6108af766e94",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/160.000.040.326.773.78/$close?secret=b6cc27523a514db7632d116bf31fac8208e72710c104f352f4e29699f2bbfbc3",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/8_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/a0755667-0200-0000-0003-000000000000",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/9_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Versicherte Sina Hüllmann 1 Dispensierinformation für ihr letztes E-Rezept abrufen"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/4cb62730-9e22-4451-a205-6b0bd1373e9c",
+          "file": "Versicherter/dispensierinformationen_zum_e_rezept_als_versicherter_einsehen/10_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_19248-01"],
+  "useCases": ["A_18827", "A_18502", "A_18503"]
+}

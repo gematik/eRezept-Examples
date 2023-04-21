@@ -1,0 +1,61 @@
+{
+  "id": "a4d3f594-3275-467a-866e-d979096bfc00",
+  "mainActor": "Fachdienst",
+  "name": "Sonstige Versicherungsarten sind nicht zulässig",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=All",
+    "@Impl=done",
+    "@TCID=ERP_EE_sonstVA_01",
+    "@Path=bad",
+    "@Afo=A_22222",
+    "@Hauptdarsteller=Fachdienst"
+  ],
+  "description": "Der E-Rezept Fachdienst muss das Ausstellen von E-Rezepten unterbinden, wenn ein unzulässiger Kostenträger\n  gemäß der Anforderung A_22222 im QES-Datensatz hinterlegt ist.",
+  "feature": "Sonstige Versicherungsarten",
+  "featureFile": "Sonstige_Versicherungsart.feature",
+  "steps": [
+    {
+      "name": "Angenommen der Arzt Bernd Claudius hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der BEI Versicherte Fridolin Straßer hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Wenn der Versicherte Fridolin Straßer die Versicherungsart BEI aufweist"
+    },
+    {
+      "name": "Fridolin straßer performable predicate"
+    },
+    {
+      "name": "Dann darf der Arzt Bernd Claudius dem Versicherten Fridolin Straßer das folgende E-Rezept nicht ausstellen:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.854.79",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 8027600101169991010 on Soft-Konn",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 8027600101169991010 on Soft-Konn",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.854.79/$activate",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230316_125353",
+          "file": "Fachdienst/sonstige_versicherungsarten_sind_nicht_zulässig/5_Response_OperationOutcome.xml"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22222"]
+}

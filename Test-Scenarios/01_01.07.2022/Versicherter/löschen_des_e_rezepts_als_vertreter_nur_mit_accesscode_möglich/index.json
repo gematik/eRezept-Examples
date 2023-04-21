@@ -1,0 +1,125 @@
+{
+  "id": "9e4b7645-f53a-4c35-94a2-24e64652e19a",
+  "mainActor": "Versicherter",
+  "name": "Löschen des E-Rezepts als Vertreter nur mit AccessCode möglich",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_WF160_04",
+    "@Path=happy",
+    "@Afo=A_20546-01",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es ohne AccessCode nicht beim Fachdienst löschen.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Angenommen der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann ein apothekenpflichtiges Medikament verschreibt",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.835.39",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.835.39/$activate",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.006.300.835.39",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.006.300.835.39 with AccessCode 48c177c5eb970910c4cf90119dd3b9e3c29015b5c06f66adb639ac5f0ab78ea6",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/6_dmc_160.000.006.300.835.39.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept per Nachricht an den Vertreter Günther Angermänn schickt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/da492ba1-1650-4e3b-8666-2323b4cef99c",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/7_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Communication",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/8_Request_Communication.json"
+        },
+        {
+          "operation": "Response 201: Communication Communication/01eba0e0-ef46-5330-b0c9-9b91c1b173eb",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/9_Response_Communication.json"
+        }
+      ]
+    },
+    {
+      "name": "Und der Vertreter Günther Angermänn hat die Nachricht mit dem Rezept der Versicherten Sina Hüllmann empfangen"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/edcb3775-5ff9-4966-9ab6-e97eeeca65a7",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/10_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann der Vertreter Günther Angermänn das letzte von Sina Hüllmann zugewiesene E-Rezept ohne AccessCode nicht löschen"
+    },
+    {
+      "name": "Günther angermänn check the return code",
+      "dumps": [
+        {
+          "operation": "Response 403: OperationOutcome 20230316_125152",
+          "file": "Versicherter/löschen_des_e_rezepts_als_vertreter_nur_mit_accesscode_möglich/11_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Günther angermänn performable predicate"
+    },
+    {
+      "name": "Aber der Vertreter Günther Angermänn kann das letzte von Sina Hüllmann zugewiesene E-Rezept mit AccessCode löschen"
+    },
+    {
+      "name": "Günther angermänn check the return code"
+    },
+    {
+      "name": "Günther angermänn performable predicate"
+    }
+  ],
+  "requirements": ["A_20546-01"],
+  "useCases": ["A_18827", "A_18502", "A_18503"]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "3a6e2921-82e9-4ec5-ac92-77597ad1d3e1",
+  "mainActor": "Apotheke",
+  "name": "Zweimaliges Akzeptieren des E-Rezepts durch gleiche Apotheke nicht möglich",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_08",
+    "@Path=bad",
+    "@Afo=A_19168",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Die Apotheke akzeptiert das zugewiesene Rezept. Anschließend kann sie es nicht noch mal akzeptieren.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.326.780.57",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.326.780.57/$activate",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.326.780.57",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.326.780.57 with AccessCode c34d38218bb673e8cad52c34874c641b2bf6bd55665f1fdc144ddd5e5cff1b33",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/6_dmc_160.000.040.326.780.57.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/a44d40e5-5dfe-435c-9952-e99db2ee8eae",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es einen Konflikt gibt"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Response 409: OperationOutcome 20230418_083643",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/8_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+      "dumps": [
+        {
+          "operation": "POST /Task/160.000.040.326.780.57/$close?secret=75e0e7f352de931096fbe05fbdd5a486b53ba0e25c30e550baaad495cf986573",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/a07c5667-0200-0000-0003-000000000000",
+          "file": "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nicht_möglich/10_Response_Bundle.xml"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_19168"],
+  "useCases": ["A_18827", "A_18502", "A_18503"]
+}

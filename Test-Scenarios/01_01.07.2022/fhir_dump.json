@@ -1,0 +1,1457 @@
+{
+  "recorded": "2023-03-16T11:54:36.643Z",
+  "scenarios": [
+    {
+      "id": "1a393859-9013-4720-93f5-b76238b3ea61",
+      "mainActor": "Versicherter",
+      "name": "Zuweisung per Nachricht",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_01",
+        "@Path=happy",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte weist das gerade erhaltene E-Rezept per Nachricht einer Apotheke zu.\n  Diese kann das Rezept erfolgreich akzeptieren und einlösen.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "2490f0ae-4840-44bc-945a-ce41b03bedee",
+      "mainActor": "Versicherter",
+      "name": "Anfrage zu einem E-Rezept und Antwort der Apotheke",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_02",
+        "@Path=happy",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte stellt zum grad erhaltenen Rezept eine Anfrage an die Apotheke. Diese beantwortet die Anfrage.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "e7718ba6-3428-43a4-aa8c-759af8a59283",
+      "mainActor": "Versicherter",
+      "name": "Zuweisung an einen Vertreter",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_03",
+        "@Path=happy",
+        "@Anwendungsfall=A_18781",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in der Apotheke einlösen.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_18781"]
+    },
+    {
+      "id": "fddfa48b-8173-4940-9f4e-ed9c645c4130",
+      "mainActor": "Versicherter",
+      "name": "Zuweisung an einen Vertreter nicht möglich nach dem Einlösen",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_04",
+        "@Path=bad",
+        "@Afo=A_20230",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in der Apotheke einlösen.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20230"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "af53eab3-048a-4a0f-a072-ea181b576faa",
+      "mainActor": "Versicherter",
+      "name": "Zuweisung an sich selbst nicht möglich",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_05",
+        "@Path=bad",
+        "@Afo=A_20231",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der E-Rezept-Fachdienst muss eine Nachricht mit Empfänger gleich Absender ablehnen",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20231"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "021036af-6e03-4081-ae20-001ef96e2082",
+      "mainActor": "Fachdienst",
+      "name": "Fachdienst löscht alle Nachrichten zu einem E-Rezept nach dem Einlösen",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_06",
+        "@Path=happy",
+        "@Afo=A_20513",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "description": "Der Testfall überprüft, ob alle Nachrichten, die sich auf ein E-Rezept beziehen, nach dem erfolgreichem Einlösen vom Fachdienst gelöscht wurden.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20513"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "619acb87-0115-4fbf-ba31-9632fe8f18ac",
+      "mainActor": "Versicherter",
+      "name": "Versicherte löscht alle Nachrichten",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_07",
+        "@Path=happy",
+        "@Anwendungsfall=A_20260",
+        "@Afo=A_20258",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20258"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_20260"]
+    },
+    {
+      "id": "62b086d4-a1c6-41ee-9568-8fc9a658b673",
+      "mainActor": "Apotheke",
+      "name": "Apotheke löscht Nachricht",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_08",
+        "@Path=happy",
+        "@Anwendungsfall=A_20776",
+        "@Afo=A_20258",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20258"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_20776"]
+    },
+    {
+      "id": "ab6eb50b-0bf5-4883-a163-d5e4b9073aa8",
+      "mainActor": "Arztpraxis",
+      "name": "Arztpraxis darf keine Nachricht versenden",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_09",
+        "@Path=bad",
+        "@Afo=A_19446-01",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Der Versicherte schreibt eine Nachricht an eine Arztpraxis \"Keine Apotheke\". Der Fachdienst muss die Antwort ablehnen,\n  weil nur Apotheken und Versicherte Nachrichten versenden dürfen.",
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_19446-01"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+    },
+    {
+      "id": "d3a9a4ff-9945-4cba-86d7-6573c796853d",
+      "mainActor": "Versicherter",
+      "name": "Versicherte löscht eine Nachricht",
+      "tags": [
+        "@Funktionalität=Cummunication",
+        "@Anwendungsfall=A_18508",
+        "@Anwendungsfall=A_18617",
+        "@Anwendungsfall=A_18618",
+        "@Anwendungsfall=A_19013",
+        "@Impl=done",
+        "@TCID=ERP_EE_Communication_10",
+        "@Path=happy",
+        "@Anwendungsfall=A_20260",
+        "@Afo=A_20258",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+      "featureFile": "GKV_WF_160/Communication.feature",
+      "requirements": ["A_20258"],
+      "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_20260"]
+    },
+    {
+      "id": "b15393e0-9bd9-4729-8b78-3acfc0554816",
+      "name": "E-Rezept verschreiben und dem Versicherten Anzeigen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_01",
+        "@Path=happy",
+        "@Anwendungsfall=A_18506",
+        "@Anwendungsfall=A_18822",
+        "@Afo=A_19019"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept soll im FdV angezeigt werden.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19019"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18506", "A_18822"]
+    },
+    {
+      "id": "1a14b845-e81a-4d11-8231-dd5c44c5741c",
+      "name": "E-Rezept verschreiben, via DMC zuweisen und erfolgreich dispensieren",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_02",
+        "@Path=happy",
+        "@Anwendungsfall=A_18511",
+        "@Anwendungsfall=A_18514",
+        "@Afo=A_19233-04"
+      ],
+      "description": "Die Ärztin verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Dieses Rezept wird in der Apotheke über einen QR-Code eingelöst. Die Apotheke hat daraufhin eine Quittung für das dispensierte Medikament.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19233-04"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18511", "A_18514"]
+    },
+    {
+      "id": "19f8d3cf-e0d4-44c7-9e72-498257c80c18",
+      "mainActor": "Versicherter",
+      "name": "Dispensierinformationen zum E-Rezept als Versicherter einsehen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_02",
+        "@Path=happy",
+        "@Afo=A_19248-01",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19248-01"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "b80922b4-af01-4578-9c5f-5557a79a56a3",
+      "mainActor": "Apotheke",
+      "name": "Quittung erneut abfragen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=happy",
+        "@Anwendungsfall=A_19117",
+        "@Afo=A_19226",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke kann nach erfolgreicher Dispensierung die Quittung erneut abrufen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19226"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_19117"]
+    },
+    {
+      "id": "d6d5be3b-5500-460a-8187-63e2514c6ea8",
+      "mainActor": "Arztpraxis",
+      "name": "E-Rezept durch Verordnenden löschen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=happy",
+        "@Anwendungsfall=A_18505",
+        "@Afo=A_19149",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept kann er löschen,\n  solange es nicht von einer Apotheke akzeptiert wurde.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19149"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18505"]
+    },
+    {
+      "id": "b8ab14af-bce7-4868-84fb-1a701514a722",
+      "mainActor": "Versicherter",
+      "name": "E-Rezept durch Versicherten löschen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_04",
+        "@Path=happy",
+        "@Anwendungsfall=A_18507",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Dieses Rezept kann die Versicherte löschen, solange es nicht von einer Apotheke akzeptiert wurde.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18507"]
+    },
+    {
+      "id": "f591628b-bf20-4620-8f1a-2d515e247085",
+      "mainActor": "Arztpraxis",
+      "name": "Löschen des E-Rezepts nicht möglich, weil durch Apotheke reserviert",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_05",
+        "@Path=bad",
+        "@Afo=A_19120-03",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept kann er nicht mehr löschen,\n  sobald es von einer Apotheke akzeptiert wurde.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19120-03"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "71adcebe-c721-45af-9754-e4c78d6a83cd",
+      "mainActor": "Apotheke",
+      "name": "Einlösen des E-Rezepts nicht möglich, weil durch Apotheke zurückgegeben",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_06",
+        "@Path=bad",
+        "@Anwendungsfall=A_18512",
+        "@Afo=A_19172",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke gibt das zugewiesene Rezept zurück. Anschließend kann sie es nicht einlösen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19172"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18512"]
+    },
+    {
+      "id": "925a9c73-694c-4b4b-bbad-097031fe3352",
+      "mainActor": "Apotheke",
+      "name": "Einlösen des E-Rezepts nicht möglich, weil durch Apotheke gelöscht",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_07",
+        "@Path=bad",
+        "@Anwendungsfall=A_18513",
+        "@Afo=A_19121",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke löscht das zugewiesene Rezept. Anschließend kann sie es nicht einlösen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19121"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18513"]
+    },
+    {
+      "id": "24a6f0c5-988b-4501-a723-61ddcf32d9e4",
+      "mainActor": "Apotheke",
+      "name": "Zweimaliges Akzeptieren des E-Rezepts durch gleiche Apotheke nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_08",
+        "@Path=bad",
+        "@Afo=A_19168",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke akzeptiert das zugewiesene Rezept. Anschließend kann sie es nicht noch mal akzeptieren.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19168"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "941ae19d-2607-494d-9e6a-82fc15e5541b",
+      "mainActor": "Apotheke",
+      "name": "E-Rezept kann nicht durch eine zweite Apotheke reserviert werden",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_09",
+        "@Path=bad",
+        "@Afo=A_19168",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke akzeptiert das Rezept. Anschließend versucht eine zweite Apotheke das Rezept einzulösen. Das wird durch den Fachdienst verhindert.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19168"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "bf10a095-58db-4b4e-a808-d576ebb12bc5",
+      "mainActor": "Apotheke",
+      "name": "Einlösen des E-Rezepts nicht möglich, weil durch Versicherten gelöscht",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_10",
+        "@Path=bad",
+        "@Afo=A_19121",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Versicherte löscht das Rezept nach der Zuweisung an eine Apotheke. Die Apotheke kann es deshalb nicht akzeptieren.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19121"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "d0923b67-b3b1-49bc-ba5f-04f81d15b82d",
+      "mainActor": "Apotheke",
+      "name": "Löschen des E-Rezepts durch Apotheke nicht möglich, weil nicht akzeptiert",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_10",
+        "@Path=bad",
+        "@Afo=A_19146",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19146"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "d3a5a3d5-c948-4181-b906-8c472eecb9d6",
+      "mainActor": "Versicherter",
+      "name": "Löschen von akzeptierten E-Rezepten durch den Versicherten nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_11",
+        "@Path=bad",
+        "@Afo=A_19145",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte versucht das Rezept zu löschen, nachdem es schon von einer Apotheke akzeptiert wurde. Das wird durch den Fachdienst verhindert.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19145"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "4e78277c-ab12-4916-983b-b32f24133735",
+      "mainActor": "Versicherter",
+      "name": "Löschen von eingelösten E-Rezepten durch den Versicherten möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_12",
+        "@Path=bad",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "78b4803b-ea89-493d-93f1-5b5efa4647ad",
+      "mainActor": "Apotheke",
+      "name": "Erneutes Dispensieren durch die gleiche Apotheke nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=bad",
+        "@Afo=A_19232",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Apotheke kann nach erfolgreicher Dispensierung den Task nicht noch einmal mit einem /Task/<id>/$close-Operation beenden,\n  weil der Task im Status \"completed\" ist.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19232"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "58a8735f-ebf2-496a-8c24-abce07d3afd0",
+      "mainActor": "Apotheke",
+      "name": "Dispensieren mit falschem Secret nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=bad",
+        "@Afo=A_19231",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Fachdienst muss beim Dispensieren das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$close ablehnen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19231"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "08faab3e-78de-4abc-9822-be2ab094da05",
+      "mainActor": "Apotheke",
+      "name": "Löschen mit falschem Secret nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=bad",
+        "@Afo=A_19224",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Fachdienst muss beim Löschen das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$abort ablehnen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19224"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "a09caae0-7725-4303-9834-972f5a1c05c4",
+      "mainActor": "Apotheke",
+      "name": "Zurückgeben mit falschem Secret nicht möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_03",
+        "@Path=bad",
+        "@Afo=A_19171",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Fachdienst muss beim Zurückgeben das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$reject ablehnen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19171"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "2b66aea5-f48b-46f3-bec3-776ffc326a11",
+      "mainActor": "Apotheke",
+      "name": "Apotheke darf Dispensierinformationen nicht abrufen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_02",
+        "@Path=bad",
+        "@Afo=A_19405-01",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19405-01"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "87b00009-71a1-419f-8519-59042742428d",
+      "mainActor": "Apotheke",
+      "name": "Eine Apotheke darf kein E-Rezept einstellen",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_02",
+        "@Path=bad",
+        "@Afo=A_19018",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Fachdienst muss das Anlegen eines E-Rezepts ablehnen, wenn der Access-Token nicht eine der folgendes OID aufweist:\n  oid_arzt\n  oid_zahnarzt\n  oid_praxis_arzt\n  oid_zahnarztpraxis\n  oid_praxis_psychotherapeut\n  oid_krankenhaus\n\n  In diesem Testfall wird versucht mit der SMC-B einer Apotheke ein Create-Aufruf zum Fachdienst zu schicken.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19018"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "dba0f6fe-8acb-4089-a109-dedb2f13d3a8",
+      "mainActor": "Apotheke",
+      "name": "Ein Apotheker darf kein E-Rezept signieren",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF160_02",
+        "@Path=bad",
+        "@Afo=A_19225-01",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Der Fachdienst muss die Aktivierung ablehnen, wenn die QES nicht von der Berufsgruppe\n  oid_arzt, oid_zahnarzt ode id-baek-at-namingAuthorityÄrzteschaft-Ärztin/Arzt (1.3.6.1.4.1.24796.4.11.1) gemäß [BÄK_G0] erstellt wurde.\n  In diesem Testfall wird die QES mit einem HBA Apotheker erstellt.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19225-01"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "716cf61e-a551-4bc4-8af0-fb9335fab741",
+      "mainActor": "Versicherter",
+      "name": "Abrufen des E-Rezepts als Vertreter",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_WF160_04",
+        "@Path=happy",
+        "@Anwendungsfall=A_18781",
+        "@Afo=A_19116",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in seinem FdV abrufen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_19116"],
+      "useCases": ["A_18827", "A_18502", "A_18503", "A_18781"]
+    },
+    {
+      "id": "9e4b7645-f53a-4c35-94a2-24e64652e19a",
+      "mainActor": "Versicherter",
+      "name": "Löschen des E-Rezepts als Vertreter nur mit AccessCode möglich",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_WF160_04",
+        "@Path=happy",
+        "@Afo=A_20546-01",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es ohne AccessCode nicht beim Fachdienst löschen.",
+      "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+      "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+      "requirements": ["A_20546-01"],
+      "useCases": ["A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "cdbe9ddd-feac-49b4-bd8b-f8b157725c8b",
+      "mainActor": "Fachdienst",
+      "name": "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+      "tags": [
+        "@Impl=done",
+        "@TCID=ERP_EE_PZN_01",
+        "@Path=bad",
+        "@Afo=A_22925",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "feature": "Längenprüfung der PZN",
+      "featureFile": "GKV_WF_160/Laengenpruefung_PZN.feature",
+      "requirements": ["A_22925"]
+    },
+    {
+      "id": "3d36efcf-4251-49dd-bd64-e7bbd5ba5a89",
+      "mainActor": "Fachdienst",
+      "name": "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+      "tags": [
+        "@Impl=done",
+        "@TCID=ERP_EE_PZN_01",
+        "@Path=bad",
+        "@Afo=A_22925",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "feature": "Längenprüfung der PZN",
+      "featureFile": "GKV_WF_160/Laengenpruefung_PZN.feature",
+      "requirements": ["A_22925"]
+    },
+    {
+      "id": "5e2f0dc7-62d5-416a-a94b-460d4bed6ca5",
+      "mainActor": "Fachdienst",
+      "name": "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+      "tags": [
+        "@Impl=done",
+        "@TCID=ERP_EE_PZN_01",
+        "@Path=bad",
+        "@Afo=A_22925",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "feature": "Längenprüfung der PZN",
+      "featureFile": "GKV_WF_160/Laengenpruefung_PZN.feature",
+      "requirements": ["A_22925"]
+    },
+    {
+      "id": "71a68f01-7d5b-448e-b2da-2be75b9fc8c1",
+      "mainActor": "Fachdienst",
+      "name": "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+      "tags": [
+        "@Impl=done",
+        "@TCID=ERP_EE_PZN_01",
+        "@Path=bad",
+        "@Afo=A_22925",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "feature": "Längenprüfung der PZN",
+      "featureFile": "GKV_WF_160/Laengenpruefung_PZN.feature",
+      "requirements": ["A_22925"]
+    },
+    {
+      "id": "da0ff511-de37-4fd7-8c2c-2512998dd1a9",
+      "mainActor": "Versicherter",
+      "name": "Anzeigen von direkt zugewiesenen E-Rezepten",
+      "tags": [
+        "@Funktionalität=Direktzuweisung",
+        "@Workflow=169",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=AF_10111",
+        "@Anwendungsfall=AF_10112",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Versicherung=GKV",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF169_01",
+        "@Path=happy",
+        "@Anwendungsfall=AF_10114",
+        "@Anwendungsfall=A_18822",
+        "@Afo=A_21360",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein Medikament als Direktzuweisung. Diese Rezept soll im FdV angezeigt werden.",
+      "feature": "Direktzuweisung für GKV-Rezepte",
+      "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+      "requirements": ["A_21360"],
+      "useCases": [
+        "A_18827",
+        "AF_10111",
+        "AF_10112",
+        "A_18502",
+        "A_18503",
+        "AF_10114",
+        "A_18822"
+      ]
+    },
+    {
+      "id": "aa5ce315-a1e7-41c4-95c4-802476b6b3d4",
+      "mainActor": "Arztpraxis",
+      "name": "Direktzuweisung an eine Apotheke durch den Arzt",
+      "tags": [
+        "@Funktionalität=Direktzuweisung",
+        "@Workflow=169",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=AF_10111",
+        "@Anwendungsfall=AF_10112",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Versicherung=GKV",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF169_02",
+        "@Path=happy",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein Medikament als Direktzuweisung und übermittelt es der Apotheke.\n  Die Apotheke kann es erfolgreich dispensieren.",
+      "feature": "Direktzuweisung für GKV-Rezepte",
+      "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+      "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+    },
+    {
+      "id": "bf43a6f9-0aaf-4e42-a896-ba3e70268da1",
+      "mainActor": "Versicherter",
+      "name": "Löschen nicht möglich bis nach der Dispensierung",
+      "tags": [
+        "@Funktionalität=Direktzuweisung",
+        "@Workflow=169",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=AF_10111",
+        "@Anwendungsfall=AF_10112",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Versicherung=GKV",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF169_03",
+        "@Path=bad",
+        "@Afo=A_22102",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte kann E-Rezepte mit Direktzuweisung nicht löschen bis diese durch\n  eine Apotheke dispensiert wurden",
+      "feature": "Direktzuweisung für GKV-Rezepte",
+      "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+      "requirements": ["A_22102"],
+      "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+    },
+    {
+      "id": "fcf07763-12da-4005-8b91-a9d66fc1a1cf",
+      "mainActor": "Versicherter",
+      "name": "Löschen nicht möglich während der Dispensierung",
+      "tags": [
+        "@Funktionalität=Direktzuweisung",
+        "@Workflow=169",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=AF_10111",
+        "@Anwendungsfall=AF_10112",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Versicherung=GKV",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF169_04",
+        "@Path=bad",
+        "@Afo=A_22102",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte kann das E-Rezept nicht löschen während die Apotheke das Rezept dispensiert",
+      "feature": "Direktzuweisung für GKV-Rezepte",
+      "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+      "requirements": ["A_22102"],
+      "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+    },
+    {
+      "id": "040c5fed-4625-4c83-bb74-88775ecfe236",
+      "mainActor": "Versicherter",
+      "name": "Löschen möglich erst nach der Dispensierung",
+      "tags": [
+        "@Funktionalität=Direktzuweisung",
+        "@Workflow=169",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=AF_10111",
+        "@Anwendungsfall=AF_10112",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Versicherung=GKV",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF169_05",
+        "@Path=happy",
+        "@Afo=A_22102",
+        "@Hauptdarsteller=Versicherter"
+      ],
+      "description": "Der Versicherte kann das E-Rezept erst löschen nachdem die Apotheke das Rezept dispensiert hat",
+      "feature": "Direktzuweisung für GKV-Rezepte",
+      "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+      "requirements": ["A_22102"],
+      "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+    },
+    {
+      "id": "e6550fa5-0bc6-4ad8-b621-d6ea84d67ecd",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_01",
+        "@Path=happy",
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "87273e24-afb2-434d-b016-88295849f0db",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_01",
+        "@Path=happy",
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "8b61d297-8bc3-4a23-bffe-fec2e6231d51",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_01",
+        "@Path=happy",
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "98d5af33-d4c5-418e-95b4-a10565b39f98",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_01",
+        "@Path=happy",
+        "@Workflow=160",
+        "@Versicherung=GKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "ae5856ba-67f1-49bb-8909-193d7b5afe7f",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für PKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_02",
+        "@Path=happy",
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für PKV-Versicherte als Mehrfachverordnung erstellen (WF 200)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "80dcee34-13de-4998-b6d4-8488df591ee1",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für PKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_02",
+        "@Path=happy",
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für PKV-Versicherte als Mehrfachverordnung erstellen (WF 200)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "23f12dab-b27a-491c-8724-8745154c5d6e",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für PKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_02",
+        "@Path=happy",
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für PKV-Versicherte als Mehrfachverordnung erstellen (WF 200)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "432b109f-d581-43c8-85de-0884832c709d",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für PKV-Versicherte",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_02",
+        "@Path=happy",
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Afo=A_22627",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: E-Rezepte für PKV-Versicherte als Mehrfachverordnung erstellen (WF 200)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627"]
+    },
+    {
+      "id": "c687dc6f-ab0e-418a-b150-55782c9072b8",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte als Direktzuweisung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_03",
+        "@Path=happy",
+        "@Workflow=169",
+        "@Versicherung=GKV",
+        "@Afo=A_22627-01",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: Direktzuweisung für GKV-Versicherte als Mehrfachverordnung (WF 169)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627-01"]
+    },
+    {
+      "id": "c1742163-3d6a-4388-bd55-64de7731a41a",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte als Direktzuweisung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_03",
+        "@Path=happy",
+        "@Workflow=169",
+        "@Versicherung=GKV",
+        "@Afo=A_22627-01",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: Direktzuweisung für GKV-Versicherte als Mehrfachverordnung (WF 169)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627-01"]
+    },
+    {
+      "id": "b97e9795-ff6d-4dbd-9704-0b70b8e030f0",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte als Direktzuweisung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_03",
+        "@Path=happy",
+        "@Workflow=169",
+        "@Versicherung=GKV",
+        "@Afo=A_22627-01",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: Direktzuweisung für GKV-Versicherte als Mehrfachverordnung (WF 169)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627-01"]
+    },
+    {
+      "id": "74b426c6-b738-436b-92e1-6e7d4dba5dd5",
+      "mainActor": "Arztpraxis",
+      "name": "Mehrfachverordnung für GKV-Versicherte als Direktzuweisung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_03",
+        "@Path=happy",
+        "@Workflow=169",
+        "@Versicherung=GKV",
+        "@Afo=A_22627-01",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Gutfall: Direktzuweisung für GKV-Versicherte als Mehrfachverordnung (WF 169)",
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22627-01"]
+    },
+    {
+      "id": "53f77f2b-dc63-46e1-9a71-eed0c4dea29f",
+      "mainActor": "Arztpraxis",
+      "name": "Entlassrezept nicht als Mehrfachverordnung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_05",
+        "@Afo=A_22632",
+        "@Funktionalität=Entlassrezept",
+        "@Path=bad",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22632"]
+    },
+    {
+      "id": "70fcf4ce-a0d1-4e91-aecd-65235ef5c390",
+      "mainActor": "Arztpraxis",
+      "name": "Entlassrezept nicht als Mehrfachverordnung",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_05",
+        "@Afo=A_22632",
+        "@Funktionalität=Entlassrezept",
+        "@Path=bad",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22632"]
+    },
+    {
+      "id": "e4ed68c1-959a-48d2-8cea-f8e99ea6e14d",
+      "mainActor": "Apotheke",
+      "name": "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_07",
+        "@Afo=A_22635",
+        "@Path=bad",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22635"]
+    },
+    {
+      "id": "c2920166-57fb-43a2-90cb-cd1055e20f8b",
+      "mainActor": "Apotheke",
+      "name": "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_07",
+        "@Afo=A_22635",
+        "@Path=bad",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22635"]
+    },
+    {
+      "id": "66235040-1c7d-4afa-ad65-a82865ee9269",
+      "mainActor": "Apotheke",
+      "name": "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_07",
+        "@Afo=A_22635",
+        "@Path=bad",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22635"]
+    },
+    {
+      "id": "825903c7-b382-4dc0-b446-1bcf6150a649",
+      "mainActor": "Apotheke",
+      "name": "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
+      "tags": [
+        "@Funktionalität=MVO",
+        "@Impl=done",
+        "@TCID=ERP_EE_MVO_07",
+        "@Afo=A_22635",
+        "@Path=bad",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+      "featureFile": "MVO/MVO.feature",
+      "requirements": ["A_22635"]
+    },
+    {
+      "id": "ae49976f-3582-4bda-af4f-6035cadf90e0",
+      "mainActor": "Fachdienst",
+      "name": "Sonstige Versicherungsarten sind nicht zulässig",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=All",
+        "@Impl=done",
+        "@TCID=ERP_EE_sonstVA_01",
+        "@Path=bad",
+        "@Afo=A_22222",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "description": "Der E-Rezept Fachdienst muss das Ausstellen von E-Rezepten unterbinden, wenn ein unzulässiger Kostenträger\n  gemäß der Anforderung A_22222 im QES-Datensatz hinterlegt ist.",
+      "feature": "Sonstige Versicherungsarten",
+      "featureFile": "Sonstige_Versicherungsart.feature",
+      "requirements": ["A_22222"]
+    },
+    {
+      "id": "8307cbaa-9ac7-4f68-8986-ada9e4dc08cd",
+      "mainActor": "Fachdienst",
+      "name": "Sonstige Versicherungsarten sind nicht zulässig",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=All",
+        "@Impl=done",
+        "@TCID=ERP_EE_sonstVA_01",
+        "@Path=bad",
+        "@Afo=A_22222",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "description": "Der E-Rezept Fachdienst muss das Ausstellen von E-Rezepten unterbinden, wenn ein unzulässiger Kostenträger\n  gemäß der Anforderung A_22222 im QES-Datensatz hinterlegt ist.",
+      "feature": "Sonstige Versicherungsarten",
+      "featureFile": "Sonstige_Versicherungsart.feature",
+      "requirements": ["A_22222"]
+    },
+    {
+      "id": "c784441b-4736-40f8-a5cb-e06158437799",
+      "mainActor": "Fachdienst",
+      "name": "Sonstige Versicherungsarten sind nicht zulässig",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=All",
+        "@Impl=done",
+        "@TCID=ERP_EE_sonstVA_01",
+        "@Path=bad",
+        "@Afo=A_22222",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "description": "Der E-Rezept Fachdienst muss das Ausstellen von E-Rezepten unterbinden, wenn ein unzulässiger Kostenträger\n  gemäß der Anforderung A_22222 im QES-Datensatz hinterlegt ist.",
+      "feature": "Sonstige Versicherungsarten",
+      "featureFile": "Sonstige_Versicherungsart.feature",
+      "requirements": ["A_22222"]
+    },
+    {
+      "id": "a4d3f594-3275-467a-866e-d979096bfc00",
+      "mainActor": "Fachdienst",
+      "name": "Sonstige Versicherungsarten sind nicht zulässig",
+      "tags": [
+        "@Workflow=160",
+        "@Versicherung=All",
+        "@Impl=done",
+        "@TCID=ERP_EE_sonstVA_01",
+        "@Path=bad",
+        "@Afo=A_22222",
+        "@Hauptdarsteller=Fachdienst"
+      ],
+      "description": "Der E-Rezept Fachdienst muss das Ausstellen von E-Rezepten unterbinden, wenn ein unzulässiger Kostenträger\n  gemäß der Anforderung A_22222 im QES-Datensatz hinterlegt ist.",
+      "feature": "Sonstige Versicherungsarten",
+      "featureFile": "Sonstige_Versicherungsart.feature",
+      "requirements": ["A_22222"]
+    },
+    {
+      "id": "8e942a96-99a5-4792-8b0b-13aa6b74e375",
+      "mainActor": "Versicherter",
+      "name": "E-Rezept per alternative Zuweisung einlösen",
+      "tags": [
+        "@Funktionalität=AlternZuweisung",
+        "@Impl=done",
+        "@Hauptdarsteller=Versicherter",
+        "@TCID=ERP_EE_altZuweisung_01",
+        "@Path=happy"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
+      "feature": "Alternative Zuweisung",
+      "featureFile": "alternative_zuweisung/alternative_Zuweisung.feature"
+    },
+    {
+      "id": "5990e83b-4b84-4764-83bb-2706d7175466",
+      "mainActor": "Versicherter",
+      "name": "E-Rezept per alternative Zuweisung einlösen",
+      "tags": [
+        "@Funktionalität=AlternZuweisung",
+        "@Impl=done",
+        "@Hauptdarsteller=Versicherter",
+        "@TCID=ERP_EE_altZuweisung_01",
+        "@Path=happy"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
+      "feature": "Alternative Zuweisung",
+      "featureFile": "alternative_zuweisung/alternative_Zuweisung.feature"
+    },
+    {
+      "id": "165b930c-d2d2-4f6f-b49d-5590352ee359",
+      "mainActor": "Versicherter",
+      "name": "E-Rezept per alternative Zuweisung einlösen",
+      "tags": [
+        "@Funktionalität=AlternZuweisung",
+        "@Impl=done",
+        "@Hauptdarsteller=Versicherter",
+        "@TCID=ERP_EE_altZuweisung_01",
+        "@Path=happy"
+      ],
+      "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
+      "feature": "Alternative Zuweisung",
+      "featureFile": "alternative_zuweisung/alternative_Zuweisung.feature"
+    },
+    {
+      "id": "b1f08e2e-ae18-4e81-b07c-269493547776",
+      "mainActor": "Apotheke",
+      "name": "PKV E-Rezept dispensieren",
+      "tags": [
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Anwendungsfall=A_18514",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF200_03",
+        "@Path=happy",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Die Ärztin Dr. Straßer verschreibt dem PKV-Versicherten Günther Angermänn ein E-Rezept, welches dieser bei der\n  Apotheke \"Am Flughafen\" über einen QR-Code einlöst. Die Apotheke hat daraufhin eine Quittung für das dispensierte Medikament.",
+      "feature": "PKV-Rezepte dispensieren",
+      "featureFile": "pkv/PKV-Abgebender_E-Rezept_dispensieren.feature",
+      "useCases": ["A_18514"]
+    },
+    {
+      "id": "dd81140e-8579-4f73-9711-c10757ae67e3",
+      "mainActor": "Arztpraxis",
+      "name": "PKV E-Rezept verschreiben und dem Versicherten Anzeigen",
+      "tags": [
+        "@Workflow=200",
+        "@Versicherung=PKV",
+        "@Anwendungsfall=A_18822",
+        "@Anwendungsfall=A_18827",
+        "@Anwendungsfall=A_18502",
+        "@Anwendungsfall=A_18503",
+        "@Impl=done",
+        "@TCID=ERP_EE_WF200_01",
+        "@Path=happy",
+        "@Hauptdarsteller=Arztpraxis"
+      ],
+      "description": "Die Ärztin verschreibt dem PKV-Versicherten Günther Angermänn  ein E-Rezept. Günther Angermänn soll dieses E-Rezept\n  im FdV angezeigt werden",
+      "feature": "PKV-Rezepte verschreiben",
+      "featureFile": "pkv/PKV-Versicherter_E-Rezept_verschreiben.feature",
+      "useCases": ["A_18822", "A_18827", "A_18502", "A_18503"]
+    },
+    {
+      "id": "5082173f-8920-4104-baa0-a920a3b0d682",
+      "mainActor": "Apotheke",
+      "name": "Benachrichtigung beim Eingang einer neuen Zuweisung",
+      "tags": [
+        "@Funktionalität=BenachrichtigungApotheke",
+        "@Impl=done",
+        "@TCID=ERP_EE_Subscrp_01",
+        "@Path=happy",
+        "@Afo=A_22367-01",
+        "@Afo=A_22364",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Eine Apotheke wird durch den Subscription Service informiert, wenn ein Versicherter ein E-Rezept mit dem FdV an diese Apotheke zuweist.",
+      "feature": "Subscription Service für Apotheken",
+      "featureFile": "subscription/Subsription.feature",
+      "requirements": ["A_22367-01", "A_22364"]
+    },
+    {
+      "id": "e739e9ce-b2c7-476a-89f5-6a58234cb378",
+      "mainActor": "Apotheke",
+      "name": "Benachrichtigung beim Eingang einer neuen Anfrage",
+      "tags": [
+        "@Funktionalität=BenachrichtigungApotheke",
+        "@Impl=done",
+        "@TCID=ERP_EE_Subscrp_02",
+        "@Path=happy",
+        "@Afo=A_22367-01",
+        "@Afo=A_22364",
+        "@Hauptdarsteller=Apotheke"
+      ],
+      "description": "Eine Apotheke wird durch den Subscription Service informiert, wenn ein Versicherter für ein E-Rezept mit dem FdV eine Anfrage an diese Apotheke schickt",
+      "feature": "Subscription Service für Apotheken",
+      "featureFile": "subscription/Subsription.feature",
+      "requirements": ["A_22367-01", "A_22364"]
+    }
+  ]
+}

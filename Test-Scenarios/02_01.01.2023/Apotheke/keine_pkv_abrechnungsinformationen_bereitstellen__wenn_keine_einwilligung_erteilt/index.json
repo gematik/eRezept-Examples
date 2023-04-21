@@ -1,0 +1,136 @@
+{
+  "id": "1794bef4-3297-4fd3-864e-2df5e591449c",
+  "mainActor": "Apotheke",
+  "name": "Keine PKV-Abrechnungsinformationen bereitstellen, wenn keine Einwilligung erteilt",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_02",
+    "@Path=bad",
+    "@Afo=A_22133",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Falls für den Versicherten keine Einwilligung beim Fachdienst zur Speicherung der PKV-Abrechnungsinformationen vorliegt,\n  muss der Fachdienst das Hochladen des ChargeItems mit Fehlercode 403 ablehnen",
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/f62f51a0-7fe6-4b30-9116-2f913a331547",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/0_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/1_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/200.000.001.943.760.43",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/2_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/3_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/4_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/200.000.001.943.760.43/$activate",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/5_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/200.000.001.943.760.43",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/6_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 200.000.001.943.760.43 with AccessCode f5bf5a58d11f20a3062340797ecaa1bd1ce24b042e4e261c6b734563d85c370b",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/7_dmc_200.000.001.943.760.43.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/5e5235dd-cc0d-4d1c-a722-e3de88e9f34f",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/8_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/200.000.001.943.760.43/$close?secret=ca95e1b5d772300fe8ddb445eb8e1c8a9cc84195f8ab9d1a857c532da836f37f",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/c8d0a81d-0000-0000-0003-000000000000",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/10_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Wenn der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen widerruft",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/43032ee5-1704-4f3d-ba26-fd323c9af216",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/11_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil keine Einwilligung vorliegt"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/12_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/13_signed_document.b64"
+        },
+        {
+          "operation": "POST /ChargeItem?task=200.000.001.943.760.43&secret=ca95e1b5d772300fe8ddb445eb8e1c8a9cc84195f8ab9d1a857c532da836f37f",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/14_Request_ChargeItem.xml"
+        },
+        {
+          "operation": "Response 403: OperationOutcome 20230418_084215",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/15_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_22133"],
+  "useCases": ["A_18822", "A_18827"]
+}

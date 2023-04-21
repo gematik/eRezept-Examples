@@ -1,0 +1,202 @@
+{
+  "id": "fb2a7e52-842a-4492-aa77-05fcd2423690",
+  "mainActor": "Apotheke",
+  "name": "Ändern des PKV-Abgabedatensatzes nicht möglich, weil Einwilligung widerrufen",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_09",
+    "@Path=bad",
+    "@Afo=A_22215",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/f698a94e-6e35-4059-9843-9214806cf69c",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/0_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/1_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/200.000.001.943.767.22",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/2_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/3_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/4_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/200.000.001.943.767.22/$activate",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/5_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/200.000.001.943.767.22",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/6_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 200.000.001.943.767.22 with AccessCode f9aeeb8405ff4d4db791b4922f25dbc85f8ede269a5dab3dc85664dc359226a8",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/7_dmc_200.000.001.943.767.22.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/93f7ba99-f6db-4aae-b945-94fe3963022f",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/8_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/200.000.001.943.767.22/$close?secret=f395c7e92192287ab046d1643426849619a4a6e2a93e8d3c6a482b41d2af0841",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/9_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/c8d7a81d-0000-0000-0003-000000000000",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/10_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/11_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/12_signed_document.b64"
+        },
+        {
+          "operation": "POST /ChargeItem?task=200.000.001.943.767.22&secret=f395c7e92192287ab046d1643426849619a4a6e2a93e8d3c6a482b41d2af0841",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/13_Request_ChargeItem.xml"
+        },
+        {
+          "operation": "Response 201: ChargeItem ChargeItem/200.000.001.943.767.22",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/14_Response_ChargeItem.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn für das letzte E-Rezept die PKV-Abrechnungsinformationen abruft"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/e6279098-97ed-446a-b985-ecb114684045",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/15_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn die Apotheke Am Flughafen via Data Matrix Code zum Ändern des letzten PKV-Abgabedatensatzes berechtigt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/a0874226-a6d3-4169-9e8d-95f10212f130",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/16_Response_Bundle.json"
+        },
+        {
+          "operation": "DMC for 200.000.001.943.767.22 with AccessCode cb206f32ee3d9185db4d3589235a5ad597cb194e6d2a39cb3b6d7a6384016347",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/17_charge_item_auth_200.000.001.943.767.22.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen widerruft",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/27478c7e-0149-4517-8a9c-b5bbd847364d",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/18_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen den letzten autorisierten PKV-Abgabedatensatz für das dispensierte E-Rezept nicht ändern, weil sie kein Recht dazu hat"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/19_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/20_signed_document.b64"
+        },
+        {
+          "operation": "PUT /ChargeItem/200.000.001.943.767.22?ac=cb206f32ee3d9185db4d3589235a5ad597cb194e6d2a39cb3b6d7a6384016347",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/21_Request_ChargeItem.xml"
+        },
+        {
+          "operation": "Response 404: OperationOutcome 20230418_084321",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/22_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn kann für das letzte E-Rezept keine PKV-Abrechnungsinformationen mehr abrufen"
+    },
+    {
+      "name": "Günther angermänn check the return code",
+      "dumps": [
+        {
+          "operation": "Response 404: OperationOutcome 20230418_084321",
+          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_nicht_möglich__weil_einwilligung_widerrufen/23_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Günther angermänn performable predicate"
+    }
+  ],
+  "requirements": ["A_22215"],
+  "useCases": ["A_18822", "A_18827"]
+}

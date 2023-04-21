@@ -1,0 +1,108 @@
+{
+  "id": "b1f08e2e-ae18-4e81-b07c-269493547776",
+  "mainActor": "Apotheke",
+  "name": "PKV E-Rezept dispensieren",
+  "tags": [
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18514",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_03",
+    "@Path=happy",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Die Ärztin Dr. Straßer verschreibt dem PKV-Versicherten Günther Angermänn ein E-Rezept, welches dieser bei der\n  Apotheke \"Am Flughafen\" über einen QR-Code einlöst. Die Apotheke hat daraufhin eine Quittung für das dispensierte Medikament.",
+  "feature": "PKV-Rezepte dispensieren",
+  "featureFile": "pkv/PKV-Abgebender_E-Rezept_dispensieren.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/200.000.000.011.934.62",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/200.000.000.011.934.62/$activate",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/200.000.000.011.934.62",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 200.000.000.011.934.62 with AccessCode 0f386c2119131c709ea94abc1360f8e3673773bfde38cd53d9ccdd2184f29160",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/6_dmc_200.000.000.011.934.62.png"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/f5b24a56-0c95-44ba-8701-7e333b52b0c9",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/200.000.000.011.934.62/$close?secret=b8c33b0d88d80d9454cb3d7de5dc5fba4c62519025030976b5a6d60d5f0ca7af",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/8_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/c89e2e00-0000-0000-0003-000000000000",
+          "file": "Apotheke/pkv_e_rezept_dispensieren/9_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen die Signatur der letzten Quittung erfolgreich mit dem Konnektor validieren"
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    },
+    {
+      "name": "answeredBy: Am Flughafen"
+    },
+    {
+      "name": "Dann hat die Versicherte Günther Angermänn genau 1 Medikament erhalten"
+    },
+    {
+      "name": "Günther angermänn performable predicate"
+    }
+  ],
+  "useCases": ["A_18514"]
+}

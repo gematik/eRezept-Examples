@@ -1,0 +1,86 @@
+{
+  "id": "d0923b67-b3b1-49bc-ba5f-04f81d15b82d",
+  "mainActor": "Apotheke",
+  "name": "Löschen des E-Rezepts durch Apotheke nicht möglich, weil nicht akzeptiert",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_10",
+    "@Path=bad",
+    "@Afo=A_19146",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.825.69",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.825.69/$activate",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.006.300.825.69",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.006.300.825.69 with AccessCode 2d56fa4fbe9d38a39ff51795c04bbe7bad7ee96a702545c496101db547c3e0ed",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/6_dmc_160.000.006.300.825.69.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept ohne zu akzeptieren nicht löschen"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Response 403: OperationOutcome 20230316_125040",
+          "file": "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/7_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_19146"],
+  "useCases": ["A_18827", "A_18502", "A_18503"]
+}

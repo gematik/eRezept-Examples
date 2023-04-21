@@ -1,0 +1,103 @@
+{
+  "id": "b343ed17-742b-46eb-81bc-e51b56ce75a5",
+  "mainActor": "Versicherter",
+  "name": "Löschen möglich nach der Dispensierung",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=209",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=PKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF209_07",
+    "@Afo=A_22102-01",
+    "@Path=happy",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte kann das E-Rezept erst löschen nachdem die Apotheke das Rezept dispensiert hat",
+  "feature": "Direktzuweisung für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Versicherter_WF209.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/209.000.000.003.650.90",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/209.000.000.003.650.90/$activate",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/209.000.000.003.650.90",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 209.000.000.003.650.90 with AccessCode ba80bdaba222fa21ffa5282744ca3e0c9a261c16f07b31eb8941daf5336b3106",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/6_dmc_209.000.000.003.650.90.png"
+        }
+      ]
+    },
+    {
+      "name": "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/3043fa12-d4d5-4e92-85a3-0f716bf2995a",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/209.000.000.003.650.90/$close?secret=82155288a4b3838608621c7d467812dd86053cfac2c78c631889ba2621e59d4d",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/8_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/d1420e00-0000-0000-0003-000000000000",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/9_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes E-Rezept löscht"
+    },
+    {
+      "name": "Dann wird das letzte gelöschte E-Rezept dem Versicherten nicht mehr angezeigt"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 410: OperationOutcome 20230418_084714",
+          "file": "Versicherter/löschen_möglich_nach_der_dispensierung/10_Response_OperationOutcome.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22102-01"],
+  "useCases": ["A_18502", "A_18503"]
+}

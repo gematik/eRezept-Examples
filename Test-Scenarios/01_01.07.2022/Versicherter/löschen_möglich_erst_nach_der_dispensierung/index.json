@@ -1,0 +1,106 @@
+{
+  "id": "040c5fed-4625-4c83-bb74-88775ecfe236",
+  "mainActor": "Versicherter",
+  "name": "Löschen möglich erst nach der Dispensierung",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=169",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=AF_10111",
+    "@Anwendungsfall=AF_10112",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=GKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF169_05",
+    "@Path=happy",
+    "@Afo=A_22102",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte kann das E-Rezept erst löschen nachdem die Apotheke das Rezept dispensiert hat",
+  "feature": "Direktzuweisung für GKV-Rezepte",
+  "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.000.021.504.58",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.000.021.504.58/$activate",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/169.000.000.021.504.58",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/5_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 169.000.000.021.504.58 with AccessCode aef31657773c7df7a2427d71dc3505ced9e983b08a977c40ecc91cc5164b1c6f",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/6_dmc_169.000.000.021.504.58.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/379dcbf7-6d9d-4e19-8e59-fbc33713f0fe",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/7_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensiert",
+      "dumps": [
+        {
+          "operation": "POST /Task/169.000.000.021.504.58/$close?secret=2b03463c2618552e5dc9a9fd3b25c5a74b047a9e1780abe838591941c81b2e26",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/8_Request_MedicationDispense.xml"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/a9005400-0000-0000-0003-000000000000",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/9_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht"
+    },
+    {
+      "name": "Dann wird das letzte gelöschte E-Rezept der Versicherten nicht mehr angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 410: OperationOutcome 20230316_125217",
+          "file": "Versicherter/löschen_möglich_erst_nach_der_dispensierung/10_Response_OperationOutcome.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22102"],
+  "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+}

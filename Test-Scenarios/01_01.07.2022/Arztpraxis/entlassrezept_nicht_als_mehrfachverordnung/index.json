@@ -1,0 +1,60 @@
+{
+  "id": "70fcf4ce-a0d1-4e91-aecd-65235ef5c390",
+  "mainActor": "Arztpraxis",
+  "name": "Entlassrezept nicht als Mehrfachverordnung",
+  "tags": [
+    "@Funktionalität=MVO",
+    "@Impl=done",
+    "@TCID=ERP_EE_MVO_05",
+    "@Afo=A_22632",
+    "@Funktionalität=Entlassrezept",
+    "@Path=bad",
+    "@Hauptdarsteller=Arztpraxis"
+  ],
+  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile": "MVO/MVO.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| KBV_Statuskennzeichen | MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| 14 | true | 4 | 1 | 0 | 90 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/0_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.006.300.846.06",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/1_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/2_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/3_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.006.300.846.06/$activate",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/4_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230316_125322",
+          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/5_Response_OperationOutcome.xml"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_22632"]
+}
