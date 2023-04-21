@@ -1,0 +1,69 @@
+{
+  "id": "e11f8d5e-407c-4486-ba93-7036595ae8a7",
+  "mainActor": "Apotheke",
+  "name": "Bereitstellen der PKV-Abrechnungsinformationen durch die Apotheke nach Änderung der Medikation",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_12",
+    "@Path=happy",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Der PKV-Abgabedatensatz muss mit dem HBA signiert werden, wenn die Medikation gegenüber dem ursprünglichem Rezept verändert wurde",
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/2b8a9e50-9d0f-43ca-b8e1-3c82e471b8df",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke_nach_änderung_der_medikation/000_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Consent",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke_nach_änderung_der_medikation/001_Request_Consent.json"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230421_093846",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke_nach_änderung_der_medikation/002_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+    },
+    {
+      "name": "Angenommen der Apotheker Finn-Louis Nullmayr hat Zugriff auf seinen HBA"
+    },
+    {
+      "name": "Wenn der Apotheker Finn-Louis Nullmayr als Angestellter der Apotheke Am Flughafen für das letzte dispensierte E-Rezept PKV-Abrechnungsinformationen bereitstellt"
+    },
+    {
+      "name": "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen für das letzte dispensierte Medikament beim Fachdienst vorliegen"
+    }
+  ],
+  "useCases": ["A_18822", "A_18827"]
+}

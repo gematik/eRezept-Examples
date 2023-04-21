@@ -1,0 +1,68 @@
+{
+  "id": "2c866794-0ce4-4d3a-9890-46eb0166e22d",
+  "mainActor": "Apotheke",
+  "name": "Keine PKV-Abrechnungsinformationen bereitstellen, wenn keine Einwilligung erteilt",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_02",
+    "@Path=bad",
+    "@Afo=A_22133",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Falls für den Versicherten keine Einwilligung beim Fachdienst zur Speicherung der PKV-Abrechnungsinformationen vorliegt,\n  muss der Fachdienst das Hochladen des ChargeItems mit Fehlercode 403 ablehnen",
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/86c3c151-b420-44e1-b34d-c4a8532e916e",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/000_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Consent",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/001_Request_Consent.json"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230421_093736",
+          "file": "Apotheke/keine_pkv_abrechnungsinformationen_bereitstellen__wenn_keine_einwilligung_erteilt/002_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+    },
+    {
+      "name": "Wenn der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen widerruft"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil keine Einwilligung vorliegt"
+    }
+  ],
+  "requirements": ["A_22133"],
+  "useCases": ["A_18822", "A_18827"]
+}

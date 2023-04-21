@@ -1,0 +1,70 @@
+{
+  "id": "c2161692-7245-426b-857a-2e171091c3c7",
+  "mainActor": "Versicherter",
+  "name": "Einwilligung durch Versicherten erteilen",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_03",
+    "@Path=happy",
+    "@Afo=A_22161",
+    "@Anwendungsfall=AF_10084",
+    "@Anwendungsfall=AF_10086",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte kann im FdV die Einwilligung zum Speichern der PKV-Abrechnungsinformationen beim Fachdienst erteilen. Diese wird ihm im FdV angezeigt",
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/d6418fb2-e315-4dfc-8b06-ef6a1fd65fae",
+          "file": "Versicherter/einwilligung_durch_versicherten_erteilen/000_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Consent",
+          "file": "Versicherter/einwilligung_durch_versicherten_erteilen/001_Request_Consent.json"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230421_093739",
+          "file": "Versicherter/einwilligung_durch_versicherten_erteilen/002_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+    },
+    {
+      "name": "Wenn der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen erteilt"
+    },
+    {
+      "name": "Dann kann der Versicherte Günther Angermänn seine Einwilligung abrufen"
+    }
+  ],
+  "requirements": ["A_22161"],
+  "useCases": ["A_18822", "A_18827", "AF_10084", "AF_10086"]
+}

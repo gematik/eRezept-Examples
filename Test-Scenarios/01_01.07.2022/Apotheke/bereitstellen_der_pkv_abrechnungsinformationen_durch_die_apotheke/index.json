@@ -1,0 +1,69 @@
+{
+  "id": "dd0e32a8-843a-4f4c-99cd-49cc64454762",
+  "mainActor": "Apotheke",
+  "name": "Bereitstellen der PKV-Abrechnungsinformationen durch die Apotheke",
+  "tags": [
+    "@Funktionalität=Abrechnungsinformationen",
+    "@Workflow=200",
+    "@Versicherung=PKV",
+    "@Anwendungsfall=A_18822",
+    "@Anwendungsfall=A_18827",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF200_01",
+    "@Path=happy",
+    "@Afo=A_22118",
+    "@Anwendungsfall=AF_10082",
+    "@Anwendungsfall=AF_10087",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "feature": "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/54809906-6782-490e-bfd4-06267caee0ac",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke/000_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Consent",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke/001_Request_Consent.json"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230421_093733",
+          "file": "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_durch_die_apotheke/002_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
+    },
+    {
+      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+    },
+    {
+      "name": "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
+    },
+    {
+      "name": "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen für das letzte dispensierte Medikament beim Fachdienst vorliegen"
+    }
+  ],
+  "requirements": ["A_22118"],
+  "useCases": ["A_18822", "A_18827", "AF_10082", "AF_10087"]
+}

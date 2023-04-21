@@ -1,0 +1,78 @@
+{
+  "id": "ebcee9db-6d3e-4173-8ff2-c23a51765edf",
+  "mainActor": "Versicherter",
+  "name": "E-Rezept als Direktzuweisung verschreiben, Anzeige im FdV (WF 209)",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=209",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=PKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF209_01",
+    "@Path=happy",
+    "@Afo=A_21360-01",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Die Ärztin verschreibt dem PKV-Versicherten Günther Angermänn ein E-Rezept als Dierektzuweisung. Günther Angermänn soll dieses E-Rezept\n  im FdV angezeigt werden",
+  "feature": "Direktzuweisung für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Versicherter_WF209.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/209.000.000.003.635.38",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/209.000.000.003.635.38/$activate",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/209.000.000.003.635.38",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 209.000.000.003.635.38 with AccessCode f0166c7bd5b59b5332d49cef0208cdfc7017e3e166a443b660e1f7c45682ca25",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/006_dmc_209.000.000.003.635.38.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept ohne AccessCode angezeigt"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/817c760b-5158-4536-a758-67cc6b2670ea",
+          "file": "Versicherter/e_rezept_als_direktzuweisung_verschreiben__anzeige_im_fdv__wf_209_/007_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_21360-01"],
+  "useCases": ["A_18502", "A_18503"]
+}

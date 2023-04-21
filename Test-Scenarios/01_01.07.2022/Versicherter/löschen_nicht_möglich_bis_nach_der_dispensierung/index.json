@@ -1,96 +1,93 @@
 {
-  "id": "bf43a6f9-0aaf-4e42-a896-ba3e70268da1",
+  "id": "025b30b4-cc39-4cc7-93e9-783262da95e7",
   "mainActor": "Versicherter",
   "name": "Löschen nicht möglich bis nach der Dispensierung",
   "tags": [
     "@Funktionalität=Direktzuweisung",
-    "@Workflow=169",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=AF_10111",
-    "@Anwendungsfall=AF_10112",
+    "@Workflow=209",
     "@Anwendungsfall=A_18502",
     "@Anwendungsfall=A_18503",
-    "@Versicherung=GKV",
+    "@Versicherung=PKV",
     "@Impl=done",
-    "@TCID=ERP_EE_WF169_03",
+    "@TCID=ERP_EE_WF209_06",
+    "@Afo=A_22102-01",
     "@Path=bad",
-    "@Afo=A_22102",
     "@Hauptdarsteller=Versicherter"
   ],
   "description": "Der Versicherte kann E-Rezepte mit Direktzuweisung nicht löschen bis diese durch\n  eine Apotheke dispensiert wurden",
-  "feature": "Direktzuweisung für GKV-Rezepte",
-  "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+  "feature": "Direktzuweisung für PKV-Rezepte",
+  "featureFile": "pkv/PKV-Versicherter_WF209.feature",
   "steps": [
     {
       "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
     },
     {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
       "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
     },
     {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
       "dumps": [
         {
           "operation": "POST /Task/$create",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/0_Request_Parameters.xml"
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/000_Request_Parameters.xml"
         },
         {
-          "operation": "Response 201: Task Task/169.000.000.021.502.64",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/1_Response_Task.xml"
+          "operation": "Response 201: Task Task/209.000.000.003.640.23",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/001_Response_Task.xml"
         },
         {
           "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/2_document_to_sign.xml"
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/002_document_to_sign.xml"
         },
         {
           "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/3_signed_document.b64"
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/003_signed_document.b64"
         },
         {
-          "operation": "POST /Task/169.000.000.021.502.64/$activate",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/4_Request_Parameters.xml"
+          "operation": "POST /Task/209.000.000.003.640.23/$activate",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/004_Request_Parameters.xml"
         },
         {
-          "operation": "Response 200: Task Task/169.000.000.021.502.64",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/5_Response_Task.xml"
+          "operation": "Response 200: Task Task/209.000.000.003.640.23",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/005_Response_Task.xml"
         },
         {
-          "operation": "DMC for 169.000.000.021.502.64 with AccessCode 095a0f4819a20e2efec0dc478e000f4724f5fdba09d4fd93adc265afa04a9b35",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/6_dmc_169.000.000.021.502.64.png"
+          "operation": "DMC for 209.000.000.003.640.23 with AccessCode b99540abed6c1d425ba31660e8108f8fa2671d23ba5bb1fe0c84b71f882e4e09",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/006_dmc_209.000.000.003.640.23.png"
         }
       ]
     },
     {
-      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+      "name": "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
     },
     {
-      "name": "Sina hüllmann performable predicate",
+      "name": "Günther angermänn performable predicate",
       "dumps": [
         {
-          "operation": "Response 200: Bundle Bundle/ec7c6b18-7ce9-45b9-8686-cac5c0966a7a",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/7_Response_Bundle.json"
+          "operation": "Response 200: Bundle Bundle/d45c221d-4a47-4474-8cf5-cebc6a799eba",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/007_Response_Bundle.json"
         }
       ]
     },
     {
-      "name": "Und die Versicherte kann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+      "name": "Aber der Versicherte Günther Angermänn kann sein letztes E-Rezept nicht löschen, weil er nicht das Recht dazu hat"
     },
     {
-      "name": "Sina hüllmann check the return code",
+      "name": "Günther angermänn check the return code",
       "dumps": [
         {
-          "operation": "Response 403: OperationOutcome 20230316_125209",
-          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/8_Response_OperationOutcome.json"
+          "operation": "Response 403: OperationOutcome 20230421_093938",
+          "file": "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/008_Response_OperationOutcome.json"
         }
       ]
     },
     {
-      "name": "Sina hüllmann performable predicate"
+      "name": "Günther angermänn performable predicate"
     }
   ],
-  "requirements": ["A_22102"],
-  "useCases": ["A_18827", "AF_10111", "AF_10112", "A_18502", "A_18503"]
+  "requirements": ["A_22102-01"],
+  "useCases": ["A_18502", "A_18503"]
 }
