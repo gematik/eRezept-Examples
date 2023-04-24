@@ -1,0 +1,46 @@
+<Communication xmlns="http://hl7.org/fhir">
+  <id value="7977a4ab-97a9-4d95-afb3-6c4c1e2ac596" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" />
+    <tag>
+      <display value="Communication message sent by pharmacy to patient in response to a previous Task-related message" />
+    </tag>
+  </meta>
+  <basedOn>
+    <reference value="Task/160.000.033.491.280.78" />
+  </basedOn>
+  <status value="unknown" />
+  <sent value="2020-04-29T13:46:30.128+02:00" />
+  <recipient>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10" />
+      <value value="X234567890" />
+    </identifier>
+  </recipient>
+  <sender>
+    <identifier>
+      <system value="https://gematik.de/fhir/sid/telematik-id" />
+      <value value="3-SMC-B-Testkarte-883110000123465" />
+    </identifier>
+  </sender>
+  <payload>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState">
+      <valueCoding>
+        <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus" />
+        <code value="20" />
+      </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType">
+      <extension url="onPremise">
+        <valueBoolean value="true" />
+      </extension>
+      <extension url="shipment">
+        <valueBoolean value="false" />
+      </extension>
+      <extension url="delivery">
+        <valueBoolean value="true" />
+      </extension>
+    </extension>
+    <contentString value="Eisern" />
+  </payload>
+</Communication>
