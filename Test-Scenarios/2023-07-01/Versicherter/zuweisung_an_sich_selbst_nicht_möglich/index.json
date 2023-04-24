@@ -1,0 +1,92 @@
+{
+  "id": "840a131d-8acc-407a-be08-28e206443609",
+  "mainActor": "Versicherter",
+  "name": "Zuweisung an sich selbst nicht möglich",
+  "tags": [
+    "@Funktionalität=Cummunication",
+    "@Anwendungsfall=A_18508",
+    "@Anwendungsfall=A_18617",
+    "@Anwendungsfall=A_18618",
+    "@Anwendungsfall=A_19013",
+    "@Impl=done",
+    "@TCID=ERP_EE_Communication_05",
+    "@Path=bad",
+    "@Afo=A_20231",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der E-Rezept-Fachdienst muss eine Nachricht mit Empfänger gleich Absender ablehnen",
+  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile": "GKV_WF_160/Communication.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.327.742.81",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.327.742.81/$activate",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.327.742.81",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.327.742.81 with AccessCode 93ee21aa52c5e0a10cbda0ec114bda8258505583ddd2efabe678d4de26803af2",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/006_dmc_160.000.040.327.742.81.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht per Nachricht an den Vertreter Sina Hüllmann schicken"
+    },
+    {
+      "name": "Sina hüllmann check the return code",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/76721738-257f-4e8b-ab19-1d61dee16e94",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/007_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Communication",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/008_Request_Communication.json"
+        },
+        {
+          "operation": "Response 400: OperationOutcome 20230421_090428",
+          "file": "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/009_Response_OperationOutcome.json"
+        }
+      ]
+    },
+    {
+      "name": "Sina hüllmann performable predicate"
+    }
+  ],
+  "requirements": ["A_20231"],
+  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+}

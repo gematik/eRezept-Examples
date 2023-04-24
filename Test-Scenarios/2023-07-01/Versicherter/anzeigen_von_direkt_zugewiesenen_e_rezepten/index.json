@@ -1,0 +1,91 @@
+{
+  "id": "60313461-0830-476d-8ead-ba6c2bac2db8",
+  "mainActor": "Versicherter",
+  "name": "Anzeigen von direkt zugewiesenen E-Rezepten",
+  "tags": [
+    "@Funktionalität=Direktzuweisung",
+    "@Workflow=169",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=AF_10111",
+    "@Anwendungsfall=AF_10112",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Versicherung=GKV",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF169_01",
+    "@Path=happy",
+    "@Anwendungsfall=AF_10114",
+    "@Anwendungsfall=A_18822",
+    "@Afo=A_21360",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Arzt verschreibt der GKV-Versicherten ein Medikament als Direktzuweisung. Diese Rezept soll im FdV angezeigt werden.",
+  "feature": "Direktzuweisung für GKV-Rezepte",
+  "featureFile": "GKV_WF_169/GKV-Versicherter_WF_169.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/169.000.001.776.085.20",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/169.000.001.776.085.20/$activate",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/169.000.001.776.085.20",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 169.000.001.776.085.20 with AccessCode 3159ae8de41a81b4fc38f7ab89efcf46222441257925649236aed21fcaf7f47f",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/006_dmc_169.000.001.776.085.20.png"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept ohne AccessCode angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/a0e81b64-b4ae-400e-8864-a4f5a61cf2cd",
+          "file": "Versicherter/anzeigen_von_direkt_zugewiesenen_e_rezepten/007_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_21360"],
+  "useCases": [
+    "A_18827",
+    "AF_10111",
+    "AF_10112",
+    "A_18502",
+    "A_18503",
+    "AF_10114",
+    "A_18822"
+  ]
+}

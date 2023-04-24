@@ -1,0 +1,91 @@
+{
+  "id": "df5505ca-7498-4725-b165-f4b0d2f4762a",
+  "mainActor": "Arztpraxis",
+  "name": "E-Rezept durch Verordnenden löschen",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_EE_WF160_03",
+    "@Path=happy",
+    "@Anwendungsfall=A_18505",
+    "@Afo=A_19149",
+    "@Hauptdarsteller=Arztpraxis"
+  ],
+  "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept kann er löschen,\n  solange es nicht von einer Apotheke akzeptiert wurde.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.327.752.51",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.327.752.51/$activate",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.327.752.51",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.327.752.51 with AccessCode 72663f614a90c61dfd1d645f94f00fd17c0a7b37f2d5b441b83e2f1e92c5bdb6",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/006_dmc_160.000.040.327.752.51.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer das letzte von ihr eingestellte E-Rezept löscht"
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    },
+    {
+      "name": "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es nicht mehr existiert"
+    },
+    {
+      "name": "Am flughafen check the return code",
+      "dumps": [
+        {
+          "operation": "Response 410: OperationOutcome 20230421_090543",
+          "file": "Arztpraxis/e_rezept_durch_verordnenden_löschen/007_Response_OperationOutcome.xml"
+        }
+      ]
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_19149"],
+  "useCases": ["A_18827", "A_18502", "A_18503", "A_18505"]
+}

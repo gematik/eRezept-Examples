@@ -1,0 +1,126 @@
+{
+  "id": "a6006085-43af-416e-bf41-01730bfa9a4b",
+  "mainActor": "Versicherter",
+  "name": "Abrufen des E-Rezepts als Vertreter",
+  "tags": [
+    "@Workflow=160",
+    "@Versicherung=GKV",
+    "@Anwendungsfall=A_18827",
+    "@Anwendungsfall=A_18502",
+    "@Anwendungsfall=A_18503",
+    "@Impl=done",
+    "@TCID=ERP_WF160_04",
+    "@Path=happy",
+    "@Anwendungsfall=A_18781",
+    "@Afo=A_19116",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in seinem FdV abrufen.",
+  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Angenommen der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.327.769.97",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.327.769.97/$activate",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.327.769.97",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.327.769.97 with AccessCode f6d50a79f04890b49955975022333f905f2c4a1e5557f1a969186377ff65dce1",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/006_dmc_160.000.040.327.769.97.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept per Nachricht an den Vertreter Günther Angermänn schickt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/1efe623b-78c1-4c5b-9952-151a8ac5c530",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/007_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Communication",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/008_Request_Communication.json"
+        },
+        {
+          "operation": "Response 201: Communication Communication/01eba3b1-2997-56d8-9adc-9b4fdd32cb2c",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/009_Response_Communication.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann hat der Vertreter Günther Angermänn die Nachricht mit dem Rezept der Versicherten Sina Hüllmann empfangen"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/e55de2fc-bc4c-4b0b-873e-a0aa0aab3da3",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/010_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Sina hüllmann performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/66b0e851-9886-4d42-8fe3-d967dd1b48a5",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/011_Response_Bundle.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird dem Vertreter Günther Angermänn das neue E-Rezept angezeigt"
+    },
+    {
+      "name": "Günther angermänn performable predicate",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/67a93093-4ac6-4c0f-8dad-fcca938b6e06",
+          "file": "Versicherter/abrufen_des_e_rezepts_als_vertreter/012_Response_Bundle.json"
+        }
+      ]
+    }
+  ],
+  "requirements": ["A_19116"],
+  "useCases": ["A_18827", "A_18502", "A_18503", "A_18781"]
+}

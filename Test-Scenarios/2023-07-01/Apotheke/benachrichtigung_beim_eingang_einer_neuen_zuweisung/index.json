@@ -1,0 +1,101 @@
+{
+  "id": "8621d1ef-d86c-46d4-8f99-8edb74c2855f",
+  "mainActor": "Apotheke",
+  "name": "Benachrichtigung beim Eingang einer neuen Zuweisung",
+  "tags": [
+    "@Funktionalität=BenachrichtigungApotheke",
+    "@Impl=done",
+    "@TCID=ERP_EE_Subscrp_01",
+    "@Path=happy",
+    "@Afo=A_22367-01",
+    "@Afo=A_22364",
+    "@Hauptdarsteller=Apotheke"
+  ],
+  "description": "Eine Apotheke wird durch den Subscription Service informiert, wenn ein Versicherter ein E-Rezept mit dem FdV an diese Apotheke zuweist.",
+  "feature": "Subscription Service für Apotheken",
+  "featureFile": "subscription/Subsription.feature",
+  "steps": [
+    {
+      "name": "Angenommen der Arzt Dr. Schraßer hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Wenn die Apotheke Am Flughafen sich für die Subscription Communication registriert",
+      "dumps": [
+        {
+          "operation": "POST /Subscription",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/000_Request_Subscription.xml"
+        },
+        {
+          "operation": "Response 200: Subscription Subscription/82bd34f267ce08c5ddc260de00e1df92",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/001_Response_Subscription.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen sich mit dem Subscription Service verbindet"
+    },
+    {
+      "name": "Und der Arzt Dr. Schraßer folgendes E-Rezept an die Versicherte Sina Hüllmann verschreibt:\n| Name | PZN | Substitution | Verordnungskategorie | Normgröße | Darreichungsform | Dosierung | Menge | Notdiensgebühr | Zahlungsstatus |\n| Schmerzmittel | 12345678 | false | 00 | N1 | TAB | 1-0-0-1 | 3 | false | 0 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/002_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.327.802.95",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/003_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/004_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/005_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.327.802.95/$activate",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/006_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.327.802.95",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/007_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.327.802.95 with AccessCode 082a3fdc23657b92e74fd34689dc47b9e9853a6191c77d654d8364b8c565ccd5",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/008_dmc_160.000.040.327.802.95.png"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept der Apotheke Am Flughafen per Nachricht zuweist",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/15ba36c3-9712-41d8-a4d2-242b09149e3d",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/009_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Communication",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/010_Request_Communication.json"
+        },
+        {
+          "operation": "Response 201: Communication Communication/01eba3b1-4b04-48f8-17d7-a127d0400766",
+          "file": "Apotheke/benachrichtigung_beim_eingang_einer_neuen_zuweisung/011_Response_Communication.json"
+        }
+      ]
+    },
+    {
+      "name": "Dann wird die Apotheke Am Flughafen durch den Subscription Service informiert"
+    },
+    {
+      "name": "Am flughafen performable predicate"
+    }
+  ],
+  "requirements": ["A_22367-01", "A_22364"]
+}

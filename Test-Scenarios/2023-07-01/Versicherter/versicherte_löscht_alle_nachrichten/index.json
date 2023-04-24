@@ -1,0 +1,105 @@
+{
+  "id": "baec84db-1c5d-466f-a9f0-87c4d53c0134",
+  "mainActor": "Versicherter",
+  "name": "Versicherte löscht alle Nachrichten",
+  "tags": [
+    "@Funktionalität=Cummunication",
+    "@Anwendungsfall=A_18508",
+    "@Anwendungsfall=A_18617",
+    "@Anwendungsfall=A_18618",
+    "@Anwendungsfall=A_19013",
+    "@Impl=done",
+    "@TCID=ERP_EE_Communication_07",
+    "@Path=happy",
+    "@Anwendungsfall=A_20260",
+    "@Afo=A_20258",
+    "@Hauptdarsteller=Versicherter"
+  ],
+  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile": "GKV_WF_160/Communication.feature",
+  "steps": [
+    {
+      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+    },
+    {
+      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+    },
+    {
+      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+    },
+    {
+      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+      "dumps": [
+        {
+          "operation": "POST /Task/$create",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/000_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 201: Task Task/160.000.040.327.744.75",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/001_Response_Task.xml"
+        },
+        {
+          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/002_document_to_sign.xml"
+        },
+        {
+          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/003_signed_document.b64"
+        },
+        {
+          "operation": "POST /Task/160.000.040.327.744.75/$activate",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/004_Request_Parameters.xml"
+        },
+        {
+          "operation": "Response 200: Task Task/160.000.040.327.744.75",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/005_Response_Task.xml"
+        },
+        {
+          "operation": "DMC for 160.000.040.327.744.75 with AccessCode c282ee9161a4653d2d3a2138f12c7b064e55234958172822aed36f56e3cefcf0",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/006_dmc_160.000.040.327.744.75.png"
+        }
+      ]
+    },
+    {
+      "name": "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/1a88d899-c2b1-4e49-871d-bdcd38d26c5c",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/007_Response_Bundle.json"
+        },
+        {
+          "operation": "Response 200: Bundle Bundle/85907ca0-ea9b-4dc4-b5b0-37fb28b028c7",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/008_Response_Bundle.json"
+        },
+        {
+          "operation": "POST /Communication",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/009_Request_Communication.json"
+        },
+        {
+          "operation": "Response 201: Communication Communication/01eba3b1-1eb2-eae8-1778-a967340ac8fc",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/010_Response_Communication.json"
+        }
+      ]
+    },
+    {
+      "name": "Und die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann beantwortet",
+      "dumps": [
+        {
+          "operation": "Response 200: Bundle Bundle/2f90180e-f1b9-4c33-9884-498b74ec3b08",
+          "file": "Versicherter/versicherte_löscht_alle_nachrichten/011_Response_Bundle.xml"
+        }
+      ]
+    },
+    {
+      "name": "Und die Versicherte Sina Hüllmann alle ihre versendeten Nachrichten löscht"
+    },
+    {
+      "name": "Dann kann die Versicherte Sina Hüllmann keine ihrer versendeten Nachrichten mehr abrufen"
+    }
+  ],
+  "requirements": ["A_20258"],
+  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_20260"]
+}
