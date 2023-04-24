@@ -1,0 +1,105 @@
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="dffbfd6a-5712-4798-bdc8-07201eb77ab8" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle|1.2" />
+    <tag>
+      <display value="Receipt Bundle 'Quittung' for completed dispensation of a prescription" />
+    </tag>
+  </meta>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+    <value value="160.000.033.491.280.78" />
+  </identifier>
+  <type value="document" />
+  <timestamp value="2022-03-18T15:28:00+00:00" />
+  <entry>
+    <fullUrl value="urn:uuid:c624cf47-e235-4624-af71-0a09dc9254dc" />
+    <resource>
+      <Composition>
+        <id value="c624cf47-e235-4624-af71-0a09dc9254dc" />
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.2" />
+        </meta>
+        <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_Beneficiary">
+          <valueIdentifier>
+            <system value="https://gematik.de/fhir/sid/telematik-id" />
+            <value value="3-SMC-B-Testkarte-883110000129070" />
+          </valueIdentifier>
+        </extension>
+        <status value="final" />
+        <type>
+          <coding>
+            <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType" />
+            <code value="3" />
+            <display value="Receipt" />
+          </coding>
+        </type>
+        <date value="2022-03-18T15:29:00+00:00" />
+        <author>
+          <reference value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+        </author>
+        <title value="Quittung" />
+        <event>
+          <period>
+            <start value="2022-03-18T15:28:00+00:00" />
+            <end value="2022-03-18T15:29:00+00:00" />
+          </period>
+        </event>
+        <section>
+          <entry>
+            <reference value="Binary/PrescriptionDigest-160.123.456.789.123.58" />
+          </entry>
+        </section>
+      </Composition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+    <resource>
+      <Device>
+        <id value="1" />
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.2" />
+        </meta>
+        <status value="active" />
+        <serialNumber value="1.4.0" />
+        <deviceName>
+          <name value="E-Rezept-Fachdienst" />
+          <type value="user-friendly-name" />
+        </deviceName>
+        <version>
+          <value value="1.4.0" />
+        </version>
+        <contact>
+          <system value="email" />
+          <value value="betrieb@gematik.de" />
+        </contact>
+      </Device>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.000.080.761.527.39/PrescriptionDigest-160.123.456.789.123.58" />
+    <resource>
+      <Binary>
+        <id value="PrescriptionDigest-160.123.456.789.123.58" />
+        <meta>
+          <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.2" />
+        </meta>
+        <contentType value="application/octet-stream" />
+        <data value="tJg8c5ZtdhzEEhJ0ZpAsUVFx5dKuYgQFs5oKgthi17M=" />
+      </Binary>
+    </resource>
+  </entry>
+  <signature>
+    <type>
+      <system value="urn:iso-astm:E1762-95:2013" />
+      <code value="1.2.840.10065.1.12.1.1" />
+    </type>
+    <when value="2022-03-18T15:28:00+00:00" />
+    <who>
+      <reference value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+    </who>
+    <sigFormat value="application/pkcs7-mime" />
+    <data value="dGhpcyBibG9iIGlzIHNuaXBwZWQ=" />
+  </signature>
+</Bundle>

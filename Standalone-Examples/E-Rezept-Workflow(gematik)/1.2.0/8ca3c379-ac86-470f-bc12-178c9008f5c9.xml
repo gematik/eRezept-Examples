@@ -1,0 +1,118 @@
+<Communication xmlns="http://hl7.org/fhir">
+  <id value="8ca3c379-ac86-470f-bc12-178c9008f5c9" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" />
+    <tag>
+      <display value="Communication message sent by patient to pharmacy to ask for availybility of medicine WITHOUT providing the AccessCode" />
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="001413e4-a5e9-48da-9b07-c17bab476407" />
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" />
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+        <valueCodeableConcept>
+          <coding>
+            <system value="http://snomed.info/sct" />
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331" />
+            <code value="763158003" />
+            <display value="Medicinal product (product)" />
+          </coding>
+        </valueCodeableConcept>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category" />
+          <code value="00" />
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false" />
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N1" />
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+          <code value="06313728" />
+        </coding>
+        <text value="Sumatriptan-1a Pharma 100 mg Tabletten" />
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM" />
+          <code value="TAB" />
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="20 St." />
+          </extension>
+          <unit value="St" />
+        </numerator>
+        <denominator>
+          <value value="1" />
+        </denominator>
+      </amount>
+    </Medication>
+  </contained>
+  <basedOn>
+    <reference value="Task/160.000.033.491.280.78" />
+  </basedOn>
+  <status value="unknown" />
+  <about>
+    <reference value="#001413e4-a5e9-48da-9b07-c17bab476407" />
+  </about>
+  <sent value="2020-04-29T13:43:30.128+02:00" />
+  <recipient>
+    <identifier>
+      <system value="https://gematik.de/fhir/sid/telematik-id" />
+      <value value="3-SMC-B-Testkarte-883110000123465" />
+    </identifier>
+  </recipient>
+  <sender>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10" />
+      <value value="X234567890" />
+    </identifier>
+  </sender>
+  <payload>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider">
+      <valueIdentifier>
+        <system value="http://fhir.de/sid/arge-ik/iknr" />
+        <value value="109500969" />
+      </valueIdentifier>
+    </extension>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType">
+      <valueBoolean value="false" />
+    </extension>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType">
+      <valueCoding>
+        <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType" />
+        <code value="160" />
+      </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PackageQuantity">
+      <valueQuantity>
+        <value value="1" />
+        <system value="http://unitsofmeasure.org" />
+      </valueQuantity>
+    </extension>
+    <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType">
+      <extension url="onPremise">
+        <valueBoolean value="true" />
+      </extension>
+      <extension url="shipment">
+        <valueBoolean value="false" />
+      </extension>
+      <extension url="delivery">
+        <valueBoolean value="true" />
+      </extension>
+    </extension>
+    <contentString value="U.N.V.E.U." />
+  </payload>
+</Communication>
