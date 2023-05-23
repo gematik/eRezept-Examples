@@ -73,7 +73,7 @@ E-Rezept-Examples
 ...
 ```
 
-### Notes to the different folders
+### Notes on the folder structure
 
 #### End-to-End-Examples
 This folder contains artifacts for a given usecase which can be identified via foldername (e.g. .../PZN_Mehrfachverordnung/PZN_MV_1/*). These artifacts usually contain
