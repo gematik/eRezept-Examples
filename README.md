@@ -88,7 +88,7 @@ This folder is a collection of examples that are published on the simplifier.net
 The gematik runs regular tests against the ePrescription Service. These artifacts that were gathered in the end to end tests are collected here.
 
 #### Negative-Examples
-:warning:: These examples are invalid examples and are only to be used for testing.
+:warning: These examples are invalid examples and are only to be used for testing.
 
 ## Contributing
 
