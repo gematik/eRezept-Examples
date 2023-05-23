@@ -73,6 +73,23 @@ E-Rezept-Examples
 ...
 ```
 
+### Notes to the different folders
+
+#### End-to-End-Examples
+This folder contains artifacts for a given usecase which can be identified via foldername (e.g. .../PZN_Mehrfachverordnung/PZN_MV_1/*). These artifacts usually contain
+* the initial prescription
+* dispense information for ePrescription Service
+* dispense information for billing
+
+#### Standalone-Examples
+This folder is a collection of examples that are published on the simplifier.net websites of the respective projects and contain various examples that the IG-creators provided.
+
+#### Test-Scenarios
+The gematik runs regular tests against the ePrescription Service. These artifacts that were gathered in the end to end tests are collected here.
+
+#### Negative-Examples
+:warning:: These examples are invalid examples and are only to be used for testing.
+
 ## Contributing
 
 If you want to contribute, please check our [`CONTRIBUTING.md`](CONTRIBUTING.md).
