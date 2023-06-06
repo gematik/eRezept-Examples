@@ -1,7 +1,7 @@
 <img width="200" height="37" src="images/Gematik_Logo_Flag.png"/> <br/>
 
 # E-Rezept Examples
-test
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
