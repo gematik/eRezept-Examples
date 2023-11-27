@@ -1,0 +1,53 @@
+{
+  "id" : "b0ac36d8-0095-4a7d-a6c4-c73e2f2fcda0",
+  "mainActor" : "Apotheke",
+  "name" : "E-Rezepte mit eGK in der Apotheke nur mit zeitlich gültigem Prüfungsnachweis",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_05", "@TESTFALL:negativ", "@AFO-ID:A_23451", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke Am Flughafen bekommt nur mit einem aktuellen, innerhalb der letzten 30 Minuten erstellten Prüfungsnachweis\n  Zugriff auf die E-Rezepte des Versicherten Günther Angermänn.",
+  "feature" : "eGK in der Apotheke",
+  "featureFile" : "egk_apotheke/EGK_Apotheke",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Aenna Gondern hat eine eGK für die Abholung in der Apotheke"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Aenna Gondern folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.763.28",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.763.28/$activate",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.763.28",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.763.28 with AccessCode f291a5137c558dbcca0f8cf15e9216f77cb21c0c4ec8206f6c436d2dcbc3a3d9",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/006_dmc_160.000.006.420.763.28.png"
+    } ]
+  }, {
+    "name" : "Angenommen die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen für die eGK von Aenna Gondern einen alten Prüfungsnachweis verwendet"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die E-Rezepte von Aenna Gondern nicht abrufen, weil der Prüfungsnachweis zeitlich ungültig ist"
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20231127_083405",
+      "file" : "Apotheke/e_rezepte_mit_egk_in_der_apotheke_nur_mit_zeitlich_gültigem_prüfungsnachweis/007_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable expectation"
+  } ],
+  "requirements" : [ "A_23451" ]
+}

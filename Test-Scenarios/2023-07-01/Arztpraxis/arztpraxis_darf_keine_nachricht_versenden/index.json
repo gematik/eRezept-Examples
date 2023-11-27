@@ -1,96 +1,66 @@
 {
-  "id": "ed0fc4e0-3a35-4fe1-b53f-d5a9e80feff2",
-  "mainActor": "Arztpraxis",
-  "name": "Arztpraxis darf keine Nachricht versenden",
-  "tags": [
-    "@Funktionalität=Cummunication",
-    "@Anwendungsfall=A_18508",
-    "@Anwendungsfall=A_18617",
-    "@Anwendungsfall=A_18618",
-    "@Anwendungsfall=A_19013",
-    "@Impl=done",
-    "@TCID=ERP_EE_Communication_09",
-    "@Path=bad",
-    "@Afo=A_19446-01",
-    "@Hauptdarsteller=Arztpraxis"
-  ],
-  "description": "Der Versicherte schreibt eine Nachricht an eine Arztpraxis \"Keine Apotheke\". Der Fachdienst muss die Antwort ablehnen,\n  weil nur Apotheken und Versicherte Nachrichten versenden dürfen.",
-  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
-  "featureFile": "GKV_WF_160/Communication.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.746.69",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.746.69/$activate",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.746.69",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.746.69 with AccessCode 75af0d6d222a1ac917f5dc72c34f28fc8a4aede0aa32cd00b67994d3922f2028",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/006_dmc_160.000.040.327.746.69.png"
-        }
-      ]
-    },
-    {
-      "name": "Angenommen die Apotheke Keine Apotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Keine Apotheke eine Anfrage schickt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/9247debc-1aac-4d6a-8e6d-29ea2971c850",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/007_Response_Bundle.json"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/68636908-4538-49e0-8c2c-574b0007c452",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/008_Response_Bundle.json"
-        },
-        {
-          "operation": "POST /Communication",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/009_Request_Communication.json"
-        },
-        {
-          "operation": "Response 201: Communication Communication/01eba3b1-1fc0-9228-b5d9-2d94db8c33bd",
-          "file": "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/010_Response_Communication.json"
-        }
-      ]
-    },
-    {
-      "name": "Dann kann Keine Apotheke die letzte Nachricht von Sina Hüllmann nicht beantworten, weil sie keine Apotheke ist"
-    }
-  ],
-  "requirements": ["A_19446-01"],
-  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+  "id" : "e357e7fe-a8f8-4af7-8623-a5d47ca5ac92",
+  "mainActor" : "Arztpraxis",
+  "name" : "Arztpraxis darf keine Nachricht versenden",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_09", "@TESTFALL:negativ", "@AFO-ID:A_19446-01", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Der Versicherte schreibt eine Nachricht an eine Arztpraxis \"Keine Apotheke\". Der Fachdienst muss die Antwort ablehnen,\n  weil nur Apotheken und Versicherte Nachrichten versenden dürfen.",
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.699.26",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.699.26/$activate",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.699.26",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.699.26 with AccessCode e0dd8ba664dddb5b36bdc80058442f06c227c0d5741e739ebf7ba291776bce40",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/006_dmc_160.000.006.420.699.26.png"
+    } ]
+  }, {
+    "name" : "Angenommen die Apotheke Keine Apotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Keine Apotheke eine Anfrage schickt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/9f665501-1c04-4a75-bd95-2d31af939b27",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/007_Response_Bundle.json"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/4bc3ac83-5651-4af8-8c88-179fdca0f578",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/008_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/009_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebb4fb-1121-ec98-cb01-565baa8e5746",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/010_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Dann kann Keine Apotheke die letzte Nachricht von Sina Hüllmann nicht beantworten, weil sie keine Apotheke ist",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20231127_082622",
+      "file" : "Arztpraxis/arztpraxis_darf_keine_nachricht_versenden/011_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_19446-01" ]
 }

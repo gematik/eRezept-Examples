@@ -1,26 +1,26 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="bad733b4-9a65-4543-aea4-78dc2f936b69"/>
+   <id value="893fd9a5-fd0f-46ae-ad64-03c290c8a91a"/>
    <type value="searchset"/>
-   <timestamp value="2023-04-21T07:04:34.662+00:00"/>
-   <total value="1"/>
+   <timestamp value="2023-11-27T07:25:51.897+00:00"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
-      <url value="https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Communication?received=eqNULL"/>
+      <url value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication?received=eqNULL&amp;_sort=-sent"/>
    </link>
    <entry>
-      <fullUrl value="https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Communication/01eba3b1-1e14-7098-5a3d-9e7530db9714"/>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb4fb-0f45-77f0-22a6-ec1e710e3348"/>
       <resource>
          <Communication xmlns="http://hl7.org/fhir">
-            <id value="01eba3b1-1e14-7098-5a3d-9e7530db9714"/>
+            <id value="01ebb4fb-0f45-77f0-22a6-ec1e710e3348"/>
             <meta>
                <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_DispReq|1.2"/>
             </meta>
             <basedOn>
-               <reference value="/Task/160.000.040.327.743.78/$accept?ac=9ea0a5476b44aa0d6485d1b291732899e40b1dae315d0e46751a252b673314a0"/>
+               <reference value="/Task/160.000.006.420.696.35/$accept?ac=a55b8132747dea51d4dcfb1164d971244ec7c85e59853e9edaa175ff88d3b755"/>
             </basedOn>
             <status value="unknown"/>
-            <sent value="2023-04-21T07:04:34.127+00:00"/>
-            <received value="2023-04-21T07:04:34.657+00:00"/>
+            <sent value="2023-11-27T07:25:50.934+00:00"/>
+            <received value="2023-11-27T07:25:51.882+00:00"/>
             <recipient>
                <identifier>
                   <system value="https://gematik.de/fhir/sid/telematik-id"/>
@@ -34,7 +34,58 @@
                </identifier>
             </sender>
             <payload>
-               <contentString value="Okay, thank you. That's enough. Hold it now. Hold it. Hold it, fellas. I'm afraid you're just too darn loud. Next, please. Bring in the next group, please."/>
+               <contentString value="{&quot;version&quot;:1,&quot;supplyOptionsType&quot;:&quot;onPremise&quot;,&quot;hint&quot;:&quot;Perfect! My experiment worked! They're all exactly 25 minutes slow!&quot;}"/>
+            </payload>
+         </Communication>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb139-74bb-f7a0-efba-019adb5e53ea"/>
+      <resource>
+         <Communication xmlns="http://hl7.org/fhir">
+            <id value="01ebb139-74bb-f7a0-efba-019adb5e53ea"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2"/>
+            </meta>
+            <basedOn>
+               <reference value="Task/160.000.006.393.764.30"/>
+            </basedOn>
+            <status value="unknown"/>
+            <sent value="2023-10-10T12:11:34.660+00:00"/>
+            <recipient>
+               <identifier>
+                  <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                  <value value="K220635158"/>
+               </identifier>
+            </recipient>
+            <sender>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-SMC-B-Testkarte-883110000116873"/>
+               </identifier>
+            </sender>
+            <payload>
+               <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus"/>
+                     <code value="30"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType">
+                  <extension url="onPremise">
+                     <valueBoolean value="false"/>
+                  </extension>
+                  <extension url="delivery">
+                     <valueBoolean value="true"/>
+                  </extension>
+                  <extension url="shipment">
+                     <valueBoolean value="false"/>
+                  </extension>
+               </extension>
+               <contentString value="Hello World - Test text -- Hier kommt die nachricht rein "/>
             </payload>
          </Communication>
       </resource>

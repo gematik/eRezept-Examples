@@ -1,0 +1,52 @@
+{
+  "id" : "cd84ce72-e03d-4735-8e7f-e5e69a754e76",
+  "mainActor" : "Apotheke",
+  "name" : "Einlösen von E-Rezepten über die eGK in Krankenhaus-Apotheke nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_03", "@TESTFALL:negativ", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die GKV Versicherte Aenna Gondern kann seine E-Rezept nicht in einer Krankenhaus-Apotheke\n  mit seiner EGK einlösen, da die Krankenhaus-Apotheken nur mit der eGK keine E-Rezepte abrufen dürfen.",
+  "feature" : "eGK in der Apotheke",
+  "featureFile" : "egk_apotheke/EGK_Apotheke",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Aenna Gondern hat eine eGK für die Abholung in der Apotheke"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Aenna Gondern folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.761.34",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.761.34/$activate",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.761.34",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.761.34 with AccessCode 52dc93386d1469ea35abe2a0366d328724d263ade2f8f41231b4d8f29b951f68",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/006_dmc_160.000.006.420.761.34.png"
+    } ]
+  }, {
+    "name" : "Angenommen die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Krankenhaus-Apotheke Am Waldesrand die E-Rezepte mit der eGK von Aenna Gondern abruft"
+  }, {
+    "name" : "Dann kann die Apotheke Am Waldesrand die E-Rezepte von Aenna Gondern nicht abrufen, weil Krankenhaus-Apotheken nicht berechtigt sind"
+  }, {
+    "name" : "Am waldesrand performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20231127_083356",
+      "file" : "Apotheke/einlösen_von_e_rezepten_über_die_egk_in_krankenhaus_apotheke_nicht_möglich/007_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am waldesrand performable expectation"
+  } ]
+}

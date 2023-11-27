@@ -1,108 +1,71 @@
 {
-  "id": "fb35c871-05fe-4b00-afdd-2a83eb4ffb9e",
-  "mainActor": "Versicherter",
-  "name": "E-Rezept per alternative Zuweisung einlösen",
-  "tags": [
-    "@Funktionalität=AlternZuweisung",
-    "@Impl=done",
-    "@Hauptdarsteller=Versicherter",
-    "@TCID=ERP_EE_altZuweisung_01",
-    "@Path=happy"
-  ],
-  "description": "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
-  "feature": "Alternative Zuweisung",
-  "featureFile": "alternative_zuweisung/alternative_Zuweisung.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen verbindet sich mit seinem Apothekendienstleister"
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.800.04",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.800.04/$activate",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.800.04",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.800.04 with AccessCode 7c92fd2439161e7958965a75418bb947de6e9552aeb925ae311dd974b95bbcfc",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/006_dmc_160.000.040.327.800.04.png"
-        }
-      ]
-    },
-    {
-      "name": "Und die Versicherte Sina Hüllmann für das letzte E-Rezept die alternative Zuweisung an die Apotheke Am Flughafen mit der Option Versand auslöst"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen eine Nachricht mit einer alternativen Zuweisung vom Dienstleister empfängt und entschlüsselt"
-    },
-    {
-      "name": "Am flughafen decrypt psp message"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/82506a28-07f7-4d08-8e01-da0ae68ecd91",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-      "dumps": [
-        {
-          "operation": "POST /Task/160.000.040.327.800.04/$close?secret=823d359b6d8ca9ce6b3c616c4673065ccf58742319bc1e79b12440eaea70e1a8",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/008_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/a0785a67-0200-0000-0003-000000000000",
-          "file": "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/009_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
-    },
-    {
-      "name": "Sina hüllmann performable predicate"
-    }
-  ]
+  "id" : "3bd568f7-bb61-4e9f-a37f-12ab77243c4c",
+  "mainActor" : "Versicherter",
+  "name" : "E-Rezept per alternative Zuweisung einlösen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:AlternativeZuweisung", "@Hauptdarsteller:Versicherter", "@TCID:ERP_EE_ALTERNATIVE_ZUWEISUNG_01", "@TESTFALL:positiv" ],
+  "description" : "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
+  "feature" : "Alternative Zuweisung",
+  "featureFile" : "alternative_zuweisung/alternative_Zuweisung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen verbindet sich mit seinem Apothekendienstleister"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.758.43",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.758.43/$activate",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.758.43",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.758.43 with AccessCode a4ad26768eecba02399825fdc2287e08d499005c16376e59dd3ab82519d03618",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/006_dmc_160.000.006.420.758.43.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann für das letzte E-Rezept die alternative Zuweisung an die Apotheke Am Flughafen mit der Option Versand auslöst"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen eine Nachricht mit einer alternativen Zuweisung vom Dienstleister empfängt und entschlüsselt"
+  }, {
+    "name" : "Am flughafen decrypt psp message"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/55ac804c-b380-499a-adc9-7c9a4a1264fc",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.006.420.758.43/$close?secret=4a2ca3e86795e6595e8d18b162ffe9d2048a6d20cd0d2ad3c3f256f9ec136c7d",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a016f961-0000-0000-0003-000000000000",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ]
 }

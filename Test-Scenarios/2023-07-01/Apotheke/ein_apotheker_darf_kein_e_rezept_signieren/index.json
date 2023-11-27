@@ -1,68 +1,42 @@
 {
-  "id": "a3f7dec9-749b-4475-9064-a807f4a5523b",
-  "mainActor": "Apotheke",
-  "name": "Ein Apotheker darf kein E-Rezept signieren",
-  "tags": [
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF160_02",
-    "@Path=bad",
-    "@Afo=A_19225-01",
-    "@Hauptdarsteller=Apotheke"
-  ],
-  "description": "Der Fachdienst muss die Aktivierung ablehnen, wenn die QES nicht von der Berufsgruppe\n  oid_arzt, oid_zahnarzt ode id-baek-at-namingAuthorityÄrzteschaft-Ärztin/Arzt (1.3.6.1.4.1.24796.4.11.1) gemäß [BÄK_G0] erstellt wurde.\n  In diesem Testfall wird die QES mit einem HBA Apotheker erstellt.",
-  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
-  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Angenommen die Ärztin Kein Arzt hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Dann darf der Arzt Kein Arzt der Versicherten Sina Hüllmann kein E-Rezept ausstellen",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.768.03",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000121166 on Soft-Konn",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000121166 on Soft-Konn",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.768.03/$activate",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 400: OperationOutcome 20230421_090740",
-          "file": "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/005_Response_OperationOutcome.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_19225-01"],
-  "useCases": ["A_18827", "A_18502", "A_18503"]
+  "id" : "055a51ae-d286-413d-8d45-3a03880a84dd",
+  "mainActor" : "Apotheke",
+  "name" : "Ein Apotheker darf kein E-Rezept signieren",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_22", "@TESTFALL:negativ", "@AFO-ID:A_19225-01", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss die Aktivierung ablehnen, wenn die QES nicht von der Berufsgruppe\n  oid_arzt, oid_zahnarzt ode id-baek-at-namingAuthorityÄrzteschaft-Ärztin/Arzt (1.3.6.1.4.1.24796.4.11.1) gemäß [BÄK_G0] erstellt wurde.\n  In diesem Testfall wird die QES mit einem HBA Apotheker erstellt.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Angenommen die Ärztin Kein Arzt hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Dann darf der Arzt Kein Arzt der Versicherten Sina Hüllmann kein E-Rezept ausstellen",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.721.57",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000121166 on Soft-Konn",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000121166 on Soft-Konn",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.721.57/$activate",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20231127_082908",
+      "file" : "Apotheke/ein_apotheker_darf_kein_e_rezept_signieren/005_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19225-01" ]
 }
