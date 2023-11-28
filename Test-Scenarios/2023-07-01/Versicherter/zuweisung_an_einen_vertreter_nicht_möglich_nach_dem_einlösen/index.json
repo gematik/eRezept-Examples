@@ -1,117 +1,76 @@
 {
-  "id": "e713d344-aaba-4fa7-88d9-c1c057b4cfec",
-  "mainActor": "Versicherter",
-  "name": "Zuweisung an einen Vertreter nicht möglich nach dem Einlösen",
-  "tags": [
-    "@Funktionalität=Cummunication",
-    "@Anwendungsfall=A_18508",
-    "@Anwendungsfall=A_18617",
-    "@Anwendungsfall=A_18618",
-    "@Anwendungsfall=A_19013",
-    "@Impl=done",
-    "@TCID=ERP_EE_Communication_04",
-    "@Path=bad",
-    "@Afo=A_20230",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "description": "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in der Apotheke einlösen.",
-  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
-  "featureFile": "GKV_WF_160/Communication.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.741.84",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.741.84/$activate",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.741.84",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.741.84 with AccessCode abffd73ce5b609e1c64ea3ee66bed97b765144424f0383500f3d6e59e2a58e58",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/006_dmc_160.000.040.327.741.84.png"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/67718c3b-0080-452c-8c5c-1dbe291471cd",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-      "dumps": [
-        {
-          "operation": "POST /Task/160.000.040.327.741.84/$close?secret=df15e41a4ca988fc518be19804678df9c0e6e78a31de3469d8095dab8bca0517",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/008_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/a03d5a67-0200-0000-0003-000000000000",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/009_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht per Nachricht an den Vertreter Günther Angermänn schicken"
-    },
-    {
-      "name": "Sina hüllmann check the return code",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/1fdc4b09-4626-475a-805d-5aa700c7f7ee",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/010_Response_Bundle.json"
-        },
-        {
-          "operation": "POST /Communication",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/011_Request_Communication.json"
-        },
-        {
-          "operation": "Response 400: OperationOutcome 20230421_090423",
-          "file": "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/012_Response_OperationOutcome.json"
-        }
-      ]
-    },
-    {
-      "name": "Sina hüllmann performable predicate"
-    }
-  ],
-  "requirements": ["A_20230"],
-  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+  "id" : "647c5ea9-2025-4e54-9d22-68955672d7ba",
+  "mainActor" : "Versicherter",
+  "name" : "Zuweisung an einen Vertreter nicht möglich nach dem Einlösen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_04", "@TESTFALL:negativ", "@AFO-ID:A_20230", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in der Apotheke einlösen.",
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.694.41",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.694.41/$activate",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.694.41",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.694.41 with AccessCode 0f127cd877c0f258c3b713f218f6cd72a596ad61f802833abc5601d0e2fb1f20",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/006_dmc_160.000.006.420.694.41.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/af10e1db-0a92-4daa-9e67-c86c25c26683",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.006.420.694.41/$close?secret=86c5ce2bc1126ed8d3c40c387d2439ee6066e25e0ba9a914fe4904cbc2357b55",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0d6f861-0000-0000-0003-000000000000",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht per Nachricht an den Vertreter Günther Angermänn schicken"
+  }, {
+    "name" : "Sina hüllmann check the return code",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/42a4e05e-e87c-4faa-8f07-f22991cd9df3",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/010_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/011_Request_Communication.json"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20231127_082539",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter_nicht_möglich_nach_dem_einlösen/012_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20230" ]
 }

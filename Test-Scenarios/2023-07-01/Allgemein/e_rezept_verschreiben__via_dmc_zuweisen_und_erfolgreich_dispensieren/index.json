@@ -1,115 +1,73 @@
 {
-  "id": "87720237-c0a2-4f64-b033-83062e340f60",
-  "name": "E-Rezept verschreiben, via DMC zuweisen und erfolgreich dispensieren",
-  "tags": [
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF160_02",
-    "@Path=happy",
-    "@Anwendungsfall=A_18511",
-    "@Anwendungsfall=A_18514",
-    "@Afo=A_19233-04"
-  ],
-  "description": "Die Ärztin verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Dieses Rezept wird in der Apotheke über einen QR-Code eingelöst. Die Apotheke hat daraufhin eine Quittung für das dispensierte Medikament.",
-  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
-  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.749.60",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.749.60/$activate",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.749.60",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.749.60 with AccessCode de9ee0e758c5f01727b67aa57d751e9fc4478bd18d8fb3e04fcec36f4076c050",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/006_dmc_160.000.040.327.749.60.png"
-        }
-      ]
-    },
-    {
-      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/8032323b-7a2e-4193-9bf5-5f56af951d7b",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-      "dumps": [
-        {
-          "operation": "POST /Task/160.000.040.327.749.60/$close?secret=e930f571ba197df6e1f64a69ddf3bb2ede15943f1e6e8787041c82bdd5bf0362",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/008_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/a0455a67-0200-0000-0003-000000000000",
-          "file": "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/009_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Dann kann die Apotheke Am Flughafen die Signatur der letzten Quittung erfolgreich mit dem Konnektor validieren"
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "answeredBy: Am Flughafen"
-    },
-    {
-      "name": "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
-    },
-    {
-      "name": "Sina hüllmann performable predicate"
-    }
-  ],
-  "requirements": ["A_19233-04"],
-  "useCases": ["A_18827", "A_18502", "A_18503", "A_18511", "A_18514"]
+  "id" : "0afdcbd6-28d5-4122-81be-a92402945223",
+  "name" : "E-Rezept verschreiben, via DMC zuweisen und erfolgreich dispensieren",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_02", "@TESTFALL:positiv", "@AFO-ID:A_18511", "@AFO-ID:A_18514", "@AFO-ID:A_19233-04" ],
+  "description" : "Die Ärztin verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Dieses Rezept wird in der Apotheke über einen QR-Code eingelöst. Die Apotheke hat daraufhin eine Quittung für das dispensierte Medikament.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.702.17",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.702.17/$activate",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.702.17",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.702.17 with AccessCode d4aaa0d5c0b6e0c4bdd22000f9997b5747b7b42c39c420ae5402e095f6d5e53b",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/006_dmc_160.000.006.420.702.17.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/1927440a-83d9-4139-be24-7464ad57e839",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.006.420.702.17/$close?secret=096747ccd75d7dddedf594995c7738dcd763f4e8a207cbaef90f71f37d118abb",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0def861-0000-0000-0003-000000000000",
+      "file" : "Allgemein/e_rezept_verschreiben__via_dmc_zuweisen_und_erfolgreich_dispensieren/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die Signatur der letzten Quittung erfolgreich mit dem Konnektor validieren"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "answeredBy: Am Flughafen"
+  }, {
+    "name" : "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_18511", "A_18514", "A_19233-04" ]
 }

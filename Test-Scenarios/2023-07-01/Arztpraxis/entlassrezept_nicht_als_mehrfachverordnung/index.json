@@ -1,60 +1,39 @@
 {
-  "id": "21b7327c-6089-4187-a89e-bb37405ab97c",
-  "mainActor": "Arztpraxis",
-  "name": "Entlassrezept nicht als Mehrfachverordnung",
-  "tags": [
-    "@Funktionalität=MVO",
-    "@Impl=done",
-    "@TCID=ERP_EE_MVO_05",
-    "@Afo=A_22632",
-    "@Funktionalität=Entlassrezept",
-    "@Path=bad",
-    "@Hauptdarsteller=Arztpraxis"
-  ],
-  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
-  "featureFile": "MVO/MVO.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| KBV_Statuskennzeichen | MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| 14 | true | 4 | 1 | 0 | 90 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.780.64",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.780.64/$activate",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 400: OperationOutcome 20230421_091012",
-          "file": "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/005_Response_OperationOutcome.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_22632"]
+  "id" : "76fbb27d-ffdd-44ba-99c1-0405821f1acd",
+  "mainActor" : "Arztpraxis",
+  "name" : "Entlassrezept nicht als Mehrfachverordnung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_05", "@AFO-ID:A_22632", "@Funktionalität:Entlassrezept", "@TESTFALL:negativ", "@Hauptdarsteller:Arztpraxis" ],
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| KBV_Statuskennzeichen | MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| 14 | true | 4 | 1 | 0 | 90 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.734.18",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.734.18/$activate",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20231127_083150",
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/005_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_22632" ]
 }

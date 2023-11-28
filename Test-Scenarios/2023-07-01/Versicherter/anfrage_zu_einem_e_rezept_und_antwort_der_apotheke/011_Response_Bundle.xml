@@ -1,23 +1,23 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="037cf1cd-634c-4d61-b0ae-efe4ec878ecb"/>
+   <id value="aab3c183-3708-4ea0-87f6-46e5fa3c1105"/>
    <type value="searchset"/>
-   <timestamp value="2023-04-21T07:04:06.678+00:00"/>
-   <total value="1"/>
+   <timestamp value="2023-11-27T07:25:12.546+00:00"/>
+   <total value="2"/>
    <link>
       <relation value="self"/>
-      <url value="https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Communication?received=eqNULL"/>
+      <url value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication?received=eqNULL&amp;_sort=-sent"/>
    </link>
    <entry>
-      <fullUrl value="https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Communication/01eba3b1-1c66-a540-68c0-072e4977b7d1"/>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb4fb-0cdb-3e50-74c4-d9804318b2b0"/>
       <resource>
          <Communication xmlns="http://hl7.org/fhir">
-            <id value="01eba3b1-1c66-a540-68c0-072e4977b7d1"/>
+            <id value="01ebb4fb-0cdb-3e50-74c4-d9804318b2b0"/>
             <meta>
                <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2"/>
             </meta>
             <contained>
                <Medication xmlns="http://hl7.org/fhir">
-                  <id value="06dbd250-90d1-4941-b4d4-0b99a12ae1f6"/>
+                  <id value="47a9c218-c333-4a95-bc3b-d8dfd911aa46"/>
                   <meta>
                      <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
                   </meta>
@@ -70,14 +70,14 @@
                </Medication>
             </contained>
             <basedOn>
-               <reference value="Task/160.000.040.327.739.90"/>
+               <reference value="Task/160.000.006.420.692.47"/>
             </basedOn>
             <status value="unknown"/>
             <about>
-               <reference value="#06dbd250-90d1-4941-b4d4-0b99a12ae1f6"/>
+               <reference value="#47a9c218-c333-4a95-bc3b-d8dfd911aa46"/>
             </about>
-            <sent value="2023-04-21T07:04:05.960+00:00"/>
-            <received value="2023-04-21T07:04:06.672+00:00"/>
+            <sent value="2023-11-27T07:25:10.418+00:00"/>
+            <received value="2023-11-27T07:25:12.533+00:00"/>
             <recipient>
                <identifier>
                   <system value="https://gematik.de/fhir/sid/telematik-id"/>
@@ -94,7 +94,7 @@
                <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider">
                   <valueIdentifier>
                      <system value="http://fhir.de/sid/arge-ik/iknr"/>
-                     <value value="368911333"/>
+                     <value value="104424830"/>
                   </valueIdentifier>
                </extension>
                <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType">
@@ -107,7 +107,58 @@
                      <display value="Muster 16 (Apothekenpflichtige Arzneimittel)"/>
                   </valueCoding>
                </extension>
-               <contentString value="I think you ought to know I'm feeling very depressed."/>
+               <contentString value="And then of course I've got this terrible pain in all the diodes down my left side."/>
+            </payload>
+         </Communication>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb139-74bb-f7a0-efba-019adb5e53ea"/>
+      <resource>
+         <Communication xmlns="http://hl7.org/fhir">
+            <id value="01ebb139-74bb-f7a0-efba-019adb5e53ea"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2"/>
+            </meta>
+            <basedOn>
+               <reference value="Task/160.000.006.393.764.30"/>
+            </basedOn>
+            <status value="unknown"/>
+            <sent value="2023-10-10T12:11:34.660+00:00"/>
+            <recipient>
+               <identifier>
+                  <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                  <value value="K220635158"/>
+               </identifier>
+            </recipient>
+            <sender>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-SMC-B-Testkarte-883110000116873"/>
+               </identifier>
+            </sender>
+            <payload>
+               <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus"/>
+                     <code value="30"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType">
+                  <extension url="onPremise">
+                     <valueBoolean value="false"/>
+                  </extension>
+                  <extension url="delivery">
+                     <valueBoolean value="true"/>
+                  </extension>
+                  <extension url="shipment">
+                     <valueBoolean value="false"/>
+                  </extension>
+               </extension>
+               <contentString value="Hello World - Test text -- Hier kommt die nachricht rein "/>
             </payload>
          </Communication>
       </resource>

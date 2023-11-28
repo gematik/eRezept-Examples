@@ -1,150 +1,100 @@
 {
-  "id": "f187f5aa-ef5b-4846-9288-dda161c628ca",
-  "mainActor": "Versicherter",
-  "name": "Löschen von Markierungen des PKV-Abgabedatensatzes durch Versicherten",
-  "tags": [
-    "@Funktionalität=Abrechnungsinformationen",
-    "@Workflow=200",
-    "@Versicherung=PKV",
-    "@Anwendungsfall=A_18822",
-    "@Anwendungsfall=A_18827",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF200_11",
-    "@Path=happy",
-    "@Anwendungsfall=AF_10089",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "feature": "Abrechnungsinformationen für PKV-Rezepte",
-  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/21e6d2f1-fc7d-4a53-b6ae-ac74eebaffa4",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/000_Response_Bundle.json"
-        }
-      ]
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/001_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/200.000.001.944.109.63",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/002_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/003_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/004_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/200.000.001.944.109.63/$activate",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/005_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/200.000.001.944.109.63",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/006_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 200.000.001.944.109.63 with AccessCode 8470b92220e0ffb6182c9bfddef9a51d3227442b845cc2270c7e5208e24002da",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/007_dmc_200.000.001.944.109.63.png"
-        }
-      ]
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/b7f54e38-3195-4bb2-82af-c51d5572a0a1",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/008_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
-      "dumps": [
-        {
-          "operation": "POST /Task/200.000.001.944.109.63/$close?secret=14f46cc26aefaa25a16bf7ff9cba77ad533a7f5ba2baa47fe33a23d823287b8f",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/009_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/c82daa1d-0000-0000-0003-000000000000",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/010_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
-    },
-    {
-      "name": "Am flughafen check the return code",
-      "dumps": [
-        {
-          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/011_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/012_signed_document.b64"
-        },
-        {
-          "operation": "POST /ChargeItem?task=200.000.001.944.109.63&secret=14f46cc26aefaa25a16bf7ff9cba77ad533a7f5ba2baa47fe33a23d823287b8f",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/013_Request_ChargeItem.xml"
-        },
-        {
-          "operation": "Response 201: ChargeItem ChargeItem/200.000.001.944.109.63",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/014_Response_ChargeItem.xml"
-        }
-      ]
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn die Markierungen für die PKV-Abrechnungsinformationen des letzten E-Rezept setzt:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |",
-      "dumps": [
-        {
-          "operation": "PATCH /ChargeItem/200.000.001.944.109.63",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/015_Request_Parameters.json"
-        },
-        {
-          "operation": "Response 200: ChargeItem ChargeItem/200.000.001.944.109.63",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/016_Response_ChargeItem.json"
-        }
-      ]
-    },
-    {
-      "name": "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen des letzten E-Rezepts mit folgenden Markierungen:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |"
-    },
-    {
-      "name": "Günther angermänn performable predicate",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/e3bb7ea1-ad4c-4740-9ba8-776c47bebf12",
-          "file": "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/017_Response_Bundle.json"
-        }
-      ]
-    }
-  ],
-  "useCases": ["A_18822", "A_18827", "AF_10089"]
+  "id" : "507f45b3-e1dc-40d1-9c1a-ad1dfa519f29",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen von Markierungen des PKV-Abgabedatensatzes durch Versicherten",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_11", "@TESTFALL:positiv", "@AF-ID:AF_10089", "@Hauptdarsteller:Versicherter" ],
+  "feature" : "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/3e9654d1-e804-4fd9-87af-ed0838924604",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/000_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/001_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.000.042.799.05",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/002_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/003_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/004_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.000.042.799.05/$activate",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/005_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.000.042.799.05",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/006_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.000.042.799.05 with AccessCode c77733c2e6a6fb9b580af2b758acc4500b3dcaae7827f4c0a0389e4c38be961d",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/007_dmc_200.000.000.042.799.05.png"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/3e76414f-7842-4522-9418-2b6b32932ed3",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/200.000.000.042.799.05/$close?secret=01434fa351b4419ee514da79b4de304b26827c5396195bb9d8ea5b44c3c2715a",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/009_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/c82fa700-0000-0000-0003-000000000000",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/011_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/012_signed_document.b64"
+    }, {
+      "operation" : "POST /ChargeItem?task=200.000.000.042.799.05&secret=01434fa351b4419ee514da79b4de304b26827c5396195bb9d8ea5b44c3c2715a",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/013_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 201: ChargeItem ChargeItem/200.000.000.042.799.05",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/014_Response_ChargeItem.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn die Markierungen für die PKV-Abrechnungsinformationen des letzten E-Rezept setzt:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |",
+    "dumps" : [ {
+      "operation" : "PATCH /ChargeItem/200.000.000.042.799.05",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/015_Request_Parameters.json"
+    }, {
+      "operation" : "Response 200: ChargeItem ChargeItem/200.000.000.042.799.05",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/016_Response_ChargeItem.json"
+    } ]
+  }, {
+    "name" : "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen des letzten E-Rezepts mit folgenden Markierungen:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/07792041-798b-4e6f-97ca-987eba9ac288",
+      "file" : "Versicherter/löschen_von_markierungen_des_pkv_abgabedatensatzes_durch_versicherten/017_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18822", "A_18827" ],
+  "useCases" : [ "AF_10089" ]
 }

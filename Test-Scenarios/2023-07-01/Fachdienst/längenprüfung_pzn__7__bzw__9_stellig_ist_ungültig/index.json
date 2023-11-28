@@ -1,52 +1,35 @@
 {
-  "id": "22f39cef-9902-45c0-ad12-86f2ed39d2b0",
-  "mainActor": "Fachdienst",
-  "name": "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
-  "tags": [
-    "@Impl=done",
-    "@TCID=ERP_EE_PZN_01",
-    "@Path=bad",
-    "@Afo=A_22925",
-    "@Hauptdarsteller=Fachdienst"
-  ],
-  "feature": "Längenprüfung der PZN",
-  "featureFile": "GKV_WF_160/Laengenpruefung_PZN.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Angenommen die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Dann kann die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann kein E-Rezept verschreiben, weil die PZN eine falsche Länge hat\n| Name | PZN |\n| Schmerzmittel | 012345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.774.82",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.774.82/$activate",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 400: OperationOutcome 20230421_090803",
-          "file": "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/005_Response_OperationOutcome.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_22925"]
+  "id" : "7c5e333f-f5a1-4fb4-8de7-f9c59d6833aa",
+  "mainActor" : "Fachdienst",
+  "name" : "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Versicherung:GKV", "@TCID:ERP_EE_PZN_01", "@TESTFALL:negativ", "@AFO-ID:A_22925", "@Hauptdarsteller:Fachdienst" ],
+  "feature" : "Längenprüfung der PZN",
+  "featureFile" : "GKV_WF_160/Laengenpruefung_PZN",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Dann kann die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann kein E-Rezept verschreiben, weil die PZN eine falsche Länge hat\n| Name | PZN |\n| Schmerzmittel | 012345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.727.39",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.727.39/$activate",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20231127_082944",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/005_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_22925" ]
 }

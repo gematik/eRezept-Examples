@@ -1,0 +1,93 @@
+{
+  "id" : "4c526b8d-f96b-4fe6-a86a-2aca6f956ea8",
+  "mainActor" : "Apotheke",
+  "name" : "Eine Apotheke darf über die eGK nur E-Rezepte einsehen die noch nicht eingelöst sind",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_02", "@TESTFALL:positiv", "@AFO-ID:A_23452", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Bei diesem Szenario werden der GKV Versicherten Aenna Gondern zwei E-Rezepte verschrieben.\n  Das erste E-Rezepte wird über die Apotheke Am Flughafen mit der eGK eingelöst. Das zweite E-Rezept soll über die\n  Apotheke NordApotheke abgerufen werden. Aenna Gondern will, dass die Apotheke NordApotheke beim Einlösen\n  über die eGK nur Zugriff auf das noch nicht eingelöste E-Rezept bekommt.",
+  "feature" : "eGK in der Apotheke",
+  "featureFile" : "egk_apotheke/EGK_Apotheke",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Aenna Gondern hat eine eGK für die Abholung in der Apotheke"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Aenna Gondern folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.420.760.37",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.420.760.37/$activate",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.420.760.37",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.420.760.37 with AccessCode e2ce811171aac630a217bac3b0a2453314584aaf20d7914956e96296495716c1",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/006_dmc_160.000.006.420.760.37.png"
+    } ]
+  }, {
+    "name" : "Angenommen die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen die E-Rezepte mit der eGK von Aenna Gondern abruft"
+  }, {
+    "name" : "Am flughafen performable expectation"
+  }, {
+    "name" : "Am flughafen performable expectation"
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/13dffd70-9b1b-4576-adeb-a74cb162ae2a",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable expectation"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte abgerufene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/7343b106-e86c-47da-a63e-7b2f3ad67b01",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke die E-Rezepte mit der eGK von Aenna Gondern abruft"
+  }, {
+    "name" : "Stadtapotheke performable expectation"
+  }, {
+    "name" : "Stadtapotheke performable expectation"
+  }, {
+    "name" : "Stadtapotheke performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/296f922c-28bb-423e-ae68-c4b9c27fd743",
+      "file" : "Apotheke/eine_apotheke_darf_über_die_egk_nur_e_rezepte_einsehen_die_noch_nicht_eingelöst_sind/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Stadtapotheke performable expectation"
+  }, {
+    "name" : "Stadtapotheke performable predicate"
+  }, {
+    "name" : "Stadtapotheke performable predicate"
+  }, {
+    "name" : "Stadtapotheke performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Stadtapotheke das letzte E-Rezept nicht abrufen, weil die Apotheke Am Flughafen dieses bereits akzeptiert hat"
+  }, {
+    "name" : "Stadtapotheke performable predicate"
+  } ],
+  "requirements" : [ "A_23452" ]
+}
