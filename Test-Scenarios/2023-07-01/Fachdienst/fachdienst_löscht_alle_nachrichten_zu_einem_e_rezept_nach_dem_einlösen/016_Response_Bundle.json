@@ -1,27 +1,184 @@
 {
   "resourceType" : "Bundle",
-  "id" : "7cca91b7-6b77-4636-afed-4f1acf5f568d",
+  "id" : "2cb46a14-e2b1-44dc-bb0b-7e4c89527987",
   "type" : "searchset",
-  "timestamp" : "2023-11-27T07:25:55.432+00:00",
-  "total" : 775,
+  "timestamp" : "2024-02-08T18:01:50.464+00:00",
+  "total" : 23,
   "link" : [ {
-    "relation" : "next",
-    "url" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication?_sort=-sent&_count=50&__offset=50"
-  }, {
     "relation" : "self",
-    "url" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication?_sort=-sent"
+    "url" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication?_sort=-sent"
   } ],
   "entry" : [ {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-d232-8ad0-58d5-e4664cc6ac5a",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb53a-28a3-1498-89ec-dd9b7cfd94d6",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2e6-d232-8ad0-58d5-e4664cc6ac5a",
+      "id" : "01ebb53a-28a3-1498-89ec-dd9b7cfd94d6",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
+      },
+      "basedOn" : [ {
+        "reference" : "Task/169.000.011.182.271.23"
+      } ],
+      "status" : "unknown",
+      "sent" : "2023-11-30T10:42:39.439+00:00",
+      "received" : "2023-11-30T10:42:40.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/sid/telematik-id",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
+            "code" : "30"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
+          "extension" : [ {
+            "url" : "onPremise",
+            "valueBoolean" : true
+          }, {
+            "url" : "delivery",
+            "valueBoolean" : false
+          }, {
+            "url" : "shipment",
+            "valueBoolean" : false
+          } ]
+        } ],
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"He shall know your ways as if born to them.\"}"
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb53a-287f-7768-18f7-faee1c98cea3",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01ebb53a-287f-7768-18f7-faee1c98cea3",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "21d85d09-9519-4493-baa8-d63a7cb12123",
+        "id" : "910fe03b-fb2c-4df1-aeab-b7e1e81914a6",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct",
+              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
+              "code" : "763158003",
+              "display" : "Medicinal product (product)"
+            } ]
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "NB"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "26899050"
+          } ],
+          "text" : "Enoxabratal"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "TAB"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "extension" : [ {
+              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+              "valueString" : "1"
+            } ],
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.011.182.271.23"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#910fe03b-fb2c-4df1-aeab-b7e1e81914a6"
+      } ],
+      "sent" : "2023-11-30T10:42:37.105+00:00",
+      "received" : "2023-11-30T10:42:38.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/sid/telematik-id",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/sid/arge-ik/iknr",
+            "value" : "105330168"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
+            "code" : "169",
+            "display" : "Muster 16 (Direkte Zuweisung)"
+          }
+        } ],
+        "contentString" : "Life? Don't talk to me about life."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-ec3e-9f50-6db6-1fee21e34e21",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01ebb2e5-ec3e-9f50-6db6-1fee21e34e21",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "76ae9290-c7b8-4a8e-b6a0-a31fd9e62209",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -75,14 +232,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.667.03"
+        "reference" : "Task/160.000.210.284.876.61"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#21d85d09-9519-4493-baa8-d63a7cb12123"
+        "reference" : "#76ae9290-c7b8-4a8e-b6a0-a31fd9e62209"
       } ],
-      "sent" : "2023-10-31T20:26:43.682+00:00",
-      "received" : "2023-11-01T20:13:22.000+00:00",
+      "sent" : "2023-10-31T19:22:25.714+00:00",
+      "received" : "2023-11-01T18:58:17.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -100,7 +257,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "105530422"
+            "value" : "107836243"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -113,968 +270,26 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "I wish you'd just tell me rather trying to engage my enthusiasm, because I haven't got one."
+        "contentString" : "There's only one life-form as intelligent as me within thirty parsecs of here and that's me."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-afa1-2968-3540-90ec73ec7eb5",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-ae52-bd48-5de6-70c6df8c4752",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2e6-afa1-2968-3540-90ec73ec7eb5",
+      "id" : "01ebb2e5-ae52-bd48-5de6-70c6df8c4752",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "/Task/160.000.006.403.614.65/$accept?ac=c9a9dcdbc90d0367717c5cb8aa43fcffd046e82897456b663524525cd370c6de"
+        "reference" : "/Task/160.000.210.284.823.26/$accept?ac=7f06dadbc93f64d2abe02b9b7b9fce4d90b0514a18cc73933a4a52c05f01c5eb"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-31T20:17:03.729+00:00",
-      "received" : "2023-10-31T20:17:04.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110465770"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Wenn Chuck Norris Wäsche wäscht, werden sogar schwarze Hemden strahlend weiß."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-a625-6980-5b54-c59b3bc65417",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e6-a625-6980-5b54-c59b3bc65417",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "faf5a890-51a1-43ec-9dd9-8f0c91c6bb34",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.591.37"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#faf5a890-51a1-43ec-9dd9-8f0c91c6bb34"
-      } ],
-      "sent" : "2023-10-31T20:14:24.624+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "1-2-ARZT-BerndClaudius01"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "103526615"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Life? Don't talk to me about life."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-a59b-2ae0-9166-462b6ef73673",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e6-a59b-2ae0-9166-462b6ef73673",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "f5a19e20-9e99-4b34-907c-aa7b628fa155",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.590.40"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#f5a19e20-9e99-4b34-907c-aa7b628fa155"
-      } ],
-      "sent" : "2023-10-31T20:14:15.564+00:00",
-      "received" : "2023-10-31T20:14:16.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "109939003"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Here I am, brain the size of a planet, and they tell me to take you up to the bridge. Call that job satisfaction? 'Cos I don't."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-a54a-6330-0445-d6761c77b326",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e6-a54a-6330-0445-d6761c77b326",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.589.43"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T20:14:10.270+00:00",
-      "received" : "2023-10-31T21:18:00.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"A person needs new experiences. They jar something deep inside, allowing him to grow. Without change, something sleeps inside us, and seldom awakens. The sleeper must awaken.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-a301-6948-9174-88cbeacd6638",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e6-a301-6948-9174-88cbeacd6638",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.584.58"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T20:13:31.933+00:00",
-      "received" : "2023-10-31T20:13:32.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"shipment\",\"info_text\":\"The Guild... they're fighting me in the mental vaults. They're behind everything. They fear the one who will come, who will know more, who will see more. The Guild is behind everything. It's not finished yet. I'm not formed.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e6-a2e1-17d8-c92a-5818bb6283ee",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e6-a2e1-17d8-c92a-5818bb6283ee",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "429dccc6-d745-4885-b9b8-34ede03de911",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.584.58"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#429dccc6-d745-4885-b9b8-34ede03de911"
-      } ],
-      "sent" : "2023-10-31T20:13:29.815+00:00",
-      "received" : "2023-10-31T20:13:31.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "101560000"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "You think you've got problems? What are you supposed to do if you are a manically depressed robot? No, don't try to answer that. I'm fifty thousand times more intelligent than you and even I don't know the answer. It gives me a headache just trying to think down to your level."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-a3b3-43a8-65a5-30e1980793ff",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-a3b3-43a8-65a5-30e1980793ff",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.403.553.54/$accept?ac=6ec4363405494e54bf35455048d40257c8dcb80ea572dfba63c68c6a1bd0cb05"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T13:04:13.785+00:00",
-      "received" : "2023-10-31T13:04:14.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110465770"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Neulich wurde eine in 3D gedrehte Folge von \"Walker, Texas Ranger\" im Kino gezeigt. Es gab keine Überlebenden."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-97f3-d938-3332-8b86141aff83",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-97f3-d938-3332-8b86141aff83",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "e85ef3f3-34bf-4e08-9486-d8d7215a715b",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.530.26"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#e85ef3f3-34bf-4e08-9486-d8d7215a715b"
-      } ],
-      "sent" : "2023-10-31T13:00:56.691+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "1-2-ARZT-BerndClaudius01"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "102131240"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I think you ought to know I'm feeling very depressed."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-9765-7800-3995-6ac905971de2",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-9765-7800-3995-6ac905971de2",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "ce543e34-d340-4964-83dd-1c9a46e396cf",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.529.29"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#ce543e34-d340-4964-83dd-1c9a46e396cf"
-      } ],
-      "sent" : "2023-10-31T13:00:47.360+00:00",
-      "received" : "2023-10-31T13:00:48.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "104124597"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Life? Don't talk to me about life."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-9704-0a98-2112-615e9dbd13aa",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-9704-0a98-2112-615e9dbd13aa",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.528.32"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T13:00:40.975+00:00",
-      "received" : "2023-10-31T20:13:32.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"My dear Piter, your pleasures are what tie you to me. How could I object to that?\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-950d-6ea0-9945-a33b114b4265",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-950d-6ea0-9945-a33b114b4265",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.523.47"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T13:00:08.036+00:00",
-      "received" : "2023-10-31T13:00:08.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"shipment\",\"info_text\":\"Use the first moments in study. You may miss an opportunity for quick victory this way, but the moments of study are insurance of success. Take your time and be sure.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-94fd-1ed8-6862-043b1929b1d7",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-94fd-1ed8-6862-043b1929b1d7",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "0b3867ba-cdb9-4f1a-affc-da1739e4eb1f",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.523.47"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#0b3867ba-cdb9-4f1a-affc-da1739e4eb1f"
-      } ],
-      "sent" : "2023-10-31T13:00:06.967+00:00",
-      "received" : "2023-10-31T13:00:07.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "105830517"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I won't enjoy it."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-6c7c-9b00-19dd-26c046349c99",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-6c7c-9b00-19dd-26c046349c99",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.403.466.24/$accept?ac=9e936ddb8a08d8bfb61857044d16bb42dbd5aaf0fa69f352d4989549c6c07250"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T12:48:47.456+00:00",
-      "received" : "2023-10-31T12:48:48.000+00:00",
+      "sent" : "2023-10-31T19:05:06.845+00:00",
+      "received" : "2023-10-31T19:05:07.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "http://fhir.de/sid/gkv/kvid-10",
@@ -1106,16 +321,16 @@
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-624c-9a90-2c19-3edf9233c98c",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-9d3a-ea58-8049-6ad6923e0d8b",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2e0-624c-9a90-2c19-3edf9233c98c",
+      "id" : "01ebb2e5-9d3a-ea58-8049-6ad6923e0d8b",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "6a77a8a2-3812-4b0f-a12a-9f3a062eec6e",
+        "id" : "da2cccb8-0aeb-4395-acc0-218aa92ee49d",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -1169,13 +384,13 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.443.93"
+        "reference" : "Task/160.000.210.284.799.98"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#6a77a8a2-3812-4b0f-a12a-9f3a062eec6e"
+        "reference" : "#da2cccb8-0aeb-4395-acc0-218aa92ee49d"
       } ],
-      "sent" : "2023-10-31T12:45:56.538+00:00",
+      "sent" : "2023-10-31T19:00:20.071+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -1193,7 +408,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "104926494"
+            "value" : "109008837"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -1206,23 +421,23 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "And then of course I've got this terrible pain in all the diodes down my left side."
+        "contentString" : "Pardon me for breathing, which I never do anyway so I don't know why I bother to say it, Oh God, I'm so depressed."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-61bb-7268-a590-5f3eaa0e6853",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-9cb0-59b0-e6d9-5a85576c6121",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2e0-61bb-7268-a590-5f3eaa0e6853",
+      "id" : "01ebb2e5-9cb0-59b0-e6d9-5a85576c6121",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "d3371a3c-6c98-47c7-a75e-d33f8addbb00",
+        "id" : "e2a1a3ef-f57a-4da6-a242-29ec322bba70",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -1276,626 +491,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.442.96"
+        "reference" : "Task/160.000.210.284.798.04"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#d3371a3c-6c98-47c7-a75e-d33f8addbb00"
+        "reference" : "#e2a1a3ef-f57a-4da6-a242-29ec322bba70"
       } ],
-      "sent" : "2023-10-31T12:45:47.025+00:00",
-      "received" : "2023-10-31T12:45:47.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "108632900"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I wish you'd just tell me rather trying to engage my enthusiasm, because I haven't got one."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-6161-e888-d0c3-1eb1701f4524",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-6161-e888-d0c3-1eb1701f4524",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.441.02"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T12:45:41.157+00:00",
-      "received" : "2023-10-31T13:00:08.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"info_text\":\"Mood? What has mood to do with it? You fight when the necessity arises — no matter the mood! Mood's a thing for cattle or making love or playing the baliset. It's not for fighting.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-5eca-97f0-5c2c-636782345632",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-5eca-97f0-5c2c-636782345632",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.436.17"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T12:44:57.686+00:00",
-      "received" : "2023-10-31T12:44:58.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"info_text\":\"Command must always look confident. All that faith riding on your shoulders while you sit in the critical seat and never show it.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-5eb7-90d8-433c-92ba7ca9198c",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-5eb7-90d8-433c-92ba7ca9198c",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "2c8c1e85-cb63-49e1-b24e-e4dc48fae1c6",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.436.17"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#2c8c1e85-cb63-49e1-b24e-e4dc48fae1c6"
-      } ],
-      "sent" : "2023-10-31T12:44:56.439+00:00",
-      "received" : "2023-10-31T12:44:57.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "103170002"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Life? Don't talk to me about life."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e0-5dd8-b228-8ffd-8d59b3e020d6",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2e0-5dd8-b228-8ffd-8d59b3e020d6",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_DispReq|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.403.435.20/$accept?ac=543ec0232823d480b278c9aebb12c82814d3494f1c1aee298c9b737ba44c3597"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-31T12:44:41.833+00:00",
-      "received" : "2023-10-31T12:44:43.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"hint\":\"Hey, come on. I had to change. Do you think I'm going back in that-that zoot suit? The old man really came through. It worked!\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-adcf-10c8-dbb1-c43506396dfc",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2d2-adcf-10c8-dbb1-c43506396dfc",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "f34a215c-a62f-4b3f-b442-73120638fa2f",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "N1"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.115.10"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#f34a215c-a62f-4b3f-b442-73120638fa2f"
-      } ],
-      "sent" : "2023-10-30T20:24:53.837+00:00",
-      "received" : "2023-10-31T12:44:43.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "109132678"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Life? Don't talk to me about life."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-8bde-c5a8-b6a8-c1ff58bbe12f",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2d2-8bde-c5a8-b6a8-c1ff58bbe12f",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.403.062.72/$accept?ac=7e5bc72a97e018783ee9e7250b68b4eb8163640ee487967cae1baef1857babbd"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-30T20:15:24.441+00:00",
-      "received" : "2023-10-30T20:15:24.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110465770"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Chuck Norris kann wirbellosen Tieren trotzdem das Genick brechen."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-82d6-ce60-e276-16b4625c6ec1",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2d2-82d6-ce60-e276-16b4625c6ec1",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "2e8432a0-0cf6-494d-801e-fa0f80a023b8",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.039.44"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#2e8432a0-0cf6-494d-801e-fa0f80a023b8"
-      } ],
-      "sent" : "2023-10-30T20:12:52.924+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "1-2-ARZT-BerndClaudius01"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "104212505"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "And then of course I've got this terrible pain in all the diodes down my left side."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-824b-5b28-e854-87b7fd54f68e",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2d2-824b-5b28-e854-87b7fd54f68e",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "8602c0d3-837b-483b-8c69-cc42d585ae77",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.038.47"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#8602c0d3-837b-483b-8c69-cc42d585ae77"
-      } ],
-      "sent" : "2023-10-30T20:12:43.785+00:00",
-      "received" : "2023-10-30T20:12:44.000+00:00",
+      "sent" : "2023-10-31T19:00:10.990+00:00",
+      "received" : "2023-10-31T19:00:11.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -1926,26 +529,78 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "Here I am, brain the size of a planet, and they tell me to take you up to the bridge. Call that job satisfaction? 'Cos I don't."
+        "contentString" : "Pardon me for breathing, which I never do anyway so I don't know why I bother to say it, Oh God, I'm so depressed."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-81f9-7a38-7d2a-a5323d091551",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-9bc3-6970-733c-b7534a7a38a0",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2d2-81f9-7a38-7d2a-a5323d091551",
+      "id" : "01ebb2e5-9bc3-6970-733c-b7534a7a38a0",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.037.50"
+        "reference" : "Task/160.000.210.284.797.07"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-30T20:12:38.419+00:00",
-      "received" : "2023-10-30T21:15:25.000+00:00",
+      "sent" : "2023-10-31T18:59:55.462+00:00",
+      "received" : "2023-11-01T18:58:50.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/sid/telematik-id",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
+            "code" : "30"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
+          "extension" : [ {
+            "url" : "onPremise",
+            "valueBoolean" : true
+          }, {
+            "url" : "delivery",
+            "valueBoolean" : false
+          }, {
+            "url" : "shipment",
+            "valueBoolean" : false
+          } ]
+        } ],
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"shipment\",\"info_text\":\"And you, my son, are you one who gives or one who takes?\"}"
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-987d-7da0-8197-cff3f3f156e3",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01ebb2e5-987d-7da0-8197-cff3f3f156e3",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
+      },
+      "basedOn" : [ {
+        "reference" : "Task/160.000.210.284.792.22"
+      } ],
+      "status" : "unknown",
+      "sent" : "2023-10-31T18:59:00.548+00:00",
+      "received" : "2023-10-31T18:59:01.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "http://fhir.de/sid/gkv/kvid-10",
@@ -1985,68 +640,16 @@
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-7fc3-6c10-3f5e-037a8079bdbc",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-9869-5190-78f2-353f09321d38",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2d2-7fc3-6c10-3f5e-037a8079bdbc",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.032.65"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-30T20:12:01.322+00:00",
-      "received" : "2023-10-30T20:12:01.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"To attempt an understanding of Muad'Dib without understanding his mortal enemies, the Harkonnens, is to attempt seeing Truth without knowing Falsehood. It is the attempt to see the Light without knowing Darkness. It cannot be.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d2-7fa5-4168-16c5-d934694cbb83",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2d2-7fa5-4168-16c5-d934694cbb83",
+      "id" : "01ebb2e5-9869-5190-78f2-353f09321d38",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "49eee914-cbbe-437a-9b85-2d91ea6c60d2",
+        "id" : "99229024-4cb3-42f2-af58-19c80bb9a905",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -2100,734 +703,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.403.032.65"
+        "reference" : "Task/160.000.210.284.792.22"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#49eee914-cbbe-437a-9b85-2d91ea6c60d2"
+        "reference" : "#99229024-4cb3-42f2-af58-19c80bb9a905"
       } ],
-      "sent" : "2023-10-30T20:11:59.345+00:00",
-      "received" : "2023-10-30T20:12:00.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "108035612"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Here I am, brain the size of a planet, and they tell me to take you up to the bridge. Call that job satisfaction? 'Cos I don't."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-893c-1698-6925-b14040978a5b",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-893c-1698-6925-b14040978a5b",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "123ff8ef-33f4-410a-871c-76821b2006dd",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "N1"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.621.37"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#123ff8ef-33f4-410a-871c-76821b2006dd"
-      } ],
-      "sent" : "2023-10-29T20:23:00.879+00:00",
-      "received" : "2023-10-30T13:14:11.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "108833505"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Life? Don't talk to me about life."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-67ab-9300-519b-59c6bdfadde9",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-67ab-9300-519b-59c6bdfadde9",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.402.568.02/$accept?ac=f3e8159d476e95096117feaccac568971c30a2fb2580d88744c19f493b5336ef"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-29T20:13:37.760+00:00",
-      "received" : "2023-10-29T20:13:38.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110465770"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Das einzige Mal an dem Chuck Norris falsch lag, war, als er dachte, er habe einen Fehler gemacht."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5eb3-ef68-6a47-7f08603393d1",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5eb3-ef68-6a47-7f08603393d1",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "85b9324e-fa13-40c5-8d83-204d71767b15",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.545.71"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#85b9324e-fa13-40c5-8d83-204d71767b15"
-      } ],
-      "sent" : "2023-10-29T20:11:07.313+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "1-2-ARZT-BerndClaudius01"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "101931440"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I think you ought to know I'm feeling very depressed."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5e2d-eeb8-cd88-f819fda0bfeb",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5e2d-eeb8-cd88-f819fda0bfeb",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "2908e1bf-d606-4b1b-9f97-3183e37bc61a",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.544.74"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#2908e1bf-d606-4b1b-9f97-3183e37bc61a"
-      } ],
-      "sent" : "2023-10-29T20:10:58.531+00:00",
-      "received" : "2023-10-29T20:10:59.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "108008880"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Here I am, brain the size of a planet, and they tell me to take you up to the bridge. Call that job satisfaction? 'Cos I don't."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5dde-9e08-2d57-358ffe3276e5",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5dde-9e08-2d57-358ffe3276e5",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.543.77"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-29T20:10:53.333+00:00",
-      "received" : "2023-10-30T11:37:04.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"info_text\":\"Bring in that floating fat man, the Baron!\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5ba4-2310-e942-8f61dce10917",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5ba4-2310-e942-8f61dce10917",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.538.92"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-29T20:10:15.946+00:00",
-      "received" : "2023-10-29T20:10:16.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"“Knowing where the trap is—that's the first step in evading it.”\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5b8f-6290-a46c-f7205c81b970",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5b8f-6290-a46c-f7205c81b970",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "7a5f89d4-1e2f-4635-b26d-5191d265fc43",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.538.92"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#7a5f89d4-1e2f-4635-b26d-5191d265fc43"
-      } ],
-      "sent" : "2023-10-29T20:10:14.586+00:00",
-      "received" : "2023-10-29T20:10:15.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "109905003"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I wish you'd just tell me rather trying to engage my enthusiasm, because I haven't got one."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2be-5acf-79a8-0e5e-950c09ece081",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2be-5acf-79a8-0e5e-950c09ece081",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_DispReq|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.402.537.95/$accept?ac=272bc2e728a95245f63b89499c1f30bf61a2c87f95f4bb32011103c11fb3c538"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-29T20:10:02.009+00:00",
-      "received" : "2023-10-29T20:10:02.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"hint\":\"Don't be so gullible, McFly. Got the place fixed up nice, though, McFly.\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-6e00-3198-392f-28054b5d8f6f",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-6e00-3198-392f-28054b5d8f6f",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "0ed79a43-14b0-4574-9739-100f12ba8df3",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "N1"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.226.58"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#0ed79a43-14b0-4574-9739-100f12ba8df3"
-      } ],
-      "sent" : "2023-10-28T20:23:44.623+00:00",
-      "received" : "2023-10-29T20:10:02.000+00:00",
+      "sent" : "2023-10-31T18:58:59.226+00:00",
+      "received" : "2023-10-31T18:58:59.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -2858,497 +741,26 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "I wish you'd just tell me rather trying to engage my enthusiasm, because I haven't got one."
+        "contentString" : "There's only one life-form as intelligent as me within thirty parsecs of here and that's me."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-4c34-3f28-0460-31d67e018e07",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2e5-97a8-e3d8-94ff-3cdfd1ba1137",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb2aa-4c34-3f28-0460-31d67e018e07",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "/Task/160.000.006.402.173.23/$accept?ac=88c807d6ccdd082d28df3cde6fec36ea123918d13021a2a32736b032360ed8f0"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-28T20:14:17.609+00:00",
-      "received" : "2023-10-28T20:14:18.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110465770"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "Am Anfang war das Nichts. Dann roundhousekickte Chuck Norris dieses Nichts und sagte: \"Such‘ Dir einen Job!\" Das ist die Geschichte der Entstehung des Universums."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-431b-d4f0-a2be-976b8aec1d04",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-431b-d4f0-a2be-976b8aec1d04",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "8d3fb4fa-785f-4cf0-ba96-e804b4def65e",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.150.92"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#8d3fb4fa-785f-4cf0-ba96-e804b4def65e"
-      } ],
-      "sent" : "2023-10-28T20:11:45.014+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "1-2-ARZT-BerndClaudius01"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "104239915"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "And then of course I've got this terrible pain in all the diodes down my left side."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-4292-e258-01bf-d7f51f168e52",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-4292-e258-01bf-d7f51f168e52",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "a9fa213e-f0d9-470a-9b1c-cd0fb7b6b8b0",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.149.95"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#a9fa213e-f0d9-470a-9b1c-cd0fb7b6b8b0"
-      } ],
-      "sent" : "2023-10-28T20:11:36.039+00:00",
-      "received" : "2023-10-28T20:11:36.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "105830517"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I won't enjoy it."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-423e-1368-7768-fac745cfd3dc",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-423e-1368-7768-fac745cfd3dc",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.148.98"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-28T20:11:30.481+00:00",
-      "received" : "2023-10-28T22:55:52.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"info_text\":\"Before I do your bidding, manling, I must cleanse the way between us. You've put a water burden on me that I'm not sure I care to support. But we Fremen pay our debts\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-4004-2128-06c1-a86cbd6f87ce",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-4004-2128-06c1-a86cbd6f87ce",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
-      },
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.143.16"
-      } ],
-      "status" : "unknown",
-      "sent" : "2023-10-28T20:10:53.129+00:00",
-      "received" : "2023-10-28T20:10:53.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_AvailabilityStatus",
-            "code" : "30"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
-          "extension" : [ {
-            "url" : "onPremise",
-            "valueBoolean" : true
-          }, {
-            "url" : "delivery",
-            "valueBoolean" : false
-          }, {
-            "url" : "shipment",
-            "valueBoolean" : false
-          } ]
-        } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"Before I do your bidding, manling, I must cleanse the way between us. You've put a water burden on me that I'm not sure I care to support. But we Fremen pay our debts\"}"
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-3ff1-ae80-ec19-4ead4c2c4839",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-3ff1-ae80-ec19-4ead4c2c4839",
-      "meta" : {
-        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
-      },
-      "contained" : [ {
-        "resourceType" : "Medication",
-        "id" : "bd42e5bd-9348-4cd1-88f3-3693f74ba032",
-        "meta" : {
-          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
-        },
-        "extension" : [ {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept" : {
-            "coding" : [ {
-              "system" : "http://snomed.info/sct",
-              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
-              "code" : "763158003",
-              "display" : "Medicinal product (product)"
-            } ]
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding" : {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code" : "00"
-          }
-        }, {
-          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean" : false
-        }, {
-          "url" : "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode" : "NB"
-        } ],
-        "code" : {
-          "coding" : [ {
-            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
-            "code" : "12345678"
-          } ],
-          "text" : "Schmerzmittel"
-        },
-        "form" : {
-          "coding" : [ {
-            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code" : "TAB"
-          } ]
-        },
-        "amount" : {
-          "numerator" : {
-            "extension" : [ {
-              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString" : "1"
-            } ],
-            "unit" : "Stk"
-          },
-          "denominator" : {
-            "value" : 1
-          }
-        }
-      } ],
-      "basedOn" : [ {
-        "reference" : "Task/160.000.006.402.143.16"
-      } ],
-      "status" : "unknown",
-      "about" : [ {
-        "reference" : "#bd42e5bd-9348-4cd1-88f3-3693f74ba032"
-      } ],
-      "sent" : "2023-10-28T20:10:51.920+00:00",
-      "received" : "2023-10-28T20:10:52.000+00:00",
-      "recipient" : [ {
-        "identifier" : {
-          "system" : "https://gematik.de/fhir/sid/telematik-id",
-          "value" : "3-SMC-B-Testkarte-883110000116873"
-        }
-      } ],
-      "sender" : {
-        "identifier" : {
-          "system" : "http://fhir.de/sid/gkv/kvid-10",
-          "value" : "X110498565"
-        }
-      },
-      "payload" : [ {
-        "extension" : [ {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier" : {
-            "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "108833505"
-          }
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean" : true
-        }, {
-          "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding" : {
-            "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code" : "160",
-            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        } ],
-        "contentString" : "I won't enjoy it."
-      } ]
-    },
-    "search" : {
-      "mode" : "match"
-    }
-  }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2aa-3f34-b398-49d4-d05001723864",
-    "resource" : {
-      "resourceType" : "Communication",
-      "id" : "01ebb2aa-3f34-b398-49d4-d05001723864",
+      "id" : "01ebb2e5-97a8-e3d8-94ff-3cdfd1ba1137",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_DispReq|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "/Task/160.000.006.402.142.19/$accept?ac=cd88a753b4805225df7cb5e81bd0906cbc55c1adb7551007ebf10616e5409dbf"
+        "reference" : "/Task/160.000.210.284.791.25/$accept?ac=33c3748fd90d9357bace93047705f903db4b414454dd64410120804e9e1ec0e1"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-28T20:10:39.535+00:00",
-      "received" : "2023-10-28T20:10:40.000+00:00",
+      "sent" : "2023-10-31T18:58:46.615+00:00",
+      "received" : "2023-10-31T18:58:47.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -3362,23 +774,23 @@
         }
       },
       "payload" : [ {
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"hint\":\"Oh, honey, he's teasing you. Nobody has two television sets.\"}"
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"hint\":\"Jesus, George, it was a wonder I was even born.\"}"
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-60ec-3358-e8dd-ecc1c6516cc7",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-c815-1d20-f1be-8f8996cb80dd",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-60ec-3358-e8dd-ecc1c6516cc7",
+      "id" : "01ebb2d1-c815-1d20-f1be-8f8996cb80dd",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "21856d1c-200b-4350-810a-65bc5f1172cb",
+        "id" : "659a0e4e-8d19-4bf9-a3e3-c1efc5cd8167",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -3432,14 +844,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.831.79"
+        "reference" : "Task/160.000.210.283.658.29"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#21856d1c-200b-4350-810a-65bc5f1172cb"
+        "reference" : "#659a0e4e-8d19-4bf9-a3e3-c1efc5cd8167"
       } ],
-      "sent" : "2023-10-27T20:28:25.863+00:00",
-      "received" : "2023-10-28T20:10:40.000+00:00",
+      "sent" : "2023-10-30T19:20:39.668+00:00",
+      "received" : "2023-10-31T18:58:47.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -3457,7 +869,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "105313145"
+            "value" : "105330431"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -3470,26 +882,26 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "There's only one life-form as intelligent as me within thirty parsecs of here and that's me."
+        "contentString" : "You think you've got problems? What are you supposed to do if you are a manically depressed robot? No, don't try to answer that. I'm fifty thousand times more intelligent than you and even I don't know the answer. It gives me a headache just trying to think down to your level."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-3f64-a0d0-3366-6b7f39ed0efe",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-8f1f-a990-e3cc-aea02af76202",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-3f64-a0d0-3366-6b7f39ed0efe",
+      "id" : "01ebb2d1-8f1f-a990-e3cc-aea02af76202",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Representative|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "/Task/160.000.006.401.778.44/$accept?ac=ffa233fae4fa6d572cd4b8a920f7976dbb4f57266ffdfff5285838fac5b902e9"
+        "reference" : "/Task/160.000.210.283.589.42/$accept?ac=08ad9be14bdb0bc6d2e9a140d99998f1e53cdc6de843f311e180acb2d6b7a67c"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-27T20:19:03.330+00:00",
-      "received" : "2023-10-27T20:19:03.000+00:00",
+      "sent" : "2023-10-30T19:04:44.058+00:00",
+      "received" : "2023-10-30T19:04:44.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "http://fhir.de/sid/gkv/kvid-10",
@@ -3514,23 +926,23 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "Chuck Norris kann eine Party schmeißen. 100 Meter weit."
+        "contentString" : "Wenn Chuck Norris beim Russisch Roulette verliert, will er eine Revanche."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-3652-c260-5117-2f18f4cf532e",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-7e13-5020-daff-54f6f5301f1e",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-3652-c260-5117-2f18f4cf532e",
+      "id" : "01ebb2d1-7e13-5020-daff-54f6f5301f1e",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "e8c3285a-072d-4845-aa95-4d7cd816b16b",
+        "id" : "2c8551e4-e497-4a41-a5c2-23efb1d53de5",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -3584,13 +996,13 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.755.16"
+        "reference" : "Task/160.000.210.283.565.17"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#e8c3285a-072d-4845-aa95-4d7cd816b16b"
+        "reference" : "#2c8551e4-e497-4a41-a5c2-23efb1d53de5"
       } ],
-      "sent" : "2023-10-27T20:16:31.164+00:00",
+      "sent" : "2023-10-30T18:59:58.036+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -3608,7 +1020,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "104626889"
+            "value" : "107536171"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -3621,23 +1033,23 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "Here I am, brain the size of a planet, and they tell me to take you up to the bridge. Call that job satisfaction? 'Cos I don't."
+        "contentString" : "And then of course I've got this terrible pain in all the diodes down my left side."
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-35ce-4080-c497-ac8ad3709268",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-7d8f-4f28-0107-e0ae4a15cd85",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-35ce-4080-c497-ac8ad3709268",
+      "id" : "01ebb2d1-7d8f-4f28-0107-e0ae4a15cd85",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "145887d4-f413-4a07-bc04-87c2b7fd0c17",
+        "id" : "46816009-ad15-4c6b-806e-3cf35260dd5c",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -3691,14 +1103,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.754.19"
+        "reference" : "Task/160.000.210.283.564.20"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#145887d4-f413-4a07-bc04-87c2b7fd0c17"
+        "reference" : "#46816009-ad15-4c6b-806e-3cf35260dd5c"
       } ],
-      "sent" : "2023-10-27T20:16:22.480+00:00",
-      "received" : "2023-10-27T20:16:23.000+00:00",
+      "sent" : "2023-10-30T18:59:49.385+00:00",
+      "received" : "2023-10-30T18:59:49.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -3716,7 +1128,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "103170002"
+            "value" : "104224634"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -3736,19 +1148,19 @@
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-357d-3e38-4a9a-5cf3723a9348",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-7ca2-a920-8250-dbeb7341168d",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-357d-3e38-4a9a-5cf3723a9348",
+      "id" : "01ebb2d1-7ca2-a920-8250-dbeb7341168d",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.753.22"
+        "reference" : "Task/160.000.210.283.563.23"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-27T20:16:17.171+00:00",
-      "received" : "2023-10-28T00:51:29.000+00:00",
+      "sent" : "2023-10-30T18:59:33.876+00:00",
+      "received" : "2023-10-31T18:59:01.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "http://fhir.de/sid/gkv/kvid-10",
@@ -3781,26 +1193,26 @@
             "valueBoolean" : false
           } ]
         } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"Let us not rail about justice as long as we have arms and the freedom to use them.\"}"
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"shipment\",\"info_text\":\"Before I do your bidding, manling, I must cleanse the way between us. You've put a water burden on me that I'm not sure I care to support. But we Fremen pay our debts\"}"
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-3337-22b0-d8be-851a02f73ecf",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-7974-67e8-4927-8492107c0697",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-3337-22b0-d8be-851a02f73ecf",
+      "id" : "01ebb2d1-7974-67e8-4927-8492107c0697",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.2" ]
       },
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.748.37"
+        "reference" : "Task/160.000.210.283.558.38"
       } ],
       "status" : "unknown",
-      "sent" : "2023-10-27T20:15:39.022+00:00",
-      "received" : "2023-10-27T20:15:39.000+00:00",
+      "sent" : "2023-10-30T18:58:40.513+00:00",
+      "received" : "2023-10-30T18:58:41.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "http://fhir.de/sid/gkv/kvid-10",
@@ -3833,23 +1245,23 @@
             "valueBoolean" : false
           } ]
         } ],
-        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"shipment\",\"info_text\":\"On Caladan, we ruled with sea and air power. Here, we must scrabble for desert power. This is your inheritance, Paul.\"}"
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"delivery\",\"info_text\":\"Did you really think that you could bear the Kwisatz Haderach? The universe's super being? How dare you. My greatest student, and my greatest disappointment.\"}"
       } ]
     },
     "search" : {
       "mode" : "match"
     }
   }, {
-    "fullUrl" : "https://erp-test.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb296-3325-e0b8-cb02-f2908306afcd",
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-7964-0880-a0f8-da51e6d95e90",
     "resource" : {
       "resourceType" : "Communication",
-      "id" : "01ebb296-3325-e0b8-cb02-f2908306afcd",
+      "id" : "01ebb2d1-7964-0880-a0f8-da51e6d95e90",
       "meta" : {
         "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
       },
       "contained" : [ {
         "resourceType" : "Medication",
-        "id" : "a9d9d893-20db-4763-a60c-8fdd37d024da",
+        "id" : "26287ec2-42bf-4016-9fe6-006041e98ab9",
         "meta" : {
           "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
         },
@@ -3903,14 +1315,14 @@
         }
       } ],
       "basedOn" : [ {
-        "reference" : "Task/160.000.006.401.748.37"
+        "reference" : "Task/160.000.210.283.558.38"
       } ],
       "status" : "unknown",
       "about" : [ {
-        "reference" : "#a9d9d893-20db-4763-a60c-8fdd37d024da"
+        "reference" : "#26287ec2-42bf-4016-9fe6-006041e98ab9"
       } ],
-      "sent" : "2023-10-27T20:15:37.891+00:00",
-      "received" : "2023-10-27T20:15:38.000+00:00",
+      "sent" : "2023-10-30T18:58:39.440+00:00",
+      "received" : "2023-10-30T18:58:40.000+00:00",
       "recipient" : [ {
         "identifier" : {
           "system" : "https://gematik.de/fhir/sid/telematik-id",
@@ -3928,7 +1340,7 @@
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier" : {
             "system" : "http://fhir.de/sid/arge-ik/iknr",
-            "value" : "103121137"
+            "value" : "103524101"
           }
         }, {
           "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -3941,7 +1353,515 @@
             "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
           }
         } ],
-        "contentString" : "Pardon me for breathing, which I never do anyway so I don't know why I bother to say it, Oh God, I'm so depressed."
+        "contentString" : "Life? Don't talk to me about life."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01ebb2d1-78a6-65a0-26a4-0f9edba5120f",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01ebb2d1-78a6-65a0-26a4-0f9edba5120f",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_DispReq|1.2" ]
+      },
+      "basedOn" : [ {
+        "reference" : "/Task/160.000.210.283.557.41/$accept?ac=57e755ca2702320c150366ef724d9fd4ac659162d9f34b6223bb99d66c59b4c8"
+      } ],
+      "status" : "unknown",
+      "sent" : "2023-10-30T18:58:27.012+00:00",
+      "received" : "2023-10-30T18:58:27.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/sid/telematik-id",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "contentString" : "{\"version\":1,\"supplyOptionsType\":\"onPremise\",\"hint\":\"Who the hell is John F. Kennedy?\"}"
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01eb9d24-4e74-4fa8-2f1d-3a781dcf3544",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01eb9d24-4e74-4fa8-2f1d-3a781dcf3544",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/StructureDefinition/ErxCommunicationInfoReq" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "a98fcb4b-367b-4186-bf73-6dcd44a24e02",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "N2"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "89569803"
+          } ],
+          "text" : "Gemteren"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "PAM"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "value" : 7,
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.004.845.350.47"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#a98fcb4b-367b-4186-bf73-6dcd44a24e02"
+      } ],
+      "sent" : "2023-01-27T22:33:45.561+00:00",
+      "received" : "2023-01-28T22:23:32.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/NamingSystem/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/StructureDefinition/InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value" : "104212059"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/CodeSystem/Flowtype",
+            "code" : "160",
+            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+          }
+        } ],
+        "contentString" : "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01eb9cab-9f81-e960-adec-7e97f275e7e1",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01eb9cab-9f81-e960-adec-7e97f275e7e1",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/StructureDefinition/ErxCommunicationInfoReq" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "f0cf5d16-10d1-4da8-9bf2-192bf3c381e0",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "N3"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "78315337"
+          } ],
+          "text" : "Gosamemib"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "FMR"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "value" : 15,
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.004.844.516.27"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#f0cf5d16-10d1-4da8-9bf2-192bf3c381e0"
+      } ],
+      "sent" : "2023-01-21T22:34:54.364+00:00",
+      "received" : "2023-01-21T23:18:43.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/NamingSystem/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/StructureDefinition/InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value" : "104212059"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/CodeSystem/Flowtype",
+            "code" : "160",
+            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+          }
+        } ],
+        "contentString" : "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01eb9c5c-09d0-5e78-ef10-627504808c16",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01eb9c5c-09d0-5e78-ef10-627504808c16",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/StructureDefinition/ErxCommunicationInfoReq" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "fdbd2e7a-abdb-4836-8738-bc0cc7d40b6e",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "N2"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "52686293"
+          } ],
+          "text" : "Famamemus"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "TSE"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "value" : 1,
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.004.844.044.85"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#fdbd2e7a-abdb-4836-8738-bc0cc7d40b6e"
+      } ],
+      "sent" : "2023-01-17T23:38:00.507+00:00",
+      "received" : "2023-01-18T08:28:26.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/NamingSystem/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/StructureDefinition/InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value" : "104212059"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/CodeSystem/Flowtype",
+            "code" : "160",
+            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+          }
+        } ],
+        "contentString" : "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01eb9bed-21f2-e120-909e-b933ff0dfadb",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01eb9bed-21f2-e120-909e-b933ff0dfadb",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/StructureDefinition/ErxCommunicationInfoReq" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "fbf741d4-8412-476a-8b6a-1998670b103b",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "KTP"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "43582097"
+          } ],
+          "text" : "Gosvomilrat"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "ILO"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "value" : 8,
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.004.842.848.84"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#fbf741d4-8412-476a-8b6a-1998670b103b"
+      } ],
+      "sent" : "2023-01-12T11:19:04.052+00:00",
+      "received" : "2023-01-12T12:21:46.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/NamingSystem/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/StructureDefinition/InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value" : "104212059"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/CodeSystem/Flowtype",
+            "code" : "160",
+            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+          }
+        } ],
+        "contentString" : "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
+      } ]
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  }, {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Communication/01eb9bbd-3a58-88a8-3ec2-63c88cd3da56",
+    "resource" : {
+      "resourceType" : "Communication",
+      "id" : "01eb9bbd-3a58-88a8-3ec2-63c88cd3da56",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/StructureDefinition/ErxCommunicationInfoReq" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "8ae05d81-f59e-457e-8c8a-cf493ddd8167",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "N1"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "97211091"
+          } ],
+          "text" : "Ibalalimib"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "PEL"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "value" : 16,
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "basedOn" : [ {
+        "reference" : "Task/169.000.004.842.050.53"
+      } ],
+      "status" : "unknown",
+      "about" : [ {
+        "reference" : "#8ae05d81-f59e-457e-8c8a-cf493ddd8167"
+      } ],
+      "sent" : "2023-01-10T02:09:54.937+00:00",
+      "received" : "2023-01-11T07:37:00.000+00:00",
+      "recipient" : [ {
+        "identifier" : {
+          "system" : "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value" : "3-SMC-B-Testkarte-883110000116873"
+        }
+      } ],
+      "sender" : {
+        "identifier" : {
+          "system" : "http://fhir.de/NamingSystem/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "payload" : [ {
+        "extension" : [ {
+          "url" : "https://gematik.de/fhir/StructureDefinition/InsuranceProvider",
+          "valueIdentifier" : {
+            "system" : "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value" : "104212059"
+          }
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/SubstitutionAllowedType",
+          "valueBoolean" : true
+        }, {
+          "url" : "https://gematik.de/fhir/StructureDefinition/PrescriptionType",
+          "valueCoding" : {
+            "system" : "https://gematik.de/fhir/CodeSystem/Flowtype",
+            "code" : "160",
+            "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+          }
+        } ],
+        "contentString" : "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
       } ]
     },
     "search" : {
