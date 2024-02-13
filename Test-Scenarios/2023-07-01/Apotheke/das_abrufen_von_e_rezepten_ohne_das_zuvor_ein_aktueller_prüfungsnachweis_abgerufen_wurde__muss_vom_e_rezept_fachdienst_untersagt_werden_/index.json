@@ -1,0 +1,52 @@
+{
+  "id" : "a8339f6a-a9b6-44ef-a8a7-2c9264f8495a",
+  "mainActor" : "Apotheke",
+  "name" : "Das Abrufen von E-Rezepten ohne das zuvor ein aktueller Prüfungsnachweis abgerufen wurde, muss vom E-Rezept Fachdienst untersagt werden.",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_04", "@TESTFALL:negativ", "@AFO-ID:A_23450", "@Hauptdarsteller:Apotheke" ],
+  "feature" : "eGK in der Apotheke",
+  "featureFile" : "egk_apotheke/EGK_Apotheke",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Aenna Gondern hat eine eGK für die Abholung in der Apotheke"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Aenna Gondern folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.006.474.839.81",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.006.474.839.81/$activate",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.006.474.839.81",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.006.474.839.81 with AccessCode 070b6b04c069a3f7e2d5f562a691c2ac71c7b3fa809c50491ac9172d04378316",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/006_dmc_160.000.006.474.839.81.png"
+    } ]
+  }, {
+    "name" : "Angenommen die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen für die eGK von Aenna Gondern keinen Prüfungsnachweis abruft"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die E-Rezepte von Aenna Gondern nicht abrufen, weil der Prüfungsnachweis nicht abgerufen wurde"
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240213_112427",
+      "file" : "Apotheke/das_abrufen_von_e_rezepten_ohne_das_zuvor_ein_aktueller_prüfungsnachweis_abgerufen_wurde__muss_vom_e_rezept_fachdienst_untersagt_werden_/007_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable expectation"
+  } ],
+  "requirements" : [ "A_23450" ]
+}

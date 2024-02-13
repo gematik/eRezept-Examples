@@ -1121,5 +1121,121 @@
     "feature" : "Subscription Service für Apotheken",
     "featureFile" : "subscription/Subsription",
     "requirements" : [ "A_22367-01", "A_22364" ]
+  },
+  {
+    "id" : "d13c4d75-711a-43d8-a63a-8c936b2ffb48",
+    "mainActor" : "Apotheke",
+    "name" : "E-Rezept mit eGK und gültigem Prüfungsnachweis in der Apotheke einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "description" : "Ein GKV Versicherter will seine E-Rezepte mit seiner EGK in einer\n  öffentlichen Apotheke einlösen können",
+    "feature" : "eGK in der Apotheke",
+    "featureFile" : "egk_apotheke/EGK_Apotheke",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "56d425ef-cabb-4180-bc6a-47b2ae1f323e",
+    "mainActor" : "Apotheke",
+    "name" : "Eine Apotheke darf über die eGK nur E-Rezepte einsehen die noch nicht eingelöst sind",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_02", "@TESTFALL:positiv", "@AFO-ID:A_23452", "@Hauptdarsteller:Apotheke" ],
+    "description" : "Bei diesem Szenario werden der GKV Versicherten Aenna Gondern zwei E-Rezepte verschrieben.\n  Das erste E-Rezepte wird über die Apotheke Am Flughafen mit der eGK eingelöst. Das zweite E-Rezept soll über die\n  Apotheke NordApotheke abgerufen werden. Aenna Gondern will, dass die Apotheke NordApotheke beim Einlösen\n  über die eGK nur Zugriff auf das noch nicht eingelöste E-Rezept bekommt.",
+    "feature" : "eGK in der Apotheke",
+    "featureFile" : "egk_apotheke/EGK_Apotheke",
+    "requirements" : [ "A_23452" ]
+  }, {
+    "id" : "b64b2ebe-d872-4b6f-8593-a9d4e03e1148",
+    "mainActor" : "Apotheke",
+    "name" : "Einlösen von E-Rezepten über die eGK in Krankenhaus-Apotheke nicht möglich",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_03", "@TESTFALL:negativ", "@Hauptdarsteller:Apotheke" ],
+    "description" : "Die GKV Versicherte Aenna Gondern kann seine E-Rezept nicht in einer Krankenhaus-Apotheke\n  mit seiner EGK einlösen, da die Krankenhaus-Apotheken nur mit der eGK keine E-Rezepte abrufen dürfen.",
+    "feature" : "eGK in der Apotheke",
+    "featureFile" : "egk_apotheke/EGK_Apotheke"
+  }, {
+    "id" : "a8339f6a-a9b6-44ef-a8a7-2c9264f8495a",
+    "mainActor" : "Apotheke",
+    "name" : "Das Abrufen von E-Rezepten ohne das zuvor ein aktueller Prüfungsnachweis abgerufen wurde, muss vom E-Rezept Fachdienst untersagt werden.",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_04", "@TESTFALL:negativ", "@AFO-ID:A_23450", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke",
+    "featureFile" : "egk_apotheke/EGK_Apotheke",
+    "requirements" : [ "A_23450" ]
+  }, {
+    "id" : "a38ddb0a-0f45-4b62-a4c1-1d6ef4dc9a83",
+    "mainActor" : "Apotheke",
+    "name" : "E-Rezepte mit eGK in der Apotheke nur mit zeitlich gültigem Prüfungsnachweis",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_WF160_EGK_APOTHEKE_05", "@TESTFALL:negativ", "@AFO-ID:A_23451", "@Hauptdarsteller:Apotheke" ],
+    "description" : "Die Apotheke Am Flughafen bekommt nur mit einem aktuellen, innerhalb der letzten 30 Minuten erstellten Prüfungsnachweis\n  Zugriff auf die E-Rezepte des Versicherten Günther Angermänn.",
+    "feature" : "eGK in der Apotheke",
+    "featureFile" : "egk_apotheke/EGK_Apotheke",
+    "requirements" : [ "A_23451" ]
+  }, {
+    "id" : "4301ba08-f253-4df0-99cb-40856c745306",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "9b833009-70a5-42da-84e2-aa9b6ac78561",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "4b5508d9-4053-4e75-86e8-1c0e749c7987",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "da3a934a-9084-4aad-bf8c-34047d5bb1a3",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "4ec58c61-df6a-431f-baf4-ccab1229d31e",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "72696269-09d7-4462-815f-26d297c19a40",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "ed0531c4-8289-4513-8797-e095a05aace0",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "18b0721c-572d-4695-8db8-82777b7d376b",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
+  }, {
+    "id" : "6c349f8b-f5e7-48c0-ba39-55052f840b96",
+    "mainActor" : "Apotheke",
+    "name" : "In der Apotheke ein E-Rezept mit eGK abrufen und einlösen",
+    "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:EGKinApotheke", "@Workflow:160", "@Versicherung:GKV", "@TCID:ERP_EE_EGK_APOTHEKE_VSDM_01", "@TESTFALL:positiv", "@AFO-ID:A_23450", "@AFO-ID:A_23454", "@Hauptdarsteller:Apotheke" ],
+    "feature" : "eGK in der Apotheke mit VSDM++",
+    "featureFile" : "egk_apotheke/VSDM_FDB",
+    "requirements" : [ "A_23450", "A_23454" ]
   } ]
 }
