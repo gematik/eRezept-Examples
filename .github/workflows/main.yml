@@ -40,12 +40,6 @@ jobs:
           git fetch origin main:main
           git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
           echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
-        
-      # Install .NET runtime
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 6.0.x
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
