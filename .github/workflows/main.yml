@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  JAVA_VALIDATOR_VERSION: 6.0.15
+  REFERENZVALIDATOR_VERSION: 6.0.15
   PATH_TO_EXAMPLES: './temp_folder/'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
@@ -72,8 +72,8 @@ jobs:
         run: |
           CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
           echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
-          wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$JAVA_VALIDATOR_VERSION/validator_cli.jar
-          echo "JAVA_VALIDATOR_VERSION: $JAVA_VALIDATOR_VERSION"
+          wget -q https://github.com/gematik/app-referencevalidator/releases/download/$REFERENZVALIDATOR_VERSION/referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar
+          echo "REFERENZVALIDATOR_VERSION: $REFERENZVALIDATOR_VERSION"
         shell: bash
         
       - name: Install jq
@@ -93,8 +93,7 @@ jobs:
               p="$p/"
             fi
 
-                        
-            java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $IG_DEPENDENCIES $COMBINED_IG_PARAMETERS
+            java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
             
           done
 
