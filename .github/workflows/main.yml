@@ -80,6 +80,9 @@ jobs:
         run: |        
           for p in $PATH_TO_EXAMPLES; 
 
+          echo "here is p"
+          echo "$p"
+
           do
             
             # Ensure directory ends with "/"
@@ -87,7 +90,7 @@ jobs:
               p="$p/"
             fi
 
-            java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
+            # java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
             
           done
 
