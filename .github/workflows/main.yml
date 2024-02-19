@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
       
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -35,7 +37,7 @@ jobs:
       - name: Identify and Copy Changed .json and .xml Files
         run: |
           mkdir -p temp_folder # Create a temp folder
-          git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
+          git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
           ls -l './temp_folder'
         
       # Install .NET runtime
@@ -51,9 +53,7 @@ jobs:
           distribution: 'microsoft'
           java-version: '17'
 
-      
 
-          
     # --------------------------------------------------------------------------------------------------- #
     #                                            JAVA Validator                                           #
     # --------------------------------------------------------------------------------------------------- #
