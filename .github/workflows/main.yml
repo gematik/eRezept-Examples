@@ -37,23 +37,10 @@ jobs:
           distribution: 'microsoft'
           java-version: '17'
 
-      - name: Identify changed files
-        id: files
+      - name: Identify and Copy Changed .json and .xml Files
         run: |
-          echo "Changed .xml and .json files:"
-          git fetch origin main:main
-          git diff --name-only main | grep -E "\.xml$|\.json$" | tee changed-files.txt
-          if [ -s changed-files.txt ]; then
-            echo "::set-output name=changed::true"
-          else
-            echo "::set-output name=changed::false"
-          fi
-
-      - name: Copy changed files to a specific folder
-        run: |
-          mkdir temp_folder
-          cat changed_files.txt | xargs -I {} cp {} temp_folder/
-
+          mkdir -p temp_folder # Create a temp folder
+          git diff --name-only origin/main...HEAD | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
 
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.4.0
