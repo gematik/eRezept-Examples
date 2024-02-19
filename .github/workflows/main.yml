@@ -79,23 +79,17 @@ jobs:
       - name: Validate all example resources in scope of the repository
         run: |        
           for p in $PATH_TO_EXAMPLES; 
-          do
-          echo "here is p"
-          echo "$p"
-          for f in $p;
-          do
-            echo "here is f"
-            echo "$f"
-          done
-          
+          do         
             
             # Ensure directory ends with "/"
             if [[ ! "$p" =~ .*/$ ]]; then
               p="$p/"
             fi
 
-            # java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
-            
+            for f in $p*;
+            do 
+              java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $f --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
+            done
           done
 
       - name: Cleanup
