@@ -1,0 +1,60 @@
+name: Validate Examples
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  CI_EXAMPLES_VALIDATION:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Identify changed files
+        id: files
+        run: |
+          echo "Changed .xml and .json files:"
+          git fetch origin main:main
+          git diff --name-only main | grep -E "\.xml$|\.json$" | tee changed-files.txt
+          if [ -s changed-files.txt ]; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
+
+      - name: Copy changed files to a specific folder
+        run: |
+          mkdir temp_folder
+          cat changed_files.txt | xargs -I {} cp {} temp_folder/
+
+
+      - name: Firely.Terminal (GitHub Actions)
+        uses: FirelyTeam/firely-terminal-pipeline@v0.4.0
+        with:
+          PATH_TO_CONFORMANCE_RESOURCES: './temp_folder'
+          FIRELY_TERMINAL_VERSION: 3.1.0
+          #PATH_TO_EXAMPLES: Examples
+          #PATH_TO_QUALITY_CONTROL_RULES: qc/custom
+          DOTNET_VALIDATION_ENABLED: true
+          JAVA_VALIDATION_ENABLED: true
+          OUTPUT_FORMAT: RAW
+          JAVA_VALIDATION_OPTIONS: -allow-example-urls true
+          JAVA_VALIDATOR_VERSION: 6.0.11
+          SUSHI_ENABLED: false
+      
+      - name: Cleanup
+        run: rm -rf temp_folder
