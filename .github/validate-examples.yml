@@ -12,23 +12,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate-examples:
+  CI_EXAMPLES_VALIDATION:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-      
-      - name: Run JAR
+
+      - name: Identify changed files
+        id: files
         run: |
-          changed_files=$(git diff --name-only HEAD $(git merge-base HEAD main))
-          for file in $changed_files; do
-            if [[ -f $file ]]; then
-              java -jar path/to/your/jar/file.jar "$file"
-            fi
-          done
+          echo "Identifying changed files"
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+          echo "Changed files:"
+          cat changed_files.txt
+
+      - name: Copy changed files to a specific folder
+        run: |
+          mkdir temp_folder
+          cat changed_files.txt | xargs -I {} cp {} temp_folder/
+
+
+      - name: Firely.Terminal (GitHub Actions)
+        uses: FirelyTeam/firely-terminal-pipeline@v0.4.0
+        with:
+          PATH_TO_CONFORMANCE_RESOURCES: './temp_folder'
+          FIRELY_TERMINAL_VERSION: 3.1.0
+          #PATH_TO_EXAMPLES: Examples
+          #PATH_TO_QUALITY_CONTROL_RULES: qc/custom
+          DOTNET_VALIDATION_ENABLED: true
+          JAVA_VALIDATION_ENABLED: true
+          OUTPUT_FORMAT: RAW
+          JAVA_VALIDATION_OPTIONS: -allow-example-urls true
+          JAVA_VALIDATOR_VERSION: 6.0.11
+          SUSHI_ENABLED: false
+      
+      - name: Cleanup
+        run: rm -rf temp_folder
