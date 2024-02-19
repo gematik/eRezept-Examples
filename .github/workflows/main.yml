@@ -16,7 +16,7 @@ env:
   PATH_TO_EXAMPLES: 'temp_folder/'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
-  IG_DEPENDENCIES: "-ig de.basisprofil.r4#1.3.2 -ig hl7.fhir.r4.core#4.0.1 -ig kbv.ita.for#1.1.0 -ig kbv.ita.erp#1.1.x -ig de.gematik.erezept-workflow.r4 1.x.x"
+  IG_DEPENDENCIES: "-ig de.basisprofil.r4#1.4.0 -ig hl7.fhir.r4.core#4.0.1 -ig kbv.ita.for#1.1.0 -ig kbv.ita.erp#1.1.x -ig de.gematik.erezept-workflow.r4 1.x.x"
 
 jobs:
   CI_EXAMPLES_VALIDATION:
@@ -30,6 +30,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
+
+      # Identify and Copy Changed .json and .xml Files
+      - name: Identify and Copy Changed .json and .xml Files
+        run: |
+          mkdir -p temp_folder # Create a temp folder
+          git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
+          ls -l './temp_folder'
         
       # Install .NET runtime
       - name: Setup .NET Core SDK
@@ -44,11 +51,7 @@ jobs:
           distribution: 'microsoft'
           java-version: '17'
 
-      - name: Identify and Copy Changed .json and .xml Files
-        run: |
-          mkdir -p temp_folder # Create a temp folder
-          git diff --name-only origin/main...HEAD | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
-          ls -l './temp_folder'
+      
 
           
     # --------------------------------------------------------------------------------------------------- #
