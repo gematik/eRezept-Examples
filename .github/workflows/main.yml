@@ -39,7 +39,7 @@ jobs:
           mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
           git fetch origin main:main
           git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
-          ls -l $PATH_TO_EXAMPLES
+          echo "Number of changed files to validate: " && ls -1 | wc -l $PATH_TO_EXAMPLES
         
       # Install .NET runtime
       - name: Setup .NET Core SDK
@@ -84,11 +84,6 @@ jobs:
           
       - name: Validate all example resources in scope of the repository
         run: |        
-          for p in $INPUT_PATH_TO_CONFORMANCE_RESOURCES; # Get combined path to conformance resources, we want to validate against the current version of the conformance resources
-          do  
-            COMBINED_IG_PARAMETERS+="-ig $GITHUB_WORKSPACE/$p "
-          done
-          
           for p in $PATH_TO_EXAMPLES; 
 
           do
@@ -97,10 +92,8 @@ jobs:
             if [[ ! "$p" =~ .*/$ ]]; then
               p="$p/"
             fi
-          
-            UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
             
-            java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS
+            java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $IG_DEPENDENCIES $COMBINED_IG_PARAMETERS
             
           done
 
