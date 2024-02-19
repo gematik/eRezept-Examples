@@ -4,9 +4,9 @@ name: Validate Examples
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,10 +27,14 @@ jobs:
       - name: Identify changed files
         id: files
         run: |
-          echo "Identifying changed files"
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
-          echo "Changed files:"
-          cat changed_files.txt
+          echo "Changed .xml and .json files:"
+          git fetch origin main:main
+          git diff --name-only main | grep -E "\.xml$|\.json$" | tee changed-files.txt
+          if [ -s changed-files.txt ]; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
 
       - name: Copy changed files to a specific folder
         run: |
