@@ -37,7 +37,7 @@ jobs:
       - name: Identify and Copy Changed .json and .xml Files
         run: |
           mkdir -p temp_folder # Create a temp folder
-          git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
+          git diff --name-only origin/main origin/${GITHUB_HEAD_REF} | grep -E '\.(json|xml)$' | xargs -I {} cp {} temp_folder/
           ls -l './temp_folder'
         
       # Install .NET runtime
