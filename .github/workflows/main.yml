@@ -19,9 +19,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Set up Java
-        uses: actions/setup-java@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
+          node-version: '20'
+        
+      # Install .NET runtime
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      
+      # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
           java-version: '17'
 
       - name: Identify changed files
@@ -57,4 +70,5 @@ jobs:
           SUSHI_ENABLED: false
       
       - name: Cleanup
+        if: always()
         run: rm -rf temp_folder
