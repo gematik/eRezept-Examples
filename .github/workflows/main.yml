@@ -38,8 +38,8 @@ jobs:
         run: |
           mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
           git fetch origin main:main
-          git diff --name-only main...HEAD | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
-          ls -l '$PATH_TO_EXAMPLES'
+          git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+          ls -l $PATH_TO_EXAMPLES
         
       # Install .NET runtime
       - name: Setup .NET Core SDK
