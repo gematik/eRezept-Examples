@@ -1,126 +1,95 @@
 {
-  "resourceType": "Communication",
-  "id": "ed415373-c7ae-4f14-a24e-17364121fadd",
-  "meta": {
-    "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2"
-    ]
+  "resourceType" : "Communication",
+  "id" : "40e92115-69e9-4587-959e-53946a3b4b77",
+  "meta" : {
+    "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.2" ]
   },
-  "contained": [
-    {
-      "resourceType": "Medication",
-      "id": "207db9f1-0657-4835-805b-39d02868baf2",
-      "meta": {
-        "profile": [
-          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
-        ]
+  "contained" : [ {
+    "resourceType" : "Medication",
+    "id" : "e191c101-a57e-4998-8640-ebf8e45d1294",
+    "meta" : {
+      "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
+    },
+    "extension" : [ {
+      "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+      "valueCodeableConcept" : {
+        "coding" : [ {
+          "system" : "http://snomed.info/sct",
+          "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
+          "code" : "763158003",
+          "display" : "Medicinal product (product)"
+        } ]
+      }
+    }, {
+      "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+      "valueCoding" : {
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+        "code" : "00"
+      }
+    }, {
+      "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+      "valueBoolean" : false
+    }, {
+      "url" : "http://fhir.de/StructureDefinition/normgroesse",
+      "valueCode" : "NB"
+    } ],
+    "code" : {
+      "coding" : [ {
+        "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+        "code" : "12345678"
+      } ],
+      "text" : "Schmerzmittel"
+    },
+    "form" : {
+      "coding" : [ {
+        "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+        "code" : "TAB"
+      } ]
+    },
+    "amount" : {
+      "numerator" : {
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+          "valueString" : "1"
+        } ],
+        "unit" : "Stk"
       },
-      "extension": [
-        {
-          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://snomed.info/sct",
-                "version": "http://snomed.info/sct/900000000000207008/version/20220331",
-                "code": "763158003",
-                "display": "Medicinal product (product)"
-              }
-            ]
-          }
-        },
-        {
-          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-          "valueCoding": {
-            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
-            "code": "00"
-          }
-        },
-        {
-          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-          "valueBoolean": false
-        },
-        {
-          "url": "http://fhir.de/StructureDefinition/normgroesse",
-          "valueCode": "NB"
-        }
-      ],
-      "code": {
-        "coding": [
-          {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "12345678"
-          }
-        ],
-        "text": "Schmerzmittel"
-      },
-      "form": {
-        "coding": [
-          {
-            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-            "code": "TAB"
-          }
-        ]
-      },
-      "amount": {
-        "numerator": {
-          "extension": [
-            {
-              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString": "1"
-            }
-          ],
-          "unit": "Stk"
-        },
-        "denominator": {
-          "value": 1
-        }
+      "denominator" : {
+        "value" : 1
       }
     }
-  ],
-  "basedOn": [
-    {
-      "reference": "Task/160.000.040.327.746.69"
+  } ],
+  "basedOn" : [ {
+    "reference" : "Task/160.000.226.119.748.31"
+  } ],
+  "status" : "unknown",
+  "about" : [ {
+    "reference" : "#e191c101-a57e-4998-8640-ebf8e45d1294"
+  } ],
+  "recipient" : [ {
+    "identifier" : {
+      "system" : "https://gematik.de/fhir/sid/telematik-id",
+      "value" : "1-2-ARZTPRAXIS-BerndRosenstrauch01"
     }
-  ],
-  "status": "unknown",
-  "about": [
-    {
-      "reference": "#207db9f1-0657-4835-805b-39d02868baf2"
-    }
-  ],
-  "recipient": [
-    {
-      "identifier": {
-        "system": "https://gematik.de/fhir/sid/telematik-id",
-        "value": "1-2-ARZT-BerndClaudius01"
+  } ],
+  "payload" : [ {
+    "extension" : [ {
+      "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
+      "valueIdentifier" : {
+        "system" : "http://fhir.de/sid/arge-ik/iknr",
+        "value" : "108433099"
       }
-    }
-  ],
-  "payload": [
-    {
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
-          "valueIdentifier": {
-            "system": "http://fhir.de/sid/arge-ik/iknr",
-            "value": "216444867"
-          }
-        },
-        {
-          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
-          "valueBoolean": true
-        },
-        {
-          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-          "valueCoding": {
-            "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-            "code": "160",
-            "display": "Muster 16 (Apothekenpflichtige Arzneimittel)"
-          }
-        }
-      ],
-      "contentString": "I won't enjoy it."
-    }
-  ]
+    }, {
+      "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
+      "valueBoolean" : true
+    }, {
+      "url" : "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
+      "valueCoding" : {
+        "system" : "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
+        "code" : "160",
+        "display" : "Muster 16 (Apothekenpflichtige Arzneimittel)"
+      }
+    } ],
+    "contentString" : "I wish you'd just tell me rather trying to engage my enthusiasm, because I haven't got one."
+  } ]
 }

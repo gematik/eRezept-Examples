@@ -1,4 +1,4 @@
-<img width="200" height="37" src="images/Gematik_Logo_Flag.png"/> <br/>
+<img width="200" height="37" src="images/Gematik_Logo_Flag_With_Background.png"/> <br/>
 
 # E-Rezept Examples
 

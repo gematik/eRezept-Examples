@@ -1,0 +1,114 @@
+{
+  "id" : "32f7d0e3-d6bd-4012-802f-ecf6a830f0cf",
+  "mainActor" : "Arztpraxis",
+  "name" : "Zusammenhängende Mehrfachverordnung für GKV-Versicherte",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_09", "@AFO-ID:A_22627", "@TESTFALL:positiv", "@Workflow:160", "@Versicherung:GKV", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Alle vier Mehrfachverordnungen werden zusammenhängend (über eine gemeinsame ID verknüpft) auf einmal ausgestellt",
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | MVO-ID | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 13061707 | 4 | 1 | 0 | leer |\n| true |  | 4 | 2 | 90 | leer |\n| true |  | 4 | 3 | 180 | leer |\n| true |  | 4 | 4 | 270 | leer |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.797.78",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.797.78/$activate",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.797.78",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.797.78 with AccessCode 9220bfc077324e454817181b2d948df1d66e6931bbde2c2e68441421e2dc8300",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/006_dmc_160.000.226.119.797.78.png"
+    }, {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/007_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.798.75",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/008_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/009_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/010_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.798.75/$activate",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/011_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.798.75",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/012_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.798.75 with AccessCode b207d86a4db8a5e0b3b04ae741f343c2e47979eb60759f00ae0d169f2d55f887",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/013_dmc_160.000.226.119.798.75.png"
+    }, {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/014_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.799.72",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/015_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/016_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/017_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.799.72/$activate",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/018_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.799.72",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/019_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.799.72 with AccessCode 762e6f05a23d368828ec9def8f8e6797ffe7c3f13bc26dc96d87a0e5316cbaff",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/020_dmc_160.000.226.119.799.72.png"
+    }, {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/021_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.800.69",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/022_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/023_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/024_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.800.69/$activate",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/025_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.800.69",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/026_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.800.69 with AccessCode a5c4bae31898a9c619078803c2e69ee49fe5d19c20e1a00cf0b04b319ae26bdd",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/027_dmc_160.000.226.119.800.69.png"
+    } ]
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/d0498aec-edc0-46f2-9afc-8e2b4fb66f05",
+      "file" : "Arztpraxis/zusammenhängende_mehrfachverordnung_für_gkv_versicherte/028_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_22627" ]
+}

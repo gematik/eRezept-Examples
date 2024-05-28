@@ -1,108 +1,69 @@
 {
-  "id": "2f435aa4-665c-49b7-9b66-8b4abd589bd8",
-  "mainActor": "Versicherter",
-  "name": "Versicherte löscht eine Nachricht",
-  "tags": [
-    "@Funktionalität=Cummunication",
-    "@Anwendungsfall=A_18508",
-    "@Anwendungsfall=A_18617",
-    "@Anwendungsfall=A_18618",
-    "@Anwendungsfall=A_19013",
-    "@Impl=done",
-    "@TCID=ERP_EE_Communication_10",
-    "@Path=happy",
-    "@Anwendungsfall=A_20260",
-    "@Afo=A_20258",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
-  "featureFile": "GKV_WF_160/Communication.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.747.66",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.747.66/$activate",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.747.66",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.747.66 with AccessCode 311ffbca1acb05aa4411e9bcf02960be392cfcb666772862bd6fc5085d2de28e",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/006_dmc_160.000.040.327.747.66.png"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/b02d4ccf-cc82-4172-a35e-1a0ae80cd46b",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/007_Response_Bundle.json"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/78bfe860-c284-486a-b110-1a02fb7cc06f",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/008_Response_Bundle.json"
-        },
-        {
-          "operation": "POST /Communication",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/009_Request_Communication.json"
-        },
-        {
-          "operation": "Response 201: Communication Communication/01eba3b1-2034-d3e0-6ff5-9f7a6cc189e8",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/010_Response_Communication.json"
-        }
-      ]
-    },
-    {
-      "name": "Und die Versicherte Sina Hüllmann ihre letzte versendete Nachricht löscht"
-    },
-    {
-      "name": "Dann kann die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann nicht abrufen, weil die Nachricht bereits gelöscht wurde"
-    },
-    {
-      "name": "Am flughafen check the return code",
-      "dumps": [
-        {
-          "operation": "Response 404: OperationOutcome 20230421_090509",
-          "file": "Versicherter/versicherte_löscht_eine_nachricht/011_Response_OperationOutcome.xml"
-        }
-      ]
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    }
-  ],
-  "requirements": ["A_20258"],
-  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013", "A_20260"]
+  "id" : "a9b82040-09cc-441d-96d2-3bd6a23a743b",
+  "mainActor" : "Versicherter",
+  "name" : "Versicherte löscht eine Nachricht",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_10", "@TESTFALL:positiv", "@AFO-ID:A_20260", "@AFO-ID:A_20258", "@Hauptdarsteller:Versicherter" ],
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.749.28",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.749.28/$activate",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.749.28",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.749.28 with AccessCode baf31932ba1448656c2fea9b1fd10e874caeee03af423385c91af89ded5ac80c",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/006_dmc_160.000.226.119.749.28.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/b3f84be9-e901-4457-95ee-a110df78f683",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/007_Response_Bundle.json"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/35559be6-92ff-4bbf-9b46-b557f0615a58",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/008_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/009_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-76ec-2618-eb30-c1f05972595c",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/010_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihre letzte versendete Nachricht löscht"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann nicht abrufen, weil die Nachricht bereits gelöscht wurde"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Response 404: OperationOutcome 20240208_190237",
+      "file" : "Versicherter/versicherte_löscht_eine_nachricht/011_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20260", "A_20258" ]
 }

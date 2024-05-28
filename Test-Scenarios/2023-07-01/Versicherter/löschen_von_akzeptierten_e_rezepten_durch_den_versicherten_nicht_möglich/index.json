@@ -1,109 +1,70 @@
 {
-  "id": "ddd2be77-d828-495f-bcab-c859246ffeed",
-  "mainActor": "Versicherter",
-  "name": "Löschen von akzeptierten E-Rezepten durch den Versicherten nicht möglich",
-  "tags": [
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF160_11",
-    "@Path=bad",
-    "@Afo=A_19145",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "description": "Der Versicherte versucht das Rezept zu löschen, nachdem es schon von einer Apotheke akzeptiert wurde. Das wird durch den Fachdienst verhindert.",
-  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
-  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.761.24",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.761.24/$activate",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.761.24",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.761.24 with AccessCode d78bdc258adbaa7f72cbe741228b7a3db2a619bdaaa87171589967aafbad6b5e",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/006_dmc_160.000.040.327.761.24.png"
-        }
-      ]
-    },
-    {
-      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/4ec25900-da8f-4c3a-8d58-0d2413acd0e1",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
-    },
-    {
-      "name": "Sina hüllmann check the return code",
-      "dumps": [
-        {
-          "operation": "Response 403: OperationOutcome 20230421_090643",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/008_Response_OperationOutcome.json"
-        }
-      ]
-    },
-    {
-      "name": "Sina hüllmann performable predicate"
-    },
-    {
-      "name": "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
-      "dumps": [
-        {
-          "operation": "POST /Task/160.000.040.327.761.24/$close?secret=d16ab491385352e47bef64ec2c6dc4defe3e1721806f6477afd4624268b9d06d",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/009_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/a0515a67-0200-0000-0003-000000000000",
-          "file": "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/010_Response_Bundle.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_19145"],
-  "useCases": ["A_18827", "A_18502", "A_18503"]
+  "id" : "38076121-c965-4243-85d5-fe669ef9a283",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen von akzeptierten E-Rezepten durch den Versicherten nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_14", "@TESTFALL:negativ", "@AFO-ID:A_19145", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte versucht das Rezept zu löschen, nachdem es schon von einer Apotheke akzeptiert wurde. Das wird durch den Fachdienst verhindert.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.763.83",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.763.83/$activate",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.763.83",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.763.83 with AccessCode 97ad494b957b47734ad1658be4b0d25b62adb5b122e60cbcc41af585c52a4a2f",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/006_dmc_160.000.226.119.763.83.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/7f1d4b0f-8544-404a-b72e-167fce8ae5b4",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+  }, {
+    "name" : "Sina hüllmann check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_190449",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/008_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.226.119.763.83/$close?secret=e9a7e2c8703ef73343c8a6530fc4c10dd708213e80f661d662bb5d5b4f7f801b",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/009_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a053507a-0d00-0000-0003-000000000000",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19145" ]
 }
