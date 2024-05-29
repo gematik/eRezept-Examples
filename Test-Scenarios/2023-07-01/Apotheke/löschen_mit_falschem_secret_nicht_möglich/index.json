@@ -1,109 +1,70 @@
 {
-  "id": "1e37cccd-b8c3-4e3e-b40e-7c368e9d3b36",
-  "mainActor": "Apotheke",
-  "name": "Löschen mit falschem Secret nicht möglich",
-  "tags": [
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF160_03",
-    "@Path=bad",
-    "@Afo=A_19224",
-    "@Hauptdarsteller=Apotheke"
-  ],
-  "description": "Der Fachdienst muss beim Löschen das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$abort ablehnen.",
-  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
-  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.765.12",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.765.12/$activate",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.765.12",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.765.12 with AccessCode 5e5ab2a3b05c0e909710e9c93adb950fe925b954f840e91664059f7effc17d9f",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/006_dmc_160.000.040.327.765.12.png"
-        }
-      ]
-    },
-    {
-      "name": "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/ae5fe589-4968-48f0-9540-54833a6f45d9",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht mit dem falschen Secret fgdkjfgd löschen"
-    },
-    {
-      "name": "Am flughafen check the return code",
-      "dumps": [
-        {
-          "operation": "Response 403: OperationOutcome 20230421_090713",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/008_Response_OperationOutcome.xml"
-        }
-      ]
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
-      "dumps": [
-        {
-          "operation": "POST /Task/160.000.040.327.765.12/$close?secret=2e064ba7db727ae7890f9d1aff2546990e3d5354abccdff2471d5d2440a8c9bc",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/009_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/a0555a67-0200-0000-0003-000000000000",
-          "file": "Apotheke/löschen_mit_falschem_secret_nicht_möglich/010_Response_Bundle.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_19224"],
-  "useCases": ["A_18827", "A_18502", "A_18503"]
+  "id" : "40da931c-2300-4493-bcea-72d345e27977",
+  "mainActor" : "Apotheke",
+  "name" : "Löschen mit falschem Secret nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_18", "@TESTFALL:negativ", "@AFO-ID:A_19224", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss beim Löschen das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$abort ablehnen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.767.71",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.767.71/$activate",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.767.71",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.767.71 with AccessCode 87013884b81ed8e51172a2d8dafe7ccf2dabb3035635d86dd296ff603658c58b",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/006_dmc_160.000.226.119.767.71.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/e0923329-13b1-498f-8f01-1eea3e8f2588",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht mit dem falschen Secret fgdkjfgd löschen"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_190541",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/008_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.226.119.767.71/$close?secret=6e98198200a752a38f55922bc696dbee66ac2caa0a7a533528a1c6a43b3cf4bb",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/009_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a057507a-0d00-0000-0003-000000000000",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19224" ]
 }
