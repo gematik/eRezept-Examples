@@ -90,6 +90,9 @@ The gematik runs regular tests against the ePrescription Service. These artifact
 #### Negative-Examples
 :warning: These examples are invalid examples and are only to be used for testing.
 
+#### API-Examples
+This folder is the collection of examples that are being used in the [API Documentation](https://github.com/gematik/api-erp/tree/master).
+
 ## Contributing
 
 If you want to contribute, please check our [`CONTRIBUTING.md`](CONTRIBUTING.md).
