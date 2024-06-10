@@ -1,0 +1,67 @@
+{
+  "id" : "88b7563b-449b-4106-9f7b-6cc8ab150d39",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen möglich erst nach der Dispensierung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:169", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AF-ID:AF_10111", "@AF-ID:AF_10112", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF169_05", "@TESTFALL:positiv", "@AFO-ID:A_22102", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte kann das E-Rezept erst löschen nachdem die Apotheke das Rezept dispensiert hat",
+  "feature" : "Direktzuweisung für GKV-Rezepte",
+  "featureFile" : "GKV_WF_169/GKV-Versicherter_WF_169",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/169.000.011.203.690.77",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/169.000.011.203.690.77/$activate",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/169.000.011.203.690.77",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 169.000.011.203.690.77 with AccessCode 214841a02c950eaad3ee99b140b113f58338978f0c3eab9b09c150a3c75f9c33",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/006_dmc_169.000.011.203.690.77.png"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/90e1a278-1747-49ef-acb7-c45de3b2cd44",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/169.000.011.203.690.77/$close?secret=92880b4f1700052c6ea187f7043ce81b6d1a18645e11c92eeff7f5251cce51ba",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a96af4aa-0000-0000-0003-000000000000",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht"
+  }, {
+    "name" : "Dann wird das letzte gelöschte E-Rezept der Versicherten nicht mehr angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 410: OperationOutcome 20240208_190800",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/010_Response_OperationOutcome.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_22102" ],
+  "useCases" : [ "AF_10111", "AF_10112" ]
+}

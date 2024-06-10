@@ -1,0 +1,92 @@
+{
+  "id" : "bce3a6f2-e5c6-416f-9e95-6b2254dfbba6",
+  "mainActor" : "Versicherter",
+  "name" : "Zuweisung an einen Vertreter",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_03", "@TESTFALL:positiv", "@AFO-ID:A_18781", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte weist das ausgestellte Rezept einem Vertreter zu. Dieser kann es erfolgreich in der Apotheke einlösen.",
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.742.49",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.742.49/$activate",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.742.49",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.742.49 with AccessCode a58cff696bcd05a0a2e856334d5d03fa6a78334c2dd221259b141c40dd1bf640",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/006_dmc_160.000.226.119.742.49.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann ihr letztes E-Rezept per Nachricht an den Vertreter Günther Angermänn schickt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/aa82ae11-7640-4e56-b980-0e1b1e3fe98e",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/007_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/008_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-71ed-5b00-fea9-434bce055eef",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/009_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Dann hat der Vertreter Günther Angermänn die Nachricht mit dem Rezept der Versicherten Sina Hüllmann empfangen"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/7411db7d-8b91-4420-9673-f18791526bff",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/010_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und der Vertreter Günther Angermänn sein letztes von Sina Hüllmann zugewiesenes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist",
+    "dumps" : [ {
+      "operation" : "Response 200: Communication Communication/01ebbac0-71ed-5b00-fea9-434bce055eef",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/011_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/33f9ab58-0ebc-4ee2-becd-41cb1bd6ea22",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/012_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.226.119.742.49/$close?secret=d20ea02e68703baa7890cdaad6f6f6dad7c670c65ae0f34a72f546ebe7e2bf1c",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/013_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a03e507a-0d00-0000-0003-000000000000",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/014_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke hat genau eine Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_190117",
+      "file" : "Versicherter/zuweisung_an_einen_vertreter/015_Response_OperationOutcome.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_18781" ]
+}

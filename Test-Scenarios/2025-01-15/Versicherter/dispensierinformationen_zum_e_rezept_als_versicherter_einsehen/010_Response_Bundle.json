@@ -1,0 +1,102 @@
+{
+  "resourceType" : "Bundle",
+  "id" : "52deb0c6-55b7-4b67-95ce-e171413b8340",
+  "type" : "searchset",
+  "timestamp" : "2024-02-08T18:03:06.888+00:00",
+  "total" : 0,
+  "link" : [ {
+    "relation" : "self",
+    "url" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=160.000.226.119.752.19"
+  } ],
+  "entry" : [ {
+    "fullUrl" : "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.226.119.752.19",
+    "resource" : {
+      "resourceType" : "MedicationDispense",
+      "id" : "160.000.226.119.752.19",
+      "meta" : {
+        "profile" : [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4" ]
+      },
+      "contained" : [ {
+        "resourceType" : "Medication",
+        "id" : "80dcfd04-c4d9-4c31-bc4a-08253d86f10f",
+        "meta" : {
+          "profile" : [ "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0" ]
+        },
+        "extension" : [ {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+          "valueCodeableConcept" : {
+            "coding" : [ {
+              "system" : "http://snomed.info/sct",
+              "version" : "http://snomed.info/sct/900000000000207008/version/20220331",
+              "code" : "763158003",
+              "display" : "Medicinal product (product)"
+            } ]
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding" : {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code" : "00"
+          }
+        }, {
+          "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean" : false
+        }, {
+          "url" : "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode" : "NB"
+        } ],
+        "code" : {
+          "coding" : [ {
+            "system" : "http://fhir.de/CodeSystem/ifa/pzn",
+            "code" : "12345678"
+          } ],
+          "text" : "Schmerzmittel"
+        },
+        "form" : {
+          "coding" : [ {
+            "system" : "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code" : "TAB"
+          } ]
+        },
+        "amount" : {
+          "numerator" : {
+            "extension" : [ {
+              "url" : "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+              "valueString" : "1"
+            } ],
+            "unit" : "Stk"
+          },
+          "denominator" : {
+            "value" : 1
+          }
+        }
+      } ],
+      "identifier" : [ {
+        "system" : "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value" : "160.000.226.119.752.19"
+      } ],
+      "status" : "completed",
+      "medicationReference" : {
+        "reference" : "#80dcfd04-c4d9-4c31-bc4a-08253d86f10f"
+      },
+      "subject" : {
+        "identifier" : {
+          "system" : "http://fhir.de/sid/gkv/kvid-10",
+          "value" : "X110498565"
+        }
+      },
+      "performer" : [ {
+        "actor" : {
+          "identifier" : {
+            "system" : "https://gematik.de/fhir/sid/telematik-id",
+            "value" : "3-SMC-B-Testkarte-883110000116873"
+          }
+        }
+      } ],
+      "whenHandedOver" : "2024-02-08"
+    },
+    "search" : {
+      "mode" : "match"
+    }
+  } ]
+}

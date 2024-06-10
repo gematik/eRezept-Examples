@@ -1,0 +1,71 @@
+{
+  "id" : "adc561ad-3131-4543-a31b-d8c5dc7e64e6",
+  "mainActor" : "Versicherter",
+  "name" : "E-Rezept per alternative Zuweisung einlösen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:AlternativeZuweisung", "@Hauptdarsteller:Versicherter", "@TCID:ERP_EE_ALTERNATIVE_ZUWEISUNG_01", "@TESTFALL:positiv" ],
+  "description" : "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept.\n  Der Versicherte weist das E-Rezept seiner Apotheke über den Apothekendienstleister zu.",
+  "feature" : "Alternative Zuweisung",
+  "featureFile" : "alternative_zuweisung/alternative_Zuweisung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen verbindet sich mit seinem Apothekendienstleister"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.807.48",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.807.48/$activate",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.807.48",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.807.48 with AccessCode 58a2943895fc8d4ae808e5918d009b363edaacd6f65cd4881a95d2dd2d3079f0",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/006_dmc_160.000.226.119.807.48.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann für das letzte E-Rezept die alternative Zuweisung an die Apotheke Am Flughafen mit der Option Versand auslöst"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen eine Nachricht mit einer alternativen Zuweisung vom Dienstleister empfängt und entschlüsselt"
+  }, {
+    "name" : "Am flughafen decrypt psp message"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/8f1fbf91-2ca6-4bca-8acd-2a7297079ae2",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.226.119.807.48/$close?secret=5270112191f915cbb32132eea8722fdce0d1454f3b6570ef14bf43952ffa2d69",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a07f507a-0d00-0000-0003-000000000000",
+      "file" : "Versicherter/e_rezept_per_alternative_zuweisung_einlösen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ]
+}

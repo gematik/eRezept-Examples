@@ -1,0 +1,81 @@
+{
+  "id" : "a7ccad87-6763-4ee8-9b43-bf0676615334",
+  "mainActor" : "Apotheke",
+  "name" : "Apotheke löscht Nachricht",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_08", "@TESTFALL:positiv", "@AFO-ID:A_20776", "@AFO-ID:A_20258", "@Hauptdarsteller:Apotheke" ],
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/apotheke_löscht_nachricht/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.747.34",
+      "file" : "Apotheke/apotheke_löscht_nachricht/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/apotheke_löscht_nachricht/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/apotheke_löscht_nachricht/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.747.34/$activate",
+      "file" : "Apotheke/apotheke_löscht_nachricht/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.747.34",
+      "file" : "Apotheke/apotheke_löscht_nachricht/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.747.34 with AccessCode b761d66ff35265fcd6195f11514f01fd63c575eec672a6f8b26302697fde53cb",
+      "file" : "Apotheke/apotheke_löscht_nachricht/006_dmc_160.000.226.119.747.34.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/727c5cde-8f00-4c77-9d3b-b218e6755e75",
+      "file" : "Apotheke/apotheke_löscht_nachricht/007_Response_Bundle.json"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/6f2e7878-7bf0-4410-bd8a-9b4bd41f14e0",
+      "file" : "Apotheke/apotheke_löscht_nachricht/008_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Apotheke/apotheke_löscht_nachricht/009_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-75f9-36b0-485f-6e178597f1b2",
+      "file" : "Apotheke/apotheke_löscht_nachricht/010_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann beantwortet",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/1433db85-1d50-432b-bfa6-d68fedd89f6c",
+      "file" : "Apotheke/apotheke_löscht_nachricht/011_Response_Bundle.xml"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Apotheke/apotheke_löscht_nachricht/012_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-760f-d7a8-53c8-5504189a3de8",
+      "file" : "Apotheke/apotheke_löscht_nachricht/013_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen ihre letzte versendete Nachricht löscht"
+  }, {
+    "name" : "Dann hat die Versicherte Sina Hüllmann keine Antwort von der Apotheke Am Flughafen für das letzte E-Rezept erhalten"
+  }, {
+    "name" : "Sina hüllmann check the return code",
+    "dumps" : [ {
+      "operation" : "Response 404: OperationOutcome 20240208_190222",
+      "file" : "Apotheke/apotheke_löscht_nachricht/014_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20776", "A_20258" ]
+}

@@ -1,0 +1,40 @@
+{
+  "id" : "aec27ffb-1186-4ea0-8256-dd3705bd4573",
+  "mainActor" : "Fachdienst",
+  "name" : "Unzulässige Denominatoren und Numeratoren",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_08", "@AFO-ID:A_22704", "@AFO-ID:A_22628", "@AFO-ID:A_22629", "@AFO-ID:A_22630", "@AFO-ID:A_22632", "@AFO-ID:A_22634", "@TESTFALL:negativ", "@Hauptdarsteller:Fachdienst" ],
+  "description" : "1. Denominator muss größer 1 sein (A_22629)\n  2. Denominator darf nicht größer 4 sein (A_22628)\n  3. Numerator darf nicht größer 4 sein (A_22628)\n  4. Numerator darf nicht größer als Denominator sein (22630)\n  5. Numerator muss größer 0 sein sein (A_22704)\n  6. Denominator muss größer 0 sein sein (A_22629)\n  7. Beginn der Einlösefrist muss gesetzt sein (A_22634)\n  8. Beginn des Gültigkeitszeitraums muss vor Ende des Zeitraums liegen",
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 1 | 180 | 90 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.796.81",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.796.81/$activate",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20240208_191208",
+      "file" : "Fachdienst/unzulässige_denominatoren_und_numeratoren/005_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_22704", "A_22628", "A_22629", "A_22630", "A_22632", "A_22634" ]
+}

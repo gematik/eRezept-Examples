@@ -1,0 +1,73 @@
+{
+  "id" : "57f67506-aa7c-4e1a-996c-d1af98920655",
+  "mainActor" : "Apotheke",
+  "name" : "Einlösen des E-Rezepts nicht möglich, weil durch Apotheke gelöscht",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_09", "@TESTFALL:negativ", "@AFO-ID:A_18513", "@AFO-ID:A_19121", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke löscht das zugewiesene Rezept. Anschließend kann sie es nicht einlösen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.758.98",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.758.98/$activate",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.758.98",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.758.98 with AccessCode aa9acb37f2022122238d8f8ad12109459d0ec06fe488848def3e05daa1dd6d01",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/006_dmc_160.000.226.119.758.98.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/6bbd3aa3-660b-4366-b4dc-066d362ea406",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept löscht"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht dispensieren, weil es nicht mehr existiert"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.226.119.758.98/$close?secret=b6dfc5efd4ad8712ae3bedbc571c6b230e0ffec8fa5916a2c510765f1ea0f2fa",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/008_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 410: OperationOutcome 20240208_190358",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/009_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 410: OperationOutcome 20240208_190358",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/010_Response_OperationOutcome.json"
+    }, {
+      "operation" : "Response 410: OperationOutcome 20240208_190358",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/011_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_18513", "A_19121" ]
+}

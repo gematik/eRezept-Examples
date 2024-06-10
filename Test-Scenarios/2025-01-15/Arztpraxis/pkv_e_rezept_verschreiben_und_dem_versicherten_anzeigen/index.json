@@ -1,0 +1,49 @@
+{
+  "id" : "f248af51-b758-4d84-acbb-b577684afc47",
+  "mainActor" : "Arztpraxis",
+  "name" : "PKV E-Rezept verschreiben und dem Versicherten Anzeigen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF200_02", "@TESTFALL:positiv", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Die Ärztin verschreibt dem PKV-Versicherten Günther Angermänn  ein E-Rezept. Günther Angermänn soll dieses E-Rezept\n  im FdV angezeigt werden",
+  "feature" : "PKV-Rezepte verschreiben",
+  "featureFile" : "pkv/PKV-Versicherter_E-Rezept_verschreiben",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die GKV Versicherte Leonie Hütter hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.002.096.555.80",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.002.096.555.80/$activate",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.002.096.555.80",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.002.096.555.80 with AccessCode cb6ab10e946de70bd27389bfc0bbf9dd302882d9bec71b4fe0d6147477f15050",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/006_dmc_200.000.002.096.555.80.png"
+    } ]
+  }, {
+    "name" : "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/a2222a40-8116-4b88-98a8-7345fd6a4a23",
+      "file" : "Arztpraxis/pkv_e_rezept_verschreiben_und_dem_versicherten_anzeigen/007_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18822", "A_18827", "A_18502", "A_18503" ]
+}

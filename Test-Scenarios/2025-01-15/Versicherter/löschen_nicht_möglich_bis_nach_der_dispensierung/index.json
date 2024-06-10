@@ -1,0 +1,63 @@
+{
+  "id" : "d0837f1a-7427-4691-b9d4-9102e02306f7",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen nicht möglich bis nach der Dispensierung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:209", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@Versicherung:PKV", "@TCID:ERP_EE_WF209_06", "@AFO-ID:A_22102-01", "@TESTFALL:negativ", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte kann E-Rezepte mit Direktzuweisung nicht löschen bis diese durch\n  eine Apotheke dispensiert wurden",
+  "feature" : "Direktzuweisung für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Versicherter_WF209",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/209.000.000.032.998.25",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/209.000.000.032.998.25/$activate",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/209.000.000.032.998.25",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 209.000.000.032.998.25 with AccessCode 58e3679a61dd12c30bb1e29ea7afc7a0a5b1d11bd085208497233bb8b3979e4c",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/006_dmc_209.000.000.032.998.25.png"
+    } ]
+  }, {
+    "name" : "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/780a22b8-4430-4bbc-b096-9cce6837b3f7",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/007_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Aber der Versicherte Günther Angermänn kann sein letztes E-Rezept nicht löschen, weil er nicht das Recht dazu hat"
+  }, {
+    "name" : "Günther angermänn check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_192150",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/008_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_192150",
+      "file" : "Versicherter/löschen_nicht_möglich_bis_nach_der_dispensierung/009_Response_OperationOutcome.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18502", "A_18503", "A_22102-01" ]
+}

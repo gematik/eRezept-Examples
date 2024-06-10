@@ -1,0 +1,108 @@
+{
+  "id" : "7ce3d098-9c74-4532-9efe-4ba5f55a914d",
+  "mainActor" : "Versicherter",
+  "name" : "PKV-Abrechnungsinformationen löschen, wenn die Einwilligung vom Versicherten widerrufen wird",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_04", "@TESTFALL:positiv", "@AFO-ID:A_22157", "@AF-ID:AF_10085", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Falls der Versicherte nach dem Speichern von PKV-Abrechnungsinformationen seine Einwilligung widerruft,\n  werden die vorhandenen PKV-Abrechnungsinformationen beim Fachdienst gelöscht.\n  Der E-Rezept-Fachdienst MUSS beim Aufruf der HTTP-Operation DELETE auf den Endpunkt /Consent mit\n  ?category=CHARGCONS alle dem Versicherten zugeordneten ChargeItem-Ressourcen (ChargeItem.subject.identifier)\n  anhand der KVNR des Versicherten im ACCESS_TOKEN im \"Authorization\"-Header des HTTP-Requests identifizieren und löschen.",
+  "feature" : "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/8d6cb44d-6107-4a57-9e9c-57600900421b",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/000_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/001_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.002.096.529.61",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/002_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/003_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/004_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.002.096.529.61/$activate",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/005_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.002.096.529.61",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/006_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.002.096.529.61 with AccessCode 7ff44bc1f53a783e4465dc5b54ec6a778f57fdf43baa8d9f5a7b078b3eae3c74",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/007_dmc_200.000.002.096.529.61.png"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/c6279d7b-6474-43ff-b548-908cadcd2264",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/200.000.002.096.529.61/$close?secret=706124f1ef040adf86c31ca12085ccc81944a876875558098635282713204edc",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/009_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/c891fd1f-0000-0000-0003-000000000000",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/011_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/012_signed_document.b64"
+    }, {
+      "operation" : "POST /ChargeItem?task=200.000.002.096.529.61&secret=706124f1ef040adf86c31ca12085ccc81944a876875558098635282713204edc",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/013_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 201: ChargeItem ChargeItem/200.000.002.096.529.61",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/014_Response_ChargeItem.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn für das letzte E-Rezept die PKV-Abrechnungsinformationen abruft"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/815b3dd2-32b5-4a1b-b235-1ccbfd09f9da",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/015_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen widerruft",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/5e8aa724-312d-4d12-adc4-cdb195554b22",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/016_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Dann kann der Versicherte Günther Angermänn für das letzte E-Rezept keine PKV-Abrechnungsinformationen abrufen"
+  }, {
+    "name" : "Günther angermänn check the return code",
+    "dumps" : [ {
+      "operation" : "Response 404: OperationOutcome 20240208_191457",
+      "file" : "Versicherter/pkv_abrechnungsinformationen_löschen__wenn_die_einwilligung_vom_versicherten_widerrufen_wird/017_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Günther angermänn performable predicate"
+  } ],
+  "requirements" : [ "A_18822", "A_18827", "A_22157" ],
+  "useCases" : [ "AF_10085" ]
+}
