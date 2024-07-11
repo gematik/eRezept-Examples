@@ -1,4 +1,6 @@
+<!--
 HTTP/1.1 200 OK
+-->
 
 <Bundle xmlns="http://hl7.org/fhir">
     <id value="dffbfd6a-5712-4798-bdc8-07201eb77ab8"/>
@@ -14,23 +16,20 @@ HTTP/1.1 200 OK
                 <meta>
                     <versionId value="2"/>
                     <lastUpdated value="2020-02-18T10:05:05.038+00:00"/>
-                    <source value="#AsYR9plLkvONJAiv"/>
                     <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"/>
                 </meta>
                 <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType">
-                    <valueCodeableConcept>
-                        <coding>
-                            <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType" />
-                            <code value="160" />
-                            <display value="Muster 16 (Apothekenpflichtige Arzneimittel)" />
-                        </coding>
-                    </valueCodeableConcept>
+                    <valueCoding>
+                        <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType" />
+                        <code value="160" />
+                        <display value="Muster 16 (Apothekenpflichtige Arzneimittel)" />
+                    </valueCoding>
                 </extension>
                 <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate">
-                    <valueDateTime value="2020-06-02" />
+                    <valueDate value="2020-06-02" />
                 </extension>
                 <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate">
-                    <valueDateTime value="2020-04-01" />
+                    <valueDate value="2020-04-01" />
                 </extension>
                 <identifier>
                     <use value="official"/>
@@ -43,21 +42,22 @@ HTTP/1.1 200 OK
                     <value value="777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"/>
                 </identifier>
                 <identifier>
-                    <use value="official"/>
-                    <system value="http://fhir.de/sid/gkv/kvid-10"/>
-                    <value value="X123456789"/>
-                </identifier>
-                <identifier>
                     <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_Secret"/>
                     <value value="c36ca26502892b371d252c99b496e31505ff449aca9bc69e231c58148f6233cf"/>
                 </identifier>
                 <status value="completed"/>
                 <intent value="order"/>
+                <for>
+                    <identifier>
+                        <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                        <value value="X123456789"/>
+                    </identifier>
+                </for>
                 <authoredOn value="2020-03-02T08:25:05+00:00"/>
                 <lastModified value="2020-03-02T08:45:05+00:00"/>
                 <performerType>
                     <coding>
-                        <system value="urn:ietf:rfc:3986"/>
+                        <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_OrganizationType"/>
                         <code value="urn:oid:1.2.276.0.76.4.54"/>
                         <display value="Öffentliche Apotheke"/>
                     </coding>
@@ -69,7 +69,9 @@ HTTP/1.1 200 OK
                             <code value="1"/>
                         </coding>
                     </type>
-                    <valueString value="281a985c-f25b-4aae-91a6-41ad744080b0"/>
+                    <valueReference>
+                        <reference value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType/281a985c-f25b-4aae-91a6-41ad744080b0"/>
+                    </valueReference>
                 </input>
                 <output>
                     <type>
@@ -78,12 +80,15 @@ HTTP/1.1 200 OK
                             <code value="3"/>
                         </coding>
                     </type>
-                    <valueString value="dffbfd6a-5712-4798-bdc8-07201eb77ab8"/>
+                    <valueReference>
+                        <reference value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType/dffbfd6a-5712-4798-bdc8-07201eb77ab8"/>
+                    </valueReference>
                 </output>
             </Task>
         </resource>
     </entry>
     <entry>
+    <fullUrl value="https://erp-test.zentral.erp.splitdns.ti-dienste.de/Bundle/dffbfd6a-5712-4798-bdc8-07201eb77ab8"/>
         <resource>
             <Bundle xmlns="http://hl7.org/fhir">
                 <id value="dffbfd6a-5712-4798-bdc8-07201eb77ab8"/>
@@ -130,11 +135,16 @@ HTTP/1.1 200 OK
                                     <end value="2020-03-20T07:31:34.328+00:00" />
                                 </period>
                             </event>
+                            <section>
+                                <entry>
+                                    <reference value="urn:uuid:47decbcb-a411-4298-8b61-eab2374c818a"/>
+                                </entry>
+                            </section>
                         </Composition>
                     </resource>
                 </entry>
                 <entry>
-                    <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+                    <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/ErxService" />
                     <resource>
                         <Device>
                             <id value="1" />
@@ -151,6 +161,19 @@ HTTP/1.1 200 OK
                                 <value value="1.0.0" />
                             </version>
                         </Device>
+                    </resource>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:uuid:47decbcb-a411-4298-8b61-eab2374c818a"/>
+                    <resource>
+                        <Binary xmlns="http://hl7.org/fhir">
+                            <id value="47decbcb-a411-4298-8b61-eab2374c818a"/>
+                            <meta>
+                                <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.3"/>
+                            </meta>
+                            <contentType value="application/octet-stream"/>
+                            <data value="hcjUMWK000GMe4zsJtNu+00hM7f9yHWp7ewiMeXy6KY="/>
+                        </Binary>
                     </resource>
                 </entry>
                 <signature>
