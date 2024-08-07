@@ -3,7 +3,10 @@ InstanceOf: Task
 Usage: #example
 * meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
-* extension[=].valueCoding = $GEM_ERP_CS_FlowType#169 "Muster 16 (Direkte Zuweisung)"
+* extension[=].valueCoding.system = $GEM_ERP_CS_FlowType
+* extension[=].valueCoding.code = #169
+* extension[=].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
+//* extension[=].valueCoding = $GEM_ERP_CS_FlowType#169 "Muster 16 (Direkte Zuweisung)"
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate"
 * extension[=].valueDate = "2022-06-30"
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate"
@@ -15,4 +18,7 @@ Usage: #example
 * status = #draft
 * intent = #order
 * authoredOn = "2022-03-18T15:26:00+00:00"
-* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
+* performerType.coding.system = $GEM_ERP_CS_OrganizationType
+* performerType.coding.code = #urn:oid:1.2.276.0.76.4.54
+* performerType.coding.display = "Öffentliche Apotheke"
+//* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"

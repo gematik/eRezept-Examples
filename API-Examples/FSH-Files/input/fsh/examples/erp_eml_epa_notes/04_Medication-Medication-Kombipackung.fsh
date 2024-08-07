@@ -1,7 +1,7 @@
 Instance: erp-eml-epa-notes-04-Medication-Medication-Kombipackung
 InstanceOf: Medication
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
 * contained[0] = Augentropfen
 * contained[+] = NasenSpray
 * extension[0].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension"

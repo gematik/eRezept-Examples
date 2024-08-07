@@ -3,7 +3,7 @@
 [erp-abrufen-03-request-recovery-secret]: Bundle-erp-abrufen-03-request-recovery-secret.html
 [erp-abrufen-06-request-taskClose]: MedicationDispense-erp-abrufen-06-request-taskClose.html
 [erp-abrufen-07-request-taskCloseMultiple]: Bundle-erp-abrufen-07-request-taskCloseMultiple.html
-[dffbfd6a-5712-4798-bdc8-07201eb77ab8]: MedicationDispense-dffbfd6a-5712-4798-bdc8-07201eb77ab8.html
+[erp-abrufen-08-response-taskDispense]: MedicationDispense-erp-abrufen-08-response-taskDispense.html
 [erp-abrufen-egk-05-Response-Task]: Bundle-erp-abrufen-egk-05-Response-Task.html
 [erp-alternative-zuweisung-03-certificate-in-apovzd]: Binary-erp-alternative-zuweisung-03-certificate-in-apovzd.html
 [erp-bereitstellen-01-response-taskCreate]: Task-erp-bereitstellen-01-response-taskCreate.html

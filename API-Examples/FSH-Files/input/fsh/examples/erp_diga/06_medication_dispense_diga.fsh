@@ -1,7 +1,7 @@
 Instance: erp-diga-06-medication-dispense-diga
 InstanceOf: MedicationDispense
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense_DiGA|1.4"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense_DiGA|1.3"
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM-ERP-EX-RedeemCode"
 * extension.valueString = "DE12345678901234"
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"

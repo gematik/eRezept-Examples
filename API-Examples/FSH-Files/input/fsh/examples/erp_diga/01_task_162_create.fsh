@@ -3,7 +3,7 @@ InstanceOf: Task
 Usage: #example
 * meta.versionId = "1"
 * meta.lastUpdated = "2025-03-02T08:26:21.594+00:00"
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.4"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension.valueCodeableConcept = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
 * identifier[0].use = #official

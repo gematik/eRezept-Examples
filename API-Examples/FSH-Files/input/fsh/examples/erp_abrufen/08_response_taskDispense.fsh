@@ -1,7 +1,6 @@
 Instance: erp-abrufen-08-response-taskDispense
 InstanceOf: MedicationDispense
 Usage: #example
-* id = "dffbfd6a-5712-4798-bdc8-07201eb77ab8"
 * meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
 * contained = med0314
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"

@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+    <id value="erp-abrufen-06-request-taskClose"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+    </meta>
+    <resource>
+        <Medication xmlns="http://hl7.org/fhir">
+            <id value="med0314"/>
+            <meta>
+                <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+                <valueCodeableConcept>
+                    <coding>
+                        <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                        <code value="763158003"/>
+                        <system value="http://snomed.info/sct"/>
+                        <display value="Medicinal product (product)"/>
+                    </coding>
+                </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+                <valueCoding>
+                    <code value="00"/>
+                    <system value="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"/>
+                </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+                <valueBoolean value="False"/>
+            </extension>
+            <code>
+                <coding>
+                    <code value="06313728"/>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                </coding>
+                <text value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
+            </code>
+            <amount>
+                <numerator>
+                    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                        <valueString value="10"/>
+                    </extension>
+                    <code value="{tbl}"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <unit value="Tabletten"/>
+                </numerator>
+                <denominator>
+                    <value value="1"/>
+                </denominator>
+            </amount>
+            <form>
+                <coding>
+                    <code value="TAB"/>
+                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                </coding>
+            </form>
+        </Medication>
+    </resource>
+    <identifier>
+        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+        <value value="160.123.456.789.123.58"/>
+    </identifier>
+    <subject>
+        <identifier>
+            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+            <value value="X123456789"/>
+        </identifier>
+    </subject>
+    <performer>
+        <actor>
+            <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-SMC-B-Testkarte-883110000129070"/>
+            </identifier>
+        </actor>
+    </performer>
+    <dosageInstruction>
+        <text value="1-0-1-0"/>
+    </dosageInstruction>
+    <status value="completed"/>
+    <medicationReference>
+        <reference value="#med0314"/>
+        <display value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
+    </medicationReference>
+    <quantity>
+        <value value="1"/>
+        <code value="{Package}"/>
+        <system value="http://unitsofmeasure.org"/>
+    </quantity>
+    <whenHandedOver value="2020-03-20"/>
+</MedicationDispense>

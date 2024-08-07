@@ -1,7 +1,7 @@
 Instance: erp-eml-epa-notes-03-Medication-Medication-Rezeptur
 InstanceOf: Medication
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
 * contained[0] = MedicationHydrocortison
 * contained[+] = MedicationDexpanthenol
 * extension[0].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension"
