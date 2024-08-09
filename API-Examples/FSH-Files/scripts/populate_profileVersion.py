@@ -14,7 +14,7 @@ def copy_files(src_directory, dst_directory):
                 src_file_path = os.path.join(root, file)
                 dst_file_path = os.path.join(dst_directory, os.path.relpath(src_file_path, src_directory))
                 shutil.copy2(src_file_path, dst_file_path)
-                print(f"Copied file: {src_file_path} to {dst_file_path}")
+                #print(f"Copied file: {src_file_path} to {dst_file_path}")
 
 def process_fsh_files(directory, profile_version):
     for root, dirs, files in os.walk(directory):
@@ -29,7 +29,7 @@ def process_fsh_files(directory, profile_version):
                 
                 with open(file_path, 'w') as f:
                     f.write(updated_content)
-                print(f"Processed file: {file_path}")
+                #print(f"Processed file: {file_path}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Copy FSH files and update profile version.')
