@@ -1,0 +1,161 @@
+{
+  "resourceType": "Medication",
+  "id": "erp-eml-epa-notes-03-Medication-Medication-Rezeptur",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "MedicationHydrocortison",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "valueCoding": {
+            "version": "http://snomed.info/sct/900000000000207008/version/20240201",
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          },
+          "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension"
+        }
+      ],
+      "batch": {
+        "lotNumber": "56498416854"
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "03424249",
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "display": "Hydrocortison 1% Creme"
+          }
+        ]
+      }
+    },
+    {
+      "resourceType": "Medication",
+      "id": "MedicationDexpanthenol",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "valueCoding": {
+            "version": "http://snomed.info/sct/900000000000207008/version/20240201",
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          },
+          "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension"
+        }
+      ],
+      "batch": {
+        "lotNumber": "0132456"
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "16667195",
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "display": "Dexpanthenol 5% Creme"
+          }
+        ]
+      }
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://gematik.de/fhir/dev-epa-medication/CodeSystem/epa-drug-category-cs"
+      }
+    },
+    {
+      "valueCoding": {
+        "version": "http://snomed.info/sct/900000000000207008/version/20240201",
+        "code": "1208954007",
+        "system": "http://snomed.info/sct",
+        "display": "Extemporaneous preparation (product)"
+      },
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension"
+    },
+    {
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-id-vaccine-extension",
+      "valueBoolean": false
+    }
+  ],
+  "code": {
+    "text": "Hydrocortison-Dexpanthenol-Salbe"
+  },
+  "amount": {
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+          "valueString": "100 ml"
+        }
+      ],
+      "value": 20,
+      "unit": "ml"
+    },
+    "denominator": {
+      "value": 1
+    }
+  },
+  "ingredient": [
+    {
+      "strength": {
+        "numerator": {
+          "value": 50,
+          "code": "g",
+          "system": "http://unitsofmeasure.org"
+        },
+        "denominator": {
+          "value": 100,
+          "code": "g",
+          "system": "http://unitsofmeasure.org"
+        }
+      },
+      "itemReference": {
+        "reference": "#MedicationHydrocortison"
+      },
+      "isActive": true
+    },
+    {
+      "strength": {
+        "numerator": {
+          "value": 50,
+          "code": "g",
+          "system": "http://unitsofmeasure.org"
+        },
+        "denominator": {
+          "value": 100,
+          "code": "g",
+          "system": "http://unitsofmeasure.org"
+        }
+      },
+      "itemReference": {
+        "reference": "#MedicationDexpanthenol"
+      },
+      "isActive": true
+    }
+  ],
+  "form": {
+    "coding": [
+      {
+        "code": "SAL",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+      }
+    ]
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "resourceType": "Medication",
+  "id": "erp-eml-epa-notes-04-Medication-Medication-Kombipackung",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "Augentropfen",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "373873005",
+            "system": "http://snomed.info/sct",
+            "display": "Pharmaceutical / biologic product (product)"
+          }
+        }
+      ],
+      "ingredient": [
+        {
+          "strength": {
+            "numerator": {
+              "value": 20,
+              "code": "mg",
+              "system": "http://unitsofmeasure.org",
+              "unit": "mg"
+            },
+            "denominator": {
+              "value": 1,
+              "code": "ml",
+              "system": "http://unitsofmeasure.org",
+              "unit": "ml"
+            }
+          },
+          "itemCodeableConcept": {
+            "coding": [
+              {
+                "code": "R01AC01",
+                "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                "display": "Natriumcromoglicat"
+              }
+            ]
+          }
+        }
+      ],
+      "batch": {
+        "lotNumber": "0132456"
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "01746517-1",
+            "system": "http://fhir.de/CodeSystem/abdata/Komponentennummer",
+            "display": "Augentropfen"
+          }
+        ]
+      }
+    },
+    {
+      "resourceType": "Medication",
+      "id": "NasenSpray",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "373873005",
+            "system": "http://snomed.info/sct",
+            "display": "Pharmaceutical / biologic product (product)"
+          }
+        }
+      ],
+      "ingredient": [
+        {
+          "strength": {
+            "numerator": {
+              "value": 2.8,
+              "code": "mg",
+              "system": "http://unitsofmeasure.org",
+              "unit": "mg"
+            },
+            "denominator": {
+              "value": 1,
+              "code": "1",
+              "system": "http://unitsofmeasure.org",
+              "unit": "Sprühstoß"
+            }
+          },
+          "itemCodeableConcept": {
+            "coding": [
+              {
+                "code": "R01AC01",
+                "system": "http://fhir.de/CodeSystem/bfarm/atc",
+                "display": "Natriumcromoglicat"
+              }
+            ]
+          }
+        }
+      ],
+      "batch": {
+        "lotNumber": "56498416854"
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "01746517-2",
+            "system": "http://fhir.de/CodeSystem/abdata/Komponentennummer",
+            "display": "Nasenspray, Lösung"
+          }
+        ]
+      }
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/epa-medication-type-extension",
+      "valueCoding": {
+        "code": "781405001",
+        "system": "http://snomed.info/sct",
+        "display": "Medicinal product package"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-id-vaccine-extension",
+      "valueBoolean": false
+    },
+    {
+      "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "code": "00",
+        "display": "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
+      }
+    }
+  ],
+  "form": {
+    "coding": [
+      {
+        "code": "KPG",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+      }
+    ],
+    "text": "Kombipackung"
+  },
+  "ingredient": [
+    {
+      "itemReference": {
+        "reference": "#NasenSpray"
+      }
+    },
+    {
+      "itemReference": {
+        "reference": "#Augentropfen"
+      }
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "code": "1746517",
+        "system": "http://fhir.de/CodeSystem/ifa/pzn",
+        "display": "CROMO-RATIOPHARM Kombipackung"
+      }
+    ]
+  },
+  "status": "active"
+}
