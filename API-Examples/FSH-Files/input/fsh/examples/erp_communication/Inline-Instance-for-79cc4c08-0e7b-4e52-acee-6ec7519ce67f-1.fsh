@@ -1,7 +1,7 @@
 Instance: Inline-Instance-for-79cc4c08-0e7b-4e52-acee-6ec7519ce67f-1
 InstanceOf: Communication
 Usage: #inline
-* id = "12346"
+* id = "8381e39e-cbca-4ad6-8604-7cde08d26af2"
 * meta.versionId = "1"
 * meta.lastUpdated = "2020-03-12T18:15:10+00:00"
 * meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.3"
