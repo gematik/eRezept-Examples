@@ -36,7 +36,7 @@ jobs:
       - name: Identify and Copy Changed .json and .xml Files
         run: |
           mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
-          git fetch origin main:main
+          # git fetch origin main:main
           git diff --name-only main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
           echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
       
