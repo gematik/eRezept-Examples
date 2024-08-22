@@ -1,7 +1,7 @@
 Instance: erp-communication-03-request-PostPharmacyToPatient
 InstanceOf: Communication
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_Reply)
 * basedOn = Reference(160.123.456.789.123.58)
 * status = #unknown
 * recipient.identifier.system = "http://fhir.de/sid/gkv/kvid-10"

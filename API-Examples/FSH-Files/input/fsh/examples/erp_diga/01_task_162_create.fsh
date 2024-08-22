@@ -3,7 +3,7 @@ InstanceOf: Task
 Usage: #example
 * meta.versionId = "1"
 * meta.lastUpdated = "2025-03-02T08:26:21.594+00:00"
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension.valueCodeableConcept = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
 * identifier[0].use = #official
@@ -16,5 +16,5 @@ Usage: #example
 * intent = #order
 * authoredOn = "2025-03-02T08:25:05+00:00"
 * lastModified = "2025-03-02T08:25:05+00:00"
-* performerType = urn:ietf:rfc:3986#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
 * performerType.text = "Kostenträger"

@@ -13,6 +13,13 @@ TEMPLATE_DIR=$3
 
 # Create the output directory if it does not exist
 mkdir -p "$OUTPUT_DIR"
+echo "Processing files from $INPUT_DIR"
+./process_files.sh "$INPUT_DIR" "$OUTPUT_DIR"
+
+# Copy all the non FSH files to the output directory
+echo "Copying all non-FSH files to $OUTPUT_DIR"
+./copy_nonfsh.sh $TEMPLATE_DIR $OUTPUT_DIR
 
 # Run the Python script
-python convert_fhir.py "$INPUT_DIR" "$OUTPUT_DIR" "$TEMPLATE_DIR"
+# python convert_fhir.py "$INPUT_DIR" "$OUTPUT_DIR" "$TEMPLATE_DIR"
+

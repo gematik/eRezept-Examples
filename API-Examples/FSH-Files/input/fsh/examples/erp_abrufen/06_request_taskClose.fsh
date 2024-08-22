@@ -1,7 +1,7 @@
 Instance: erp-abrufen-06-request-taskClose
 InstanceOf: MedicationDispense
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
 * contained = med0314
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "160.123.456.789.123.58"

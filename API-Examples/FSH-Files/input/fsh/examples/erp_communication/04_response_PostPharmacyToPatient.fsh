@@ -3,7 +3,7 @@ InstanceOf: Communication
 Usage: #example
 * meta.versionId = "1"
 * meta.lastUpdated = "2020-03-12T18:01:10+00:00"
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_Reply)
 * basedOn = Reference(160.123.456.789.123.58)
 * status = #unknown
 * sent = "2020-03-12T18:01:10+00:00"

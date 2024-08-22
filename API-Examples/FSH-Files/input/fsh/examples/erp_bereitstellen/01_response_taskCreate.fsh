@@ -4,7 +4,7 @@ Usage: #example
 * meta.versionId = "1"
 * meta.lastUpdated = "2020-03-02T08:26:21.594+00:00"
 * meta.source = "#AsYR9plLkvONJAiv"
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension.valueCoding = $GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
 * identifier[0].use = #official

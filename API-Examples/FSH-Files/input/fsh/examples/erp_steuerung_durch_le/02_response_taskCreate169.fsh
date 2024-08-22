@@ -1,7 +1,7 @@
 Instance: erp-steuerung-durch-le-02-response-taskCreate169
 InstanceOf: Task
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[=].valueCoding.system = $GEM_ERP_CS_FlowType
 * extension[=].valueCoding.code = #169

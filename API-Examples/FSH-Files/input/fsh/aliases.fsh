@@ -3,6 +3,7 @@
 
 // FHIR
 Alias: $data-absent-reason = http://hl7.org/fhir/StructureDefinition/data-absent-reason
+Alias: $data-absent-reason-cs = http://terminology.hl7.org/CodeSystem/data-absent-reason
 
 // KBV
 /*Alias: $KBV_PR_ERP_Bundle = https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle
@@ -70,3 +71,4 @@ Alias: $epa-drug-category-cs = https://gematik.de/fhir/dev-epa-medication/CodeSy
 Alias: $audit-event-type = http://terminology.hl7.org/CodeSystem/audit-event-type
 Alias: $restful-interaction = http://hl7.org/fhir/restful-interaction
 Alias: $extra-security-role-type = http://terminology.hl7.org/CodeSystem/extra-security-role-type
+Alias: $signature-type = http://hl7.org/fhir/ValueSet/signature-type
