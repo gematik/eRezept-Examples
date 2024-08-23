@@ -6,7 +6,7 @@ Usage: #example
 * parameter.part[0].name = "medicationDispense"
 * parameter.part[=].resource.resourceType = "MedicationDispense"
 * parameter.part[=].resource.id = "Example-MedicationDispense"
-* insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
+* insert OnlyParameterPartProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
 * parameter.part[=].resource.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * parameter.part[=].resource.identifier.value = "160.000.033.491.280.78"
 * parameter.part[=].resource.status = #completed
@@ -21,7 +21,7 @@ Usage: #example
 * parameter.part[=].resource.resourceType = "Medication"
 * parameter.part[=].resource.id = "SumatripanMedication"
 //* parameter.part[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
-* insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_Medication)
+* insert OnlyParameterPartProfile(StructureDefinition/GEM_ERP_PR_Medication)
 * parameter.part[=].resource.extension[0].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension"
 * parameter.part[=].resource.extension[=].valueCoding.code = #00
 * parameter.part[=].resource.extension[+].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-id-vaccine-extension"

@@ -8,5 +8,8 @@ RuleSet: MetaProfile(profile, version)
 RuleSet: EntryResourcePackage(profile)
 * entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
 
-RuleSet: ParameterPartProfile(profile)
+RuleSet: OnlyParameterPartProfile(profile)
 * parameter.part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
+
+RuleSet: ParameterPartProfile(profile)
+* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
