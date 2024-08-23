@@ -147,7 +147,7 @@ process_files() {
 
 # List of files to copy directly
 files_to_copy=(
-    "Bundle-authentisieren-07-response-InnverVau"
+    "Bundle-authentisieren-07-response-InnverVau.json"
 
     "Bundle-erp-steuerung-durch-le-08-response-taskGet169Versicherter.json"
     "Binary-erp-alternative-zuweisung-03-certificate-in-apovzd.json"

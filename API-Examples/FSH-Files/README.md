@@ -3,6 +3,7 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Instructions](#instructions)
+  - [Prerequisites](#prerequisites)
   - [Generating the Examples](#generating-the-examples)
   - [Updating or Adding Examples](#updating-or-adding-examples)
 
@@ -10,6 +11,12 @@
 This folder contains the FSH files and a script to recreate the examples for the API documentation of a specific Workflow Package profile.
 
 ## Instructions
+### Prerequisites
+The script requires the following software to be installed beforehand:
+- [SUSHI](https://github.com/FHIR/sushi)
+- [Firely Terminal](https://simplifier.net/downloads/firely-terminal)
+- Windows users may require Git Bash, which comes packaged with [Git](https://git-scm.com/downloads).
+
 ### Generating the Examples
 Follow these steps to produce the examples for the specified version:
 1. Update the version parameters in the `Versioning.fsh` file.
