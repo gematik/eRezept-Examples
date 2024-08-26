@@ -33,7 +33,7 @@ Instance: 1ad84b2a-b444-430c-9902-de9e07547cc8
 InstanceOf: Bundle
 Usage: #inline
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
 // Incomplete example
 
@@ -42,6 +42,6 @@ InstanceOf: Bundle
 Usage: #inline
 * meta.lastUpdated = "2023-11-21T00:10:23.724+01:00"
 * meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3"
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
 // Incomplete example

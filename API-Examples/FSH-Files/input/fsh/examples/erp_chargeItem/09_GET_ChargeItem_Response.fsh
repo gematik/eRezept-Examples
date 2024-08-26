@@ -36,7 +36,7 @@ InstanceOf: Bundle
 Usage: #inline
 * meta.lastUpdated = "2023-04-21T09:12:30.215+02:00"
 * meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.1"
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
 
 Instance: d9a98ce4-9585-4031-ba85-3719bf0fc14a
@@ -44,12 +44,12 @@ InstanceOf: Bundle
 Usage: #inline
 * meta.lastUpdated = "2023-04-21T09:12:25.072+02:00"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
 
 Instance: Inline-Instance-for-cb0a5768-ed8f-47c3-ab25-88752a6c5be8-1
 InstanceOf: Bundle
 Usage: #inline
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Bundle)
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document

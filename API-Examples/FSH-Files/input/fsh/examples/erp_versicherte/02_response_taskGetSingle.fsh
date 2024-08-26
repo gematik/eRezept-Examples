@@ -42,7 +42,7 @@ InstanceOf: Bundle
 Usage: #inline
 * meta.lastUpdated = "2022-05-20T08:30:00Z"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
-* meta.tag.display = "Dies ist ein Beispiel"
+* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.086.824.605.539.20"
 * signature.type.system = $signature-type
