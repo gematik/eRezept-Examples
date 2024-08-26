@@ -79,8 +79,10 @@ process_files() {
                 file_name="CapabilityStatement-RU.json"       
             else
                 folder_name="${BASH_REMATCH[1]}"
-                file_digit_index=$(expr index "$base_filename" "${BASH_REMATCH[2]}")
-                file_name="${base_filename:$file_digit_index-1}"
+                # file_digit_index=$(expr index "$base_filename" "${BASH_REMATCH[2]}")
+                file_digit_index="${base_filename%%"${BASH_REMATCH[2]}"*}"
+                file_digit_index=${#file_digit_index}
+                file_name="${base_filename:$file_digit_index}"
                 file_name="${file_name//-/_}"
 
                 # Replace dashes with underscores in the folder name
