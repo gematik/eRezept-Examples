@@ -1,0 +1,121 @@
+{
+  "resourceType": "Parameters",
+  "id": "256c8280-d302-4cb2-b504-de4d2247dac6",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters" ]
+  },
+  "parameter": [ {
+    "name": "dispensation",
+    "part": [ {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "5d42eb65-adfa-4bb3-8a0f-19a7f8792b06",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+          "value": "160.000.033.491.280.78"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/e2ca7476-6e78-4903-bde4-1c3cde8d06ac"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X234567890"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/c5d21cf2-c378-4bc3-84f5-95116e387907"
+          }
+        } ],
+        "whenHandedOver": "2022-02-28",
+        "dosageInstruction": [ {
+          "text": "1-0-1-0"
+        } ]
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "e2ca7476-6e78-4903-bde4-1c3cde8d06ac",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "06313728"
+          } ],
+          "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "20 St."
+            } ],
+            "unit": "St"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      }
+    } ]
+  }, {
+    "name": "performerInstitution",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "c5d21cf2-c378-4bc3-84f5-95116e387907",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory" ],
+        "tag": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+          "code": "ldap"
+        } ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "3-abc-1234567890"
+      } ],
+      "type": [ {
+        "coding": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.58"
+        } ]
+      } ],
+      "name": "Sandy Beech"
+    }
+  } ]
+}

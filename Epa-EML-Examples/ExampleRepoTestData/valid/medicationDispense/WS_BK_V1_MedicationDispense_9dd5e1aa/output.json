@@ -1,0 +1,122 @@
+{
+  "resourceType": "Parameters",
+  "id": "9dd5e1aa-6fa5-43e7-8fe5-dd7d5cc2cbf4",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters" ]
+  },
+  "parameter": [ {
+    "name": "dispensation",
+    "part": [ {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "629f48e1-de56-4923-8f79-5524e954fc21",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+          "value": "160.100.000.000.020.79"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/8bfef90e-5b25-43eb-aea9-f82a6fd9c866"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "H030170228"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/f1a4352b-e67f-40f5-9600-160bfa00b9a5"
+          }
+        } ],
+        "whenHandedOver": "2024-11-27"
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "8bfef90e-5b25-43eb-aea9-f82a6fd9c866",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N2"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "00408362"
+          } ],
+          "text": "GABAPENTIN STADA 600 mg Filmtabletten (100 Stk)"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "100"
+            } ],
+            "unit": "Tabletten"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "batch": {
+          "lotNumber": "A123456789-1",
+          "expirationDate": "2025-12-31"
+        }
+      }
+    } ]
+  }, {
+    "name": "performerInstitution",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "f1a4352b-e67f-40f5-9600-160bfa00b9a5",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory" ],
+        "tag": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+          "code": "ldap"
+        } ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "3-07.2.1234560000.10.789"
+      } ],
+      "type": [ {
+        "coding": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.58"
+        } ]
+      } ],
+      "name": "Oliver Sutton"
+    }
+  } ]
+}

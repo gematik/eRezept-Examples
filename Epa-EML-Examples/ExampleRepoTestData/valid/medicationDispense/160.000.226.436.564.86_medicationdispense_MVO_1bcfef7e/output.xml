@@ -1,0 +1,123 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="1bcfef7e-c3c9-4a60-9645-a5d5c00cff32"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters"/>
+   </meta>
+   <parameter>
+      <name value="dispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="1048a282-d7a6-4480-80bb-3dec94443be1"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.226.436.564.86"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/859e22f9-9ed1-4f2d-92f1-66ed4c868abc"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110474905"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/4e36ec1b-6365-460c-ba9f-476ae9803e26"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-07-02T11:15:00+02:00"/>
+               <dosageInstruction>
+                  <text value="Dj"/>
+               </dosageInstruction>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="859e22f9-9ed1-4f2d-92f1-66ed4c868abc"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N3"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="02532741"/>
+                  </coding>
+                  <text value="L Thyroxin 75 Henning"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="TAB"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="100"/>
+                     </extension>
+                     <unit value="St"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+   <parameter>
+      <name value="performerInstitution"/>
+      <resource>
+         <Organization xmlns="http://hl7.org/fhir">
+            <id value="4e36ec1b-6365-460c-ba9f-476ae9803e26"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"/>
+               <tag>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                  <code value="ldap"/>
+               </tag>
+            </meta>
+            <identifier>
+               <system value="https://gematik.de/fhir/sid/telematik-id"/>
+               <value value="3-abc-1234567890"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                  <code value="1.2.276.0.76.4.58"/>
+               </coding>
+            </type>
+            <name value="Adam Meway"/>
+         </Organization>
+      </resource>
+   </parameter>
+</Parameters>

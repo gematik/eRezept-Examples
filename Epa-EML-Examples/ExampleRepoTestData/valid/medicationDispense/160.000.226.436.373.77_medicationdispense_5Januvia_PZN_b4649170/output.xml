@@ -1,0 +1,120 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="b4649170-3da8-4718-a7b4-ad6c319ca22c"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters"/>
+   </meta>
+   <parameter>
+      <name value="dispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="d585f5a6-4986-4f04-a0bc-938647cd7550"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.226.436.373.77"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/a990dd66-180c-4745-afd6-631c2fc13556"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="Z828875733"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/718969bb-5483-4033-a352-c874ebb9bf44"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-07-02T11:30:42+02:00"/>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="a990dd66-180c-4745-afd6-631c2fc13556"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N3"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="17974137"/>
+                  </coding>
+                  <text value="Sitagliptin Glenmark 50mg"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="FTA"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="98"/>
+                     </extension>
+                     <unit value="St"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+   <parameter>
+      <name value="performerInstitution"/>
+      <resource>
+         <Organization xmlns="http://hl7.org/fhir">
+            <id value="718969bb-5483-4033-a352-c874ebb9bf44"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"/>
+               <tag>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                  <code value="ldap"/>
+               </tag>
+            </meta>
+            <identifier>
+               <system value="https://gematik.de/fhir/sid/telematik-id"/>
+               <value value="3-abc-1234567890"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                  <code value="1.2.276.0.76.4.58"/>
+               </coding>
+            </type>
+            <name value="Trina Woods"/>
+         </Organization>
+      </resource>
+   </parameter>
+</Parameters>

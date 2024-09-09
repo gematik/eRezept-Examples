@@ -1,0 +1,123 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="23f44f6a-bd12-4117-88b5-b60ad66ed241"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters"/>
+   </meta>
+   <parameter>
+      <name value="dispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="f6eb0363-7cd3-49f7-bbfa-83223a1c2f37"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.226.436.206.93"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/62221c9f-c802-4c83-ad5b-f7d0047f2863"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110474905"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/8f903d89-d9f1-4db5-9ad8-3532a4726b36"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-07-02T09:34:04+02:00"/>
+               <dosageInstruction>
+                  <text value="1 Pflaster am Tag"/>
+               </dosageInstruction>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="62221c9f-c802-4c83-ad5b-f7d0047f2863"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N1"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="18369912"/>
+                  </coding>
+                  <text value="Rotigotin Neurax 8mg/24H"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="PFT"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="7"/>
+                     </extension>
+                     <unit value="St"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+   <parameter>
+      <name value="performerInstitution"/>
+      <resource>
+         <Organization xmlns="http://hl7.org/fhir">
+            <id value="8f903d89-d9f1-4db5-9ad8-3532a4726b36"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"/>
+               <tag>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                  <code value="ldap"/>
+               </tag>
+            </meta>
+            <identifier>
+               <system value="https://gematik.de/fhir/sid/telematik-id"/>
+               <value value="3-abc-1234567890"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                  <code value="1.2.276.0.76.4.58"/>
+               </coding>
+            </type>
+            <name value="Sue Yu"/>
+         </Organization>
+      </resource>
+   </parameter>
+</Parameters>

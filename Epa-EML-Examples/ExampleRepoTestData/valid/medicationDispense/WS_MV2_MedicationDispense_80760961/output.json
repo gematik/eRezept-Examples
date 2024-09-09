@@ -1,0 +1,122 @@
+{
+  "resourceType": "Parameters",
+  "id": "80760961-fdfc-4c57-a682-8de925f6f40d",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters" ]
+  },
+  "parameter": [ {
+    "name": "dispensation",
+    "part": [ {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "42c74092-820c-4b42-88e2-718c47e6eedb",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+          "value": "160.100.000.000.027.58"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/3e656570-c914-4f3d-8e6f-2492338f3744"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/6a73c874-e3c7-4bfc-afac-8b55e31148ff"
+          }
+        } ],
+        "whenHandedOver": "2023-09-30"
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "3e656570-c914-4f3d-8e6f-2492338f3744",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "02846592"
+          } ],
+          "text": "SIMVAHEXAL 20 mg Filmtabletten (100 St)"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "FTA"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "100"
+            } ],
+            "unit": "Tabletten"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "batch": {
+          "lotNumber": "A123456789-1",
+          "expirationDate": "2024-12-31"
+        }
+      }
+    } ]
+  }, {
+    "name": "performerInstitution",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "6a73c874-e3c7-4bfc-afac-8b55e31148ff",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory" ],
+        "tag": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+          "code": "ldap"
+        } ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "3-07.2.1234560000.10.789"
+      } ],
+      "type": [ {
+        "coding": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.58"
+        } ]
+      } ],
+      "name": "Terry Bull"
+    }
+  } ]
+}

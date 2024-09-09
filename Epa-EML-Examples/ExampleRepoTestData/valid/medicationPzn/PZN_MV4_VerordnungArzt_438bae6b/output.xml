@@ -1,0 +1,230 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="438bae6b-3e3f-4be2-96fd-ac9f2067241f"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters"/>
+   </meta>
+   <parameter>
+      <name value="rxPrescription"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.100.000.000.017.88"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="2024-11-27"/>
+      </part>
+      <part>
+         <name value="medicationRequest"/>
+         <resource>
+            <MedicationRequest xmlns="http://hl7.org/fhir">
+               <id value="2eeef5dd-5faa-4058-9b0c-5e687f33b1c4"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension">
+                  <extension url="indicator">
+                     <valueBoolean value="true"/>
+                  </extension>
+                  <extension url="counter">
+                     <valueRatio>
+                        <numerator>
+                           <value value="4"/>
+                        </numerator>
+                        <denominator>
+                           <value value="4"/>
+                        </denominator>
+                     </valueRatio>
+                  </extension>
+                  <extension url="period">
+                     <valuePeriod>
+                        <start value="2025-04-01"/>
+                        <end value="2025-07-31"/>
+                     </valuePeriod>
+                  </extension>
+                  <extension url="id">
+                     <valueIdentifier>
+                        <system value="urn:ietf:rfc:3986"/>
+                        <value value="urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"/>
+                     </valueIdentifier>
+                  </extension>
+               </extension>
+               <status value="active"/>
+               <intent value="order"/>
+               <medicationReference>
+                  <reference value="Medication/545f553f-daa9-41c9-b982-03fa577c3947"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="K220635158"/>
+                  </identifier>
+               </subject>
+               <authoredOn value="2024-11-27"/>
+               <dispenseRequest>
+                  <quantity>
+                     <value value="1"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="{Package}"/>
+                  </quantity>
+               </dispenseRequest>
+               <substitution>
+                  <allowedBoolean value="false"/>
+               </substitution>
+            </MedicationRequest>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="545f553f-daa9-41c9-b982-03fa577c3947"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N3"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="02532741"/>
+                  </coding>
+                  <text value="L-Thyroxin Henning 75 100 Tbl. N3"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="TAB"/>
+                  </coding>
+               </form>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="6956de1b-9675-42cc-babe-075502d05235"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="BSNR"/>
+                     </coding>
+                  </type>
+                  <system value="https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR"/>
+                  <value value="721111100"/>
+               </identifier>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="PRN"/>
+                     </coding>
+                  </type>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="1-031234567"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="MVZ"/>
+               <telecom>
+                  <system value="phone"/>
+                  <value value="0301234567"/>
+               </telecom>
+               <telecom>
+                  <system value="fax"/>
+                  <value value="030123456789"/>
+               </telecom>
+               <telecom>
+                  <system value="email"/>
+                  <value value="mvz@e-mail.de"/>
+               </telecom>
+               <address>
+                  <type value="both"/>
+                  <line value="Herbert-Lewin-Platz 2">
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                        <valueString value="2"/>
+                     </extension>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                        <valueString value="Herbert-Lewin-Platz"/>
+                     </extension>
+                  </line>
+                  <city value="Berlin"/>
+                  <postalCode value="10623"/>
+                  <country value="D"/>
+               </address>
+            </Organization>
+         </resource>
+      </part>
+      <part>
+         <name value="practitioner"/>
+         <resource>
+            <Practitioner xmlns="http://hl7.org/fhir">
+               <id value="4284b7ea-8ec3-4ae0-88e8-1cf53111dbc1"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="LANR"/>
+                     </coding>
+                  </type>
+                  <system value="https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR"/>
+                  <value value="987654423"/>
+               </identifier>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="PRN"/>
+                     </coding>
+                  </type>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="1-031234567"/>
+               </identifier>
+               <name>
+                  <use value="official"/>
+                  <text value="Dr. med. Emma Schneider"/>
+                  <family value="Schneider"/>
+                  <given value="Emma"/>
+                  <prefix value="Dr. med.">
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <valueCode value="AC"/>
+                     </extension>
+                  </prefix>
+               </name>
+            </Practitioner>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

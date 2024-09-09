@@ -1,0 +1,118 @@
+{
+  "resourceType": "Parameters",
+  "id": "1b714557-c647-47e5-ad32-8ecf90122856",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-input-parameters" ]
+  },
+  "parameter": [ {
+    "name": "dispensation",
+    "part": [ {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "b8ac5444-26a0-46c8-8ad4-60ddcab93bd1",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+          "value": "160.000.226.436.776.32"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/87464580-81e4-4508-a229-b7ce02e24776"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X110474905"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/f5175d4d-0200-491e-bdb3-1e0cbd4a84a2"
+          }
+        } ],
+        "whenHandedOver": "2024-07-02T11:55:14+02:00"
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "87464580-81e4-4508-a229-b7ce02e24776",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N2"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "05392022"
+          } ],
+          "text": "Venlafaxin 1A Pharma 75mg"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "50"
+            } ],
+            "unit": "St"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      }
+    } ]
+  }, {
+    "name": "performerInstitution",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "f5175d4d-0200-491e-bdb3-1e0cbd4a84a2",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory" ],
+        "tag": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+          "code": "ldap"
+        } ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "3-abc-1234567890"
+      } ],
+      "type": [ {
+        "coding": [ {
+          "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+          "code": "1.2.276.0.76.4.58"
+        } ]
+      } ],
+      "name": "Ima Lytle Teapot"
+    }
+  } ]
+}

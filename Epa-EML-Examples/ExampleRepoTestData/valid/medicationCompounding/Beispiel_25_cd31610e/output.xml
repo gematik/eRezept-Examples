@@ -1,0 +1,277 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="cd31610e-32dd-4a05-9067-bf43d91783fb"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters"/>
+   </meta>
+   <parameter>
+      <name value="rxPrescription"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.100.000.000.026.61"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="2022-05-20"/>
+      </part>
+      <part>
+         <name value="medicationRequest"/>
+         <resource>
+            <MedicationRequest xmlns="http://hl7.org/fhir">
+               <id value="a9f31f64-eb19-4c1c-81be-9105c1074317"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension">
+                  <extension url="indicator">
+                     <valueBoolean value="false"/>
+                  </extension>
+               </extension>
+               <status value="active"/>
+               <intent value="order"/>
+               <medicationReference>
+                  <reference value="Medication/1016718f-2591-4926-a4fe-011056a24be3"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="K220635158"/>
+                  </identifier>
+               </subject>
+               <authoredOn value="2022-05-20"/>
+               <dosageInstruction>
+                  <patientInstruction value="zur ärztlichen parenteralen Applikation gem. Therapieplan"/>
+               </dosageInstruction>
+               <dispenseRequest>
+                  <quantity>
+                     <value value="3"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="{Package}"/>
+                  </quantity>
+               </dispenseRequest>
+               <substitution>
+                  <allowedBoolean value="true"/>
+               </substitution>
+            </MedicationRequest>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="1016718f-2591-4926-a4fe-011056a24be3"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <form>
+                  <text value="Infusionslösung"/>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="500"/>
+                     </extension>
+                     <unit value="ml"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <ingredient>
+                  <itemCodeableConcept>
+                     <text value="Etoposid"/>
+                  </itemCodeableConcept>
+                  <strength>
+                     <numerator>
+                        <value value="180"/>
+                        <unit value="mg"/>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </numerator>
+                     <denominator>
+                        <value value="1"/>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </denominator>
+                  </strength>
+               </ingredient>
+               <ingredient>
+                  <itemCodeableConcept>
+                     <text value="NaCl 0,9 %"/>
+                  </itemCodeableConcept>
+                  <strength>
+                     <numerator>
+                        <value value="500"/>
+                        <unit value="ml"/>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </numerator>
+                     <denominator>
+                        <value value="1"/>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </denominator>
+                  </strength>
+               </ingredient>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="12ab53c4-1b89-442f-a505-df106e0a90e5"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="BSNR"/>
+                     </coding>
+                  </type>
+                  <system value="https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR"/>
+                  <value value="721111100"/>
+               </identifier>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="PRN"/>
+                     </coding>
+                  </type>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="1-031234567"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="MVZ"/>
+               <telecom>
+                  <system value="phone"/>
+                  <value value="0301234567"/>
+               </telecom>
+               <telecom>
+                  <system value="fax"/>
+                  <value value="030123456789"/>
+               </telecom>
+               <telecom>
+                  <system value="email"/>
+                  <value value="mvz@e-mail.de"/>
+               </telecom>
+               <address>
+                  <type value="both"/>
+                  <line value="Herbert-Lewin-Platz 2">
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                        <valueString value="2"/>
+                     </extension>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                        <valueString value="Herbert-Lewin-Platz"/>
+                     </extension>
+                  </line>
+                  <city value="Berlin"/>
+                  <postalCode value="10623"/>
+                  <country value="D"/>
+               </address>
+            </Organization>
+         </resource>
+      </part>
+      <part>
+         <name value="practitioner"/>
+         <resource>
+            <Practitioner xmlns="http://hl7.org/fhir">
+               <id value="c91af2ae-dc4f-4bee-8f2f-90fc68a97d6e"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="LANR"/>
+                     </coding>
+                  </type>
+                  <system value="https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR"/>
+                  <value value="987654423"/>
+               </identifier>
+               <identifier>
+                  <type>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
+                        <code value="PRN"/>
+                     </coding>
+                  </type>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="1-031234567"/>
+               </identifier>
+               <name>
+                  <use value="official"/>
+                  <text value="Dr. med. Emma Schneider"/>
+                  <family value="Schneider"/>
+                  <given value="Emma"/>
+                  <prefix value="Dr. med.">
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <valueCode value="AC"/>
+                     </extension>
+                  </prefix>
+               </name>
+            </Practitioner>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>
