@@ -1,0 +1,54 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="c0312f32-4f6c-49b3-b3f4-21506785d583"/>
+   <meta>
+      <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.1.0"/>
+   </meta>
+   <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment">
+      <valueCoding>
+         <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"/>
+         <code value="0"/>
+      </valueCoding>
+   </extension>
+   <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription">
+      <extension url="Kennzeichen">
+         <valueBoolean value="false"/>
+      </extension>
+   </extension>
+   <status value="active"/>
+   <intent value="order"/>
+   <medicationReference>
+      <reference value="urn:uuid:d26d162c-59b6-465d-a8e1-91b570461e8f"/>
+   </medicationReference>
+   <subject>
+      <reference value="urn:uuid:e5cd146d-fcfd-4614-9b61-87ce84d71b47"/>
+   </subject>
+   <authoredOn value="2023-07-11"/>
+   <requester>
+      <reference value="urn:uuid:604f930b-395d-4247-b901-6698ce29d6f0"/>
+   </requester>
+   <insurance>
+      <reference value="urn:uuid:a02eafd7-7ede-4ade-b518-bc7fbc1be414"/>
+   </insurance>
+   <dosageInstruction>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag">
+         <valueBoolean value="true"/>
+      </extension>
+      <text value="1-1-1-1"/>
+   </dosageInstruction>
+   <dispenseRequest>
+      <quantity>
+         <value value="1"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{Package}"/>
+      </quantity>
+   </dispenseRequest>
+   <substitution>
+      <allowedBoolean value="true"/>
+   </substitution>
+</MedicationRequest>
