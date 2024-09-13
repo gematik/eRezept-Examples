@@ -1,0 +1,149 @@
+{
+  "resourceType": "Communication",
+  "id": "8ca3c379-ac86-470f-bc12-178c9008f5c9",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.4"
+    ],
+    "tag": [
+      {
+        "display": "Communication message sent by patient to pharmacy to ask for availybility of medicine WITHOUT providing the AccessCode"
+      }
+    ]
+  },
+  "status": "unknown",
+  "recipient": [
+    {
+      "identifier": {
+        "system": "https://gematik.de/fhir/sid/telematik-id",
+        "value": "3-SMC-B-Testkarte-883110000123465"
+      }
+    }
+  ],
+  "payload": [
+    {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
+          "valueIdentifier": {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "109500969"
+          }
+        },
+        {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
+          "valueBoolean": false
+        },
+        {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
+            "code": "160"
+          }
+        },
+        {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PackageQuantity",
+          "valueQuantity": {
+            "system": "http://unitsofmeasure.org",
+            "value": 1
+          }
+        },
+        {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
+          "extension": [
+            {
+              "url": "delivery",
+              "valueBoolean": true
+            },
+            {
+              "url": "onPremise",
+              "valueBoolean": true
+            },
+            {
+              "url": "shipment",
+              "valueBoolean": false
+            }
+          ]
+        }
+      ],
+      "contentString": "U.N.V.E.U."
+    }
+  ],
+  "sender": {
+    "identifier": {
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "value": "X234567890"
+    }
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "SumatripanMedication",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "code": "00",
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+          }
+        },
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "06313728"
+          }
+        ],
+        "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "extension": [
+            {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+              "valueString": "20"
+            }
+          ],
+          "value": 20,
+          "unit": "St"
+        },
+        "denominator": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "basedOn": [
+    {
+      "reference": "Task/160.000.033.491.280.78"
+    }
+  ],
+  "about": [
+    {
+      "reference": "#SumatripanMedication"
+    }
+  ],
+  "sent": "2020-04-29T13:43:30.128+02:00"
+}
