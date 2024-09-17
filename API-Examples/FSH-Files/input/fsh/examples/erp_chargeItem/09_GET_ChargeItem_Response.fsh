@@ -22,7 +22,7 @@ Usage: #inline
 * identifier[=].value = "200.000.001.944.091.20"
 * status = #billable
 * code = $data-absent-reason#not-applicable
-* subject.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110465770"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"

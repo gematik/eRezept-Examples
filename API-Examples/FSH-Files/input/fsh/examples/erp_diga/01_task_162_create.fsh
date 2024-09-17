@@ -5,7 +5,7 @@ Usage: #example
 * meta.lastUpdated = "2025-03-02T08:26:21.594+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
-* extension.valueCodeableConcept = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
+* extension.valueCoding = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
 * identifier[0].use = #official
 * identifier[=].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier[=].value = "162.123.456.789.123.58"

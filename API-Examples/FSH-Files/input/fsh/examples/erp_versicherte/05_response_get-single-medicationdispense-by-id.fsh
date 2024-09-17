@@ -6,33 +6,17 @@ Usage: #example
 * total = 0
 * link.relation = "self"
 * link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.002.097.952.60"
-* entry.fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.952.60"
-* entry.resource = 200.000.002.097.951.63
-* entry.search.mode = #match
+* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.951.63"
+* entry[=].resource = 200.000.002.097.951.63
+* entry[=].search.mode = #match
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f"
+* entry[=].resource = b4c2bba5-23bd-4be3-b58f-a70621edd84f
+* entry[=].search.mode = #include
 
 Instance: 200.000.002.097.951.63
 InstanceOf: MedicationDispense
 Usage: #inline
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
-* contained.resourceType = "Medication"
-* contained.id = "b4c2bba5-23bd-4be3-b58f-a70621edd84f"
-* contained.meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
-* contained.extension[0].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type"
-* contained.extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/900000000000207008/version/20220331"
-* contained.extension[=].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
-* contained.extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
-* contained.extension[=].valueCoding = $KBV_CS_ERP_Medication_Category#00
-* contained.extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
-* contained.extension[=].valueBoolean = false
-* contained.extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
-* contained.extension[=].valueCode = #N1
-* contained.code = $pzn#03879429
-* contained.code.text = "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
-* contained.form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#RET
-* contained.amount.numerator.extension.url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize"
-* contained.amount.numerator.extension.valueString = "30"
-* contained.amount.numerator.unit = "Stück"
-* contained.amount.denominator.value = 1
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.000.002.097.951.63"
 * status = #completed
@@ -44,3 +28,23 @@ Usage: #inline
 * quantity = 1 '{Package}'
 * whenHandedOver = "2024-02-15"
 * dosageInstruction.text = "1-0-1-0"
+
+Instance: b4c2bba5-23bd-4be3-b58f-a70621edd84f
+InstanceOf: Medication
+Usage: #inline
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Medication)
+//* meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
+* extension[0].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
+* extension[=].valueCoding.system = $epa-drug-category-cs
+* extension[=].valueCoding.code = #00
+* extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension"
+* extension[=].valueBoolean = false
+* extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
+* extension[=].valueCode = #N1
+* code = $pzn#03879429
+* code.text = "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
+* form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#RET
+* amount.numerator.extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
+* amount.numerator.extension.valueString = "30"
+* amount.numerator = $unitsofmeasure#{St} "Stück"
+* amount.denominator.value = 1

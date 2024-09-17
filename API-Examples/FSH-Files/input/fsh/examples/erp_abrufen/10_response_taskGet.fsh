@@ -3,7 +3,7 @@ InstanceOf: Bundle
 Usage: #example
 * meta.lastUpdated = "2020-03-13T07:31:34.328+00:00"
 * type = #collection
-* entry[0].fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.123.456.789.123.58"
+* entry[0].fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.123.456.789.123.58-1"
 * entry[=].resource = 160.123.456.789.123.58-1
 * entry[+].fullUrl = "urn:uuid:dffbfd6a-5712-4798-bdc8-07201eb77ab8"
 * entry[=].resource = Inline-Instance-for-dffbfd6a-5712-4798-bdc8-07201eb77ab8-3
@@ -53,7 +53,7 @@ Usage: #inline
 * entry[0].fullUrl = "urn:uuid:ec72f89f-2c84-4907-9a09-4bed0911e6e1"
 * entry[=].resource.resourceType = "Composition"
 * entry[=].resource.id = "ec72f89f-2c84-4907-9a09-4bed0911e6e1"
-* entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.3"
+* entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.4"
 * entry[=].resource.extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_Beneficiary"
 * entry[=].resource.extension.valueIdentifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * entry[=].resource.extension.valueIdentifier.value = "3-SMC-B-Testkarte-883110000129070"

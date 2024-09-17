@@ -5,7 +5,7 @@ Usage: #example
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "160.123.456.789.123.58"
 * type = #document
-* timestamp = "2021-11-26T09:51:36.483+00:00"
+* timestamp = "2025-11-26T09:51:36.483+00:00"
 * link.relation = "self"
 * link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/160.123.456.789.123.58/$close/"
 * entry[0].fullUrl = "urn:uuid:c624cf47-e235-4624-af71-0a09dc9254dc"
@@ -15,7 +15,7 @@ Usage: #example
 * entry[+].fullUrl = "urn:uuid:073ef818-3d18-4cf0-a5b7-9321ec838f94"
 * entry[=].resource = 073ef818-3d18-4cf0-a5b7-9321ec838f94
 * signature.type = urn:iso-astm:E1762-95:2013#1.2.840.10065.1.12.1.1
-* signature.when = "2021-11-26T09:51:36.484+00:00"
+* signature.when = "2025-11-26T09:51:36.484+00:00"
 * signature.who = Reference(https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1)
 * signature.sigFormat = #application/pkcs7-mime
 * signature.data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
@@ -29,11 +29,11 @@ Usage: #inline
 * extension.valueIdentifier.value = "3-SMC-B-Testkarte-883110000129070"
 * status = #final
 * type = $GEM_ERP_CS_DocumentType#3 "Receipt"
-* date = "2021-11-26T09:51:36.483+00:00"
+* date = "2025-11-26T09:51:36.483+00:00"
 * author = Reference(urn:uuid:65ea903d-b3ea-4b5e-acbd-3e8c2c695542)
 * title = "Quittung"
-* event.period.start = "2021-11-26T09:48:36.483+00:00"
-* event.period.end = "2021-11-26T09:51:36.483+00:00"
+* event.period.start = "2025-11-26T09:48:36.483+00:00"
+* event.period.end = "2025-11-26T09:51:36.483+00:00"
 * section.entry = Reference(urn:uuid:073ef818-3d18-4cf0-a5b7-9321ec838f94)
 
 Instance: 1
@@ -51,5 +51,6 @@ Usage: #inline
 Instance: 073ef818-3d18-4cf0-a5b7-9321ec838f94
 InstanceOf: http://hl7.org/fhir/StructureDefinition/Binary|4.0.1
 Usage: #inline
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Digest)
 * contentType = #application/octet-stream
 * data = "tJg8c5ZtdhzEEhJ0ZpAsUVFx5dKuYgQFs5oKgthi17M="

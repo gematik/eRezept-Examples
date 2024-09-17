@@ -3,12 +3,12 @@
   "id": "erp-bereitstellen-02-Prescription-Bundle",
   "meta": {
     "profile": [
-      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.0.1"
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
     ],
-    "lastUpdated": "2020-05-04T08:30:00Z"
+    "lastUpdated": "2021-07-04T08:30:00Z"
   },
   "identifier": {
-    "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
     "value": "160.123.456.789.123.58"
   },
   "entry": [
@@ -19,7 +19,7 @@
         "id": "b0e22b86-e7e9-46c1-80fe-e6e24442d77c",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.0.1"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.1.0"
           ]
         },
         "extension": [
@@ -96,7 +96,7 @@
         "subject": {
           "reference": "Patient/9774f67f-a238-4daf-b4e6-679deeef3811"
         },
-        "date": "2020-02-03T11:30:02Z",
+        "date": "2021-07-03T11:30:02Z",
         "title": "elektronische Arzneimittelverordnung",
         "custodian": {
           "reference": "Organization/cf042e44-086a-4d51-9c77-172f9a972e3b"
@@ -110,15 +110,15 @@
         "id": "f58f4403-7a3a-4a12-bb15-b2fa25b02561",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.0.1"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.1.0"
           ]
         },
         "extension": [
           {
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_StatusCoPayment",
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
             "valueCoding": {
               "code": "0",
-              "system": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_StatusCoPayment"
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"
             }
           },
           {
@@ -132,18 +132,18 @@
           {
             "extension": [
               {
-                "url": "unfallkennzeichen",
+                "url": "Unfallkennzeichen",
                 "valueCoding": {
                   "code": "1",
                   "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type"
                 }
               },
               {
-                "url": "unfalltag",
-                "valueDate": "2020-05-01"
+                "url": "Unfalltag",
+                "valueDate": "2021-07-01"
               }
             ],
-            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Accident"
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident"
           },
           {
             "extension": [
@@ -164,10 +164,17 @@
               },
               {
                 "valuePeriod": {
-                  "start": "2021-01-02",
-                  "end": "2021-03-30"
+                  "start": "2021-07-02",
+                  "end": "2021-09-30"
                 },
                 "url": "Zeitraum"
+              },
+              {
+                "valueIdentifier": {
+                  "system": "urn:ietf:rfc:3986",
+                  "value": "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
+                },
+                "url": "ID"
               }
             ],
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription"
@@ -200,9 +207,6 @@
             "system": "http://unitsofmeasure.org"
           }
         },
-        "substitution": {
-          "allowedBoolean": true
-        },
         "status": "active",
         "intent": "order",
         "medicationReference": {
@@ -211,9 +215,9 @@
         "subject": {
           "reference": "Patient/9774f67f-a238-4daf-b4e6-679deeef3811"
         },
-        "authoredOn": "2020-05-02",
+        "authoredOn": "2021-07-02",
         "requester": {
-          "reference": "Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb617c3"
+          "reference": "Practitioner/d8463daf-258e-4cad-a86a-6fd42fac161c"
         }
       }
     },
@@ -224,7 +228,7 @@
         "id": "e3a4efa7-84fc-465b-b14c-720195097783",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.0.1"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.1.0"
           ]
         },
         "extension": [
@@ -232,7 +236,7 @@
             "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
             "valueCoding": {
               "code": "00",
-              "system": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
             }
           },
           {
@@ -245,7 +249,12 @@
         },
         "amount": {
           "numerator": {
-            "value": 20,
+            "extension": [
+              {
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+                "valueString": "20"
+              }
+            ],
             "unit": "Stk"
           },
           "denominator": {
@@ -291,7 +300,7 @@
         "id": "9774f67f-a238-4daf-b4e6-679deeef3811",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.0.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"
           ]
         },
         "identifier": [
@@ -304,7 +313,7 @@
                 }
               ]
             },
-            "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+            "system": "http://fhir.de/sid/gkv/kvid-10",
             "value": "X234567890"
           }
         ],
@@ -359,7 +368,7 @@
         "id": "20597e0e-cb2a-45b3-95f0-dc3dbdb617c3",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.0.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.1.0"
           ]
         },
         "identifier": [
@@ -419,6 +428,12 @@
           },
           {
             "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung",
+                  "code": "Berufsbezeichnung"
+                }
+              ],
               "text": "Hausarzt"
             }
           }
@@ -432,7 +447,7 @@
         "id": "d8463daf-258e-4cad-a86a-6fd42fac161c",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.0.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.1.0"
           ]
         },
         "identifier": [
@@ -479,6 +494,12 @@
           },
           {
             "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung",
+                  "code": "Berufsbezeichnung"
+                }
+              ],
               "text": "Arzt in Weiterbildung"
             }
           }
@@ -492,7 +513,7 @@
         "id": "cf042e44-086a-4d51-9c77-172f9a972e3b",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.0.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.1.0"
           ]
         },
         "identifier": [
@@ -549,7 +570,7 @@
         "id": "1b1ffb6e-eb05-43d7-87eb-e7818fe9661a",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.0.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.1.0"
           ]
         },
         "extension": [
@@ -585,7 +606,7 @@
         "payor": [
           {
             "identifier": {
-              "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+              "system": "http://fhir.de/sid/arge-ik/iknr",
               "value": "104212059"
             },
             "display": "AOK Rheinland/Hamburg"
@@ -607,5 +628,5 @@
     }
   ],
   "type": "document",
-  "timestamp": "2020-05-04T08:30:00Z"
+  "timestamp": "2021-07-04T08:30:00Z"
 }

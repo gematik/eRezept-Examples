@@ -34,7 +34,7 @@ Usage: #inline
 * identifier[=].value = "c36ca26502892b371d252c99b496e31505ff449aca9bc69e231c58148f6233cf"
 * status = #in-progress
 * intent = #order
-* for.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* for.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * for.identifier.value = "X123456789"
 * authoredOn = "2020-03-02T08:25:05+00:00"
 * lastModified = "2020-03-02T08:45:05+00:00"

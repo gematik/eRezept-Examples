@@ -6,8 +6,8 @@ Usage: #example
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.000.001.944.091.20"
 * status = #billable
-* code = $data-absent-reason#not-applicable
-* subject.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* code = $data-absent-reason-cs#not-applicable
+* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110465770"
 * subject.identifier.assigner.display = "KOA Hamburg"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"

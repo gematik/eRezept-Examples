@@ -3,9 +3,9 @@
 [erp-abrufen-01-response-taskAccept]: Bundle-erp-abrufen-01-response-taskAccept.html
 [erp-abrufen-02-response-taskAcceptWithConsent]: Bundle-erp-abrufen-02-response-taskAcceptWithConsent.html
 [erp-abrufen-03-request-recovery-secret]: Bundle-erp-abrufen-03-request-recovery-secret.html
-[erp-abrufen-06-request-taskClose]: MedicationDispense-erp-abrufen-06-request-taskClose.html
-[erp-abrufen-07-request-taskCloseMultiple]: Bundle-erp-abrufen-07-request-taskCloseMultiple.html
-[erp-abrufen-08-response-taskDispense]: MedicationDispense-erp-abrufen-08-response-taskDispense.html
+[erp-abrufen-06-request-taskClose]: Parameters-erp-abrufen-06-request-taskClose.html
+[erp-abrufen-07-request-taskCloseMultiple]: Parameters-erp-abrufen-07-request-taskCloseMultiple.html
+[erp-abrufen-08-response-taskDispense]: Parameters-erp-abrufen-08-response-taskDispense.html
 [erp-abrufen-09-response-taskClose]: Bundle-erp-abrufen-09-response-taskClose.html
 [erp-abrufen-10-response-taskGet]: Bundle-erp-abrufen-10-response-taskGet.html
 [erp-abrufen-egk-05-Response-Task]: Bundle-erp-abrufen-egk-05-Response-Task.html

@@ -1,15 +1,15 @@
 // Rules to set meta.profile in profiles and instances
 RuleSet: PackageMetaProfile(profile)
-* insert MetaProfile(https://gematik.de/fhir/erp/{profile}, 1.3)
+* insert MetaProfile(https://gematik.de/fhir/erp/{profile}, 1.4)
 
 RuleSet: MetaProfile(profile, version)
 * meta.profile[+] = "{profile}|{version}"
 
 RuleSet: EntryResourcePackage(profile)
-* entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
+* entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
 
 RuleSet: OnlyParameterPartProfile(profile)
-* parameter.part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
+* parameter.part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
 
 RuleSet: ParameterPartProfile(profile)
-* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.3"
+* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"

@@ -6,7 +6,7 @@ Usage: #example
 * total = 1
 * link.relation = "self"
 * link.url = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication?received=NULL"
-* entry.fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication/12346"
+* entry.fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication/8381e39e-cbca-4ad6-8604-7cde08d26af2"
 * entry.resource = Inline-Instance-for-79cc4c08-0e7b-4e52-acee-6ec7519ce67f-1
 
 Instance: Inline-Instance-for-79cc4c08-0e7b-4e52-acee-6ec7519ce67f-1

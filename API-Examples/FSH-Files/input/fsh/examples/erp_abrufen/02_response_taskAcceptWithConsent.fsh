@@ -36,7 +36,7 @@ Usage: #inline
 * identifier[=].value = "e761743e424b3199e7e432b256075a82efb0e8ca9ec2db162b29872d9e54ddc4"
 * status = #in-progress
 * intent = #order
-* for.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* for.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * for.identifier.value = "X110465770"
 * authoredOn = "2023-03-10T07:46:41.430+00:00"
 * lastModified = "2023-03-10T07:46:42.381+00:00"
@@ -71,7 +71,7 @@ Usage: #inline
 * category.coding.code = #CHARGCONS
 * category.coding.display = "Consent for saving electronic charge item"
 //* category = $GEM_ERPCHRG_CS_ConsentType#CHARGCONS "Consent for saving electronic charge item"
-* patient.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* patient.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * patient.identifier.value = "X110465770"
 * dateTime = "2023-03-10T07:46:39.000+00:00"
 * policyRule.coding.system = $v3-ActCode

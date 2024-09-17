@@ -34,7 +34,8 @@ Usage: #inline
 * extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/900000000000207008/version/20220331"
 * extension[=].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
-* extension[=].valueCoding = $KBV_CS_ERP_Medication_Category#00
+* extension[=].valueCoding.system = $KBV_CS_ERP_Medication_Category
+* extension[=].valueCoding.code = #00
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"

@@ -28,7 +28,7 @@ Usage: #inline
 * identifier[=].value = "555bjf73jr8d9si2ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
 * status = #billable
 * code = $data-absent-reason#not-applicable
-* subject.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110465770"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
@@ -53,8 +53,8 @@ Usage: #inline
 * identifier[=].value = "200.086.824.605.539.20"
 * identifier[+].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_AccessCode"
 * identifier[=].value = "888bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
-* code = $data-absent-reason#not-applicable
-* subject.identifier.system = "http://fhir.de/sid/pkv/kvid-10"
+* code = $data-absent-reason-cs#not-applicable
+* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110465770"
 * subject.identifier.assigner.display = "Name einer privaten Krankenversicherung"
 * enteredDate = "2021-06-01T07:13:00+05:00"
