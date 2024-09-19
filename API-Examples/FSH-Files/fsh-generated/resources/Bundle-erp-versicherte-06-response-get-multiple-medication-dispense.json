@@ -1,11 +1,11 @@
 {
   "resourceType": "Bundle",
   "id": "erp-versicherte-06-response-get-multiple-medication-dispense",
+  "type": "searchset",
+  "timestamp": "2024-02-15T06:01:44.119+00:00",
+  "total": 2,
   "entry": [
     {
-      "search": {
-        "mode": "match"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.952.60",
       "resource": {
         "resourceType": "MedicationDispense",
@@ -26,6 +26,11 @@
             "value": "200.000.002.097.952.60"
           }
         ],
+        "status": "completed",
+        "medicationReference": {
+          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
+          "display": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
+        },
         "subject": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
@@ -42,23 +47,18 @@
             }
           }
         ],
+        "whenHandedOver": "2024-02-15",
         "dosageInstruction": [
           {
             "text": "1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"
           }
-        ],
-        "status": "completed",
-        "medicationReference": {
-          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
-          "display": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
-        },
-        "whenHandedOver": "2024-02-15"
+        ]
+      },
+      "search": {
+        "mode": "match"
       }
     },
     {
-      "search": {
-        "mode": "include"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
       "resource": {
         "resourceType": "Medication",
@@ -70,11 +70,11 @@
         },
         "extension": [
           {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
             "valueCoding": {
               "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
               "code": "00"
-            },
-            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
+            }
           },
           {
             "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
@@ -94,6 +94,14 @@
           ],
           "text": "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
         },
+        "form": {
+          "coding": [
+            {
+              "code": "RET",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+            }
+          ]
+        },
         "amount": {
           "numerator": {
             "extension": [
@@ -109,21 +117,13 @@
           "denominator": {
             "value": 1
           }
-        },
-        "form": {
-          "coding": [
-            {
-              "code": "RET",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-            }
-          ]
         }
+      },
+      "search": {
+        "mode": "include"
       }
     },
     {
-      "search": {
-        "mode": "match"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.952.60-1",
       "resource": {
         "resourceType": "MedicationDispense",
@@ -144,6 +144,11 @@
             "value": "200.000.002.097.952.60"
           }
         ],
+        "status": "completed",
+        "medicationReference": {
+          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84e",
+          "display": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
+        },
         "subject": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
@@ -160,23 +165,18 @@
             }
           }
         ],
+        "whenHandedOver": "2024-02-15",
         "dosageInstruction": [
           {
             "text": "1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"
           }
-        ],
-        "status": "completed",
-        "medicationReference": {
-          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84e",
-          "display": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
-        },
-        "whenHandedOver": "2024-02-15"
+        ]
+      },
+      "search": {
+        "mode": "match"
       }
     },
     {
-      "search": {
-        "mode": "include"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84e",
       "resource": {
         "resourceType": "Medication",
@@ -188,11 +188,11 @@
         },
         "extension": [
           {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
             "valueCoding": {
               "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
               "code": "00"
-            },
-            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
+            }
           },
           {
             "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
@@ -212,6 +212,14 @@
           ],
           "text": "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
         },
+        "form": {
+          "coding": [
+            {
+              "code": "RET",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+            }
+          ]
+        },
         "amount": {
           "numerator": {
             "extension": [
@@ -227,15 +235,10 @@
           "denominator": {
             "value": 1
           }
-        },
-        "form": {
-          "coding": [
-            {
-              "code": "RET",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-            }
-          ]
         }
+      },
+      "search": {
+        "mode": "include"
       }
     }
   ],
@@ -244,8 +247,5 @@
       "relation": "self",
       "url": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.002.097.952.60"
     }
-  ],
-  "type": "searchset",
-  "timestamp": "2024-02-15T06:01:44.119+00:00",
-  "total": 2
+  ]
 }

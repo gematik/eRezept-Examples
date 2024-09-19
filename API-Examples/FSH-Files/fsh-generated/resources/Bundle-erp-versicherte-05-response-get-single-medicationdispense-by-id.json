@@ -1,6 +1,9 @@
 {
   "resourceType": "Bundle",
   "id": "erp-versicherte-05-response-get-single-medicationdispense-by-id",
+  "type": "searchset",
+  "timestamp": "2024-02-15T06:01:44.119+00:00",
+  "total": 0,
   "link": [
     {
       "relation": "self",
@@ -9,9 +12,6 @@
   ],
   "entry": [
     {
-      "search": {
-        "mode": "match"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.951.63",
       "resource": {
         "resourceType": "MedicationDispense",
@@ -27,6 +27,11 @@
             "value": "200.000.002.097.951.63"
           }
         ],
+        "status": "completed",
+        "medicationReference": {
+          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
+          "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
+        },
         "subject": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
@@ -43,28 +48,23 @@
             }
           }
         ],
-        "dosageInstruction": [
-          {
-            "text": "1-0-1-0"
-          }
-        ],
-        "status": "completed",
-        "medicationReference": {
-          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
-          "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
-        },
         "quantity": {
           "value": 1,
           "code": "{Package}",
           "system": "http://unitsofmeasure.org"
         },
-        "whenHandedOver": "2024-02-15"
+        "whenHandedOver": "2024-02-15",
+        "dosageInstruction": [
+          {
+            "text": "1-0-1-0"
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
       }
     },
     {
-      "search": {
-        "mode": "include"
-      },
       "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
       "resource": {
         "resourceType": "Medication",
@@ -76,11 +76,11 @@
         },
         "extension": [
           {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
             "valueCoding": {
               "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
               "code": "00"
-            },
-            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
+            }
           },
           {
             "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
@@ -100,6 +100,14 @@
           ],
           "text": "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
         },
+        "form": {
+          "coding": [
+            {
+              "code": "RET",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+            }
+          ]
+        },
         "amount": {
           "numerator": {
             "extension": [
@@ -115,19 +123,11 @@
           "denominator": {
             "value": 1
           }
-        },
-        "form": {
-          "coding": [
-            {
-              "code": "RET",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-            }
-          ]
         }
+      },
+      "search": {
+        "mode": "include"
       }
     }
-  ],
-  "type": "searchset",
-  "timestamp": "2024-02-15T06:01:44.119+00:00",
-  "total": 0
+  ]
 }

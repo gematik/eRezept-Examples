@@ -5,6 +5,17 @@
 Alias: $data-absent-reason = http://hl7.org/fhir/StructureDefinition/data-absent-reason
 Alias: $data-absent-reason-cs = http://terminology.hl7.org/CodeSystem/data-absent-reason
 
+// Abgabedaten
+Alias: $DAV-CS-ERP-CompositionTypes = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes
+Alias: $DAV-PKV-CS-ERP-AbrechnungsTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp
+Alias: $DAV-CS-ERP-MedicationDispenseTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp
+Alias: $DAV-CS-ERP-InvoiceTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp
+Alias: $pzn = http://fhir.de/CodeSystem/ifa/pzn
+Alias: $DAV-PKV-CS-ERP-KostenVersicherterKategorie = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie
+
+// Workflow
+Alias: $GEM_ERP_CS_DocumentType = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType
+
 // KBV
 /*Alias: $KBV_PR_ERP_Bundle = https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle
 Alias: $KBV_EX_ERP_Medication_Category = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category

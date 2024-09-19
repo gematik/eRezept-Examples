@@ -8,6 +8,7 @@
   },
   "parameter": [
     {
+      "name": "rxDispensation",
       "part": [
         {
           "name": "medicationDispense",
@@ -25,6 +26,7 @@
                 "value": "160.123.456.789.123.58"
               }
             ],
+            "status": "completed",
             "subject": {
               "identifier": {
                 "system": "http://fhir.de/sid/gkv/kvid-10",
@@ -41,12 +43,6 @@
                 }
               }
             ],
-            "dosageInstruction": [
-              {
-                "text": "1-0-1-0"
-              }
-            ],
-            "status": "completed",
             "medicationReference": {
               "reference": "Medication/med0314",
               "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
@@ -56,7 +52,12 @@
               "code": "{Package}",
               "system": "http://unitsofmeasure.org"
             },
-            "whenHandedOver": "2024-03-20"
+            "whenHandedOver": "2024-03-20",
+            "dosageInstruction": [
+              {
+                "text": "1-0-1-0"
+              }
+            ]
           }
         },
         {
@@ -71,11 +72,11 @@
             },
             "extension": [
               {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
                 "valueCoding": {
                   "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
                   "code": "00"
-                },
-                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
+                }
               },
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
@@ -95,6 +96,14 @@
               ],
               "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
             },
+            "form": {
+              "coding": [
+                {
+                  "code": "TAB",
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+                }
+              ]
+            },
             "amount": {
               "numerator": {
                 "extension": [
@@ -110,19 +119,10 @@
               "denominator": {
                 "value": 1
               }
-            },
-            "form": {
-              "coding": [
-                {
-                  "code": "TAB",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-                }
-              ]
             }
           }
         }
-      ],
-      "name": "rxDispensation"
+      ]
     }
   ]
 }

@@ -8,16 +8,18 @@
   },
   "parameter": [
     {
+      "name": "rxDispensation",
       "part": [
         {
+          "name": "medicationDispense",
           "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "Example-MedicationDispense",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
               ]
             },
-            "resourceType": "MedicationDispense",
-            "id": "Example-MedicationDispense",
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
@@ -46,18 +48,18 @@
             ],
             "whenPrepared": "2024-04-03",
             "whenHandedOver": "2024-04-03"
-          },
-          "name": "medicationDispense"
+          }
         },
         {
+          "name": "medication",
           "resource": {
+            "resourceType": "Medication",
+            "id": "SumatripanMedication",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
               ]
             },
-            "resourceType": "Medication",
-            "id": "SumatripanMedication",
             "extension": [
               {
                 "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension",
@@ -106,23 +108,23 @@
                 "value": 1
               }
             }
-          },
-          "name": "medication"
+          }
         }
-      ],
-      "name": "rxDispensation"
+      ]
     },
     {
+      "name": "rxDispensation",
       "part": [
         {
+          "name": "medicationDispense",
           "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "Example-MedicationDispense-2",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
               ]
             },
-            "resourceType": "MedicationDispense",
-            "id": "Example-MedicationDispense-2",
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
@@ -151,18 +153,18 @@
             ],
             "whenPrepared": "2024-04-03",
             "whenHandedOver": "2024-04-03"
-          },
-          "name": "medicationDispense"
+          }
         },
         {
+          "name": "medication",
           "resource": {
+            "resourceType": "Medication",
+            "id": "Medication-Without-Strength-Code",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
               ]
             },
-            "resourceType": "Medication",
-            "id": "Medication-Without-Strength-Code",
             "code": {
               "text": "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
             },
@@ -231,11 +233,9 @@
                 }
               }
             ]
-          },
-          "name": "medication"
+          }
         }
-      ],
-      "name": "rxDispensation"
+      ]
     }
   ]
 }
