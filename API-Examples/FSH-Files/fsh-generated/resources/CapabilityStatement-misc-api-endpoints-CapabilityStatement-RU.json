@@ -1,7 +1,12 @@
 {
   "resourceType": "CapabilityStatement",
   "id": "misc-api-endpoints-CapabilityStatement-RU",
-  "url": "https://gematik.de/fhir//CapabilityStatement/misc-api-endpoints-CapabilityStatement-RU",
+  "url": "https://gematik.de/fhir/erezept-api-examples/CapabilityStatement/misc-api-endpoints-CapabilityStatement-RU",
+  "name": "Gem_erxCapabilityStatement",
+  "title": "E-Rezept Workflow CapabilityStatement",
+  "status": "draft",
+  "date": "2024-02-03T12:01:02.000+00:00",
+  "kind": "instance",
   "software": {
     "name": "DEIBM-ERP-FD",
     "version": "1.13.0",
@@ -10,14 +15,18 @@
   "implementation": {
     "description": "E-Rezept Fachdienst Server"
   },
+  "fhirVersion": "4.0.1",
   "format": [
     "xml",
     "json"
   ],
   "rest": [
     {
+      "mode": "server",
       "resource": [
         {
+          "type": "Task",
+          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3",
           "interaction": [
             {
               "code": "create"
@@ -65,11 +74,11 @@
               "name": "abort",
               "definition": "https://gematik.de/fhir/erp/OperationDefinition/AbortOperationDefinition"
             }
-          ],
-          "type": "Task",
-          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+          ]
         },
         {
+          "type": "Communication",
+          "profile": "http://hl7.org/fhir/StructureDefinition/Communication|4.0.1",
           "supportedProfile": [
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_InfoReq|1.3",
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Communication_Reply|1.3",
@@ -106,11 +115,11 @@
               "name": "recipient",
               "type": "string"
             }
-          ],
-          "type": "Communication",
-          "profile": "http://hl7.org/fhir/StructureDefinition/Communication|4.0.1"
+          ]
         },
         {
+          "type": "MedicationDispense",
+          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3",
           "interaction": [
             {
               "code": "read"
@@ -129,11 +138,11 @@
               "name": "performer",
               "type": "string"
             }
-          ],
-          "type": "MedicationDispense",
-          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
+          ]
         },
         {
+          "type": "AuditEvent",
+          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_AuditEvent|1.3",
           "interaction": [
             {
               "code": "read"
@@ -148,20 +157,20 @@
               "name": "subtype",
               "type": "token"
             }
-          ],
-          "type": "AuditEvent",
-          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_AuditEvent|1.3"
+          ]
         },
         {
+          "type": "Device",
+          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.3",
           "interaction": [
             {
               "code": "read"
             }
-          ],
-          "type": "Device",
-          "profile": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.3"
+          ]
         },
         {
+          "type": "ChargeItem",
+          "profile": "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0",
           "interaction": [
             {
               "code": "create"
@@ -182,11 +191,11 @@
               "name": "_lastUpdated",
               "type": "date"
             }
-          ],
-          "type": "ChargeItem",
-          "profile": "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0"
+          ]
         },
         {
+          "type": "Consent",
+          "profile": "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_Consent|1.0",
           "interaction": [
             {
               "code": "create"
@@ -197,18 +206,9 @@
             {
               "code": "delete"
             }
-          ],
-          "type": "Consent",
-          "profile": "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_Consent|1.0"
+          ]
         }
-      ],
-      "mode": "server"
+      ]
     }
-  ],
-  "name": "Gem_erxCapabilityStatement",
-  "title": "E-Rezept Workflow CapabilityStatement",
-  "status": "draft",
-  "date": "2024-02-03T12:01:02.000+00:00",
-  "kind": "instance",
-  "fhirVersion": "4.0.1"
+  ]
 }

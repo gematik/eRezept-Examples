@@ -4,6 +4,8 @@
   "meta": {
     "lastUpdated": "2020-04-07T08:05:42.225+00:00"
   },
+  "type": "searchset",
+  "total": 1,
   "link": [
     {
       "relation": "self",
@@ -12,94 +14,26 @@
   ],
   "entry": [
     {
-      "search": {
-        "mode": "match"
-      },
-      "fullUrl": "https://erp.app.ti-dienste.de/MedicationDispense/1093629",
+      "fullUrl": "https://erp.app.ti-dienste.de/MedicationDispense/160.123.456.789.123.56",
       "resource": {
         "resourceType": "MedicationDispense",
-        "id": "1093629",
+        "id": "160.123.456.789.123.56",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
           ]
         },
+        "status": "completed",
         "identifier": [
           {
-            "value": "160.123.456.789.123.58",
+            "value": "160.123.456.789.123.56",
             "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
           }
         ],
-        "contained": [
-          {
-            "meta": {
-              "profile": [
-                "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
-              ]
-            },
-            "id": "med0314",
-            "code": {
-              "coding": [
-                {
-                  "code": "06313728",
-                  "system": "http://fhir.de/CodeSystem/ifa/pzn"
-                }
-              ],
-              "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
-            },
-            "extension": [
-              {
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
-                "valueCodeableConcept": {
-                  "coding": [
-                    {
-                      "version": "http://snomed.info/sct/900000000000207008/version/20220331",
-                      "code": "763158003",
-                      "system": "http://snomed.info/sct",
-                      "display": "Medicinal product (product)"
-                    }
-                  ]
-                }
-              },
-              {
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
-                "valueCoding": {
-                  "code": "00",
-                  "system": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
-                }
-              },
-              {
-                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
-                "valueBoolean": false
-              }
-            ],
-            "resourceType": "Medication",
-            "amount": {
-              "denominator": {
-                "value": 1
-              },
-              "numerator": {
-                "code": "{tbl}",
-                "system": "http://unitsofmeasure.org",
-                "unit": "Tabletten",
-                "extension": [
-                  {
-                    "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-                    "valueString": "10"
-                  }
-                ]
-              }
-            },
-            "form": {
-              "coding": [
-                {
-                  "code": "TAB",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-                }
-              ]
-            }
-          }
-        ],
+        "medicationReference": {
+          "reference": "Medication/d51b39ab-dad0-4a14-8072-ed87534af585",
+          "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
+        },
         "dosageInstruction": [
           {
             "text": "1-0-1-0"
@@ -115,26 +49,87 @@
             }
           }
         ],
-        "subject": {
-          "identifier": {
-            "value": "X123456789",
-            "system": "http://fhir.de/sid/gkv/kvid-10"
-          }
-        },
-        "status": "completed",
-        "medicationReference": {
-          "reference": "#med0314",
-          "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
-        },
         "whenHandedOver": "2020-03-20",
         "quantity": {
           "value": 1,
           "code": "{Package}",
           "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "identifier": {
+            "value": "X123456789",
+            "system": "http://fhir.de/sid/gkv/kvid-10"
+          }
         }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://erp.app.ti-dienste.de/Medication/d51b39ab-dad0-4a14-8072-ed87534af585",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "d51b39ab-dad0-4a14-8072-ed87534af585",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+            "valueCoding": {
+              "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+              "code": "00"
+            }
+          },
+          {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
+            "valueCode": "N1"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "06313728",
+              "system": "http://fhir.de/CodeSystem/ifa/pzn"
+            }
+          ],
+          "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+        },
+        "form": {
+          "coding": [
+            {
+              "code": "TAB",
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+            }
+          ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                "valueString": "10"
+              }
+            ],
+            "code": "{tbl}",
+            "system": "http://unitsofmeasure.org",
+            "unit": "Tabletten"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      },
+      "search": {
+        "mode": "include"
       }
     }
-  ],
-  "type": "searchset",
-  "total": 1
+  ]
 }

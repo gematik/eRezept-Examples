@@ -3,21 +3,23 @@
   "id": "erp-eml-epa-notes-01-Parameters-ExampleCloseInputParameters",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_CloseOperation_Input|1.3"
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_CloseOperation_Input|1.4"
     ]
   },
   "parameter": [
     {
+      "name": "rxDispensation",
       "part": [
         {
+          "name": "medicationDispense",
           "resource": {
-            "meta": {
-              "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
-              ]
-            },
             "resourceType": "MedicationDispense",
             "id": "Example-MedicationDispense",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
@@ -46,18 +48,18 @@
             ],
             "whenPrepared": "2024-04-03",
             "whenHandedOver": "2024-04-03"
-          },
-          "name": "medicationDispense"
+          }
         },
         {
+          "name": "medication",
           "resource": {
-            "meta": {
-              "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
-              ]
-            },
             "resourceType": "Medication",
             "id": "SumatripanMedication",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
             "extension": [
               {
                 "url": "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension",
@@ -106,11 +108,9 @@
                 "value": 1
               }
             }
-          },
-          "name": "medication"
+          }
         }
-      ],
-      "name": "rxDispensation"
+      ]
     }
   ]
 }

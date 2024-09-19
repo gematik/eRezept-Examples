@@ -18,11 +18,11 @@ Usage: #inline
 * meta.lastUpdated = "2025-03-03T08:26:21.594+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
-* extension[=].valueCodeableConcept = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
+* extension[=].valueCoding = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate"
-* extension[=].valueDateTime = "2025-06-02"
+* extension[=].valueDate = "2025-06-02"
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate"
-* extension[=].valueDateTime = "2025-06-02"
+* extension[=].valueDate = "2025-06-02"
 * identifier[0].use = #official
 * identifier[=].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier[=].value = "162.123.456.789.123.58"
@@ -38,12 +38,12 @@ Usage: #inline
 * for.identifier.value = "X123456789"
 * authoredOn = "2025-03-02T08:25:05+00:00"
 * lastModified = "2025-03-02T08:25:05+00:00"
-* performerType = urn:ietf:rfc:3986#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
 * performerType.text = "Kostenträger"
 * owner.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * owner.identifier.value = "8-SMC-B-Testkarte-883110000116873"
 * input.type = $GEM_ERP_CS_DocumentType#1
-* input.valueReference = Reference(a061507a-0d00-0000-0001-000000000000)
+* input.valueReference = Reference(Binary/a061507a-0d00-0000-0001-000000000000)
 
 Instance: Inline-Instance-for-d5e04846-e753-4a91-ab60-9e4c6fb4b533-2
 InstanceOf: Binary

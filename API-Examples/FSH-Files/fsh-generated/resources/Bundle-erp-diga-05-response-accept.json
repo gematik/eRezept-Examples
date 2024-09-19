@@ -1,6 +1,8 @@
 {
   "resourceType": "Bundle",
   "id": "erp-diga-05-response-accept",
+  "type": "collection",
+  "timestamp": "2025-03-03T08:26:21.594+00:00",
   "link": [
     {
       "relation": "self",
@@ -14,32 +16,28 @@
         "resourceType": "Task",
         "id": "162.123.456.789.123.58",
         "meta": {
-          "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
-          ],
           "versionId": "1",
-          "lastUpdated": "2025-03-03T08:26:21.594+00:00"
+          "lastUpdated": "2025-03-03T08:26:21.594+00:00",
+          "profile": [
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.4"
+          ]
         },
         "extension": [
           {
             "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType",
-            "valueCodeableConcept": {
-              "coding": [
-                {
-                  "code": "162",
-                  "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
-                  "display": "Muster 16 (Digitale Gesundheitsanwendungen)"
-                }
-              ]
+            "valueCoding": {
+              "code": "162",
+              "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType",
+              "display": "Muster 16 (Digitale Gesundheitsanwendungen)"
             }
           },
           {
             "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate",
-            "valueDateTime": "2025-06-02"
+            "valueDate": "2025-06-02"
           },
           {
             "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AcceptDate",
-            "valueDateTime": "2025-06-02"
+            "valueDate": "2025-06-02"
           }
         ],
         "identifier": [
@@ -59,18 +57,22 @@
             "value": "90bcf075768d582571ede9f241a8365bf8d12a19c6e353940ae070cb34f5fb7c"
           }
         ],
+        "status": "draft",
+        "intent": "order",
         "for": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
             "value": "X123456789"
           }
         },
+        "authoredOn": "2025-03-02T08:25:05+00:00",
+        "lastModified": "2025-03-02T08:25:05+00:00",
         "performerType": [
           {
             "coding": [
               {
                 "code": "urn:oid:1.2.276.0.76.4.59",
-                "system": "urn:ietf:rfc:3986",
+                "system": "https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_OrganizationType",
                 "display": "Kostenträger"
               }
             ],
@@ -94,14 +96,10 @@
               ]
             },
             "valueReference": {
-              "reference": "a061507a-0d00-0000-0001-000000000000"
+              "reference": "Binary/a061507a-0d00-0000-0001-000000000000"
             }
           }
-        ],
-        "status": "draft",
-        "intent": "order",
-        "authoredOn": "2025-03-02T08:25:05+00:00",
-        "lastModified": "2025-03-02T08:25:05+00:00"
+        ]
       }
     },
     {
@@ -110,16 +108,14 @@
         "resourceType": "Binary",
         "id": "Inline-Instance-for-d5e04846-e753-4a91-ab60-9e4c6fb4b533-2",
         "meta": {
+          "versionId": "1",
           "profile": [
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Binary|1.2"
-          ],
-          "versionId": "1"
+          ]
         },
         "contentType": "application/pkcs7-mime",
         "data": "RGllcyBpc3QgZWluIEJlaXNwaWVs"
       }
     }
-  ],
-  "type": "collection",
-  "timestamp": "2025-03-03T08:26:21.594+00:00"
+  ]
 }
