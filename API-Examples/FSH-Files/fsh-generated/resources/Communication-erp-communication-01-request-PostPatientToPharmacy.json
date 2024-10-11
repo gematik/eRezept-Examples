@@ -17,6 +17,7 @@
       },
       "extension": [
         {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
           "valueCodeableConcept": {
             "coding": [
               {
@@ -26,15 +27,14 @@
                 "display": "Medicinal product (product)"
               }
             ]
-          },
-          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type"
+          }
         },
         {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
           "valueCoding": {
             "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
             "code": "00"
-          },
-          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category"
+          }
         },
         {
           "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
@@ -54,22 +54,6 @@
         ],
         "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
       },
-      "amount": {
-        "numerator": {
-          "extension": [
-            {
-              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
-              "valueString": "10"
-            }
-          ],
-          "code": "{tbl}",
-          "system": "http://unitsofmeasure.org",
-          "unit": "TAB"
-        },
-        "denominator": {
-          "value": 1
-        }
-      },
       "form": {
         "coding": [
           {
@@ -77,6 +61,22 @@
             "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
           }
         ]
+      },
+      "amount": {
+        "numerator": {
+          "code": "{tbl}",
+          "system": "http://unitsofmeasure.org",
+          "unit": "TAB",
+          "extension": [
+            {
+              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+              "valueString": "10"
+            }
+          ]
+        },
+        "denominator": {
+          "value": 1
+        }
       }
     }
   ],
@@ -85,6 +85,7 @@
       "reference": "Task/160.123.456.789.123.58"
     }
   ],
+  "status": "unknown",
   "about": [
     {
       "reference": "#5fe6e06c-8725-46d5-aecd-e65e041ca3de"
@@ -102,13 +103,14 @@
     {
       "extension": [
         {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider",
           "valueIdentifier": {
             "system": "http://fhir.de/sid/arge-ik/iknr",
             "value": "104212059"
-          },
-          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_InsuranceProvider"
+          }
         },
         {
+          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType",
           "extension": [
             {
               "url": "onPremise",
@@ -122,8 +124,7 @@
               "url": "shipment",
               "valueBoolean": false
             }
-          ],
-          "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType"
+          ]
         },
         {
           "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SubstitutionAllowedType",
@@ -148,6 +149,5 @@
       ],
       "contentString": "Hallo, ich wollte gern fragen, ob das Medikament bei Ihnen vorraetig ist."
     }
-  ],
-  "status": "unknown"
+  ]
 }

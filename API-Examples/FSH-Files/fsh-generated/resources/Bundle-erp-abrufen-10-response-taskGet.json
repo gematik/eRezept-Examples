@@ -4,6 +4,7 @@
   "meta": {
     "lastUpdated": "2020-03-13T07:31:34.328+00:00"
   },
+  "type": "collection",
   "entry": [
     {
       "fullUrl": "https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.123.456.789.123.58-1",
@@ -11,11 +12,11 @@
         "resourceType": "Task",
         "id": "160.123.456.789.123.58-1",
         "meta": {
+          "versionId": "2",
+          "lastUpdated": "2020-02-18T10:05:05.038+00:00",
           "profile": [
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.4"
-          ],
-          "versionId": "2",
-          "lastUpdated": "2020-02-18T10:05:05.038+00:00"
+          ]
         },
         "extension": [
           {
@@ -51,12 +52,16 @@
             "value": "c36ca26502892b371d252c99b496e31505ff449aca9bc69e231c58148f6233cf"
           }
         ],
+        "status": "completed",
+        "intent": "order",
         "for": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
             "value": "X123456789"
           }
         },
+        "authoredOn": "2020-03-02T08:25:05+00:00",
+        "lastModified": "2020-03-02T08:45:05+00:00",
         "performerType": [
           {
             "coding": [
@@ -97,11 +102,7 @@
               "reference": "urn:oid:dffbfd6a-5712-4798-bdc8-07201eb77ab8"
             }
           }
-        ],
-        "status": "completed",
-        "intent": "order",
-        "authoredOn": "2020-03-02T08:25:05+00:00",
-        "lastModified": "2020-03-02T08:45:05+00:00"
+        ]
       }
     },
     {
@@ -123,16 +124,19 @@
           "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
           "value": "160.123.456.789.123.58"
         },
+        "type": "document",
+        "timestamp": "2020-03-20T07:31:34.328+00:00",
         "entry": [
           {
+            "fullUrl": "urn:uuid:ec72f89f-2c84-4907-9a09-4bed0911e6e1",
             "resource": {
+              "resourceType": "Composition",
+              "id": "ec72f89f-2c84-4907-9a09-4bed0911e6e1",
               "meta": {
                 "profile": [
                   "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.4"
                 ]
               },
-              "resourceType": "Composition",
-              "id": "ec72f89f-2c84-4907-9a09-4bed0911e6e1",
               "extension": [
                 {
                   "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_Beneficiary",
@@ -175,18 +179,18 @@
                   ]
                 }
               ]
-            },
-            "fullUrl": "urn:uuid:ec72f89f-2c84-4907-9a09-4bed0911e6e1"
+            }
           },
           {
+            "fullUrl": "urn:uuid:b6fcc694-994f-40fa-968e-77a477bcc0b8",
             "resource": {
+              "resourceType": "Device",
+              "id": "1",
               "meta": {
                 "profile": [
                   "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.4"
                 ]
               },
-              "resourceType": "Device",
-              "id": "1",
               "status": "active",
               "serialNumber": "R4.0.0.287342834",
               "deviceName": [
@@ -200,22 +204,21 @@
                   "value": "1.0.0"
                 }
               ]
-            },
-            "fullUrl": "urn:uuid:b6fcc694-994f-40fa-968e-77a477bcc0b8"
+            }
           },
           {
+            "fullUrl": "urn:uuid:47decbcb-a411-4298-8b61-eab2374c818a",
             "resource": {
+              "resourceType": "Binary",
+              "id": "47decbcb-a411-4298-8b61-eab2374c818a",
               "meta": {
                 "profile": [
                   "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.4"
                 ]
               },
-              "resourceType": "Binary",
-              "id": "47decbcb-a411-4298-8b61-eab2374c818a",
               "contentType": "application/octet-stream",
               "data": "hcjUMWK000GMe4zsJtNu+00hM7f9yHWp7ewiMeXy6KY="
-            },
-            "fullUrl": "urn:uuid:47decbcb-a411-4298-8b61-eab2374c818a"
+            }
           }
         ],
         "signature": {
@@ -231,11 +234,8 @@
           },
           "sigFormat": "application/pkcs7-mime",
           "data": "QXVmZ3J1bmQgZGVyIENvcm9uYS1TaXR1YXRpb24ga29ubnRlIGhpZXIga3VyemZyaXN0aWcga2VpbiBCZWlzcGllbCBpbiBkZXIgTGFib3J1bWdlYnVuZyBkZXIgZ2VtYXRpayBlcnN0ZWxsdCB3ZWRlbi4gRGllc2VzIHdpcmQgbmFjaGdlcmVpY2h0LgoKSW5oYWx0bGljaCB1bmQgc3RydWt0dXJlbGwgaXN0IGRpZSBTZXJ2ZXJzaWduYXR1ciBkZXIgUXVpdHR1bmcgZWluZSBFbnZlbG9waW5nIENBZEVTLVNpZ25hdHVyLCBkaWUgZGVuIHNpZ25pZXJ0ZW4gRGF0ZW5zYXR6IGFuYWxvZyB6dXIgS29ubmVrdG9yLVNpZ25hdHVyIGlubmVyaGFsYiBkZXMgQVNOMS5Db250YWluZXJzIHRyYW5zcG9ydGllcnQu"
-        },
-        "type": "document",
-        "timestamp": "2020-03-20T07:31:34.328+00:00"
+        }
       }
     }
-  ],
-  "type": "collection"
+  ]
 }

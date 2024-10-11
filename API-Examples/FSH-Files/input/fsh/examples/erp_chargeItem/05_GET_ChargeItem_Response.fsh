@@ -6,9 +6,11 @@ Usage: #example
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/ChargeItem/200.000.001.944.091.20"
 * entry[=].resource = Inline-Instance-for-803bc98b-6ad6-4caa-81c1-893600ba4e4b-1
 * entry[+].fullUrl = "urn:uuid:c81baa1d-0000-0000-0001-000000000000"
-* entry[=].resource = 1ad84b2a-b444-430c-9902-de9e07547cc8
+* entry[=].resource = erp-bereitstellen-02-Prescription-Bundle
+* entry[+].fullUrl = "urn:uuid:c81baa1d-0000-0000-0003-000000000000"
+* entry[=].resource = erp-chargeitem-example-quittung
 * entry[+].fullUrl = "urn:uuid:c81baa1d-0000-0000-0004-000000000000"
-* entry[=].resource = 21e93051-7bce-43b5-9687-26b5b73c7c71
+* entry[=].resource = erp-chargeitem-example-abgabedatenPKV
 
 Instance: Inline-Instance-for-803bc98b-6ad6-4caa-81c1-893600ba4e4b-1
 InstanceOf: ChargeItem
@@ -28,20 +30,3 @@ Usage: #inline
 * supportingInformation[0] = Reference(urn:uuid:c81baa1d-0000-0000-0001-000000000000) "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0003-000000000000) "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0004-000000000000) "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle"
-
-Instance: 1ad84b2a-b444-430c-9902-de9e07547cc8
-InstanceOf: Bundle
-Usage: #inline
-* meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
-* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
-* type = #document
-// Incomplete example
-
-Instance: 21e93051-7bce-43b5-9687-26b5b73c7c71
-InstanceOf: Bundle
-Usage: #inline
-* meta.lastUpdated = "2023-11-21T00:10:23.724+01:00"
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3"
-* meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
-* type = #document
-// Incomplete example
