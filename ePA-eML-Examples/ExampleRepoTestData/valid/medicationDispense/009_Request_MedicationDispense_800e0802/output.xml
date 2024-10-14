@@ -1,0 +1,131 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="1f1a4b0f-fa8e-4521-bee8-a046cd5761dc"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="209.000.000.032.995.34"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="1970-01-01"/>
+      </part>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="4346c135-cc64-4af8-b4e7-eb2340de7cad"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier"/>
+                  <value value="800e0802-39d4-4874-9383-336c4fd98ae7_209.000.000.032.995.34"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/5a063649-5fc3-40fd-b290-916fa0cc99dd"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110465770"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/ae1ff0ca-6610-47ed-8414-35e09afd3b45"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-02-08"/>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="5a063649-5fc3-40fd-b290-916fa0cc99dd"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="NB"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="46260462"/>
+                  </coding>
+                  <text value="Zytostatika_WF209"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="TAB"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="1"/>
+                     </extension>
+                     <unit value="Stk"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="ae1ff0ca-6610-47ed-8414-35e09afd3b45"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-SMC-B-Testkarte-883110000116873"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="Minnie Skurt"/>
+            </Organization>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

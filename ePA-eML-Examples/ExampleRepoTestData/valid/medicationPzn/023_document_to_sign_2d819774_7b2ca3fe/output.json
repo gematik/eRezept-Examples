@@ -1,0 +1,233 @@
+{
+  "resourceType": "Parameters",
+  "id": "79996d2b-8e74-48eb-8c51-88dd1bfc0e01",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.226.119.800.69"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2024-02-08"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "c976d252-b85f-4281-b5b7-4da0013bab3d",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": true
+          }, {
+            "url": "counter",
+            "valueRatio": {
+              "numerator": {
+                "value": 4
+              },
+              "denominator": {
+                "value": 4
+              }
+            }
+          }, {
+            "url": "period",
+            "valuePeriod": {
+              "start": "2024-11-04"
+            }
+          }, {
+            "url": "id",
+            "valueIdentifier": {
+              "system": "urn:ietf:rfc:3986",
+              "value": "urn:uuid:13061707"
+            }
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/9f58d1e7-f603-4fdb-90ce-8820e9bbf82c"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2024-02-08",
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": false
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "9f58d1e7-f603-4fdb-90ce-8820e9bbf82c",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "NB"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "29470620"
+          } ],
+          "text": "Aceternin"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "1"
+            } ],
+            "unit": "Stk"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "9f2263bd-c9f0-4ec8-a02f-c3bf5cfd7428",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "711020854"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Arztpraxis Schraßer",
+        "telecom": [ {
+          "system": "phone",
+          "value": "(0340) 561450343"
+        }, {
+          "system": "email",
+          "value": "saphira.schaffarzik@jungbluth.name"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Am Arenzberg 46b" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "46b"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Am Arenzberg"
+            } ]
+          } ],
+          "city": "Jessicafeld",
+          "postalCode": "12141",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "f38389f4-48d2-46a4-98ed-d305cbd28ddc",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "616562658"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Dr. Dr. Schraßer",
+          "family": "Schraßer",
+          "given": [ "Dr." ],
+          "prefix": [ "Dr." ],
+          "_prefix": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+              "valueCode": "AC"
+            } ]
+          } ]
+        } ]
+      }
+    } ]
+  } ]
+}

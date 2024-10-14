@@ -1,0 +1,198 @@
+{
+  "resourceType": "Parameters",
+  "id": "662ab821-ccbd-4f41-b996-ce49faa61660",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.100.000.000.057.65"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2022-05-20"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "38bbc4c8-e7a6-4517-ad1d-86df552c3c54",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": false
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/e525d8a2-0143-4ce8-8046-98a04e6ce96a"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2022-05-20",
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": false
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "e525d8a2-0143-4ce8-8046-98a04e6ce96a",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "15193430"
+          } ],
+          "text": "CERAZETTE 75 Mikrogramm Filmtabletten (6X28St)"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "FTA"
+          } ]
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "dba099a9-ae83-4bff-9ae3-cf33d176ca36",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "724444400"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Hausarztpraxis",
+        "telecom": [ {
+          "system": "phone",
+          "value": "030321654987"
+        }, {
+          "system": "email",
+          "value": "hausarztpraxis@e-mail.de"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Herbert-Lewin-Platz 2", "Erdgeschoss" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "2"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Herbert-Lewin-Platz"
+            } ]
+          }, {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+              "valueString": "Erdgeschoss"
+            } ]
+          } ],
+          "city": "Berlin",
+          "postalCode": "10623",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "e192f595-ee28-4a73-8354-7f965d8ed779",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "754236701"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Ben Schulz",
+          "family": "Schulz",
+          "given": [ "Ben" ]
+        } ]
+      }
+    } ]
+  } ]
+}

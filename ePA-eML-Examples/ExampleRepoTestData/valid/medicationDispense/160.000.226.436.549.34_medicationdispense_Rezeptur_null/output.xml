@@ -1,0 +1,209 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="6a08fc53-7aa5-482d-88fd-75a796f5ef62"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.000.226.436.549.34"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="1970-01-01"/>
+      </part>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="9aedfd59-54be-4ccd-b476-140ba3bfb0ca"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier"/>
+                  <value value="null_160.000.226.436.549.34"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/2980e4d4-9cff-4da3-aa33-2a7ae718075f"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="Z828875733"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/e94ade6e-0ed6-4df2-997e-b7d3fde45cbf"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-07-02T11:01:36+02:00"/>
+               <dosageInstruction>
+                  <text value="1–3mal/Tag auf die erkrankten Hautstellen auftragen"/>
+               </dosageInstruction>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="2980e4d4-9cff-4da3-aa33-2a7ae718075f"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <form>
+                  <text value="Lösung"/>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension">
+                        <valueString value="100"/>
+                     </extension>
+                     <unit value="ml"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <ingredient>
+                  <itemCodeableConcept>
+                     <text value="Salicylsäure"/>
+                  </itemCodeableConcept>
+                  <strength>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension">
+                        <valueString value="5g"/>
+                     </extension>
+                     <numerator>
+                        <value>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </value>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </numerator>
+                     <denominator>
+                        <value>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </value>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </denominator>
+                  </strength>
+               </ingredient>
+               <ingredient>
+                  <itemCodeableConcept>
+                     <text value="2-propanol 70 %"/>
+                  </itemCodeableConcept>
+                  <strength>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension">
+                        <valueString value="Ad 100 g"/>
+                     </extension>
+                     <numerator>
+                        <value>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </value>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </numerator>
+                     <denominator>
+                        <value>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </value>
+                        <system>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </system>
+                        <code>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </code>
+                     </denominator>
+                  </strength>
+               </ingredient>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="e94ade6e-0ed6-4df2-997e-b7d3fde45cbf"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-abc-1234567890"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="Claire Voyance"/>
+            </Organization>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

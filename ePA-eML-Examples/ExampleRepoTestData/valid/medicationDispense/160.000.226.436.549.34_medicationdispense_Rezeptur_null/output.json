@@ -1,0 +1,218 @@
+{
+  "resourceType": "Parameters",
+  "id": "6a08fc53-7aa5-482d-88fd-75a796f5ef62",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxDispensation",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.226.436.549.34"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "1970-01-01"
+    }, {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "9aedfd59-54be-4ccd-b476-140ba3bfb0ca",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+          "value": "null_160.000.226.436.549.34"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/2980e4d4-9cff-4da3-aa33-2a7ae718075f"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "Z828875733"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/e94ade6e-0ed6-4df2-997e-b7d3fde45cbf"
+          }
+        } ],
+        "whenHandedOver": "2024-07-02T11:01:36+02:00",
+        "dosageInstruction": [ {
+          "text": "1–3mal/Tag auf die erkrankten Hautstellen auftragen"
+        } ]
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "2980e4d4-9cff-4da3-aa33-2a7ae718075f",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        } ],
+        "form": {
+          "text": "Lösung"
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension",
+              "valueString": "100"
+            } ],
+            "unit": "ml"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "ingredient": [ {
+          "itemCodeableConcept": {
+            "text": "Salicylsäure"
+          },
+          "strength": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
+              "valueString": "5g"
+            } ],
+            "numerator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            },
+            "denominator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            }
+          }
+        }, {
+          "itemCodeableConcept": {
+            "text": "2-propanol 70 %"
+          },
+          "strength": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
+              "valueString": "Ad 100 g"
+            } ],
+            "numerator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            },
+            "denominator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            }
+          }
+        } ]
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "e94ade6e-0ed6-4df2-997e-b7d3fde45cbf",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-abc-1234567890"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Claire Voyance"
+      }
+    } ]
+  } ]
+}

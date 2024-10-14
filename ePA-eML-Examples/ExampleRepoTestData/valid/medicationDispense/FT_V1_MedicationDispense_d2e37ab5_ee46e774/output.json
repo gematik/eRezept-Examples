@@ -1,0 +1,131 @@
+{
+  "resourceType": "Parameters",
+  "id": "eb11cc2c-fbcd-43f9-b4af-52c17948cb5e",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxDispensation",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.100.000.000.023.70"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "1970-01-01"
+    }, {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "a4549d97-bd90-439f-8c31-5842947ace62",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+          "value": "ee46e774-0d9d-4f8a-b108-463d600b955c_160.100.000.000.023.70"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/0a821b76-3aae-460f-bb9f-c3a0c68ae678"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "S040464113"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/5c39797f-147e-4f4a-a992-2049e80ce1f7"
+          }
+        } ],
+        "whenHandedOver": "2024-11-27"
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "0a821b76-3aae-460f-bb9f-c3a0c68ae678",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "02950964"
+          } ],
+          "text": "METFORMIN 850-1A Pharma Filmtabletten 180 Stk"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "FTA"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "180"
+            } ],
+            "unit": "Tabletten"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "batch": {
+          "lotNumber": "P987654321-8",
+          "expirationDate": "2025-12-31"
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "5c39797f-147e-4f4a-a992-2049e80ce1f7",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-07.2.1234560000.10.789"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Morgan U. Canhandle"
+      }
+    } ]
+  } ]
+}

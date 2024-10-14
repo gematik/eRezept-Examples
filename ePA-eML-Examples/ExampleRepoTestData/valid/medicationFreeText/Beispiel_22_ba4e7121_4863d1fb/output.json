@@ -1,0 +1,190 @@
+{
+  "resourceType": "Parameters",
+  "id": "549970de-7aa9-4202-b196-ffdc80825d6d",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.100.000.000.023.70"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2022-05-20"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "9abf895c-bcd6-4691-999d-d538f4ebc68d",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": false
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/9adada1c-c305-4200-8d85-71d0ad8e279a"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2022-05-20",
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": true
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "9adada1c-c305-4200-8d85-71d0ad8e279a",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        } ],
+        "code": {
+          "text": "Metformin 850mg Tabletten N3"
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "0086f23f-9246-40b7-9f7f-3a666a7af3ef",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "721111100"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "MVZ",
+        "telecom": [ {
+          "system": "phone",
+          "value": "0301234567"
+        }, {
+          "system": "fax",
+          "value": "030123456789"
+        }, {
+          "system": "email",
+          "value": "mvz@e-mail.de"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Herbert-Lewin-Platz 2" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "2"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Herbert-Lewin-Platz"
+            } ]
+          } ],
+          "city": "Berlin",
+          "postalCode": "10623",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "ca5d731b-b828-4442-abec-357969b3144b",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "987654423"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Dr. med. Emma Schneider",
+          "family": "Schneider",
+          "given": [ "Emma" ],
+          "prefix": [ "Dr. med." ],
+          "_prefix": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+              "valueCode": "AC"
+            } ]
+          } ]
+        } ]
+      }
+    } ]
+  } ]
+}

@@ -1,0 +1,127 @@
+{
+  "resourceType": "Parameters",
+  "id": "fc08a459-daae-457e-ad31-97596e89a25c",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxDispensation",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.226.119.768.68"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "1970-01-01"
+    }, {
+      "name": "medicationDispense",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "5049de6b-98fc-4d1c-9298-4882c6a69f5a",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3" ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier",
+          "value": "f9f80ea9-6ae4-4916-877e-1707094b808a_160.000.226.119.768.68"
+        } ],
+        "status": "completed",
+        "category": {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS",
+            "code": "prescription",
+            "display": "prescription dispense"
+          } ]
+        },
+        "medicationReference": {
+          "reference": "Medication/333e0592-288f-4e0a-ab5f-29b29fff6fcb"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X110498565"
+          }
+        },
+        "performer": [ {
+          "actor": {
+            "reference": "Organization/8d99d095-b27d-46cf-94cb-eb6a52e2f874"
+          }
+        } ],
+        "whenHandedOver": "2024-02-08"
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "333e0592-288f-4e0a-ab5f-29b29fff6fcb",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "NB"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "12345678"
+          } ],
+          "text": "Schmerzmittel"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "1"
+            } ],
+            "unit": "Stk"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "8d99d095-b27d-46cf-94cb-eb6a52e2f874",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-SMC-B-Testkarte-883110000116873"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Chris Mass"
+      }
+    } ]
+  } ]
+}

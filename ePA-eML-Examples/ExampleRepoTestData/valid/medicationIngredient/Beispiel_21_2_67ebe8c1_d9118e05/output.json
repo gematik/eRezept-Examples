@@ -1,0 +1,248 @@
+{
+  "resourceType": "Parameters",
+  "id": "3b05f092-8219-4635-8a62-7e4e14170a18",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.100.000.000.027.58"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2021-04-01"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "5952a54e-638a-4665-9643-5a5438c7ae7f",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": true
+          }, {
+            "url": "counter",
+            "valueRatio": {
+              "numerator": {
+                "value": 2
+              },
+              "denominator": {
+                "value": 2
+              }
+            }
+          }, {
+            "url": "period",
+            "valuePeriod": {
+              "start": "2021-06-15"
+            }
+          }, {
+            "url": "id",
+            "valueIdentifier": {
+              "system": "urn:ietf:rfc:3986",
+              "value": "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
+            }
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/aecfdd9f-c130-4d0d-b8a6-b09b5d2db036"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2021-04-01",
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "aecfdd9f-c130-4d0d-b8a6-b09b5d2db036",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        } ],
+        "form": {
+          "text": "Tabletten"
+        },
+        "ingredient": [ {
+          "itemCodeableConcept": {
+            "coding": [ {
+              "system": "http://fhir.de/CodeSystem/ask",
+              "code": "23816"
+            } ],
+            "text": "Simvastatin"
+          },
+          "strength": {
+            "numerator": {
+              "value": 20,
+              "unit": "mg",
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            },
+            "denominator": {
+              "value": 1,
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            }
+          }
+        } ]
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "1a64a87d-d9c6-4c0e-a665-a3ff4370c1a8",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "724444400"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Hausarztpraxis",
+        "telecom": [ {
+          "system": "phone",
+          "value": "030321654987"
+        }, {
+          "system": "email",
+          "value": "hausarztpraxis@e-mail.de"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Herbert-Lewin-Platz 2", "Erdgeschoss" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "2"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Herbert-Lewin-Platz"
+            } ]
+          }, {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+              "valueString": "Erdgeschoss"
+            } ]
+          } ],
+          "city": "Berlin",
+          "postalCode": "10623",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "009487a1-f6a6-4358-b2e4-23d51b25c58e",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "754236701"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Ben Schulz",
+          "family": "Schulz",
+          "given": [ "Ben" ]
+        } ]
+      }
+    } ]
+  } ]
+}

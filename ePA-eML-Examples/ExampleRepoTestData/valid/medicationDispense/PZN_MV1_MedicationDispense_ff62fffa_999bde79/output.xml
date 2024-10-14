@@ -1,0 +1,135 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="5a4f1cd8-4926-44ab-bf40-348a6263cf91"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.100.000.000.010.12"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="1970-01-01"/>
+      </part>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="d70f3fda-582d-42d3-bf25-e49c11e6874e"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier"/>
+                  <value value="999bde79-4aba-4b15-9615-c4adf57f0008_160.100.000.000.010.12"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/835d57d8-c189-4e3d-ac7d-477654ea9563"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="K030182229"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/efddc1b5-2b25-4873-9918-a6e096fa1c24"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-11-27"/>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="835d57d8-c189-4e3d-ac7d-477654ea9563"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N3"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="02532741"/>
+                  </coding>
+                  <text value="L-Thyroxin Henning 75 100 Tbl. N3"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="TAB"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="100"/>
+                     </extension>
+                     <unit value="Tabletten"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <batch>
+                  <lotNumber value="A123456789-1"/>
+                  <expirationDate value="2025-12-31"/>
+               </batch>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="efddc1b5-2b25-4873-9918-a6e096fa1c24"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-07.2.1234560000.10.789"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="Telly Vision"/>
+            </Organization>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

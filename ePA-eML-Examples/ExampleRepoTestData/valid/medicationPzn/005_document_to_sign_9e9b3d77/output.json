@@ -1,0 +1,212 @@
+{
+  "resourceType": "Parameters",
+  "id": "70f4a49d-68a0-4abc-9d15-8130e77e0490",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "200.000.002.096.526.70"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2024-02-08"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "0ca22004-c50c-45fc-ad3d-85a61d87bc6a",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": false
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/0bc4215c-3666-4765-9984-38ef4159df8e"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2024-02-08",
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": false
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "0bc4215c-3666-4765-9984-38ef4159df8e",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        }, {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "NB"
+        } ],
+        "code": {
+          "coding": [ {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "10256692"
+          } ],
+          "text": "Schmerzmittel"
+        },
+        "form": {
+          "coding": [ {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          } ]
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+              "valueString": "1"
+            } ],
+            "unit": "Stk"
+          },
+          "denominator": {
+            "value": 1
+          }
+        }
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "f98e36f4-a62b-488e-8487-ece10ed86c7e",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "030858272"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "Arztpraxis Schraßer",
+        "telecom": [ {
+          "system": "phone",
+          "value": "+49-7111-25857900"
+        }, {
+          "system": "email",
+          "value": "giuseppe.filipowski@rodowski.org"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Gierener Weg 17" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "17"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Gierener Weg"
+            } ]
+          } ],
+          "city": "Franzisburg",
+          "postalCode": "48462",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "c911c8f3-3dc1-4e93-9c55-b3d165b12e51",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "032950438"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Dr. Dr. Schraßer",
+          "family": "Schraßer",
+          "given": [ "Dr." ],
+          "prefix": [ "Dr." ],
+          "_prefix": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+              "valueCode": "AC"
+            } ]
+          } ]
+        } ]
+      }
+    } ]
+  } ]
+}

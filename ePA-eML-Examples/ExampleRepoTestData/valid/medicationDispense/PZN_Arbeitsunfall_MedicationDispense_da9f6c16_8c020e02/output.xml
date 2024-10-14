@@ -1,0 +1,138 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="861e26b3-d82d-4768-8f08-205e66f904cd"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.100.000.000.008.18"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="1970-01-01"/>
+      </part>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="0b5b7583-42ad-4a86-9723-198051813317"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier"/>
+                  <value value="8c020e02-b389-4197-a9fa-b46704501e27_160.100.000.000.008.18"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/e8d001d8-26c7-45f7-a849-e58b03f22cd3"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="S040464113"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/c28438e4-7748-43b8-a3d9-e1a64ba4aaa4"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-11-27"/>
+               <dosageInstruction>
+                  <text value="3mal täglich dünn auftragen"/>
+               </dosageInstruction>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="e8d001d8-26c7-45f7-a849-e58b03f22cd3"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N1"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="10962562"/>
+                  </coding>
+                  <text value="FUSIDINSÄURE-ratiopharm 20 mg/g"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="CRE"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="15"/>
+                     </extension>
+                     <unit value="g"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <batch>
+                  <lotNumber value="A123456789-1"/>
+                  <expirationDate value="2025-12-31"/>
+               </batch>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="c28438e4-7748-43b8-a3d9-e1a64ba4aaa4"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-07.2.1234560000.10.789"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="Olive Yew"/>
+            </Organization>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

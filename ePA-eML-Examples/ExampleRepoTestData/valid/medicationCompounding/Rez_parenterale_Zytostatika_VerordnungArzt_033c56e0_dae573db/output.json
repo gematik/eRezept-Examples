@@ -1,0 +1,293 @@
+{
+  "resourceType": "Parameters",
+  "id": "ac9e5e6e-f374-4a78-91c8-a868d4eedbe8",
+  "meta": {
+    "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-prescription-erp-input-parameters|1.0.3" ]
+  },
+  "parameter": [ {
+    "name": "rxPrescription",
+    "part": [ {
+      "name": "prescriptionId",
+      "valueIdentifier": {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "169.018.562.305.023.72"
+      }
+    }, {
+      "name": "authoredOn",
+      "valueDate": "2024-11-24"
+    }, {
+      "name": "medicationRequest",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "6908c0ec-c2bb-4641-89f1-20756fa705bb",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-request|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/multiple-prescription-extension",
+          "extension": [ {
+            "url": "indicator",
+            "valueBoolean": false
+          } ]
+        } ],
+        "status": "active",
+        "intent": "filler-order",
+        "medicationReference": {
+          "reference": "Medication/fc4e5b10-ab74-4df7-97d5-1f6bb5691a2f"
+        },
+        "subject": {
+          "identifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "K220635158"
+          }
+        },
+        "authoredOn": "2024-11-24",
+        "dosageInstruction": [ {
+          "patientInstruction": "zur ärztlichen parenteralen Applikation gem. Therapieplan"
+        } ],
+        "dispenseRequest": {
+          "quantity": {
+            "value": 3,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": true
+        }
+      }
+    }, {
+      "name": "medication",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "fc4e5b10-ab74-4df7-97d5-1f6bb5691a2f",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3" ]
+        },
+        "extension": [ {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+          "valueCoding": {
+            "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+            "code": "00"
+          }
+        }, {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+          "valueBoolean": false
+        } ],
+        "form": {
+          "text": "Infusionslösung"
+        },
+        "amount": {
+          "numerator": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension",
+              "valueString": "500"
+            } ],
+            "unit": "ml"
+          },
+          "denominator": {
+            "value": 1
+          }
+        },
+        "ingredient": [ {
+          "itemCodeableConcept": {
+            "text": "Etoposid"
+          },
+          "strength": {
+            "numerator": {
+              "value": 180,
+              "unit": "mg",
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            },
+            "denominator": {
+              "value": 1,
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            }
+          }
+        }, {
+          "itemCodeableConcept": {
+            "text": "NaCl 0,9 %"
+          },
+          "strength": {
+            "extension": [ {
+              "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
+              "valueString": "ad 500 ml"
+            } ],
+            "numerator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            },
+            "denominator": {
+              "_value": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_system": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              },
+              "_code": {
+                "extension": [ {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                } ]
+              }
+            }
+          }
+        } ]
+      }
+    }, {
+      "name": "organization",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "025bd246-39f1-44bb-90f2-371b9f2e05bc",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "BSNR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+          "value": "721111100"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "type": [ {
+          "coding": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "code": "1.2.276.0.76.4.58"
+          } ]
+        } ],
+        "name": "MVZ",
+        "telecom": [ {
+          "system": "phone",
+          "value": "0301234567"
+        }, {
+          "system": "fax",
+          "value": "030123456789"
+        }, {
+          "system": "email",
+          "value": "mvz@e-mail.de"
+        } ],
+        "address": [ {
+          "type": "both",
+          "line": [ "Herbert-Lewin-Platz 2" ],
+          "_line": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+              "valueString": "2"
+            }, {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+              "valueString": "Herbert-Lewin-Platz"
+            } ]
+          } ],
+          "city": "Berlin",
+          "postalCode": "10623",
+          "country": "D"
+        } ]
+      }
+    }, {
+      "name": "practitioner",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "64b0ddc2-32f2-4014-9783-900f86c5c8b8",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/directory/StructureDefinition/PractitionerDirectory|0.11.12" ],
+          "tag": [ {
+            "system": "https://gematik.de/fhir/directory/CodeSystem/Origin",
+            "code": "ldap"
+          } ]
+        },
+        "identifier": [ {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "LANR"
+            } ]
+          },
+          "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+          "value": "987654423"
+        }, {
+          "type": {
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PRN"
+            } ]
+          },
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "1-031234567"
+        } ],
+        "name": [ {
+          "use": "official",
+          "text": "Dr. med. Emma Schneider",
+          "family": "Schneider",
+          "given": [ "Emma" ],
+          "prefix": [ "Dr. med." ],
+          "_prefix": [ {
+            "extension": [ {
+              "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+              "valueCode": "AC"
+            } ]
+          } ]
+        } ]
+      }
+    } ]
+  } ]
+}
