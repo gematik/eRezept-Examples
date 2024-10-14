@@ -15,17 +15,17 @@ Usage: #example
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#SAL
 * amount.numerator.extension.url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
 * amount.numerator.extension.valueString = "100 ml"
-* amount.numerator.value = 20
+* amount.numerator.value = 100
 * amount.numerator.unit = "ml"
 * amount.denominator.value = 1
 * ingredient[0].itemReference = Reference(MedicationHydrocortison)
 * ingredient[=].isActive = true
-* ingredient[=].strength.numerator = 50 'g'
-* ingredient[=].strength.denominator = 100 'g'
+* ingredient[=].strength.numerator = 50 'ml'
+* ingredient[=].strength.denominator = 100 'ml'
 * ingredient[+].itemReference = Reference(MedicationDexpanthenol)
 * ingredient[=].isActive = true
-* ingredient[=].strength.numerator = 50 'g'
-* ingredient[=].strength.denominator = 100 'g'
+* ingredient[=].strength.numerator = 50 'ml'
+* ingredient[=].strength.denominator = 100 'ml'
 
 Instance: MedicationHydrocortison
 InstanceOf: Medication

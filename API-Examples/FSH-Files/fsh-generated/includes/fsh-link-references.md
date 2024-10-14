@@ -29,7 +29,7 @@
 [erp-communication-05-request-RezeptZuweisen]: Communication-erp-communication-05-request-RezeptZuweisen.html
 [erp-communication-06-response-RezeptZuweisen]: Communication-erp-communication-06-response-RezeptZuweisen.html
 [erp-communication-07-response-GetMessages]: Bundle-erp-communication-07-response-GetMessages.html
-[d6e013c3-656f-43c4-9ca6-4cd46ffeb37e]: Communication-d6e013c3-656f-43c4-9ca6-4cd46ffeb37e.html
+[erp-communication-08-request-RezeptZuweisen]: Communication-erp-communication-08-request-RezeptZuweisen.html
 [erp-communication-08-response-GetAllMessages]: Bundle-erp-communication-08-response-GetAllMessages.html
 [erp-consent-01-request-PostConsent]: Consent-erp-consent-01-request-PostConsent.html
 [erp-consent-02-response-PostConsent]: Consent-erp-consent-02-response-PostConsent.html
