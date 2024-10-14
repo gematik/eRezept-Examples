@@ -1,0 +1,134 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="02098235-ad94-4e4d-a24f-03e3f90320ff"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-op-provide-dispensation-erp-input-parameters|1.0.3"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="prescriptionId"/>
+         <valueIdentifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.000.226.436.204.02"/>
+         </valueIdentifier>
+      </part>
+      <part>
+         <name value="authoredOn"/>
+         <valueDate value="1970-01-01"/>
+      </part>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="f68b78e5-a002-47b0-ac65-59c35f02b877"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-dispense|1.0.3"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/epa-medication/sid/rx-originator-process-identifier"/>
+                  <value value="null_160.000.226.436.204.02"/>
+               </identifier>
+               <status value="completed"/>
+               <category>
+                  <coding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/EPAMedicationDispenseCategoryCS"/>
+                     <code value="prescription"/>
+                     <display value="prescription dispense"/>
+                  </coding>
+               </category>
+               <medicationReference>
+                  <reference value="Medication/51dacef0-9bf7-4e30-98d8-86efd3f7d0be"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="Z828875733"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <reference value="Organization/f0db565f-6e2c-440b-8512-ddbd8a37ad4a"/>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2024-07-02T09:29:09+02:00"/>
+               <dosageInstruction>
+                  <text value="1-0-1-0"/>
+               </dosageInstruction>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="51dacef0-9bf7-4e30-98d8-86efd3f7d0be"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication|1.0.3"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="N3"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="04866280"/>
+                  </coding>
+                  <text value="Sumatriptan Dura 100mg"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="FTA"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="12"/>
+                     </extension>
+                     <unit value="St"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+            </Medication>
+         </resource>
+      </part>
+      <part>
+         <name value="organization"/>
+         <resource>
+            <Organization xmlns="http://hl7.org/fhir">
+               <id value="f0db565f-6e2c-440b-8512-ddbd8a37ad4a"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory|0.11.12"/>
+                  <tag>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/Origin"/>
+                     <code value="ldap"/>
+                  </tag>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                  <value value="3-abc-1234567890"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                     <code value="1.2.276.0.76.4.58"/>
+                  </coding>
+               </type>
+               <name value="Bob Sledd"/>
+            </Organization>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

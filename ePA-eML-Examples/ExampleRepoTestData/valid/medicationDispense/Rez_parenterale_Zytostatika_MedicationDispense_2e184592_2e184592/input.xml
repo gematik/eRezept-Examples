@@ -1,0 +1,60 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="2e184592-a9ba-41ba-a336-4a96881e3f39"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+   </meta>
+   <contained>
+      <Medication xmlns="http://hl7.org/fhir">
+         <id value="2fdfc0f1-10c1-4bd3-a587-f219657f5664"/>
+         <meta>
+            <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"/>
+         </meta>
+         <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+            <valueCoding>
+               <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+               <code value="00"/>
+            </valueCoding>
+         </extension>
+         <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+            <valueBoolean value="false"/>
+         </extension>
+         <code>
+            <coding>
+               <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
+               <code value="freitext"/>
+            </coding>
+            <text value="3 mal 500 ml Infusionslösung (Etoposid 180 mg, NaCl 0,9 % 500 ml)"/>
+         </code>
+         <form>
+            <text value="Infusionslösung"/>
+         </form>
+      </Medication>
+   </contained>
+   <identifier>
+      <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+      <value value="169.018.562.305.023.72"/>
+   </identifier>
+   <status value="completed"/>
+   <medicationReference>
+      <reference value="#2fdfc0f1-10c1-4bd3-a587-f219657f5664"/>
+      <display value="3 mal 500 ml Infusionslösung (Etoposid 180 mg, NaCl 0,9 % 500 ml)"/>
+   </medicationReference>
+   <subject>
+      <identifier>
+         <system value="http://fhir.de/sid/gkv/kvid-10"/>
+         <value value="H030170228"/>
+      </identifier>
+   </subject>
+   <performer>
+      <actor>
+         <identifier>
+            <system value="https://gematik.de/fhir/sid/telematik-id"/>
+            <value value="3-07.2.1234560000.10.789"/>
+         </identifier>
+      </actor>
+   </performer>
+   <whenHandedOver value="2024-11-27"/>
+   <dosageInstruction>
+      <text value="zur ärztlichen parenteralen Applikation gem. Therapieplan"/>
+   </dosageInstruction>
+</MedicationDispense>
