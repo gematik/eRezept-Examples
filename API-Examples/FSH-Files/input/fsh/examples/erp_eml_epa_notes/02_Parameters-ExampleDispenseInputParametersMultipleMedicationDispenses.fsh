@@ -1,12 +1,11 @@
 Instance: erp-eml-epa-notes-02-Parameters-ExampleInputMultipleDispenses
 InstanceOf: Parameters
 Usage: #example
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_DispenseOperation_Input)
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_PAR_DispenseOperation_Input)
 * parameter[0].name = "rxDispensation"
 * parameter[=].part[0].name = "medicationDispense"
 * parameter[=].part[=].resource.resourceType = "MedicationDispense"
 * parameter[=].part[=].resource.id = "Example-MedicationDispense"
-//* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
 * insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
 * parameter[=].part[=].resource.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * parameter[=].part[=].resource.identifier.value = "160.000.033.491.280.78"
@@ -21,11 +20,10 @@ Usage: #example
 * parameter[=].part[+].name = "medication"
 * parameter[=].part[=].resource.resourceType = "Medication"
 * parameter[=].part[=].resource.id = "SumatripanMedication"
-//* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
 * insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_Medication)
-* parameter[=].part[=].resource.extension[0].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/drug-category-extension"
+* parameter[=].part[=].resource.extension[0].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
 * parameter[=].part[=].resource.extension[=].valueCoding.code = #00
-* parameter[=].part[=].resource.extension[+].url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-id-vaccine-extension"
+* parameter[=].part[=].resource.extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension"
 * parameter[=].part[=].resource.extension[=].valueBoolean = false
 * parameter[=].part[=].resource.extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
 * parameter[=].part[=].resource.extension[=].valueCode = #N1
@@ -34,7 +32,7 @@ Usage: #example
 * parameter[=].part[=].resource.code.text = "Sumatriptan-1a Pharma 100 mg Tabletten"
 * parameter[=].part[=].resource.form.coding.system = "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
 * parameter[=].part[=].resource.form.coding.code = #TAB
-* parameter[=].part[=].resource.amount.numerator.extension.url = "https://gematik.de/fhir/dev-epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
+* parameter[=].part[=].resource.amount.numerator.extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
 * parameter[=].part[=].resource.amount.numerator.extension.valueString = "20 St."
 * parameter[=].part[=].resource.amount.numerator.value = 20
 * parameter[=].part[=].resource.amount.numerator.unit = "St"
@@ -43,7 +41,6 @@ Usage: #example
 * parameter[=].part[0].name = "medicationDispense"
 * parameter[=].part[=].resource.resourceType = "MedicationDispense"
 * parameter[=].part[=].resource.id = "Example-MedicationDispense-2"
-//* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
 * insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
 * parameter[=].part[=].resource.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * parameter[=].part[=].resource.identifier.value = "160.153.303.257.459"
@@ -58,7 +55,6 @@ Usage: #example
 * parameter[=].part[+].name = "medication"
 * parameter[=].part[=].resource.resourceType = "Medication"
 * parameter[=].part[=].resource.id = "Medication-Without-Strength-Code"
-//* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.3"
 * insert ParameterPartProfile(StructureDefinition/GEM_ERP_PR_Medication)
 * parameter[=].part[=].resource.code.text = "Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"
 * parameter[=].part[=].resource.form.coding.system = "http://standardterms.edqm.eu"
