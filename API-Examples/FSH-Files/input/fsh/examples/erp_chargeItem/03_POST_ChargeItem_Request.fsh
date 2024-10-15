@@ -18,6 +18,5 @@ Usage: #example
 Instance: Abg123
 InstanceOf: Binary
 Usage: #inline
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Binary)
 * contentType = #application/pkcs7-mime
 * data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"

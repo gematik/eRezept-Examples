@@ -23,7 +23,7 @@ json_to_xml() {
 
     # Implement the JSON to XML conversion logic here
     fhir push "$base_filename.json"
-    fhir save "$output_filename"
+    fhir save "$output_filename" --xml
 
     # Go back to the original directory
     cd "$original_dir" || exit
