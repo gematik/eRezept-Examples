@@ -73,6 +73,10 @@ E-Rezept-Examples
 ...
 ```
 
+### Creating ChargeItem Bundles for E-Rezept-FdV
+This repo offers a script which can generate ChargeItem Examples from current E2E-Examples.
+For further instructions see [Readme ChargeItem Script](./Scripts/Readme.md).
+
 ## Contributing
 
 If you want to contribute, please check our [`CONTRIBUTING.md`](CONTRIBUTING.md).
