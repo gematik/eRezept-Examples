@@ -14,7 +14,7 @@ Usage: #example
 
 Instance: erp-communication-08-request-RezeptZuweisen
 InstanceOf: Communication
-Usage: #example
+Usage: #inline
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_DispReq)
 * basedOn = Reference(Task/160.123.456.789.123.58/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * status = #unknown

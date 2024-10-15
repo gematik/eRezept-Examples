@@ -76,7 +76,7 @@ process_files() {
         if [[ "$base_filename" =~ -([^/]+)-([0-9]) ]] || [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then            
             if [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then
                 folder_name="misc_api_endpoints"
-                file_name="CapabilityStatement-RU.json"       
+                file_name="CapabilityStatement_RU.json"       
             else
                 folder_name="${BASH_REMATCH[1]}"
                 # file_digit_index=$(expr index "$base_filename" "${BASH_REMATCH[2]}")
@@ -149,14 +149,14 @@ process_files() {
 
 # List of files to copy directly
 files_to_copy=(
-    "Bundle-authentisieren-07-response-InnverVau.json"
+    "Bundle-authentisieren-07-response-InnerVau.json"
 
     "Bundle-erp-steuerung-durch-le-08-response-taskGet169Versicherter.json"
     "Binary-erp-alternative-zuweisung-03-certificate-in-apovzd.json"
     "Parameters-erp-chargeItem-10-patch-chargeitem-request.json"
 
-    "Bundle-erp-chargeItem-08-GET-ChargeItems-response"
-    "Bundle-erp-chargeItem-09-GET-ChargeItem-Response"
+    "Bundle-erp-chargeItem-08-GET-ChargeItems-Response.json"
+    "Bundle-erp-chargeItem-09-GET-ChargeItem-Response.json"
     "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response.json"
     
     "Communication-erp-communication-01-request-PostPatientToPharmacy.json"
@@ -174,7 +174,7 @@ files_to_copy=(
     "MedicationDispense-erp-diga-04-medication-dispense-diga.json"
 
     "Bundle-erp-versicherte-01-response-taskGetAll.json"
-    "Bundle-erp-versicherte-02-response-taskGetSingle"
+    "Bundle-erp-versicherte-02-response-taskGetSingle.json"
     "Bundle-erp-versicherte-03-response-GetLocation.json"
     "Bundle-erp-versicherte-04-response-getDispense.json"
     "Bundle-erp-versicherte-05-response-get-single-medicationdispense-by-id.json"
