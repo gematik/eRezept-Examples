@@ -6,10 +6,10 @@ Transmutes xml examples to mobile readable charge items. Missing ChargeItem data
 
 Batch usage: 
 
-  # /tmp/pdfs folder must exist
-  mkdir -p /tmp/pdfs
+  # /tmp/chargeitem_bundles folder must exist
+  mkdir -p /tmp/chargeitem_bundles
   # call by specifiying parent directory containing directories with pkv charge item examples
-  ./Scripts/TransmuteChargeItemForMobileBatch.rb "End-to-End-Examples/4_01.07.2023/PKV" "/tmp/pdfs"
+  ./Scripts/TransmuteChargeItemForMobileBatch.rb "End-to-End-Examples/4_01.07.2023/PKV" "/tmp/chargeitem_bundles"
 
 Single Usage:
 
