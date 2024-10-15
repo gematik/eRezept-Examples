@@ -1,4 +1,4 @@
-Instance: erp-chargeItem-08-GET-ChargeItems-response
+Instance: erp-chargeItem-08-GET-ChargeItems-Response
 InstanceOf: Bundle
 Usage: #example
 * meta.lastUpdated = "2021-09-02T11:38:42.557+00:00"
