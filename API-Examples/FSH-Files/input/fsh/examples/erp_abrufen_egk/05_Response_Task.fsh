@@ -14,7 +14,8 @@ Usage: #example
 Instance: 160.000.036.967.704.52
 InstanceOf: Task
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
+//* meta.profile = "https://gematik.de/fhir/StructureDefinition/ErxTask|1.1.1"
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[=].valueCoding.system = $GEM_ERP_CS_FlowType
 * extension[=].valueCoding.code = #160
@@ -45,7 +46,8 @@ Usage: #inline
 Instance: 160.000.036.968.008.13
 InstanceOf: Task
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.3"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
+//* meta.profile = "https://gematik.de/fhir/StructureDefinition/ErxTask|1.1.1"
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[=].valueCoding.system = $GEM_ERP_CS_FlowType
 * extension[=].valueCoding.code = #160
