@@ -1,100 +1,78 @@
 {
-  "id": "b11d79c8-7e30-4883-969b-7326cff3a384",
-  "mainActor": "Versicherter",
-  "name": "Anfrage zu einem E-Rezept und Antwort der Apotheke",
-  "tags": [
-    "@Funktionalität=Cummunication",
-    "@Anwendungsfall=A_18508",
-    "@Anwendungsfall=A_18617",
-    "@Anwendungsfall=A_18618",
-    "@Anwendungsfall=A_19013",
-    "@Impl=done",
-    "@TCID=ERP_EE_Communication_02",
-    "@Path=happy",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "description": "Der Versicherte stellt zum grad erhaltenen Rezept eine Anfrage an die Apotheke. Diese beantwortet die Anfrage.",
-  "feature": "Nachrichten zwischen Versicherten und Apotheke austauschen",
-  "featureFile": "GKV_WF_160/Communication.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.739.90",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.739.90/$activate",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.739.90",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.739.90 with AccessCode d8bfe446b9c727baf911ce12734290edf38994470f9482601c629b9354cc243e",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/006_dmc_160.000.040.327.739.90.png"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/a0d9ab07-69ae-4744-b53f-b0a869d64e5a",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/007_Response_Bundle.json"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/d38e82d7-f15d-4787-92ef-4a6910668c73",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/008_Response_Bundle.json"
-        },
-        {
-          "operation": "POST /Communication",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/009_Request_Communication.json"
-        },
-        {
-          "operation": "Response 201: Communication Communication/01eba3b1-1c66-a540-68c0-072e4977b7d1",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/010_Response_Communication.json"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann beantwortet",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/037cf1cd-634c-4d61-b0ae-efe4ec878ecb",
-          "file": "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/011_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann hat die Versicherte Sina Hüllmann eine Antwort von der Apotheke Am Flughafen erhalten"
-    }
-  ],
-  "useCases": ["A_18508", "A_18617", "A_18618", "A_19013"]
+  "id" : "6719c94f-3a39-4235-9191-474ba8100b59",
+  "mainActor" : "Versicherter",
+  "name" : "Anfrage zu einem E-Rezept und Antwort der Apotheke",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_02", "@TESTFALL:positiv", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte stellt zum grad erhaltenen Rezept eine Anfrage an die Apotheke. Diese beantwortet die Anfrage.",
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.741.52",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.741.52/$activate",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.741.52",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.741.52 with AccessCode 15eb97fdaf694c4b45e434a0f74b6ce4aa5b0002a34e3305fd851d50554ae64d",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/006_dmc_160.000.226.119.741.52.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann zu ihrem letzten E-Rezept der Apotheke Am Flughafen eine Anfrage schickt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/0c2ceb93-00d6-4884-8fe3-2fae8beb0b73",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/007_Response_Bundle.json"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/7bf989d5-c449-4946-99b3-170d64186890",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/008_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/009_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-7160-16f0-75ce-a247fd5c141f",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/010_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen die letzte Nachricht von Sina Hüllmann beantwortet",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/19bb2ddb-f78e-44bc-8564-a608809f4e9e",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/011_Response_Bundle.xml"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/012_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-7188-8e50-6e3b-72e216371e1d",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/013_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Versicherte Sina Hüllmann eine Antwort von der Apotheke Am Flughafen erhalten"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/4e202949-8546-4490-8f28-7e33d4154cea",
+      "file" : "Versicherter/anfrage_zu_einem_e_rezept_und_antwort_der_apotheke/014_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013" ]
 }

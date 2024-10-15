@@ -1,0 +1,110 @@
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="baf89507-ba99-4201-b2a0-149b02b35053"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle|1.2" />
+        <tag>
+            <display value="Beispiel Quittung für erfolgreich durchlaufenen E-Rezept-Workflow = dispensiertes E-Rezept" />
+        </tag>
+    </meta>
+    <identifier>
+        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+        <value value="200.424.187.927.272.20" />
+    </identifier>
+    <type value="document" />
+    <timestamp value="2023-07-03T11:40:00.000+00:00" />
+    <link>
+        <relation value="self" />
+        <url value="https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/200.424.187.927.272.20/$close/" />
+    </link>
+    <entry>
+        <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Composition/4cba5974-7383-48f4-9c66-81dc94dbd0a7" />
+        <resource>
+            <Composition>
+                <id value="4cba5974-7383-48f4-9c66-81dc94dbd0a7" />
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.2" />
+                </meta>
+                <extension url="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_Beneficiary">
+                    <valueIdentifier>
+                        <system value="https://gematik.de/fhir/sid/telematik-id" />
+                        <value value="606358757" />
+                    </valueIdentifier>
+                </extension>
+                <status value="final" />
+                <type>
+                    <coding>
+                        <system value="https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType" />
+                        <code value="3" />
+                        <display value="Receipt" />
+                    </coding>
+                </type>
+                <date value="2023-07-03T11:40:00.000+00:00" />
+                <author>
+                    <reference value="Device/1" />
+                </author>
+                <title value="Quittung" />
+                <event>
+                    <period>
+                        <start value="2023-07-03T11:20:00.000+00:00" />
+                        <end value="2023-07-03T11:40:00.000+00:00" />
+                    </period>
+                </event>
+                <section>
+                    <entry>
+                        <reference value="Binary/PrescriptionDigest-200.424.187.927.272.20" />
+                        <type value="Binary"/>
+                    </entry>
+                </section>
+            </Composition>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+        <resource>
+            <Device>
+                <id value="1" />
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.2" />
+                </meta>
+                <status value="active"/>
+                <serialNumber value="1.4.0"/>
+                <deviceName>
+                    <name value="E-Rezept Fachdienst"/>
+                    <type value="user-friendly-name"/>
+                </deviceName>
+                <version>
+                    <value value="1.4.0"/>
+                </version>
+                <contact>
+                    <system value="email"/>
+                    <value value="betrieb@gematik.de"/>
+                </contact>
+            </Device>
+        </resource>
+    </entry>
+    <entry>
+        <fullUrl value="https://erp.zentral.erp.splitdns.ti-dienste.de/Binary/PrescriptionDigest-200.424.187.927.272.20" />
+        <resource>
+            <Binary>
+                <id value="PrescriptionDigest-200.424.187.927.272.20"/>
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.2" />
+                </meta>
+                <contentType value="application/octet-stream"/>
+                <data value="Y2RjMTVjNThkMzlkMjllNDdjMTk1MjIzNDlkODRjMThiNTliYTZkMGFhZmI5NGYyZjM2NDFkNGJiZTk1ODhiMQ=="/>
+            </Binary>
+        </resource>
+    </entry>
+    <signature>
+        <type>
+            <system value="urn:iso-astm:E1762-95:2013" />
+            <code value="1.2.840.10065.1.12.1.1" />
+        </type>
+        <when value="2023-07-30T10:40:00.000+00:00" />
+        <who>
+            <reference value="https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Device/1" />
+        </who>
+        <sigFormat value="application/pkcs7-mime" />
+        <data value="Y2RjMTVjNThkMzlkMjllNDdjMTk1MjIzNDlkODRjMThiNTliYTZkMGFhZmI5NGYyZjM2NDFkNGJiZTk1ODhiMQ==" />
+    </signature>
+</Bundle>

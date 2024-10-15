@@ -1,78 +1,51 @@
 {
-  "id": "df5f4cee-506b-464e-982f-0a12a3a57e92",
-  "mainActor": "Arztpraxis",
-  "name": "Mehrfachverordnung für GKV-Versicherte",
-  "tags": [
-    "@Funktionalität=MVO",
-    "@Impl=done",
-    "@TCID=ERP_EE_MVO_01",
-    "@Path=happy",
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Afo=A_22627",
-    "@Hauptdarsteller=Arztpraxis"
-  ],
-  "description": "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
-  "feature": "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
-  "featureFile": "MVO/MVO.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/160.000.040.327.778.70",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/160.000.040.327.778.70/$activate",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/160.000.040.327.778.70",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 160.000.040.327.778.70 with AccessCode c257f433a5cfb0928a38f4f471052ac65e475c8e67bc334a69048e8cb8fc44da",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/006_dmc_160.000.040.327.778.70.png"
-        }
-      ]
-    },
-    {
-      "name": "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
-    },
-    {
-      "name": "Sina hüllmann performable predicate",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/13066d53-6803-47fa-937a-7b816f138496",
-          "file": "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/007_Response_Bundle.json"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_22627"]
+  "id" : "56a58e22-66e1-40bc-8e76-26edaf6e57b5",
+  "mainActor" : "Arztpraxis",
+  "name" : "Mehrfachverordnung für GKV-Versicherte",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_01", "@AFO-ID:A_22627", "@TESTFALL:positiv", "@Workflow:160", "@Versicherung:GKV", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.226.119.781.29",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.226.119.781.29/$activate",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.226.119.781.29",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.226.119.781.29 with AccessCode 4abccf7a44f5180be4bd38c3adc964e1da4c36afa3b9306a96654df1b9196806",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/006_dmc_160.000.226.119.781.29.png"
+    } ]
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/9b20db60-b53d-4959-ad96-3df4b1b2ead1",
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/007_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_22627" ]
 }

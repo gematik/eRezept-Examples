@@ -1,172 +1,158 @@
 {
-  "id": "7cd10619-4030-4b36-95fa-a99e6593f8a6",
-  "mainActor": "Apotheke",
-  "name": "Ändern des PKV-Abgabedatensatzes auf Wunsch des Versicherten, Übertragung des AccessCodes per Nachricht",
-  "tags": [
-    "@Funktionalität=Abrechnungsinformationen",
-    "@Workflow=200",
-    "@Versicherung=PKV",
-    "@Anwendungsfall=A_18822",
-    "@Anwendungsfall=A_18827",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF200_07",
-    "@Path=happy",
-    "@Anwendungsfall=AF_10083",
-    "@Hauptdarsteller=Apotheke"
-  ],
-  "feature": "Abrechnungsinformationen für PKV-Rezepte",
-  "featureFile": "pkv/PKV-Abrechnungsinformationen.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/ea25760b-64d8-4240-b5a0-35c2344a146d",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/000_Response_Bundle.json"
-        }
-      ]
-    },
-    {
-      "name": "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/001_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/200.000.001.944.092.17",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/002_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/003_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/004_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/200.000.001.944.092.17/$activate",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/005_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/200.000.001.944.092.17",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/006_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 200.000.001.944.092.17 with AccessCode 4cd717ae6aca50765e9c62f774cc439214e12d89914ca3078601ad94f4f01aaa",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/007_dmc_200.000.001.944.092.17.png"
-        }
-      ]
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/ed20396b-e2c5-427e-88eb-fb5c86c49a26",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/008_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
-      "dumps": [
-        {
-          "operation": "POST /Task/200.000.001.944.092.17/$close?secret=d79142450b3b64c22a867574762d55618fa8a70da2afbfe1a98c1d08cdcf25d6",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/009_Request_MedicationDispense.xml"
-        },
-        {
-          "operation": "Response 200: Bundle Bundle/c81caa1d-0000-0000-0003-000000000000",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/010_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
-    },
-    {
-      "name": "Am flughafen check the return code",
-      "dumps": [
-        {
-          "operation": "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/011_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/012_signed_document.b64"
-        },
-        {
-          "operation": "POST /ChargeItem?task=200.000.001.944.092.17&secret=d79142450b3b64c22a867574762d55618fa8a70da2afbfe1a98c1d08cdcf25d6",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/013_Request_ChargeItem.xml"
-        },
-        {
-          "operation": "Response 201: ChargeItem ChargeItem/200.000.001.944.092.17",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/014_Response_ChargeItem.xml"
-        }
-      ]
-    },
-    {
-      "name": "Am flughafen performable predicate"
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn für das letzte E-Rezept die PKV-Abrechnungsinformationen abruft"
-    },
-    {
-      "name": "Günther angermänn performable predicate",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/159a1f88-e7eb-4ea6-947f-b9c25d77b009",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/015_Response_Bundle.json"
-        }
-      ]
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn die Apotheke Am Flughafen per Nachricht zum Ändern der PKV-Abrechnungsinformationen berechtigt",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/75954606-3aa6-4928-b8dc-ebd8d1e874be",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/016_Response_Bundle.json"
-        },
-        {
-          "operation": "POST /Communication",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/017_Request_Communication.json"
-        },
-        {
-          "operation": "Response 201: Communication Communication/01eba3b1-3b29-a158-4c47-fc12f5b7a593",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/018_Response_Communication.json"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen die letzte Nachricht des Versicherten Günther Angermänn mit dem Änderungswunsch empfängt und beantwortet",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/a2d12512-7e6a-4fdf-82c4-99cff6ec17a2",
-          "file": "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/019_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen den letzten autorisierten PKV-Abgabedatensatz für das dispensierte E-Rezept ändert"
-    },
-    {
-      "name": "Dann hat der Versicherte Günther Angermänn eine Antwort auf seinen Änderungswunsch von der Apotheke Am Flughafen erhalten"
-    },
-    {
-      "name": "Und der Versicherte Günther Angermänn kann für das letzte E-Rezept die geänderte PKV-Abrechnungsinformationen abrufen"
-    }
-  ],
-  "useCases": ["A_18822", "A_18827", "AF_10083"]
+  "id" : "ca44dc32-9af1-432d-9704-f1564755e627",
+  "mainActor" : "Apotheke",
+  "name" : "Ändern des PKV-Abgabedatensatzes auf Wunsch des Versicherten, Übertragung des AccessCodes per Nachricht",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_07", "@TESTFALL:positiv", "@AF-ID:AF_10083", "@Hauptdarsteller:Apotheke" ],
+  "feature" : "Abrechnungsinformationen für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/34e31c5d-e577-49bf-9106-dbfab461c06f",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/000_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/001_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.002.096.532.52",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/002_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/003_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/004_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.002.096.532.52/$activate",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/005_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.002.096.532.52",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/006_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.002.096.532.52 with AccessCode 604792d3997b7eb661c880dea8b8e090ce700f00788b1e758db0b5b49494eed9",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/007_dmc_200.000.002.096.532.52.png"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/d433483a-8539-4c92-9996-b4e2ad06afe5",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/200.000.002.096.532.52/$close?secret=1cc4ad0a09280b12bdb4ab28dba97f8b1c17cca48e409cf06adc302c73536ea6",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/009_Request_MedicationDispense.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/c894fd1f-0000-0000-0003-000000000000",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/011_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/012_signed_document.b64"
+    }, {
+      "operation" : "POST /ChargeItem?task=200.000.002.096.532.52&secret=1cc4ad0a09280b12bdb4ab28dba97f8b1c17cca48e409cf06adc302c73536ea6",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/013_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 201: ChargeItem ChargeItem/200.000.002.096.532.52",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/014_Response_ChargeItem.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn für das letzte E-Rezept die PKV-Abrechnungsinformationen abruft"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/dec6ac8b-cc8b-4490-96a2-1ce4015e850a",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/015_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn die Apotheke Am Flughafen per Nachricht zum Ändern der PKV-Abrechnungsinformationen berechtigt",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/941e6c5c-25c3-46a5-a64a-602c18fda3d8",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/016_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/017_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-a61a-de70-a375-18288ceee2e4",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/018_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen die letzte Nachricht des Versicherten Günther Angermänn mit dem Änderungswunsch empfängt und beantwortet",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/f2e8d325-aac9-48cd-8dca-864593020c87",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/019_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/e2899e18-2a7c-4d7e-9cde-d2d80ccf3cc9",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/020_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Am flughafen performable predicate",
+    "dumps" : [ {
+      "operation" : "POST /Communication",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/021_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebbac0-a642-f040-2113-b0ce74f96d98",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/022_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen den letzten autorisierten PKV-Abgabedatensatz für das dispensierte E-Rezept ändert"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/023_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000116873 on Soft-Konn",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/024_signed_document.b64"
+    }, {
+      "operation" : "PUT /ChargeItem/200.000.002.096.532.52?ac=2755a61c64b92073de0e23f793ca452063e76b628533a58c5bac4fa059868261",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/025_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 200: ChargeItem ChargeItem/200.000.002.096.532.52",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/026_Response_ChargeItem.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann hat der Versicherte Günther Angermänn eine Antwort auf seinen Änderungswunsch von der Apotheke Am Flughafen erhalten"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/bdab49cc-c6b0-4c1f-91d0-2488736aaae6",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/027_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn kann für das letzte E-Rezept die geänderte PKV-Abrechnungsinformationen abrufen"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/147a77ca-e6a3-40bb-b9f0-1db8fd47c399",
+      "file" : "Apotheke/ändern_des_pkv_abgabedatensatzes_auf_wunsch_des_versicherten__übertragung_des_accesscodes_per_nachricht/028_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18822", "A_18827" ],
+  "useCases" : [ "AF_10083" ]
 }

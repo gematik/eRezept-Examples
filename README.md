@@ -1,4 +1,4 @@
-<img width="200" height="37" src="images/Gematik_Logo_Flag.png"/> <br/>
+<img width="200" height="37" src="images/Gematik_Logo_Flag_With_Background.png"/> <br/>
 
 # E-Rezept Examples
 
@@ -72,6 +72,26 @@ E-Rezept-Examples
 │  └─E-Rezept-Workflow(gematik)
 ...
 ```
+
+### Notes on the folder structure
+
+#### End-to-End-Examples
+This folder contains artifacts for a given usecase which can be identified via foldername (e.g. .../PZN_Mehrfachverordnung/PZN_MV_1/*). These artifacts usually contain
+* the initial prescription
+* dispense information for ePrescription Service
+* dispense information for billing
+
+#### Standalone-Examples
+This folder is a collection of examples that are published on the simplifier.net websites of the respective projects and contain various examples that the IG-creators provided.
+
+#### Test-Scenarios
+The gematik runs regular tests against the ePrescription Service. These artifacts that were gathered in the end to end tests are collected here.
+
+#### Negative-Examples
+:warning: These examples are invalid examples and are only to be used for testing.
+
+#### API-Examples
+This folder is the collection of examples that are being used in the [API Documentation](https://github.com/gematik/api-erp/tree/master).
 
 ### Creating ChargeItem Bundles for E-Rezept-FdV
 This repo offers a script which can generate ChargeItem Examples from current E2E-Examples.

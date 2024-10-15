@@ -1,102 +1,69 @@
 {
-  "id": "f9b8589b-cb5c-4119-970d-1f31a5798922",
-  "mainActor": "Versicherter",
-  "name": "Löschen nicht möglich während der Dispensierung",
-  "tags": [
-    "@Funktionalität=Direktzuweisung",
-    "@Workflow=209",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Versicherung=PKV",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF209_05",
-    "@Afo=A_22102-01",
-    "@Path=bad",
-    "@Hauptdarsteller=Versicherter"
-  ],
-  "description": "Der Versicherte kann das E-Rezept nicht löschen während die Apotheke das Rezept dispensiert",
-  "feature": "Direktzuweisung für PKV-Rezepte",
-  "featureFile": "pkv/PKV-Versicherter_WF209.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
-    },
-    {
-      "name": "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 201: Task Task/209.000.000.003.841.02",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/001_Response_Task.xml"
-        },
-        {
-          "operation": "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/002_document_to_sign.xml"
-        },
-        {
-          "operation": "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/003_signed_document.b64"
-        },
-        {
-          "operation": "POST /Task/209.000.000.003.841.02/$activate",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/004_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 200: Task Task/209.000.000.003.841.02",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/005_Response_Task.xml"
-        },
-        {
-          "operation": "DMC for 209.000.000.003.841.02 with AccessCode 0c4edbc800fda7679d5f12e9d88f2b872803a49bf18231d8b67c6cfd0e4e1758",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/006_dmc_209.000.000.003.841.02.png"
-        }
-      ]
-    },
-    {
-      "name": "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/b81cc409-0692-442c-9fa7-89388808e0d9",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/007_Response_Bundle.xml"
-        }
-      ]
-    },
-    {
-      "name": "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
-    },
-    {
-      "name": "Günther angermänn performable predicate",
-      "dumps": [
-        {
-          "operation": "Response 200: Bundle Bundle/b7d3fa92-7070-4ea1-b05f-f8da14640cce",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/008_Response_Bundle.json"
-        }
-      ]
-    },
-    {
-      "name": "Aber der Versicherte Günther Angermänn kann sein letztes E-Rezept nicht löschen, weil er nicht das Recht dazu hat"
-    },
-    {
-      "name": "Günther angermänn check the return code",
-      "dumps": [
-        {
-          "operation": "Response 403: OperationOutcome 20230421_091648",
-          "file": "Versicherter/löschen_nicht_möglich_während_der_dispensierung/009_Response_OperationOutcome.json"
-        }
-      ]
-    },
-    {
-      "name": "Günther angermänn performable predicate"
-    }
-  ],
-  "requirements": ["A_22102-01"],
-  "useCases": ["A_18502", "A_18503"]
+  "id" : "0787a6d6-3d5d-493f-b586-359c43c92232",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen nicht möglich während der Dispensierung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:209", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@Versicherung:PKV", "@TCID:ERP_EE_WF209_05", "@AFO-ID:A_22102-01", "@TESTFALL:negativ", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte kann das E-Rezept nicht löschen während die Apotheke das Rezept dispensiert",
+  "feature" : "Direktzuweisung für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Versicherter_WF209",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/209.000.000.032.997.28",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/209.000.000.032.997.28/$activate",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/209.000.000.032.997.28",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 209.000.000.032.997.28 with AccessCode 195702d49d08dfeed15f0bba96b51339fdce10e28b338e752935aa040d932056",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/006_dmc_209.000.000.032.997.28.png"
+    } ]
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/b790f4f9-0825-4f76-81dc-0c2fd43c2936",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/f38bba54-b5c4-4fe7-bae2-8467e8fefffa",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/008_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Aber der Versicherte Günther Angermänn kann sein letztes E-Rezept nicht löschen, weil er nicht das Recht dazu hat"
+  }, {
+    "name" : "Günther angermänn check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_192146",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/009_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20240208_192146",
+      "file" : "Versicherter/löschen_nicht_möglich_während_der_dispensierung/010_Response_OperationOutcome.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18502", "A_18503", "A_22102-01" ]
 }

@@ -1,52 +1,30 @@
 {
-  "id": "407ca3af-ca63-42a5-9a66-ad8518fd6701",
-  "mainActor": "Apotheke",
-  "name": "Eine Apotheke darf kein E-Rezept einstellen",
-  "tags": [
-    "@Workflow=160",
-    "@Versicherung=GKV",
-    "@Anwendungsfall=A_18827",
-    "@Anwendungsfall=A_18502",
-    "@Anwendungsfall=A_18503",
-    "@Impl=done",
-    "@TCID=ERP_EE_WF160_02",
-    "@Path=bad",
-    "@Afo=A_19018",
-    "@Hauptdarsteller=Apotheke"
-  ],
-  "description": "Der Fachdienst muss das Anlegen eines E-Rezepts ablehnen, wenn der Access-Token nicht eine der folgendes OID aufweist:\n  oid_arzt\n  oid_zahnarzt\n  oid_praxis_arzt\n  oid_zahnarztpraxis\n  oid_praxis_psychotherapeut\n  oid_krankenhaus\n\n  In diesem Testfall wird versucht mit der SMC-B einer Apotheke ein Create-Aufruf zum Fachdienst zu schicken.",
-  "feature": "Apothekenpflichtige Medikamente für GKV-Versicherte",
-  "featureFile": "GKV_WF_160/GKV-Versicherter_WF_160.feature",
-  "steps": [
-    {
-      "name": "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
-    },
-    {
-      "name": "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
-    },
-    {
-      "name": "Angenommen die Ärztin Keine Arztpraxis hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
-    },
-    {
-      "name": "Dann darf der Arzt Keine Arztpraxis der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
-      "dumps": [
-        {
-          "operation": "POST /Task/$create",
-          "file": "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/000_Request_Parameters.xml"
-        },
-        {
-          "operation": "Response 403: OperationOutcome 20230421_090733",
-          "file": "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/001_Response_OperationOutcome.xml"
-        }
-      ]
-    }
-  ],
-  "requirements": ["A_19018"],
-  "useCases": ["A_18827", "A_18502", "A_18503"]
+  "id" : "86567559-bf02-409b-9da0-19d9beddebf4",
+  "mainActor" : "Apotheke",
+  "name" : "Eine Apotheke darf kein E-Rezept einstellen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_21", "@TESTFALL:negativ", "@AFO-ID:A_19018", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss das Anlegen eines E-Rezepts ablehnen, wenn der Access-Token nicht eine der folgendes OID aufweist:\n  oid_arzt\n  oid_zahnarzt\n  oid_praxis_arzt\n  oid_zahnarztpraxis\n  oid_praxis_psychotherapeut\n  oid_krankenhaus\n\n  In diesem Testfall wird versucht mit der SMC-B einer Apotheke ein Create-Aufruf zum Fachdienst zu schicken.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Angenommen die Ärztin Keine Arztpraxis hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Dann darf der Arzt Keine Arztpraxis der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20240208_190621",
+      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/001_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19018" ]
 }
