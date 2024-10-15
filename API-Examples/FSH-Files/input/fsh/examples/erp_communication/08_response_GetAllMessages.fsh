@@ -16,7 +16,6 @@ Instance: erp-communication-08-request-RezeptZuweisen
 InstanceOf: Communication
 Usage: #example
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_DispReq)
-* id = "d6e013c3-656f-43c4-9ca6-4cd46ffeb37e"
 * basedOn = Reference(Task/160.123.456.789.123.58/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * status = #unknown
 * recipient.identifier.system = "https://gematik.de/fhir/sid/telematik-id"

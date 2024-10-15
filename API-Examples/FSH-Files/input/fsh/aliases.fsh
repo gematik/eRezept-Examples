@@ -5,6 +5,17 @@
 Alias: $data-absent-reason = http://hl7.org/fhir/StructureDefinition/data-absent-reason
 Alias: $data-absent-reason-cs = http://terminology.hl7.org/CodeSystem/data-absent-reason
 
+// Abgabedaten
+Alias: $DAV-CS-ERP-CompositionTypes = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes
+Alias: $DAV-PKV-CS-ERP-AbrechnungsTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp
+Alias: $DAV-CS-ERP-MedicationDispenseTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp
+Alias: $DAV-CS-ERP-InvoiceTyp = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp
+Alias: $pzn = http://fhir.de/CodeSystem/ifa/pzn
+Alias: $DAV-PKV-CS-ERP-KostenVersicherterKategorie = http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie
+
+// Workflow
+Alias: $GEM_ERP_CS_DocumentType = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType
+
 // KBV
 /*Alias: $KBV_PR_ERP_Bundle = https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle
 Alias: $KBV_EX_ERP_Medication_Category = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category
@@ -44,8 +55,9 @@ Alias: $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN = https://fhir.kbv.de/CodeSystem/KBV_
 Alias: $KBV_CS_SFHIR_KBV_FORMULAR_ART = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART
 Alias: $KBV_CS_ERP_Section_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type
 Alias: $KBV_CS_ERP_StatusCoPayment = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_StatusCoPayment
+Alias: $KBV_CS_FOR_StatusCoPayment = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment
 Alias: $KBV_CS_FOR_Ursache_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type
-Alias: $KBV_CS_ERP_Medication_Category = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category
+Alias: $KBV_CS_ERP_Medication_Category = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category
 Alias: $KBV_CS_ERP_Medication_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type
 Alias: $KBV_CS_SFHIR_KBV_PERSONENGRUPPE = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE
 Alias: $KBV_CS_SFHIR_KBV_DMP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP
@@ -67,7 +79,8 @@ Alias: $OrganizationProfessionOID = https://gematik.de/fhir/directory/CodeSystem
 Alias: $GEM_ERP_CS_DocumentType = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType
 Alias: $atc = http://fhir.de/CodeSystem/bfarm/atc
 Alias: $Komponentennummer = http://fhir.de/CodeSystem/abdata/Komponentennummer
-Alias: $epa-drug-category-cs = https://gematik.de/fhir/dev-epa-medication/CodeSystem/epa-drug-category-cs
+Alias: $cs-product-key = https://terminologieserver.bfarm.de/fhir/CodeSystem/arzneimittel-referenzdaten-pharmazeutisches-produkt
+Alias: $epa-drug-category-cs = https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs
 Alias: $audit-event-type = http://terminology.hl7.org/CodeSystem/audit-event-type
 Alias: $restful-interaction = http://hl7.org/fhir/restful-interaction
 Alias: $extra-security-role-type = http://terminology.hl7.org/CodeSystem/extra-security-role-type
