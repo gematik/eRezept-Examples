@@ -30,3 +30,12 @@ Usage: #example
 * input[=].valueReference = Reference(281a985c-f25b-4aae-91a6-41ad744080b0)
 * input[+].type = $GEM_ERP_CS_DocumentType#2
 * input[=].valueReference = Reference(f8c2298f-7c00-4a68-af29-8a2862d55d43)
+
+Instance: f8c2298f-7c00-4a68-af29-8a2862d55d43
+InstanceOf: Binary
+Usage: #inline
+* id = "f8c2298f-7c00-4a68-af29-8a2862d55d43"
+* meta.versionId = "1"
+* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Binary)
+* contentType = #application/pkcs7-mime
+* data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
