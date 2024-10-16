@@ -12,7 +12,7 @@ SCRIPT_DIR=$(dirname "$0")
 INPUT_DIR="$SCRIPT_DIR/fsh-generated/resources"
 OUTPUT_DIR="$SCRIPT_DIR/output"
 TEMPLATE_DIR="$SCRIPT_DIR/input/fsh/examples"
-API_DATE="2024-11-01"
+API_DATE="2025-01-15"
 API_EXAMPLES_DIR="$SCRIPT_DIR/../$API_DATE"
 
 # cd scripts
@@ -30,17 +30,6 @@ echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
 echo "Generating examples and folder structure"
 "$SCRIPT_DIR/scripts/generate_examples.sh" $INPUT_DIR $OUTPUT_DIR $TEMPLATE_DIR
-
-# We want to format xmls with xmllint, therefore check if present
-if ! command -v xmllint &> /dev/null; then
-  echo "Error: xmllint (libxml2) is not installed. Please install libxml2 and try again."
-  exit 1
-fi
-
-# Format XML files in the source directory using xmllint
-echo "Formatting XML files in $OUTPUT_DIR and subdirectories..."
-find "$OUTPUT_DIR" -name "*.xml" -type f -exec xmllint --format {} -o {} \;
-echo "XML formatting complete."
 
 # Post-process XML to format namespace definitions across multiple lines
 echo "Formatting namespace definitions..."

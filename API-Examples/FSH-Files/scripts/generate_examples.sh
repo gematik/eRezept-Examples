@@ -18,6 +18,9 @@ mkdir -p "$OUTPUT_DIR"
 echo "Processing files from $INPUT_DIR"
 "$SCRIPT_DIR/process_files.sh" "$INPUT_DIR" "$OUTPUT_DIR"
 
+echo "Formating xml files in $OUTPUT_DIR"
+"$SCRIPT_DIR/format_xml.sh" "$OUTPUT_DIR"
+
 # Copy all the non FSH files to the output directory
 echo "Copying all non-FSH files to $OUTPUT_DIR"
 "$SCRIPT_DIR/copy_nonfsh.sh" $TEMPLATE_DIR $OUTPUT_DIR
