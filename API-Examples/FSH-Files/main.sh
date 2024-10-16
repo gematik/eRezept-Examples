@@ -26,6 +26,12 @@ if ! command -v jq &> /dev/null; then
     exit 1
 fi
 
+# Check if xml-formatter is installed
+if ! npm list -g xml-formatter > /dev/null 2>&1; then
+  echo "Error: xml-formatter is not installed. Please install it using 'npm install -g xml-formatter'."
+  exit 1
+fi
+
 echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
 echo "Generating examples and folder structure"
