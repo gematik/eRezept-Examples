@@ -55,6 +55,7 @@ Alias: $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN = https://fhir.kbv.de/CodeSystem/KBV_
 Alias: $KBV_CS_SFHIR_KBV_FORMULAR_ART = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART
 Alias: $KBV_CS_ERP_Section_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type
 Alias: $KBV_CS_ERP_StatusCoPayment = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_StatusCoPayment
+Alias: $KBV_CS_FOR_StatusCoPayment = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment
 Alias: $KBV_CS_FOR_Ursache_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type
 Alias: $KBV_CS_ERP_Medication_Category = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category
 Alias: $KBV_CS_ERP_Medication_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type

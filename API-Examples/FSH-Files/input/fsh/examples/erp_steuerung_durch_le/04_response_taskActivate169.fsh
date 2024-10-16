@@ -1,6 +1,8 @@
 Instance: erp-steuerung-durch-le-04-response-taskActivate169
 InstanceOf: Task
 Usage: #example
+* id = "169.000.004.839.514.95-1"
+* meta.id = "Task-erp-steuerung-durch-le-04-response-taskActivate169"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[=].valueCoding = $GEM_ERP_CS_FlowType#169 "Muster 16 (Direkte Zuweisung)"

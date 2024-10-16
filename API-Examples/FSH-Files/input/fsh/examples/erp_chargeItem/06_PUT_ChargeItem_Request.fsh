@@ -1,6 +1,8 @@
 Instance: erp-chargeItem-06-PUT-ChargeItem-Request
 InstanceOf: ChargeItem
 Usage: #example
+* id = "200.000.001.944.091.20-2"
+* meta.id = "ChargeItem-erp-chargeItem-06-PUT-ChargeItem-Request"
 * meta.profile = "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0"
 * contained = f1909de6-7d21-443b-a2ae-230b9cb62f70
 * identifier[0].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_AccessCode"

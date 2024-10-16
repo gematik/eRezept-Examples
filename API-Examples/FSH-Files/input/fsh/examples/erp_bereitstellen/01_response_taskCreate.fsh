@@ -1,6 +1,8 @@
 Instance: erp-bereitstellen-01-response-taskCreate
 InstanceOf: Task
 Usage: #example
+* id = "160.123.456.789.123.58"
+* meta.id = "Task-erp-bereitstellen-01-response-taskCreate"
 * meta.versionId = "1"
 * meta.lastUpdated = "2020-03-02T08:26:21.594+00:00"
 * meta.source = "#AsYR9plLkvONJAiv"

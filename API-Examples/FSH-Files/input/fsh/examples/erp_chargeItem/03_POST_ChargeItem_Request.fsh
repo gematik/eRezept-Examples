@@ -1,6 +1,8 @@
 Instance: erp-chargeItem-03-POST-ChargeItem-Request
 InstanceOf: ChargeItem
 Usage: #example
+* id = "200.000.001.944.091.20"
+* meta.id = "ChargeItem-erp-chargeItem-03-POST-ChargeItem-Request"
 * meta.profile = "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0"
 * contained = Abg123
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"

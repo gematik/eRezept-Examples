@@ -1,6 +1,8 @@
 Instance: erp-chargeItem-11-PATCH-ChargeItem-Response
 InstanceOf: ChargeItem
 Usage: #example
+* id = "200.000.001.944.091.20-4"
+* meta.id = "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response"
 * meta.lastUpdated = "2023-07-21T11:36:19.491+00:00"
 * meta.profile = "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0"
 * extension.url = "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_EX_MarkingFlag"

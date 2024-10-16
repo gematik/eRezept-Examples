@@ -1,6 +1,8 @@
 Instance: erp-diga-01-task-162-create
 InstanceOf: Task
 Usage: #example
+* id = "162.123.456.789.123.58-2"
+* meta.id = "Task-erp-diga-01-task-162-create"
 * meta.versionId = "1"
 * meta.lastUpdated = "2025-03-02T08:26:21.594+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)

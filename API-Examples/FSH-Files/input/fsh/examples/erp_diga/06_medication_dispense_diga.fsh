@@ -1,6 +1,8 @@
 Instance: erp-diga-06-medication-dispense-diga
 InstanceOf: MedicationDispense
 Usage: #example
+* id = "162.123.456.789.123.58-5"
+* meta.id = "MedicationDispense-erp-diga-06-medication-dispense-diga"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense_DiGA)
 * extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_RedeemCode"
 * extension[=].valueString = "DE12345678901234"

@@ -20,6 +20,12 @@ API_EXAMPLES_DIR="$SCRIPT_DIR/../$API_DATE"
 # ./prepare_examples.sh $PROFILE_VERSION $SRC_DIRECTORY $DEST_DIRECTION
 # cd ..
 
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is not installed. Please install jq to run this script."
+    exit 1
+fi
+
 echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
 echo "Generating examples and folder structure"
