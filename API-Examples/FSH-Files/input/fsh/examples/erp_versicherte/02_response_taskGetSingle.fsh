@@ -3,7 +3,6 @@ InstanceOf: Bundle
 Usage: #example
 * meta.lastUpdated = "2020-03-01T07:02:37.836+00:00"
 * type = #collection
-* total = 2
 * link.relation = "self"
 * link.url = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58"
 * entry[0].fullUrl = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58"
