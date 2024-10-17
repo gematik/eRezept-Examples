@@ -14,7 +14,7 @@ Usage: #example
 * subject.identifier.assigner.display = "KOA Hamburg"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
-* enteredDate = "2023-04-21T09:12:28+02:00"
+* enteredDate = "2023-07-21T09:12:28+02:00"
 * supportingInformation = Reference(Abg123) "Binary"
 
 Instance: Abg123

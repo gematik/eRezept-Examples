@@ -15,7 +15,7 @@ Usage: #example
 * subject.identifier.value = "X110465770"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
-* enteredDate = "2023-04-21T07:12:29.316+00:00"
+* enteredDate = "2023-07-21T07:12:29.316+00:00"
 * supportingInformation[0] = Reference(urn:uuid:c81baa1d-0000-0000-0001-000000000000) "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0003-000000000000) "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"
 * supportingInformation[+] = Reference(f1909de6-7d21-443b-a2ae-230b9cb62f70) "Binary"

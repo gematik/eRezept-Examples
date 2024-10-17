@@ -2,12 +2,12 @@ Instance: erp-bereitstellen-02-Prescription-Bundle
 InstanceOf: Bundle
 Usage: #example
 //* fhir_comments = " Beispiel-Bundle Wirkstoffverordnung "
-* meta.lastUpdated = "2021-07-04T08:30:00Z"
+* meta.lastUpdated = "2023-07-04T08:30:00Z"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "160.123.456.789.123.58"
 * type = #document
-* timestamp = "2021-07-04T08:30:00Z"
+* timestamp = "2023-07-04T08:30:00Z"
 * entry[0].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Composition/b0e22b86-e7e9-46c1-80fe-e6e24442d77c"
 * entry[=].resource = b0e22b86-e7e9-46c1-80fe-e6e24442d77c
 * entry[+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/MedicationRequest/f58f4403-7a3a-4a12-bb15-b2fa25b02561"
@@ -34,7 +34,7 @@ Usage: #inline
 * status = #final
 * type = $KBV_CS_SFHIR_KBV_FORMULAR_ART#e16A
 * subject = Reference(9774f67f-a238-4daf-b4e6-679deeef3811)
-* date = "2021-07-03T11:30:02Z"
+* date = "2023-07-03T11:30:02Z"
 * author[0] = Reference(d8463daf-258e-4cad-a86a-6fd42fac161c)
 * author[=].type = "Practitioner"
 * author[+].type = "Device"
@@ -64,7 +64,7 @@ Usage: #inline
 * extension[+].extension[0].url = "Unfallkennzeichen"
 * extension[=].extension[=].valueCoding = $KBV_CS_FOR_Ursache_Type#1
 * extension[=].extension[+].url = "Unfalltag"
-* extension[=].extension[=].valueDate = "2021-07-01"
+* extension[=].extension[=].valueDate = "2023-07-01"
 * extension[=].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident"
 * extension[+].extension[0].url = "Kennzeichen"
 * extension[=].extension[=].valueBoolean = true
@@ -72,8 +72,8 @@ Usage: #inline
 * extension[=].extension[=].valueRatio.numerator.value = 2
 * extension[=].extension[=].valueRatio.denominator.value = 4
 * extension[=].extension[+].url = "Zeitraum"
-* extension[=].extension[=].valuePeriod.start = "2021-07-02"
-* extension[=].extension[=].valuePeriod.end = "2021-09-30"
+* extension[=].extension[=].valuePeriod.start = "2023-07-02"
+* extension[=].extension[=].valuePeriod.end = "2023-09-30"
 * extension[=].extension[+].url = "ID"
 * extension[=].extension[=].valueIdentifier.system = "urn:ietf:rfc:3986"
 * extension[=].extension[=].valueIdentifier.value = "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
@@ -82,7 +82,7 @@ Usage: #inline
 * intent = #order
 * medicationReference = Reference(e3a4efa7-84fc-465b-b14c-720195097783)
 * subject = Reference(9774f67f-a238-4daf-b4e6-679deeef3811)
-* authoredOn = "2021-07-02"
+* authoredOn = "2023-07-02"
 * requester = Reference(d8463daf-258e-4cad-a86a-6fd42fac161c)
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-e7818fe9661a)
 * note.text = "Dummy-Hinweis für die Apotheke"

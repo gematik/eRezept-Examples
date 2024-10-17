@@ -1,7 +1,7 @@
 Instance: erp-chargeItem-08-GET-ChargeItems-response
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2021-09-02T11:38:42.557+00:00"
+* meta.lastUpdated = "2023-09-02T11:38:42.557+00:00"
 * type = #searchset
 * total = 2
 * entry[0].fullUrl = "http://hapi.fhir.org/baseR4/ChargeItem/200.000.001.944.091.20"
@@ -57,5 +57,5 @@ Usage: #inline
 * subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110465770"
 * subject.identifier.assigner.display = "Name einer privaten Krankenversicherung"
-* enteredDate = "2021-06-01T07:13:00+05:00"
+* enteredDate = "2023-07-01T07:13:00+05:00"
 * supportingInformation.display = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"

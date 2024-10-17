@@ -75,11 +75,11 @@ Usage: #inline
 * lineItem.chargeItemCodeableConcept = $pzn#03879429
 * lineItem.chargeItemCodeableConcept.text = "BELOC-ZOK mite 47,5 mg Retardtabletten 30 St"
 * lineItem.priceComponent.extension[0].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz"
-* lineItem.priceComponent.extension[=].valueDecimal = 19
+* lineItem.priceComponent.extension[=].valueDecimal = 19.00
 * lineItem.priceComponent.extension[+].extension[0].url = "Kategorie"
 * lineItem.priceComponent.extension[=].extension[=].valueCodeableConcept = $DAV-PKV-CS-ERP-KostenVersicherterKategorie#0
 * lineItem.priceComponent.extension[=].extension[+].url = "Kostenbetrag"
-* lineItem.priceComponent.extension[=].extension[=].valueMoney.value = 0
+* lineItem.priceComponent.extension[=].extension[=].valueMoney.value = 0.00
 * lineItem.priceComponent.extension[=].extension[=].valueMoney.currency = #EUR
 * lineItem.priceComponent.extension[=].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"
 * lineItem.priceComponent.type = #informational
@@ -87,7 +87,7 @@ Usage: #inline
 * lineItem.priceComponent.amount.value = 21.04
 * lineItem.priceComponent.amount.currency = #EUR
 * totalGross.extension.url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung"
-* totalGross.extension.valueMoney.value = 0
+* totalGross.extension.valueMoney.value = 0.00
 * totalGross.extension.valueMoney.currency = #EUR
 * totalGross.value = 21.04
 * totalGross.currency = #EUR

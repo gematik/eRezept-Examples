@@ -2,7 +2,7 @@ Instance: erp-chargeItem-09-GET-ChargeItem-Response
 InstanceOf: Bundle
 Usage: #example
 * type = #collection
-* timestamp = "2023-04-21T07:12:31.692+00:00"
+* timestamp = "2023-07-21T07:12:31.692+00:00"
 * entry[0].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/ChargeItem/200.000.001.944.091.20"
 * entry[=].resource = 200.000.001.944.091.20-1
 * entry[+].fullUrl = "urn:uuid:c81baa1d-0000-0000-0004-000000000000"
@@ -26,7 +26,7 @@ Usage: #inline
 * subject.identifier.value = "X110465770"
 * enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
-* enteredDate = "2023-04-21T07:12:29.316+00:00"
+* enteredDate = "2023-07-21T07:12:29.316+00:00"
 * supportingInformation[0] = Reference(urn:uuid:c81baa1d-0000-0000-0001-000000000000) "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0004-000000000000) "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0003-000000000000) "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"
@@ -34,7 +34,7 @@ Usage: #inline
 Instance: f1909de6-7d21-443b-a2ae-230b9cb62f70-1
 InstanceOf: Bundle
 Usage: #inline
-* meta.lastUpdated = "2023-04-21T09:12:30.215+02:00"
+* meta.lastUpdated = "2023-07-21T09:12:30.215+02:00"
 * meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.1"
 * meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
@@ -42,7 +42,7 @@ Usage: #inline
 Instance: d9a98ce4-9585-4031-ba85-3719bf0fc14a
 InstanceOf: Bundle
 Usage: #inline
-* meta.lastUpdated = "2023-04-21T09:12:25.072+02:00"
+* meta.lastUpdated = "2023-07-21T09:12:25.072+02:00"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
 * meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * type = #document
