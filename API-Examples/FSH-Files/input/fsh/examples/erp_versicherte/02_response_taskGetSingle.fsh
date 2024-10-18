@@ -7,6 +7,7 @@ Usage: #example
 * link.url = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58"
 * entry[0].fullUrl = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58"
 * entry[=].resource = 160.123.456.789.123.58-2
+* entry[0].fullUrl = "https://erp.app.ti-dienste.de/Bundle/414ca393-dde3-4082-9a3b-3752e629e4aa"
 * entry[+].resource = 414ca393-dde3-4082-9a3b-3752e629e4aa
 
 Instance: 160.123.456.789.123.58-2
