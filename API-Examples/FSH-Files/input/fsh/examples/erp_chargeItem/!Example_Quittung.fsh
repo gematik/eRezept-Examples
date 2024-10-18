@@ -1,7 +1,7 @@
 Instance: erp-chargeitem-example-quittung
 InstanceOf: Bundle
 Usage: #example
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle|1.2"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle|1.4"
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.424.187.927.272.20"
 * type = #document
@@ -23,7 +23,7 @@ Usage: #example
 Instance: 451cb89a-78ce-435c-9359-20c1f76392a6
 InstanceOf: Composition
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.2"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Composition|1.4"
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_Beneficiary"
 * extension.valueIdentifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * extension.valueIdentifier.value = "3-SMC-B-Testkarte-883110000116873"
@@ -40,7 +40,7 @@ Instance: erp-fd-device-1
 InstanceOf: Device
 Usage: #inline
 * id = "1"
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.2"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Device|1.4"
 * status = #active
 * serialNumber = "1.13.0"
 * deviceName.name = "E-Rezept Fachdienst"
@@ -52,6 +52,6 @@ Usage: #inline
 Instance: 814460da-bf72-4ad1-b2cb-e31c0529f506
 InstanceOf: Binary
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.2"
+* meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.4"
 * contentType = #application/octet-stream
 * data = "Q0BenO7xJuQG5TMYpw83mHcjfDW/gYy1lOXkM/mrkRM="

@@ -8,7 +8,7 @@ Usage: #example
 * link[=].url = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication?_format=html%2Fxml&_sort=sent&sent=gt2020-04-01&sent=lt2020-04-30"
 * link[+].relation = "next"
 * link[=].url = "https://erp.zentral.erp.splitdns.ti-dienste.de?_getpages=48829c84-7ad7-4834-8362-2c2c109379b1&_getpagesoffset=50&_count=50&_bundletype=searchset"
-* entry.fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication/d6e013c3-656f-43c4-9ca6-4cd46ffeb37e"
+* entry.fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication/erp-communication-08-request-RezeptZuweisen"
 * entry.resource = erp-communication-08-request-RezeptZuweisen
 * entry.search.mode = #match
 

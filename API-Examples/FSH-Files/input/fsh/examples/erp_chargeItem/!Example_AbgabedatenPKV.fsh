@@ -2,7 +2,7 @@ Instance: erp-chargeitem-example-abgabedatenPKV
 InstanceOf: Bundle
 Usage: #inline
 * id = "6d240a29-144f-477b-b8e7-92d4b4bcebfd"
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.2"
+* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.4"
 * meta.tag[0].display = "Beispiel RezeptAbgabedatenPKV Bundle (PZN-1)"
 * meta.tag[+].display = "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
@@ -21,7 +21,7 @@ Usage: #inline
 Instance: 0877a6ac-9433-43b2-bcd5-46046479c306
 InstanceOf: Composition
 Usage: #inline
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.2"
+* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.4"
 * status = #final
 * type = $DAV-CS-ERP-CompositionTypes#ERezeptAbgabedaten
 * date = "2023-07-03T11:30:00Z"
@@ -35,7 +35,7 @@ Usage: #inline
 Instance: b998a7cd-f582-4a23-b86a-58e22402d105
 InstanceOf: Organization
 Usage: #inline
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.2"
+* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.4"
 * identifier.system = "http://fhir.de/sid/arge-ik/iknr"
 * identifier.value = "308412345"
 * name = "Adler-Apotheke"
@@ -52,7 +52,7 @@ Usage: #inline
 Instance: 7b1e6c94-71fb-4bbe-9c5a-2e865efd8526
 InstanceOf: MedicationDispense
 Usage: #inline
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.2"
+* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.4"
 * extension[0].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen"
 * extension[=].valueReference = Reference(urn:uuid:da94b6d8-f853-48b9-b101-be9280b81a71)
 * extension[+].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp"
@@ -68,7 +68,7 @@ Usage: #inline
 Instance: da94b6d8-f853-48b9-b101-be9280b81a71
 InstanceOf: Invoice
 Usage: #inline
-* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.2"
+* meta.profile = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.4"
 * status = #issued
 * type = $DAV-CS-ERP-InvoiceTyp#Abrechnungszeilen
 * lineItem.sequence = 1

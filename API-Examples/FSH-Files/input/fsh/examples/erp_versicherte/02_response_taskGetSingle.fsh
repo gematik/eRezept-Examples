@@ -50,4 +50,5 @@ Usage: #inline
 * signature.when = "2020-03-20T07:31:34.328+00:00"
 * signature.who = Reference(urn:uuid:b6fcc694-994f-40fa-968e-77a477bcc0b8)
 * signature.data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
+* timestamp = "2023-07-04T08:30:00Z"
 * type = #document
