@@ -44,7 +44,7 @@ Usage: #inline
 * meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.086.824.605.539.20"
-* signature.type.system = $signature-type
+* signature.type.system = $signature-type-cs
 * signature.type.code = #1.2.840.10065.1.12.1.1
 * signature.when = "2020-03-20T07:31:34.328+00:00"
 * signature.who = Reference(urn:uuid:b6fcc694-994f-40fa-968e-77a477bcc0b8)

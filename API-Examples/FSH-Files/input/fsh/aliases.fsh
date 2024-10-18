@@ -85,3 +85,4 @@ Alias: $audit-event-type = http://terminology.hl7.org/CodeSystem/audit-event-typ
 Alias: $restful-interaction = http://hl7.org/fhir/restful-interaction
 Alias: $extra-security-role-type = http://terminology.hl7.org/CodeSystem/extra-security-role-type
 Alias: $signature-type = http://hl7.org/fhir/ValueSet/signature-type
+Alias: $signature-type-cs = http://hl7.org/fhir/CodeSystem/signature-type
