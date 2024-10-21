@@ -40,7 +40,7 @@ Usage: #inline
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
 * extension[=].valueCode = #N1
-* code = $pzn#06313728
+* code = $pzn-cs#06313728
 * code.text = "Sumatriptan-1a Pharma 100 mg Tabletten"
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#TAB
 * amount.numerator = $unitsofmeasure#{tbl} "TAB"

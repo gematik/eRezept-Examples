@@ -31,6 +31,7 @@ Usage: #inline
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0004-000000000000) "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle"
 * supportingInformation[+] = Reference(urn:uuid:c81baa1d-0000-0000-0003-000000000000) "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"
 
+//TODO: Komplette Beispiele einstellen
 Instance: f1909de6-7d21-443b-a2ae-230b9cb62f70-1
 InstanceOf: Bundle
 Usage: #inline

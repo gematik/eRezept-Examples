@@ -44,7 +44,7 @@
               }
             ],
             "medicationReference": {
-              "reference": "Medication/med0314",
+              "reference": "Medication/SumatripanMedication",
               "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
             },
             "quantity": {
@@ -64,7 +64,7 @@
           "name": "medication",
           "resource": {
             "resourceType": "Medication",
-            "id": "med0314",
+            "id": "SumatripanMedication",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
@@ -74,7 +74,6 @@
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
                 "valueCoding": {
-                  "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
                   "code": "00"
                 }
               },
@@ -87,6 +86,21 @@
                 "valueCode": "N1"
               }
             ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20 St."
+                  }
+                ],
+                "value": 20,
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
             "code": {
               "coding": [
                 {
@@ -99,26 +113,10 @@
             "form": {
               "coding": [
                 {
-                  "code": "TAB",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB"
                 }
               ]
-            },
-            "amount": {
-              "numerator": {
-                "extension": [
-                  {
-                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
-                    "valueString": "10"
-                  }
-                ],
-                "code": "{tbl}",
-                "system": "http://unitsofmeasure.org",
-                "unit": "Tabletten"
-              },
-              "denominator": {
-                "value": 1
-              }
             }
           }
         }

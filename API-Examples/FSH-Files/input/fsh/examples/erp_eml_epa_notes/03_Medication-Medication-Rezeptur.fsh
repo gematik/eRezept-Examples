@@ -34,7 +34,7 @@ Usage: #inline
 * extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension"
 * extension.valueCoding.version = "http://snomed.info/sct/900000000000207008/version/20240201"
 * extension.valueCoding = $sct#781405001 "Medicinal product package (product)"
-* code = $pzn#03424249 "Hydrocortison 1% Creme"
+* code = $pzn-cs#03424249 "Hydrocortison 1% Creme"
 * batch.lotNumber = "56498416854"
 
 Instance: MedicationDexpanthenol
@@ -44,5 +44,5 @@ Usage: #inline
 * extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension"
 * extension.valueCoding.version = "http://snomed.info/sct/900000000000207008/version/20240201"
 * extension.valueCoding = $sct#781405001 "Medicinal product package (product)"
-* code = $pzn#16667195 "Dexpanthenol 5% Creme"
+* code = $pzn-cs#16667195 "Dexpanthenol 5% Creme"
 * batch.lotNumber = "0132456"

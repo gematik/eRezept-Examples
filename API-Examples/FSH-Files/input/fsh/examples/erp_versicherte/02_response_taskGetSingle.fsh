@@ -37,6 +37,7 @@ Usage: #inline
 * input.type = $GEM_ERP_CS_DocumentType#2
 * input.valueReference = Reference(urn:uuid:f8c2298f-7c00-4a68-af29-8a2862d55d43)
 
+//TODO: Replace with correct example
 Instance: 414ca393-dde3-4082-9a3b-3752e629e4aa
 InstanceOf: Bundle
 Usage: #inline
@@ -45,7 +46,7 @@ Usage: #inline
 * meta.tag.display = "Dies ist ein unvollständiges Beispiel. Für die vollständige Darstellung bitte die entsprechenden Profile beachten."
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier.value = "200.086.824.605.539.20"
-* signature.type.system = $signature-type-cs
+* signature.type.system = "urn:iso-astm:E1762-95:2013"
 * signature.type.code = #1.2.840.10065.1.12.1.1
 * signature.when = "2020-03-20T07:31:34.328+00:00"
 * signature.who = Reference(urn:uuid:b6fcc694-994f-40fa-968e-77a477bcc0b8)

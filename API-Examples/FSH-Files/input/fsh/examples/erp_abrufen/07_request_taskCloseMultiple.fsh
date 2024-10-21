@@ -1,22 +1,16 @@
 Instance: erp-abrufen-07-request-taskCloseMultiple
-InstanceOf: Parameters
+InstanceOf: GEM_ERP_PR_PAR_CloseOperation_Input
 Usage: #example
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input)
-* parameter[+]
-  * name = "rxDispensation"
-  * part[+]
-    * name = "medicationDispense"
+* parameter[rxDispensation][+]
+  * part[medicationDispense][+]
     * resource = a3ddc2b1-826d-4b81-87b2-558834e00f50
-  * part[+]
-    * name = "medication"
+  * part[medication][+]
     * resource = c2b10a5e-3d71-434c-86e0-824af208a2bf
-* parameter[+]
-  * name = "rxDispensation"
-  * part[+]
-    * name = "medicationDispense"
+* parameter[rxDispensation][+]
+  * part[medicationDispense][+]
     * resource = 854b6c62-8c8a-4ad6-b145-d5bac5f9f010
-  * part[+]
-    * name = "medication"
+  * part[medication][+]
     * resource = 756b422f-4df0-4afe-9d54-da534a44109e
 
 Instance: a3ddc2b1-826d-4b81-87b2-558834e00f50
@@ -44,7 +38,7 @@ Usage: #inline
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
 * extension[=].valueCode = #N1
-* code = $pzn#14186244
+* code = $pzn-cs#14186244
 * code.text = "FLUSARION EH50/250UG/60 PC"
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#IHP
 
@@ -73,6 +67,6 @@ Usage: #inline
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
 * extension[=].valueCode = #N1
-* code = $pzn#14186244
+* code = $pzn-cs#14186244
 * code.text = "FLUSARION EH50/250UG/60 PC"
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#IHP

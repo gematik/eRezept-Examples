@@ -10,7 +10,7 @@ Usage: #example
 * extension[=].valueBoolean = false
 * extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
 * extension[=].valueCoding = #00 "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
-* code = $pzn#1746517 "CROMO-RATIOPHARM Kombipackung"
+* code = $pzn-cs#1746517 "CROMO-RATIOPHARM Kombipackung"
 * status = #active
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#KPG
 * form.text = "Kombipackung"

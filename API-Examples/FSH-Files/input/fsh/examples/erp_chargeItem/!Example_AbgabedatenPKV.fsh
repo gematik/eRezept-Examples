@@ -72,7 +72,7 @@ Usage: #inline
 * status = #issued
 * type = $DAV-CS-ERP-InvoiceTyp#Abrechnungszeilen
 * lineItem.sequence = 1
-* lineItem.chargeItemCodeableConcept = $pzn#03879429
+* lineItem.chargeItemCodeableConcept = $pzn-cs#03879429
 * lineItem.chargeItemCodeableConcept.text = "BELOC-ZOK mite 47,5 mg Retardtabletten 30 St"
 * lineItem.priceComponent.extension[0].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz"
 * lineItem.priceComponent.extension[=].valueDecimal = 19.00

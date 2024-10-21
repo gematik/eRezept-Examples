@@ -63,7 +63,7 @@ Usage: #inline
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
 * extension[=].valueCode = #N1
-* code = $pzn#03879429
+* code = $pzn-cs#03879429
 * code.text = "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#RET
 * amount.numerator.extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"

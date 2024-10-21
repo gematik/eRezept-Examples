@@ -17,7 +17,7 @@ Usage: #inline
 * meta.versionId = "4"
 * meta.lastUpdated = "2024-03-27T17:55:10.913+01:00"
 * meta.profile = "https://gematik.de/fhir/directory/StructureDefinition/HealthcareServiceDirectory"
-* meta.tag = $Origin#ldap "Synchronized from LDAP VZD"
+* meta.tag = $Origin#ldap "Synchronized from LDAP Directory"
 * meta.tag.userSelected = false
 * identifier.system = "https://gematik.de/fhir/directory/CodeSystem/ldapUID"
 * identifier.value = "6f01ba0b-5d78-4bb1-a789-9a8be7f30ca3"
@@ -31,7 +31,7 @@ Usage: #inline
 * meta.lastUpdated = "2024-02-26T12:38:14.001+01:00"
 * meta.source = "#2WkZQ3ZhfsTF9vgi"
 * meta.profile = "https://gematik.de/fhir/directory/StructureDefinition/OrganizationDirectory"
-* meta.tag = $Origin#ldap "Synchronized from LDAP VZD"
+* meta.tag = $Origin#ldap "Synchronized from LDAP Directory"
 * meta.tag.userSelected = false
 * identifier[0].type = $v2-0203#PRN
 * identifier[=].system = "https://gematik.de/fhir/sid/telematik-id"
