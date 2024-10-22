@@ -1,4 +1,4 @@
-Instance: authentisieren-07-response-InnverVau
+Instance: authentisieren-07-response-InnerVau
 InstanceOf: Bundle
 Usage: #example
 * meta.lastUpdated = "2020-03-01T07:02:37.836+00:00"

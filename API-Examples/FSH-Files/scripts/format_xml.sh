@@ -15,7 +15,7 @@ format_xml() {
   const formattedXml = formatter(xml);
   fs.writeFileSync('$xml_file', formattedXml);
   "
-  echo "Formatted $xml_file"
+  # echo "Formatted $xml_file"
 }
 
 # Find and format all XML files in the current directory and subdirectories

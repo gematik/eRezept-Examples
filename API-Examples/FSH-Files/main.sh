@@ -34,6 +34,7 @@ fi
 
 echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
+
 echo "Generating examples and folder structure"
 "$SCRIPT_DIR/scripts/generate_examples.sh" $INPUT_DIR $OUTPUT_DIR $TEMPLATE_DIR
 

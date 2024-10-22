@@ -65,7 +65,6 @@ rename_file() {
     echo "$new_filename"
 }
 
-
 # Fallback for `realpath` if it's not available
 get_absolute_path() {
     if command -v realpath >/dev/null 2>&1; then
@@ -98,9 +97,9 @@ process_files() {
     # echo "Output directory: $output_dir"
     # Loop through the files in the input directory
     for filename in "$input_dir"/*; do
-        base_filename=$(basename "$filename")
+        base_filename=$(basename "$filename")        
 
-        base_filename=$(rename_file "$filename")
+        base_filename=$(rename_file "$filename")        
 
         # Extract parts of the filename based on pattern matching
         if [[ "$base_filename" =~ -([^/]+)-([0-9]) ]] || [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then            
@@ -156,6 +155,8 @@ process_files() {
             echo "$output_path"
 
             echo "$base_filename"
+            #echo "$filename"
+            
             # Use file_in_array function to check if the file is in the files_to_copy list
             if file_in_array "$base_filename" "${files_to_copy[@]}"; then
                 output_path="$output_subdir/$file_name"  # Retain the original file name for copied files
@@ -179,14 +180,14 @@ process_files() {
 
 # List of files to copy directly
 files_to_copy=(
-    "Bundle-authentisieren-07-response-InnverVau.json"
+    "Bundle-authentisieren-07-response-InnerVau.json"
 
     "Bundle-erp-steuerung-durch-le-08-response-taskGet169Versicherter.json"
     "Binary-erp-alternative-zuweisung-03-certificate-in-apovzd.json"
     "Parameters-erp-chargeItem-10-patch-chargeitem-request.json"
 
-    "Bundle-erp-chargeItem-08-GET-ChargeItems-response"
-    "Bundle-erp-chargeItem-09-GET-ChargeItem-Response"
+    "Bundle-erp-chargeItem-08-GET-ChargeItems-response.json"
+    "Bundle-erp-chargeItem-09-GET-ChargeItem-Response.json"
     "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response.json"
     
     "Communication-erp-communication-01-request-PostPatientToPharmacy.json"
@@ -204,7 +205,7 @@ files_to_copy=(
     "MedicationDispense-erp-diga-04-medication-dispense-diga.json"
 
     "Bundle-erp-versicherte-01-response-taskGetAll.json"
-    "Bundle-erp-versicherte-02-response-taskGetSingle"
+    "Bundle-erp-versicherte-02-response-taskGetSingle.json"
     "Bundle-erp-versicherte-03-response-GetLocation.json"
     "Bundle-erp-versicherte-04-response-getDispense.json"
     "Bundle-erp-versicherte-05-response-get-single-medicationdispense-by-id.json"
