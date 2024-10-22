@@ -1,57 +1,61 @@
 #!/bin/bash
 
-# Check if jq is installed
-if ! command -v jq &> /dev/null
+# Check if Python is installed
+if ! command -v python &> /dev/null
 then
-    echo "Error: jq is not installed. Please install it first."
-    echo "On Ubuntu or Debian-based systems, you can install it using:"
-    echo "sudo apt-get update && sudo apt-get install jq"
-    echo "For other systems, please refer to the jq documentation: https://stedolan.github.io/jq/download/"
+    echo "Error: Python 3 is not installed. Please install it first."
     exit 1
 fi
 
-# Function to fix decimal values in JSON files
-fix_decimalValues_json() {
-    input_file="$1"
-    temp_file="${input_file}.temp"
+# Python script to process JSON files
+python_script=$(cat << 'END_PYTHON'
+import json
+import sys
+import os
+from decimal import Decimal, ROUND_HALF_UP
 
-    jq '
-    walk(
-        if type == "object" and (.valueDecimal != null or .valueMoney != null) then
-            if .valueDecimal != null then
-                .valueDecimal |= (
-                    if type == "number" then
-                        (. * 100 | floor | . / 100) | tostring | if contains(".") then . else . + ".00" end | if test("\\.\\d$") then . + "0" else . end
-                    else
-                        .
-                    end
-                )
-            elif .valueMoney != null and .valueMoney.value != null then
-                .valueMoney.value |= (
-                    if type == "number" then
-                        (. * 100 | floor | . / 100) | tostring | if contains(".") then . else . + ".00" end | if test("\\.\\d$") then . + "0" else . end
-                    else
-                        .
-                    end
-                )
-            else
-                .
-            end
-        else
-            .
-        end
-    )
-    ' "$input_file" > "$temp_file"
+def format_to_two_places(value):
+    if isinstance(value, (int, float)):
+        return float(Decimal(str(value)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+    return value
 
-    # Check if any changes were made
-    if cmp -s "$input_file" "$temp_file"; then
-        echo "No changes needed for $input_file"
-        rm "$temp_file"
-    else
-        mv "$temp_file" "$input_file"
-        echo "Updated $input_file"
-    fi
-}
+def process_json(data):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if key in ['valueDecimal', 'value'] and isinstance(value, (int, float)):
+                data[key] = format_to_two_places(value)
+            elif isinstance(value, (dict, list)):
+                process_json(value)
+    elif isinstance(data, list):
+        for item in data:
+            process_json(item)
+    return data
+
+class CustomFloatEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, float):
+            return round(obj, 2)
+        return super().default(obj)
+
+def process_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    processed_data = process_json(data)
+    
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(processed_data, f, indent=2, ensure_ascii=False, cls=CustomFloatEncoder)
+
+if __name__ == "__main__":
+    directory = sys.argv[1]
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith('.json'):
+                file_path = os.path.join(root, file)
+                print(f"Processing {file_path}")
+                process_file(file_path)
+END_PYTHON
+)
 
 # Directory to search for JSON files
 directory_to_search="$1"
@@ -68,10 +72,7 @@ if [ ! -d "$directory_to_search" ]; then
     exit 1
 fi
 
-# Find and process each JSON file
-find "$directory_to_search" -type f -name "*.json" | while read -r file; do
-    echo "Processing $file"
-    fix_decimalValues_json "$file"
-done
+# Run the Python script
+python -c "$python_script" "$directory_to_search"
 
 echo "All JSON files processed."
