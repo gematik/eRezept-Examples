@@ -36,12 +36,12 @@ Usage: #inline
 * agent.requestor = false
 * source.site = "E-Rezept Fachdienst"
 * source.observer = Reference(Device/1234)
-* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58)
+* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.000.000.000.000.01)
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* entity.what.identifier.value = "160.123.456.789.123.58"
+* entity.what.identifier.value = "160.000.000.000.000.01"
 * entity.name = "X123456789"
-* entity.description = "*160.123.456.789.123.58*"
+* entity.description = "*160.000.000.000.000.01*"
 
 Instance: 58863
 InstanceOf: AuditEvent
@@ -62,12 +62,12 @@ Usage: #inline
 * agent.requestor = false
 * source.site = "E-Rezept Fachdienst"
 * source.observer = Reference(Device/5678)
-* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58)
+* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.000.000.000.000.01)
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* entity.what.identifier.value = "160.123.456.789.123.58"
+* entity.what.identifier.value = "160.000.000.000.000.01"
 * entity.name = "X123456789"
-* entity.description = "*160.123.456.789.123.58*"
+* entity.description = "*160.000.000.000.000.01*"
 
 Instance: 620049
 InstanceOf: AuditEvent
@@ -88,9 +88,9 @@ Usage: #inline
 * agent.requestor = false
 * source.site = "E-Rezept Fachdienst"
 * source.observer = Reference(Device/1234)
-* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58)
+* entity.what = Reference(https://erp.app.ti-dienste.de/Task/160.000.000.000.000.01)
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* entity.what.identifier.value = "160.123.456.789.123.58"
+* entity.what.identifier.value = "160.000.000.000.000.01"
 * entity.name = "X123456789"
-* entity.description = "*160.123.456.789.123.58*"
+* entity.description = "*160.000.000.000.000.01*"

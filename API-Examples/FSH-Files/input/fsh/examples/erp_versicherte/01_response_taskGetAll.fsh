@@ -5,7 +5,7 @@ Usage: #example
 * type = #collection
 * link.relation = "self"
 * link.url = "https://erp.app.ti-dienste.de/Task/"
-* entry[0].fullUrl = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.58"
+* entry[0].fullUrl = "https://erp.app.ti-dienste.de/Task/160.000.000.000.000.01"
 * entry[=].resource = Inline-Instance-for-f5ba6eaf-9052-42f6-ac4e-fadceed7293b-1
 * entry[+].fullUrl = "https://erp.app.ti-dienste.de/Task/160.123.456.789.123.78"
 * entry[=].resource = 160.123.456.789.123.78
@@ -15,14 +15,14 @@ Usage: #example
 Instance: Inline-Instance-for-f5ba6eaf-9052-42f6-ac4e-fadceed7293b-1
 InstanceOf: Task
 Usage: #inline
-* id = "160.123.456.789.123.58"
+* id = "160.000.000.000.000.01"
 * meta.versionId = "2"
 * meta.lastUpdated = "2020-02-18T10:05:05.038+00:00"
 * meta.source = "#AsYR9plLkvONJAiv"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * identifier[0].use = #official
 * identifier[=].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* identifier[=].value = "160.123.456.789.123.58"
+* identifier[=].value = "160.000.000.000.000.01"
 * identifier[+].use = #official
 * identifier[=].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_AccessCode"
 * identifier[=].value = "777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"

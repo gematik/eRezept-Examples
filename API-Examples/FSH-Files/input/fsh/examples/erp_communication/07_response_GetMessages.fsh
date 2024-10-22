@@ -1,35 +1,9 @@
 Instance: erp-communication-07-response-GetMessages
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-04-07T14:16:55.965+00:00"
 * type = #searchset
 * total = 1
 * link.relation = "self"
 * link.url = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication?received=NULL"
 * entry.fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Communication/8381e39e-cbca-4ad6-8604-7cde08d26af2"
-* entry.resource = Inline-Instance-for-79cc4c08-0e7b-4e52-acee-6ec7519ce67f-1
-
-Instance: Inline-Instance-for-79cc4c08-0e7b-4e52-acee-6ec7519ce67f-1
-InstanceOf: Communication
-Usage: #inline
-* id = "8381e39e-cbca-4ad6-8604-7cde08d26af2"
-* meta.versionId = "1"
-* meta.lastUpdated = "2020-03-12T18:15:10+00:00"
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_Reply)
-* basedOn = Reference(Task/160.000.226.119.741.52)
-* status = #unknown
-* sent = "2020-03-12T18:01:10+00:00"
-* recipient.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
-* recipient.identifier.value = "X234567890"
-* sender.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
-* sender.identifier.value = "3-1.54.10123404"
-* payload.extension[0].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_SupplyOptionsType"
-* payload.extension[=].extension[0].url = "onPremise"
-* payload.extension[=].extension[=].valueBoolean = true
-* payload.extension[=].extension[+].url = "delivery"
-* payload.extension[=].extension[=].valueBoolean = true
-* payload.extension[=].extension[+].url = "shipment"
-* payload.extension[=].extension[=].valueBoolean = true
-* payload.extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_AvailabilityState"
-* payload.extension[=].valueCoding = $GEM_ERP_CS_AvailabilityStatus#10
-* payload.contentString = "{ \"version\": 1, \"supplyOptionsType\": \"onPremise\",\"info_text\": \"Wir möchten Sie informieren, dass Ihre bestellten Medikamente zur Abholung bereitstehen. Den Abholcode finden Sie anbei.\", \"pickUpCodeHR\": \"12341234\", \"pickUpCodeDMC\": \"\", \"url\": \"\" }"
+* entry.resource = erp-communication-06-response-RezeptZuweisen
