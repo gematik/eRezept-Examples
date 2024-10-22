@@ -1,10 +1,13 @@
 Instance: VerordnungsdatensatzPKV
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #example
-* meta.lastUpdated = "2023-07-04T08:30:00Z"
+* insert PKV_Verordnungsdatensatz
+
+RuleSet: PKV_Verordnungsdatensatz
+* insert DateTimeStamp(meta.lastUpdated)
 * identifier.value = "200.000.000.000.000.01"
 * type = #document
-* timestamp = "2023-07-04T08:30:00Z"
+* insert DateTimeStamp(timestamp)
 * entry[Dokumenteninformation].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Composition/b0e22b86-e7e9-46c1-80fe-e6e24442dPKV"
 * entry[Dokumenteninformation].resource = b0e22b86-e7e9-46c1-80fe-e6e24442dPKV
 * entry[VerordnungArzneimittel].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/MedicationRequest/f58f4403-7a3a-4a12-bb15-b2fa25b02PKV"

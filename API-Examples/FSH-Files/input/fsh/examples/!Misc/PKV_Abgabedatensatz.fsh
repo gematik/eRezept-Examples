@@ -1,9 +1,12 @@
 Instance: PKV_Abgabedatensatz
 InstanceOf: DAV_PKV_PR_ERP_AbgabedatenBundle
 Usage: #inline
+* insert PKV_Abgabedatensatz
+
+RuleSet: PKV_Abgabedatensatz
 * id = "6d240a29-144f-477b-b8e7-92d4b4bcebfd"
 * identifier.value = "200.000.000.000.000.01"
-* timestamp = "2023-07-03T11:30:00Z"
+* insert DateTimeStamp(timestamp)
 * entry[ERezeptAbgabedaten].fullUrl = "urn:uuid:Composition-9433-43b2-bcd5-46046479c306"
 * entry[ERezeptAbgabedaten].resource = Composition-9433-43b2-bcd5-46046479c306
 * entry[Apotheke].fullUrl = "urn:uuid:Apo-f582-4a23-b86a-58e22402d105"
