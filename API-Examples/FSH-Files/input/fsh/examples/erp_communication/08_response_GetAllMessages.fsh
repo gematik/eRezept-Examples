@@ -18,7 +18,7 @@ Usage: #example
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_DispReq)
 * extension.url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension.valueCoding = $GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
-* basedOn = Reference(Task/160.123.456.789.123.58)
+* basedOn = Reference(Task/160.000.000.000.000.01)
 * status = #unknown
 * recipient.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * recipient.identifier.value = "3-1.54.10123404"

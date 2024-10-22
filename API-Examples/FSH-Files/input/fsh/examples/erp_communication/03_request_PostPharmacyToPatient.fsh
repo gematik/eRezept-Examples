@@ -2,7 +2,7 @@ Instance: erp-communication-03-request-PostPharmacyToPatient
 InstanceOf: Communication
 Usage: #example
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_Reply)
-* basedOn = Reference(160.123.456.789.123.58)
+* basedOn = Reference(160.000.000.000.000.01)
 * status = #unknown
 * recipient.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * recipient.identifier.value = "X234567890"

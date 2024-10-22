@@ -23,17 +23,14 @@
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-                "value": "160.000.088.357.031.88"
+                "value": "160.000.000.000.000.01"
               }
             ],
             "status": "completed",
-            "medicationReference": {
-              "reference": "Medication/c2b10a5e-3d71-434c-86e0-824af208a2bf"
-            },
             "subject": {
               "identifier": {
                 "system": "http://fhir.de/sid/gkv/kvid-10",
-                "value": "K220635158"
+                "value": "X123456789"
               }
             },
             "performer": [
@@ -46,14 +43,17 @@
                 }
               }
             ],
-            "whenHandedOver": "2023-11-30"
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication"
+            },
+            "whenHandedOver": "2025-01-15"
           }
         },
         {
           "name": "medication",
           "resource": {
             "resourceType": "Medication",
-            "id": "c2b10a5e-3d71-434c-86e0-824af208a2bf",
+            "id": "SumatripanMedication",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
@@ -63,7 +63,6 @@
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
                 "valueCoding": {
-                  "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
                   "code": "00"
                 }
               },
@@ -76,20 +75,35 @@
                 "valueCode": "N1"
               }
             ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20 St."
+                  }
+                ],
+                "value": 20,
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
             "code": {
               "coding": [
                 {
-                  "code": "14186244",
+                  "code": "06313728",
                   "system": "http://fhir.de/CodeSystem/ifa/pzn"
                 }
               ],
-              "text": "FLUSARION EH50/250UG/60 PC"
+              "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
             },
             "form": {
               "coding": [
                 {
-                  "code": "IHP",
-                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB"
                 }
               ]
             }
@@ -113,17 +127,14 @@
             "identifier": [
               {
                 "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-                "value": "160.000.088.357.031.88"
+                "value": "160.000.000.000.000.01"
               }
             ],
             "status": "completed",
-            "medicationReference": {
-              "reference": "Medication/756b422f-4df0-4afe-9d54-da534a44109e"
-            },
             "subject": {
               "identifier": {
                 "system": "http://fhir.de/sid/gkv/kvid-10",
-                "value": "K220635158"
+                "value": "X123456789"
               }
             },
             "performer": [
@@ -136,14 +147,17 @@
                 }
               }
             ],
-            "whenHandedOver": "2023-11-30"
+            "medicationReference": {
+              "reference": "Medication/FlusarionMedication"
+            },
+            "whenHandedOver": "2025-01-15"
           }
         },
         {
           "name": "medication",
           "resource": {
             "resourceType": "Medication",
-            "id": "756b422f-4df0-4afe-9d54-da534a44109e",
+            "id": "FlusarionMedication",
             "meta": {
               "profile": [
                 "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
@@ -153,7 +167,6 @@
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
                 "valueCoding": {
-                  "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
                   "code": "00"
                 }
               },

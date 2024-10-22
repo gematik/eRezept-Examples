@@ -5,7 +5,7 @@ Usage: #example
 * meta.lastUpdated = "2023-07-04T08:30:00Z"
 * meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
 * identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* identifier.value = "160.123.456.789.123.58"
+* identifier.value = "160.000.000.000.000.01"
 * type = #document
 * timestamp = "2023-07-04T08:30:00Z"
 * entry[0].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Composition/819850c6-0887-4d6f-8863-f1a2ff09684c"

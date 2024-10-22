@@ -3,7 +3,7 @@ InstanceOf: Communication
 Usage: #example
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_InfoReq)
 * contained = 5fe6e06c-8725-46d5-aecd-e65e041ca3de
-* basedOn = Reference(160.123.456.789.123.58)
+* basedOn = Reference(160.000.000.000.000.01)
 * status = #unknown
 * about = Reference(5fe6e06c-8725-46d5-aecd-e65e041ca3de)
 * recipient.identifier.system = "https://gematik.de/fhir/sid/telematik-id"

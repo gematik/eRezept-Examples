@@ -5,7 +5,7 @@ Usage: #example
 * meta.lastUpdated = "2020-03-12T18:01:10+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_DispReq)
 * sent = "2020-03-12T18:01:10+00:00"
-* basedOn = Reference(Task/160.123.456.789.123.58/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
+* basedOn = Reference(Task/160.000.000.000.000.01/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * status = #unknown
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_PrescriptionType"
 * extension[=].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"

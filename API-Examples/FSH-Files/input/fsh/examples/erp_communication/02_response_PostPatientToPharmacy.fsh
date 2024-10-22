@@ -5,7 +5,7 @@ Usage: #example
 * meta.lastUpdated = "2020-03-12T18:01:10+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_InfoReq)
 * contained = 5fe6e06c-8725-46d5-aecd-e65e041ca3de
-* basedOn = Reference(160.123.456.789.123.58)
+* basedOn = Reference(160.000.000.000.000.01)
 * status = #unknown
 * sent = "2020-03-12T18:01:10+00:00"
 * about = Reference(5fe6e06c-8725-46d5-aecd-e65e041ca3de)

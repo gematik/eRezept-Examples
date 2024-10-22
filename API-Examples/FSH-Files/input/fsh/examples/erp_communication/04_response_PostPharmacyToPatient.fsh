@@ -4,7 +4,7 @@ Usage: #example
 * meta.versionId = "1"
 * meta.lastUpdated = "2020-03-12T18:01:10+00:00"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Communication_Reply)
-* basedOn = Reference(160.123.456.789.123.58)
+* basedOn = Reference(160.000.000.000.000.01)
 * status = #unknown
 * sent = "2020-03-12T18:01:10+00:00"
 * recipient.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
