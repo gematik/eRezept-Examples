@@ -32,6 +32,9 @@ RuleSet: GKV_Identifier(field)
 RuleSet: PKV_Identifier(field)
 * {field} = "P987654321"
 
+RuleSet: ApoTelematikID(field)
+* {field} = "3-2-APO-XanthippeVeilchenblau01"
+
 RuleSet: GKV_Task
 * insert Task160Exension
 * insert TaskIdentifier(160)

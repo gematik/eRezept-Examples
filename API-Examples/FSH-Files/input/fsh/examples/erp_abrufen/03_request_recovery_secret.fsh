@@ -17,8 +17,7 @@ Usage: #inline
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * insert GKV_Task
 * status = #in-progress
-* owner.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
-* owner.identifier.value = "3-2-APO-XanthippeVeilchenblau01"
+* insert ApoTelematikID(owner.identifier.value)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
 
 Instance: 281a985c-f25b-4aae-91a6-41ad744080b0

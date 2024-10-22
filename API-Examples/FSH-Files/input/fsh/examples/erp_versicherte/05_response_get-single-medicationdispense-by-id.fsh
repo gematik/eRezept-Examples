@@ -23,8 +23,7 @@ Usage: #inline
 * medicationReference = Reference(b4c2bba5-23bd-4be3-b58f-a70621edd84f) "Sumatriptan-1a Pharma 100 mg Tabletten"
 * subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
 * subject.identifier.value = "X110501499"
-* performer.actor.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
-* performer.actor.identifier.value = "3-2-APO-XanthippeVeilchenblau01"
+* insert ApoTelematikID(performer.actor.identifier.value)
 * quantity = 1 '{Package}'
 * whenHandedOver = "2024-02-15"
 * dosageInstruction.text = "1-0-1-0"
