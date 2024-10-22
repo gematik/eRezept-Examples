@@ -13,3 +13,19 @@ RuleSet: OnlyParameterPartProfile(profile)
 
 RuleSet: ParameterPartProfile(profile)
 * parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
+
+// Dates for Examples (Date of actual release)
+RuleSet: Date(field)
+* {field} = "2025-01-15"
+
+RuleSet: AcceptDate(field) //Date plus 28 Days
+* {field} = "2025-02-12"
+
+RuleSet: ExpiryDate(field) //Date plus 3 Months
+* {field} = "2025-04-15"
+
+RuleSet: DateTime(field)
+* {field} = "2025-01-15T15:29:00+00:00"
+
+RuleSet: DateTimeStamp(field)
+* {field} = "2025-01-15T15:29:00.434+00:00"
