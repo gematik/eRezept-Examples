@@ -24,8 +24,8 @@ InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #inline
 Title: "Example another Medication Dispense"
 Description: "Example of another Medication Dispense."
-* identifier[prescriptionID].value = "160.000.033.491.280.78"
-* subject.identifier.value = "X123456789"
-* performer.actor.identifier.value = "3-SMC-B-Testkarte-883110000095957"
+* insert MedicationDispense_PrescriptionID(160)
+* insert GKV_Identifier(subject.identifier.value)
+* insert ApoTelematikID(performer.actor.identifier.value)
 * whenHandedOver = "2024-04-03"
 * medicationReference = Reference(MedicationDexpanthenol)

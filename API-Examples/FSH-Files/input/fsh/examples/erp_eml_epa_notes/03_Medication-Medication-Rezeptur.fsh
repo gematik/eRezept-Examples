@@ -1,48 +1,39 @@
 Instance: erp-eml-epa-notes-03-Medication-Medication-Rezeptur
-InstanceOf: Medication
+InstanceOf: GEM_ERP_PR_Medication
 Usage: #example
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Medication)
 * contained[0] = MedicationHydrocortison
 * contained[+] = MedicationDexpanthenol
-* extension[0].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
-* extension[=].valueCoding = $epa-drug-category-cs#00
-* extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension"
-* extension[=].valueCoding.version = "http://snomed.info/sct/900000000000207008/version/20240201"
-* extension[=].valueCoding = $sct#1208954007 "Extemporaneous preparation (product)"
-* extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension"
-* extension[=].valueBoolean = false
+* extension[drugCategory].valueCoding = $epa-drug-category-cs#00
+* extension[type].valueCoding = $sct#1208954007 "Extemporaneous preparation (product)"
+* extension[isVaccine].valueBoolean = false
 * code.text = "Hydrocortison-Dexpanthenol-Salbe"
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#SAL
-* amount.numerator.extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
-* amount.numerator.extension.valueString = "100 ml"
-* amount.numerator.value = 100
-* amount.numerator.unit = "ml"
+* amount.numerator
+  * extension[totalQuantity].valueString = "100 ml"
+  * value = 100
+  * unit = "ml"
 * amount.denominator.value = 1
-* ingredient[0].itemReference = Reference(MedicationHydrocortison)
-* ingredient[=].isActive = true
-* ingredient[=].strength.numerator = 50 'ml'
-* ingredient[=].strength.denominator = 100 'ml'
-* ingredient[+].itemReference = Reference(MedicationDexpanthenol)
-* ingredient[=].isActive = true
-* ingredient[=].strength.numerator = 50 'ml'
-* ingredient[=].strength.denominator = 100 'ml'
+* ingredient[+]
+  * itemReference = Reference(MedicationHydrocortison)
+  * isActive = true
+  * strength.numerator = 50 'ml'
+  * strength.denominator = 100 'ml'
+* ingredient[+]
+  * itemReference = Reference(MedicationDexpanthenol)
+  * isActive = true
+  * strength.numerator = 50 'ml'
+  * strength.denominator = 100 'ml'
 
 Instance: MedicationHydrocortison
-InstanceOf: Medication
+InstanceOf: EPAMedicationPZNIngredient
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-* extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension"
-* extension.valueCoding.version = "http://snomed.info/sct/900000000000207008/version/20240201"
-* extension.valueCoding = $sct#781405001 "Medicinal product package (product)"
+* extension[type].valueCoding = $sct#781405001 "Medicinal product package (product)"
 * code = $pzn-cs#03424249 "Hydrocortison 1% Creme"
 * batch.lotNumber = "56498416854"
 
 Instance: MedicationDexpanthenol
-InstanceOf: Medication
+InstanceOf: EPAMedicationPZNIngredient
 Usage: #inline
-* meta.profile = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-* extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension"
-* extension.valueCoding.version = "http://snomed.info/sct/900000000000207008/version/20240201"
-* extension.valueCoding = $sct#781405001 "Medicinal product package (product)"
+* extension[type].valueCoding = $sct#781405001 "Medicinal product package (product)"
 * code = $pzn-cs#16667195 "Dexpanthenol 5% Creme"
 * batch.lotNumber = "0132456"
