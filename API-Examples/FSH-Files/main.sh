@@ -35,6 +35,9 @@ fi
 echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
 
+echo "Fixing decimal value issues in $INPUT_DIR"
+"$SCRIPT_DIR/scripts/fix_decimalValuesJSON.sh" "$INPUT_DIR"
+
 echo "Generating examples and folder structure"
 "$SCRIPT_DIR/scripts/generate_examples.sh" $INPUT_DIR $OUTPUT_DIR $TEMPLATE_DIR
 
