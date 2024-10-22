@@ -5,15 +5,6 @@ RuleSet: PackageMetaProfile(profile)
 RuleSet: MetaProfile(profile, version)
 * meta.profile[+] = "{profile}|{version}"
 
-RuleSet: EntryResourcePackage(profile)
-* entry[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
-
-RuleSet: OnlyParameterPartProfile(profile)
-* parameter.part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
-
-RuleSet: ParameterPartProfile(profile)
-* parameter[=].part[=].resource.meta.profile = "https://gematik.de/fhir/erp/{profile}|1.4"
-
 // Dates for Examples (Date of actual release)
 RuleSet: Date(field)
 * {field} = "2025-01-15"
