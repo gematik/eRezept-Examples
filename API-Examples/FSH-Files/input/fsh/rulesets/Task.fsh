@@ -8,15 +8,21 @@ RuleSet: Task200Exension
 * insert AcceptDate(extension[acceptDate].valueDate)
 * insert ExpiryDate(extension[expiryDate].valueDate)
 
+RuleSet: Task162Exension
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
+* insert DiGAExpiryDate(extension[acceptDate].valueDate) // Expiry, weil so festgelegt beide Daten 3 Monate
+* insert DiGAExpiryDate(extension[expiryDate].valueDate)
+
 RuleSet: TaskIdentifier(flowType)
 * identifier[PrescriptionID].value = "{flowType}.000.000.000.000.01"
 * identifier[AccessCode].value = "777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+
+RuleSet: TaskSecret
 * identifier[Secret].value = "c36ca26502892b371d252c99b496e31505ff449aca9bc69e231c58148f6233cf"
 
 RuleSet: TaskMiscInfo
 * insert DateTime(authoredOn)
 * insert DateTimeStamp(lastModified)
-* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 
 RuleSet: TaskInputQES(ref)
 * input[ePrescription].type = $GEM_ERP_CS_DocumentType#1 "Health Care Provider Prescription"
@@ -35,14 +41,26 @@ RuleSet: PKV_Identifier(field)
 RuleSet: ApoTelematikID(field)
 * {field} = "3-2-APO-XanthippeVeilchenblau01"
 
+RuleSet: KTRTelematikID(field)
+* {field} = "8-SMC-B-Testkarte-883110000116873"
+
 RuleSet: GKV_Task
 * insert Task160Exension
 * insert TaskIdentifier(160)
 * insert GKV_Identifier(for.identifier.value)
 * insert TaskMiscInfo
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
+
+RuleSet: DiGA_Task
+* insert Task162Exension
+* insert TaskIdentifier(162)
+* insert GKV_Identifier(for.identifier.value)
+* insert TaskMiscInfo
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
 
 RuleSet: PKV_Task
 * insert Task200Exension
 * insert TaskIdentifier(200)
 * insert PKV_Identifier(for.identifier.value)
 * insert TaskMiscInfo
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"

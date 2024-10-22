@@ -16,6 +16,7 @@ Usage: #inline
 * id = "160.000.000.000.000.01"
 * insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Task)
 * insert GKV_Task
+* insert TaskSecret
 * status = #in-progress
 * insert ApoTelematikID(owner.identifier.value)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)

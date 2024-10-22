@@ -24,5 +24,8 @@ RuleSet: AcceptDate(field) //Date plus 28 Days
 RuleSet: ExpiryDate(field) //Date plus 3 Months
 * {field} = "2025-04-15"
 
+RuleSet: DiGAExpiryDate(field) //Date plus 100 Tage
+* {field} = "2025-04-25"
+
 RuleSet: FachdienstVersion(field)
 * {field} = "1.16.0"

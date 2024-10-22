@@ -33,7 +33,7 @@ InstanceOf: DAV_PKV_PR_ERP_AbgabedatenBundle
 Usage: #inline
 * insert PKV_Abgabedatensatz
 
-Instance: ac651416-845a-4321-b2f2-c5a408b82035
+Instance: Example-Binary-b2f2-c5a408b82035
 InstanceOf: Binary
 Usage: #inline
 * contentType = #application/pkcs7-mime
