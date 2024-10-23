@@ -11,6 +11,5 @@ Usage: #example
 Instance: 160.000.000.000.000.01-1
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
-* insert GKV_Task
-* status = #completed
+* insert GKV_Task(completed)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)

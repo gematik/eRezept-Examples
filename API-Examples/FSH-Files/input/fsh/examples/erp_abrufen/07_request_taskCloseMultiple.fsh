@@ -1,7 +1,6 @@
 Instance: erp-abrufen-07-request-taskCloseMultiple
 InstanceOf: GEM_ERP_PR_PAR_CloseOperation_Input
 Usage: #example
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input)
 * parameter[rxDispensation][+]
   * part[medicationDispense][+]
     * resource = a3ddc2b1-826d-4b81-87b2-558834e00f50

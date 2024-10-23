@@ -41,7 +41,6 @@ Usage: #inline
 Instance: 1
 InstanceOf: GEM_ERP_PR_Device
 Usage: #inline
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Device)
 * status = #active
 * insert FachdienstVersion(serialNumber)
 * insert FachdienstVersion(version.value)

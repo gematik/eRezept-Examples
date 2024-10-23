@@ -14,13 +14,13 @@ Usage: #example
 Instance: 160.000.036.967.704.52
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
-* insert GKV_Task
+* insert GKV_Task(ready)
 * status = #ready
 * identifier[PrescriptionID].value = "160.000.036.967.704.52"
 
 Instance: 160.000.036.968.008.13
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
-* insert GKV_Task
+* insert GKV_Task(ready)
 * status = #ready
 * identifier[PrescriptionID].value = "160.000.036.968.008.13"

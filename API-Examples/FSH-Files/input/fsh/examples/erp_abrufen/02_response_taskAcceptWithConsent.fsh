@@ -15,8 +15,7 @@ Usage: #example
 Instance: 200.000.000.000.000.01
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
-* insert PKV_Task
-* status = #in-progress
+* insert PKV_Task(in-progress)
 * insert TaskInputQES(c89c8312-0000-0000-0001-000000000000)
 
 Instance: Inline-Instance-for-f6af166c-36f1-4e0d-9cf9-1bc5051270f6-1

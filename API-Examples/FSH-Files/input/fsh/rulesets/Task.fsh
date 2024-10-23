@@ -1,10 +1,5 @@
-RuleSet: Task160Exension
-* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
-* insert AcceptDate(extension[acceptDate].valueDate)
-* insert ExpiryDate(extension[expiryDate].valueDate)
-
-RuleSet: Task200Exension
-* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#200 "PKV (Apothekenpflichtige Arzneimittel)"
+RuleSet: TaskExension(flowType)
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#{flowType}
 * insert AcceptDate(extension[acceptDate].valueDate)
 * insert ExpiryDate(extension[expiryDate].valueDate)
 
@@ -44,23 +39,34 @@ RuleSet: ApoTelematikID(field)
 RuleSet: KTRTelematikID(field)
 * {field} = "8-SMC-B-Testkarte-883110000116873"
 
-RuleSet: GKV_Task
-* insert Task160Exension
+RuleSet: GKV_Task(status)
+* status = #{status}
+* insert TaskExension(160)
 * insert TaskIdentifier(160)
 * insert GKV_Identifier(for.identifier.value)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 
-RuleSet: DiGA_Task
+RuleSet: DiGA_Task(status)
+* status = #{status}
 * insert Task162Exension
 * insert TaskIdentifier(162)
 * insert GKV_Identifier(for.identifier.value)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
 
-RuleSet: PKV_Task
-* insert Task200Exension
+RuleSet: PKV_Task(status)
+* status = #{status}
+* insert TaskExension(200)
 * insert TaskIdentifier(200)
 * insert PKV_Identifier(for.identifier.value)
+* insert TaskMiscInfo
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
+
+RuleSet: WF169_Task(status)
+* status = #{status}
+* insert TaskExension(169)
+* insert TaskIdentifier(169)
+* insert GKV_Identifier(for.identifier.value)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"

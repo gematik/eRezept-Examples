@@ -13,6 +13,5 @@ Usage: #example
 Instance: Example-Task
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
-* insert GKV_Task
-* status = #in-progress
+* insert GKV_Task(in-progress)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)

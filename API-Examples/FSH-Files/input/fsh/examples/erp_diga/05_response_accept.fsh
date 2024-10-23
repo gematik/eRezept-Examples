@@ -14,8 +14,7 @@ Instance: Inline-Instance-for-d5e04846-e753-4a91-ab60-9e4c6fb4b533-1
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
 * id = "162.123.456.789.123.58"
-* insert DiGA_Task
+* insert DiGA_Task(ready)
 * insert TaskSecret
 * insert KTRTelematikID(owner.identifier.value)
-* status = #ready
 * insert TaskInputQES(Example-Binary-b2f2-c5a408b82035)

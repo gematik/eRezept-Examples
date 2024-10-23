@@ -12,9 +12,8 @@ Instance: Inline-Instance-for-dffbfd6a-5712-4798-bdc8-07201eb77ab8-1
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
 * id = "160.000.000.000.000.01"
-* insert GKV_Task
+* insert GKV_Task(in-progress)
 * insert TaskSecret
-* status = #in-progress
 * insert ApoTelematikID(owner.identifier.value)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
 
