@@ -16,10 +16,10 @@ RuleSet: GKV_VerordnungsDatensatz(task-id)
 * entry[RezeptierdatenWirkstoffverordnung].resource = e3a4efa7-84fc-465b-b14c-720195097783
 * entry[Patient].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Patient/9774f67f-a238-4daf-b4e6-Pat-GKV"
 * entry[Patient].resource = 9774f67f-a238-4daf-b4e6-Pat-GKV
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb617c3"
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].resource = 20597e0e-cb2a-45b3-95f0-dc3dbdb617c3
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/d8463daf-258e-4cad-a86a-6fd42fac161c"
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].resource = d8463daf-258e-4cad-a86a-6fd42fac161c
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb617c3"
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = 20597e0e-cb2a-45b3-95f0-dc3dbdb617c3
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/d8463daf-258e-4cad-a86a-6fd42fac161c"
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = d8463daf-258e-4cad-a86a-6fd42fac161c
 * entry[Einrichtung].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Organization/cf042e44-086a-4d51-9c77-172f9a972e3b"
 * entry[Einrichtung].resource = cf042e44-086a-4d51-9c77-172f9a972e3b
 * entry[Krankenversicherungsverhaeltnis].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Coverage/1b1ffb6e-eb05-43d7-87eb-Cov-GKV"
@@ -97,6 +97,7 @@ Usage: #inline
   * city = "Berlin"
   * postalCode = "10623"
 
+// Attester
 Instance: 20597e0e-cb2a-45b3-95f0-dc3dbdb617c3
 InstanceOf: KBV_PR_FOR_Practitioner
 Usage: #inline
@@ -111,6 +112,7 @@ Usage: #inline
 * qualification[Typ].code = $KBV_CS_FOR_Qualification_Type#00
 * qualification[Berufsbezeichnung].code.text = "FA Biochemie"
 
+// Author
 Instance: d8463daf-258e-4cad-a86a-6fd42fac161c
 InstanceOf: KBV_PR_FOR_Practitioner
 Usage: #inline

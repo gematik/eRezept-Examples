@@ -14,5 +14,5 @@ Usage: #inline
 * status = #completed
 * medicationReference = Reference(SumatripanMedication)
 * insert GKV_Identifier(subject.identifier.value)
-* insert ApoTelematikID(performer.actor.identifier.value)
+* insert ApoTelematikID(performer.actor.identifier)
 * whenHandedOver = "2024-04-03"

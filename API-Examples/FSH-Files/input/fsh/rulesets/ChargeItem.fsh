@@ -3,6 +3,7 @@ RuleSet: ChargeItemIdentifier
 
 RuleSet: ChargeItem
 * insert ChargeItemIdentifier
+* insert OLD_PKV_IdentifierSystem(subject.identifier.system)
 * insert PKV_Identifier(subject.identifier.value)
 * code = $data-absent-reason-cs#not-applicable
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
@@ -33,7 +34,7 @@ InstanceOf: DAV_PKV_PR_ERP_AbgabedatenBundle
 Usage: #inline
 * insert PKV_Abgabedatensatz
 
-Instance: Example-Binary-b2f2-c5a408b82035
+Instance: example-binary-b2f2-c5a408b82035
 InstanceOf: Binary
 Usage: #inline
 * contentType = #application/pkcs7-mime

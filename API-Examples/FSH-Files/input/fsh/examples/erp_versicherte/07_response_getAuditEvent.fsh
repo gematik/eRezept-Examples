@@ -51,7 +51,7 @@ Usage: #inline
 * insert DateTimeStamp(recorded)
 * outcome = #0
 * agent.type = $extra-security-role-type#humanuser "Human User"
-* insert ApoTelematikID(agent.who.identifier.value)
+* insert ApoTelematikID(agent.who.identifier)
 * agent.name = "Ihre Apotheke um die Ecke, Hauptstraße 1"
 * agent.requestor = false
 * source.site = "E-Rezept Fachdienst"
@@ -75,7 +75,7 @@ Usage: #inline
 * insert DateTimeStamp(recorded)
 * outcome = #0
 * agent.type = $extra-security-role-type#humanuser "Human User"
-* insert ApoTelematikID(agent.who.identifier.value)
+* insert ApoTelematikID(agent.who.identifier)
 * agent.name = "Ihre Apotheke um die Ecke, Hauptstraße 1"
 * agent.requestor = false
 * source.site = "E-Rezept Fachdienst"

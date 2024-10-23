@@ -16,10 +16,10 @@ RuleSet: PKV_Verordnungsdatensatz
 * entry[RezeptierdatenWirkstoffverordnung].resource = e3a4efa7-84fc-465b-b14c-720195097PKV
 * entry[Patient].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Patient/9774f67f-a238-4daf-b4e6-Pat-PKV"
 * entry[Patient].resource = 9774f67f-a238-4daf-b4e6-Pat-PKV
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].resource = 20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/d8463daf-258e-4cad-a86a-6fd42fac1PKV"
-* entry[AusstellendeVerschreibendeVerantwortlichePerson].resource = d8463daf-258e-4cad-a86a-6fd42fac1PKV
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = 20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/d8463daf-258e-4cad-a86a-6fd42fac1PKV"
+* entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = d8463daf-258e-4cad-a86a-6fd42fac1PKV
 * entry[Einrichtung].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Organization/cf042e44-086a-4d51-9c77-172f9a972PKV"
 * entry[Einrichtung].resource = cf042e44-086a-4d51-9c77-172f9a972PKV
 * entry[Krankenversicherungsverhaeltnis].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Coverage/1b1ffb6e-eb05-43d7-87eb-Cov-PKV"

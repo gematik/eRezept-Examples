@@ -24,8 +24,12 @@ RuleSet: TaskInputQES(ref)
 * input[ePrescription].valueReference = Reference({ref})
 
 RuleSet: TaskInputReceipt(ref)
-* input[patientReceipt].type = $GEM_ERP_CS_DocumentType#2 "Receipt"
+* input[patientReceipt].type = $GEM_ERP_CS_DocumentType#2 "Patient Confirmation"
 * input[patientReceipt].valueReference = Reference({ref})
+
+RuleSet: TaskOutputReceipt(ref)
+* output[receipt].type = $GEM_ERP_CS_DocumentType#3 "Receipt"
+* output[receipt].valueReference = Reference({ref})
 
 RuleSet: GKV_Identifier(field)
 * {field} = "X123456789"
@@ -33,8 +37,12 @@ RuleSet: GKV_Identifier(field)
 RuleSet: PKV_Identifier(field)
 * {field} = "P987654321"
 
+RuleSet: OLD_PKV_IdentifierSystem(field)
+* {field} = "http://fhir.de/sid/pkv/kvid-10"
+
 RuleSet: ApoTelematikID(field)
-* {field} = "3-2-APO-XanthippeVeilchenblau01"
+* {field}.system = "https://gematik.de/fhir/sid/telematik-id"
+* {field}.value = "3-2-APO-XanthippeVeilchenblau01"
 
 RuleSet: ArztTelematikID(field)
 * {field} = "1-2-DOC-Testkarte-012423424"

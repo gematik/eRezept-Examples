@@ -20,7 +20,7 @@ Usage: #inline
 * id = "200.000.000.000.000.01"
 * identifier[prescriptionID].value = "200.000.000.000.000.01"
 * insert GKV_Identifier(subject.identifier.value)
-* insert ApoTelematikID(performer.actor.identifier.value)
+* insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
 * whenHandedOver = "2020-03-20"
 * quantity = 1 '{Package}'

@@ -16,7 +16,7 @@ Usage: #inline
 * id = "160.000.000.000.000.01"
 * insert GKV_Task(in-progress)
 * insert TaskSecret
-* insert ApoTelematikID(owner.identifier.value)
+* insert ApoTelematikID(owner.identifier)
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
 
 Instance: 281a985c-f25b-4aae-91a6-41ad744080b0

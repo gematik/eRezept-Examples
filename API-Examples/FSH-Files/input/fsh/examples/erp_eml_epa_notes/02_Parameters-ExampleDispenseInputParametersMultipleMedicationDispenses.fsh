@@ -26,6 +26,6 @@ Title: "Example another Medication Dispense"
 Description: "Example of another Medication Dispense."
 * insert MedicationDispense_PrescriptionID(160)
 * insert GKV_Identifier(subject.identifier.value)
-* insert ApoTelematikID(performer.actor.identifier.value)
+* insert ApoTelematikID(performer.actor.identifier)
 * whenHandedOver = "2024-04-03"
 * medicationReference = Reference(MedicationDexpanthenol)
