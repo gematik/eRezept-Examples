@@ -1,12 +1,12 @@
 Instance: VerordnungsdatensatzGKV
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #example
-* insert GKV_VerordnungsDatensatz
+* insert GKV_VerordnungsDatensatz(160.000.000.000.000.01)
 
-RuleSet: GKV_VerordnungsDatensatz
+RuleSet: GKV_VerordnungsDatensatz(task-id)
 * insert DateTimeStamp(meta.lastUpdated)
 * insert DateTimeStamp(timestamp)
-* identifier.value = "160.000.000.000.000.01"
+* identifier.value = "{task-id}"
 * type = #document
 * entry[Dokumenteninformation].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Composition/b0e22b86-e7e9-46c1-80fe-e6e24442d77c"
 * entry[Dokumenteninformation].resource = b0e22b86-e7e9-46c1-80fe-e6e24442d77c

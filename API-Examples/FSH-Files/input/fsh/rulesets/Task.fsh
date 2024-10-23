@@ -36,6 +36,9 @@ RuleSet: PKV_Identifier(field)
 RuleSet: ApoTelematikID(field)
 * {field} = "3-2-APO-XanthippeVeilchenblau01"
 
+RuleSet: ArztTelematikID(field)
+* {field} = "1-2-DOC-Testkarte-012423424"
+
 RuleSet: KTRTelematikID(field)
 * {field} = "8-SMC-B-Testkarte-883110000116873"
 

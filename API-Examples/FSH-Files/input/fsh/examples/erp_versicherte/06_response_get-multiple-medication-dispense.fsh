@@ -4,67 +4,53 @@ Usage: #example
 * type = #searchset
 * timestamp = "2024-02-15T06:01:44.119+00:00"
 * total = 2
-* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.952.60"
-* entry[=].resource = 200.000.002.097.952.60
+* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.000.000.000.01-1"
+* entry[=].resource = 06-response-get-multiple-medication-dispense-1
 * entry[=].search.mode = #match
-* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f"
-* entry[=].resource = b4c2bba5-23bd-4be3-b58f-a70621edd84f
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/e25e68d2-8aa4-4fb4-8498-68d9856f8ec3"
+* entry[=].resource = e25e68d2-8aa4-4fb4-8498-68d9856f8ec3
 * entry[=].search.mode = #include
-* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.952.60-1"
-* entry[=].resource = 200.000.002.097.952.60-1
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.000.000.000.01-2"
+* entry[=].resource = 06-response-get-multiple-medication-dispense-2
 * entry[=].search.mode = #match
-* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84e"
-* entry[=].resource = b4c2bba5-23bd-4be3-b58f-a70621edd84e
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/32c2f072-38ba-4990-9d74-80938ccb05b6"
+* entry[=].resource = 32c2f072-38ba-4990-9d74-80938ccb05b6
 * entry[=].search.mode = #include
 * link.relation = "self"
-* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.002.097.952.60"
+* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.000.000.000.01"
 
-Instance: 200.000.002.097.952.60
-InstanceOf: MedicationDispense
+Instance: 06-response-get-multiple-medication-dispense-1
+InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #inline
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
-* meta.tag.display = "Beispiel MedicationDispense PKV PZN Bsp 7 1/2"
-* identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* identifier.value = "200.000.002.097.952.60"
 * status = #completed
-* medicationReference = Reference(b4c2bba5-23bd-4be3-b58f-a70621edd84f) "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
-* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
-* subject.identifier.value = "X110501499"
+* id = "200.000.000.000.000.01-1"
+* identifier[prescriptionID].value = "200.000.000.000.000.01"
+* insert GKV_Identifier(subject.identifier.value)
 * insert ApoTelematikID(performer.actor.identifier.value)
-* whenHandedOver = "2024-02-15"
-* dosageInstruction.text = "1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"
+* dosageInstruction.text = "1-0-1-0"
+* whenHandedOver = "2020-03-20"
+* quantity = 1 '{Package}'
+* medicationReference = Reference(e25e68d2-8aa4-4fb4-8498-68d9856f8ec3)
 
-Instance: 200.000.002.097.952.60-1
-InstanceOf: MedicationDispense
+Instance: e25e68d2-8aa4-4fb4-8498-68d9856f8ec3
+InstanceOf: GEM_ERP_PR_Medication
 Usage: #inline
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_MedicationDispense)
-* meta.tag.display = "Beispiel MedicationDispense PKV PZN Bsp 7 2/2"
-* identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
-* identifier.value = "200.000.002.097.952.60"
+* insert SumatripanMedication
+
+Instance: 06-response-get-multiple-medication-dispense-2
+InstanceOf: GEM_ERP_PR_MedicationDispense
+Usage: #inline
 * status = #completed
-* medicationReference = Reference(b4c2bba5-23bd-4be3-b58f-a70621edd84e) "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
-* subject.identifier.system = "http://fhir.de/sid/gkv/kvid-10"
-* subject.identifier.value = "X110501499"
+* id = "200.000.000.000.000.01-2"
+* identifier[prescriptionID].value = "200.000.000.000.000.01"
+* insert GKV_Identifier(subject.identifier.value)
 * insert ApoTelematikID(performer.actor.identifier.value)
-* whenHandedOver = "2024-02-15"
-* dosageInstruction.text = "1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"
+* dosageInstruction.text = "1-0-1-0"
+* whenHandedOver = "2020-03-20"
+* quantity = 1 '{Package}'
+* medicationReference = Reference(32c2f072-38ba-4990-9d74-80938ccb05b6)
 
-Instance: b4c2bba5-23bd-4be3-b58f-a70621edd84e
-InstanceOf: Medication
+Instance: 32c2f072-38ba-4990-9d74-80938ccb05b6
+InstanceOf: GEM_ERP_PR_Medication
 Usage: #inline
-* insert PackageMetaProfile(StructureDefinition/GEM_ERP_PR_Medication)
-//* meta.profile = "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
-* extension[0].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension"
-* extension[=].valueCoding.system = $epa-drug-category-cs
-* extension[=].valueCoding.code = #00
-* extension[+].url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension"
-* extension[=].valueBoolean = false
-* extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
-* extension[=].valueCode = #N1
-* code = $pzn-cs#03879429
-* code.text = "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
-* form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#RET
-* amount.numerator.extension.url = "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension"
-* amount.numerator.extension.valueString = "30"
-* amount.numerator = $unitsofmeasure#{St} "Stück"
-* amount.denominator.value = 1
+* insert FlusarionMedication

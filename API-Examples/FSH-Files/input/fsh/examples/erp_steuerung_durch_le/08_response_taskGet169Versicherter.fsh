@@ -45,4 +45,4 @@ Usage: #inline
 Instance: a1117192-eb44-48a0-acaa-e9d4ff67a914
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #inline
-* insert GKV_VerordnungsDatensatz
+* insert GKV_VerordnungsDatensatz(169.000.000.000.000.02)
