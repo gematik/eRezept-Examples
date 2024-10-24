@@ -1,7 +1,6 @@
 Instance: erp-chargeItem-08-GET-ChargeItems-response
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2023-09-02T11:38:42.557+00:00"
 * type = #searchset
 * total = 2
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/200.000.000.000.000.01"
