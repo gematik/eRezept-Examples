@@ -1,7 +1,7 @@
 Instance: erp-chargeItem-11-PATCH-ChargeItem-Response
 InstanceOf: GEM_ERPCHRG_PR_ChargeItem
 Usage: #example
-* id = "200.000.000.000.000.01"
+* id = "200.000.000.000.000.01-6"
 * meta.id = "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response"
 * insert ChargeItem
 // Change after PUT Request
