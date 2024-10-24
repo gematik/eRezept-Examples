@@ -6,8 +6,7 @@ Usage: #example
 * status = #draft
 * extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
 * insert TaskIdentifier(160)
-* insert GKV_Identifier(for.identifier.value)
+* insert TaskIdentifierAccessCode
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * performerType.text = "Öffentliche Apotheke"
-* insert TaskIdentifierAccessCode
