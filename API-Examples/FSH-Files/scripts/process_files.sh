@@ -105,7 +105,7 @@ process_files() {
         if [[ "$base_filename" =~ -([^/]+)-([0-9]) ]] || [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then            
             if [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then
                 folder_name="misc_api_endpoints"
-                file_name="CapabilityStatement-RU.json"       
+                file_name="CapabilityStatement_RU.json"       
             else
                 folder_name="${BASH_REMATCH[1]}"
                 # file_digit_index=$(expr index "$base_filename" "${BASH_REMATCH[2]}")
@@ -186,7 +186,7 @@ files_to_copy=(
     "Binary-erp-alternative-zuweisung-03-certificate-in-apovzd.json"
     "Parameters-erp-chargeItem-10-patch-chargeitem-request.json"
 
-    "Bundle-erp-chargeItem-08-GET-ChargeItems-response.json"
+    "Bundle-erp-chargeItem-08-GET-ChargeItems-Response.json"
     "Bundle-erp-chargeItem-09-GET-ChargeItem-Response.json"
     "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response.json"
     

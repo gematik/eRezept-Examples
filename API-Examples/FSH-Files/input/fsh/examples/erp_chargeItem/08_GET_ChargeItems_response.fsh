@@ -1,4 +1,4 @@
-Instance: erp-chargeItem-08-GET-ChargeItems-response
+Instance: erp-chargeItem-08-GET-ChargeItems-Response
 InstanceOf: Bundle
 Usage: #example
 * type = #searchset
