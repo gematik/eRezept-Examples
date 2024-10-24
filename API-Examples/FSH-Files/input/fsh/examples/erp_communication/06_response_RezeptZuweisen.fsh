@@ -1,7 +1,6 @@
 Instance: erp-communication-06-response-RezeptZuweisen
 InstanceOf: GEM_ERP_PR_Communication_DispReq
 Usage: #example
-* id = "8381e39e-cbca-4ad6-8604-7cde08d26af2"
 * insert DateTimeStamp(sent)
 * basedOn = Reference(Task/160.000.000.000.000.01/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * status = #unknown

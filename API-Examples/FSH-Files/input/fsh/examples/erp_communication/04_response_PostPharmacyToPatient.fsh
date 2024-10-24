@@ -2,7 +2,6 @@ Instance: erp-communication-04-response-PostPharmacyToPatient
 InstanceOf: GEM_ERP_PR_Communication_Reply
 Usage: #example
 * status = #unknown
-* id = "4f554548-650a-4906-b0da-9f42a63661c9"
 * insert DateTimeStamp(sent)
 * insert GKV_Identifier(recipient.identifier.value)
 * insert ApoTelematikID(sender.identifier)

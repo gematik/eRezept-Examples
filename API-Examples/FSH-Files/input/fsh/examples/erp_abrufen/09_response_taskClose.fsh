@@ -4,7 +4,6 @@ Usage: #example
 * insert GEM_ERP_PR_Bundle
 
 RuleSet: GEM_ERP_PR_Bundle
-* id = "dffbfd6a-5712-4798-bdc8-07201eb77ab8"
 * identifier.value = "160.000.000.000.000.01"
 * insert DateTimeStamp(timestamp)
 * link.relation = "self"
