@@ -15,6 +15,7 @@ InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
 * id = "160.000.000.000.000.01"
 * insert GKV_Task(ready)
+* insert TaskIdentifierAccessCode
 * insert TaskInputReceipt(414ca393-dde3-4082-9a3b-3752e629e4aa)
 
 Instance: 414ca393-dde3-4082-9a3b-3752e629e4aa

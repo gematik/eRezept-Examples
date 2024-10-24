@@ -1,12 +1,24 @@
 {
   "resourceType": "ChargeItem",
-  "id": "200.000.001.944.091.20-4",
+  "id": "200.000.000.000.000.01",
   "meta": {
-    "id": "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response",
-    "lastUpdated": "2023-07-21T11:36:19.491+00:00",
     "profile": [
       "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_ChargeItem|1.0"
-    ]
+    ],
+    "id": "ChargeItem-erp-chargeItem-11-PATCH-ChargeItem-Response"
+  },
+  "status": "billable",
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "200.000.000.000.000.01"
+    }
+  ],
+  "enterer": {
+    "identifier": {
+      "system": "https://gematik.de/fhir/sid/telematik-id",
+      "value": "3-SMC-B-Testkarte-883110000116873"
+    }
   },
   "extension": [
     {
@@ -14,7 +26,7 @@
       "extension": [
         {
           "url": "insuranceProvider",
-          "valueBoolean": true
+          "valueBoolean": false
         },
         {
           "url": "subsidy",
@@ -22,22 +34,31 @@
         },
         {
           "url": "taxOffice",
-          "valueBoolean": true
+          "valueBoolean": false
         }
       ]
     }
   ],
-  "identifier": [
+  "supportingInformation": [
     {
-      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-      "value": "200.000.001.944.091.20"
+      "display": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle",
+      "reference": "urn:uuid:d9a98ce4-9585-4031-ba85-3719bf0fc14a"
     },
     {
-      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_AccessCode",
-      "value": "555bjf73jr8d9si2ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+      "display": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle",
+      "reference": "urn:uuid:f1909de6-7d21-443b-a2ae-230b9cb62f70-1"
+    },
+    {
+      "display": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle",
+      "reference": "urn:uuid:d45fa5b0-7b01-457f-a41f-b1ea28982963"
     }
   ],
-  "status": "billable",
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/sid/pkv/kvid-10",
+      "value": "P987654321"
+    }
+  },
   "code": {
     "coding": [
       {
@@ -46,31 +67,5 @@
       }
     ]
   },
-  "subject": {
-    "identifier": {
-      "system": "http://fhir.de/sid/gkv/kvid-10",
-      "value": "X110465770"
-    }
-  },
-  "enterer": {
-    "identifier": {
-      "system": "https://gematik.de/fhir/sid/telematik-id",
-      "value": "3-SMC-B-Testkarte-883110000116873"
-    }
-  },
-  "enteredDate": "2023-07-21T07:12:29.316+00:00",
-  "supportingInformation": [
-    {
-      "reference": "urn:uuid:c81baa1d-0000-0000-0001-000000000000",
-      "display": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle"
-    },
-    {
-      "reference": "urn:uuid:c81baa1d-0000-0000-0004-000000000000",
-      "display": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle"
-    },
-    {
-      "reference": "urn:uuid:c81baa1d-0000-0000-0003-000000000000",
-      "display": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Bundle"
-    }
-  ]
+  "enteredDate": "2025-01-15T15:29:00.434+00:00"
 }

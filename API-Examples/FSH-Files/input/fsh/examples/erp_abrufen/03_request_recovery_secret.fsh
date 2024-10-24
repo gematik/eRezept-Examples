@@ -22,4 +22,5 @@ Usage: #inline
 Instance: 281a985c-f25b-4aae-91a6-41ad744080b0
 InstanceOf: GEM_ERP_PR_Binary
 Usage: #inline
+* meta.versionId = "1"
 * data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"

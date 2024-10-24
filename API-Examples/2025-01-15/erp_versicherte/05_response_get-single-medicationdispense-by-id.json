@@ -7,15 +7,15 @@
   "link": [
     {
       "relation": "self",
-      "url": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.002.097.952.60"
+      "url": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.000.000.000.01"
     }
   ],
   "entry": [
     {
-      "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.002.097.951.63",
+      "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/200.000.000.000.000.01",
       "resource": {
         "resourceType": "MedicationDispense",
-        "id": "200.000.002.097.951.63",
+        "id": "200.000.000.000.000.01",
         "meta": {
           "profile": [
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
@@ -24,18 +24,14 @@
         "identifier": [
           {
             "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
-            "value": "200.000.002.097.951.63"
+            "value": "200.000.000.000.000.01"
           }
         ],
         "status": "completed",
-        "medicationReference": {
-          "reference": "Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
-          "display": "Sumatriptan-1a Pharma 100 mg Tabletten"
-        },
         "subject": {
           "identifier": {
             "system": "http://fhir.de/sid/gkv/kvid-10",
-            "value": "X110501499"
+            "value": "X123456789"
           }
         },
         "performer": [
@@ -48,27 +44,30 @@
             }
           }
         ],
+        "dosageInstruction": [
+          {
+            "text": "1-0-1-0"
+          }
+        ],
+        "whenHandedOver": "2020-03-20",
         "quantity": {
           "value": 1,
           "code": "{Package}",
           "system": "http://unitsofmeasure.org"
         },
-        "whenHandedOver": "2024-02-15",
-        "dosageInstruction": [
-          {
-            "text": "1-0-1-0"
-          }
-        ]
+        "medicationReference": {
+          "reference": "Medication/a6635059-bb82-4cdc-90dc-907bc83be523"
+        }
       },
       "search": {
         "mode": "match"
       }
     },
     {
-      "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/b4c2bba5-23bd-4be3-b58f-a70621edd84f",
+      "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/a6635059-bb82-4cdc-90dc-907bc83be523",
       "resource": {
         "resourceType": "Medication",
-        "id": "b4c2bba5-23bd-4be3-b58f-a70621edd84f",
+        "id": "a6635059-bb82-4cdc-90dc-907bc83be523",
         "meta": {
           "profile": [
             "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
@@ -78,7 +77,6 @@
           {
             "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
             "valueCoding": {
-              "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
               "code": "00"
             }
           },
@@ -91,38 +89,37 @@
             "valueCode": "N1"
           }
         ],
-        "code": {
-          "coding": [
-            {
-              "code": "03879429",
-              "system": "http://fhir.de/CodeSystem/ifa/pzn"
-            }
-          ],
-          "text": "Beloc-ZokÂ® mite 47,5 mg, 30 Retardtabletten N1"
-        },
-        "form": {
-          "coding": [
-            {
-              "code": "RET",
-              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
-            }
-          ]
-        },
         "amount": {
           "numerator": {
             "extension": [
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
-                "valueString": "30"
+                "valueString": "20 St."
               }
             ],
-            "code": "{St}",
-            "system": "http://unitsofmeasure.org",
-            "unit": "Stück"
+            "value": 20,
+            "unit": "St"
           },
           "denominator": {
             "value": 1
           }
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "06313728",
+              "system": "http://fhir.de/CodeSystem/ifa/pzn"
+            }
+          ],
+          "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+        },
+        "form": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "TAB"
+            }
+          ]
         }
       },
       "search": {

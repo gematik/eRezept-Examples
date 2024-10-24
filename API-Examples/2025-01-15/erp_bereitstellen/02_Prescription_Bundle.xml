@@ -1,15 +1,15 @@
 <Bundle xmlns="http://hl7.org/fhir">
     <id value="erp-bereitstellen-02-Prescription-Bundle"/>
     <meta>
-        <lastUpdated value="2023-07-04T08:30:00Z"/>
+        <lastUpdated value="2025-01-15T15:29:00.434+00:00"/>
         <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"/>
     </meta>
     <identifier>
         <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-        <value value="160.123.456.789.123.58"/>
+        <value value="160.000.000.000.000.01"/>
     </identifier>
     <type value="document"/>
-    <timestamp value="2023-07-04T08:30:00Z"/>
+    <timestamp value="2025-01-15T15:29:00.434+00:00"/>
     <entry>
         <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Composition/b0e22b86-e7e9-46c1-80fe-e6e24442d77c"/>
         <resource>
@@ -32,7 +32,7 @@
                     </coding>
                 </type>
                 <subject>
-                    <reference value="Patient/9774f67f-a238-4daf-b4e6-679deeef3811"/>
+                    <reference value="Patient/9774f67f-a238-4daf-b4e6-Pat-GKV"/>
                 </subject>
                 <date value="2023-07-03T11:30:02Z"/>
                 <author>
@@ -75,7 +75,7 @@
                         </coding>
                     </code>
                     <entry>
-                        <reference value="Coverage/1b1ffb6e-eb05-43d7-87eb-e7818fe9661a"/>
+                        <reference value="Coverage/1b1ffb6e-eb05-43d7-87eb-Cov-GKV"/>
                     </entry>
                 </section>
             </Composition>
@@ -89,28 +89,11 @@
                 <meta>
                     <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.1.0"/>
                 </meta>
-                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment">
-                    <valueCoding>
-                        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"/>
-                        <code value="0"/>
-                    </valueCoding>
-                </extension>
                 <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee">
                     <valueBoolean value="false"/>
                 </extension>
                 <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG">
                     <valueBoolean value="false"/>
-                </extension>
-                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident">
-                    <extension url="Unfallkennzeichen">
-                        <valueCoding>
-                            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type"/>
-                            <code value="1"/>
-                        </valueCoding>
-                    </extension>
-                    <extension url="Unfalltag">
-                        <valueDate value="2023-07-01"/>
-                    </extension>
                 </extension>
                 <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription">
                     <extension url="Kennzeichen">
@@ -139,20 +122,37 @@
                         </valueIdentifier>
                     </extension>
                 </extension>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment">
+                    <valueCoding>
+                        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"/>
+                        <code value="0"/>
+                    </valueCoding>
+                </extension>
+                <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident">
+                    <extension url="Unfallkennzeichen">
+                        <valueCoding>
+                            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type"/>
+                            <code value="1"/>
+                        </valueCoding>
+                    </extension>
+                    <extension url="Unfalltag">
+                        <valueDate value="2023-07-01"/>
+                    </extension>
+                </extension>
                 <status value="active"/>
                 <intent value="order"/>
                 <medicationReference>
                     <reference value="Medication/e3a4efa7-84fc-465b-b14c-720195097783"/>
                 </medicationReference>
                 <subject>
-                    <reference value="Patient/9774f67f-a238-4daf-b4e6-679deeef3811"/>
+                    <reference value="Patient/9774f67f-a238-4daf-b4e6-Pat-GKV"/>
                 </subject>
                 <authoredOn value="2023-07-02"/>
                 <requester>
                     <reference value="Practitioner/d8463daf-258e-4cad-a86a-6fd42fac161c"/>
                 </requester>
                 <insurance>
-                    <reference value="Coverage/1b1ffb6e-eb05-43d7-87eb-e7818fe9661a"/>
+                    <reference value="Coverage/1b1ffb6e-eb05-43d7-87eb-Cov-GKV"/>
                 </insurance>
                 <note>
                     <text value="Dummy-Hinweis für die Apotheke"/>
@@ -201,7 +201,7 @@
                 <amount>
                     <numerator>
                         <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
-                            <valueString value="20"/>
+                            <valueString value="2x20"/>
                         </extension>
                         <unit value="Stk"/>
                     </numerator>
@@ -231,10 +231,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Patient/9774f67f-a238-4daf-b4e6-679deeef3811"/>
+        <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Patient/9774f67f-a238-4daf-b4e6-Pat-GKV"/>
         <resource>
             <Patient>
-                <id value="9774f67f-a238-4daf-b4e6-679deeef3811"/>
+                <id value="9774f67f-a238-4daf-b4e6-Pat-GKV"/>
                 <meta>
                     <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"/>
                 </meta>
@@ -320,7 +320,7 @@
                             <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung"/>
                             <code value="Berufsbezeichnung"/>
                         </coding>
-                        <text value="Hausarzt"/>
+                        <text value="FA Biochemie"/>
                     </code>
                 </qualification>
             </Practitioner>
@@ -367,7 +367,7 @@
                             <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung"/>
                             <code value="Berufsbezeichnung"/>
                         </coding>
-                        <text value="Arzt in Weiterbildung"/>
+                        <text value="FA Onkologie"/>
                     </code>
                 </qualification>
             </Practitioner>
@@ -413,10 +413,10 @@
         </resource>
     </entry>
     <entry>
-        <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Coverage/1b1ffb6e-eb05-43d7-87eb-e7818fe9661a"/>
+        <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Coverage/1b1ffb6e-eb05-43d7-87eb-Cov-GKV"/>
         <resource>
             <Coverage>
-                <id value="1b1ffb6e-eb05-43d7-87eb-e7818fe9661a"/>
+                <id value="1b1ffb6e-eb05-43d7-87eb-Cov-GKV"/>
                 <meta>
                     <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.1.0"/>
                 </meta>
@@ -452,7 +452,7 @@
                     </coding>
                 </type>
                 <beneficiary>
-                    <reference value="Patient/9774f67f-a238-4daf-b4e6-679deeef3811"/>
+                    <reference value="Patient/9774f67f-a238-4daf-b4e6-Pat-GKV"/>
                 </beneficiary>
                 <payor>
                     <identifier>

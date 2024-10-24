@@ -12,6 +12,7 @@ Instance: 160.000.000.000.000.01-1
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
 * insert GKV_Task(completed)
+* insert TaskSecret
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
 * insert TaskOutputReceipt(a562d322-8b4f-449c-a88f-57ed2a8b96f7)
 

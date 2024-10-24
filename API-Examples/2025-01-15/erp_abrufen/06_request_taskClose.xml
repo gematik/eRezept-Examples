@@ -15,11 +15,11 @@
                     </meta>
                     <identifier>
                         <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-                        <value value="160.123.456.789.123.58"/>
+                        <value value="160.000.000.000.000.01"/>
                     </identifier>
                     <status value="completed"/>
                     <medicationReference>
-                        <reference value="Medication/med0314"/>
+                        <reference value="Medication/SumatripanMedication"/>
                         <display value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
                     </medicationReference>
                     <subject>
@@ -52,13 +52,12 @@
             <name value="medication"/>
             <resource>
                 <Medication>
-                    <id value="med0314"/>
+                    <id value="SumatripanMedication"/>
                     <meta>
                         <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
                     </meta>
                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
                         <valueCoding>
-                            <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
                             <code value="00"/>
                         </valueCoding>
                     </extension>
@@ -84,11 +83,10 @@
                     <amount>
                         <numerator>
                             <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
-                                <valueString value="10"/>
+                                <valueString value="20 St."/>
                             </extension>
-                            <unit value="Tabletten"/>
-                            <system value="http://unitsofmeasure.org"/>
-                            <code value="{tbl}"/>
+                            <value value="20"/>
+                            <unit value="St"/>
                         </numerator>
                         <denominator>
                             <value value="1"/>

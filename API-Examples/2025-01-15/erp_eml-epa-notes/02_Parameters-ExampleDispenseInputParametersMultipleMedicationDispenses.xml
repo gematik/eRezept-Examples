@@ -15,11 +15,11 @@
                     </meta>
                     <identifier>
                         <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-                        <value value="160.000.033.491.280.78"/>
+                        <value value="160.000.000.000.000.01"/>
                     </identifier>
                     <status value="completed"/>
                     <medicationReference>
-                        <reference value="SumatripanMedication"/>
+                        <reference value="Medication/SumatripanMedication"/>
                     </medicationReference>
                     <subject>
                         <identifier>
@@ -31,11 +31,10 @@
                         <actor>
                             <identifier>
                                 <system value="https://gematik.de/fhir/sid/telematik-id"/>
-                                <value value="3-SMC-B-Testkarte-883110000095957"/>
+                                <value value="3-2-APO-XanthippeVeilchenblau01"/>
                             </identifier>
                         </actor>
                     </performer>
-                    <whenPrepared value="2024-04-03"/>
                     <whenHandedOver value="2024-04-03"/>
                 </MedicationDispense>
             </resource>
@@ -100,11 +99,11 @@
                     </meta>
                     <identifier>
                         <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-                        <value value="160.153.303.257.459"/>
+                        <value value="160.000.000.000.000.01"/>
                     </identifier>
                     <status value="completed"/>
                     <medicationReference>
-                        <reference value="Medication-Without-Strength-Code"/>
+                        <reference value="Medication/MedicationDexpanthenol"/>
                     </medicationReference>
                     <subject>
                         <identifier>
@@ -116,11 +115,10 @@
                         <actor>
                             <identifier>
                                 <system value="https://gematik.de/fhir/sid/telematik-id"/>
-                                <value value="3-SMC-B-Testkarte-883110000095957"/>
+                                <value value="3-2-APO-XanthippeVeilchenblau01"/>
                             </identifier>
                         </actor>
                     </performer>
-                    <whenPrepared value="2024-04-03"/>
                     <whenHandedOver value="2024-04-03"/>
                 </MedicationDispense>
             </resource>
@@ -129,60 +127,27 @@
             <name value="medication"/>
             <resource>
                 <Medication>
-                    <id value="Medication-Without-Strength-Code"/>
+                    <id value="MedicationDexpanthenol"/>
                     <meta>
-                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+                        <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"/>
                     </meta>
+                    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                        <valueCoding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="781405001"/>
+                            <display value="Medicinal product package (product)"/>
+                        </valueCoding>
+                    </extension>
                     <code>
-                        <text value="Infusion bestehend aus 85mg Doxorubicin aufgeloest zur Verabreichung in 250ml 5-%iger (50 mg/ml) Glucose-Infusionsloesung"/>
-                    </code>
-                    <form>
                         <coding>
-                            <system value="http://standardterms.edqm.eu"/>
-                            <code value="11210000"/>
-                            <display value="Solution for infusion"/>
+                            <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                            <code value="16667195"/>
+                            <display value="Dexpanthenol 5% Creme"/>
                         </coding>
-                    </form>
-                    <ingredient>
-                        <itemCodeableConcept>
-                            <coding>
-                                <system value="http://fhir.de/CodeSystem/bfarm/atc"/>
-                                <code value="L01DB01"/>
-                                <display value="Doxorubicin"/>
-                            </coding>
-                        </itemCodeableConcept>
-                        <isActive value="true"/>
-                        <strength>
-                            <numerator>
-                                <value value="85"/>
-                                <unit value="mg"/>
-                                <system>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </system>
-                                <code>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </code>
-                            </numerator>
-                            <denominator>
-                                <value value="250"/>
-                                <unit value="Milliliter"/>
-                                <system>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </system>
-                                <code>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </code>
-                            </denominator>
-                        </strength>
-                    </ingredient>
+                    </code>
+                    <batch>
+                        <lotNumber value="0132456"/>
+                    </batch>
                 </Medication>
             </resource>
         </part>

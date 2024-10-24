@@ -2,25 +2,29 @@ Instance: erp-abrufen-egk-05-Response-Task
 InstanceOf: Bundle
 Usage: #example
 * type = #searchset
-* timestamp = "2023-05-16T07:03:18.844+00:00"
+* insert DateTimeStamp(timestamp)
 * total = 2
-* entry[0].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/160.000.036.967.704.52"
-* entry[=].resource = 160.000.036.967.704.52
+* entry[0].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/160.000.000.000.000.01"
+* entry[=].resource = 05-Response-Task-160.000.000.000.000.01
 * entry[=].search.mode = #match
-* entry[+].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/160.000.036.968.008.13"
-* entry[=].resource = 160.000.036.968.008.13
+* entry[+].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/160.000.000.000.000.02"
+* entry[=].resource = 05-Response-Task-160.000.000.000.000.02
 * entry[=].search.mode = #match
 
-Instance: 160.000.036.967.704.52
+Instance: 05-Response-Task-160.000.000.000.000.01
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
+* id = "160.000.000.000.000.01"
 * insert GKV_Task(ready)
+* insert TaskIdentifierAccessCode
 * status = #ready
-* identifier[PrescriptionID].value = "160.000.036.967.704.52"
+* identifier[PrescriptionID].value = "160.000.000.000.000.01"
 
-Instance: 160.000.036.968.008.13
+Instance: 05-Response-Task-160.000.000.000.000.02
 InstanceOf: GEM_ERP_PR_Task
 Usage: #inline
+* id = "160.000.000.000.000.02"
 * insert GKV_Task(ready)
+* insert TaskIdentifierAccessCode
 * status = #ready
-* identifier[PrescriptionID].value = "160.000.036.968.008.13"
+* identifier[PrescriptionID].value = "160.000.000.000.000.02"

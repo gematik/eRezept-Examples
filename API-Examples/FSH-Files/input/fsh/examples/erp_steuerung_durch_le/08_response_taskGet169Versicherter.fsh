@@ -40,6 +40,7 @@ Usage: #inline
 Instance: 20dc17fc-4bde-480b-86ea-b73b14b72da9
 InstanceOf: GEM_ERP_PR_Binary
 Usage: #inline
+* meta.versionId = "1"
 * data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
 
 Instance: a1117192-eb44-48a0-acaa-e9d4ff67a914
