@@ -1,0 +1,204 @@
+{
+  "resourceType": "Parameters",
+  "id": "erp-abrufen-07-request-taskCloseMultiple",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "a3ddc2b1-826d-4b81-87b2-558834e00f50",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.000.000.000.000.01"
+              }
+            ],
+            "status": "completed",
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "X123456789"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-15.2.1456789123.191"
+                  }
+                }
+              }
+            ],
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication"
+            },
+            "whenHandedOver": "2025-01-15"
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "SumatripanMedication",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20 St."
+                  }
+                ],
+                "value": 20,
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "06313728",
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn"
+                }
+              ],
+              "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "854b6c62-8c8a-4ad6-b145-d5bac5f9f010",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.000.000.000.000.01"
+              }
+            ],
+            "status": "completed",
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "X123456789"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-15.2.1456789123.191"
+                  }
+                }
+              }
+            ],
+            "medicationReference": {
+              "reference": "Medication/FlusarionMedication"
+            },
+            "whenHandedOver": "2025-01-15"
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "FlusarionMedication",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "code": "14186244",
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn"
+                }
+              ],
+              "text": "FLUSARION EH50/250UG/60 PC"
+            },
+            "form": {
+              "coding": [
+                {
+                  "code": "IHP",
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
