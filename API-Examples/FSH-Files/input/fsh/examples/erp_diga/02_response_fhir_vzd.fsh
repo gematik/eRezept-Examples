@@ -31,10 +31,8 @@ Usage: #inline
 * meta.source = "#2WkZQ3ZhfsTF9vgi"
 * meta.tag[Origin] = $Origin#ldap "Synchronized from LDAP Directory"
 * meta.tag[+].userSelected = false
-* identifier[+].system = "https://gematik.de/fhir/directory/CodeSystem/ldapUID"
-* identifier[=].value = "6f01ba0b-5d78-4bb1-a789-9a8be7f30ca3"
-* identifier[TelematikID][+].value = "8-01-0000000232"
-* identifier[IKNR][+].value = "107815761"
+* identifier[TelematikID].value = "8-01-0000000232"
+* identifier[IKNR].value = "107815761"
 * active = true
 * type[providerType] = $OrganizationProfessionOID#1.2.276.0.76.4.59 "Betriebsstätte Kostenträger"
 * name = "AOK Baden-Württemberg"

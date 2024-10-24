@@ -3,7 +3,7 @@ InstanceOf: GEM_ERPCHRG_PR_ChargeItem
 Usage: #example
 * id = "200.000.001.944.091.20"
 * meta.id = "ChargeItem-erp-chargeItem-03-POST-ChargeItem-Request"
-* contained = example-binary-b2f2-c5a408b82035
+* contained = aed2e8ed-6dd6-4e94-80f4-3ab9e418513a
 * insert ChargeItem
-* supportingInformation[dispenseItemBinary] = Reference(example-binary-b2f2-c5a408b82035)
+* supportingInformation[dispenseItemBinary] = Reference(aed2e8ed-6dd6-4e94-80f4-3ab9e418513a)
 

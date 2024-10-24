@@ -17,6 +17,7 @@ Instance: 04-response-getDispense-1
 InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #inline
 * status = #completed
+* id = "160.000.000.000.000.01"
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
 * insert GKV_Identifier(subject.identifier.value)
 * insert ApoTelematikID(performer.actor.identifier)

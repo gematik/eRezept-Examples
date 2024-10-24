@@ -21,8 +21,8 @@ Usage: #inline
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * status = #ready
-* insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
-* insert TaskInputReceipt(f8c2298f-7c00-4a68-af29-8a2862d55d43)
+* insert TaskInputQES(1bd440bc-bee1-431a-9fb6-dab6041aefcc)
+* insert TaskInputReceipt(222c9472-8bf3-4123-83fb-0560469df72f)
 
 Instance: 08-response-taskGet169Versicherter-02
 InstanceOf: GEM_ERP_PR_Task
