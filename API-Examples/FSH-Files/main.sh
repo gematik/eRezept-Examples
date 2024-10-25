@@ -41,11 +41,6 @@ sushi "$SCRIPT_DIR"
 echo "Generating examples and folder structure"
 "$SCRIPT_DIR/scripts/generate_examples.sh" $INPUT_DIR $OUTPUT_DIR $TEMPLATE_DIR
 
-# Post-process XML to format namespace definitions across multiple lines
-echo "Formatting namespace definitions..."
-find "$SOURCE_DIR" -name "*.xml" -type f -exec sed -i 's/\(xmlns:[^=]*="[^"]*"\)/\n            \1/g' {} \;
-echo "Namespace formatting complete."
-
 # Copy to API-Examples
 echo "Copying to API-Examples"
 echo "API_DATE: $API_DATE"
