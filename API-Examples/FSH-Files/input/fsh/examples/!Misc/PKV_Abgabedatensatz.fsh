@@ -7,26 +7,26 @@ RuleSet: PKV_Abgabedatensatz
 * id = "6d240a29-144f-477b-b8e7-92d4b4bcebfd"
 * identifier.value = "200.000.000.000.000.01"
 * insert DateTimeStamp(timestamp)
-* entry[ERezeptAbgabedaten].fullUrl = "urn:uuid:Composition-9433-43b2-bcd5-46046479c306"
-* entry[ERezeptAbgabedaten].resource = Composition-9433-43b2-bcd5-46046479c306
-* entry[Apotheke].fullUrl = "urn:uuid:Apo-f582-4a23-b86a-58e22402d105"
-* entry[Apotheke].resource = Apo-f582-4a23-b86a-58e22402d105
-* entry[Abgabeinformationen].fullUrl = "urn:uuid:Abgabeinfo-71fb-4bbe-9c5a-2e865efd8526"
-* entry[Abgabeinformationen].resource = Abgabeinfo-71fb-4bbe-9c5a-2e865efd8526
-* entry[Abrechnungszeilen].fullUrl = "urn:uuid:Abrechnz-f853-48b9-b101-be9280b81a71"
-* entry[Abrechnungszeilen].resource = Abrechnz-f853-48b9-b101-be9280b81a71
+* entry[ERezeptAbgabedaten].fullUrl = "urn:uuid:bf4e0e75-9433-43b2-bcd5-46046479c306" // Composition
+* entry[ERezeptAbgabedaten].resource = bf4e0e75-9433-43b2-bcd5-46046479c306
+* entry[Apotheke].fullUrl = "urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105" // Apo
+* entry[Apotheke].resource = d0ddcdff-f582-4a23-b86a-58e22402d105
+* entry[Abgabeinformationen].fullUrl = "urn:uuid:27231a52-71fb-4bbe-9c5a-2e865efd8526" // Abgabeinfo
+* entry[Abgabeinformationen].resource = 27231a52-71fb-4bbe-9c5a-2e865efd8526
+* entry[Abrechnungszeilen].fullUrl = "urn:uuid:d2475944-f853-48b9-b101-be9280b81a71" // Abrechnz
+* entry[Abrechnungszeilen].resource = d2475944-f853-48b9-b101-be9280b81a71
 
-Instance: Composition-9433-43b2-bcd5-46046479c306
+Instance: bf4e0e75-9433-43b2-bcd5-46046479c306
 InstanceOf: DAV_PKV_PR_ERP_AbgabedatenComposition
 Usage: #inline
 * status = #final
 * type = $DAV-CS-ERP-CompositionTypes#ERezeptAbgabedaten
-* date = "2023-07-03T11:30:00Z"
-* author = Reference(urn:uuid:Apo-f582-4a23-b86a-58e22402d105)
-* section[Abgabeinformationen].entry = Reference(urn:uuid:Abgabeinfo-71fb-4bbe-9c5a-2e865efd8526)
-* section[Apotheke].entry = Reference(urn:uuid:Apo-f582-4a23-b86a-58e22402d105)
+* date = "2024-11-03T11:30:00Z"
+* author = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
+* section[Abgabeinformationen].entry = Reference(urn:uuid:27231a52-71fb-4bbe-9c5a-2e865efd8526)
+* section[Apotheke].entry = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
 
-Instance: Apo-f582-4a23-b86a-58e22402d105
+Instance: d0ddcdff-f582-4a23-b86a-58e22402d105
 InstanceOf: DAV_PKV_PR_ERP_Apotheke
 Usage: #inline
 * identifier.value = "308412345"
@@ -40,17 +40,17 @@ Usage: #inline
   * postalCode = "63225"
   * country = "D"
 
-Instance: Abgabeinfo-71fb-4bbe-9c5a-2e865efd8526
+Instance: 27231a52-71fb-4bbe-9c5a-2e865efd8526
 InstanceOf: DAV_PKV_PR_ERP_Abgabeinformationen
 Usage: #inline
-* extension[Abrechnungszeilen].valueReference = Reference(urn:uuid:Abrechnz-f853-48b9-b101-be9280b81a71)
+* extension[Abrechnungszeilen].valueReference = Reference(urn:uuid:d2475944-f853-48b9-b101-be9280b81a71)
 * extension[AbrechnungsTyp].valueCodeableConcept = $DAV-PKV-CS-ERP-AbrechnungsTyp#1
 * medicationCodeableConcept = $data-absent-reason-cs#not-applicable
-* performer.actor = Reference(urn:uuid:Apo-f582-4a23-b86a-58e22402d105)
+* performer.actor = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
 * authorizingPrescription.identifier.value = "200.000.000.000.000.01"
-* whenHandedOver = "2023-07-03"
+* whenHandedOver = "2024-11-03"
 
-Instance: Abrechnz-f853-48b9-b101-be9280b81a71
+Instance: d2475944-f853-48b9-b101-be9280b81a71
 InstanceOf: DAV_PKV_PR_ERP_Abrechnungszeilen
 Usage: #inline
 * lineItem[+]

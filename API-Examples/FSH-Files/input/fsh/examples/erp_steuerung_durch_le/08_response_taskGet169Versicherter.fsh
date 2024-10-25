@@ -37,6 +37,17 @@ Usage: #inline
 * insert TaskInputQES(20dc17fc-4bde-480b-86ea-b73b14b72da9)
 * insert TaskInputReceipt(a1117192-eb44-48a0-acaa-e9d4ff67a914)
 
+Instance: 1bd440bc-bee1-431a-9fb6-dab6041aefcc
+InstanceOf: GEM_ERP_PR_Binary
+Usage: #inline
+* meta.versionId = "1"
+* data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
+
+Instance: 222c9472-8bf3-4123-83fb-0560469df72f
+InstanceOf: KBV_PR_ERP_Bundle
+Usage: #inline
+* insert GKV_VerordnungsDatensatz(169.000.000.000.000.02)
+
 Instance: 20dc17fc-4bde-480b-86ea-b73b14b72da9
 InstanceOf: GEM_ERP_PR_Binary
 Usage: #inline
@@ -46,4 +57,4 @@ Usage: #inline
 Instance: a1117192-eb44-48a0-acaa-e9d4ff67a914
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #inline
-* insert GKV_VerordnungsDatensatz(169.000.000.000.000.02)
+* insert GKV_VerordnungsDatensatz(169.000.000.000.000.03)
