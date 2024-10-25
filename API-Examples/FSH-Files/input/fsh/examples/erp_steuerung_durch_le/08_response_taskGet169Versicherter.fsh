@@ -21,8 +21,6 @@ Usage: #inline
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * status = #ready
-* insert TaskInputQES(1bd440bc-bee1-431a-9fb6-dab6041aefcc)
-* insert TaskInputReceipt(222c9472-8bf3-4123-83fb-0560469df72f)
 
 Instance: 08-response-taskGet169Versicherter-02
 InstanceOf: GEM_ERP_PR_Task
@@ -34,8 +32,6 @@ Usage: #inline
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * status = #ready
-* insert TaskInputQES(20dc17fc-4bde-480b-86ea-b73b14b72da9)
-* insert TaskInputReceipt(a1117192-eb44-48a0-acaa-e9d4ff67a914)
 
 Instance: 1bd440bc-bee1-431a-9fb6-dab6041aefcc
 InstanceOf: GEM_ERP_PR_Binary
