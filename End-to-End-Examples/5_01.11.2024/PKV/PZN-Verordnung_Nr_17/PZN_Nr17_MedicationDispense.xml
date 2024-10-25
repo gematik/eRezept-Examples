@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+    <id value="ee2ce580-5ba3-464a-aa4f-333f16e87e2d"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+        <tag>
+            <display value="Beispiel MedicationDispense PKV PZN Bsp 17"/>
+        </tag>
+    </meta>
+    <contained>
+        <Medication>
+            <id value="4fdfe574-a9b8-4032-943c-1af2e883f86a"/>
+            <meta>
+                <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+                <valueCodeableConcept>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                        <code value="763158003"/>
+                        <display value="Medicinal product (product)"/>
+                    </coding>
+                </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+                <valueCoding>
+                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                    <code value="00"/>
+                </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+                <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                <valueCode value="N2"/>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="06437028"/>
+                </coding>
+                <text value="Doxycyclin 100-1A Pharma Tabletten N2"/>
+            </code>
+            <form>
+                <coding>
+                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                    <code value="TAB"/>
+                </coding>
+            </form>
+            <amount>
+                <numerator>
+                    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                        <valueString value="20"/>
+                    </extension>
+                    <unit value="Stück"/>
+                </numerator>
+                <denominator>
+                    <value value="1"/>
+                </denominator>
+            </amount>
+            <batch>
+                <lotNumber value="A123456789-1"/>
+                <expirationDate value="2025-12-31"/>
+            </batch>
+        </Medication>
+    </contained>
+    <identifier>
+        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+        <value value="200.082.658.364.487.24"/>
+    </identifier>
+    <status value="completed"/>
+    <medicationReference>
+        <reference value="#4fdfe574-a9b8-4032-943c-1af2e883f86a"/>
+        <display value="Doxycyclin 100-1A Pharma Tabletten N2"/>
+    </medicationReference>
+    <subject>
+        <identifier>
+            <system value="http://fhir.de/sid/pkv/kvid-10"/>
+            <value value="P123464233"/>
+        </identifier>
+    </subject>
+    <performer>
+        <actor>
+            <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-abc-1234567890"/>
+            </identifier>
+        </actor>
+    </performer>
+    <quantity>
+        <value value="2"/>
+        <system value="http://unitsofmeasure.org"/>
+        <code value="{Package}"/>
+    </quantity>
+    <whenHandedOver value="2024-11-03"/>
+</MedicationDispense>

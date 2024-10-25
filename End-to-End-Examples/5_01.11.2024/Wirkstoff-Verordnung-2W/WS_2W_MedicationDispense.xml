@@ -1,0 +1,97 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="c0f19cf5-f223-4bdc-8a5d-efd85315aa30"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+    <tag>
+      <display value="Beispiel MedicationDispense Wirkstoff W2"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="201f5d1d-1521-4ff4-918b-69c86b9c0654"/>
+      <meta>
+          <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+        </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category" />
+          <code value="00" />
+        </valueCoding>
+      </extension>
+        <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+          <valueCodeableConcept>
+           <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331" />
+            <code value="763158003" />
+            <display value="Medicinal product (product)" />
+           </coding>
+          </valueCodeableConcept>
+        </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N2"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+          <code value="07698587"/>
+        </coding>
+        <text value="AMOXICLAV BASICS 875 mg/125 mg Filmtabletten 20 St"/>
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+          <code value="FTA"/>
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="20" />
+          </extension>
+          <unit value="Stück"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <batch>
+        <lotNumber value="DFE2799B"/>
+        <expirationDate value="2025-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="160.101.394.591.628.58"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#201f5d1d-1521-4ff4-918b-69c86b9c0654"/>
+    <display value="AMOXICLAV BASICS 875 mg/125 mg Filmtabletten 20 St"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10"/>
+      <value value="K030182229"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-07.2.1234560000.10.789"/>
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2024-11-27"/>
+  <dosageInstruction>
+    <text value="1-0-0-0"/>
+  </dosageInstruction>
+</MedicationDispense>
