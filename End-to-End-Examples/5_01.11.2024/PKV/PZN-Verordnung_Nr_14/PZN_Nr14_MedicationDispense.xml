@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="edaa5227-e270-4347-880d-ebf2200911b2"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+    <tag>
+      <display value="Beispiel MedicationDispense PKV PZN Bsp 14"/>
+    </tag>
+  </meta>
+  <contained>
+    <Medication>
+      <id value="7e4f7d30-852f-4b5c-a5f6-8bcb1172320b"/>
+      <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+      </meta>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+        <valueCodeableConcept>
+          <coding>
+            <system value="http://snomed.info/sct"/>
+            <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+            <code value="763158003"/>
+            <display value="Medicinal product (product)"/>
+          </coding>
+        </valueCodeableConcept>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+          <code value="00"/>
+        </valueCoding>
+      </extension>
+      <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+      </extension>
+      <extension url="http://fhir.de/StructureDefinition/normgroesse">
+        <valueCode value="N1"/>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+          <code value="16598608"/>
+        </coding>
+        <text value="Azithromycin Heumann 500 mg Filmtabletten N1"/>
+      </code>
+      <form>
+        <coding>
+          <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+          <code value="FTA"/>
+        </coding>
+      </form>
+      <amount>
+        <numerator>
+          <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+            <valueString value="3"/>
+          </extension>
+          <unit value="Stück"/>
+        </numerator>
+        <denominator>
+          <value value="1"/>
+        </denominator>
+      </amount>
+      <batch>
+        <lotNumber value="A123456789-1"/>
+        <expirationDate value="2025-12-31"/>
+      </batch>
+    </Medication>
+  </contained>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+    <value value="200.085.048.660.160.92"/>
+  </identifier>
+  <status value="completed"/>
+  <medicationReference>
+    <reference value="#7e4f7d30-852f-4b5c-a5f6-8bcb1172320b"/>
+    <display value="Azithromycin Heumann 500 mg Filmtabletten N1"/>
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/pkv/kvid-10"/>
+      <value value="P123464319"/>
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+        <value value="3-abc-1234567890"/>
+      </identifier>
+    </actor>
+  </performer>
+  <quantity>
+    <value value="2"/>
+    <system value="http://unitsofmeasure.org"/>
+    <code value="{Package}"/>
+  </quantity>
+  <whenHandedOver value="2024-11-03"/>
+</MedicationDispense>

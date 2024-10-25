@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+    <id value="bf2ad9d0-91a7-4da1-8c3e-a856880b67da"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"/>
+        <tag>
+            <display value="Beispiel MedicationDispense PZN Bsp 32"/>
+        </tag>
+        <tag>
+            <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+        </tag>
+    </meta>
+    <contained>
+        <Medication>
+            <id value="24338d2c-2bbb-4840-b438-a2bafaf5cff9"/>
+            <meta>
+                <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"/>
+            </meta>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+                <valueCodeableConcept>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <version value="http://snomed.info/sct/900000000000207008/version/20220331"/>
+                        <code value="763158003"/>
+                        <display value="Medicinal product (product)"/>
+                    </coding>
+                </valueCodeableConcept>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+                <valueCoding>
+                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+                    <code value="00"/>
+                </valueCoding>
+            </extension>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+                <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                <valueCode value="N2"/>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="17550650"/>
+                </coding>
+                <text value="COTRIM-ratiopharm 400 mg/80 mg Tabletten N2"/>
+            </code>
+            <form>
+                <coding>
+                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                    <code value="TAB"/>
+                </coding>
+            </form>
+            <amount>
+                <numerator>
+                    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                        <valueString value="20"/>
+                    </extension>
+                    <unit value="Stück"/>
+                </numerator>
+                <denominator>
+                    <value value="1"/>
+                </denominator>
+            </amount>
+            <batch>
+                <lotNumber value="A9876543210123-45678"/>
+                <expirationDate value="2025-12-31"/>
+            </batch>
+        </Medication>
+    </contained>
+    <identifier>
+        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+        <value value="160.112.925.848.156.74"/>
+    </identifier>
+    <status value="completed"/>
+    <medicationReference>
+        <reference value="#24338d2c-2bbb-4840-b438-a2bafaf5cff9"/>
+        <display value="COTRIM-ratiopharm 400 mg/80 mg Tabletten N2"/>
+    </medicationReference>
+    <subject>
+        <identifier>
+            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+            <value value="M310119819"/>
+        </identifier>
+    </subject>
+    <performer>
+        <actor>
+            <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-07.2.1234560000.10.789"/>
+            </identifier>
+        </actor>
+    </performer>
+    <whenHandedOver value="2024-11-19"/>
+    <dosageInstruction>
+        <text value="morgens und abends 1 Messlöffel"/>
+    </dosageInstruction>
+</MedicationDispense>
