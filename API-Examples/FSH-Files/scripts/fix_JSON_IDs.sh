@@ -22,7 +22,7 @@ find "$DIR" -type f -name "*.json" -print0 | while IFS= read -r -d '' file; do
     (.. | objects | select(has("meta")))
     |= (.meta |= if has("id") then del(.id) else . end)
     | (.. | strings | select(test("000\\.000\\.01-[0-9]{1,2}")))
-    |= "000.000.01"
+    |= sub("000\\.000\\.01-[0-9]{1,2}"; "000.000.01")
     ' "$file" > "$temp_file"
     
     # Compare the original and modified files

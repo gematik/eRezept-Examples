@@ -3,7 +3,7 @@ InstanceOf: Bundle
 Usage: #example
 * type = #collection
 * insert DateTimeStamp(timestamp)
-* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/ChargeItem/200.000.001.944.091.20"
+* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/ChargeItem/200.000.000.000.000.01"
 * entry[=].resource = Inline-Instance-for-803bc98b-6ad6-4caa-81c1-893600ba4e4b-1
 * entry[+].fullUrl = "urn:uuid:f1909de6-7d21-443b-a2ae-230b9cb62f70-1"
 * entry[=].resource = f1909de6-7d21-443b-a2ae-230b9cb62f70-1
