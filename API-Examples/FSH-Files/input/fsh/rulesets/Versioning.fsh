@@ -18,6 +18,9 @@ RuleSet: DateTimeStamp(field)
 RuleSet: DateTimeStampPlus1hr(field)
 * {field} = "2025-01-15T16:29:00.434+00:00"
 
+RuleSet: DatePlus30days(field) //Date plus 30 Days
+* {field} = "2025-02-14"
+
 RuleSet: AcceptDate(field) //Date plus 28 Days
 * {field} = "2025-02-12"
 
