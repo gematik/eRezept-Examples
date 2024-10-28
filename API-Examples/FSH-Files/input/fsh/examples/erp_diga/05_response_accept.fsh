@@ -2,7 +2,7 @@ Instance: erp-diga-05-response-accept
 InstanceOf: Bundle
 Usage: #example
 * type = #collection
-* timestamp = "2025-03-03T08:26:21.594+00:00"
+* insert DateTimeStamp(timestamp)
 * link.relation = "self"
 * link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/162.000.000.000.000.01/$accept/"
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/162.000.000.000.000.01"

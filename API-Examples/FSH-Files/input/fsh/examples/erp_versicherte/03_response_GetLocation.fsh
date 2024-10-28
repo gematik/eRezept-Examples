@@ -1,7 +1,7 @@
 Instance: erp-versicherte-03-response-GetLocation
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2021-11-23T10:33:52.590809+02:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * type = #searchset
 * total = 2
 * link.relation = "self"

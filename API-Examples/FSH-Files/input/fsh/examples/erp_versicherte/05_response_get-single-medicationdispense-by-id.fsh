@@ -2,7 +2,7 @@ Instance: erp-versicherte-05-response-get-single-medicationdispense-by-id
 InstanceOf: Bundle
 Usage: #example
 * type = #searchset
-* timestamp = "2024-02-15T06:01:44.119+00:00"
+* insert DateTimeStamp(timestamp)
 * total = 0
 * link.relation = "self"
 * link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=200.000.000.000.000.01"
@@ -22,7 +22,7 @@ Usage: #inline
 * insert GKV_Identifier(subject.identifier.value)
 * insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
-* whenHandedOver = "2020-03-20"
+* insert Date(whenHandedOver)
 * quantity = 1 '{Package}'
 * medicationReference = Reference(a6635059-bb82-4cdc-90dc-907bc83be523)
 

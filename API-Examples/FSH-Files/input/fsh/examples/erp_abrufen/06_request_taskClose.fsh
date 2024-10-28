@@ -16,5 +16,5 @@ Usage: #inline
 * insert GKV_Identifier(subject.identifier.value)
 * performer.actor.identifier.value = "3-SMC-B-Testkarte-883110000129070"
 * quantity = 1 '{Package}'
-* whenHandedOver = "2024-03-20"
+* insert Date(whenHandedOver)
 * dosageInstruction.text = "1-0-1-0"

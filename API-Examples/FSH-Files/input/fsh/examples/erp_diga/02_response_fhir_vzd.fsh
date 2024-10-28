@@ -1,7 +1,7 @@
 Instance: erp-diga-02-response-fhir-vzd
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2024-07-02T12:57:06.425+02:00"
+* insert DateTimeStampPlus1hr(meta.lastUpdated)
 * type = #searchset
 * total = 2
 * entry[0].fullUrl = "https://fhir-directory-ref.vzd.ti-dienste.de/search/HealthcareService/f86e1f95-08f1-4651-aed5-dfd82ce2b05e"
@@ -27,7 +27,7 @@ Instance: 235f4997-acea-41b3-85db-c54c4ffd2fc2
 InstanceOf: OrganizationDirectory
 Usage: #inline
 * meta.versionId = "2"
-* meta.lastUpdated = "2024-02-26T12:38:14.001+01:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * meta.source = "#2WkZQ3ZhfsTF9vgi"
 * meta.tag[Origin] = $Origin#ldap "Synchronized from LDAP Directory"
 * meta.tag[+].userSelected = false

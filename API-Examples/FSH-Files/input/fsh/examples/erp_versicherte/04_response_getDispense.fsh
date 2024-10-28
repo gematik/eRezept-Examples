@@ -1,7 +1,7 @@
 Instance: erp-versicherte-04-response-getDispense
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-04-07T08:05:42.225+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * type = #searchset
 * total = 1
 * link.relation = "self"
@@ -22,7 +22,7 @@ Usage: #inline
 * insert GKV_Identifier(subject.identifier.value)
 * insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
-* whenHandedOver = "2020-03-20"
+* insert Date(whenHandedOver)
 * quantity = 1 '{Package}'
 * medicationReference = Reference(d51b39ab-dad0-4a14-8072-ed87534af585)
 

@@ -1,7 +1,7 @@
 Instance: erp-versicherte-02-response-taskGetSingle
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-03-01T07:02:37.836+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * type = #collection
 * link.relation = "self"
 * link.url = "https://erp.app.ti-dienste.de/Task/160.000.000.000.000.01"

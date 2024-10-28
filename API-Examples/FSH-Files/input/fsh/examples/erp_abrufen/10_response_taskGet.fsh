@@ -1,7 +1,7 @@
 Instance: erp-abrufen-10-response-taskGet
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-03-13T07:31:34.328+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * type = #collection
 * entry[0].fullUrl = "https://erp.zentral.erp.splitdns.ti-dienste.de/Task/160.000.000.000.000.01-1"
 * entry[=].resource = 160.000.000.000.000.01-1

@@ -1,7 +1,7 @@
 Instance: erp-versicherte-07-response-getAuditEvent
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-03-29T13:44:18.783+00:00"
+* insert DateTimeStampPlus1hr(meta.lastUpdated)
 * type = #searchset
 * link[0].relation = "self"
 * link[=].url = "https://erp.app.ti-dienste.de/AuditEvent"
@@ -43,7 +43,7 @@ Instance: 58863
 InstanceOf: GEM_ERP_PR_AuditEvent
 Usage: #inline
 * meta.versionId = "1"
-* meta.lastUpdated = "2020-02-27T09:04:27.434+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * meta.source = "#IkMt252YovlsJTAE"
 * type = $audit-event-type#rest
 * subtype = $restful-interaction#read
@@ -67,7 +67,7 @@ Instance: 620049
 InstanceOf: GEM_ERP_PR_AuditEvent
 Usage: #inline
 * meta.versionId = "1"
-* meta.lastUpdated = "2020-02-27T10:04:27.434+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * meta.source = "#IkMt252YovlsJTAE"
 * type = $audit-event-type#rest
 * subtype = $restful-interaction#update
