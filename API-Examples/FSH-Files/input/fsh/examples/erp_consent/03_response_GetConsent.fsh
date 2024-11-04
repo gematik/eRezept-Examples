@@ -8,6 +8,6 @@ Usage: #example
 * entry.resource = CHARGCONS-X234567890
 
 Instance: CHARGCONS-X234567890
-InstanceOf: Consent
+InstanceOf: GEM_ERPCHRG_PR_Consent
 Usage: #inline
 * insert Consent

@@ -90,7 +90,18 @@ RuleSet: WF169_Task(status)
 * insert TaskExension(169)
 * extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
 * insert TaskIdentifier(169)
+* insert TaskIdentifierAccessCode
 * insert GKV_Identifier(for.identifier.value)
+* insert TaskMiscInfo
+* performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
+* performerType.text = "Öffentliche Apotheke"
+
+RuleSet: WF169_Task_Create(status)
+* status = #{status}
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#{flowType}
+* extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
+* insert TaskIdentifier(169)
+* insert TaskIdentifierAccessCode
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * performerType.text = "Öffentliche Apotheke"
