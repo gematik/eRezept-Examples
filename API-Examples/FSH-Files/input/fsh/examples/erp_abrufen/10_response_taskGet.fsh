@@ -15,6 +15,7 @@ Usage: #inline
 * insert TaskSecret
 * insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
 * insert TaskOutputReceipt(a562d322-8b4f-449c-a88f-57ed2a8b96f7)
+* insert DateTimeStampPlus1hr(extension[lastMedicationDispense].valueInstant)
 
 Instance: a562d322-8b4f-449c-a88f-57ed2a8b96f7
 InstanceOf: GEM_ERP_PR_Bundle
