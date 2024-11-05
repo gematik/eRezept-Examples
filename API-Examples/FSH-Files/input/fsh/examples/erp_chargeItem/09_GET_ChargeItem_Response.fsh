@@ -16,7 +16,7 @@ Instance: 200.000.000.000.000.01-7
 InstanceOf: GEM_ERPCHRG_PR_ChargeItem
 Usage: #inline
 * insert ChargeItemWithAccessCode
-//* identifier[AccessCode].value = "555bjf73jr8d9si2ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
+// * insert ChargeItemExtension //TODO: Ist nicht im FD dabei, sollte es?
 * supportingInformation[prescriptionItemBundle] = Reference(urn:uuid:42a8260d-579f-4cde-a288-4de0bfb6e6d9)
 * supportingInformation[dispenseItemBundle] = Reference(urn:uuid:f1909de6-7d21-443b-a2ae-230b9cb62f70-1)
 * supportingInformation[receiptBundle] = Reference(urn:uuid:42772ecc-3d67-4351-a719-2d728426a06b)
