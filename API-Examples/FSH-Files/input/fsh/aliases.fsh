@@ -20,7 +20,10 @@ Alias: $v3-ActCode = http://terminology.hl7.org/CodeSystem/v3-ActCode
 Alias: $service-type = http://terminology.hl7.org/CodeSystem/service-type
 Alias: $v3-RoleCode = http://terminology.hl7.org/CodeSystem/v3-RoleCode
 Alias: $Flowtype = https://gematik.de/fhir/CodeSystem/Flowtype
+
+// Schlüsseltabellen
 Alias: $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN
+Alias: $KBV_CS_SFHIR_KBV_PKV_TARIFF = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PKV_TARIFF
 Alias: $KBV_CS_SFHIR_KBV_FORMULAR_ART = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART
 Alias: $KBV_CS_ERP_Section_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type
 Alias: $KBV_CS_ERP_StatusCoPayment = https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_StatusCoPayment
@@ -32,6 +35,7 @@ Alias: $KBV_CS_SFHIR_KBV_PERSONENGRUPPE = https://fhir.kbv.de/CodeSystem/KBV_CS_
 Alias: $KBV_CS_SFHIR_KBV_DMP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP
 Alias: $KBV_CS_SFHIR_ITA_WOP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP
 Alias: $KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS
+
 Alias: $versicherungsart-de-basis = http://fhir.de/CodeSystem/versicherungsart-de-basis
 Alias: $KBV_CS_FOR_Qualification_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type
 Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203

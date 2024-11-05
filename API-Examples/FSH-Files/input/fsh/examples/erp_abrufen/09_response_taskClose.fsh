@@ -22,7 +22,7 @@ Usage: #inline
 * type[AuthorsSignature].system = "urn:iso-astm:E1762-95:2013"
 * type[AuthorsSignature].code = #1.2.840.10065.1.12.1.1
 * insert DateTimeStamp(when)
-* who = Reference(Device/1)
+* who = Reference(https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1)
 * sigFormat = urn:ietf:bcp:13#application/pkcs7-mime
 * data = "RGllcyBpc3QgZWluIEJlaXNwaWVs"
 
@@ -51,4 +51,5 @@ Usage: #inline
 Instance: 073ef818-3d18-4cf0-a5b7-9321ec838f94
 InstanceOf: GEM_ERP_PR_Digest
 Usage: #inline
+* meta.versionId = "1"
 * data = "tJg8c5ZtdhzEEhJ0ZpAsUVFx5dKuYgQFs5oKgthi17M="

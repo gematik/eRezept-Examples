@@ -16,8 +16,6 @@ RuleSet: PKV_Verordnungsdatensatz
 * entry[RezeptierdatenWirkstoffverordnung].resource = e3a4efa7-84fc-465b-b14c-720195097PKV
 * entry[Patient].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Patient/9774f67f-a238-4daf-b4e6-Pat-PKV"
 * entry[Patient].resource = 9774f67f-a238-4daf-b4e6-Pat-PKV
-* entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"
-* entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = 20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV
 * entry[AusstellendeVerschreibendeVerantwortlichePerson][+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/d8463daf-258e-4cad-a86a-6fd42fac1PKV"
 * entry[AusstellendeVerschreibendeVerantwortlichePerson][=].resource = d8463daf-258e-4cad-a86a-6fd42fac1PKV
 * entry[Einrichtung].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Organization/cf042e44-086a-4d51-9c77-172f9a972PKV"
@@ -29,12 +27,11 @@ Instance: b0e22b86-e7e9-46c1-80fe-e6e24442dPKV
 InstanceOf: KBV_PR_ERP_Composition
 Usage: #inline
 * extension[Rechtsgrundlage].valueCoding = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN#00
+* extension[PKV-Tarif].valueCoding = $KBV_CS_SFHIR_KBV_PKV_TARIFF#03
 * subject = Reference(9774f67f-a238-4daf-b4e6-Pat-PKV)
 * date = "2023-07-03T11:30:02Z"
 * author[Arzt] = Reference(d8463daf-258e-4cad-a86a-6fd42fac1PKV)
 * author[Pruefnummer].identifier.value = "Y/400/1910/36/346"
-* attester.mode = #legal
-* attester.party = Reference(20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV)
 * custodian = Reference(cf042e44-086a-4d51-9c77-172f9a972PKV)
 * section[Verordnung_Arzneimittel].entry = Reference(f58f4403-7a3a-4a12-bb15-b2fa25b02PKV)
 * section[Krankenversicherungsverhaeltnis].entry = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-PKV)
@@ -78,20 +75,6 @@ Usage: #inline
   * strength.numerator.value = 800
   * strength.numerator.unit = "mg"
   * strength.denominator.value = 1
-
-Instance: 20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV
-InstanceOf: KBV_PR_FOR_Practitioner
-Usage: #inline
-* identifier[ANR].value = "838382202"
-* name[name]
-  * use = #official
-  * family.extension[nachname].valueString = "Topp-Glücklich"
-  * family = "Topp-Glücklich"
-  * given = "Hans"
-  * prefix = "Dr. med."
-  * prefix.extension[prefix-qualifier].valueCode = #AC
-* qualification[Typ].code = $KBV_CS_FOR_Qualification_Type#00
-* qualification[Berufsbezeichnung].code.text = "FA Biochemie"
 
 Instance: d8463daf-258e-4cad-a86a-6fd42fac1PKV
 InstanceOf: KBV_PR_FOR_Practitioner
