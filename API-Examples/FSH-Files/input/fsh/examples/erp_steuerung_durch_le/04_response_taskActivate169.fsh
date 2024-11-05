@@ -4,5 +4,5 @@ Usage: #example
 * id = "169.000.000.000.000.01-01"
 * meta.id = "Task-erp-steuerung-durch-le-04-response-taskActivate169"
 * insert WF169_Task(ready)
-* insert TaskInputQES(281a985c-f25b-4aae-91a6-41ad744080b0)
-* insert TaskInputReceipt(f8c2298f-7c00-4a68-af29-8a2862d55d43)
+* insert TaskInputQES(89eb652b-ced5-49ae-bc47-1eff310170b5) //TODO: check if FD replace with Binary/
+* insert TaskInputReceipt(f83daaf0-4fe9-4c57-8c97-4b91be479cc3) // TODO: check if FD replace with Bundle/
