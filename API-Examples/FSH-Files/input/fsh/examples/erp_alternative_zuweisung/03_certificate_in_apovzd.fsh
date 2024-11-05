@@ -2,7 +2,7 @@ Instance: erp-alternative-zuweisung-03-certificate-in-apovzd
 InstanceOf: Binary
 Usage: #example
 * meta.versionId = "1"
-* meta.lastUpdated = "2022-05-05T10:30:29.636+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * meta.source = "=thriqhUOEicndJuZ"
 //* meta.profile = "http://hl7.org/fhir/StructureDefinition/Binary"
 * contentType = #application/pkix-cert

@@ -1,7 +1,7 @@
 Instance: authentisieren-07-response-InnerVau
 InstanceOf: Bundle
 Usage: #example
-* meta.lastUpdated = "2020-03-01T07:02:37.836+00:00"
+* insert DateTimeStamp(meta.lastUpdated)
 * type = #searchset
 * total = 2
 * link.relation = "self"

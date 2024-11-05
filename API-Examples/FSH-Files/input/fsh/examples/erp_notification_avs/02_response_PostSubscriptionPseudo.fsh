@@ -2,7 +2,7 @@ Instance: erp-notification-avs-02-response-PostSubscriptionPseudo
 InstanceOf: Subscription
 Usage: #example
 * status = #active
-* end = "2022-01-01T00:00:00Z"
+* insert DateTime(end)
 * reason = "Communication notifications"
 * criteria = "Communication?received=null&recipient=3-abc-12345678"
 * channel.type = #websocket

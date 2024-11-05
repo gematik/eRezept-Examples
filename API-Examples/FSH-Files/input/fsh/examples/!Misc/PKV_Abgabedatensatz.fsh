@@ -21,7 +21,7 @@ InstanceOf: DAV_PKV_PR_ERP_AbgabedatenComposition
 Usage: #inline
 * status = #final
 * type = $DAV-CS-ERP-CompositionTypes#ERezeptAbgabedaten
-* date = "2024-11-03T11:30:00Z"
+* insert DateTime(date)
 * author = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
 * section[Abgabeinformationen].entry = Reference(urn:uuid:27231a52-71fb-4bbe-9c5a-2e865efd8526)
 * section[Apotheke].entry = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
@@ -48,7 +48,7 @@ Usage: #inline
 * medicationCodeableConcept = $data-absent-reason-cs#not-applicable
 * performer.actor = Reference(urn:uuid:d0ddcdff-f582-4a23-b86a-58e22402d105)
 * authorizingPrescription.identifier.value = "200.000.000.000.000.01"
-* whenHandedOver = "2024-11-03"
+* insert Date(whenHandedOver)
 
 Instance: d2475944-f853-48b9-b101-be9280b81a71
 InstanceOf: DAV_PKV_PR_ERP_Abrechnungszeilen

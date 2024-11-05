@@ -29,7 +29,7 @@ Usage: #inline
 * extension[Rechtsgrundlage].valueCoding = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN#00
 * extension[PKV-Tarif].valueCoding = $KBV_CS_SFHIR_KBV_PKV_TARIFF#03
 * subject = Reference(9774f67f-a238-4daf-b4e6-Pat-PKV)
-* date = "2023-07-03T11:30:02Z"
+* insert DateTime(date)
 * author[Arzt] = Reference(d8463daf-258e-4cad-a86a-6fd42fac1PKV)
 * author[Pruefnummer].identifier.value = "Y/400/1910/36/346"
 * custodian = Reference(cf042e44-086a-4d51-9c77-172f9a972PKV)
@@ -53,7 +53,7 @@ Usage: #inline
 * extension[Mehrfachverordnung].extension[ID].valueIdentifier.value = "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
 * medicationReference = Reference(e3a4efa7-84fc-465b-b14c-720195097PKV)
 * subject = Reference(9774f67f-a238-4daf-b4e6-Pat-PKV)
-* authoredOn = "2023-07-02"
+* insert Date(authoredOn)
 * requester = Reference(d8463daf-258e-4cad-a86a-6fd42fac1PKV)
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-PKV)
 * note.text = "Dummy-Hinweis für die Apotheke"
