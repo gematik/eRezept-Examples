@@ -39,6 +39,9 @@ RuleSet: TaskOutputReceipt(ref)
 RuleSet: GKV_Identifier(field)
 * {field} = "X123456789"
 
+RuleSet: GKV_Identifier_System(field)
+* {field} = "http://fhir.de/sid/gkv/kvid-10"
+
 RuleSet: PKV_Identifier(field)
 * {field} = "P987654321"
 
