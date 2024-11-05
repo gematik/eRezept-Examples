@@ -138,6 +138,7 @@
                         <Binary>
                             <id value="073ef818-3d18-4cf0-a5b7-9321ec838f94"/>
                             <meta>
+                                <versionId value="1"/>
                                 <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Digest|1.4"/>
                             </meta>
                             <contentType value="application/octet-stream"/>
@@ -152,7 +153,7 @@
                     </type>
                     <when value="2025-01-15T15:29:00.434+00:00"/>
                     <who>
-                        <reference value="Device/1"/>
+                        <reference value="https://erp.zentral.erp.splitdns.ti-dienste.de/Device/1"/>
                     </who>
                     <sigFormat value="application/pkcs7-mime"/>
                     <data value="RGllcyBpc3QgZWluIEJlaXNwaWVs"/>
@@ -189,6 +190,12 @@
                                     <code value="00"/>
                                 </valueCoding>
                             </extension>
+                            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_PKV_Tariff">
+                                <valueCoding>
+                                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PKV_TARIFF"/>
+                                    <code value="03"/>
+                                </valueCoding>
+                            </extension>
                             <status value="final"/>
                             <type>
                                 <coding>
@@ -212,12 +219,6 @@
                                 </identifier>
                             </author>
                             <title value="elektronische Arzneimittelverordnung"/>
-                            <attester>
-                                <mode value="legal"/>
-                                <party>
-                                    <reference value="Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"/>
-                                </party>
-                            </attester>
                             <custodian>
                                 <reference value="Organization/cf042e44-086a-4d51-9c77-172f9a972PKV"/>
                             </custodian>
@@ -437,58 +438,6 @@
                                 <postalCode value="10623"/>
                             </address>
                         </Patient>
-                    </resource>
-                </entry>
-                <entry>
-                    <fullUrl value="http://pvs.praxis-topp-gluecklich.local/fhir/Practitioner/20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"/>
-                    <resource>
-                        <Practitioner>
-                            <id value="20597e0e-cb2a-45b3-95f0-dc3dbdb61PKV"/>
-                            <meta>
-                                <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.1.0"/>
-                            </meta>
-                            <identifier>
-                                <type>
-                                    <coding>
-                                        <system value="http://terminology.hl7.org/CodeSystem/v2-0203"/>
-                                        <code value="LANR"/>
-                                    </coding>
-                                </type>
-                                <system value="https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR"/>
-                                <value value="838382202"/>
-                            </identifier>
-                            <name>
-                                <use value="official"/>
-                                <family value="Topp-Glücklich">
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                                        <valueString value="Topp-Glücklich"/>
-                                    </extension>
-                                </family>
-                                <given value="Hans"/>
-                                <prefix value="Dr. med.">
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                                        <valueCode value="AC"/>
-                                    </extension>
-                                </prefix>
-                            </name>
-                            <qualification>
-                                <code>
-                                    <coding>
-                                        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type"/>
-                                        <code value="00"/>
-                                    </coding>
-                                </code>
-                            </qualification>
-                            <qualification>
-                                <code>
-                                    <coding>
-                                        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung"/>
-                                        <code value="Berufsbezeichnung"/>
-                                    </coding>
-                                    <text value="FA Biochemie"/>
-                                </code>
-                            </qualification>
-                        </Practitioner>
                     </resource>
                 </entry>
                 <entry>
