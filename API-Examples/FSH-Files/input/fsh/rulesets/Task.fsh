@@ -101,7 +101,7 @@ RuleSet: WF169_Task(status)
 
 RuleSet: WF169_Task_Create(status)
 * status = #{status}
-* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#{flowType}
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#169
 * extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
 * insert TaskIdentifier(169)
 * insert TaskIdentifierAccessCode
