@@ -36,7 +36,34 @@ json_to_xml() {
     echo "$input_dir/$output_filename"
 }
 
+# Function to rename the file based on the meta.id field
+rename_file() {
+    input_file="$1"
 
+    # Extract the filename without the directory path
+    filename=$(basename -- "$input_file")
+    new_filename=$filename
+
+    # Check if the JSON file contains the "meta.id" field
+    meta_id=$(jq -r 'try .meta.id // empty' "$input_file")
+
+    # Check if the meta.id is not null or empty
+    if [[ -n "$meta_id" && "$meta_id" != "null" ]]; then
+        # Construct the new filename
+        new_filename="${meta_id}.json"
+        new_filepath="$output_directory/$new_filename"
+
+        # Remove the "meta.id" field from the JSON file
+        jq 'del(.meta.id)' "$input_file" > "$new_filepath" #> "$input_file" 
+
+        # Remove the original file if the new file was successfully created
+        if [[ -f "$new_filepath" ]]; then
+            rm "$input_file"
+        fi
+    fi
+
+    echo "$new_filename"
+}
 
 # Fallback for `realpath` if it's not available
 get_absolute_path() {
@@ -70,7 +97,9 @@ process_files() {
     # echo "Output directory: $output_dir"
     # Loop through the files in the input directory
     for filename in "$input_dir"/*; do
-        base_filename=$(basename "$filename")
+        base_filename=$(basename "$filename")        
+
+        base_filename=$(rename_file "$filename")        
 
         # Extract parts of the filename based on pattern matching
         if [[ "$base_filename" =~ -([^/]+)-([0-9]) ]] || [[ "$base_filename" == "CapabilityStatement-misc-api-endpoints-CapabilityStatement-RU.json" ]]; then            
@@ -119,13 +148,15 @@ process_files() {
             # Create the output subdirectory if it doesn't exist
             output_subdir="$output_dir/$folder_name"
             mkdir -p "$output_subdir"
-            # echo "Creating $output_subdir"
+            # echo "Creating $output_subdir for $file_name"
 
             # Create the output file path with .xml extension
             output_path="$output_subdir/$(basename "$file_name" .json).xml"
             echo "$output_path"
 
             echo "$base_filename"
+            #echo "$filename"
+            
             # Use file_in_array function to check if the file is in the files_to_copy list
             if file_in_array "$base_filename" "${files_to_copy[@]}"; then
                 output_path="$output_subdir/$file_name"  # Retain the original file name for copied files
