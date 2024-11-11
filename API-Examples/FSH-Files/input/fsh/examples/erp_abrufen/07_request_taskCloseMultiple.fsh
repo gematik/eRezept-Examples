@@ -19,16 +19,16 @@ Usage: #inline
 * status = #completed
 * medicationReference = Reference(SumatripanMedication)
 * insert GKV_Identifier(subject.identifier.value)
-* performer.actor.identifier.value = "3-15.2.1456789123.191"
+* insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 
 Instance: 854b6c62-8c8a-4ad6-b145-d5bac5f9f010
 InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #inline
-* identifier[prescriptionID].value = "160.000.000.000.000.01"
+* identifier[prescriptionID].value = "160.000.000.000.000.02"
 * status = #completed
 * medicationReference = Reference(FlusarionMedication)
 * insert GKV_Identifier(subject.identifier.value)
-* performer.actor.identifier.value = "3-15.2.1456789123.191"
+* insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 

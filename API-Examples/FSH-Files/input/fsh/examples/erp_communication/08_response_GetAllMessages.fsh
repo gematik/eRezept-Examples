@@ -11,8 +11,9 @@ Usage: #example
 
 Instance: erp-communication-08-request-RezeptZuweisen
 InstanceOf: GEM_ERP_PR_Communication_DispReq
-Usage: #example
+Usage: #inline
 * id = "a3384a5a-4180-4be5-b6e4-df80a88554dd"
+* meta.id = "Communication-erp-communication-08-request-RezeptZuweisen"
 * basedOn = Reference(Task/160.000.000.000.000.01/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * insert ApoTelematikID(recipient.identifier)
 * insert GKV_Identifier(sender.identifier.value)

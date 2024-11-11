@@ -6,11 +6,22 @@ RuleSet: SumatripanMedication
 * code.text = "Sumatriptan-1a Pharma 100 mg Tabletten"
 * form.coding.system = "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"
 * form.coding.code = #TAB
+* form.coding.display = "Tabletten"
 * amount.numerator
-  * extension[totalQuantity].valueString = "20 St."
-  * value = 20
+  * extension[totalQuantity].valueString = "20"
   * unit = "St"
 * amount.denominator.value = 1
+// * ingredient[+]
+//   * itemCodeableConcept.text = "Sumatriptan"
+//   * strength
+//     * numerator.value = 100
+//     * numerator.unit = "mg"
+//     * numerator.system = ""
+//       * extension[dataAbsentReason].valueCode = "unknown"
+//     * numerator.code.extension[dataAbsentReason].valueCode = "unknown"
+//     * denominator.value = 1
+//     * denominator.system.extension[dataAbsentReason].valueCode = "unknown"
+//     * denominator.code.extension[dataAbsentReason].valueCode = "unknown"
 
 RuleSet: FlusarionMedication
 * extension[drugCategory].valueCoding.code = #00
