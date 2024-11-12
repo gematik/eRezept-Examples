@@ -208,6 +208,8 @@ files_to_copy=(
     "Bundle-erp-versicherte-02-response-taskGetSingle.json"
     "Bundle-erp-versicherte-03-response-GetLocation.json"
     "Bundle-erp-versicherte-04-response-getDispense.json"
+    "Bundle-erp-versicherte-04-response-getDispenseMultiple1.json"
+    "Bundle-erp-versicherte-04-response-getDispenseMultiple2.json"
     "Bundle-erp-versicherte-05-response-get-single-medicationdispense-by-id.json"
     "Bundle-erp-versicherte-06-response-get-multiple-medication-dispense.json"
     "Bundle-erp-versicherte-07-response-getAuditEvent.json"    
