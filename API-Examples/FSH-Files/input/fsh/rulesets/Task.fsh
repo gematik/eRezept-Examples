@@ -56,7 +56,8 @@ RuleSet: ArztTelematikID(field)
 * {field} = "1-2-DOC-Testkarte-012423424"
 
 RuleSet: KTRTelematikID(field)
-* {field} = "8-SMC-B-Testkarte-883110000116873"
+* {field}.system = "https://gematik.de/fhir/sid/telematik-id"
+* {field}.value = "8-SMC-B-Testkarte-883110000116873"
 
 RuleSet: GKV_Task(status)
 * status = #{status}

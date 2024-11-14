@@ -5,7 +5,7 @@ RuleSet: DiGA_MedicationDispense
 * medicationReference.identifier.value = "12345678"
 * medicationReference.display = "Gematico Diabetestherapie"
 * insert GKV_Identifier(subject.identifier.value)
-* insert KTRTelematikID(performer.actor.identifier.value)
+* insert KTRTelematikID(performer.actor.identifier)
 * whenHandedOver = "2024-04-03"
 
 RuleSet: MedicationDispense_PrescriptionID(flowType)

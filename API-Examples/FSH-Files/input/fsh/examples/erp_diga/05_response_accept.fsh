@@ -16,5 +16,5 @@ Usage: #inline
 * id = "162.000.000.000.000.01"
 * insert DiGA_Task(ready)
 * insert TaskSecret
-* insert KTRTelematikID(owner.identifier.value)
+* insert KTRTelematikID(owner.identifier)
 * insert TaskInputQES(aed2e8ed-6dd6-4e94-80f4-3ab9e418513a)
