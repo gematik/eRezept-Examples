@@ -35,6 +35,8 @@ Alias: $KBV_CS_SFHIR_KBV_PERSONENGRUPPE = https://fhir.kbv.de/CodeSystem/KBV_CS_
 Alias: $KBV_CS_SFHIR_KBV_DMP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP
 Alias: $KBV_CS_SFHIR_ITA_WOP = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP
 Alias: $KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS
+Alias: $KBV_CS_EVDGA_Section_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_EVDGA_Section_Type
+Alias: $KBV_CS_FOR_Berufsbezeichnung = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung
 
 Alias: $versicherungsart-de-basis = http://fhir.de/CodeSystem/versicherungsart-de-basis
 Alias: $KBV_CS_FOR_Qualification_Type = https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type

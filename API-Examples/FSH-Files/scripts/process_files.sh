@@ -201,6 +201,7 @@ files_to_copy=(
     "Bundle-erp-consent-03-response-GetConsent.json"
 
     "Bundle-erp-diga-02-response-fhir-vzd.json"
+    "Bundle-erp-diga-02-response-taskGetSingle.json"
     "Communication-erp-diga-03-communication-zuweisung-diga.json"
     "MedicationDispense-erp-diga-04-medication-dispense-diga.json"
 
