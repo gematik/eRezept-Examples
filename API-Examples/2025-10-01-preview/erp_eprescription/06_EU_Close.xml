@@ -1,0 +1,182 @@
+<Parameters xmlns="http://hl7.org/fhir">
+    <id value="erp-eprescription-06-EU-Close"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_EU_CloseOperation_Input|1.5"/>
+    </meta>
+    <parameter>
+        <name value="rxDispensation"/>
+        <part>
+            <name value="medicationDispense"/>
+            <resource>
+                <MedicationDispense>
+                    <id value="Example-MedicationDispense-EU"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense_EU|1.5"/>
+                    </meta>
+                    <identifier>
+                        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                        <value value="160.000.033.491.280.78"/>
+                    </identifier>
+                    <status value="completed"/>
+                    <medicationReference>
+                        <reference value="Medication/SumatripanMedication"/>
+                    </medicationReference>
+                    <subject>
+                        <identifier>
+                            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                            <value value="X123456789"/>
+                        </identifier>
+                    </subject>
+                    <performer>
+                        <actor>
+                            <reference value="PractitionerRole/Example-EU-PractitionerRole"/>
+                        </actor>
+                    </performer>
+                    <whenHandedOver value="2025-01-15"/>
+                </MedicationDispense>
+            </resource>
+        </part>
+        <part>
+            <name value="medication"/>
+            <resource>
+                <Medication>
+                    <id value="SumatripanMedication"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"/>
+                    </meta>
+                    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                        <valueCoding>
+                            <code value="00"/>
+                        </valueCoding>
+                    </extension>
+                    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                        <valueBoolean value="false"/>
+                    </extension>
+                    <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                        <valueCode value="N1"/>
+                    </extension>
+                    <code>
+                        <coding>
+                            <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                            <code value="06313728"/>
+                        </coding>
+                        <text value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
+                    </code>
+                    <form>
+                        <coding>
+                            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                            <code value="TAB"/>
+                            <display value="Tabletten"/>
+                        </coding>
+                    </form>
+                    <amount>
+                        <numerator>
+                            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                                <valueString value="20"/>
+                            </extension>
+                            <unit value="St"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                        </denominator>
+                    </amount>
+                    <ingredient>
+                        <itemCodeableConcept>
+                            <text value="Sumatriptan"/>
+                        </itemCodeableConcept>
+                        <strength>
+                            <numerator>
+                                <value value="100"/>
+                                <unit value="mg"/>
+                                <system>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </system>
+                                <code>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </code>
+                            </numerator>
+                            <denominator>
+                                <value value="1"/>
+                                <system>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </system>
+                                <code>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </code>
+                            </denominator>
+                        </strength>
+                    </ingredient>
+                </Medication>
+            </resource>
+        </part>
+    </parameter>
+    <parameter>
+        <name value="practitionerData"/>
+        <resource>
+            <Practitioner>
+                <id value="Example-EU-Practitioner"/>
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_EUPractitioner|1.5"/>
+                </meta>
+                <identifier>
+                    <system value="ehdsi-dataelement-303"/>
+                    <value value="1234567890"/>
+                </identifier>
+                <name>
+                    <family value="Sanches"/>
+                    <given value="Pedro"/>
+                </name>
+            </Practitioner>
+        </resource>
+    </parameter>
+    <parameter>
+        <name value="organizationData"/>
+        <resource>
+            <Organization>
+                <id value="Example-EU-Organization"/>
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_EUOrganization|1.5"/>
+                </meta>
+                <identifier>
+                    <system value="ehdsi-dataelement-285"/>
+                    <value value="1234567890"/>
+                </identifier>
+                <identifier>
+                    <system value="facilityId"/>
+                    <value value="136ad69f"/>
+                </identifier>
+                <name value="Pharmacia de Santa Maria"/>
+                <address>
+                    <line value="Rua da Alegria, 123"/>
+                    <city value="Lisbon"/>
+                    <country value="Portugal"/>
+                </address>
+            </Organization>
+        </resource>
+    </parameter>
+    <parameter>
+        <name value="practitionerRoleData"/>
+        <resource>
+            <PractitionerRole>
+                <id value="Example-EU-PractitionerRole"/>
+                <meta>
+                    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_EUPractitionerRole|1.5"/>
+                </meta>
+                <practitioner>
+                    <reference value="Practitioner/Example-EU-Practitioner"/>
+                </practitioner>
+                <organization>
+                    <reference value="Organization/Example-EU-Organization"/>
+                </organization>
+            </PractitionerRole>
+        </resource>
+    </parameter>
+</Parameters>
