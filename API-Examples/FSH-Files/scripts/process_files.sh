@@ -213,7 +213,13 @@ files_to_copy=(
     "Bundle-erp-versicherte-04-response-getDispenseMultiple2.json"
     "Bundle-erp-versicherte-05-response-get-single-medicationdispense-by-id.json"
     "Bundle-erp-versicherte-06-response-get-multiple-medication-dispense.json"
-    "Bundle-erp-versicherte-07-response-getAuditEvent.json"    
+    "Bundle-erp-versicherte-07-response-getAuditEvent.json"  
+
+    "Consent-erp-eprescription-01-POST-Consent.json"
+    "Bundle-erp-eprescription-02-GET-Consent-Bundle.json"
+    "Parameters-erp-eprescription-03-POST-AccessCode-EU-Request.json"
+    "Parameters-erp-eprescription-04-POST-AccessCode-EU-Response.json"
+    "Bundle-erp-eprescription-05-GET-Prescription-Bundle.json"
 )
  
 
