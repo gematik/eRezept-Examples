@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+    <id value="e6cc3391-abce-4056-956f-129324523221"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
+        <!--tag>
+            <display value="Beispiel MedicationDispense PZN Bsp 33"/>
+        </tag>
+        <tag>
+            <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+        </tag-->
+    </meta>
+    <parameter>
+        <name value="rxDispensation"/>
+        <part>
+            <name value="medicationDispense"/>
+            <resource>
+                <MedicationDispense>
+                    <id value="d9ae18bb-f979-4799-bd36-8a918daad1e5"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+                    </meta>
+                    <identifier>
+                        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                        <value value="160.065.873.704.859.46"/>
+                    </identifier>
+                    <status value="completed"/>
+                    <medicationReference>
+                        <reference value="26e31584-cea7-431e-a7f5-43fd63d4d897"/>
+                    </medicationReference>
+                    <subject>
+                        <identifier>
+                            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                            <value value="S040464113"/>
+                        </identifier>
+                    </subject>
+                    <performer>
+                        <actor>
+                            <identifier>
+                                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                                <value value="3-07.2.1234560000.10.789"/>
+                            </identifier>
+                        </actor>
+                    </performer>
+                    <whenHandedOver value="2025-01-19"/>
+                    <!--dosageInstruction>   ====> nur angeben wenn geändert/korrigiert durch Apotheke
+                        <text value=""/>
+                    </dosageInstruction-->
+                    <!--substitution>
+                      <wasSubstituted value="false"/>
+                    </substitution-->
+                </MedicationDispense>
+            </resource>
+        </part>
+        <part>
+            <name value="medication"/>
+            <resource>
+                <Medication>
+                    <id value="26e31584-cea7-431e-a7f5-43fd63d4d897"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+                    </meta>
+                    <contained>
+                        <Medication>
+                            <id value="c2a96376-2dbf-409b-8942-e92607021f79"/>
+                            <meta>
+                                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"/>
+                            </meta>
+                            <form>
+                                <coding>
+                                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                                    <code value="FTA"/>
+                                    <display value="Filmtabletten"/>
+                                </coding>
+                                <!--text value="Filmtabletten"/--> <!-- Freitext nur angeben, wenn coding nicht genutzt -->
+                            </form>
+                            <!--amount>  ==> Angabe der Stückmenge des Packungsbestandteils, wenn die Daten strukturiert vorliegen...
+                                <numerator>
+                                    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                                        <valueString value="56"/>
+                                    </extension>
+                                    <unit value="Stück"/>
+                                </numerator>
+                                <denominator>
+                                    <value value="1"/>
+                                </denominator>
+                            </amount-->
+                            <ingredient>
+                                <itemCodeableConcept>
+                                    <text value="Abirateron acetat"/>
+                                </itemCodeableConcept>
+                                <strength>
+                                    <numerator>
+                                        <value value="500"/>
+                                        <unit value="mg"/>
+                                        <system>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </system>
+                                        <code>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </code>
+                                    </numerator>
+                                    <denominator>
+                                        <value value="1"/>
+                                        <system>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </system>
+                                        <code>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </code>
+                                    </denominator>
+                                </strength>
+                            </ingredient>
+                        </Medication>
+                    </contained>
+                    <contained>
+                        <Medication>
+                            <id value="e6f419ad-af04-4258-ad17-f7e7a16f3fd7"/>
+                            <meta>
+                                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"/>
+                            </meta>
+                            <form>
+                                <coding>
+                                    <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                                    <code value="TAB"/>
+                                    <display value="Tabletten"/>
+                                </coding>
+                                <!--text value="Tabletten"/--> <!-- Freitext nur angeben, wenn coding nicht genutzt -->
+                            </form>
+                            <!--amount>  ==> Angabe der Stückmenge des Packungsbestandteils, wenn die Daten strukturiert vorliegen...
+                                <numerator>
+                                    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                                        <valueString value="28"/>
+                                    </extension>
+                                    <unit value="Stück"/>
+                                </numerator>
+                                <denominator>
+                                    <value value="1"/>
+                                </denominator>
+                            </amount-->
+                            <ingredient>
+                                <itemCodeableConcept>
+                                    <text value="Prednisolon"/>
+                                </itemCodeableConcept>
+                                <strength>
+                                    <numerator>
+                                        <value value="5"/>
+                                        <unit value="mg"/>
+                                        <system>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </system>
+                                        <code>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </code>
+                                    </numerator>
+                                    <denominator>
+                                        <value value="1"/>
+                                        <system>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </system>
+                                        <code>
+                                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </code>
+                                    </denominator>
+                                </strength>
+                            </ingredient>
+                        </Medication>
+                    </contained>
+                    <code>
+                        <coding>
+                            <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                            <code value="18027910"/>
+                        </coding>
+                        <text value="Abirasolon-mHSPC 500 mg 56 FTB + 5 mg 28 TAB"/> <!-- Handelsname der eML-->
+                    </code>
+                    <form>
+                        <coding>
+                            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                            <code value="KPG"/>
+                            <display value="Kombipackung"/>
+                        </coding>
+                        <!--text value="Kombipackung"/--> <!-- Freitext nur angeben, wenn coding nicht genutzt -->
+                    </form>
+                    <amount>
+                        <numerator>
+                            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                                <valueString value="1"/>
+                            </extension>
+                            <unit value="Stück"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                        </denominator>
+                    </amount>
+                    <ingredient>
+                        <itemReference>
+                            <reference value="#c2a96376-2dbf-409b-8942-e92607021f79"/>
+                        </itemReference>
+                    </ingredient>
+                    <ingredient>
+                        <itemReference>
+                            <reference value="#e6f419ad-af04-4258-ad17-f7e7a16f3fd7"/>
+                        </itemReference>
+                    </ingredient>
+                    <batch>
+                        <lotNumber value="A123456789-1"/>
+                    </batch>
+                </Medication>
+            </resource>
+        </part>
+    </parameter>
+</Parameters>
