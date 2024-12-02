@@ -35,7 +35,7 @@ Description: "Example of a Medication Dispense."
 * medicationReference = Reference(SumatripanMedication)
 
 Instance: Example-EU-Practitioner
-InstanceOf: GEM_ERP_PR_EUPractitioner
+InstanceOf: GEM_ERP_PR_Practitioner_EU
 Usage: #example
 Title: "Example-EU-Practitioner"
 Description: "Example of an EU Practitioner"
@@ -44,7 +44,7 @@ Description: "Example of an EU Practitioner"
 * name.given = "Pedro"
 
 Instance: Example-EU-Organization
-InstanceOf: GEM_ERP_PR_EUOrganization
+InstanceOf: GEM_ERP_PR_Organization_EU
 Usage: #example
 Title: "Example-EU-Organization"
 Description: "Example of an EU Organization"
@@ -57,7 +57,7 @@ Description: "Example of an EU Organization"
   * country = "Portugal"
 
 Instance: Example-EU-PractitionerRole
-InstanceOf: GEM_ERP_PR_EUPractitionerRole
+InstanceOf: GEM_ERP_PR_PractitionerRole_EU
 Usage: #example
 Title: "Example-EU-PractitionerRole"
 Description: "Example of an EU PractitionerRole"
