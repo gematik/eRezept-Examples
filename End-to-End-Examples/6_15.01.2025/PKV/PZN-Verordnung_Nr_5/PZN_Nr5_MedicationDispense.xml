@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="0e8835fd-f05c-4b3b-b791-cadea1309c8f"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
+    <!--tag>
+      <display value="Beispiel MedicationDispense PKV PZN Bsp 5"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag-->
+  </meta>
+  <parameter>
+    <name value="rxDispensation"/>
+    <part>
+      <name value="medicationDispense"/>
+      <resource>
+        <MedicationDispense>
+          <id value="fc1e90ca-56d6-46c7-91c2-b0c94ec7d3f5"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="200.625.688.123.368.48"/>
+          </identifier>
+          <status value="completed"/>
+          <medicationReference>
+            <reference value="c96ea92e-80f0-4933-8e0d-f82575d09011"/>
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10"/>
+              <value value="P123464117"/>
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-abc-1234567890"/>
+              </identifier>
+            </actor>
+          </performer>
+          <quantity>
+            <value value="2"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{Package}"/>
+          </quantity>
+          <whenHandedOver value="2024-11-03"/>
+          <!--substitution>
+            <wasSubstituted value="false"/>
+          </substitution-->
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication"/>
+      <resource>
+        <Medication>
+          <id value="c96ea92e-80f0-4933-8e0d-f82575d09011"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+          </meta>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+              <code value="00427833"/>
+            </coding>
+            <text value="Viani 50µg/250µg 1 Diskus 60 ED N1"/>
+          </code>
+          <form>
+            <coding>
+              <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+              <code value="IHP"/>
+              <display value="Inhalationspulver"/>
+            </coding>
+          </form>
+          <amount>
+            <numerator>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                <valueString value="1"/>
+              </extension>
+              <unit value="Diskus"/>
+            </numerator>
+            <denominator>
+              <value value="1"/>
+            </denominator>
+          </amount>
+          <ingredient>
+            <itemCodeableConcept>
+              <text value="Salmeterol"/>
+            </itemCodeableConcept>
+            <strength>
+              <numerator>
+                <value value="50"/>
+                <unit value="µg"/>
+                <system>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="unknown"/>
+                  </extension>
+                </system>
+                <code>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="unknown"/>
+                  </extension>
+                </code>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+                <system>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="unknown"/>
+                  </extension>
+                </system>
+                <code>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="unknown"/>
+                  </extension>
+                </code>
+              </denominator>
+            </strength>
+          </ingredient>
+          <batch>
+            <lotNumber value="A123456789-1"/>
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>
