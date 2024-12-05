@@ -1,5 +1,5 @@
 <Parameters xmlns="http://hl7.org/fhir">
-    <id value="erp-eprescription-06-EU-Close"/>
+    <id value="erp-eprescription-07-EU-Close"/>
     <meta>
         <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_EU_CloseOperation_Input|1.5"/>
     </meta>
@@ -119,6 +119,30 @@
         </part>
     </parameter>
     <parameter>
+        <name value="requestData"/>
+        <part>
+            <name value="kvnr"/>
+            <valueIdentifier>
+                <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                <value value="X123456789"/>
+            </valueIdentifier>
+        </part>
+        <part>
+            <name value="accessCode"/>
+            <valueIdentifier>
+                <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_EU_AccessCode"/>
+                <value value="ABC123"/>
+            </valueIdentifier>
+        </part>
+        <part>
+            <name value="countryCode"/>
+            <valueCoding>
+                <system value="urn:iso:std:iso:3166"/>
+                <code value="BE"/>
+            </valueCoding>
+        </part>
+    </parameter>
+    <parameter>
         <name value="practitionerData"/>
         <resource>
             <Practitioner>
@@ -127,7 +151,7 @@
                     <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Practitioner_EU|1.5"/>
                 </meta>
                 <identifier>
-                    <system value="ehdsi-dataelement-303"/>
+                    <system value="https://cda.ehdsi.com/ehdsi-dataelement-303"/>
                     <value value="1234567890"/>
                 </identifier>
                 <name>
@@ -146,13 +170,20 @@
                     <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Organization_EU|1.5"/>
                 </meta>
                 <identifier>
-                    <system value="ehdsi-dataelement-285"/>
+                    <system value="https://cda.ehdsi.com/ehdsi-dataelement-285"/>
                     <value value="1234567890"/>
                 </identifier>
                 <identifier>
-                    <system value="facilityId"/>
+                    <system value="https://cda.ehdsi.com/facilityId"/>
                     <value value="136ad69f"/>
                 </identifier>
+                <type>
+                    <coding>
+                        <system value="https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID"/>
+                        <code value="1.2.276.0.76.4.54"/>
+                        <display value="Öffentliche Apotheke"/>
+                    </coding>
+                </type>
                 <name value="Pharmacia de Santa Maria"/>
                 <address>
                     <line value="Rua da Alegria, 123"/>
@@ -176,6 +207,13 @@
                 <organization>
                     <reference value="Organization/Example-EU-Organization"/>
                 </organization>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.9.6.2.7"/>
+                        <code value="2262"/>
+                        <display value="Pharmacists"/>
+                    </coding>
+                </code>
             </PractitionerRole>
         </resource>
     </parameter>
