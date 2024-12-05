@@ -63,3 +63,6 @@ Alias: $signature-type = http://hl7.org/fhir/ValueSet/signature-type
 Alias: $signature-type-cs = http://hl7.org/fhir/CodeSystem/signature-type
 
 Alias: $cs-consent-scope = http://terminology.hl7.org/CodeSystem/consentscope
+
+//VZD
+Alias: $cs-organization-profession-oid = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID
