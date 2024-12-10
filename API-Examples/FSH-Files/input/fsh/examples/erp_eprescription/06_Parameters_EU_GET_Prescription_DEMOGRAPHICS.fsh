@@ -1,11 +1,11 @@
 Instance: erp-eprescription-06-GET-Prescription-DEMOGRAPHICS
-InstanceOf: GEM_ERP_PR_PAR_EU_GET_Prescription_EU_Input
+InstanceOf: GEM_ERPEU_PR_PAR_GET_Prescription_Input
 Usage: #example
 * parameter[requestData]
   * name = "requestData"
   * part[requesttype]
     * name = "requesttype"
-    * valueCoding = GEM_ERP_CS_RequestType_EU#demographics
+    * valueCoding = GEM_ERPEU_CS_RequestType#demographics
   * part[kvnr]
     * name = "kvnr"
     * insert GKV_Identifier(valueIdentifier.value)

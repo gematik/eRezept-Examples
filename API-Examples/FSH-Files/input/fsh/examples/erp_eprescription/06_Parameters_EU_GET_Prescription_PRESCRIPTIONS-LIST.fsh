@@ -1,12 +1,12 @@
 Instance: erp-eprescription-06-GET-Prescription-PRESCRIPTIONS-LIST
-InstanceOf: GEM_ERP_PR_PAR_EU_GET_Prescription_EU_Input
+InstanceOf: GEM_ERPEU_PR_PAR_GET_Prescription_Input
 Usage: #example
 Title: "Example EU-GET Prescription Parameters"
 * parameter[requestData]
   * name = "requestData"
   * part[requesttype]
     * name = "requesttype"
-    * valueCoding = GEM_ERP_CS_RequestType_EU#e-prescriptions-list
+    * valueCoding = GEM_ERPEU_CS_RequestType#e-prescriptions-list
   * part[kvnr]
     * name = "kvnr"
     * valueIdentifier.value = "X123456789"

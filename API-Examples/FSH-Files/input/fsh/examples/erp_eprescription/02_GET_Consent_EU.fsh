@@ -9,12 +9,12 @@ Usage: #example
 * entry.resource = erp-eprescription-02-GET-Consent
 
 Instance: erp-eprescription-02-GET-Consent
-InstanceOf: GEM_ERP_PR_Consent
+InstanceOf: GEM_ERPEU_PR_Consent
 Title: "Example for a Consent to redeem EU Prescritptions"
 Usage: #inline
 * id = "e9b39f9c-0b70-4dd5-ada2-fea3cde2e340"
 * scope = $cs-consent-scope#patient-privacy "Privacy Consent"
-* category = GEM_ERP_CS_ConsentType#EUDISPCONS "Consent for redeeming e-prescriptions in EU countries"
+* category = GEM_ERPEU_CS_ConsentType#EUDISPCONS "Consent for redeeming e-prescriptions in EU countries"
 * insert GKV_Identifier(patient.identifier.value)
 * insert GKV_Identifier_System(patient.identifier.system)
 * insert DateTime(dateTime)

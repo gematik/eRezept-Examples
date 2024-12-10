@@ -1,12 +1,12 @@
 Instance: erp-eprescription-06-GET-Prescription-PRESCRIPTIONS-RETRIEVAL
-InstanceOf: GEM_ERP_PR_PAR_EU_GET_Prescription_EU_Input
+InstanceOf: GEM_ERPEU_PR_PAR_GET_Prescription_Input
 Usage: #example
 Title: "Example EU-GET Prescription Parameters"
 * parameter[requestData]
   * name = "requestData"
   * part[requesttype]
     * name = "requesttype"
-    * valueCoding = GEM_ERP_CS_RequestType_EU#e-prescriptions-retrieval
+    * valueCoding = GEM_ERPEU_CS_RequestType#e-prescriptions-retrieval
   * part[prescription-id][+]
     * name = "prescription-id"
     * valueIdentifier.value = "160.000.000.000.000.01"

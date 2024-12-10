@@ -1,5 +1,5 @@
 Instance: erp-eprescription-07-EU-Close-Missing-Data
-InstanceOf: GEM_ERP_PR_PAR_EU_CloseOperation_Input
+InstanceOf: GEM_ERPEU_PR_PAR_CloseOperation_Input
 Usage: #example
 Title: "Example EU-Close Parameters with Missing Data"
 * parameter[requestData]
@@ -47,7 +47,7 @@ Title: "Example EU-Close Parameters with Missing Data"
 
 
 Instance: Example-EU-Practitioner-Missing-Data
-InstanceOf: GEM_ERP_PR_Practitioner_EU
+InstanceOf: GEM_ERPEU_PR_Practitioner
 Usage: #example
 Title: "Example-EU-Practitioner"
 Description: "Example of an EU Practitioner-Missing-Data"
@@ -56,7 +56,7 @@ Description: "Example of an EU Practitioner-Missing-Data"
 * name.given = "Pedro"
 
 Instance: Example-EU-Organization-Missing-Data
-InstanceOf: GEM_ERP_PR_Organization_EU
+InstanceOf: GEM_ERPEU_PR_Organization
 Usage: #example
 Title: "Example-EU-Organization"
 Description: "Example of an EU Organization-Missing-Data"
@@ -74,7 +74,7 @@ Description: "Example of an EU Organization-Missing-Data"
   * postalCode.extension.valueCode = #unknown
 
 Instance: Example-EU-PractitionerRole-Missing-Data
-InstanceOf: GEM_ERP_PR_PractitionerRole_EU
+InstanceOf: GEM_ERPEU_PR_PractitionerRole
 Usage: #example
 Title: "Example-EU-PractitionerRole"
 Description: "Example of an EU PractitionerRole-Missing-Data"

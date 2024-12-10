@@ -1,5 +1,5 @@
 Instance: erp-eprescription-07-EU-Close
-InstanceOf: GEM_ERP_PR_PAR_EU_CloseOperation_Input
+InstanceOf: GEM_ERPEU_PR_PAR_CloseOperation_Input
 Usage: #example
 Title: "Example EU-Close Parameters"
 * parameter[requestData]
@@ -48,7 +48,7 @@ Title: "Example EU-Close Parameters"
 
 
 Instance: Example-MedicationDispense-EU
-InstanceOf: GEM_ERP_PR_MedicationDispense_EU
+InstanceOf: GEM_ERPEU_PR_MedicationDispense
 Usage: #example
 Title: "Example Medication Dispense"
 Description: "Example of a Medication Dispense."
@@ -60,7 +60,7 @@ Description: "Example of a Medication Dispense."
 * medicationReference = Reference(SumatripanMedication)
 
 Instance: Example-EU-Practitioner
-InstanceOf: GEM_ERP_PR_Practitioner_EU
+InstanceOf: GEM_ERPEU_PR_Practitioner
 Usage: #example
 Title: "Example-EU-Practitioner"
 Description: "Example of an EU Practitioner"
@@ -69,7 +69,7 @@ Description: "Example of an EU Practitioner"
 * name.given = "Pedro"
 
 Instance: Example-EU-Organization
-InstanceOf: GEM_ERP_PR_Organization_EU
+InstanceOf: GEM_ERPEU_PR_Organization
 Usage: #example
 Title: "Example-EU-Organization"
 Description: "Example of an EU Organization"
@@ -85,7 +85,7 @@ Description: "Example of an EU Organization"
   * postalCode = "1234-567"
 
 Instance: Example-EU-PractitionerRole
-InstanceOf: GEM_ERP_PR_PractitionerRole_EU
+InstanceOf: GEM_ERPEU_PR_PractitionerRole
 Usage: #example
 Title: "Example-EU-PractitionerRole"
 Description: "Example of an EU PractitionerRole"
