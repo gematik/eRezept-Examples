@@ -1,0 +1,134 @@
+<Medication xmlns="http://hl7.org/fhir">
+    <id value="erp-eml-epa-notes-06-RezepturVerordnung-PZN-Mapped"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+    </meta>
+    <contained>
+        <Medication>
+            <id value="MedicationPropanol"/>
+            <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="781405001"/>
+                    <display value="Medicinal product package (product)"/>
+                </valueCoding>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="987654321"/>
+                    <display value="2-propanol 70 %"/>
+                </coding>
+                <text value="2-propanol 70 %"/>
+            </code>
+        </Medication>
+    </contained>
+    <contained>
+        <Medication>
+            <id value="MedicationSalicylsaeure"/>
+            <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="781405001"/>
+                    <display value="Medicinal product package (product)"/>
+                </valueCoding>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="123456789"/>
+                    <display value="Salicylsäure"/>
+                </coding>
+                <text value="Salicylsäure"/>
+            </code>
+        </Medication>
+    </contained>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+        <valueCoding>
+            <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+            <code value="00"/>
+        </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+        <valueCoding>
+            <system value="http://snomed.info/sct"/>
+            <code value="1208954007"/>
+            <display value="Extemporaneous preparation (product)"/>
+        </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+        <valueBoolean value="false"/>
+    </extension>
+    <form>
+        <text value="Lösung"/>
+    </form>
+    <amount>
+        <numerator>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                <valueString value="100"/>
+            </extension>
+            <unit value="ml"/>
+        </numerator>
+        <denominator>
+            <value value="1"/>
+        </denominator>
+    </amount>
+    <ingredient>
+        <itemReference>
+            <reference value="#MedicationSalicylsaeure"/>
+        </itemReference>
+        <strength>
+            <numerator>
+                <value value="5"/>
+                <system value="http://unitsofmeasure.org"/>
+                <code value="g"/>
+            </numerator>
+            <denominator>
+                <value value="1"/>
+                <system>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </system>
+                <code>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </code>
+            </denominator>
+        </strength>
+    </ingredient>
+    <ingredient>
+        <itemReference>
+            <reference value="#MedicationPropanol"/>
+        </itemReference>
+        <strength>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension">
+                <valueString value="Ad 100 g"/>
+            </extension>
+            <numerator>
+                <value>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </value>
+                <system>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </system>
+                <code>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </code>
+            </numerator>
+        </strength>
+    </ingredient>
+</Medication>
