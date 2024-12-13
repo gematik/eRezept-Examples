@@ -5,7 +5,7 @@ Usage: #example
 * insert DateTimeStamp(timestamp)
 * total = 0
 * link.relation = "self"
-* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=160.000.000.000.000.01"
+* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?whenhandedover=ge2025-01-01&whenhandedover=le2025-01-31"
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.000.000.000.01"
 * entry[=].resource = Example-MedicationDispense-EU
 * entry[=].search.mode = #match
@@ -19,5 +19,20 @@ Usage: #example
 * entry[=].resource = Example-EU-Organization
 * entry[=].search.mode = #include
 * entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/7c342123-ca23-4a98-a5c2-b2005ceece45"
-* entry[=].resource = SumatripanMedication
+* entry[=].resource = EU-SumatripanMedication
 * entry[=].search.mode = #include
+
+// MedicationDispense 2
+* entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.000.000.000.02"
+* entry[=].resource = 06-response-get-multiple-medication-dispense-1
+* entry[=].search.mode = #match
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/e25e68d2-8aa4-4fb4-8498-68d9856f8ec3"
+* entry[=].resource = e25e68d2-8aa4-4fb4-8498-68d9856f8ec3
+* entry[=].search.mode = #include
+
+
+Instance: EU-SumatripanMedication
+InstanceOf: GEM_ERP_PR_Medication
+Usage: #inline
+* id = "7c342123-ca23-4a98-a5c2-b2005ceece45"
+* insert SumatripanMedication
