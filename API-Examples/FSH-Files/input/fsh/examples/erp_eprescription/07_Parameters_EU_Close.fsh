@@ -61,18 +61,20 @@ Description: "Example of a Medication Dispense."
 
 Instance: Example-EU-Practitioner
 InstanceOf: GEM_ERPEU_PR_Practitioner
-Usage: #example
+Usage: #inline
 Title: "Example-EU-Practitioner"
 Description: "Example of an EU Practitioner"
+* id = "a7adde1a-af5c-4814-8fea-e46e7e63ed07"
 * identifier[+].value = "1234567890"
 * name.family = "Sanches"
 * name.given = "Pedro"
 
 Instance: Example-EU-Organization
 InstanceOf: GEM_ERPEU_PR_Organization
-Usage: #example
+Usage: #inline
 Title: "Example-EU-Organization"
 Description: "Example of an EU Organization"
+* id = "6a3c8c57-0870-476e-90e3-25b7562799d3"
 * identifier[+].value = "1234567890"
 * identifier[+].value = "136ad69f"
 * name = "Pharmacia de Santa Maria"
@@ -86,9 +88,10 @@ Description: "Example of an EU Organization"
 
 Instance: Example-EU-PractitionerRole
 InstanceOf: GEM_ERPEU_PR_PractitionerRole
-Usage: #example
+Usage: #inline
 Title: "Example-EU-PractitionerRole"
 Description: "Example of an EU PractitionerRole"
+* id = "ebe39d92-276b-436d-a9ea-9dd5e042637b"
 * practitioner = Reference(Example-EU-Practitioner)
 * organization = Reference(Example-EU-Organization)
 * code.coding = urn:oid:2.16.840.1.113883.2.9.6.2.7#2262 "Pharmacists"
