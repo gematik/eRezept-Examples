@@ -52,6 +52,7 @@ InstanceOf: GEM_ERPEU_PR_MedicationDispense
 Usage: #example
 Title: "Example Medication Dispense"
 Description: "Example of a Medication Dispense."
+* id = "160.000.000.000.000.01"
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
 * insert GKV_Identifier(subject.identifier.value)
 * insert GKV_Identifier_System(subject.identifier.system)
