@@ -16,22 +16,28 @@
       <name value="medicationDispense"/>
       <resource>
         <MedicationDispense>
-          <id value="a7e1d25f-0b0a-40f7-b529-afda48e51b46"/>
+          <id value="c3437dfc-a141-4bf1-9fb3-a4827b9781eb"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+            <tag>
+              <display value="Beispiel MedicationDispense Wirkstoff V3 -&gt; PZN Abgabe"/>
+            </tag>
+            <tag>
+              <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+            </tag>
           </meta>
           <identifier>
             <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-            <value value="160.000.764.737.300.50"/>
+            <value value="160.100.000.000.019.82"/>
           </identifier>
           <status value="completed"/>
           <medicationReference>
-            <reference value="8e2e5e65-4c5d-49f2-8efc-c30e40838273"/>
+            <reference value="urn:uuid:fc2a72e7-bc15-4456-852f-51014e182760"/>
           </medicationReference>
           <subject>
             <identifier>
               <system value="http://fhir.de/sid/gkv/kvid-10"/>
-              <value value="X234567890"/>
+              <value value="K030182229"/>
             </identifier>
           </subject>
           <performer>
@@ -42,13 +48,13 @@
               </identifier>
             </actor>
           </performer>
-          <whenHandedOver value="2025-01-30"/>
+          <whenHandedOver value="2025-01-27"/>
           <!--dosageInstruction> ====> nur angeben wenn geändert/korrigiert durch Apotheke
-            <text value="1-0-1-0"/>
+            <text value="1-0-0-0"/>
           </dosageInstruction-->
-          <!--substitution>
-            <wasSubstituted value="true"/>
-          </substitution-->
+          <substitution>
+            <wasSubstituted value="false"/>
+          </substitution>
         </MedicationDispense>
       </resource>
     </part>
@@ -56,16 +62,16 @@
       <name value="medication"/>
       <resource>
         <Medication>
-          <id value="8e2e5e65-4c5d-49f2-8efc-c30e40838273"/>
+          <id value="fc2a72e7-bc15-4456-852f-51014e182760"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
           </meta>
           <code>
             <coding>
               <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
-              <code value="05454378"/>
+              <code value="00761360"/>
             </coding>
-            <text value="SUMATRIPTAN Aurobindo 100 mg Tabletten"/>
+            <text value="RAMIPRIL beta 5 mg Tabletten (100 St)"/>
           </code>
           <form>
             <coding>
@@ -77,7 +83,7 @@
           <amount>
             <numerator>
               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
-                <valueString value="12"/>
+                <valueString value="100"/>
               </extension>
               <unit value="Stück"/>
             </numerator>
@@ -87,11 +93,11 @@
           </amount>
           <ingredient>
             <itemCodeableConcept>
-              <text value="Sumatriptan"/>
+              <text value="Ramipril"/>
             </itemCodeableConcept>
             <strength>
               <numerator>
-                <value value="100"/>
+                <value value="5"/>
                 <unit value="mg"/>
                 <system>
                   <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">

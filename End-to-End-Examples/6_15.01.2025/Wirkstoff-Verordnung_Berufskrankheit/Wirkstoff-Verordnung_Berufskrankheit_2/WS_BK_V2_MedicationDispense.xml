@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Parameters xmlns="http://hl7.org/fhir">
-  <id value="9c33bf48-3a38-4d43-ab9f-afb2edf6337a"/>
+  <id value="525b8f39-b839-43aa-bdea-24f94b61a104"/>
   <meta>
     <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
     <!--tag>
-      <display value="Beispiel MedicationDispense Wirkstoff Mehrfachverordnung 2/2 -&gt; PZN Abgabe"/>
+      <display value="Beispiel MedicationDispense Wirkstoff Berufskrankheit V2 -&gt; PZN Abgabe"/>
     </tag>
     <tag>
       <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
@@ -16,22 +16,22 @@
       <name value="medicationDispense"/>
       <resource>
         <MedicationDispense>
-          <id value="361ee9e0-3360-43c3-8d34-337197907620"/>
+          <id value="dec2d0aa-cdb7-460a-96dd-22f1253ac578"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
           </meta>
           <identifier>
             <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-            <value value="160.100.000.000.027.58"/>
+            <value value="160.100.000.000.020.79"/>
           </identifier>
           <status value="completed"/>
           <medicationReference>
-            <reference value="1efe56d3-d977-4a18-998a-985793678879"/>
+            <reference value="urn:uuid:eed82d8e-3991-4d29-970f-a17447883277"/>
           </medicationReference>
           <subject>
             <identifier>
               <system value="http://fhir.de/sid/gkv/kvid-10"/>
-              <value value="K220635158"/>
+              <value value="H030170227"/>
             </identifier>
           </subject>
           <performer>
@@ -42,10 +42,10 @@
               </identifier>
             </actor>
           </performer>
-          <whenHandedOver value="2025-03-30"/>
-          <!--substitution>
+          <whenHandedOver value="2025-01-27"/>
+          <substitution>
             <wasSubstituted value="false"/>
-          </substitution-->
+          </substitution>
         </MedicationDispense>
       </resource>
     </part>
@@ -53,22 +53,22 @@
       <name value="medication"/>
       <resource>
         <Medication>
-          <id value="1efe56d3-d977-4a18-998a-985793678879"/>
+          <id value="eed82d8e-3991-4d29-970f-a17447883277"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
           </meta>
           <code>
             <coding>
               <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
-              <code value="02846592"/>
+              <code value="00407552"/>
             </coding>
-            <text value="SIMVAHEXAL 20 mg Filmtabletten (100 St)"/>
+            <text value="GABAPENTIN STADA 300 mg Hartkapseln (100 Stk)"/>
           </code>
           <form>
             <coding>
               <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
-              <code value="FTA"/>
-              <display value="Filmtabletten"/>
+              <code value="TAB"/>
+              <display value="Tabletten"/>
             </coding>
           </form>
           <amount>
@@ -84,11 +84,11 @@
           </amount>
           <ingredient>
             <itemCodeableConcept>
-              <text value="Simvastatin"/>
+              <text value="Gabapentin"/>
             </itemCodeableConcept>
             <strength>
               <numerator>
-                <value value="20"/>
+                <value value="300"/>
                 <unit value="mg"/>
                 <system>
                   <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
