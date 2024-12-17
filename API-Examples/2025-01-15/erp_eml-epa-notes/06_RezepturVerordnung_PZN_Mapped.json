@@ -1,0 +1,205 @@
+{
+  "resourceType": "Medication",
+  "id": "erp-eml-epa-notes-06-RezepturVerordnung-PZN-Mapped",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+      "valueCoding": {
+        "code": "1208954007",
+        "system": "http://snomed.info/sct",
+        "display": "Extemporaneous preparation (product)"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+      "valueBoolean": false
+    }
+  ],
+  "amount": {
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+          "valueString": "100"
+        }
+      ],
+      "unit": "ml"
+    },
+    "denominator": {
+      "value": 1
+    }
+  },
+  "ingredient": [
+    {
+      "strength": {
+        "denominator": {
+          "value": 1,
+          "_system": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          }
+        },
+        "numerator": {
+          "value": 5,
+          "code": "g",
+          "system": "http://unitsofmeasure.org"
+        }
+      },
+      "itemReference": {
+        "reference": "#MedicationSalicylsaeure"
+      }
+    },
+    {
+      "strength": {
+        "extension": [
+          {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
+            "valueString": "Ad 100 g"
+          }
+        ],
+        "numerator": {
+          "_system": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          },
+          "_value": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        },
+        "denominator": {
+          "_system": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "valueCode": "unknown",
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
+              }
+            ]
+          },
+          "_value": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        }
+      },
+      "itemReference": {
+        "reference": "#MedicationPropanol"
+      }
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "MedicationPropanol",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "987654321",
+            "display": "2-propanol 70 %"
+          }
+        ],
+        "text": "2-propanol 70 %"
+      }
+    },
+    {
+      "resourceType": "Medication",
+      "id": "MedicationSalicylsaeure",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "123456789",
+            "display": "Salicylsäure"
+          }
+        ],
+        "text": "Salicylsäure"
+      }
+    }
+  ],
+  "form": {
+    "text": "Lösung"
+  }
+}
