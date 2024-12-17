@@ -204,8 +204,9 @@ files_to_copy=(
     "Bundle-erp-diga-02-response-taskGetSingle.json"
     "Communication-erp-diga-03-communication-zuweisung-diga.json"
     "MedicationDispense-erp-diga-04-medication-dispense-diga.json"
-    "Medication-erp-eml-epa-notes-12-ibm-medication-compounding-Mapped.json"
     "Medication-erp-eml-epa-notes-06-RezepturVerordnung-PZN-Mapped.json"
+    "Medication-erp-eml-epa-notes-12-ibm-medication-compounding-Mapped.json"
+    "Medication-erp-eml-epa-notes-14-ibm-medication-compounding-amount-Mapped.json"
 
     "Bundle-erp-versicherte-01-response-taskGetAll.json"
     "Bundle-erp-versicherte-02-response-taskGetSingle.json"
