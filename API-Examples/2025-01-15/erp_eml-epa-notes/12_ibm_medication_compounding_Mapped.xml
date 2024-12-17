@@ -1,0 +1,139 @@
+<Medication xmlns="http://hl7.org/fhir">
+    <id value="erp-eml-epa-notes-12-ibm-medication-compounding-Mapped"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+    </meta>
+    <contained>
+        <Medication>
+            <id value="FirstIngredient"/>
+            <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="781405001"/>
+                    <display value="Medicinal product package (product)"/>
+                </valueCoding>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="12343219"/>
+                    <display value="1st ingredient"/>
+                </coding>
+                <text value="1st ingredient"/>
+            </code>
+        </Medication>
+    </contained>
+    <contained>
+        <Medication>
+            <id value="SecondIngredient"/>
+            <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="781405001"/>
+                    <display value="Medicinal product package (product)"/>
+                </valueCoding>
+            </extension>
+            <code>
+                <coding>
+                    <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                    <code value="56781239"/>
+                    <display value="2nd ingredient"/>
+                </coding>
+                <text value="2nd ingredient"/>
+            </code>
+        </Medication>
+    </contained>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+        <valueCoding>
+            <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+            <code value="00"/>
+        </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+        <valueCoding>
+            <system value="http://snomed.info/sct"/>
+            <code value="1208954007"/>
+            <display value="Extemporaneous preparation (product)"/>
+        </valueCoding>
+    </extension>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+        <valueBoolean value="false"/>
+    </extension>
+    <code>
+        <text value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
+    </code>
+    <form>
+        <text value="TAB"/>
+    </form>
+    <amount>
+        <numerator>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                <valueString value="12"/>
+            </extension>
+            <unit value="TAB"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{tbl}"/>
+        </numerator>
+        <denominator>
+            <value value="1"/>
+        </denominator>
+    </amount>
+    <ingredient>
+        <itemReference>
+            <reference value="#FirstIngredient"/>
+        </itemReference>
+        <strength>
+            <numerator>
+                <value value="1"/>
+                <unit value="TAB"/>
+                <system value="http://unitsofmeasure.org"/>
+                <code value="{tbl}"/>
+            </numerator>
+            <denominator>
+                <value value="1"/>
+                <system>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </system>
+                <code>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </code>
+            </denominator>
+        </strength>
+    </ingredient>
+    <ingredient>
+        <itemReference>
+            <reference value="#SecondIngredient"/>
+        </itemReference>
+        <strength>
+            <numerator>
+                <value value="2"/>
+                <unit value="TAB"/>
+                <system value="http://unitsofmeasure.org"/>
+                <code value="{tbl}"/>
+            </numerator>
+            <denominator>
+                <value value="1"/>
+                <system>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </system>
+                <code>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                </code>
+            </denominator>
+        </strength>
+    </ingredient>
+</Medication>
