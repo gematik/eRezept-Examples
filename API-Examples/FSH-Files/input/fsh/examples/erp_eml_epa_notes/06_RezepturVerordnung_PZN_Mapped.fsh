@@ -1,5 +1,5 @@
 Instance: erp-eml-epa-notes-06-RezepturVerordnung-PZN-Mapped
-InstanceOf: GEM_ERP_PR_Medication
+InstanceOf: EPAMedication
 Usage: #example
 * contained[0] = MedicationPropanol
 * contained[+] = MedicationSalicylsaeure
@@ -15,21 +15,27 @@ Usage: #example
   * itemReference = Reference(MedicationSalicylsaeure)
   * strength.numerator = 5 'g'
   * strength.denominator.value = 1
-  * strength.denominator.system.extension[dataAbsentReason].valueCode = #unknown
-  * strength.denominator.code.extension[dataAbsentReason].valueCode = #unknown
+  * strength.denominator.system.extension[+].url = $data-absent-reason
+  * strength.denominator.system.extension[=].valueCode = #unknown
+  * strength.denominator.code.extension[+].url = $data-absent-reason
+  * strength.denominator.code.extension[=].valueCode = #unknown
 * ingredient[+]
   * itemReference = Reference(MedicationPropanol)
   * strength.extension[amountText].valueString = "Ad 100 g"
   * strength.numerator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
   * strength.denominator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
 
 Instance: MedicationSalicylsaeure
 InstanceOf: EPAMedicationPZNIngredient

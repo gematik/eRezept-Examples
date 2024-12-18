@@ -3,7 +3,7 @@
   "id": "erp-eml-epa-notes-12-ibm-medication-compounding-Mapped",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
     ]
   },
   "extension": [
@@ -43,72 +43,6 @@
       "value": 1
     }
   },
-  "ingredient": [
-    {
-      "strength": {
-        "denominator": {
-          "value": 1,
-          "_system": {
-            "extension": [
-              {
-                "valueCode": "unknown",
-                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-              }
-            ]
-          },
-          "_code": {
-            "extension": [
-              {
-                "valueCode": "unknown",
-                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-              }
-            ]
-          }
-        },
-        "numerator": {
-          "value": 1,
-          "code": "{tbl}",
-          "system": "http://unitsofmeasure.org",
-          "unit": "TAB"
-        }
-      },
-      "itemReference": {
-        "reference": "#FirstIngredient"
-      }
-    },
-    {
-      "strength": {
-        "denominator": {
-          "value": 1,
-          "_system": {
-            "extension": [
-              {
-                "valueCode": "unknown",
-                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-              }
-            ]
-          },
-          "_code": {
-            "extension": [
-              {
-                "valueCode": "unknown",
-                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-              }
-            ]
-          }
-        },
-        "numerator": {
-          "value": 2,
-          "code": "{tbl}",
-          "system": "http://unitsofmeasure.org",
-          "unit": "TAB"
-        }
-      },
-      "itemReference": {
-        "reference": "#SecondIngredient"
-      }
-    }
-  ],
   "contained": [
     {
       "resourceType": "Medication",
@@ -174,5 +108,71 @@
   },
   "code": {
     "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
-  }
+  },
+  "ingredient": [
+    {
+      "itemReference": {
+        "reference": "#FirstIngredient"
+      },
+      "strength": {
+        "numerator": {
+          "value": 1,
+          "code": "{tbl}",
+          "system": "http://unitsofmeasure.org",
+          "unit": "TAB"
+        },
+        "denominator": {
+          "value": 1,
+          "_system": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "itemReference": {
+        "reference": "#SecondIngredient"
+      },
+      "strength": {
+        "numerator": {
+          "value": 2,
+          "code": "{tbl}",
+          "system": "http://unitsofmeasure.org",
+          "unit": "TAB"
+        },
+        "denominator": {
+          "value": 1,
+          "_system": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
 }

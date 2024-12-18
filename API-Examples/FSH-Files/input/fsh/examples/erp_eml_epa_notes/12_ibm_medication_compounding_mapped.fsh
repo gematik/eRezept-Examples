@@ -1,5 +1,5 @@
 Instance: erp-eml-epa-notes-12-ibm-medication-compounding-Mapped
-InstanceOf: GEM_ERP_PR_Medication
+InstanceOf: EPAMedication
 Usage: #example
 * contained[0] = FirstIngredient
 * contained[+] = SecondIngredient
@@ -17,16 +17,20 @@ Usage: #example
   * itemReference = Reference(FirstIngredient)
   * strength.numerator = 1 '{tbl}' "TAB"
   * strength.denominator.value = 1
-  * strength.denominator.system.extension[dataAbsentReason].valueCode = #unknown
-  * strength.denominator.code.extension[dataAbsentReason].valueCode = #unknown
+  * strength.denominator.system.extension[+].url = $data-absent-reason
+  * strength.denominator.system.extension[=].valueCode = #unknown
+  * strength.denominator.code.extension[+].url = $data-absent-reason
+  * strength.denominator.code.extension[=].valueCode = #unknown
 
 * ingredient[+]
   * itemReference = Reference(SecondIngredient)
   * strength.numerator = 2 '{tbl}' "TAB"
   * strength.denominator
     * value = 1
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
 
 Instance: FirstIngredient
 InstanceOf: EPAMedicationPZNIngredient

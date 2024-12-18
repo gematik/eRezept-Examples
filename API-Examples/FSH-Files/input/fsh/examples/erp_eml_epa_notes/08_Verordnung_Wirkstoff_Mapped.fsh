@@ -1,5 +1,5 @@
 Instance: erp-eml-epa-notes-08-verordnung-wirkstoff-Mapped
-InstanceOf: GEM_ERP_PR_Medication
+InstanceOf: EPAMedication
 Usage: #example
 * extension[drugCategory].valueCoding = $epa-drug-category-cs#00
 * extension[type].valueCoding = $sct#781405001 "Medicinal product package (product)"
@@ -11,9 +11,13 @@ Usage: #example
   * strength.numerator
     * value = 12
     * unit = "mg"
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
   * strength.denominator
     * value = 1
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown

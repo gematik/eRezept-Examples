@@ -1,5 +1,5 @@
 Instance: erp-eml-epa-notes-14-ibm-medication-compounding-amount-Mapped
-InstanceOf: GEM_ERP_PR_Medication
+InstanceOf: EPAMedication
 Usage: #example
 * contained[0] = FirstIngredientAmount
 * contained[+] = SecondIngredientAmount
@@ -20,13 +20,17 @@ Usage: #example
   * strength.numerator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
   * strength.denominator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
 
 * ingredient[+]
   * itemReference = Reference(SecondIngredientAmount)
@@ -35,13 +39,17 @@ Usage: #example
   * strength.numerator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
   * strength.denominator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
+    * system.extension[+].url = $data-absent-reason
+    * system.extension[=].valueCode = #unknown
+    * code.extension[+].url = $data-absent-reason
+    * code.extension[=].valueCode = #unknown
 
 
 Instance: FirstIngredientAmount
