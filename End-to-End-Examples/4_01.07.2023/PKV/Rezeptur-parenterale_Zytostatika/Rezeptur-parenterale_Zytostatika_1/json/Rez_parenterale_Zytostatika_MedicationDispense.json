@@ -1,0 +1,144 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "cd6a4868-ee19-4b5d-bbdf-9b5d1858ac19",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PKV Rezeptur Bsp 13"
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "96091647-180a-4222-8961-d551e2c2889a",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.1.0"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "version": "http://snomed.info/sct/900000000000207008/version/20220331",
+                "code": "373873005:860781008=362943005",
+                "display": "Pharmaceutical / biologic product (product) : Has product characteristic (attribute) = Manual method (qualifier value)"
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+            "code": "rezeptur"
+          }
+        ]
+      },
+      "form": {
+        "text": "Infusionslösung"
+      },
+      "amount": {
+        "numerator": {
+          "extension": [
+            {
+              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+              "valueString": "500"
+            }
+          ],
+          "unit": "ml"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "ingredient": [
+        {
+          "itemCodeableConcept": {
+            "text": "Etoposid"
+          },
+          "strength": {
+            "numerator": {
+              "value": 180,
+              "unit": "mg"
+            },
+            "denominator": {
+              "value": 1
+            }
+          }
+        },
+        {
+          "itemCodeableConcept": {
+            "text": "NaCl 0,9 %"
+          },
+          "strength": {
+            "numerator": {
+              "value": 500,
+              "unit": "ml"
+            },
+            "denominator": {
+              "value": 1
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "209.100.612.180.208.16"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#96091647-180a-4222-8961-d551e2c2889a",
+    "display": "Parenterale Zubereitung"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/sid/pkv/kvid-10",
+      "value": "P123464319"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-abc-1234567890"
+        }
+      }
+    }
+  ],
+  "quantity": {
+    "value": 3,
+    "system": "http://unitsofmeasure.org",
+    "code": "{Package}"
+  },
+  "whenHandedOver": "2023-07-06",
+  "dosageInstruction": [
+    {
+      "text": "zur ärztlichen parenteralen Applikation gem. schr. Therapieplan"
+    }
+  ]
+}

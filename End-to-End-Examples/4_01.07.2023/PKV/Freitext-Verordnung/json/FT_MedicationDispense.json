@@ -1,0 +1,75 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "a6370174-6209-4203-921f-7adcd3dbe5ba",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PKV Freitext"
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "2816d83e-e2aa-4e5b-ad4c-5f402a36643a",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_FreeText|1.1.0"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+            "code": "freitext"
+          }
+        ],
+        "text": "Yellox 0,9 mg/ml 5ml Augentrpf. Croma/Bausch&Lomb"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "200.334.138.469.717.92"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#2816d83e-e2aa-4e5b-ad4c-5f402a36643a",
+    "display": "Yellox 0,9 mg/ml 5ml Augentrpf. Croma/Bausch&Lomb"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/sid/pkv/kvid-10",
+      "value": "P123464233"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-abc-1234567890"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2023-07-07"
+}
