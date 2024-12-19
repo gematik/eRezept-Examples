@@ -13,14 +13,14 @@ puts "Folder: #{folderToTransmute}"
 puts "BaseChargeItem: #{baseChargeItemFileName}"
 puts "prBundle: #{prBundle}"
 
-fhir_installed = `hash fhir 2>/dev/null`.to_i
-if fhir_installed != 0
-  puts "\nERROR: 'fhir' tool missing! Use:\n\n\tbrew install dotnet@6\n\nto install dotnet cli. Then use\n\n\tdotnet tool install -g firely.terminal\n\nto install the fhir cli. Extend your cli path as needed by each step. Ensure `fhir clear` is working."
-  exit fhir_installed
+`hash fhir 2>/dev/null`
+if $?.exitstatus != 0
+  puts "\nERROR: 'fhir' tool missing! Use:\n\n\tbrew install dotnet@8\n\nto install dotnet cli. Then use\n\n\tdotnet tool install -g firely.terminal\n\nto install the fhir cli. Extend your cli path as needed by each step. Ensure `fhir clear` is working."
+  exit installfhir
 end
 
-jq_installed = `jq fhir 2>/dev/null`.to_i
-if jq_installed != 0
+`hash jq 2>/dev/null`
+if $?.exitstatus != 0
   puts "\nERROR: 'jq' tool missing! Use:\n\n\tbrew install jq\n\nto install.\n\n"
   exit jq_installed
 end
