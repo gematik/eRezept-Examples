@@ -2,7 +2,7 @@ Instance: erp-eml-epa-notes-16-KPGVerordnung-PZN-Mapped
 InstanceOf: EPAMedication
 Usage: #example
 * extension[drugCategory].valueCoding = $epa-drug-category-cs#00
-* extension[type].valueCoding = $sct#1208954007 "Extemporaneous preparation (product)"
+* extension[type].valueCoding = $sct#373873005 "Pharmaceutical / biologic product (product)"
 * extension[isVaccine].valueBoolean = false
 * extension[normSizeCode].valueCode = #N2
 * code.text = "ZacPac® 40mg/1.000mg/500mg Kombip. 42 Tbl. N2"
