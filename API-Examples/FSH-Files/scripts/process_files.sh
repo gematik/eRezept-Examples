@@ -211,6 +211,7 @@ files_to_copy=(
     "Medication-erp-eml-epa-notes-14-ibm-medication-compounding-amount-Mapped.json"
     "Medication-erp-eml-epa-notes-16-KPGVerordnung-PZN-Mapped.json"
     "Medication-erp-eml-epa-notes-18-ibm-medication-compounding-text-Mapped.json"
+    "Medication-erp-eml-epa-notes-20-verordnung-pzn-Mapped.json"
 
     "Bundle-erp-versicherte-01-response-taskGetAll.json"
     "Bundle-erp-versicherte-02-response-taskGetSingle.json"
