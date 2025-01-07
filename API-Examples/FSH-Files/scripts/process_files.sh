@@ -205,6 +205,8 @@ files_to_copy=(
     "Communication-erp-diga-03-communication-zuweisung-diga.json"
     "MedicationDispense-erp-diga-04-medication-dispense-diga.json"
     "Medication-erp-eml-epa-notes-06-RezepturVerordnung-PZN-Mapped.json"
+    "Medication-erp-eml-epa-notes-08-verordnung-wirkstoff-Mapped.json"
+    "Medication-erp-eml-epa-notes-10-verordnung-freitext-Mapped.json"
     "Medication-erp-eml-epa-notes-12-ibm-medication-compounding-Mapped.json"
     "Medication-erp-eml-epa-notes-14-ibm-medication-compounding-amount-Mapped.json"
     "Medication-erp-eml-epa-notes-16-KPGVerordnung-PZN-Mapped.json"
