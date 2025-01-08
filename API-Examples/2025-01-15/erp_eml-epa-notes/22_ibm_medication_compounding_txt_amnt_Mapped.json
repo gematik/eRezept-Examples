@@ -1,6 +1,6 @@
 {
   "resourceType": "Medication",
-  "id": "erp-eml-epa-notes-14-ibm-medication-compounding-amount-Mapped",
+  "id": "erp-eml-epa-notes-22-ibm-medication-compounding-txt-amnt-Mapped",
   "meta": {
     "profile": [
       "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
@@ -12,14 +12,6 @@
       "valueCoding": {
         "code": "00",
         "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
-      }
-    },
-    {
-      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
-      "valueCoding": {
-        "code": "1208954007",
-        "system": "http://snomed.info/sct",
-        "display": "Extemporaneous preparation (product)"
       }
     },
     {
@@ -105,8 +97,8 @@
           }
         }
       },
-      "itemReference": {
-        "reference": "#FirstIngredientAmount"
+      "itemCodeableConcept": {
+        "text": "1st ingredient"
       }
     },
     {
@@ -114,7 +106,7 @@
         "extension": [
           {
             "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
-            "valueString": "10 g"
+            "valueString": "100 mg"
           }
         ],
         "numerator": {
@@ -170,67 +162,7 @@
           }
         }
       },
-      "itemReference": {
-        "reference": "#SecondIngredientAmount"
-      }
-    }
-  ],
-  "contained": [
-    {
-      "resourceType": "Medication",
-      "id": "FirstIngredientAmount",
-      "meta": {
-        "profile": [
-          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-        ]
-      },
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
-          "valueCoding": {
-            "code": "781405001",
-            "system": "http://snomed.info/sct",
-            "display": "Medicinal product package (product)"
-          }
-        }
-      ],
-      "code": {
-        "coding": [
-          {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "12343219",
-            "display": "1st ingredient"
-          }
-        ],
-        "text": "1st ingredient"
-      }
-    },
-    {
-      "resourceType": "Medication",
-      "id": "SecondIngredientAmount",
-      "meta": {
-        "profile": [
-          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-        ]
-      },
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
-          "valueCoding": {
-            "code": "781405001",
-            "system": "http://snomed.info/sct",
-            "display": "Medicinal product package (product)"
-          }
-        }
-      ],
-      "code": {
-        "coding": [
-          {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "56781239",
-            "display": "2nd ingredient"
-          }
-        ],
+      "itemCodeableConcept": {
         "text": "2nd ingredient"
       }
     }
