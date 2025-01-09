@@ -1,0 +1,103 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "5b2f09be-9fd8-4fc1-b916-cd86ba5d246c",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PZN Bsp Impfstoff V1"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "8490dde3-2ed0-480d-9cb3-a8937eea6b1e",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": true
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "10259495"
+          }
+        ],
+        "text": "FSME IMMUN 0.5ML ERW O KA, 1 St"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "FER"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 1,
+          "unit": "St"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A9876543210123-45678",
+        "expirationDate": "2024-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.009.15"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#8490dde3-2ed0-480d-9cb3-a8937eea6b1e",
+    "display": "FSME IMMUN 0.5ML ERW O KA, 1 St"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "K030182229"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2022-07-27"
+}

@@ -1,0 +1,103 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "dec2d0aa-cdb7-460a-96dd-22f1253ac578",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense Wirkstoff Berufskrankheit V2 -> PZN Abgabe"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "eed82d8e-3991-4d29-970f-a17447883277",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.1"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N2"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "00407552"
+          }
+        ],
+        "text": "GABAPENTIN STADA 300 mg Hartkapseln (100 Stk)"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 100,
+          "unit": "Tabletten"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2022-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.020.79"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#eed82d8e-3991-4d29-970f-a17447883277",
+    "display": "GABAPENTIN STADA 300 mg Hartkapseln (100 Stk)"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "H030170228"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2021-07-27"
+}

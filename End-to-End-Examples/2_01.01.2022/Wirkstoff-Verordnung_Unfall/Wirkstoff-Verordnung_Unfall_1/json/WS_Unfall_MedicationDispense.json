@@ -1,0 +1,108 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "f23d8d7f-5147-447f-b3d5-473a4d30268c",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense Wirkstoff Unfall -> PZN Abgabe"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "52660ef8-6e6e-4c8d-8096-ff78e084141c",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "12481766"
+          }
+        ],
+        "text": "Diclofenac Natrium Micro Labs 75 mg Reta, 20 St"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "RET"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 20,
+          "unit": "Tabletten"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2022-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.021.76"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#52660ef8-6e6e-4c8d-8096-ff78e084141c",
+    "display": "Diclofenac Natrium Micro Labs 75 mg Reta, 20 St"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "K030182229"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2022-05-27",
+  "dosageInstruction": [
+    {
+      "text": "1-0-1-0"
+    }
+  ]
+}

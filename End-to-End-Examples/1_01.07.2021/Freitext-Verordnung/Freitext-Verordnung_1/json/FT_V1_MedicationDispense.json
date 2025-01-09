@@ -1,0 +1,103 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "ee46e774-0d9d-4f8a-b108-463d600b955c",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense Freitext Bsp V1 -> PZN Abgabe"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "208929ac-7835-4c9f-9051-29055ecd3214",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.1"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "02950964"
+          }
+        ],
+        "text": "METFORMIN 850-1A Pharma Filmtabletten 180 Stk"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "FTA"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 180,
+          "unit": "Tabletten"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "P987654321-8",
+        "expirationDate": "2022-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.023.70"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#208929ac-7835-4c9f-9051-29055ecd3214",
+    "display": "METFORMIN 850-1A Pharma Filmtabletten 180 Stk"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "S040464113"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2021-07-27"
+}

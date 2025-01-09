@@ -1,0 +1,100 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "a7e1d25f-0b0a-40f7-b529-afda48e51b46",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "8e2e5e65-4c5d-49f2-8efc-c30e40838273",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "05454378"
+          }
+        ],
+        "text": "SUMATRIPTAN Aurobindo 100 mg Tabletten"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 12,
+          "unit": "Tabletten"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2024-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.000.764.737.300.50"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#8e2e5e65-4c5d-49f2-8efc-c30e40838273",
+    "display": "SUMATRIPTAN Aurobindo 100 mg Tabletten"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "X234567891"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2022-07-30",
+  "dosageInstruction": [
+    {
+      "text": "1-0-1-0"
+    }
+  ]
+}

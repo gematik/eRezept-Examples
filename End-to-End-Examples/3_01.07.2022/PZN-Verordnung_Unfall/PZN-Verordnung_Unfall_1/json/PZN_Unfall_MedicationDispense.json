@@ -1,0 +1,108 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "37d8e326-e355-4732-be64-aca54cfdc71d",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PZN Bsp Unfall"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "f1620991-8025-49d4-8fe5-bf4afd43ba09",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N3"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "03507952"
+          }
+        ],
+        "text": "Novaminsulfon 500 mg Lichtenstein 100 ml Tropf. N3"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TEI"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 100,
+          "unit": "ml"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2024-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.005.27"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#f1620991-8025-49d4-8fe5-bf4afd43ba09",
+    "display": "Novaminsulfon 500 mg Lichtenstein 100 ml Tropf. N3"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "K220635158"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2022-07-27",
+  "dosageInstruction": [
+    {
+      "text": "bis zu 4mal täglich je 20-40 Tropfen"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "b062f2d9-51c7-422a-b8b8-df2069e45000",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PKV PZN Bsp 3"
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "91cdf9ef-e260-4cb8-9556-fc1b5d161aa3",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "version": "http://snomed.info/sct/900000000000207008/version/20220331",
+                "code": "763158003",
+                "display": "Medicinal product (product)"
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "03386388"
+          }
+        ],
+        "text": "INFECTOCORTIKRUPP® Zäpfchen 100 mg 3 Supp. N1"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "SUB"
+          }
+        ]
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2024-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "200.279.187.481.423.80"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#91cdf9ef-e260-4cb8-9556-fc1b5d161aa3",
+    "display": "INFECTOCORTIKRUPP® Zäpfchen 100 mg 3 Supp. N1"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/sid/pkv/kvid-10",
+      "value": "P123464535"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-abc-1234567890"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2023-07-03",
+  "dosageInstruction": [
+    {
+      "text": "1x, im Bedarfsfall nach 1h ein weiteres  (max. 3 Stk in 48 h)"
+    }
+  ]
+}
