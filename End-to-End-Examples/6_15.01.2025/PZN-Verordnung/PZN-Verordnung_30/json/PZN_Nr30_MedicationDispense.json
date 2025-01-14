@@ -1,0 +1,153 @@
+{
+  "resourceType": "Parameters",
+  "id": "dadde7e0-01fc-45b4-b7f4-c7ee84846933",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "a66a7664-cdcb-4835-8588-578e3fd0d1bc",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.037.424.539.578.62"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:67075f0e-9a4f-4473-a3b3-2fedca009824"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "K220645120"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-07.2.1234560000.10.789"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-01-19",
+            "substitution": {
+              "wasSubstituted": true
+            }
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "67075f0e-9a4f-4473-a3b3-2fedca009824",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "03852301"
+                }
+              ],
+              "text": "Tamoxifen AL 20 Tabletten N1"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB",
+                  "display": "Tabletten"
+                }
+              ]
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                    "valueString": "30"
+                  }
+                ],
+                "unit": "Stück"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Tamoxifen"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 20,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "batch": {
+              "lotNumber": "A9876543210123-45678"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

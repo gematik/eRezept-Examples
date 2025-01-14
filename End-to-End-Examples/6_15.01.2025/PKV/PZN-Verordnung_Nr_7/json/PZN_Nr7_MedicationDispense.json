@@ -1,0 +1,392 @@
+{
+  "resourceType": "Parameters",
+  "id": "01f65527-1929-49c5-a05e-c995b9115e08",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "00759ea9-0328-4448-bc7a-369f5d35a8d5",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "200.339.908.107.779.64"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:8e1a2a63-cf6d-4fc9-be44-54f64022d222"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "P123464117"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-abc-1234567890"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-02-03",
+            "substitution": {
+              "wasSubstituted": true
+            }
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "8e1a2a63-cf6d-4fc9-be44-54f64022d222",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "11514676"
+                }
+              ],
+              "text": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "FTA",
+                  "display": "Filmtabletten"
+                }
+              ]
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                    "valueString": "10"
+                  }
+                ],
+                "unit": "Stück"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Amoxicillin"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 875,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "itemCodeableConcept": {
+                  "text": "Clavulansäure"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 125,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "batch": {
+              "lotNumber": "A123456789-2"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "f43ae7da-3db3-427c-aa7b-1104a14b05dc",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "200.339.908.107.779.64"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:c9061528-a4ce-49f6-a83e-89ea67a1a192"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "P123464117"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-abc-1234567890"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-02-03",
+            "dosageInstruction": [
+              {
+                "text": "1 Tablette noch in der Nacht, dann für 7 Tage jeweils 1 Tablette morgens und 1 Tablette abends einnehmen"
+              }
+            ],
+            "substitution": {
+              "wasSubstituted": false
+            }
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "c9061528-a4ce-49f6-a83e-89ea67a1a192",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "11514676"
+                }
+              ],
+              "text": "Amoxicillin/Clavulansäure Heumann 875mg/125mg 10St"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "FTA",
+                  "display": "Filmtabletten"
+                }
+              ]
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                    "valueString": "10"
+                  }
+                ],
+                "unit": "Stück"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Amoxicillin"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 875,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "itemCodeableConcept": {
+                  "text": "Clavulansäure"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 125,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "batch": {
+              "lotNumber": "A123456789-1"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

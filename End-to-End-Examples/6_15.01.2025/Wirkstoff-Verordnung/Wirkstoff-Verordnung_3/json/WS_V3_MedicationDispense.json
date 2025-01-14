@@ -1,0 +1,161 @@
+{
+  "resourceType": "Parameters",
+  "id": "8fc95d30-8691-4a28-b3b0-bfce84b2ae72",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "c3437dfc-a141-4bf1-9fb3-a4827b9781eb",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ],
+              "tag": [
+                {
+                  "display": "Beispiel MedicationDispense Wirkstoff V3 -> PZN Abgabe"
+                },
+                {
+                  "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+                }
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.100.000.000.019.82"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:fc2a72e7-bc15-4456-852f-51014e182760"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "K030182229"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-07.2.1234560000.10.789"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-01-27",
+            "substitution": {
+              "wasSubstituted": false
+            }
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "fc2a72e7-bc15-4456-852f-51014e182760",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "00761360"
+                }
+              ],
+              "text": "RAMIPRIL beta 5 mg Tabletten (100 St)"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB",
+                  "display": "Tabletten"
+                }
+              ]
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                    "valueString": "100"
+                  }
+                ],
+                "unit": "Stück"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Ramipril"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 5,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "batch": {
+              "lotNumber": "A123456789-1"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

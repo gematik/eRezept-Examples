@@ -1,0 +1,150 @@
+{
+  "resourceType": "Parameters",
+  "id": "7c34d2e9-2e67-4d19-a142-fd04b2b63753",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "57610035-e5aa-4b00-b541-42f3d6d8e1d3",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "200.424.187.927.272.20"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:ad3e1178-7428-4848-a974-74695f643bfd"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "P123464117"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-abc-1234567890"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-02-03"
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "ad3e1178-7428-4848-a974-74695f643bfd",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "code": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "03879429"
+                }
+              ],
+              "text": "Beloc-Zok® mite 47,5 mg, 30 Retardtabletten N1"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "RET",
+                  "display": "Retard-Tabletten"
+                }
+              ]
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+                    "valueString": "30"
+                  }
+                ],
+                "unit": "Stück"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Metoprolol succinat"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 47.5,
+                    "unit": "mg",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "batch": {
+              "lotNumber": "A123456789-1"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

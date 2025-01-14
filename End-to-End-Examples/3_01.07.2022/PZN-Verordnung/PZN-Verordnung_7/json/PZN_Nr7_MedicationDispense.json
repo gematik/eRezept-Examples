@@ -1,0 +1,103 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "e378bc5a-552f-4151-a072-366d4a9f6cec",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/StructureDefinition/ErxMedicationDispense|1.1.1"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PZN Bsp 7"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "01417220-0b1b-4a4f-b29b-c127341a5059",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.0.2"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N1"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "01288434"
+          }
+        ],
+        "text": "Atmadisc 50 μg/250 μg Diskus Inh.-Pulver"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "IHP"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "value": 1,
+          "unit": "Diskus"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1",
+        "expirationDate": "2024-12-31"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+      "value": "160.100.000.000.004.30"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#01417220-0b1b-4a4f-b29b-c127341a5059",
+    "display": "Atmadisc 50 μg/250 μg Diskus Inh.-Pulver"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/NamingSystem/gkv/kvid-10",
+      "value": "K220635158"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/NamingSystem/TelematikID",
+          "value": "3-07.2.1234560000.10.789"
+        }
+      }
+    }
+  ],
+  "whenHandedOver": "2022-07-27"
+}

@@ -1,0 +1,540 @@
+{
+  "resourceType": "Bundle",
+  "id": "566d6b86-72b0-4b40-ae39-234830f207da",
+  "meta": {
+    "profile": [
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.1.0"
+    ]
+  },
+  "identifier": {
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+    "value": "200.529.639.126.950.56"
+  },
+  "type": "document",
+  "timestamp": "2025-02-03T08:30:00+00:00",
+  "entry": [
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Composition/90cc2a5f-3b2a-4e5d-977a-e73802f53ad1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "90cc2a5f-3b2a-4e5d-977a-e73802f53ad1",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Legal_basis",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN",
+              "code": "00"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_PKV_Tariff",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PKV_TARIFF",
+              "code": "01"
+            }
+          }
+        ],
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART",
+              "code": "e16A"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/e1abb98f-8071-46c6-a56b-9a460baca334"
+        },
+        "date": "2025-02-03T08:00:00Z",
+        "author": [
+          {
+            "reference": "Practitioner/11ac5482-973e-4705-b9ab-48502e504a70",
+            "type": "Practitioner"
+          },
+          {
+            "type": "Device",
+            "identifier": {
+              "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_FOR_Pruefnummer",
+              "value": "Y/400/2107/36/999"
+            }
+          }
+        ],
+        "title": "elektronische Arzneimittelverordnung",
+        "custodian": {
+          "reference": "Organization/4dd7e339-7961-4524-8612-f05669edd242"
+        },
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type",
+                  "code": "Prescription"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "MedicationRequest/27a7237c-4c53-4235-9835-a181d6728457"
+              }
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type",
+                  "code": "Coverage"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "Coverage/cfd01083-4539-443d-b055-d2715743f8e8"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/MedicationRequest/27a7237c-4c53-4235-9835-a181d6728457",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "27a7237c-4c53-4235-9835-a181d6728457",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee",
+            "valueBoolean": false
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_BVG",
+            "valueBoolean": false
+          },
+          {
+            "extension": [
+              {
+                "url": "Kennzeichen",
+                "valueBoolean": true
+              },
+              {
+                "url": "Nummerierung",
+                "valueRatio": {
+                  "numerator": {
+                    "value": 3
+                  },
+                  "denominator": {
+                    "value": 4
+                  }
+                }
+              },
+              {
+                "url": "Zeitraum",
+                "valuePeriod": {
+                  "start": "2025-05-15",
+                  "end": "2025-07-31"
+                }
+              },
+              {
+                "url": "ID",
+                "valueIdentifier": {
+                  "value": "f9bb62c2-2de0-4223-84e4-9bf36a5d9f5b"
+                }
+              }
+            ],
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "medicationReference": {
+          "reference": "Medication/92a320af-5f59-47b6-8cfc-dcac51453a8b"
+        },
+        "subject": {
+          "reference": "Patient/e1abb98f-8071-46c6-a56b-9a460baca334"
+        },
+        "authoredOn": "2025-02-03",
+        "requester": {
+          "reference": "Practitioner/11ac5482-973e-4705-b9ab-48502e504a70"
+        },
+        "insurance": [
+          {
+            "reference": "Coverage/cfd01083-4539-443d-b055-d2715743f8e8"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "extension": [
+              {
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
+                "valueBoolean": false
+              }
+            ]
+          }
+        ],
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "system": "http://unitsofmeasure.org",
+            "code": "{Package}"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": false
+        }
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Medication/92a320af-5f59-47b6-8cfc-dcac51453a8b",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "92a320af-5f59-47b6-8cfc-dcac51453a8b",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "version": "http://snomed.info/sct/900000000000207008/version/20220331",
+                  "code": "763158003",
+                  "display": "Medicinal product (product)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+              "code": "00"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
+            "valueCode": "N3"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/ifa/pzn",
+              "code": "02532741"
+            }
+          ],
+          "text": "L-Thyroxin Henning 75 100 Tbl. N3"
+        },
+        "form": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "TAB"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Patient/e1abb98f-8071-46c6-a56b-9a460baca334",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "e1abb98f-8071-46c6-a56b-9a460baca334",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "PKV"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/pkv/kvid-10",
+            "value": "P123464117"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Privati",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Privati"
+                }
+              ]
+            },
+            "given": [
+              "Paula"
+            ]
+          }
+        ],
+        "birthDate": "1935-06-22",
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Blumenweg 18"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Blumenweg"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "18"
+                  }
+                ]
+              }
+            ],
+            "city": "Esens",
+            "postalCode": "26427",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Practitioner/11ac5482-973e-4705-b9ab-48502e504a70",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "11ac5482-973e-4705-b9ab-48502e504a70",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "LANR"
+                }
+              ]
+            },
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+            "value": "987654423"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PRN"
+                }
+              ]
+            },
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "1-748382202"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Schneider",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Schneider"
+                }
+              ]
+            },
+            "given": [
+              "Emma"
+            ],
+            "prefix": [
+              "Dr. med."
+            ],
+            "_prefix": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+                    "valueCode": "AC"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type",
+                  "code": "00"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung",
+                  "code": "Berufsbezeichnung"
+                }
+              ],
+              "text": "Fachärztin für Innere Medizin"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Organization/4dd7e339-7961-4524-8612-f05669edd242",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "4dd7e339-7961-4524-8612-f05669edd242",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "BSNR"
+                }
+              ]
+            },
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+            "value": "721111100"
+          }
+        ],
+        "name": "MVZ",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0301234567"
+          },
+          {
+            "system": "fax",
+            "value": "030123456789"
+          },
+          {
+            "system": "email",
+            "value": "mvz@e-mail.de"
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Herbert-Lewin-Platz 2"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Herbert-Lewin-Platz"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "2"
+                  }
+                ]
+              }
+            ],
+            "city": "Berlin",
+            "postalCode": "10623",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Coverage/cfd01083-4539-443d-b055-d2715743f8e8",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "cfd01083-4539-443d-b055-d2715743f8e8",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE",
+              "code": "00"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/dmp-kennzeichen",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP",
+              "code": "00"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+              "code": "1"
+            }
+          }
+        ],
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "code": "PKV"
+            }
+          ]
+        },
+        "beneficiary": {
+          "reference": "Patient/e1abb98f-8071-46c6-a56b-9a460baca334"
+        },
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "168140346"
+            },
+            "display": "Allianz Private Krankenversicherung"
+          }
+        ]
+      }
+    }
+  ]
+}

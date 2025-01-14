@@ -1,0 +1,132 @@
+{
+  "resourceType": "Parameters",
+  "id": "5d2a4cea-b6d4-4680-afbe-6cc49cc99dbd",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "d52e6467-5575-42a5-9918-1206953aae72",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "200.800.419.351.304.52"
+              }
+            ],
+            "status": "completed",
+            "medicationReference": {
+              "reference": "urn:uuid:2e2fe982-b2f7-4eb2-a9dd-e04dca1d2287"
+            },
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "P123464233"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-abc-1234567890"
+                  }
+                }
+              }
+            ],
+            "whenHandedOver": "2025-02-03"
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "2e2fe982-b2f7-4eb2-a9dd-e04dca1d2287",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+              ]
+            },
+            "form": {
+              "text": "Lösung"
+            },
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "100"
+                  }
+                ],
+                "unit": "ml"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "2-Propanolhaltiger Salicylsäure-Hautspiritus 5 % (NRF 11.55.)"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 100,
+                    "unit": "ml",
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "value": 1,
+                    "_system": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    },
+                    "_code": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

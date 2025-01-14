@@ -1,0 +1,121 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "ee2ce580-5ba3-464a-aa4f-333f16e87e2d",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel MedicationDispense PKV PZN Bsp 17"
+      }
+    ]
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "4fdfe574-a9b8-4032-943c-1af2e883f86a",
+      "meta": {
+        "profile": [
+          "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.1.0"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "version": "http://snomed.info/sct/900000000000207008/version/20220331",
+                "code": "763158003",
+                "display": "Medicinal product (product)"
+              }
+            ]
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+          "valueCoding": {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+            "code": "00"
+          }
+        },
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+          "valueBoolean": false
+        },
+        {
+          "url": "http://fhir.de/StructureDefinition/normgroesse",
+          "valueCode": "N2"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "06437028"
+          }
+        ],
+        "text": "Doxycyclin 100-1A Pharma Tabletten N2"
+      },
+      "form": {
+        "coding": [
+          {
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+            "code": "TAB"
+          }
+        ]
+      },
+      "amount": {
+        "numerator": {
+          "extension": [
+            {
+              "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+              "valueString": "20"
+            }
+          ],
+          "unit": "Stück"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "A123456789-1"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+      "value": "200.082.658.364.487.24"
+    }
+  ],
+  "status": "completed",
+  "medicationReference": {
+    "reference": "#4fdfe574-a9b8-4032-943c-1af2e883f86a"
+  },
+  "subject": {
+    "identifier": {
+      "system": "http://fhir.de/sid/pkv/kvid-10",
+      "value": "P123464233"
+    }
+  },
+  "performer": [
+    {
+      "actor": {
+        "identifier": {
+          "system": "https://gematik.de/fhir/sid/telematik-id",
+          "value": "3-abc-1234567890"
+        }
+      }
+    }
+  ],
+  "quantity": {
+    "value": 2,
+    "system": "http://unitsofmeasure.org",
+    "code": "{Package}"
+  },
+  "whenHandedOver": "2024-11-03"
+}

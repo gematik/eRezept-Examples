@@ -1,0 +1,380 @@
+{
+  "resourceType": "Bundle",
+  "id": "529d741c-7ad8-41d8-97c3-9aabbdd084b2",
+  "meta": {
+    "profile": [
+      "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_Bundle|1.1.0"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel der TA7/eAbrechnungsdaten."
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "identifier": {
+    "extension": [
+      {
+        "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_TA7_Dateinummer",
+        "valueString": "00002"
+      }
+    ],
+    "system": "https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Dateiname",
+    "value": "ARZFHR22002"
+  },
+  "type": "document",
+  "timestamp": "2022-04-12T12:32:21+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:73017425-dab8-4066-ba99-467498c7c9f7",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "73017425-dab8-4066-ba99-467498c7c9f7",
+        "meta": {
+          "profile": [
+            "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_Composition|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_TA7_IK_Empfaenger",
+            "valueIdentifier": {
+              "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+              "value": "104212516"
+            }
+          },
+          {
+            "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_TA7_IK_Kostentraeger",
+            "valueIdentifier": {
+              "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+              "value": "104212505"
+            }
+          }
+        ],
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7",
+              "code": "SR",
+              "display": "Sammelrechnung"
+            }
+          ]
+        },
+        "date": "2022-03-31",
+        "author": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+              "value": "308400023"
+            }
+          }
+        ],
+        "title": "elektronische Sammelrechnung",
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7",
+                  "code": "LSR",
+                  "display": "Liste der Sammelrechnungen"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:dfdee8be-e6d3-42bb-ba30-a2a0addf8ee9"
+              }
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_TA7",
+                  "code": "R",
+                  "display": "Rechnungen"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:17ad750e-02f7-49cf-82ad-dd4924ed3e1e"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dfdee8be-e6d3-42bb-ba30-a2a0addf8ee9",
+      "resource": {
+        "resourceType": "List",
+        "id": "dfdee8be-e6d3-42bb-ba30-a2a0addf8ee9",
+        "meta": {
+          "profile": [
+            "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Sammelrechnung_List|1.1.0"
+          ]
+        },
+        "status": "current",
+        "mode": "working",
+        "entry": [
+          {
+            "item": {
+              "reference": "Bundle/529d741c-7ad8-41d8-97c3-9aabbdd084b2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:17ad750e-02f7-49cf-82ad-dd4924ed3e1e",
+      "resource": {
+        "resourceType": "Invoice",
+        "id": "17ad750e-02f7-49cf-82ad-dd4924ed3e1e",
+        "meta": {
+          "profile": [
+            "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_Rechnung|1.1.0"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_TA7_Abrechnungszeitraum",
+            "valueDateTime": "2022-03-31"
+          },
+          {
+            "extension": [
+              {
+                "url": "lineItem",
+                "valueReference": {
+                  "reference": "urn:uuid:54f85124-8925-46db-9c44-711b37d4cc98"
+                }
+              }
+            ],
+            "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_RezeptBundleReferenz"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Sammelrechnungsnummer",
+            "value": "104212506-01-120422"
+          }
+        ],
+        "status": "issued",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Rechnungsart",
+              "code": "6"
+            }
+          ]
+        },
+        "recipient": {
+          "identifier": {
+            "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value": "104212505"
+          }
+        },
+        "date": "2022-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:54f85124-8925-46db-9c44-711b37d4cc98",
+      "resource": {
+        "resourceType": "Bundle",
+        "id": "54f85124-8925-46db-9c44-711b37d4cc98",
+        "meta": {
+          "profile": [
+            "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_TA7_RezeptBundle|1.1.0"
+          ]
+        },
+        "type": "collection",
+        "entry": [
+          {
+            "link": [
+              {
+                "relation": "item",
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle"
+              }
+            ],
+            "fullUrl": "urn:uuid:0428d416-149e-48a4-977c-394887b3d85c",
+            "resource": {
+              "resourceType": "Binary",
+              "id": "0428d416-149e-48a4-977c-394887b3d85c",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/StructureDefinition/ErxBinary"
+                ]
+              },
+              "contentType": "application/pkcs7-mime",
+              "data": "VmVyb3JkbnVuZ3NkYXRlbiBCZWlzcGllbCBFcnN0ZWxsdW5nIEJlaXNwaWVsIGVBYnJlY2hudW5nc2RhdGVu"
+            }
+          },
+          {
+            "link": [
+              {
+                "relation": "item",
+                "url": "https://gematik.de/fhir/StructureDefinition/ErxReceipt"
+              }
+            ],
+            "fullUrl": "urn:uuid:3428d416-149e-48a4-977c-394887b3d8dd",
+            "resource": {
+              "resourceType": "Binary",
+              "id": "3428d416-149e-48a4-977c-394887b3d8dd",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/StructureDefinition/ErxBinary"
+                ]
+              },
+              "contentType": "application/pkcs7-mime",
+              "data": "UXVpdHR1bmdzLUJlaXNwaWVsIEVyc3RlbGx1bmcgQmVpc3BpZWwgZUFicmVjaG51bmdzZGF0ZW4="
+            }
+          },
+          {
+            "link": [
+              {
+                "relation": "item",
+                "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-AbgabedatenBundle"
+              }
+            ],
+            "fullUrl": "urn:uuid:2f4b554e-af65-4c4e-adad-71381df65f21",
+            "resource": {
+              "resourceType": "Binary",
+              "id": "2f4b554e-af65-4c4e-adad-71381df65f21",
+              "meta": {
+                "profile": [
+                  "https://gematik.de/fhir/StructureDefinition/ErxBinary"
+                ]
+              },
+              "contentType": "application/pkcs7-mime",
+              "data": "ZUFiZ2FiZWRhdGVuIEJlaXNwaWVsIEVyc3RlbGx1bmcgQmVpc3BpZWwgZUFicmVjaG51bmdzZGF0ZW4="
+            }
+          },
+          {
+            "link": [
+              {
+                "relation": "item",
+                "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_ERP_eAbrechnungsdaten"
+              }
+            ],
+            "fullUrl": "urn:uuid:529d741c-7ad8-41d8-97c3-9aabbdaabbcc",
+            "resource": {
+              "resourceType": "Invoice",
+              "id": "529d741c-7ad8-41d8-97c3-9aabbdaabbcc",
+              "meta": {
+                "profile": [
+                  "https://fhir.gkvsv.de/StructureDefinition/GKVSV_PR_ERP_eAbrechnungsdaten|1.1.0"
+                ]
+              },
+              "extension": [
+                {
+                  "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Irrlaeufer",
+                  "valueBoolean": false
+                }
+              ],
+              "identifier": [
+                {
+                  "system": "https://gematik.de/fhir/NamingSystem/PrescriptionID",
+                  "value": "160.000.764.737.300.50"
+                },
+                {
+                  "system": "https://fhir.gkvsv.de/NamingSystem/GKVSV_NS_Belegnummer",
+                  "value": "2103000000010000001"
+                }
+              ],
+              "status": "issued",
+              "issuer": {
+                "extension": [
+                  {
+                    "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_LE_Sitz",
+                    "valueCoding": {
+                      "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Leistungserbringer_Sitz",
+                      "code": "1"
+                    }
+                  }
+                ],
+                "identifier": {
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Leistungserbringertyp",
+                        "code": "A"
+                      }
+                    ]
+                  },
+                  "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+                  "value": "308412345"
+                }
+              },
+              "lineItem": [
+                {
+                  "extension": [
+                    {
+                      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Positionstyp",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Positionstyp",
+                            "code": "1",
+                            "display": "übrige Position"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_VAT_VALUE",
+                      "valueMoney": {
+                        "value": 4.14,
+                        "currency": "EUR"
+                      }
+                    },
+                    {
+                      "url": "https://fhir.gkvsv.de/StructureDefinition/GKVSV_EX_ERP_Import",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_Import",
+                            "code": "0"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "sequence": 1,
+                  "chargeItemCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                        "code": "UNC"
+                      }
+                    ]
+                  },
+                  "priceComponent": [
+                    {
+                      "type": "deduction",
+                      "code": {
+                        "coding": [
+                          {
+                            "system": "https://fhir.gkvsv.de/CodeSystem/GKVSV_CS_ERP_ZuAbschlagKey",
+                            "code": "R001"
+                          }
+                        ]
+                      },
+                      "amount": {
+                        "value": -1.77,
+                        "currency": "EUR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

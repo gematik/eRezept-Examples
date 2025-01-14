@@ -1,0 +1,382 @@
+{
+  "resourceType": "Bundle",
+  "id": "d3f5b1b9-000a-45a2-b331-b1f95be60a3c",
+  "meta": {
+    "profile": [
+      "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-AbgabedatenBundle|1.4"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel für Abgabedaten für eine PZN-Verordnung (V1) (Impfstoff) (914b7619-621e-4270-a2b5-1cdf95c87d14)"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "identifier": {
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+    "value": "160.100.000.000.009.15"
+  },
+  "type": "document",
+  "timestamp": "2024-11-27T10:00:00+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:233f9a98-c1df-42eb-adda-7f7b00a2e0d1",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "233f9a98-c1df-42eb-adda-7f7b00a2e0d1",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-AbgabedatenComposition|1.4"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes",
+              "code": "ERezeptAbgabedaten"
+            }
+          ]
+        },
+        "date": "2024-11-27T10:00:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:26bb5900-d54d-4cb6-ab16-4f0740253ae5"
+          }
+        ],
+        "title": "ERezeptAbgabedaten",
+        "section": [
+          {
+            "title": "Abgabeinformationen",
+            "entry": [
+              {
+                "reference": "urn:uuid:3f357463-6a0c-432a-8083-5c4a2fe15d84"
+              }
+            ]
+          },
+          {
+            "title": "Apotheke",
+            "entry": [
+              {
+                "reference": "urn:uuid:26bb5900-d54d-4cb6-ab16-4f0740253ae5"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:26bb5900-d54d-4cb6-ab16-4f0740253ae5",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "26bb5900-d54d-4cb6-ab16-4f0740253ae5",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-Apotheke|1.4"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "308412345"
+          }
+        ],
+        "name": "Apotheke im Einkaufszentrum am grünen Bach",
+        "address": [
+          {
+            "type": "physical",
+            "line": [
+              "Taunusstraße 89"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Taunusstraße"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "89"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+                    "valueString": "Hinterhaus"
+                  }
+                ]
+              }
+            ],
+            "city": "Langen",
+            "postalCode": "63225",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3f357463-6a0c-432a-8083-5c4a2fe15d84",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "3f357463-6a0c-432a-8083-5c4a2fe15d84",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-Abgabeinformationen|1.4"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen",
+            "valueReference": {
+              "reference": "urn:uuid:2f007ef5-11ee-4985-8ac1-227208a31237"
+            }
+          }
+        ],
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "not-applicable"
+            }
+          ]
+        },
+        "performer": [
+          {
+            "actor": {
+              "reference": "urn:uuid:26bb5900-d54d-4cb6-ab16-4f0740253ae5"
+            }
+          }
+        ],
+        "authorizingPrescription": [
+          {
+            "identifier": {
+              "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+              "value": "160.100.000.000.009.15"
+            }
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp",
+              "code": "Abgabeinformationen"
+            }
+          ]
+        },
+        "whenHandedOver": "2024-11-27"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2f007ef5-11ee-4985-8ac1-227208a31237",
+      "resource": {
+        "resourceType": "Invoice",
+        "id": "2f007ef5-11ee-4985-8ac1-227208a31237",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PR-ERP-Abrechnungszeilen|1.4"
+          ]
+        },
+        "status": "issued",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp",
+              "code": "Abrechnungszeilen"
+            }
+          ]
+        },
+        "lineItem": [
+          {
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "extension": [
+                      {
+                        "extension": [
+                          {
+                            "url": "Schluessel",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributFAMSchluesselMarkt",
+                                  "code": "2"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "url": "Gruppe",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributGruppe",
+                                  "code": "1"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "url": "Markt"
+                      },
+                      {
+                        "extension": [
+                          {
+                            "url": "Gruppe",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributGruppe",
+                                  "code": "2"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "url": "Schluessel",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributFAMSchluesselAbgaberangfolge",
+                                  "code": "0"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "url": "Rabattvertragserfuellung"
+                      },
+                      {
+                        "extension": [
+                          {
+                            "url": "Gruppe",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributGruppe",
+                                  "code": "3"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "url": "Schluessel",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributFAMSchluesselAbgaberangfolge",
+                                  "code": "0"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "url": "PreisguenstigesFAM"
+                      },
+                      {
+                        "extension": [
+                          {
+                            "url": "Gruppe",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributGruppe",
+                                  "code": "4"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "url": "Schluessel",
+                            "valueCodeableConcept": {
+                              "coding": [
+                                {
+                                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-ZusatzattributFAMSchluesselImportFAM",
+                                  "code": "0"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "url": "ImportFAM"
+                      }
+                    ],
+                    "url": "ZusatzattributFAM"
+                  }
+                ],
+                "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Zusatzattribute"
+              },
+              {
+                "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Chargenbezeichnung",
+                "valueString": "A9876543210123-45678"
+              }
+            ],
+            "sequence": 1,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "10259495"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "extension": [
+                  {
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz",
+                    "valueDecimal": 19.00
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "Kategorie",
+                        "valueCodeableConcept": {
+                          "coding": [
+                            {
+                              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-KostenVersicherterKategorie",
+                              "code": "0"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "url": "Kostenbetrag",
+                        "valueMoney": {
+                          "value": 0.00,
+                          "currency": "EUR"
+                        }
+                      }
+                    ],
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"
+                  }
+                ],
+                "type": "informational",
+                "factor": 1,
+                "amount": {
+                  "value": 46.77,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ],
+        "totalGross": {
+          "extension": [
+            {
+              "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung",
+              "valueMoney": {
+                "value": 0.00,
+                "currency": "EUR"
+              }
+            }
+          ],
+          "value": 46.77,
+          "currency": "EUR"
+        }
+      }
+    }
+  ]
+}

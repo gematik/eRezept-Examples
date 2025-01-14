@@ -1,0 +1,317 @@
+{
+  "resourceType": "Bundle",
+  "id": "4e3cda28-cfb8-449c-b0f7-b4f266bfefd8",
+  "meta": {
+    "profile": [
+      "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel RezeptAbgabedatenPKV Bundle (WS-9)"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "identifier": {
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+    "value": "200.643.100.572.979.08"
+  },
+  "type": "document",
+  "timestamp": "2024-11-03T11:30:00+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a9176212-02ea-4793-bdee-d9a45d762229",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "a9176212-02ea-4793-bdee-d9a45d762229",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.3"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes",
+              "code": "ERezeptAbgabedaten"
+            }
+          ]
+        },
+        "date": "2024-11-03T11:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:ac74cd0f-71d9-424b-8aec-fd6a5948823f"
+          }
+        ],
+        "title": "ERezeptAbgabedaten",
+        "section": [
+          {
+            "title": "Abgabeinformationen",
+            "entry": [
+              {
+                "reference": "urn:uuid:daaab530-59fb-48a4-ac72-5133e4a8122c"
+              }
+            ]
+          },
+          {
+            "title": "Apotheke",
+            "entry": [
+              {
+                "reference": "urn:uuid:ac74cd0f-71d9-424b-8aec-fd6a5948823f"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ac74cd0f-71d9-424b-8aec-fd6a5948823f",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "ac74cd0f-71d9-424b-8aec-fd6a5948823f",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.3"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "308412345"
+          }
+        ],
+        "name": "Adler-Apotheke",
+        "address": [
+          {
+            "type": "physical",
+            "line": [
+              "Taunusstraße 89"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Taunusstraße"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "89"
+                  }
+                ]
+              }
+            ],
+            "city": "Langen",
+            "postalCode": "63225",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:daaab530-59fb-48a4-ac72-5133e4a8122c",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "daaab530-59fb-48a4-ac72-5133e4a8122c",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen",
+            "valueReference": {
+              "reference": "urn:uuid:2f8f59c3-1720-424d-9aa5-a121b15a0a22"
+            }
+          },
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp",
+                  "code": "1"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "not-applicable"
+            }
+          ]
+        },
+        "performer": [
+          {
+            "actor": {
+              "reference": "urn:uuid:ac74cd0f-71d9-424b-8aec-fd6a5948823f"
+            }
+          }
+        ],
+        "authorizingPrescription": [
+          {
+            "identifier": {
+              "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+              "value": "200.643.100.572.979.08"
+            }
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp",
+              "code": "Abgabeinformationen"
+            }
+          ]
+        },
+        "whenHandedOver": "2024-11-03"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2f8f59c3-1720-424d-9aa5-a121b15a0a22",
+      "resource": {
+        "resourceType": "Invoice",
+        "id": "2f8f59c3-1720-424d-9aa5-a121b15a0a22",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.3"
+          ]
+        },
+        "status": "issued",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp",
+              "code": "Abrechnungszeilen"
+            }
+          ]
+        },
+        "lineItem": [
+          {
+            "sequence": 1,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "06437063"
+                }
+              ],
+              "text": "Doxycyclin 200-1a Pharma Tabletten - 20 St"
+            },
+            "priceComponent": [
+              {
+                "extension": [
+                  {
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz",
+                    "valueDecimal": 19.00
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "Kategorie",
+                        "valueCodeableConcept": {
+                          "coding": [
+                            {
+                              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie",
+                              "code": "0"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "url": "Kostenbetrag",
+                        "valueMoney": {
+                          "value": 0.00,
+                          "currency": "EUR"
+                        }
+                      }
+                    ],
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"
+                  }
+                ],
+                "type": "informational",
+                "factor": 1,
+                "amount": {
+                  "value": 12.78,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 2,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                  "code": "06437057"
+                }
+              ],
+              "text": "Doxycyclin 200-1a Pharma Tabletten - 10 St"
+            },
+            "priceComponent": [
+              {
+                "extension": [
+                  {
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz",
+                    "valueDecimal": 19.00
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "Kategorie",
+                        "valueCodeableConcept": {
+                          "coding": [
+                            {
+                              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie",
+                              "code": "0"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "url": "Kostenbetrag",
+                        "valueMoney": {
+                          "value": 0.00,
+                          "currency": "EUR"
+                        }
+                      }
+                    ],
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"
+                  }
+                ],
+                "type": "informational",
+                "factor": 1,
+                "amount": {
+                  "value": 12.14,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ],
+        "totalGross": {
+          "extension": [
+            {
+              "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung",
+              "valueMoney": {
+                "value": 0.00,
+                "currency": "EUR"
+              }
+            }
+          ],
+          "value": 24.92,
+          "currency": "EUR"
+        }
+      }
+    }
+  ]
+}
