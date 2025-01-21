@@ -6,7 +6,7 @@ Usage: #example
 * extension[Normgroesse].valueCode = #NB
 * extension[Kategorie].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
 * code.text = "Schmerzmittel"
-* code.coding[pznCode] = $pzn-cs#12345678
+* code.coding[pznCode] = $pzn-cs#06313728
 * form.coding[kbvDarreichungsform].code = #TAB
 * amount
   * denominator.value = 1

@@ -6,7 +6,7 @@ Usage: #example
 * extension[normSizeCode].valueCode = #NB
 * form.coding[kbvDarreichungsform].code = #TAB
 * code.text = "Schmerzmittel"
-* code.coding[pzn] = $pzn-cs#12345678
+* code.coding[pzn] = $pzn-cs#06313728
 * amount
   * denominator.value = 1
   * numerator.extension[packagingSize].valueString = "1"

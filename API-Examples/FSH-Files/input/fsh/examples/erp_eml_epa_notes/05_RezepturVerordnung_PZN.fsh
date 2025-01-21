@@ -12,12 +12,12 @@ Usage: #example
 * ingredient[0]
   * itemCodeableConcept.text = "Salicylsäure"
   * itemCodeableConcept.coding.system = $pzn-cs
-  * itemCodeableConcept.coding.code = #12345678
+  * itemCodeableConcept.coding.code = #06313728
   * strength.numerator.value = 5
   * strength.numerator.unit = "g"
   * strength.denominator.value = 1
 * ingredient[+]
   * itemCodeableConcept.text = "2-propanol 70 %"
   * itemCodeableConcept.coding.system = $pzn-cs
-  * itemCodeableConcept.coding.code = #87654321
+  * itemCodeableConcept.coding.code = #05392039
   * strength.extension[MengeFreitext].valueString = "Ad 100 g"

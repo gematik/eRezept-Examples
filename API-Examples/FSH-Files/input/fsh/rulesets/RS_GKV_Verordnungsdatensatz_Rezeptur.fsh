@@ -71,7 +71,7 @@ Usage: #inline
 * amount.denominator.value = 1
 * ingredient[0]
   * itemCodeableConcept.text = "Salicylsäure"
-  * itemCodeableConcept.coding.code = #123456789
+  * itemCodeableConcept.coding.code = #063137289
   * strength.numerator.value = 5
   * strength.numerator.unit = "g"
   * strength.denominator.value = 1

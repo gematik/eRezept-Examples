@@ -41,7 +41,7 @@ Instance: MedicationSalicylsaeure
 InstanceOf: EPAMedicationPZNIngredient
 Usage: #inline
 * extension[type].valueCoding = $sct#781405001 "Medicinal product package (product)"
-* code = $pzn-cs#123456789 "Salicylsäure"
+* code = $pzn-cs#063137289 "Salicylsäure"
 * code.text = "Salicylsäure"
 
 Instance: MedicationPropanol
