@@ -1,0 +1,71 @@
+{
+  "resourceType": "Medication",
+  "id": "test-multiple-meta-profile",
+  "meta": {
+    "profile": [
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.2",
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_Base_Medication|1.7",
+      "http://hl7.org/fhir/StructureDefinition/Medication|4.0.1"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+      }
+    },
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+      "valueBoolean": false
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+        "code": "wirkstoff"
+      }
+    ]
+  },
+  "ingredient": [
+    {
+      "strength": {
+        "denominator": {
+          "value": 1
+        },
+        "numerator": {
+          "value": 800,
+          "unit": "mg"
+        }
+      },
+      "itemCodeableConcept": {
+        "coding": [
+          {
+            "code": "Dummy-ASK",
+            "system": "http://fhir.de/CodeSystem/ask"
+          }
+        ],
+        "text": "Ibuprofen"
+      }
+    }
+  ],
+  "amount": {
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+          "valueString": "2x20"
+        }
+      ],
+      "unit": "Stk"
+    },
+    "denominator": {
+      "value": 1
+    }
+  },
+  "form": {
+    "text": "Tabletten"
+  }
+}
