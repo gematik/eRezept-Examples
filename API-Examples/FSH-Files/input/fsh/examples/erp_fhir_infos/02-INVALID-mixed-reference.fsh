@@ -7,7 +7,7 @@ Description: "This example demonstrates a wrong mixed reference."
 * insert DateTimeStamp(timestamp)
 * type = #document
 * entry[+].fullUrl = "urn:uuid:b0e22b86-e7e9-46c1-80fe-e6e24442d77c"
-* entry[+].resource = Invalid-Example-Composition
+* entry[=].resource = Invalid-Example-Composition
 
 Instance: Invalid-Example-Composition
 InstanceOf: KBV_PR_ERP_Composition
