@@ -1,5 +1,5 @@
 RuleSet: SumatripanMedication
-* extension[drugCategory].valueCoding.code = #00
+* extension[drugCategory].valueCoding = EPADrugCategoryCS#00
 * extension[isVaccine].valueBoolean = false
 * extension[normSizeCode].valueCode = #N1
 * code.coding = $pzn-cs#06313728
