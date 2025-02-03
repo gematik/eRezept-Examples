@@ -1,4 +1,4 @@
-Instance: erp-fhir-infos-04-Invalid-Example-Patient-no-id
+Instance: erp-fhir-infos-04-INVALID-Example-Patient-no-id
 InstanceOf: Patient
 Usage: #example
 * name[+]

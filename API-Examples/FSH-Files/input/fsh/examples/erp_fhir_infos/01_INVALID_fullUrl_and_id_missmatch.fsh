@@ -7,7 +7,7 @@ Description: "This example demonstrates mismatch between id in fullUrl and id in
 * insert DateTimeStamp(timestamp)
 * type = #collection
 * entry[+].fullUrl = "http://pvs.praxis-topp-gluecklich.local/fhir/Patient/b0e22b86-e7e9-46c1-80fe-e6e24442d77c"
-* entry[+].resource = Invalid-Example-Patient
+* entry[+].resource = erp-fhir-infos-Invalid-Example-Patient
 
 Instance: erp-fhir-infos-Invalid-Example-Patient
 InstanceOf: KBV_PR_FOR_Patient
