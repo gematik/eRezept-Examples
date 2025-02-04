@@ -23,7 +23,7 @@ RuleSet: SumatripanMedication
     * denominator.code.extension[dataAbsentReason].valueCode = #unknown
 
 RuleSet: FlusarionMedication
-* extension[drugCategory].valueCoding.code = #00
+* extension[drugCategory].valueCoding = EPADrugCategoryCS#00
 * extension[isVaccine].valueBoolean = false
 * extension[normSizeCode].valueCode = #N1
 * code = $pzn-cs#14186244
