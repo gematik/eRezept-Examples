@@ -11,7 +11,9 @@ Usage: #example
 * extension[=].valueDate = "2026-04-02"
 * extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_ExpiryDate"
 * extension[=].valueDate = "2026-06-02"
-* extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_EU_IsRedeemableByPatientAuthorization"
+* extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_EU_IS_REDEEMABLE_BY_PROPERTIES"
+* extension[=].valueBoolean = true
+* extension[+].url = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_EU_IS_REDEEMABLE_BY_PATIENT_AUTHORIZATION"
 * extension[=].valueBoolean = true
 * identifier[+].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier[=].value = "160.000.000.000.000.01"
