@@ -220,6 +220,8 @@ files_to_copy=(
     "Bundle-erp-eprescription-02-GET-Consent-Bundle.json"
     "Parameters-erp-eprescription-03-POST-AccessCode-EU-Request.json"
     "Parameters-erp-eprescription-04-POST-AccessCode-EU-Response.json"
+    "Parameters-erp-eprescription-10-PATCH-Task-Request.json"
+    "Task-erp-eprescription-10-PATCH-Task-Response.json"
     "Bundle-erp-eprescription-08-response-get-single-medicationdispense.json"
     "Bundle-erp-eprescription-09-response-get-multiple-medication-dispense.json"
 )
