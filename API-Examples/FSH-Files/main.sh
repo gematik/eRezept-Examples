@@ -12,7 +12,7 @@ SCRIPT_DIR=$(dirname "$0")
 INPUT_DIR="$SCRIPT_DIR/fsh-generated/resources"
 OUTPUT_DIR="$SCRIPT_DIR/output"
 TEMPLATE_DIR="$SCRIPT_DIR/input/fsh/examples"
-API_DATE="2025-10-01-preview"
+API_DATE="2025-10-01"
 API_EXAMPLES_DIR="$SCRIPT_DIR/../$API_DATE"
 
 # cd scripts
