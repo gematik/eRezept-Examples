@@ -73,11 +73,12 @@
               {
                 "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
                 "valueCoding": {
-                  "code": "00"
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/terminology/CodeSystem/epa-drug-category-cs"
                 }
               },
               {
-                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
                 "valueBoolean": false
               },
               {
@@ -99,54 +100,6 @@
                 "value": 1
               }
             },
-            "ingredient": [
-              {
-                "strength": {
-                  "numerator": {
-                    "value": 100,
-                    "unit": "mg",
-                    "_system": {
-                      "extension": [
-                        {
-                          "valueCode": "unknown",
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "valueCode": "unknown",
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-                        }
-                      ]
-                    }
-                  },
-                  "denominator": {
-                    "value": 1,
-                    "_system": {
-                      "extension": [
-                        {
-                          "valueCode": "unknown",
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "valueCode": "unknown",
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "itemCodeableConcept": {
-                  "text": "Sumatriptan"
-                }
-              }
-            ],
             "code": {
               "coding": [
                 {
@@ -164,7 +117,23 @@
                   "display": "Tabletten"
                 }
               ]
-            }
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Sumatriptan"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 100,
+                    "unit": "mg"
+                  },
+                  "denominator": {
+                    "value": 1
+                  }
+                }
+              }
+            ]
           }
         }
       ]

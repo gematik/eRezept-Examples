@@ -5,7 +5,7 @@ Usage: #example
 * contained[+] = NasenSpray
 * extension[type].valueCoding = $sct#781405001 "Medicinal product package"
 * extension[isVaccine].valueBoolean = false
-* extension[drugCategory].valueCoding = #00 "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
+* extension[drugCategory].valueCoding = EPADrugCategoryCS#00 "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
 * code = $pzn-cs#1746517 "CROMO-RATIOPHARM Kombipackung"
 * status = #active
 * form = $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM#KPG
