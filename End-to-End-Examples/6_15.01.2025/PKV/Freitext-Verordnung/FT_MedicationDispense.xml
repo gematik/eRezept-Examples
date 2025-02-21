@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="be663d7e-eb45-4d32-814c-10383c043d72"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
+    <!--tag>
+      <display value="Beispiel MedicationDispense PKV Freitext"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag-->
+  </meta>
+  <parameter>
+    <name value="rxDispensation"/>
+    <part>
+      <name value="medicationDispense"/>
+      <resource>
+        <MedicationDispense>
+          <id value="a6370174-6209-4203-921f-7adcd3dbe5ba"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="200.334.138.469.717.92"/>
+          </identifier>
+          <status value="completed"/>
+          <medicationReference>
+            <reference value="urn:uuid:2816d83e-e2aa-4e5b-ad4c-5f402a36643a"/>
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10"/>
+              <value value="P123464233"/>
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-abc-1234567890"/>
+              </identifier>
+            </actor>
+          </performer>
+          <whenHandedOver value="2025-02-07"/>
+          <!--dosageInstruction>  ====> nur angeben wenn geändert/korrigiert durch Apotheke
+            <text value="1-0-0-0"/>
+          </dosageInstruction-->
+          <!--substitution>
+            <wasSubstituted value="false"/>
+          </substitution-->
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication"/>
+      <resource>
+        <Medication>
+          <id value="2816d83e-e2aa-4e5b-ad4c-5f402a36643a"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+          </meta>
+          <code>
+            <text value="Yellox 0,9 mg/ml 5ml Augentrpf. Croma/Bausch&amp;Lomb"/>
+          </code>
+          <form>
+            <text value="Lösung"/>
+          </form>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>

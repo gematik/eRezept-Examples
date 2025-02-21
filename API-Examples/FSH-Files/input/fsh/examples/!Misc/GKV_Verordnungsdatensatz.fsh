@@ -44,7 +44,7 @@ InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
 * extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#0
 * extension[Notdienstgebuehr].valueBoolean = false
-* extension[SER].valueBoolean = false
+* extension[BVG].valueBoolean = false
 * extension[Unfallinformationen].extension[Unfallkennzeichen].valueCoding = $KBV_CS_FOR_Ursache_Type#1
 * insert Date(extension[Unfallinformationen].extension[Unfalltag].valueDate)
 * extension[Mehrfachverordnung].extension[Kennzeichen].valueBoolean = true
@@ -61,7 +61,7 @@ Usage: #inline
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-GKV)
 * note.text = "Dummy-Hinweis für die Apotheke"
 * dosageInstruction.extension[Dosierungskennzeichen].valueBoolean = false
-* dispenseRequest.quantity.value = 2
+* dispenseRequest.quantity = 2 '{Package}'
 
 Instance: e3a4efa7-84fc-465b-b14c-720195097783
 InstanceOf: KBV_PR_ERP_Medication_Ingredient
@@ -82,7 +82,7 @@ Usage: #inline
 Instance: 9774f67f-a238-4daf-b4e6-Pat-GKV
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
-* identifier[versichertenId].value = "X234567890"
+* identifier[versichertenId_GKV].value = "X234567890"
 * name[name]
   * .use = #official
   * family.extension[nachname].valueString = "Königsstein"

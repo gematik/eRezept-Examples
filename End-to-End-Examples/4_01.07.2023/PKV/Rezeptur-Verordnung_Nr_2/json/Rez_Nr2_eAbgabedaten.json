@@ -1,0 +1,502 @@
+{
+  "resourceType": "Bundle",
+  "id": "72bf1839-cc0e-4d6c-9cc0-a3c2724cf242",
+  "meta": {
+    "profile": [
+      "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.2"
+    ],
+    "tag": [
+      {
+        "display": "Beispiel RezeptAbgabedatenPKV Bundle (REZ-11)"
+      },
+      {
+        "display": "ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."
+      }
+    ]
+  },
+  "identifier": {
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+    "value": "200.800.419.351.304.52"
+  },
+  "type": "document",
+  "timestamp": "2023-07-03T11:30:00+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:f2e33340-fdc0-4d86-8828-bb41d2b187d7",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "f2e33340-fdc0-4d86-8828-bb41d2b187d7",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.2"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes",
+              "code": "ERezeptAbgabedaten"
+            }
+          ]
+        },
+        "date": "2023-07-03T11:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:3b4a1ad6-0c26-4ab6-b5f2-5d2003006e5d"
+          }
+        ],
+        "title": "ERezeptAbgabedaten",
+        "section": [
+          {
+            "title": "Abgabeinformationen",
+            "entry": [
+              {
+                "reference": "urn:uuid:5e458b65-46f2-404b-8080-a06e0a5ac46d"
+              }
+            ]
+          },
+          {
+            "title": "Apotheke",
+            "entry": [
+              {
+                "reference": "urn:uuid:3b4a1ad6-0c26-4ab6-b5f2-5d2003006e5d"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3b4a1ad6-0c26-4ab6-b5f2-5d2003006e5d",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "3b4a1ad6-0c26-4ab6-b5f2-5d2003006e5d",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.2"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://fhir.de/sid/arge-ik/iknr",
+            "value": "308412345"
+          }
+        ],
+        "name": "Adler-Apotheke",
+        "address": [
+          {
+            "type": "physical",
+            "line": [
+              "Taunusstraße 89"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Taunusstraße"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "89"
+                  }
+                ]
+              }
+            ],
+            "city": "Langen",
+            "postalCode": "63225",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5e458b65-46f2-404b-8080-a06e0a5ac46d",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "5e458b65-46f2-404b-8080-a06e0a5ac46d",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.2"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen",
+            "valueReference": {
+              "reference": "urn:uuid:85637bf3-b6ac-4645-ac30-338ce3ad00e0"
+            }
+          },
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp",
+                  "code": "1"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-ZusatzdatenHerstellung",
+            "valueReference": {
+              "reference": "urn:uuid:20cb546f-fdf1-4ca4-b17d-0c501af94d3a"
+            }
+          }
+        ],
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "not-applicable"
+            }
+          ]
+        },
+        "performer": [
+          {
+            "actor": {
+              "reference": "urn:uuid:3b4a1ad6-0c26-4ab6-b5f2-5d2003006e5d"
+            }
+          }
+        ],
+        "authorizingPrescription": [
+          {
+            "identifier": {
+              "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+              "value": "200.800.419.351.304.52"
+            }
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp",
+              "code": "Abgabeinformationen"
+            }
+          ]
+        },
+        "whenHandedOver": "2023-07-03"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:85637bf3-b6ac-4645-ac30-338ce3ad00e0",
+      "resource": {
+        "resourceType": "Invoice",
+        "id": "85637bf3-b6ac-4645-ac30-338ce3ad00e0",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.2"
+          ]
+        },
+        "status": "issued",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp",
+              "code": "Abrechnungszeilen"
+            }
+          ]
+        },
+        "lineItem": [
+          {
+            "sequence": 1,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://TA1.abda.de",
+                  "code": "09999011"
+                }
+              ],
+              "text": "Rezeptur"
+            },
+            "priceComponent": [
+              {
+                "extension": [
+                  {
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz",
+                    "valueDecimal": 19.00
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "Kategorie",
+                        "valueCodeableConcept": {
+                          "coding": [
+                            {
+                              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie",
+                              "code": "0"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "url": "Kostenbetrag",
+                        "valueMoney": {
+                          "value": 0.00,
+                          "currency": "EUR"
+                        }
+                      }
+                    ],
+                    "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"
+                  }
+                ],
+                "type": "informational",
+                "factor": 1,
+                "amount": {
+                  "value": 18.45,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ],
+        "totalGross": {
+          "extension": [
+            {
+              "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung",
+              "valueMoney": {
+                "value": 0.00,
+                "currency": "EUR"
+              }
+            }
+          ],
+          "value": 18.45,
+          "currency": "EUR"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:20cb546f-fdf1-4ca4-b17d-0c501af94d3a",
+      "resource": {
+        "resourceType": "MedicationDispense",
+        "id": "20cb546f-fdf1-4ca4-b17d-0c501af94d3a",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-ZusatzdatenHerstellung|1.2"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Zaehler",
+            "valuePositiveInt": 1
+          },
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-ZusatzdatenEinheit",
+            "valueReference": {
+              "reference": "urn:uuid:dc1644f6-0939-435b-a33a-6cef53374c7c"
+            }
+          }
+        ],
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "not-applicable"
+            }
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp",
+              "code": "ZusatzdatenHerstellung"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dc1644f6-0939-435b-a33a-6cef53374c7c",
+      "resource": {
+        "resourceType": "Invoice",
+        "id": "dc1644f6-0939-435b-a33a-6cef53374c7c",
+        "meta": {
+          "profile": [
+            "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-ZusatzdatenEinheit|1.2"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Zaehler",
+            "valuePositiveInt": 1
+          }
+        ],
+        "status": "issued",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp",
+              "code": "ZusatzdatenEinheit"
+            }
+          ]
+        },
+        "lineItem": [
+          {
+            "sequence": 1,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 0.42,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 2,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 0.64,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 3,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 0.05,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 4,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 1.46,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 5,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 0.91,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 6,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 0.17,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 7,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 3.50,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 8,
+            "chargeItemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor",
+                  "code": "NA"
+                }
+              ]
+            },
+            "priceComponent": [
+              {
+                "type": "informational",
+                "amount": {
+                  "value": 8.35,
+                  "currency": "EUR"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

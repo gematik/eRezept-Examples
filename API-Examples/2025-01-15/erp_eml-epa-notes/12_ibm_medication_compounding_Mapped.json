@@ -1,0 +1,178 @@
+{
+  "resourceType": "Medication",
+  "id": "erp-eml-epa-notes-12-ibm-medication-compounding-Mapped",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+      "valueCoding": {
+        "code": "1208954007",
+        "system": "http://snomed.info/sct",
+        "display": "Extemporaneous preparation (product)"
+      }
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+      "valueBoolean": false
+    }
+  ],
+  "amount": {
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+          "valueString": "12"
+        }
+      ],
+      "code": "{tbl}",
+      "system": "http://unitsofmeasure.org",
+      "unit": "TAB"
+    },
+    "denominator": {
+      "value": 1
+    }
+  },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "FirstIngredient",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "12343219",
+            "display": "1st ingredient"
+          }
+        ],
+        "text": "1st ingredient"
+      }
+    },
+    {
+      "resourceType": "Medication",
+      "id": "SecondIngredient",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "code": "781405001",
+            "system": "http://snomed.info/sct",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "56781239",
+            "display": "2nd ingredient"
+          }
+        ],
+        "text": "2nd ingredient"
+      }
+    }
+  ],
+  "form": {
+    "text": "TAB"
+  },
+  "code": {
+    "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+  },
+  "ingredient": [
+    {
+      "itemReference": {
+        "reference": "#FirstIngredient"
+      },
+      "strength": {
+        "numerator": {
+          "value": 1,
+          "code": "{tbl}",
+          "system": "http://unitsofmeasure.org",
+          "unit": "TAB"
+        },
+        "denominator": {
+          "value": 1,
+          "_system": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "itemReference": {
+        "reference": "#SecondIngredient"
+      },
+      "strength": {
+        "numerator": {
+          "value": 2,
+          "code": "{tbl}",
+          "system": "http://unitsofmeasure.org",
+          "unit": "TAB"
+        },
+        "denominator": {
+          "value": 1,
+          "_system": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          },
+          "_code": {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                "valueCode": "unknown"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
