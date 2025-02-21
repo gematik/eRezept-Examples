@@ -61,7 +61,7 @@ Usage: #inline
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-GKV)
 * note.text = "Dummy-Hinweis für die Apotheke"
 * dosageInstruction.extension[Dosierungskennzeichen].valueBoolean = false
-* dispenseRequest.quantity = 2 '{Package}'
+* dispenseRequest.quantity.value = 2
 
 Instance: e3a4efa7-84fc-465b-b14c-720195097783
 InstanceOf: KBV_PR_ERP_Medication_Ingredient
