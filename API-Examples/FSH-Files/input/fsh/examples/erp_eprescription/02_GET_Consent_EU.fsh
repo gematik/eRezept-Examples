@@ -15,7 +15,6 @@ Usage: #inline
 * id = "e9b39f9c-0b70-4dd5-ada2-fea3cde2e340"
 * scope = $cs-consent-scope#patient-privacy "Privacy Consent"
 * category = GEM_ERPEU_CS_ConsentType#EUDISPCONS "Consent for redeeming e-prescriptions in EU countries"
-* insert GKV_Identifier(patient.identifier.value)
-* insert GKV_Identifier_System(patient.identifier.system)
+* insert GKV_Identifier(patient.identifier)
 * insert DateTime(dateTime)
 * policyRule = v3-ActCode#OPTIN

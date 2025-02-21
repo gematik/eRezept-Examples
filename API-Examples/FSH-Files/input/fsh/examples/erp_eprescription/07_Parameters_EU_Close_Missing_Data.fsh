@@ -6,7 +6,7 @@ Title: "Example EU-Close Parameters with Missing Data"
   * name = "requestData"
   * part[kvnr]
     * name = "kvnr"
-    * insert GKV_Identifier(valueIdentifier.value)
+    * insert GKV_Identifier(valueIdentifier)
   * part[accessCode]
     * name = "accessCode"
     * valueIdentifier.value = "ABC123"

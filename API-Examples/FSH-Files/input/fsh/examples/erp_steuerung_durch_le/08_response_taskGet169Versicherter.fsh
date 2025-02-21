@@ -17,7 +17,7 @@ Usage: #inline
 * insert TaskExension(169)
 * identifier[PrescriptionID].value = "169.000.000.000.000.01"
 * id = "169.000.000.000.000.01"
-* insert GKV_Identifier(for.identifier.value)
+* insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * status = #ready
@@ -28,7 +28,7 @@ Usage: #inline
 * id = "169.000.000.000.000.02"
 * insert TaskExension(169)
 * identifier[PrescriptionID].value = "169.000.000.000.000.02"
-* insert GKV_Identifier(for.identifier.value)
+* insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * status = #ready

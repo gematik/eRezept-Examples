@@ -18,7 +18,7 @@ Usage: #inline
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
 * status = #completed
 * medicationReference = Reference(SumatripanMedication)
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 
@@ -28,7 +28,7 @@ Usage: #inline
 * identifier[prescriptionID].value = "160.000.000.000.000.02"
 * status = #completed
 * medicationReference = Reference(FlusarionMedication)
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 

@@ -25,8 +25,7 @@ Usage: #inline
 * status = #active
 * scope.coding = $consentscope#patient-privacy "Privacy Consent"
 * category = $GEM_ERPCHRG_CS_ConsentType#CHARGCONS "Consent for saving electronic charge item"
-* insert OLD_PKV_IdentifierSystem(patient.identifier.system)
-* insert PKV_Identifier(patient.identifier.value)
+* insert PKV_Identifier(patient.identifier)
 * insert DateTime(dateTime)
 * policyRule = $v3-ActCode#OPTIN
 

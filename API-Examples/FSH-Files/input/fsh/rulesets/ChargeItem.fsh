@@ -3,8 +3,7 @@ RuleSet: ChargeItemIdentifier
 
 RuleSet: ChargeItem
 * insert ChargeItemIdentifier
-* insert OLD_PKV_IdentifierSystem(subject.identifier.system)
-* insert PKV_Identifier(subject.identifier.value)
+* insert PKV_Identifier(subject.identifier)
 * code = $data-absent-reason-cs#not-applicable
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
 * insert DateTimeStamp(enteredDate)

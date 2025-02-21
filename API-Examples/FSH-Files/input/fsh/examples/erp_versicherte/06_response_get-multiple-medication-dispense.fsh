@@ -25,7 +25,7 @@ Usage: #inline
 * status = #completed
 * id = "200.000.000.000.000.01-1"
 * identifier[prescriptionID].value = "200.000.000.000.000.01"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
 * insert Date(whenHandedOver)
@@ -43,7 +43,7 @@ Usage: #inline
 * status = #completed
 * id = "200.000.000.000.000.02"
 * identifier[prescriptionID].value = "200.000.000.000.000.02"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
 * insert Date(whenHandedOver)

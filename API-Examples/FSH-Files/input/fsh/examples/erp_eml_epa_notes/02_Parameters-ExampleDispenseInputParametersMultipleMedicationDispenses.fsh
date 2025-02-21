@@ -25,7 +25,7 @@ Usage: #inline
 Title: "Example another Medication Dispense"
 Description: "Example of another Medication Dispense."
 * insert MedicationDispense_PrescriptionID(160)
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 * medicationReference = Reference(MedicationDexpanthenol)

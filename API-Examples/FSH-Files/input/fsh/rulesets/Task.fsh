@@ -36,17 +36,16 @@ RuleSet: TaskOutputReceipt(ref)
 * output[receipt].type = $GEM_ERP_CS_DocumentType#3
 * output[receipt].valueReference = Reference({ref})
 
-RuleSet: GKV_Identifier(field)
+RuleSet: KVNR(field)
 * {field} = "X123456789"
 
-RuleSet: GKV_Identifier_System(field)
-* {field} = "http://fhir.de/sid/gkv/kvid-10"
+RuleSet: GKV_Identifier(field)
+* insert KVNR({field}.value)
+* {field}.system = "http://fhir.de/sid/gkv/kvid-10"
 
 RuleSet: PKV_Identifier(field)
-* {field} = "P987654321"
-
-RuleSet: OLD_PKV_IdentifierSystem(field)
-* {field} = "http://fhir.de/sid/pkv/kvid-10"
+* {field}.value = "P987654321"
+* {field}.system = "http://fhir.de/sid/gkv/kvid-10"
 
 RuleSet: ApoTelematikID(field)
 * {field}.system = "https://gematik.de/fhir/sid/telematik-id"
@@ -64,7 +63,7 @@ RuleSet: GKV_Task(status)
 * insert TaskExension(160)
 * extension[flowType].valueCoding.display = "Muster 16 (Apothekenpflichtige Arzneimittel)"
 * insert TaskIdentifier(160)
-* insert GKV_Identifier(for.identifier.value)
+* insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * performerType.text = "Öffentliche Apotheke"
@@ -74,7 +73,7 @@ RuleSet: DiGA_Task(status)
 * insert Task162Exension
 * extension[flowType].valueCoding.display = "Muster 16 (Digitale Gesundheitsanwendungen)"
 * insert TaskIdentifier(162)
-* insert GKV_Identifier(for.identifier.value)
+* insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.59 "Kostenträger"
 * performerType.text = "Kostenträger"
@@ -84,7 +83,7 @@ RuleSet: PKV_Task(status)
 * insert TaskExension(200)
 * extension[flowType].valueCoding.display = "PKV (Apothekenpflichtige Arzneimittel)"
 * insert TaskIdentifier(200)
-* insert PKV_Identifier(for.identifier.value)
+* insert PKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * performerType.text = "Öffentliche Apotheke"
@@ -95,7 +94,7 @@ RuleSet: WF169_Task(status)
 * extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
 * insert TaskIdentifier(169)
 * insert TaskIdentifierAccessCode
-* insert GKV_Identifier(for.identifier.value)
+* insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
 * performerType = $GEM_ERP_CS_OrganizationType#urn:oid:1.2.276.0.76.4.54 "Öffentliche Apotheke"
 * performerType.text = "Öffentliche Apotheke"

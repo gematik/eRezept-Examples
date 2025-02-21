@@ -8,7 +8,7 @@ Usage: #example
     * valueCoding = GEM_ERPEU_CS_RequestType#demographics
   * part[kvnr]
     * name = "kvnr"
-    * insert GKV_Identifier(valueIdentifier.value)
+    * insert GKV_Identifier(valueIdentifier)
   * part[accessCode]
     * name = "accessCode"
     * valueIdentifier.value = "ABC123"

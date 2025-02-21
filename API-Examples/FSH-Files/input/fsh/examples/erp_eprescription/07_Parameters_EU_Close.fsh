@@ -6,7 +6,7 @@ Title: "Example EU-Close Parameters"
   * name = "requestData"
   * part[kvnr]
     * name = "kvnr"
-    * insert GKV_Identifier(valueIdentifier.value)
+    * insert GKV_Identifier(valueIdentifier)
   * part[accessCode]
     * name = "accessCode"
     * valueIdentifier.value = "ABC123"
@@ -54,8 +54,7 @@ Title: "Example Medication Dispense"
 Description: "Example of a Medication Dispense."
 * id = "160.000.000.000.000.01"
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
-* insert GKV_Identifier(subject.identifier.value)
-* insert GKV_Identifier_System(subject.identifier.system)
+* insert GKV_Identifier(subject.identifier)
 * performer.actor = Reference(Example-EU-PractitionerRole)
 * insert Date(whenHandedOver)
 * medicationReference = Reference(SumatripanMedication)

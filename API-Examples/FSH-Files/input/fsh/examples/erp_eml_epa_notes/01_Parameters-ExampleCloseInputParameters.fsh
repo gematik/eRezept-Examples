@@ -13,6 +13,6 @@ Usage: #inline
 * insert MedicationDispense_PrescriptionID(160)
 * status = #completed
 * medicationReference = Reference(SumatripanMedication)
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
