@@ -13,7 +13,7 @@ Instance: erp-fhir-infos-Invalid-Example-Patient
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
 * id = "43ed0c32-27e0-429c-a2fb-8f92518de721"
-* identifier[versichertenId_GKV].value = "X234567890"
+* identifier[versichertenId].value = "X234567890"
 * name[name]
   * .use = #official
   * family.extension[nachname].valueString = "Königsstein"

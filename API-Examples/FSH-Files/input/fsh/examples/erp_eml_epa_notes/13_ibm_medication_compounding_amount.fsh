@@ -6,7 +6,7 @@ Usage: #example
 * form.text = "TAB"
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
-* extension[Kategorie].valueCodeableConcept.coding.code = #373873005:860781008=362943005
+* extension[Kategorie].valueCodeableConcept.coding.code = #1208954007
 
 * amount.numerator = $unitsofmeasure#{tbl} "TAB"
 * amount.numerator.extension[Gesamtmenge].valueString = "12"

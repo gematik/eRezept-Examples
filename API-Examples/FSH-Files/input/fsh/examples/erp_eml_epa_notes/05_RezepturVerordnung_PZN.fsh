@@ -3,7 +3,7 @@ InstanceOf: KBV_PR_ERP_Medication_Compounding
 Usage: #example
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
-* extension[Kategorie].valueCodeableConcept.coding.code = #373873005:860781008=362943005
+* extension[Kategorie].valueCodeableConcept.coding.code = #1208954007
 * code.coding.code = #rezeptur
 * form.text = "Lösung"
 * amount.numerator.unit = "ml"

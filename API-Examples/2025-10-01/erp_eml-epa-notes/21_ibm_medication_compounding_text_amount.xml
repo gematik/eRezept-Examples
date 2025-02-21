@@ -1,0 +1,68 @@
+<Medication xmlns="http://hl7.org/fhir">
+    <id value="erp-eml-epa-notes-21-ibm-medication-compounding-text-amount"/>
+    <meta>
+        <profile value="https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.2"/>
+    </meta>
+    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type">
+        <valueCodeableConcept>
+            <coding>
+                <system value="http://snomed.info/sct"/>
+                <version value="http://snomed.info/sct/900000000000207008/version/20240201"/>
+                <code value="1208954007"/>
+                <display value="Extemporaneous preparation (product)"/>
+            </coding>
+        </valueCodeableConcept>
+    </extension>
+    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category">
+        <valueCoding>
+            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"/>
+            <code value="00"/>
+        </valueCoding>
+    </extension>
+    <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine">
+        <valueBoolean value="false"/>
+    </extension>
+    <code>
+        <coding>
+            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type"/>
+            <code value="rezeptur"/>
+        </coding>
+        <text value="Sumatriptan-1a Pharma 100 mg Tabletten"/>
+    </code>
+    <form>
+        <text value="TAB"/>
+    </form>
+    <amount>
+        <numerator>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize">
+                <valueString value="12"/>
+            </extension>
+            <unit value="TAB"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{tbl}"/>
+        </numerator>
+        <denominator>
+            <value value="1"/>
+        </denominator>
+    </amount>
+    <ingredient>
+        <itemCodeableConcept>
+            <text value="1st ingredient"/>
+        </itemCodeableConcept>
+        <strength>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount">
+                <valueString value="100 mg"/>
+            </extension>
+        </strength>
+    </ingredient>
+    <ingredient>
+        <itemCodeableConcept>
+            <text value="2nd ingredient"/>
+        </itemCodeableConcept>
+        <strength>
+            <extension url="https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount">
+                <valueString value="10 g"/>
+            </extension>
+        </strength>
+    </ingredient>
+</Medication>

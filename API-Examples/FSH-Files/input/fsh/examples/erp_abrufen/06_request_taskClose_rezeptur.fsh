@@ -13,7 +13,7 @@ InstanceOf: GEM_ERP_PR_MedicationDispense
 Usage: #inline
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
 * medicationReference = Reference(rezeptur-medication)
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * quantity = 1 '{Package}'
 * insert Date(whenHandedOver)
@@ -36,21 +36,15 @@ Usage: #example
   * itemReference = Reference(MedicationSalicylsaeure-close)
   * strength.numerator = 5 'g'
   * strength.denominator.value = 1
-  * strength.denominator.system.extension[dataAbsentReason].valueCode = #unknown
-  * strength.denominator.code.extension[dataAbsentReason].valueCode = #unknown
 * ingredient[+]
   * itemReference = Reference(MedicationPropanol-close)
   * strength.extension[amountText].valueString = "Ad 100 g"
   * strength.numerator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
   * strength.denominator
     * value.extension[+].url = $data-absent-reason
     * value.extension[=].valueCode = #unknown
-    * system.extension[dataAbsentReason].valueCode = #unknown
-    * code.extension[dataAbsentReason].valueCode = #unknown
 
 Instance: MedicationSalicylsaeure-close
 InstanceOf: EPAMedicationPZNIngredient

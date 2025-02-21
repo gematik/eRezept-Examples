@@ -5,10 +5,15 @@ Usage: #example
 * extension[Impfstoff].valueBoolean = false
 * extension[Normgroesse].valueCode = #NB
 * extension[Kategorie].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
-* code.text = "Schmerzmittel"
-* code.coding[pznCode] = $pzn-cs#06313728
+* code.text = "Sumatriptan-1a Pharma 100 mg Tabletten 12 St"
+* code.coding[pzn] = $pzn-cs#06313728
 * form.coding[kbvDarreichungsform].code = #TAB
 * amount
   * denominator.value = 1
   * numerator.extension[Packungsgroesse].valueString = "1"
   * numerator.unit = "Stk"
+* ingredient
+  * itemCodeableConcept.text = "Sumatripan"
+  * strength.numerator
+    * value = 100
+    * unit = "mg"

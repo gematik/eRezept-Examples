@@ -11,3 +11,8 @@ Usage: #example
 * amount.numerator.extension[Packungsgroesse].valueString = "1"
 * amount.denominator.value = 1
 * amount.numerator.unit = "P"
+* ingredient
+  * itemCodeableConcept.text = "Clarithromycin"
+  * strength.numerator
+    * value = 500
+    * unit = "mg"

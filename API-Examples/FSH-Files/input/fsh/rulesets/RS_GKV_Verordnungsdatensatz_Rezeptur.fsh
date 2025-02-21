@@ -39,7 +39,7 @@ InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
 * extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#0
 * extension[Notdienstgebuehr].valueBoolean = false
-* extension[BVG].valueBoolean = false
+* extension[SER].valueBoolean = false
 * extension[Unfallinformationen].extension[Unfallkennzeichen].valueCoding = $KBV_CS_FOR_Ursache_Type#1
 * insert Date(extension[Unfallinformationen].extension[Unfalltag].valueDate)
 * extension[Mehrfachverordnung].extension[Kennzeichen].valueBoolean = true
@@ -63,7 +63,7 @@ InstanceOf: KBV_PR_ERP_Medication_Compounding
 Usage: #inline
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
-* extension[Kategorie].valueCodeableConcept.coding.code = #373873005:860781008=362943005
+* extension[Kategorie].valueCodeableConcept.coding.code = #1208954007
 * code.coding.code = #rezeptur
 * form.text = "Lösung"
 * amount.numerator.unit = "ml"
@@ -83,7 +83,7 @@ Usage: #inline
 Instance: 17b0721b-d538-4455-b1bb-2c2dfc19d234
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
-* identifier[versichertenId_GKV].value = "X234567890"
+* identifier[versichertenId].value = "X234567890"
 * name[name]
   * .use = #official
   * family.extension[nachname].valueString = "Königsstein"
