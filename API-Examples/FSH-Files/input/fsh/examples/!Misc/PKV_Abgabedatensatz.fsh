@@ -58,7 +58,6 @@ Usage: #inline
   * chargeItemCodeableConcept = $pzn-cs#03879429
   * chargeItemCodeableConcept.text = "BELOC-ZOK mite 47,5 mg Retardtabletten 30 St"
   * priceComponent
-    * extension[MwSt-Satz].url = "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz"
     * extension[MwSt-Satz].valueDecimal = 19.00
     * extension[KostenVersicherter].extension[Kategorie].valueCodeableConcept = $DAV-PKV-CS-ERP-KostenVersicherterKategorie#0
     * extension[KostenVersicherter].extension[Kostenbetrag].valueMoney.value = 0.00

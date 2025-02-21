@@ -25,7 +25,7 @@
             "id": "8b9e1aa9-cf61-48da-a3b7-5e5eea99f5d2",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
               ]
             },
             "identifier": [
@@ -54,7 +54,15 @@
                 }
               }
             ],
-            "whenHandedOver": "2025-02-03",
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication"
+            },
+            "quantity": {
+              "value": 1,
+              "code": "{Package}",
+              "system": "http://unitsofmeasure.org"
+            },
+            "whenHandedOver": "2025-10-01",
             "dosageInstruction": [
               {
                 "text": "morgens und abends 1/2 Tablette"
@@ -72,8 +80,39 @@
             "id": "7889ee94-b858-4848-85c4-59b640f4b643",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
               ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/terminology/CodeSystem/epa-drug-category-cs"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20"
+                  }
+                ],
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
             },
             "code": {
               "coding": [
@@ -93,71 +132,22 @@
                 }
               ]
             },
-            "amount": {
-              "numerator": {
-                "extension": [
-                  {
-                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
-                    "valueString": "20"
-                  }
-                ],
-                "unit": "Stück"
-              },
-              "denominator": {
-                "value": 1
-              }
-            },
             "ingredient": [
               {
                 "itemCodeableConcept": {
-                  "text": "Sulfamethoxazol"
+                  "text": "Sumatriptan"
                 },
                 "strength": {
                   "numerator": {
-                    "value": 400,
-                    "unit": "mg",
-                    "_system": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    }
+                    "value": 100,
+                    "unit": "mg"
                   },
                   "denominator": {
-                    "value": 1,
-                    "_system": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    }
+                    "value": 1
                   }
                 }
               }
-            ],
-            "batch": {
-              "lotNumber": "A123456789-1"
-            }
+            ]
           }
         }
       ]

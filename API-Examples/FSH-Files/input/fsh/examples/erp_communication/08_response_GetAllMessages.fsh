@@ -16,8 +16,7 @@ Usage: #inline
 * meta.id = "Communication-erp-communication-08-request-RezeptZuweisen"
 * basedOn = Reference(Task/160.000.000.000.000.01/$accept?ac=777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea)
 * insert ApoTelematikID(recipient.identifier)
-* insert GKV_Identifier(sender.identifier.value)
-* insert GKV_Identifier_System(sender.identifier.system)
+* insert GKV_Identifier(sender.identifier)
 * insert DateTimeStamp(sent)
 * status = #unknown
 * extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"

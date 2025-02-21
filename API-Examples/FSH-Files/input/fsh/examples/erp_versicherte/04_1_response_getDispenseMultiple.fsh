@@ -50,7 +50,7 @@ Description: "Example of a Medication Dispense."
 * id = "160.000.000.000.000.01"
 * identifier[prescriptionID].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier[prescriptionID].value = "160.000.000.000.000.01"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 * medicationReference = Reference(urn:uuid:86ce7563-9819-4dfa-9944-d307f7cfec9b)
@@ -72,7 +72,7 @@ Description: "Example of a Medication Dispense 2."
 * id = "160.000.000.000.000.02"
 * identifier[prescriptionID].system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * identifier[prescriptionID].value = "160.000.000.000.000.02"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
 * medicationReference = Reference(urn:uuid:56c61db7-0a94-4b7b-832a-b8ac3752035d)
@@ -93,7 +93,7 @@ Usage: #inline
 * medicationReference = Reference(Medication-1-2)
 * contained = Medication-1-2
 * dosageInstruction.text = "1-0-1-0"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * status = #completed
 * meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.2"
 * insert ApoTelematikID(performer.actor.identifier)
@@ -132,7 +132,7 @@ Usage: #inline
 * medicationReference = Reference(Medication-1-3)
 * contained = Medication-1-3
 * dosageInstruction.text = "1-0-1-0"
-* insert GKV_Identifier(subject.identifier.value)
+* insert GKV_Identifier(subject.identifier)
 * status = #completed
 * meta.profile = "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.3"
 * insert ApoTelematikID(performer.actor.identifier)

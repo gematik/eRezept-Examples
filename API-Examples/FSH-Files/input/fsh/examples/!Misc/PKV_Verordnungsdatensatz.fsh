@@ -41,7 +41,7 @@ InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
 * extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#0
 * extension[Notdienstgebuehr].valueBoolean = false
-* extension[BVG].valueBoolean = false
+* extension[SER].valueBoolean = false
 * extension[Unfallinformationen].extension[Unfallkennzeichen].valueCoding = $KBV_CS_FOR_Ursache_Type#1
 * extension[Unfallinformationen].extension[Unfalltag].valueDate = "2023-07-01"
 * extension[Mehrfachverordnung].extension[Kennzeichen].valueBoolean = true
@@ -105,7 +105,7 @@ Usage: #inline
 Instance: 9774f67f-a238-4daf-b4e6-Pat-PKV
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
-* identifier[versichertenID_pkv].value = "P123464117"
+* identifier[versichertenId].value = "P123464117"
 * name[name]
   * .use = #official
   * family.extension[nachname].valueString = "Königsstein"

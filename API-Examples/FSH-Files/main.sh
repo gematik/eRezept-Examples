@@ -12,7 +12,7 @@ SCRIPT_DIR=$(dirname "$0")
 INPUT_DIR="$SCRIPT_DIR/fsh-generated/resources"
 OUTPUT_DIR="$SCRIPT_DIR/output"
 TEMPLATE_DIR="$SCRIPT_DIR/input/fsh/examples"
-API_DATE="2025-01-15"
+API_DATE="2025-10-01"
 API_EXAMPLES_DIR="$SCRIPT_DIR/../$API_DATE"
 
 # cd scripts
@@ -36,7 +36,7 @@ echo "Executing SUSHI command"
 sushi "$SCRIPT_DIR"
 
 #echo "Fixing decimal value issues in $INPUT_DIR"
-#"$SCRIPT_DIR/scripts/fix_decimalValuesJSON.sh" "$INPUT_DIR"
+"$SCRIPT_DIR/scripts/dec.sh" $INPUT_DIR
 
 echo "Generating examples and folder structure"
 "$SCRIPT_DIR/scripts/generate_examples.sh" $INPUT_DIR $OUTPUT_DIR $TEMPLATE_DIR

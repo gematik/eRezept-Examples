@@ -3,7 +3,7 @@
   "id": "01ce5139-197f-4520-8805-12a2a4a1c546",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"
     ]
   },
   "parameter": [
@@ -17,7 +17,7 @@
             "id": "9c071f12-db40-4f7e-9b87-18cea3458c0d",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
               ]
             },
             "identifier": [
@@ -46,7 +46,10 @@
                 }
               }
             ],
-            "whenHandedOver": "2025-02-03"
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication"
+            },
+            "whenHandedOver": "2025-10-01"
           }
         },
         {
@@ -56,8 +59,39 @@
             "id": "ebdb8f91-b514-4374-bd18-825f9437e2aa",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
               ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/terminology/CodeSystem/epa-drug-category-cs"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20"
+                  }
+                ],
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
             },
             "code": {
               "coding": [
@@ -77,71 +111,22 @@
                 }
               ]
             },
-            "amount": {
-              "numerator": {
-                "extension": [
-                  {
-                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
-                    "valueString": "20"
-                  }
-                ],
-                "unit": "Stück"
-              },
-              "denominator": {
-                "value": 1
-              }
-            },
             "ingredient": [
               {
                 "itemCodeableConcept": {
-                  "text": "Doxycyclin"
+                  "text": "Sumatriptan"
                 },
                 "strength": {
                   "numerator": {
-                    "value": 200,
-                    "unit": "mg",
-                    "_system": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    }
+                    "value": 100,
+                    "unit": "mg"
                   },
                   "denominator": {
-                    "value": 1,
-                    "_system": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    },
-                    "_code": {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
-                          "valueCode": "unknown"
-                        }
-                      ]
-                    }
+                    "value": 1
                   }
                 }
               }
-            ],
-            "batch": {
-              "lotNumber": "A123456789-1"
-            }
+            ]
           }
         }
       ]
@@ -156,7 +141,7 @@
             "id": "40afa27e-9c66-48d0-8f09-4d2eb43fb44d",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
               ]
             },
             "identifier": [
@@ -185,7 +170,10 @@
                 }
               }
             ],
-            "whenHandedOver": "2025-02-03"
+            "medicationReference": {
+              "reference": "Medication/FlusarionMedication"
+            },
+            "whenHandedOver": "2025-10-01"
           }
         },
         {
@@ -195,9 +183,26 @@
             "id": "a4048f3c-4803-46ad-b809-63cf53fed771",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
               ]
             },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/terminology/CodeSystem/epa-drug-category-cs"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
             "code": {
               "coding": [
                 {

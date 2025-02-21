@@ -36,7 +36,7 @@ Usage: #inline
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * entity.what.identifier.value = "160.000.000.000.000.01"
-* insert GKV_Identifier(entity.name)
+* insert KVNR(entity.name)
 * entity.description = "*160.000.000.000.000.01*"
 
 Instance: 58863
@@ -60,7 +60,7 @@ Usage: #inline
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * entity.what.identifier.value = "160.000.000.000.000.01"
-* insert GKV_Identifier(entity.name)
+* insert KVNR(entity.name)
 * entity.description = "*160.000.000.000.000.01*"
 
 Instance: 620049
@@ -84,5 +84,5 @@ Usage: #inline
 * entity.what.identifier.use = #official
 * entity.what.identifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"
 * entity.what.identifier.value = "160.000.000.000.000.01"
-* insert GKV_Identifier(entity.name)
+* insert KVNR(entity.name)
 * entity.description = "*160.000.000.000.000.01*"

@@ -56,7 +56,7 @@ Usage: #inline
 Instance: 40acd463-b25d-4ede-8b1f-2b0994f29aa5
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
-* identifier[versichertenId_GKV].value = "X234567890"
+* identifier[versichertenId].value = "X234567890"
 * name[name]
   * .use = #official
   * family.extension[nachname].valueString = "Königsstein"

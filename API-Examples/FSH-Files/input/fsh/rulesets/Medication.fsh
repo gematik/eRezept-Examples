@@ -16,11 +16,7 @@ RuleSet: SumatripanMedication
   * strength
     * numerator.value = 100
     * numerator.unit = "mg"
-    * numerator.system.extension[dataAbsentReason].valueCode = #unknown
-    * numerator.code.extension[dataAbsentReason].valueCode = #unknown
     * denominator.value = 1
-    * denominator.system.extension[dataAbsentReason].valueCode = #unknown
-    * denominator.code.extension[dataAbsentReason].valueCode = #unknown
 
 RuleSet: FlusarionMedication
 * extension[drugCategory].valueCoding = EPADrugCategoryCS#00
