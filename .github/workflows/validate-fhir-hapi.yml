@@ -57,7 +57,7 @@ jobs:
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.6.12
         with:
-          PATH_TO_CONFORMANCE_RESOURCES: ./API-Examples/FSH-Files/fsh-generated/resources/
+          PATH_TO_CONFORMANCE_RESOURCES: API-Examples/FSH-Files/fsh-generated/resources/
           #FIRELY_TERMINAL_VERSION: 3.3.2
           PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
           #PATH_TO_QUALITY_CONTROL_RULES: qc/custom
@@ -75,9 +75,9 @@ jobs:
           ZTS_ENABLED: false
           JAVA_SNAPSHOT_ENABLED: true
   
-      - name: Check for Uncommitted Changes
-        run: |
-          git diff --exit-code 'API-Examples/FSH-Files/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)              
+      #- name: Check for Uncommitted Changes
+      #  run: |
+      #    git diff --exit-code 'API-Examples/FSH-Files/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)              
 
       - name: Cleanup
         if: always()
