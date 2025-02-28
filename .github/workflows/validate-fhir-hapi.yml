@@ -13,11 +13,11 @@ on:
 
 env:
   VALIDATOR_VERSION: 1.0.61
-  PATH_TO_EXAMPLES: 'FSH-Files/fsh-generated/resources/' 
+  PATH_TO_EXAMPLES: './temp_folder/'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
   IG_DEPENDENCIES: "-ig de.basisprofil.r4#1.4.0 -ig hl7.fhir.r4.core#4.0.1 -ig kbv.ita.for#1.1.0 -ig kbv.ita.erp#1.1.x -ig de.gematik.erezept-workflow.r4"
-#PATH_TO_EXAMPLES: './temp_folder/'
+#PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
 
 jobs:
   CI_EXAMPLES_VALIDATION:
@@ -57,7 +57,7 @@ jobs:
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.6.12
         with:
-          PATH_TO_CONFORMANCE_RESOURCES: FSH-Files/fsh-generated/resources/
+          PATH_TO_CONFORMANCE_RESOURCES: API-Examples/FSH-Files/fsh-generated/resources/
           #FIRELY_TERMINAL_VERSION: 3.3.2
           PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
           #PATH_TO_QUALITY_CONTROL_RULES: qc/custom
