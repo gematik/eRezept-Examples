@@ -270,17 +270,16 @@ jobs:
                 # Ensure directory ends with "/"
                 if [[ ! "$p" =~ .*/$ ]]; then
                   p="$p/"
-                fi
-                echo "Validating $GITHUB_WORKSPACE/$p"
-                ls $GITHUB_WORKSPACE/$p
-                echo "Loading filenames into memory..."
+                fi        
+                      
+                echo "Loading filenames into memory..."  
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
                 
                 # Use find with -print0 and xargs with -0 to handle spaces in filenames                
                 files=$(find "$GITHUB_WORKSPACE/$p" -type f -name "*.xml" -o -type f -name "*.json")
 
                 ls $files
-                
+                echo "Commencing with validating"
                 if [ -n "$files" ]; then
                   if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
                     javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
