@@ -59,7 +59,7 @@ jobs:
       - name: List contents of the destination folder
         run: |
           echo "Contents of the destination folder:"
-          ls -R $DEST_DIR
+          ls -R $PATH_TO_EXAMPLES
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
@@ -276,6 +276,7 @@ jobs:
 
                 # Find all .xml and .json files recursively
                 files=$(find $GITHUB_WORKSPACE/$p -type f $$-name "*.xml" -o -name "*.json"$$)
+                ls $files
                 
                 if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
                   javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
