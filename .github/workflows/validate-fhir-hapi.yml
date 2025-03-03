@@ -155,28 +155,28 @@ jobs:
     # Run Quality Control checks incl. validation
       - name: Run Quality Control checks
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED; then
             echo "Running quality control checks incl. validation based on Firely Terminal ..."
-            if echo $INPUT_EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
-              fhir check $INPUT_PATH_TO_QUALITY_CONTROL_RULES
+            if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
+              fhir check $PATH_TO_QUALITY_CONTROL_RULES
             else
-              fhir check --fail $INPUT_PATH_TO_QUALITY_CONTROL_RULES
+              fhir check --fail $PATH_TO_QUALITY_CONTROL_RULES
             fi
           fi
         shell: bash
-        env:
-          INPUT_EXPECTED_FAILS: $EXPECTED_FAILS 
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+        #env:
+          #INPUT_EXPECTED_FAILS: $EXPECTED_FAILS 
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
           #INPUT_PATH_TO_QUALITY_CONTROL_RULES: ${{ inputs.PATH_TO_QUALITY_CONTROL_RULES }}
         
       - name: Report Success - .NET Validator
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED; then
             echo "Finished validation using .NET validator (Conformance resources) ..."
           fi
         shell: bash
-        env:
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED 
+        #env:
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED 
 
     # --------------------------------------------------------------------------------------------------- #
     #                                            JAVA Validator                                           #
@@ -186,17 +186,17 @@ jobs:
 
       - name: Remove package cache to enable the Java  validator to create snapshots
         run: |
-          if $INPUT_JAVA_SNAPSHOT_ENABLED; then
+          if $JAVA_SNAPSHOT_ENABLED; then
             fhirCacheLocation=$(fhir cache location --path)
             rm -rf $fhirCacheLocation
           fi
         shell: bash
-        env:
-          INPUT_JAVA_SNAPSHOT_ENABLED: $JAVA_SNAPSHOT_ENABLED
+        #env:
+          #INPUT_JAVA_SNAPSHOT_ENABLED: $JAVA_SNAPSHOT_ENABLED
     
       - name: Check if Java is installed
         run: |
-          if $INPUT_JAVA_VALIDATION_ENABLED; then
+          if $JAVA_VALIDATION_ENABLED; then
             if ! command -v java &> /dev/null
             then
               echo "java could not be found. Please see actions/setup-java to set it up before running this action."
@@ -204,35 +204,35 @@ jobs:
             fi
           fi
         shell: bash
-        env:
-          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+        #env:
+          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
     
       - name: Download Java Validator
         run: |
-          if $INPUT_JAVA_VALIDATION_ENABLED; then
+          if $JAVA_VALIDATION_ENABLED; then
             CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
             echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
-            echo "JAVA_VALIDATOR_VERSION: $JAVA_VALIDATOR_VERSION"
+            echo "VALIDATOR_VERSION: $VALIDATOR_VERSION"
             JAVA_VALIDATOR_DOWNLOAD_LOCATION=$(eval echo "$JAVA_VALIDATOR_DOWNLOAD_LOCATION")
             echo "JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION"
           
             wget -q $JAVA_VALIDATOR_DOWNLOAD_LOCATION -O validator_cli.jar
           fi
         shell: bash
-        env:
-          JAVA_VALIDATOR_VERSION: $VALIDATOR_VERSION
-          JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION
-          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+        #env:
+          #JAVA_VALIDATOR_VERSION: $VALIDATOR_VERSION
+          #JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION
+          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
       
       - name: Install jq
         run: |
-          if $INPUT_JAVA_VALIDATION_ENABLED; then 
+          if $JAVA_VALIDATION_ENABLED; then 
             sudo apt-get update > /dev/null
             sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
           fi
         shell: bash
-        env:
-          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+        #env:
+          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
           
       - name: Validate all example resources in scope of the repository
         run: |    
@@ -243,7 +243,7 @@ jobs:
           OK=$'\033[0;32m'
           NC=$'\033[0m'
             
-          if $INPUT_JAVA_VALIDATION_ENABLED; then
+          if $JAVA_VALIDATION_ENABLED; then
             IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
             #for p in $INPUT_PATH_TO_CONFORMANCE_RESOURCES; # Get combined path to conformance resources, we want to validate against the current version of the conformance resources
               #do  
@@ -260,7 +260,7 @@ jobs:
               
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
                 
-                if echo $INPUT_EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
+                if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
                   javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS || true)
                 else
                   javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
@@ -277,34 +277,13 @@ jobs:
               done
             fi
         shell: bash
-        env:          
-          PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
-          FHIR_VERSION: $FHIR_VERSION
-          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
-          INPUT_EXPECTED_FAILS: $EXPECTED_FAILS
-          INPUT_JAVA_VALIDATION_OPTIONS: $INPUT_JAVA_VALIDATION_OPTIONS 
+        #env:          
+          #PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
+          #FHIR_VERSION: $FHIR_VERSION
+          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+          #INPUT_EXPECTED_FAILS: $EXPECTED_FAILS
+          #INPUT_JAVA_VALIDATION_OPTIONS: $INPUT_JAVA_VALIDATION_OPTIONS 
           #INPUT_PATH_TO_CONFORMANCE_RESOURCES: ${{ inputs.PATH_TO_CONFORMANCE_RESOURCES }}
-
-      - name: Firely.Terminal (GitHub Actions)
-        uses: FirelyTeam/firely-terminal-pipeline@v0.6.12
-        with:
-          PATH_TO_CONFORMANCE_RESOURCES: API-Examples/FSH-Files/fsh-generated/resources/
-          #FIRELY_TERMINAL_VERSION: 3.3.2
-          PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
-          #PATH_TO_QUALITY_CONTROL_RULES: qc/custom
-          DOTNET_VALIDATION_ENABLED: true
-          JAVA_VALIDATION_ENABLED: true
-          #OUTPUT_FORMAT: RAW
-          JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style raw
-          #JAVA_VALIDATOR_VERSION: 6.5.11
-          SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
-          SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
-          #SUSHI_ENABLED: true
-          #SUSHI_VERSION: 3.11.0
-          #SUSHI_OPTIONS: -s API-Examples/FSH-Files/
-          EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
-          ZTS_ENABLED: false
-          JAVA_SNAPSHOT_ENABLED: true
   
       #- name: Check for Uncommitted Changes
       #  run: |
