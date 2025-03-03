@@ -271,12 +271,12 @@ jobs:
                 if [[ ! "$p" =~ .*/$ ]]; then
                   p="$p/"
                 fi
-                echo "Validating $p*.xml"
+                echo "Validating $GITHUB_WORKSPACE/$p"
+                ls $GITHUB_WORKSPACE/$p
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
                 
                 # Use find with -print0 and xargs with -0 to handle spaces in filenames
                 files=$(find "$GITHUB_WORKSPACE/$p" -type f $$-name "*.xml" -o -name "*.json"$$ -print0 | xargs -0 echo)
-                files=$(find "$GITHUB_WORKSPACE/$p" -type f $$-name "*.xml" -o -name "*.json"$$ -print0 | xargs -0)
                 ls $files
                 
                 if [ -n "$files" ]; then
