@@ -12,12 +12,18 @@ on:
   workflow_dispatch:
 
 env:
-  VALIDATOR_VERSION: 1.0.61
+  VALIDATOR_VERSION: 6.5.11
+  JAVA_VALIDATOR_DOWNLOAD_LOCATION: "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$VALIDATOR_VERSION/validator_cli.jar"
   PATH_TO_EXAMPLES: './temp_folder/'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
   IG_DEPENDENCIES: "-ig de.basisprofil.r4#1.4.0 -ig hl7.fhir.r4.core#4.0.1 -ig kbv.ita.for#1.1.0 -ig kbv.ita.erp#1.1.x -ig de.gematik.erezept-workflow.r4"
-#PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
+  DOTNET_VALIDATION_ENABLED: false
+  JAVA_VALIDATION_ENABLED: true
+  SUSHI_ENABLED: false
+  EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
+  #JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style raw
+  #PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
 
 jobs:
   CI_EXAMPLES_VALIDATION:
@@ -53,6 +59,230 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      # Install Firely.Terminal
+      - name: Install Firely.Terminal
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+            if ! command -v fhir &> /dev/null
+            then
+              dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION > /dev/null
+            fi
+          fi
+        shell: bash
+        env:
+          FIRELY_TERMINAL_VERSION: 3.3.2
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+
+      # Test Firely.Terminal install
+      - name: Check Firely Terminal Version
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+            CHECK_FIRELY_TERMINAL_VERSION=$(fhir -v | tr '\n' ' ') # Print everything in a single line
+            echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
+          fi
+        shell: bash
+        env:
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+    
+      # Simplifier Login
+      - name: Simplifier login
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+            fhir login email=$INPUT_SIMPLIFIER_USERNAME password=$INPUT_SIMPLIFIER_PASSWORD
+          fi
+        shell: bash
+        env:
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+          INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
+          INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
+       
+      # Restore all dependencies listed in the package.json file (need to be on the root level)
+      - name: FHIR Dependency restore
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+            if [ ! -f "package.json" ]; then
+              echo "package.json does not exist. Please add it to the root folder and add all project dependencies."
+              exit 1
+            fi
+          
+            fhirVersions=("3.0.2" "4.0.1" "4.1.0" "4.6.0")
+            for fhirVersion in ${fhirVersions[@]}; do
+              fhirVersionFoundInPackageJson=$(cat package.json | jq '.fhirVersions | index('\"$fhirVersion\"')')
+              if [[ ! "$fhirVersionFoundInPackageJson" = null ]]; then
+                echo "Found FHIR version $fhirVersion in package.json"
+                if [[ "$fhirVersion" = "3.0.2" ]]; then
+                  fhir spec R3
+                  break
+                elif [[ "$fhirVersion" = "4.0.1" ]]; then
+                  fhir spec R4
+                  break
+                elif [[ "$fhirVersion" = "4.1.0" ]]; then
+                  fhir spec R4B
+                  break
+                elif [[ "$fhirVersion" = "4.6.0" ]]; then
+                  fhir spec R5
+                  break
+                else
+                  echo "This FHIR version is currently not supported.";
+                  exit 1
+                fi
+              fi
+            done
+
+            echo "Attempting to restore package dependencies based on package.json ..."
+            fhir config regenerate on
+            FHIR_RESTORE=$((fhir restore | tr '\n' ' ')|| true)  # Print everything in a single line
+            if [[ "$FHIR_RESTORE" == *"Cannot restore"* ]]; then
+              echo $FHIR_RESTORE
+              exit 1
+            fi
+            echo "Restore of package.json was successful: $FHIR_RESTORE"
+          fi
+        shell: bash
+        env:
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+
+    # --------------------------------------------------------------------------------------------------- #
+    #                                            .NET VALIDATOR                                           #
+    # --------------------------------------------------------------------------------------------------- #
+                
+    # Run Quality Control checks incl. validation
+      - name: Run Quality Control checks
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED; then
+            echo "Running quality control checks incl. validation based on Firely Terminal ..."
+            if echo $INPUT_EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
+              fhir check $INPUT_PATH_TO_QUALITY_CONTROL_RULES
+            else
+              fhir check --fail $INPUT_PATH_TO_QUALITY_CONTROL_RULES
+            fi
+          fi
+        shell: bash
+        env:
+          INPUT_EXPECTED_FAILS: $EXPECTED_FAILS 
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          #INPUT_PATH_TO_QUALITY_CONTROL_RULES: ${{ inputs.PATH_TO_QUALITY_CONTROL_RULES }}
+        
+      - name: Report Success - .NET Validator
+        run: |
+          if $INPUT_DOTNET_VALIDATION_ENABLED; then
+            echo "Finished validation using .NET validator (Conformance resources) ..."
+          fi
+        shell: bash
+        env:
+          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED 
+
+    # --------------------------------------------------------------------------------------------------- #
+    #                                            JAVA Validator                                           #
+    # --------------------------------------------------------------------------------------------------- #
+    
+    # Offical HL7 Java validator steps
+
+      - name: Remove package cache to enable the Java  validator to create snapshots
+        run: |
+          if $INPUT_JAVA_SNAPSHOT_ENABLED; then
+            fhirCacheLocation=$(fhir cache location --path)
+            rm -rf $fhirCacheLocation
+          fi
+        shell: bash
+        env:
+          INPUT_JAVA_SNAPSHOT_ENABLED: ${{ inputs.JAVA_SNAPSHOT_ENABLED }}
+    
+      - name: Check if Java is installed
+        run: |
+          if $INPUT_JAVA_VALIDATION_ENABLED; then
+            if ! command -v java &> /dev/null
+            then
+              echo "java could not be found. Please see actions/setup-java to set it up before running this action."
+              exit 1
+            fi
+          fi
+        shell: bash
+        env:
+          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+    
+      - name: Download Java Validator
+        run: |
+          if $INPUT_JAVA_VALIDATION_ENABLED; then
+            CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
+            echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
+            echo "JAVA_VALIDATOR_VERSION: $JAVA_VALIDATOR_VERSION"
+            JAVA_VALIDATOR_DOWNLOAD_LOCATION=$(eval echo "$JAVA_VALIDATOR_DOWNLOAD_LOCATION")
+            echo "JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION"
+          
+            wget -q $JAVA_VALIDATOR_DOWNLOAD_LOCATION -O validator_cli.jar
+          fi
+        shell: bash
+        env:
+          JAVA_VALIDATOR_VERSION: $VALIDATOR_VERSION
+          JAVA_VALIDATOR_DOWNLOAD_LOCATION: ${{ inputs.JAVA_VALIDATOR_DOWNLOAD_LOCATION }}
+          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+      
+      - name: Install jq
+        run: |
+          if $INPUT_JAVA_VALIDATION_ENABLED; then 
+            sudo apt-get update > /dev/null
+            sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
+          fi
+        shell: bash
+        env:
+          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+          
+      - name: Validate all example resources in scope of the repository
+        run: |    
+          # Define color codes
+          ERROR=$'\033[0;31m'
+          WARN=$'\033[0;33m'
+          INFO=$'\033[0;34m'
+          OK=$'\033[0;32m'
+          NC=$'\033[0m'
+            
+          if $INPUT_JAVA_VALIDATION_ENABLED; then
+            IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
+            #for p in $INPUT_PATH_TO_CONFORMANCE_RESOURCES; # Get combined path to conformance resources, we want to validate against the current version of the conformance resources
+              #do  
+                #COMBINED_IG_PARAMETERS+="-ig $GITHUB_WORKSPACE/$p "
+              #done
+              
+            for p in $PATH_TO_EXAMPLES; 
+              do
+                
+                # Ensure directory ends with "/"
+                if [[ ! "$p" =~ .*/$ ]]; then
+                  p="$p/"
+                fi
+              
+                UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
+                
+                if echo $INPUT_EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
+                  javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS || true)
+                else
+                  javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
+                fi
+    
+                javaValidatorOutput=$(echo "$javaValidatorOutput" | sed -E "
+                  s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
+                  s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
+                  s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
+                  s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
+                ")
+                echo -e "$javaValidatorOutput"
+                
+              done
+            fi
+        shell: bash
+        env:          
+          PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
+          FHIR_VERSION: $FHIR_VERSION
+          INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
+          INPUT_EXPECTED_FAILS: $EXPECTED_FAILS
+          INPUT_JAVA_VALIDATION_OPTIONS: $INPUT_JAVA_VALIDATION_OPTIONS 
+          #INPUT_PATH_TO_CONFORMANCE_RESOURCES: ${{ inputs.PATH_TO_CONFORMANCE_RESOURCES }}
 
       - name: Firely.Terminal (GitHub Actions)
         uses: FirelyTeam/firely-terminal-pipeline@v0.6.12
