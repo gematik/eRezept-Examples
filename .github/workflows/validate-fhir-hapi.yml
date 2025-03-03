@@ -22,6 +22,7 @@ env:
   JAVA_VALIDATION_ENABLED: true
   SUSHI_ENABLED: false
   EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
+  JAVA_SNAPSHOT_ENABLED: false
   #JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style raw
   #PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
 
@@ -191,7 +192,7 @@ jobs:
           fi
         shell: bash
         env:
-          INPUT_JAVA_SNAPSHOT_ENABLED: ${{ inputs.JAVA_SNAPSHOT_ENABLED }}
+          INPUT_JAVA_SNAPSHOT_ENABLED: $JAVA_SNAPSHOT_ENABLED
     
       - name: Check if Java is installed
         run: |
@@ -220,7 +221,7 @@ jobs:
         shell: bash
         env:
           JAVA_VALIDATOR_VERSION: $VALIDATOR_VERSION
-          JAVA_VALIDATOR_DOWNLOAD_LOCATION: ${{ inputs.JAVA_VALIDATOR_DOWNLOAD_LOCATION }}
+          JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION
           INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
       
       - name: Install jq
