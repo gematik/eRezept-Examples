@@ -273,9 +273,9 @@ jobs:
                 fi
                 echo "Validating $p*.xml"
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
-
-                # Find all .xml and .json files recursively
-                files=$(find $GITHUB_WORKSPACE/$p -type f $$-name "*.xml" -o -name "*.json"$$)
+                
+                # Use find with -print0 and xargs with -0 to handle spaces in filenames
+                files=$(find "$GITHUB_WORKSPACE/$p" -type f $$-name "*.xml" -o -name "*.json"$$ -print0 | xargs -0 echo)
                 ls $files
                 
                 if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
