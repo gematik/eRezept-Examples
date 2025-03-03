@@ -273,11 +273,14 @@ jobs:
                 fi
                 echo "Validating $p*.xml"
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
+
+                # Find all .xml and .json files recursively
+                files=$(find $GITHUB_WORKSPACE/$p -type f $$-name "*.xml" -o -name "*.json"$$)
                 
                 if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
-                  javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+                  javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
                 else
-                  javaValidatorOutput=$(java -jar validator_cli.jar $GITHUB_WORKSPACE/$p*.xml $GITHUB_WORKSPACE/$p*.json -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
+                  javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
                 fi
     
                 javaValidatorOutput=$(echo "$javaValidatorOutput" | sed -E "
