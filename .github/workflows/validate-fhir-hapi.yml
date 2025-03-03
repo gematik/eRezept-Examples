@@ -64,7 +64,7 @@ jobs:
       # Install Firely.Terminal
       - name: Install Firely.Terminal
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             if ! command -v fhir &> /dev/null
             then
               dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION > /dev/null
@@ -73,38 +73,38 @@ jobs:
         shell: bash
         env:
           FIRELY_TERMINAL_VERSION: 3.3.2
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
 
       # Test Firely.Terminal install
       - name: Check Firely Terminal Version
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             CHECK_FIRELY_TERMINAL_VERSION=$(fhir -v | tr '\n' ' ') # Print everything in a single line
             echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
           fi
         shell: bash
         env:
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
     
       # Simplifier Login
       - name: Simplifier login
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             fhir login email=$INPUT_SIMPLIFIER_USERNAME password=$INPUT_SIMPLIFIER_PASSWORD
           fi
         shell: bash
         env:
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
           INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
        
       # Restore all dependencies listed in the package.json file (need to be on the root level)
       - name: FHIR Dependency restore
         run: |
-          if $INPUT_DOTNET_VALIDATION_ENABLED || $INPUT_SUSHI_ENABLED; then
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             if [ ! -f "package.json" ]; then
               echo "package.json does not exist. Please add it to the root folder and add all project dependencies."
               exit 1
@@ -145,8 +145,8 @@ jobs:
           fi
         shell: bash
         env:
-          INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
+          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
+          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
 
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
