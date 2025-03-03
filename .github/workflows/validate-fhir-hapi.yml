@@ -14,7 +14,7 @@ on:
 env:
   VALIDATOR_VERSION: 6.5.11
   JAVA_VALIDATOR_DOWNLOAD_LOCATION: "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$VALIDATOR_VERSION/validator_cli.jar"
-  PATH_TO_EXAMPLES: 'API-Examples/2025-01-15/'
+  PATH_TO_EXAMPLES: './temp_folder/'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
   IG_DEPENDENCIES: "-ig de.basisprofil.r4#1.4.0 -ig hl7.fhir.r4.core#4.0.1 -ig kbv.ita.for#1.1.0 -ig kbv.ita.erp#1.1.x -ig de.gematik.erezept-workflow.r4"
@@ -24,7 +24,6 @@ env:
   EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
   JAVA_SNAPSHOT_ENABLED: false
   #JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style raw
-  #PATH_TO_EXAMPLES: './temp_folder/'
   #PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
 
 jobs:
@@ -48,6 +47,14 @@ jobs:
           # git fetch origin main:main
           git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
           echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
+
+      # Copy 
+      - name: Copy files to test with
+        run: |
+          SOURCE_DIR='API-Examples/2025-01-15/'
+          DEST_DIR=$PATH_TO_EXAMPLES  
+          mkdir -p $DEST_DIR
+          cp -r $SOURCE_DIR/* $DEST_DIR
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
