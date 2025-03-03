@@ -276,22 +276,26 @@ jobs:
                 
                 # Use find with -print0 and xargs with -0 to handle spaces in filenames
                 files=$(find "$GITHUB_WORKSPACE/$p" -type f $$-name "*.xml" -o -name "*.json"$$ -print0 | xargs -0 echo)
+                files=$(find "$GITHUB_WORKSPACE/$p" -type f $$-name "*.xml" -o -name "*.json"$$ -print0 | xargs -0)
                 ls $files
                 
-                if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
-                  javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
-                else
-                  javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
-                fi
+                if [ -n "$files" ]; then
+                  if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
+                    javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+                  else
+                    javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS)
+                  fi
     
-                javaValidatorOutput=$(echo "$javaValidatorOutput" | sed -E "
-                  s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
-                  s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
-                  s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
-                  s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
-                ")
-                echo -e "$javaValidatorOutput"
-                
+                  javaValidatorOutput=$(echo "$javaValidatorOutput" | sed -E "
+                    s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
+                    s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
+                    s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
+                    s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
+                    ")
+                  echo -e "$javaValidatorOutput"
+                else
+                  echo "No XML or JSON files found in $p"
+                fi
               done
             fi
         shell: bash
