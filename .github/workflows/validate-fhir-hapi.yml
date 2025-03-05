@@ -170,12 +170,21 @@ jobs:
         run: |
           if $DOTNET_VALIDATION_ENABLED; then
             echo "Running quality control checks incl. validation based on Firely Terminal ..."
-            if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
-              #fhir check $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
-              fhir validate $PATH_TO_EXAMPLES
-            else
-              #fhir check --fail $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
-              fhir validate $PATH_TO_EXAMPLES
+    
+            # Find and validate each file individually
+            EXIT_CODE=0
+            find path/to/your/specific/folder -type f -name "*.json" -o -name "*.xml" | while read file; do
+              echo "Validating $file..."
+              if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
+                fhir validate "$file"
+              else
+                fhir validate "$file" --fail || EXIT_CODE=1
+              fi
+            done
+    
+            # Exit with error if any validation failed
+            if [ $EXIT_CODE -ne 0 ]; then
+              exit 1
             fi
           fi
         shell: bash
