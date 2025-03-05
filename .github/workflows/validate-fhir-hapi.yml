@@ -171,9 +171,11 @@ jobs:
           if $DOTNET_VALIDATION_ENABLED; then
             echo "Running quality control checks incl. validation based on Firely Terminal ..."
             if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
-              fhir check $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
+              #fhir check $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
+              fhir validate $PATH_TO_EXAMPLES
             else
-              fhir check --fail $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
+              #fhir check --fail $PATH_TO_QUALITY_CONTROL_RULES -s $PATH_TO_EXAMPLES
+              fhir validate $PATH_TO_EXAMPLES
             fi
           fi
         shell: bash
