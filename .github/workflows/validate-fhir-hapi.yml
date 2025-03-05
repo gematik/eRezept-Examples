@@ -173,7 +173,7 @@ jobs:
     
             # Find and validate each file individually
             EXIT_CODE=0
-            find path/to/your/specific/folder -type f -name "*.json" -o -name "*.xml" | while read file; do
+            find $PATH_TO_EXAMPLES -type f -name "*.json" -o -name "*.xml" | while read file; do
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
                 fhir validate "$file"
