@@ -22,9 +22,7 @@ env:
   JAVA_VALIDATION_ENABLED: true
   SUSHI_ENABLED: true
   EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
-  JAVA_SNAPSHOT_ENABLED: false
-  #JAVA_VALIDATION_OPTIONS: -allow-example-urls true -output-style raw
-  #PATH_TO_EXAMPLES: 'API-Examples/FSH-Files/fsh-generated/resources/' 
+  JAVA_SNAPSHOT_ENABLED: false 
 
 jobs:
   CI_EXAMPLES_VALIDATION:
@@ -47,19 +45,6 @@ jobs:
           # git fetch origin main:main
           git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
           echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
-
-      # Copy 
-      #- name: Copy files to test with
-        #run: |
-          #SOURCE_DIR='API-Examples/2025-01-15/erp_abrufen'
-          #DEST_DIR=$PATH_TO_EXAMPLES  
-          #mkdir -p $DEST_DIR
-          #cp -r $SOURCE_DIR/* $DEST_DIR
-
-      #- name: List contents of the destination folder
-        #run: |
-          #echo "Contents of the destination folder:"
-          #ls -R $PATH_TO_EXAMPLES
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
@@ -86,8 +71,6 @@ jobs:
         shell: bash
         env:
           FIRELY_TERMINAL_VERSION: 3.3.2
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
 
       # Test Firely.Terminal install
       - name: Check Firely Terminal Version
@@ -97,9 +80,6 @@ jobs:
             echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
           fi
         shell: bash
-        #env:
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
     
       # Simplifier Login
       - name: Simplifier login
@@ -109,8 +89,6 @@ jobs:
           fi
         shell: bash
         env:
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
           INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
        
@@ -157,9 +135,6 @@ jobs:
             echo "Restore of package.json was successful: $FHIR_RESTORE"
           fi
         shell: bash
-        #env:
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          #INPUT_SUSHI_ENABLED: $SUSHI_ENABLED
 
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
@@ -188,10 +163,6 @@ jobs:
             fi
           fi
         shell: bash
-        #env:
-          #INPUT_EXPECTED_FAILS: $EXPECTED_FAILS 
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED
-          #INPUT_PATH_TO_QUALITY_CONTROL_RULES: ${{ inputs.PATH_TO_QUALITY_CONTROL_RULES }}
         
       - name: Report Success - .NET Validator
         run: |
@@ -199,8 +170,6 @@ jobs:
             echo "Finished validation using .NET validator (Conformance resources) ..."
           fi
         shell: bash
-        #env:
-          #INPUT_DOTNET_VALIDATION_ENABLED: $DOTNET_VALIDATION_ENABLED 
 
     # --------------------------------------------------------------------------------------------------- #
     #                                            JAVA Validator                                           #
@@ -215,8 +184,6 @@ jobs:
             rm -rf $fhirCacheLocation
           fi
         shell: bash
-        #env:
-          #INPUT_JAVA_SNAPSHOT_ENABLED: $JAVA_SNAPSHOT_ENABLED
     
       - name: Check if Java is installed
         run: |
@@ -228,8 +195,6 @@ jobs:
             fi
           fi
         shell: bash
-        #env:
-          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
     
       - name: Download Java Validator
         run: |
@@ -243,10 +208,6 @@ jobs:
             wget -q $JAVA_VALIDATOR_DOWNLOAD_LOCATION -O validator_cli.jar
           fi
         shell: bash
-        #env:
-          #JAVA_VALIDATOR_VERSION: $VALIDATOR_VERSION
-          #JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION
-          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
       
       - name: Install jq
         run: |
@@ -255,10 +216,8 @@ jobs:
             sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
           fi
         shell: bash
-        #env:
-          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
           
-      - name: Validate all example resources in scope of the repository
+      - name: Validate the example resources that have changed with the Java Validator
         run: |    
           # Define color codes
           ERROR=$'\033[0;31m'
@@ -269,10 +228,6 @@ jobs:
             
           if $JAVA_VALIDATION_ENABLED; then
             IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
-            #for p in $INPUT_PATH_TO_CONFORMANCE_RESOURCES; # Get combined path to conformance resources, we want to validate against the current version of the conformance resources
-              #do  
-                #COMBINED_IG_PARAMETERS+="-ig $GITHUB_WORKSPACE/$p "
-              #done
             
             echo "Validating examples in $PATH_TO_EXAMPLES"
             for p in $PATH_TO_EXAMPLES; 
@@ -289,7 +244,6 @@ jobs:
                 # Use find with -print0 and xargs with -0 to handle spaces in filenames                
                 files=$(find "$GITHUB_WORKSPACE/$p" -type f -name "*.xml" -o -type f -name "*.json")
 
-                ls $files
                 echo "Commencing with validating"
                 if [ -n "$files" ]; then
                   if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
@@ -311,18 +265,7 @@ jobs:
               done
             fi
         shell: bash
-        #env:          
-          #PATH_TO_EXAMPLES: $PATH_TO_EXAMPLES
-          #FHIR_VERSION: $FHIR_VERSION
-          #INPUT_JAVA_VALIDATION_ENABLED: $JAVA_VALIDATION_ENABLED
-          #INPUT_EXPECTED_FAILS: $EXPECTED_FAILS
-          #INPUT_JAVA_VALIDATION_OPTIONS: $INPUT_JAVA_VALIDATION_OPTIONS 
-          #INPUT_PATH_TO_CONFORMANCE_RESOURCES: ${{ inputs.PATH_TO_CONFORMANCE_RESOURCES }}
-  
-      #- name: Check for Uncommitted Changes
-      #  run: |
-      #    git diff --exit-code 'API-Examples/FSH-Files/fsh-generated/resources'|| (echo "Es gibt Änderungen durch die Pipeline. Lokale Sushi Konfiguration prüfen!" && exit 1)              
-
+        
       - name: Cleanup
         if: always()
         run: rm -rf temp_folder
