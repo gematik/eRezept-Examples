@@ -150,6 +150,7 @@ jobs:
     
             # Find and validate each file individually
             EXIT_CODE=0
+            VALIDATION_OUTPUT=""
             find $PATH_TO_EXAMPLES -type f -name "*.json" -o -name "*.xml" | while read file; do
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
@@ -273,18 +274,15 @@ jobs:
               done
             fi
         shell: bash
-        
-      - name: Cleanup
-        if: always()
-        run: rm -rf temp_folder
 
-  CHECK-ERRORS:
-    runs-on: ubuntu-latest
-    needs: CI_EXAMPLES_VALIDATION
-    steps:
       - name: Check whether errors occurred 
         run: |
           if [ "$OUTPUT_FAILURE" = "true" ]; then
             echo "$OUTPUT_FAILURE_MESSAGE"
             exit 1
-          fi  
+          fi 
+        
+      - name: Cleanup
+        if: always()
+        run: rm -rf temp_folder
+       
