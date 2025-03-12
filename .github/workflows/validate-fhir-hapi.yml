@@ -149,7 +149,6 @@ jobs:
             echo "Running quality control checks incl. validation based on Firely Terminal ..."
     
             # Find and validate each file individually
-            EXIT_CODE=0
             VALIDATION_OUTPUT=""
             OUTPUT_FAILURE_MESSAGE=""
             find $PATH_TO_EXAMPLES -type f -name "*.json" -o -name "*.xml" | while read file; do
@@ -161,17 +160,17 @@ jobs:
               fi
               echo $VALIDATION_OUTPUT 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
-                  EXIT_CODE=1
-                  echo "Validation failure - Setting EXIT_CODE to 1"
                   # Append the file name and validation output to the failure message
                   OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file\nValidation Error: $VALIDATION_OUTPUT\n\n"
               fi
             done
     
+            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+
             # Exit with error if any validation failed
-            echo $EXIT_CODE
-            if [ $EXIT_CODE -ne 0 ]; then
+            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
               OUTPUT_FAILURE=true
+              echo "$OUTPUT_FAILURE" >> $GITHUB_ENV
               # exit 1
             fi
           fi
