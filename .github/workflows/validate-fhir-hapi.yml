@@ -168,7 +168,7 @@ jobs:
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   # Append the file name and validation output to the failure message
                   echo "Error found!"
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT"
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT\n\n"
               fi
             done < "$TEMP_FILE"
             
@@ -301,12 +301,12 @@ jobs:
                     echo "Java validation errors found!"
                     
                     # Extract error messages
-                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 "Error ")
+                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*])
                     
                     # Append to the failure message with proper formatting
-                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages"
-                    echo "Current failure message:"
-                    echo "$OUTPUT_FAILURE_MESSAGE"
+                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
+                    #echo "Current failure message:"
+                    #echo "$OUTPUT_FAILURE_MESSAGE"
                   fi
                 else
                   echo "No XML or JSON files found in $p"
