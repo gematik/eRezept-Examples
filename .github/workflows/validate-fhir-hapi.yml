@@ -150,7 +150,7 @@ jobs:
 
             # Find and validate each file individually
             VALIDATION_OUTPUT=""
-            OUTPUT_FAILURE_MESSAGE=".NET Validator:\n==============\n\n"
+            OUTPUT_FAILURE_MESSAGE=""
             
             # Use a temporary file to store the list of files to validate
             TEMP_FILE=$(mktemp)
@@ -168,7 +168,16 @@ jobs:
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   # Append the file name and validation output to the failure message
                   # echo "Error found!"
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT\n\n"
+                  # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
+                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                    OUTPUT_FAILURE_MESSAGE=".NET Validator:
+                    ==============
+
+                    "
+                  fi
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
+                  
+                  "
               fi
             done < "$TEMP_FILE"
             
@@ -258,7 +267,7 @@ jobs:
           NC=$'\033[0m'
       
           # Initialize failure message variable
-          OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}\n\nJava Validator:\n===============\n\n"
+          OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
             
           if $JAVA_VALIDATION_ENABLED; then
             IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
