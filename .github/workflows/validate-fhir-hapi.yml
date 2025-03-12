@@ -147,35 +147,52 @@ jobs:
         run: |
           if $DOTNET_VALIDATION_ENABLED; then
             echo "Running quality control checks incl. validation based on Firely Terminal ..."
-    
+
             # Find and validate each file individually
             VALIDATION_OUTPUT=""
             OUTPUT_FAILURE_MESSAGE=""
-            find $PATH_TO_EXAMPLES -type f -name "*.json" -o -name "*.xml" | while read file; do
+            
+            # Use a temporary file to store the list of files to validate
+            TEMP_FILE=$(mktemp)
+            find $PATH_TO_EXAMPLES -type f -name "*.json" -o -name "*.xml" > "$TEMP_FILE"
+            
+            # Read the file line by line without using a pipe
+            while read file; do
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
                 VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)
               else
                 VALIDATION_OUTPUT=$(fhir validate "$file" --fail 2>&1)                               
               fi
-              echo $VALIDATION_OUTPUT 
+              echo "$VALIDATION_OUTPUT" 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   # Append the file name and validation output to the failure message
                   echo "Error found!"
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file\nValidation Error: $VALIDATION_OUTPUT\n\n"
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT"
               fi
-            done
-    
-            echo "$OUTPUT_FAILURE_MESSAGE"
-            # echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV            
+            done < "$TEMP_FILE"
+            
+            # Clean up the temporary file
+            rm "$TEMP_FILE"
 
+            echo "Final failure message:"
+            echo "$OUTPUT_FAILURE_MESSAGE"
+            
+            # Export the failure message to GITHUB_ENV
+            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            
             # Exit with error if any validation failed
             if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-              OUTPUT_FAILURE=true
+              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
               echo "Validation failed"
-              echo "$OUTPUT_FAILURE" >> $GITHUB_ENV
               # exit 1
+            else
+              echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
             fi
+          else
+            echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
           fi
         shell: bash
         
