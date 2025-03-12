@@ -161,11 +161,13 @@ jobs:
               echo $VALIDATION_OUTPUT 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   # Append the file name and validation output to the failure message
+                  echo "Error found!"
                   OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file\nValidation Error: $VALIDATION_OUTPUT\n\n"
               fi
             done
     
             echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE"
 
             # Exit with error if any validation failed
             if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
