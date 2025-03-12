@@ -167,7 +167,6 @@ jobs:
               echo "$VALIDATION_OUTPUT" 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   # Append the file name and validation output to the failure message
-                  # echo "Error found!"
                   # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
                   if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
                     OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
@@ -305,9 +304,7 @@ jobs:
                   echo -e "$formattedOutput"
                   
                   # Check for errors in the output and capture them
-                  if echo "$javaValidatorOutput" | grep -q "Error "; then
-                    # echo "Java validation errors found!"
-                    
+                  if echo "$javaValidatorOutput" | grep -q "Error "; then                    
                     # Extract error messages
                     errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
                     
@@ -316,16 +313,11 @@ jobs:
                       OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
                     fi
                     OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
-                    #echo "Current failure message:"
-                    #echo "$OUTPUT_FAILURE_MESSAGE"
                   fi
                 else
                   echo "No XML or JSON files found in $p"
                 fi
               done
-            
-            # echo "Final error messages:"
-            # echo "$OUTPUT_FAILURE_MESSAGE"
             
             # Export the failure message to GITHUB_ENV using proper heredoc syntax
             echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
