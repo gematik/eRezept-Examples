@@ -301,7 +301,7 @@ jobs:
                     echo "Java validation errors found!"
                     
                     # Extract error messages
-                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 "Error |Validate \/home\/|[*]FAILURE[*])
+                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
                     
                     # Append to the failure message with proper formatting
                     OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
@@ -327,7 +327,7 @@ jobs:
               echo "Java validation failed with errors"
             fi
           fi
-        shell: bash      
+        shell: bash  
 
       - name: Check whether errors occurred 
         run: |
