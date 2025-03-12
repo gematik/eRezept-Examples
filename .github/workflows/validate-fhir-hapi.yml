@@ -44,15 +44,30 @@ jobs:
       - name: Identify and Copy Changed .json and .xml Files
         run: |
           mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
-          # git fetch origin main:main
-          # git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
-          CHANGED_FILES=$(git diff --name-only origin/main | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid")
+          
+          # Get changed files, handling the case where git diff returns nothing
+          CHANGED_FILES=$(git diff --name-only origin/main || echo "")
+          
+          # If there are any changed files, filter and copy them
           if [ -n "$CHANGED_FILES" ]; then
-            echo "$CHANGED_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+            FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
+            
+            if [ -n "$FILTERED_FILES" ]; then
+              echo "Copying changed files that match criteria..."
+              echo "$FILTERED_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+              echo "Files copied successfully."
+            else
+              echo "No files matching the criteria were changed."
+            fi
           else
-            echo "No matching files to validate"
+            echo "No files were changed."
           fi
-          echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
+          
+          # Count files to validate, handling empty directory
+          FILE_COUNT=$(ls -1 $PATH_TO_EXAMPLES 2>/dev/null | wc -l)
+          echo "Number of changed files to validate: $FILE_COUNT"
+        shell: bash
+
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
