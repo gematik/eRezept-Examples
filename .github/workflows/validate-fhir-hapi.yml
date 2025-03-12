@@ -306,17 +306,18 @@ jobs:
                 fi
               done
             
-              # Export the failure message to GITHUB_ENV
-              echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-              echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
-              echo "EOF" >> $GITHUB_ENV
+            # Export the failure message to GITHUB_ENV
+            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
 
-              # Set the failure flag if errors were found
-              if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-                echo "Java validation failed with errors"
-              fi
-              echo $OUTPUT_FAILURE_MESSAGE
+            # Set the failure flag if errors were found
+            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              echo "Java validation failed with errors"
+            fi
+            echo "Error messages: "
+            echo $OUTPUT_FAILURE_MESSAGE
 
             fi
         shell: bash
