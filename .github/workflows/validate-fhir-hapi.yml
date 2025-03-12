@@ -264,6 +264,9 @@ jobs:
           NC=$'\033[0m'
       
           # Initialize failure message variable
+          if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
+          fi
           # OUTPUT_FAILURE_MESSAGE=""
             
           if $JAVA_VALIDATION_ENABLED; then
