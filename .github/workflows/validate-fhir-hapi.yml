@@ -170,10 +170,7 @@ jobs:
                   # echo "Error found!"
                   # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
                   if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                    OUTPUT_FAILURE_MESSAGE=".NET Validator:
-                    ==============
-
-                    "
+                    OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
                   fi
                   OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
                   
@@ -267,7 +264,7 @@ jobs:
           NC=$'\033[0m'
       
           # Initialize failure message variable
-          OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
+          # OUTPUT_FAILURE_MESSAGE=""
             
           if $JAVA_VALIDATION_ENABLED; then
             IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
@@ -312,6 +309,9 @@ jobs:
                     errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
                     
                     # Append to the failure message with proper formatting
+                    if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                      OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
+                    fi
                     OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
                     #echo "Current failure message:"
                     #echo "$OUTPUT_FAILURE_MESSAGE"
