@@ -301,7 +301,7 @@ jobs:
                     echo "Java validation errors found!"
                     
                     # Extract error messages
-                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 "Error -")
+                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 "Error ")
                     
                     # Append to the failure message with proper formatting
                     OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages"
@@ -327,7 +327,6 @@ jobs:
               echo "Java validation failed with errors"
             fi
           fi
-          exit 0
         shell: bash      
 
       - name: Check whether errors occurred 
