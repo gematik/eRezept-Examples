@@ -162,12 +162,14 @@ jobs:
               echo $VALIDATION_OUTPUT 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   EXIT_CODE=1
+                  echo "Validation failure - Setting EXIT_CODE to 1"
                   # Append the file name and validation output to the failure message
                   OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file\nValidation Error: $VALIDATION_OUTPUT\n\n"
               fi
             done
     
             # Exit with error if any validation failed
+            echo $EXIT_CODE
             if [ $EXIT_CODE -ne 0 ]; then
               OUTPUT_FAILURE=true
               # exit 1
