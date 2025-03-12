@@ -45,7 +45,13 @@ jobs:
         run: |
           mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
           # git fetch origin main:main
-          git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+          # git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+          CHANGED_FILES=$(git diff --name-only origin/main | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid")
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "$CHANGED_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+          else
+            echo "No matching files to validate"
+          fi
           echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
