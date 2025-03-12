@@ -156,17 +156,14 @@ jobs:
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
                 VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)
-                echo "Output 1"
-                echo $VALIDATION_OUTPUT
               else
-                VALIDATION_OUTPUT=$(fhir validate "$file" --fail 2>&1)
-                echo "Output 2"
-                echo $VALIDATION_OUTPUT
-                if [ $? -ne 0 ]; then
+                VALIDATION_OUTPUT=$(fhir validate "$file" --fail 2>&1)                               
+              fi
+              echo $VALIDATION_OUTPUT 
+              if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
                   EXIT_CODE=1
                   # Append the file name and validation output to the failure message
                   OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file\nValidation Error: $VALIDATION_OUTPUT\n\n"
-                fi
               fi
             done
     
