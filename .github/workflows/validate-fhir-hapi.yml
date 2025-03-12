@@ -257,6 +257,9 @@ jobs:
           INFO=$'\033[0;34m'
           OK=$'\033[0;32m'
           NC=$'\033[0m'
+
+          # Initialize failure message variable
+          JAVA_VALIDATION_FAILURE_MESSAGE=""
             
           if $JAVA_VALIDATION_ENABLED; then
             IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
@@ -291,10 +294,29 @@ jobs:
                     s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
                     ")
                   echo -e "$javaValidatorOutput"
+
+                  # Check for errors in the output
+                  if echo "$javaValidatorOutput" | grep -q "Error -"; then
+                    echo "Java validation errors found!"
+                    # Append to the failure message
+                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $(echo "$javaValidatorOutput" | grep -A 1 "Error -")"
+                  fi
                 else
                   echo "No XML or JSON files found in $p"
                 fi
               done
+            
+              # Export the failure message to GITHUB_ENV
+              echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+              echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+              echo "EOF" >> $GITHUB_ENV
+
+              # Set the failure flag if errors were found
+              if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+                echo "Java validation failed with errors"
+              fi
+            
             fi
         shell: bash
 
