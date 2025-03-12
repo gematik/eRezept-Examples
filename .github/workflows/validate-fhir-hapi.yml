@@ -156,8 +156,10 @@ jobs:
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
                 VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)
+                echo $VALIDATION_OUTPUT
               else
                 VALIDATION_OUTPUT=$(fhir validate "$file" --fail || EXIT_CODE=1)
+                echo $VALIDATION_OUTPUT
                 if [ $? -ne 0 ]; then
                   EXIT_CODE=1
                   # Append the file name and validation output to the failure message
