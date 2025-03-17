@@ -15,6 +15,7 @@ env:
   VALIDATOR_VERSION: 6.5.15
   JAVA_VALIDATOR_DOWNLOAD_LOCATION: "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$VALIDATOR_VERSION/validator_cli.jar"
   PATH_TO_EXAMPLES: './temp_folder/'
+  SUSHI_CONFIG_FILE: '/API-Examples/FSH-Files/sushi-config.yaml'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
   DOTNET_VALIDATION_ENABLED: true
@@ -124,7 +125,7 @@ jobs:
       - name: FHIR Dependency restore
         run: |
           if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            if [ ! -f "sushi-config.yaml" ]; then
+            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
               echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
               exit 1
             fi
@@ -137,7 +138,7 @@ jobs:
             fi
           
             # Extract FHIR version from sushi-config.yaml
-            fhirVersion=$(yq e '.fhirVersion' sushi-config.yaml)
+            fhirVersion=$(yq e '.fhirVersion' $SUSHI_CONFIG_FILE)
             echo "Found FHIR version $fhirVersion in sushi-config.yaml"
 
             if [[ "$fhirVersion" = "3.0.2" ]]; then
