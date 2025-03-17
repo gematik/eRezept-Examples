@@ -126,7 +126,6 @@ jobs:
         run: |
           if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
-              echo "Debugging: $SUSHI_CONFIG_FILE"
               echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
               exit 1
             fi
@@ -144,16 +143,12 @@ jobs:
 
             if [[ "$fhirVersion" = "3.0.2" ]]; then
               fhir spec R3
-              break
             elif [[ "$fhirVersion" = "4.0.1" ]]; then
               fhir spec R4
-              break
             elif [[ "$fhirVersion" = "4.1.0" ]]; then
               fhir spec R4B
-              break
             elif [[ "$fhirVersion" = "4.6.0" ]]; then
               fhir spec R5
-              break
             else
               echo "This FHIR version is currently not supported.";
               exit 1
@@ -235,7 +230,7 @@ jobs:
       - name: Report Success - .NET Validator
         run: |
           if $DOTNET_VALIDATION_ENABLED; then
-            echo "Finished validation using .NET validator (Conformance resources) ..."
+            echo "Finished validation using .NET validator"
           fi
         shell: bash
 
@@ -301,8 +296,59 @@ jobs:
           # OUTPUT_FAILURE_MESSAGE=""
             
           if $JAVA_VALIDATION_ENABLED; then
-            IG_DEPENDENCIES=$(jq -r '(.dependencies + .["zts-dependencies"]) | to_entries | map("-ig " + .key + "#" + .value) | join(" ")' package.json)
+            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
+              echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
+              exit 1
+            fi
             
+            IG_DEPENDENCIES=""
+
+            # Process regular dependencies
+            in_dependencies=false
+            while IFS= read -r line; do
+              # Check if we're in the dependencies section
+              if [[ "$line" =~ ^dependencies: ]]; then
+                in_dependencies=true
+                continue
+              fi
+              
+              # Check if we've moved out of the dependencies section (another top-level key)
+              if [[ "$in_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                in_dependencies=false
+              fi
+              
+              # Process dependency lines
+              if [[ "$in_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                dep_key="${BASH_REMATCH[1]}"
+                dep_value="${BASH_REMATCH[2]}"
+                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+              fi
+            done < "$SUSHI_CONFIG_FILE"
+
+            # Process zts-dependencies if they exist in the SUSHI config
+            in_zts_dependencies=false
+            while IFS= read -r line; do
+              # Check if we're in the zts-dependencies section
+              if [[ "$line" =~ ^zts-dependencies: ]]; then
+                in_zts_dependencies=true
+                continue
+              fi
+              
+              # Check if we've moved out of the zts-dependencies section
+              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                in_zts_dependencies=false
+              fi
+              
+              # Process dependency lines
+              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                dep_key="${BASH_REMATCH[1]}"
+                dep_value="${BASH_REMATCH[2]}"
+                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+              fi
+            done < "$SUSHI_CONFIG_FILE"
+            
+            echo "Extracted IG dependencies: $IG_DEPENDENCIES"
+              
             echo "Validating examples in $PATH_TO_EXAMPLES"
             for p in $PATH_TO_EXAMPLES; 
               do
