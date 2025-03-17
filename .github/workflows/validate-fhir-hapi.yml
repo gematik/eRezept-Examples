@@ -21,7 +21,7 @@ env:
   DOTNET_VALIDATION_ENABLED: true
   JAVA_VALIDATION_ENABLED: true
   SUSHI_ENABLED: true
-  EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_CONFORMANCE_JAVA VALIDATION_EXAMPLES_JAVA
+  EXPECTED_FAILS: VALIDATION_CONFORMANCE_DOTNET VALIDATION_EXAMPLES_JAVA
   JAVA_SNAPSHOT_ENABLED: false 
   OUTPUT_FAILURE: false
   OUTPUT_FAILURE_MESSAGE: ""
@@ -174,8 +174,10 @@ jobs:
             while read file; do
               echo "Validating $file..."
               if echo $EXPECTED_FAILS | grep -w -q VALIDATION_CONFORMANCE_DOTNET; then
+                echo "Here 1"
                 VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)
               else
+                echo "Here 2"
                 VALIDATION_OUTPUT=$(fhir validate "$file" --fail 2>&1)                               
               fi
               echo "$VALIDATION_OUTPUT" 
@@ -354,8 +356,10 @@ jobs:
                 echo "Commencing with validating"
                 if [ -n "$files" ]; then
                   if echo $EXPECTED_FAILS | grep -w -q VALIDATION_EXAMPLES_JAVA; then
+                    echo "Here 1"
                     javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
                   else
+                    echo "Here 2"
                     javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES $COMBINED_IG_PARAMETERS || true)
                   fi
       
