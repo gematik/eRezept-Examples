@@ -139,7 +139,7 @@ jobs:
             fi
           
             # Extract FHIR version from sushi-config.yaml
-            fhirVersion=$(yq e 'fhirVersion' "$SUSHI_CONFIG_FILE")
+            fhirVersion=$(yq 'fhirVersion' "$SUSHI_CONFIG_FILE")
             echo "Found FHIR version $fhirVersion in sushi-config.yaml"
 
             if [[ "$fhirVersion" = "3.0.2" ]]; then
