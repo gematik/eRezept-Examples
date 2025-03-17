@@ -113,48 +113,58 @@ jobs:
         env:
           INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
+
+      # Install yq
+      - name: Install yq
+        run: |
+          pip install yq
+        shell: bash
        
       # Restore all dependencies listed in the package.json file (need to be on the root level)
       - name: FHIR Dependency restore
         run: |
           if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            if [ ! -f "package.json" ]; then
-              echo "package.json does not exist. Please add it to the root folder and add all project dependencies."
+            if [ ! -f "sushi-config.yaml" ]; then
+              echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
               exit 1
             fi
-          
-            fhirVersions=("3.0.2" "4.0.1" "4.1.0" "4.6.0")
-            for fhirVersion in ${fhirVersions[@]}; do
-              fhirVersionFoundInPackageJson=$(cat package.json | jq '.fhirVersions | index('\"$fhirVersion\"')')
-              if [[ ! "$fhirVersionFoundInPackageJson" = null ]]; then
-                echo "Found FHIR version $fhirVersion in package.json"
-                if [[ "$fhirVersion" = "3.0.2" ]]; then
-                  fhir spec R3
-                  break
-                elif [[ "$fhirVersion" = "4.0.1" ]]; then
-                  fhir spec R4
-                  break
-                elif [[ "$fhirVersion" = "4.1.0" ]]; then
-                  fhir spec R4B
-                  break
-                elif [[ "$fhirVersion" = "4.6.0" ]]; then
-                  fhir spec R5
-                  break
-                else
-                  echo "This FHIR version is currently not supported.";
-                  exit 1
-                fi
-              fi
-            done
 
-            echo "Attempting to restore package dependencies based on package.json ..."
+            # Install yq if not already available
+            if ! command -v yq &> /dev/null; then
+              echo "Installing yq for YAML processing..."
+              wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+              chmod +x /usr/local/bin/yq
+            fi
+          
+            # Extract FHIR version from sushi-config.yaml
+            fhirVersion=$(yq e '.fhirVersion' sushi-config.yaml)
+            echo "Found FHIR version $fhirVersion in sushi-config.yaml"
+
+            if [[ "$fhirVersion" = "3.0.2" ]]; then
+              fhir spec R3
+              break
+            elif [[ "$fhirVersion" = "4.0.1" ]]; then
+              fhir spec R4
+              break
+            elif [[ "$fhirVersion" = "4.1.0" ]]; then
+              fhir spec R4B
+              break
+            elif [[ "$fhirVersion" = "4.6.0" ]]; then
+              fhir spec R5
+              break
+            else
+              echo "This FHIR version is currently not supported.";
+              exit 1
+            fi
+
+            echo "Attempting to restore package dependencies based on sushi-config.yaml ..."
             fhir config regenerate on
             FHIR_RESTORE=$((fhir restore | tr '\n' ' ')|| true)  # Print everything in a single line
             if [[ "$FHIR_RESTORE" == *"Cannot restore"* ]]; then
               echo $FHIR_RESTORE
               exit 1
             fi
-            echo "Restore of package.json was successful: $FHIR_RESTORE"
+            echo "Restore of dependencies from sushi-config.yaml was successful: $FHIR_RESTORE"
           fi
         shell: bash
 
