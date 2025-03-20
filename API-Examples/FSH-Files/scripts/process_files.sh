@@ -233,6 +233,7 @@ files_to_copy=(
     "Task-erp-eprescription-10-PATCH-Task-Response.json"
     "Bundle-erp-eprescription-08-response-get-single-medicationdispense.json"
     "Bundle-erp-eprescription-09-response-get-multiple-medication-dispense.json"
+    "Bundle-erp-eprescription-12-GET-Task-ID-Bundle.json"  
 )
  
 

@@ -8,6 +8,12 @@ RuleSet: Task162Exension
 * insert DiGAExpiryDate(extension[acceptDate].valueDate) // Expiry, weil so festgelegt beide Daten 3 Monate
 * insert DiGAExpiryDate(extension[expiryDate].valueDate)
 
+RuleSet: Task-FD-EU-Extension(eu-bool)
+* extension[eu-isRedeemableByProperties].valueBoolean = {eu-bool}
+
+RuleSet: Task-Patient-EU-Extension(eu-bool)
+* extension[eu-isRedeemableByPatientAuthorization].valueBoolean = {eu-bool}
+
 RuleSet: TaskIdentifier(flowType)
 * identifier[PrescriptionID].use = #official
 * identifier[PrescriptionID].value = "{flowType}.000.000.000.000.01"
