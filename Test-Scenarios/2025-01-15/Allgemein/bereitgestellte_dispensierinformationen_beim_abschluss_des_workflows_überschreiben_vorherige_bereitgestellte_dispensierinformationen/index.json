@@ -1,0 +1,87 @@
+{
+  "id" : "3c8bd6a8-8fe8-4f3c-9024-5dcf665534bc",
+  "name" : "Bereitgestellte Dispensierinformationen beim Abschluss des Workflows überschreiben vorherige bereitgestellte Dispensierinformationen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_04", "@TESTFALL:positiv" ],
+  "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "ZeitnaheBereitstellung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.434.49",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.434.49/$activate",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.434.49",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.434.49 with AccessCode 4325dbdacea3102fabf76de5ff497c8fc1a88df14d3a19d9735429e497d1e9c8",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/006_dmc_160.000.239.761.434.49.png"
+    } ]
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/4c8c2062-8495-4ade-8b67-599f0ebc8d7b",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/007_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/730efe5d-ff9b-4278-b295-ec832a58c931",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen für das letzte akzeptierte E-Rezept von Sina Hüllmann die Dispensierinformationen zeitnah bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.434.49/$dispense?secret=cdf9d32e5d06c3bd558f890e21ef6ce76c9d201eaad80e9fa058ee3cff13a616",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/e8410da8-4891-463c-96e5-fb25ad989f68",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte E-Rezept für Sina Hüllmann beim Abschluss des Workflows die Dispensierinformationen ändern in:\n| Name | PZN | Normgröße | Menge | Einheit | Darreichungsform |\n| IBUFLAM akut | 04100230 | N1 | 10 | Stk | FTA |",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.434.49/$close?secret=cdf9d32e5d06c3bd558f890e21ef6ce76c9d201eaad80e9fa058ee3cff13a616",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/011_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a01a784a-0e00-0000-0003-000000000000",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/012_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/ba56d6f1-5c0b-42b8-9fd0-9c253d1254fe",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/013_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann genau die letzte bereitgestellte Dispensierinformation der Apotheke Am Flughafen für ihr letztes E-Rezept abrufen"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/e913fdf6-8c7c-4004-b7e0-8985045131e2",
+      "file" : "Allgemein/bereitgestellte_dispensierinformationen_beim_abschluss_des_workflows_überschreiben_vorherige_bereitgestellte_dispensierinformationen/014_Response_Bundle.json"
+    } ]
+  } ]
+}

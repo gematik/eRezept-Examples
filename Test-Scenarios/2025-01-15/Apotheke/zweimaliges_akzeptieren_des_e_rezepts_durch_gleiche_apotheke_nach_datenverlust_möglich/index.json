@@ -1,0 +1,74 @@
+{
+  "id" : "0e9bdaff-3209-44fb-b556-5568a0ebf3a5",
+  "mainActor" : "Apotheke",
+  "name" : "Zweimaliges Akzeptieren des E-Rezepts durch gleiche Apotheke nach Datenverlust möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_25", "@TESTFALL:positiv", "@AFO-ID:A_24179", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept. Aus technischen unverschuldeten Gründen erhält oder speichert sie das Secret jedoch nicht.\n  So kann sie erneut ihr Secret beim FachDienst abrufen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Harnsäure Hemmer | 16588573 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.394.72",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.394.72/$activate",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.394.72",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.394.72 with AccessCode 2680c2683960c215a216994ada380fbb7f3c054ae4da554049f231de83dc4bf7",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/006_dmc_160.000.239.761.394.72.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/4af1a713-4e85-4b01-9398-7ca9442db294",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept verliert"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst erneut abrufen",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/539ed5f0-25fe-47e5-958b-5883c15714c4",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "answeredBy: Am Flughafen"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.394.72/$close?secret=aab1be8ed1396f5ee83934b28a4dde63e483ca37867af991923b97bd6a1bb9ba",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0f2774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/zweimaliges_akzeptieren_des_e_rezepts_durch_gleiche_apotheke_nach_datenverlust_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_24179" ]
+}

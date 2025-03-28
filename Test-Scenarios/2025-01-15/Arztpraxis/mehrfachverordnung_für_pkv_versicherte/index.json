@@ -1,0 +1,51 @@
+{
+  "id" : "f4a3aa60-2997-4f8e-85a6-1b041d4a8570",
+  "mainActor" : "Arztpraxis",
+  "name" : "Mehrfachverordnung für PKV-Versicherte",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_02", "@AFO-ID:A_22627-01", "@TESTFALL:positiv", "@Workflow:200", "@Versicherung:PKV", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Gutfall: E-Rezepte für PKV-Versicherte als Mehrfachverordnung erstellen (WF 200)",
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | 360 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.002.425.308.20",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.002.425.308.20/$activate",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.002.425.308.20",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.002.425.308.20 with AccessCode a838db55b5ebb7410a1ba9e741248d55caeea157442f4df634024fb93cdcb2fc",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/006_dmc_200.000.002.425.308.20.png"
+    } ]
+  }, {
+    "name" : "Dann wird dem Versicherten Günther Angermänn das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Günther angermänn performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/5932bc70-b459-4ad9-80a7-0df32ebf8602",
+      "file" : "Arztpraxis/mehrfachverordnung_für_pkv_versicherte/007_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_22627-01" ]
+}

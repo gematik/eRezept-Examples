@@ -1,0 +1,67 @@
+{
+  "id" : "780b7036-1296-4118-8705-aab972369f26",
+  "mainActor" : "Apotheke",
+  "name" : "Apotheke darf Dispensierinformationen nicht abrufen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_20", "@TESTFALL:negativ", "@AFO-ID:A_19405-01", "@Hauptdarsteller:Apotheke" ],
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.389.87",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.389.87/$activate",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.389.87",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.389.87 with AccessCode 9fb1a7321189f542d400b7b7581ec54679c90d996919ec6cd9ed85f3aa21998a",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/006_dmc_160.000.239.761.389.87.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/cdb65db6-789b-4654-85bd-28476a73c629",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.389.87/$close?secret=35866632b2325faa36e68d4e6455760e9581ac39ceb81903cc202218ef194c22",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0ed774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann darf die Apotheke Am Flughafen die Dispensierinformationen für das letzte dispensierte E-Rezept nicht abrufen",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20250328_090415",
+      "file" : "Apotheke/apotheke_darf_dispensierinformationen_nicht_abrufen/010_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19405-01" ]
+}

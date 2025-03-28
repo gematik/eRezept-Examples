@@ -1,0 +1,66 @@
+{
+  "id" : "16fc67a1-563f-43e3-ad28-82232fed2634",
+  "mainActor" : "Apotheke",
+  "name" : "Erstes Teilrezept einer Mehrfachverordnung einlösen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_06", "@TESTFALL:positiv", "@Hauptdarsteller:Apotheke" ],
+  "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
+  "featureFile" : "MVO/MVO",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 1 | 0 | 90 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.412.18",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.412.18/$activate",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.412.18",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.412.18 with AccessCode 0b1cbfa9f3fb8b3afd59722d212ae9c19fce09eb571be950ab08a8a93af37244",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/006_dmc_160.000.239.761.412.18.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/d8bf3d02-6128-4adc-9b7f-750699dfbe21",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.412.18/$close?secret=9d99b91477d0a1738473b67f7de5339d2221e800ccdea601cbe9af044f92d37c",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a004784a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und hat der Versicherte Sina Hüllmann genau 1 Medikament erhalten"
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  } ]
+}

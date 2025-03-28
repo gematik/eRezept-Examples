@@ -1,0 +1,67 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="9c743d88-e749-4d1d-9022-e7b1cdf13e14"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="8b5edfe9-1dd6-4471-8590-a7e32bdaae01"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.239.761.385.02"/>
+               </identifier>
+               <status value="completed"/>
+               <medicationReference>
+                  <reference value="811893eb-da8a-47ec-aa19-dd4cdc500369"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110614233"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <identifier>
+                        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                        <value value="3-SMC-B-Testkarte--883110000163973"/>
+                     </identifier>
+                  </actor>
+               </performer>
+               <whenHandedOver value="2025-03-28"/>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="811893eb-da8a-47ec-aa19-dd4cdc500369"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="01"/>
+                  </valueCoding>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="09229833"/>
+                  </coding>
+                  <text value="Schoenenberger® Set"/>
+               </code>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

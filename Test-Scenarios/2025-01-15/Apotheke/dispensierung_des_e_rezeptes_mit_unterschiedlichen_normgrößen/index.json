@@ -1,0 +1,70 @@
+{
+  "id" : "e0648c63-5fac-441b-8f86-e24378f9d7d2",
+  "mainActor" : "Apotheke",
+  "name" : "Dispensierung des E-Rezeptes mit unterschiedlichen Normgrößen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:mehrereMedicationDispense", "@Versicherung:GKV", "@TCID:ERP_EE_MEHRERE_MEDICATION_DISPENSES_01", "@TESTFALL:positiv", "@AFO-ID:A_22069", "@AFO-ID:A_22070", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke dispensiert das akzeptierte E-Rezept über mehrere Packungen unterschiedlicher Größe.\n  In diesem Szenario verschreibt der Arzt eine große Packung (N3) mit 50 Stk Inhalt.\n  Die Apotheke dispensiert hingegen eine kleine (N1) Packung mit 10 Stk und zwei mittlere (N2) mit 20 Stk Inhalt.\n  Die Dispensierung der drei Packungen erzeugt nur eine Quittung.",
+  "feature" : "Mehrere Medication Dispenses",
+  "featureFile" : "GKV_WF_160/mehrere_MedicationDispenses",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer folgendes E-Rezept an die Versicherte Sina Hüllmann verschreibt:\n| Name | PZN | Substitution | Normgröße | Darreichungsform | Dosierung | Menge |\n| IBUFLAM akut | 11648419 | true | N3 | FTA | 1-0-0-1 | 50 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.403.45",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.403.45/$activate",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.403.45",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.403.45 with AccessCode 1230836f6398bad4f0a37bb48ff2fe30e6568b6f3f3f04b72796a69c4a9fa512",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/006_dmc_160.000.239.761.403.45.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/d6fe5b21-6579-40f7-95da-be6ab7d993d4",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke das letzte akzeptierte E-Rezept mit den folgenden Medikamenten korrekt an Sina Hüllmann dispensiert:\n| Name | PZN | Normgröße | Menge | Einheit | Darreichungsform |\n| IBUFLAM akut | 04100230 | N1 | 10 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.403.45/$close?secret=546611f5ff24c3a30dd68ebeef6933cc2b8dd40c0d47983c62c7d3298f6c0c38",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0fb774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung für Sina Hüllmann vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann 3 Dispensierinformationen für ihr letztes E-Rezept abrufen"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/57273c15-dc85-4b9d-9892-a3b1bb4f8929",
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/010_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_22069", "A_22070" ]
+}
