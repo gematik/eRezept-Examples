@@ -51,9 +51,17 @@ jobs:
           if [ -n "$CHANGED_FILES" ]; then
             FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
             
-            if [ -n "$FILTERED_FILES" ]; then
+            # Further exclude index.json, files with "negativ" in the name, and XML files containing "soap"
+            FINAL_FILES=""
+            for file in $FILTERED_FILES; do
+              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -q "soap" "$file" ); then
+                FINAL_FILES="$FINAL_FILES $file"
+              fi
+            done
+
+            if [ -n "$FINAL_FILES" ]; then
               echo "Copying changed files that match criteria..."
-              echo "$FILTERED_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+              echo "$FINAL_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
               echo "Files copied successfully."
             else
               echo "No files matching the criteria were changed."
