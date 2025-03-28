@@ -23,7 +23,8 @@ RuleSet: RS_DiGA_VerordnungsDatensatz(task-id)
 Instance: 55eb2cd5-27f0-46ef-87d1-1ffc30e85fd9
 InstanceOf: KBV_PR_EVDGA_Composition
 Usage: #inline
-* extension[rechtsgrundlage].valueCoding = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN#00
+* extension[rechtsgrundlage].valueCoding.system = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN
+* extension[rechtsgrundlage].valueCoding.code = #00
 * status = #final
 * type = $KBV_CS_SFHIR_KBV_FORMULAR_ART#e16D
 * subject = Reference(40acd463-b25d-4ede-8b1f-2b0994f29aa5)
