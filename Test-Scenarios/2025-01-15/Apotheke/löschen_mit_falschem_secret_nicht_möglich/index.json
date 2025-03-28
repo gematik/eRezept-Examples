@@ -1,0 +1,72 @@
+{
+  "id" : "4ddff85d-3210-4332-be50-3a7485ab5647",
+  "mainActor" : "Apotheke",
+  "name" : "Löschen mit falschem Secret nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_18", "@TESTFALL:negativ", "@AFO-ID:A_19224", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss beim Löschen das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$abort ablehnen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.387.93",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.387.93/$activate",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.387.93",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.387.93 with AccessCode 37526f24c112b7ae9cc8a8d53a0cbf1a0cf58f61f7097fd0385461d06e27a857",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/006_dmc_160.000.239.761.387.93.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/bd1d0f55-3fca-44ff-b88f-b522c62dd64b",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht mit dem falschen Secret fgdkjfgd löschen"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20250328_090410",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/008_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.387.93/$close?secret=b0033fbadc0b68b7990ddb552cf7dee93ed6a975a5092d0101b3dc68c0d3fcda",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0eb774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/löschen_mit_falschem_secret_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19224" ]
+}

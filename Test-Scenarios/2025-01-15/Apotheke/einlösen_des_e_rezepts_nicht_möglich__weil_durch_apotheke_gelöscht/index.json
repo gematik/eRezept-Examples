@@ -1,0 +1,68 @@
+{
+  "id" : "09b3f3c1-898a-4a1c-a59d-aa62a0115b27",
+  "mainActor" : "Apotheke",
+  "name" : "Einlösen des E-Rezepts nicht möglich, weil durch Apotheke gelöscht",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_09", "@TESTFALL:negativ", "@AFO-ID:A_18513", "@AFO-ID:A_19121", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke löscht das zugewiesene Rezept. Anschließend kann sie es nicht einlösen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.377.26",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.377.26/$activate",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.377.26",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.377.26 with AccessCode 7bb2e97209ed9b26abd1c516898f462d57c1d97e284d685104c856fb9ad6af87",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/006_dmc_160.000.239.761.377.26.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/1df860da-7a39-4023-9748-e4440ac8c910",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept löscht"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht dispensieren, weil es nicht mehr existiert"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.377.26/$close?secret=4546a3970cd681525f3857b7c7463a2f95c5d18924eb8ace0043910f79f9cf7e",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 410: OperationOutcome 20250328_090350",
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_gelöscht/009_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_18513", "A_19121" ]
+}

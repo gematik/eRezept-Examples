@@ -1,0 +1,61 @@
+{
+  "id" : "081f427b-6dd4-4d0c-8591-97923c26cd9c",
+  "mainActor" : "Arztpraxis",
+  "name" : "Direktzuweisung an eine Apotheke durch den Arzt",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:169", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AF-ID:AF_10111", "@AF-ID:AF_10112", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF169_02", "@TESTFALL:positiv", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Der Arzt verschreibt der GKV-Versicherten ein Medikament als Direktzuweisung und übermittelt es der Apotheke.\n  Die Apotheke kann es erfolgreich dispensieren.",
+  "feature" : "Direktzuweisung für GKV-Rezepte",
+  "featureFile" : "GKV_WF_169/GKV-Versicherter_WF_169",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/169.000.011.663.669.62",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/169.000.011.663.669.62/$activate",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/169.000.011.663.669.62",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 169.000.011.663.669.62 with AccessCode 193e6fc2ff476b7e9f9a174f8ed2c4230fb9e66d102aa8744fbb496c256c1435",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/006_dmc_169.000.011.663.669.62.png"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/90e43a7d-59c4-429c-ad3c-9692a7c84009",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/169.000.011.663.669.62/$close?secret=25eae851286afb629911ff8dae85393f7c833540d6d02105b4a6c488752dcfb4",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a935f9b1-0000-0000-0003-000000000000",
+      "file" : "Arztpraxis/direktzuweisung_an_eine_apotheke_durch_den_arzt/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke genau eine Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503" ],
+  "useCases" : [ "AF_10111", "AF_10112" ]
+}

@@ -1,0 +1,62 @@
+{
+  "id" : "5e9ec4d9-e37e-4fff-a477-d7ca5f451e60",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen eines Apothekenpflichtigen E-Rezeptes mit verschiedenen Verordnungstypen und Versicherungsverhältnissen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_01", "@TESTFALL:positiv", "@AFO-ID:A_24034", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept in den Variationen Frteitext-, Wirkstoff- und Rezepturverordnung.",
+  "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
+  "featureFile" : "GKV_PKV_MedicationVariation",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die PKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtige Wirkstoff Verordnung verschreibt:\n| Name | Freitext | PZN | Menge | Impfung |\n| Harnsäure Hemmer | Ibuprofen und Paracetamol -> beides und viel und so weiter | 16588573 | 1 | false |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/200.000.002.425.304.32",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/200.000.002.425.304.32/$activate",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/200.000.002.425.304.32",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 200.000.002.425.304.32 with AccessCode 95213537c1ceef0496309a4e65c349fc52339b8e479ab77ebcef812c703ad8b8",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/006_dmc_200.000.002.425.304.32.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/4e7f354d-9f9a-4d1b-a38f-97ea89dab96b",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/200.000.002.425.304.32/$close?secret=2ea0946cbfba2f98def8220ba85ee6c619a4f806e744e23c2597cfbfd6aec396",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/c8d80125-0000-0000-0003-000000000000",
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/009_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_24034" ]
+}

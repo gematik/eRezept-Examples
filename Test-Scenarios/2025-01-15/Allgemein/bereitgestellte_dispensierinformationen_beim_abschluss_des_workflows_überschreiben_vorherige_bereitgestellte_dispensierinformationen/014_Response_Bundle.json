@@ -1,0 +1,102 @@
+{
+  "resourceType": "Bundle",
+  "id": "e913fdf6-8c7c-4004-b7e0-8985045131e2",
+  "type": "searchset",
+  "timestamp": "2025-03-28T08:06:41.465+00:00",
+  "total": 0,
+  "entry": [ {
+    "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.239.761.434.49",
+    "resource": {
+      "resourceType": "MedicationDispense",
+      "id": "160.000.239.761.434.49",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4" ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.239.761.434.49"
+      } ],
+      "status": "completed",
+      "medicationReference": {
+        "reference": "urn:uuid:1ff4dc15-bed3-4944-9911-f91f9c35f979"
+      },
+      "subject": {
+        "identifier": {
+          "system": "http://fhir.de/sid/gkv/kvid-10",
+          "value": "X110614233"
+        }
+      },
+      "performer": [ {
+        "actor": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "3-SMC-B-Testkarte--883110000163973"
+          }
+        }
+      } ],
+      "whenPrepared": "2025-03-28",
+      "whenHandedOver": "2025-03-28",
+      "substitution": {
+        "wasSubstituted": true
+      }
+    },
+    "search": {
+      "mode": "match"
+    }
+  }, {
+    "fullUrl": "urn:uuid:1ff4dc15-bed3-4944-9911-f91f9c35f979",
+    "resource": {
+      "resourceType": "Medication",
+      "id": "1ff4dc15-bed3-4944-9911-f91f9c35f979",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4" ]
+      },
+      "extension": [ {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+        "valueCoding": {
+          "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+          "code": "02"
+        }
+      }, {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+        "valueBoolean": false
+      }, {
+        "url": "http://fhir.de/StructureDefinition/normgroesse",
+        "valueCode": "N1"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://fhir.de/CodeSystem/ifa/pzn",
+          "code": "04100230"
+        } ],
+        "text": "IBUFLAM akut"
+      },
+      "form": {
+        "coding": [ {
+          "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+          "code": "FTA"
+        } ]
+      },
+      "amount": {
+        "numerator": {
+          "extension": [ {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+            "valueString": "10"
+          } ],
+          "value": 10,
+          "unit": "Stk"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "4321296329",
+        "expirationDate": "2025-04-25T01:08:32+02:00"
+      }
+    },
+    "search": {
+      "mode": "include"
+    }
+  } ]
+}
