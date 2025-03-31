@@ -61,7 +61,7 @@ jobs:
 
             if [ -n "$FINAL_FILES" ]; then
               echo "Copying changed files that match criteria..."
-              echo "$FINAL_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+              echo "$FINAL_FILES" | xargs -d '\n' -I {} cp {} $PATH_TO_EXAMPLES/
               echo "Files copied successfully."
             else
               echo "No files matching the criteria were changed."
