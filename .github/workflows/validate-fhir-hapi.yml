@@ -64,7 +64,7 @@ jobs:
 
             if [ -n "$FINAL_FILES" ]; then
               echo "Copying changed files that match criteria..."
-              echo "$FINAL_FILES" | xargs -d '\n' -I {} cp "{}" "$PATH_TO_EXAMPLES/"
+              echo "$FINAL_FILES" | xargs -d '\n' -I {} cp --parents "{}" "$PATH_TO_EXAMPLES/"
               echo "Files copied successfully."
             else
               echo "No files matching the criteria were changed."
@@ -74,7 +74,7 @@ jobs:
           fi
           
           # Count files to validate, handling empty directory
-          FILE_COUNT=$(ls -1 $PATH_TO_EXAMPLES 2>/dev/null | wc -l)
+          FILE_COUNT=$(find $PATH_TO_EXAMPLES -type f 2>/dev/null | wc -l)
           echo "Number of changed files to validate: $FILE_COUNT"
         shell: bash
       
