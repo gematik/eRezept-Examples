@@ -1,1 +1,192 @@
-<Bundle xmlns="http://hl7.org/fhir"><id value="5a493caa-a36a-4ee0-8737-66879e37ff69"/><meta><lastUpdated value="2025-03-28T09:07:58.783+01:00"/><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3"/></meta><identifier><system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/><value value="200.000.002.425.318.87"/></identifier><type value="document"/><timestamp value="2025-03-28T09:07:58.783+01:00"/><entry><fullUrl value="urn:uuid:2decfc0d-8e81-412b-bf31-dfd95be77a53"/><resource><Composition xmlns="http://hl7.org/fhir"><id value="2decfc0d-8e81-412b-bf31-dfd95be77a53"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.3"/></meta><status value="final"/><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes"/><code value="ERezeptAbgabedaten"/></coding></type><date value="2025-03-28T09:07:58+01:00"/><author><reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180"/></author><title value="ERezeptAbgabedaten"/><section><title value="Apotheke"/><entry><reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180"/></entry></section><section><title value="Abgabeinformationen"/><entry><reference value="urn:uuid:dcb7e854-cff7-4872-bfdb-a84b913e384e"/></entry></section></Composition></resource></entry><entry><fullUrl value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180"/><resource><Organization xmlns="http://hl7.org/fhir"><id value="7cdf793e-1bd8-42ac-8498-33c34112d180"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.3"/></meta><identifier><system value="http://fhir.de/sid/arge-ik/iknr"/><value value="807636069"/></identifier><name value="Apotheke Penny Nichols"/><address><type value="physical"/><line value="Entenpfuhl 69b"><extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber"><valueString value="69b"/></extension><extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName"><valueString value="Entenpfuhl"/></extension></line><city value="Tizianscheid"/><postalCode value="75720"/><country value="TON"/></address></Organization></resource></entry><entry><fullUrl value="urn:uuid:bb20331a-a9d6-48f0-b8d0-f1552f1043bb"/><resource><Invoice xmlns="http://hl7.org/fhir"><id value="bb20331a-a9d6-48f0-b8d0-f1552f1043bb"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.3"/></meta><status value="issued"/><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp"/><code value="Abrechnungszeilen"/></coding></type><lineItem><sequence value="1"/><chargeItemCodeableConcept><coding><system value="http://fhir.de/CodeSystem/ifa/pzn"/><code value="73494010"/></coding><text value="Infludoron® 450 mg"/></chargeItemCodeableConcept><priceComponent><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"><extension url="Kategorie"><valueCodeableConcept><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie"/><code value="0"/></coding></valueCodeableConcept></extension><extension url="Kostenbetrag"><valueMoney><value value="17.38"/><currency value="EUR"/></valueMoney></extension></extension><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz"><valueDecimal value="26.06"/></extension><type value="informational"/><factor value="1"/><amount><value value="35.20"/><currency value="EUR"/></amount></priceComponent></lineItem><totalGross><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung"><valueMoney><value value="17.38"/><currency value="EUR"/></valueMoney></extension><value value="35.20"/><currency value="EUR"/></totalGross></Invoice></resource></entry><entry><fullUrl value="urn:uuid:dcb7e854-cff7-4872-bfdb-a84b913e384e"/><resource><MedicationDispense xmlns="http://hl7.org/fhir"><id value="dcb7e854-cff7-4872-bfdb-a84b913e384e"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.3"/></meta><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp"><valueCodeableConcept><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp"/><code value="1"/></coding></valueCodeableConcept></extension><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen"><valueReference><reference value="urn:uuid:bb20331a-a9d6-48f0-b8d0-f1552f1043bb"/></valueReference></extension><status value="completed"/><medicationCodeableConcept><coding><system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/><code value="not-applicable"/></coding></medicationCodeableConcept><performer><actor><reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180"/></actor></performer><authorizingPrescription><identifier><system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/><value value="200.000.002.425.318.87"/></identifier></authorizingPrescription><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp"/><code value="Abgabeinformationen"/></coding></type><whenHandedOver value="2025-03-28"/></MedicationDispense></resource></entry></Bundle>
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="5a493caa-a36a-4ee0-8737-66879e37ff69" />
+	<meta>
+		<lastUpdated value="2025-03-28T09:07:58.783+01:00" />
+		<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3" />
+	</meta>
+	<identifier>
+		<system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+		<value value="200.000.002.425.318.87" />
+	</identifier>
+	<type value="document" />
+	<timestamp value="2025-03-28T09:07:58.783+01:00" />
+	<entry>
+		<fullUrl value="urn:uuid:2decfc0d-8e81-412b-bf31-dfd95be77a53" />
+		<resource>
+			<Composition xmlns="http://hl7.org/fhir">
+				<id value="2decfc0d-8e81-412b-bf31-dfd95be77a53" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.3" />
+				</meta>
+				<status value="final" />
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes" />
+						<code value="ERezeptAbgabedaten" />
+					</coding>
+				</type>
+				<date value="2025-03-28T09:07:58+01:00" />
+				<author>
+					<reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180" />
+				</author>
+				<title value="ERezeptAbgabedaten" />
+				<section>
+					<title value="Apotheke" />
+					<entry>
+						<reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180" />
+					</entry>
+				</section>
+				<section>
+					<title value="Abgabeinformationen" />
+					<entry>
+						<reference value="urn:uuid:dcb7e854-cff7-4872-bfdb-a84b913e384e" />
+					</entry>
+				</section>
+			</Composition>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180" />
+		<resource>
+			<Organization xmlns="http://hl7.org/fhir">
+				<id value="7cdf793e-1bd8-42ac-8498-33c34112d180" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.3" />
+				</meta>
+				<identifier>
+					<system value="http://fhir.de/sid/arge-ik/iknr" />
+					<value value="807636069" />
+				</identifier>
+				<name value="Apotheke Penny Nichols" />
+				<address>
+					<type value="physical" />
+					<line value="Entenpfuhl 69b">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+							<valueString value="69b" />
+						</extension>
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+							<valueString value="Entenpfuhl" />
+						</extension>
+					</line>
+					<city value="Tizianscheid" />
+					<postalCode value="75720" />
+					<country value="TON" />
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:bb20331a-a9d6-48f0-b8d0-f1552f1043bb" />
+		<resource>
+			<Invoice xmlns="http://hl7.org/fhir">
+				<id value="bb20331a-a9d6-48f0-b8d0-f1552f1043bb" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.3" />
+				</meta>
+				<status value="issued" />
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp" />
+						<code value="Abrechnungszeilen" />
+					</coding>
+				</type>
+				<lineItem>
+					<sequence value="1" />
+					<chargeItemCodeableConcept>
+						<coding>
+							<system value="http://fhir.de/CodeSystem/ifa/pzn" />
+							<code value="73494010" />
+						</coding>
+						<text value="Infludoron® 450 mg" />
+					</chargeItemCodeableConcept>
+					<priceComponent>
+						<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter">
+							<extension url="Kategorie">
+								<valueCodeableConcept>
+									<coding>
+										<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie" />
+										<code value="0" />
+									</coding>
+								</valueCodeableConcept>
+							</extension>
+							<extension url="Kostenbetrag">
+								<valueMoney>
+									<value value="17.38" />
+									<currency value="EUR" />
+								</valueMoney>
+							</extension>
+						</extension>
+						<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz">
+							<valueDecimal value="26.06" />
+						</extension>
+						<type value="informational" />
+						<factor value="1" />
+						<amount>
+							<value value="35.20" />
+							<currency value="EUR" />
+						</amount>
+					</priceComponent>
+				</lineItem>
+				<totalGross>
+					<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung">
+						<valueMoney>
+							<value value="17.38" />
+							<currency value="EUR" />
+						</valueMoney>
+					</extension>
+					<value value="35.20" />
+					<currency value="EUR" />
+				</totalGross>
+			</Invoice>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:dcb7e854-cff7-4872-bfdb-a84b913e384e" />
+		<resource>
+			<MedicationDispense xmlns="http://hl7.org/fhir">
+				<id value="dcb7e854-cff7-4872-bfdb-a84b913e384e" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.3" />
+				</meta>
+				<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp">
+					<valueCodeableConcept>
+						<coding>
+							<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp" />
+							<code value="1" />
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen">
+					<valueReference>
+						<reference value="urn:uuid:bb20331a-a9d6-48f0-b8d0-f1552f1043bb" />
+					</valueReference>
+				</extension>
+				<status value="completed" />
+				<medicationCodeableConcept>
+					<coding>
+						<system value="http://terminology.hl7.org/CodeSystem/data-absent-reason" />
+						<code value="not-applicable" />
+					</coding>
+				</medicationCodeableConcept>
+				<performer>
+					<actor>
+						<reference value="urn:uuid:7cdf793e-1bd8-42ac-8498-33c34112d180" />
+					</actor>
+				</performer>
+				<authorizingPrescription>
+					<identifier>
+						<system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+						<value value="200.000.002.425.318.87" />
+					</identifier>
+				</authorizingPrescription>
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp" />
+						<code value="Abgabeinformationen" />
+					</coding>
+				</type>
+				<whenHandedOver value="2025-03-28" />
+			</MedicationDispense>
+		</resource>
+	</entry>
+</Bundle>

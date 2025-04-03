@@ -1,1 +1,192 @@
-<Bundle xmlns="http://hl7.org/fhir"><id value="ef236629-9743-4814-b556-5a557cd66ae3"/><meta><lastUpdated value="2025-03-28T09:08:00.038+01:00"/><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3"/></meta><identifier><system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/><value value="200.000.002.425.318.87"/></identifier><type value="document"/><timestamp value="2025-03-28T09:08:00.038+01:00"/><entry><fullUrl value="urn:uuid:c09add57-2a10-48a1-9478-af1976795eac"/><resource><Composition xmlns="http://hl7.org/fhir"><id value="c09add57-2a10-48a1-9478-af1976795eac"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.3"/></meta><status value="final"/><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes"/><code value="ERezeptAbgabedaten"/></coding></type><date value="2025-03-28T09:08:00+01:00"/><author><reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313"/></author><title value="ERezeptAbgabedaten"/><section><title value="Apotheke"/><entry><reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313"/></entry></section><section><title value="Abgabeinformationen"/><entry><reference value="urn:uuid:4c720b47-546a-4171-8fec-40478f075079"/></entry></section></Composition></resource></entry><entry><fullUrl value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313"/><resource><Organization xmlns="http://hl7.org/fhir"><id value="04f822b6-8030-4f2a-870c-d4fc37113313"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.3"/></meta><identifier><system value="http://fhir.de/sid/arge-ik/iknr"/><value value="049952307"/></identifier><name value="Apotheke Owen Money"/><address><type value="physical"/><line value="Krummer Weg 6"><extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber"><valueString value="6"/></extension><extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName"><valueString value="Krummer Weg"/></extension></line><city value="Süd Bennet"/><postalCode value="26855"/><country value="D"/></address></Organization></resource></entry><entry><fullUrl value="urn:uuid:a8f994ae-ca28-4b2f-8b05-1b9f932b405d"/><resource><Invoice xmlns="http://hl7.org/fhir"><id value="a8f994ae-ca28-4b2f-8b05-1b9f932b405d"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.3"/></meta><status value="issued"/><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp"/><code value="Abrechnungszeilen"/></coding></type><lineItem><sequence value="1"/><chargeItemCodeableConcept><coding><system value="http://fhir.de/CodeSystem/ifa/pzn"/><code value="80700616"/></coding><text value="Laif® 900 Balance 400 mg"/></chargeItemCodeableConcept><priceComponent><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter"><extension url="Kategorie"><valueCodeableConcept><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie"/><code value="0"/></coding></valueCodeableConcept></extension><extension url="Kostenbetrag"><valueMoney><value value="214.09"/><currency value="EUR"/></valueMoney></extension></extension><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz"><valueDecimal value="12.21"/></extension><type value="informational"/><factor value="1"/><amount><value value="933.54"/><currency value="EUR"/></amount></priceComponent></lineItem><totalGross><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung"><valueMoney><value value="214.09"/><currency value="EUR"/></valueMoney></extension><value value="933.54"/><currency value="EUR"/></totalGross></Invoice></resource></entry><entry><fullUrl value="urn:uuid:4c720b47-546a-4171-8fec-40478f075079"/><resource><MedicationDispense xmlns="http://hl7.org/fhir"><id value="4c720b47-546a-4171-8fec-40478f075079"/><meta><profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.3"/></meta><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp"><valueCodeableConcept><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp"/><code value="1"/></coding></valueCodeableConcept></extension><extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen"><valueReference><reference value="urn:uuid:a8f994ae-ca28-4b2f-8b05-1b9f932b405d"/></valueReference></extension><status value="completed"/><medicationCodeableConcept><coding><system value="http://terminology.hl7.org/CodeSystem/data-absent-reason"/><code value="not-applicable"/></coding></medicationCodeableConcept><performer><actor><reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313"/></actor></performer><authorizingPrescription><identifier><system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/><value value="200.000.002.425.318.87"/></identifier></authorizingPrescription><type><coding><system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp"/><code value="Abgabeinformationen"/></coding></type><whenHandedOver value="2025-03-28"/></MedicationDispense></resource></entry></Bundle>
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="ef236629-9743-4814-b556-5a557cd66ae3" />
+	<meta>
+		<lastUpdated value="2025-03-28T09:08:00.038+01:00" />
+		<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenBundle|1.3" />
+	</meta>
+	<identifier>
+		<system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+		<value value="200.000.002.425.318.87" />
+	</identifier>
+	<type value="document" />
+	<timestamp value="2025-03-28T09:08:00.038+01:00" />
+	<entry>
+		<fullUrl value="urn:uuid:c09add57-2a10-48a1-9478-af1976795eac" />
+		<resource>
+			<Composition xmlns="http://hl7.org/fhir">
+				<id value="c09add57-2a10-48a1-9478-af1976795eac" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-AbgabedatenComposition|1.3" />
+				</meta>
+				<status value="final" />
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-CompositionTypes" />
+						<code value="ERezeptAbgabedaten" />
+					</coding>
+				</type>
+				<date value="2025-03-28T09:08:00+01:00" />
+				<author>
+					<reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313" />
+				</author>
+				<title value="ERezeptAbgabedaten" />
+				<section>
+					<title value="Apotheke" />
+					<entry>
+						<reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313" />
+					</entry>
+				</section>
+				<section>
+					<title value="Abgabeinformationen" />
+					<entry>
+						<reference value="urn:uuid:4c720b47-546a-4171-8fec-40478f075079" />
+					</entry>
+				</section>
+			</Composition>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313" />
+		<resource>
+			<Organization xmlns="http://hl7.org/fhir">
+				<id value="04f822b6-8030-4f2a-870c-d4fc37113313" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Apotheke|1.3" />
+				</meta>
+				<identifier>
+					<system value="http://fhir.de/sid/arge-ik/iknr" />
+					<value value="049952307" />
+				</identifier>
+				<name value="Apotheke Owen Money" />
+				<address>
+					<type value="physical" />
+					<line value="Krummer Weg 6">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+							<valueString value="6" />
+						</extension>
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+							<valueString value="Krummer Weg" />
+						</extension>
+					</line>
+					<city value="Süd Bennet" />
+					<postalCode value="26855" />
+					<country value="D" />
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:a8f994ae-ca28-4b2f-8b05-1b9f932b405d" />
+		<resource>
+			<Invoice xmlns="http://hl7.org/fhir">
+				<id value="a8f994ae-ca28-4b2f-8b05-1b9f932b405d" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abrechnungszeilen|1.3" />
+				</meta>
+				<status value="issued" />
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-InvoiceTyp" />
+						<code value="Abrechnungszeilen" />
+					</coding>
+				</type>
+				<lineItem>
+					<sequence value="1" />
+					<chargeItemCodeableConcept>
+						<coding>
+							<system value="http://fhir.de/CodeSystem/ifa/pzn" />
+							<code value="80700616" />
+						</coding>
+						<text value="Laif® 900 Balance 400 mg" />
+					</chargeItemCodeableConcept>
+					<priceComponent>
+						<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-KostenVersicherter">
+							<extension url="Kategorie">
+								<valueCodeableConcept>
+									<coding>
+										<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-KostenVersicherterKategorie" />
+										<code value="0" />
+									</coding>
+								</valueCodeableConcept>
+							</extension>
+							<extension url="Kostenbetrag">
+								<valueMoney>
+									<value value="214.09" />
+									<currency value="EUR" />
+								</valueMoney>
+							</extension>
+						</extension>
+						<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-MwStSatz">
+							<valueDecimal value="12.21" />
+						</extension>
+						<type value="informational" />
+						<factor value="1" />
+						<amount>
+							<value value="933.54" />
+							<currency value="EUR" />
+						</amount>
+					</priceComponent>
+				</lineItem>
+				<totalGross>
+					<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung">
+						<valueMoney>
+							<value value="214.09" />
+							<currency value="EUR" />
+						</valueMoney>
+					</extension>
+					<value value="933.54" />
+					<currency value="EUR" />
+				</totalGross>
+			</Invoice>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:4c720b47-546a-4171-8fec-40478f075079" />
+		<resource>
+			<MedicationDispense xmlns="http://hl7.org/fhir">
+				<id value="4c720b47-546a-4171-8fec-40478f075079" />
+				<meta>
+					<profile value="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-PR-ERP-Abgabeinformationen|1.3" />
+				</meta>
+				<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-PKV-EX-ERP-AbrechnungsTyp">
+					<valueCodeableConcept>
+						<coding>
+							<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-PKV-CS-ERP-AbrechnungsTyp" />
+							<code value="1" />
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<extension url="http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Abrechnungszeilen">
+					<valueReference>
+						<reference value="urn:uuid:a8f994ae-ca28-4b2f-8b05-1b9f932b405d" />
+					</valueReference>
+				</extension>
+				<status value="completed" />
+				<medicationCodeableConcept>
+					<coding>
+						<system value="http://terminology.hl7.org/CodeSystem/data-absent-reason" />
+						<code value="not-applicable" />
+					</coding>
+				</medicationCodeableConcept>
+				<performer>
+					<actor>
+						<reference value="urn:uuid:04f822b6-8030-4f2a-870c-d4fc37113313" />
+					</actor>
+				</performer>
+				<authorizingPrescription>
+					<identifier>
+						<system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+						<value value="200.000.002.425.318.87" />
+					</identifier>
+				</authorizingPrescription>
+				<type>
+					<coding>
+						<system value="http://fhir.abda.de/eRezeptAbgabedaten/CodeSystem/DAV-CS-ERP-MedicationDispenseTyp" />
+						<code value="Abgabeinformationen" />
+					</coding>
+				</type>
+				<whenHandedOver value="2025-03-28" />
+			</MedicationDispense>
+		</resource>
+	</entry>
+</Bundle>
