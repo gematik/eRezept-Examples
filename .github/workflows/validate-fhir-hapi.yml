@@ -54,7 +54,7 @@ jobs:
             # Further exclude index.json, files with "negativ" in the name, and XML files containing "soap"
             FINAL_FILES=""
             for file in $FILTERED_FILES; do
-              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
+              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
                 FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
             done
