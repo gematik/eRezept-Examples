@@ -54,14 +54,17 @@ jobs:
             # Further exclude index.json, files with "negativ" in the name, and XML files containing "soap"
             FINAL_FILES=""
             for file in $FILTERED_FILES; do
-              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
-                FINAL_FILES="$FINAL_FILES $file"
+              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
+                FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
             done
 
+            # Trim leading newline from FINAL_FILES
+            FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
+
             if [ -n "$FINAL_FILES" ]; then
               echo "Copying changed files that match criteria..."
-              echo "$FINAL_FILES" | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+              echo "$FINAL_FILES" | xargs -d '\n' -I {} cp --parents "{}" "$PATH_TO_EXAMPLES/"
               echo "Files copied successfully."
             else
               echo "No files matching the criteria were changed."
@@ -71,10 +74,9 @@ jobs:
           fi
           
           # Count files to validate, handling empty directory
-          FILE_COUNT=$(ls -1 $PATH_TO_EXAMPLES 2>/dev/null | wc -l)
+          FILE_COUNT=$(find $PATH_TO_EXAMPLES -type f 2>/dev/null | wc -l)
           echo "Number of changed files to validate: $FILE_COUNT"
         shell: bash
-
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK

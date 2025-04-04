@@ -1,0 +1,99 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="ebb78e41-2914-45a3-949c-e935631ffc7b"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="5ac787f9-69ea-4d3e-b5b0-59ce03c4307a"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.239.761.387.93"/>
+               </identifier>
+               <status value="completed"/>
+               <medicationReference>
+                  <reference value="21b14b70-225f-4886-a38f-0f17f77c7572"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110614233"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <identifier>
+                        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                        <value value="3-SMC-B-Testkarte--883110000163973"/>
+                     </identifier>
+                  </actor>
+               </performer>
+               <whenPrepared value="2025-03-28"/>
+               <whenHandedOver value="2025-03-28"/>
+               <substitution>
+                  <wasSubstituted value="false"/>
+               </substitution>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="21b14b70-225f-4886-a38f-0f17f77c7572"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+               </meta>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+                  <valueCoding>
+                     <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                     <code value="00"/>
+                  </valueCoding>
+               </extension>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="http://fhir.de/StructureDefinition/normgroesse">
+                  <valueCode value="NB"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="12345678"/>
+                  </coding>
+                  <text value="Schmerzmittel"/>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="TAB"/>
+                  </coding>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                        <valueString value="1"/>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="Stk"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <batch>
+                  <lotNumber value="1985408926"/>
+                  <expirationDate value="2025-04-17T08:41:54+02:00"/>
+               </batch>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

@@ -1,0 +1,35 @@
+{
+  "id" : "d1aeca62-b8f4-4c2b-b4c9-f95d64962207",
+  "mainActor" : "Fachdienst",
+  "name" : "Längenprüfung PZN: 7- bzw. 9-stellig ist ungültig",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Versicherung:GKV", "@TCID:ERP_EE_PZN_01", "@TESTFALL:negativ", "@AFO-ID:A_22925", "@Hauptdarsteller:Fachdienst" ],
+  "feature" : "Längenprüfung der PZN",
+  "featureFile" : "GKV_WF_160/Laengenpruefung_PZN",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Dann kann die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann kein E-Rezept verschreiben, weil die PZN eine falsche Länge hat\n| Name | PZN |\n| Schmerzmittel | 012345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.402.48",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.402.48/$activate",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20250328_090500",
+      "file" : "Fachdienst/längenprüfung_pzn__7__bzw__9_stellig_ist_ungültig/005_Response_OperationOutcome.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_22925" ]
+}

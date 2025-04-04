@@ -1,0 +1,72 @@
+{
+  "id" : "57887c62-8920-4631-abe6-c9df69432e28",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen von akzeptierten E-Rezepten durch den Versicherten nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_14", "@TESTFALL:negativ", "@AFO-ID:A_19145", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte versucht das Rezept zu löschen, nachdem es schon von einer Apotheke akzeptiert wurde. Das wird durch den Fachdienst verhindert.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.383.08",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.383.08/$activate",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.383.08",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.383.08 with AccessCode 17d9bf5e05848d9f78602caa74db74426ac6b51b0414e85bda83fd63d04adee1",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/006_dmc_160.000.239.761.383.08.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/a9354d31-64cd-4ab5-ad5b-9853fff70a9d",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+  }, {
+    "name" : "Sina hüllmann check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20250328_090400",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/008_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Sina hüllmann performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.383.08/$close?secret=f05834fa8f7bb8273217a045b421d17daa326a073f0cb843f220a73ac7538681",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0e7774a-0e00-0000-0003-000000000000",
+      "file" : "Versicherter/löschen_von_akzeptierten_e_rezepten_durch_den_versicherten_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19145" ]
+}

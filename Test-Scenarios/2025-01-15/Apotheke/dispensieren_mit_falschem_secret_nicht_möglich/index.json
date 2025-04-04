@@ -1,0 +1,71 @@
+{
+  "id" : "1a64b429-a782-4088-8428-38afd296825c",
+  "mainActor" : "Apotheke",
+  "name" : "Dispensieren mit falschem Secret nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_17", "@TESTFALL:negativ", "@AFO-ID:A_19231", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss beim Dispensieren das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$close ablehnen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.386.96",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.386.96/$activate",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.386.96",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.386.96 with AccessCode f0f301053a4fbd3afa17eae8c63de3c52d0d0b25cea01908cdc25ec41c48b1b0",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/006_dmc_160.000.239.761.386.96.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/42738d18-5ed0-4af2-8c53-2127d892224d",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht mit dem falschen Secret fgdkjfgd dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.386.96/$close?secret=fgdkjfgd",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20250328_090407",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/009_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.386.96/$close?secret=8a5fe608fb8c06bcaecf54e0e6746b5c61223ed1b9179bc12f9922f7a31dd013",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/010_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0ea774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/dispensieren_mit_falschem_secret_nicht_möglich/011_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19231" ]
+}
