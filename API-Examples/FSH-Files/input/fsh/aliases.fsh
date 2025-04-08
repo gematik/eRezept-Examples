@@ -48,7 +48,6 @@ Alias: $sct = http://snomed.info/sct
 Alias: $pzn-cs = http://fhir.de/CodeSystem/ifa/pzn
 Alias: $KBV_CS_SFHIR_KBV_DARREICHUNGSFORM = https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM
 Alias: $GEM_ERP_CS_OrganizationType = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_OrganizationType
-Alias: $unitsofmeasure = http://unitsofmeasure.org
 Alias: $Origin = https://gematik.de/fhir/directory/CodeSystem/Origin
 Alias: $OrganizationProfessionOID = https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID
 Alias: $GEM_ERP_CS_DocumentType = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_DocumentType

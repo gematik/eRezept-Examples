@@ -44,7 +44,7 @@ Title: "Example EU-Close Parameters"
     * resource = Example-MedicationDispense-EU
   * part[medication]
     * name = "medication"
-    * resource = SumatripanMedication
+    * resource = SumatripanMedication-EU
 
 
 Instance: Example-MedicationDispense-EU
@@ -57,7 +57,7 @@ Description: "Example of a Medication Dispense."
 * insert GKV_Identifier(subject.identifier)
 * performer.actor = Reference(Example-EU-PractitionerRole)
 * insert Date(whenHandedOver)
-* medicationReference = Reference(SumatripanMedication)
+* medicationReference = Reference(SumatripanMedication-EU)
 
 Instance: Example-EU-Practitioner
 InstanceOf: GEM_ERPEU_PR_Practitioner

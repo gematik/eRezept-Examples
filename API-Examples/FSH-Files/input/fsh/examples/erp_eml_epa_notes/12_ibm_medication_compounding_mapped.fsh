@@ -9,8 +9,8 @@ Usage: #example
 * form.text = "TAB"
 * code.text = "Sumatriptan-1a Pharma 100 mg Tabletten"
 
-* amount.numerator = $unitsofmeasure#{tbl} "TAB"
-  * extension[totalQuantity].valueString = "12"
+* amount.numerator.unit =  "TAB"
+* amount.numerator.extension[totalQuantity].valueString = "12"
 * amount.denominator.value = 1
 
 * ingredient[+]

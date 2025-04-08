@@ -8,7 +8,7 @@ Usage: #example
 * extension[Impfstoff].valueBoolean = false
 * extension[Kategorie].valueCodeableConcept.coding.code = #1208954007
 
-* amount.numerator = $unitsofmeasure#{tbl} "TAB"
+* amount.numerator.unit = "TAB"
 * amount.numerator.extension[Gesamtmenge].valueString = "12"
 * amount.denominator.value = 1
 
