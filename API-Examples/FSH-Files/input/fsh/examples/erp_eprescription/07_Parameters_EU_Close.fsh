@@ -68,6 +68,7 @@ Description: "Example of an EU Practitioner"
 * identifier[+].value = "1234567890"
 * name.family = "Sanches"
 * name.given = "Pedro"
+* name.text = "Pedro Sanches"
 
 Instance: Example-EU-Organization
 InstanceOf: GEM_ERPEU_PR_Organization

@@ -54,6 +54,7 @@ Description: "Example of an EU Practitioner-Missing-Data"
 * identifier[+].value = "1234567890"
 * name.family = "Sanches"
 * name.given = "Pedro"
+* name.text = "Pedro Sanches"
 
 Instance: Example-EU-Organization-Missing-Data
 InstanceOf: GEM_ERPEU_PR_Organization
