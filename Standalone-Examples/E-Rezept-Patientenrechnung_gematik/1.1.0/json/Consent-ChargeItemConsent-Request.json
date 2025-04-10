@@ -1,0 +1,50 @@
+{
+  "resourceType": "Consent",
+  "id": "ChargeItemConsent-Request",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erpchrg/StructureDefinition/GEM_ERPCHRG_PR_Consent|1.1"
+    ]
+  },
+  "status": "active",
+  "patient": {
+    "identifier": {
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "assigner": {
+        "identifier": {
+          "system": "http://fhir.de/sid/arge-ik/iknr",
+          "value": "168140950"
+        }
+      },
+      "value": "P987654321"
+    }
+  },
+  "scope": {
+    "coding": [
+      {
+        "code": "patient-privacy",
+        "system": "http://terminology.hl7.org/CodeSystem/consentscope",
+        "display": "Privacy Consent"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "CHARGCONS",
+          "system": "https://gematik.de/fhir/erpchrg/CodeSystem/GEM_ERPCHRG_CS_ConsentType",
+          "display": "Consent for saving electronic charge item"
+        }
+      ]
+    }
+  ],
+  "policyRule": {
+    "coding": [
+      {
+        "code": "OPTIN",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+      }
+    ]
+  }
+}
