@@ -84,10 +84,10 @@ jobs:
 
       - name: Delete all other files 
         run: |
-          # Delete all files and directories except the $PATH_TO_EXAMPLES directory
           EXCLUDE_DIR=$(basename "$PATH_TO_EXAMPLES")
-          find . -mindepth 1 -not -path "./$EXCLUDE_DIR" -not -path "./$EXCLUDE_DIR/*" -exec rm -rf {} +
+          find . -mindepth 1 -path "./$EXCLUDE_DIR" -prune -o -exec rm -rf {} +
         shell: bash
+
 
       
       - name: Restore Keep Files
