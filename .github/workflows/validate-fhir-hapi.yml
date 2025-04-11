@@ -161,7 +161,15 @@ jobs:
         shell: bash
 
       - name: Show FHIR Dependencies
-        run: fhir scope && fhir logging Debug && fhir validate ./Standalone-Examples/E-Rezept-Workflow_gematik/1.5.0/MedicationDispense-Example-MedicationDispense-Rezeptur.xml && fhir validate ./temp_folder/Standalone-Examples/E-Rezept-Workflow_gematik/1.5.0/MedicationDispense-Example-MedicationDispense-Rezeptur.xml
+        run: fhir scope && fhir logging Debug
+        shell: bash
+
+      - name: Remove all other folders
+        run: |
+          # Delete all files and folders except ./temp_folder, package.json, and fhirpkg.lock.json
+          echo "Deleting all files and folders except ./temp_folder, package.json, and fhirpkg.lock.json..."
+          find . -mindepth 1 -not -path "./temp_folder*" -not -name "package.json" -not -name "fhirpkg.lock.json" -exec rm -rf {} +
+          echo "Cleanup completed."
         shell: bash
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
