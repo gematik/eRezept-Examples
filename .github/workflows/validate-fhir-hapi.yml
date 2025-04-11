@@ -41,9 +41,7 @@ jobs:
           node-version: '20'
 
       # Identify and Copy Changed .json and .xml Files
-      # Delete All Files Except Changed Files Plus Essential Files, Handling Spaces in Filenames
-      # Copy keep files to $PATH_TO_EXAMPLES, delete all other files, and restore them back preserving folder structure
-      - name: Preserve Changed and Essential Files Only
+      - name: Preserve Changed and Essential Files to PATH_TO_EXAMPLES
         run: |
           # Ensure the temporary folder exists and is empty
           rm -rf "$PATH_TO_EXAMPLES"
@@ -82,11 +80,25 @@ jobs:
               cp --parents "$file" "$PATH_TO_EXAMPLES/"
             fi
           done <<< "$KEEP_FILES"
-          
+
+      - name: Delete all other files 
+        run: |          
           # Delete all files and directories except $PATH_TO_EXAMPLES.
-          # Using find with -mindepth 1 avoids deleting the root directory.
-          find . -mindepth 1 -not -path "./$(basename "$PATH_TO_EXAMPLES")" -not -path "./$(basename "$PATH_TO_EXAMPLES")/*" -exec rm -rf {} +
-          
+          # Iterate over all files using find with null-delimited output
+          find . -type f -print0 | while IFS= read -r -d '' file; do
+              # Strip the leading './' for matching
+              file_no_prefix="${file#./}"
+              
+              # Exclude the temporary file itself
+              if [ "$file_no_prefix" != "$(basename "$PATH_TO_EXAMPLES")" ]; then
+                  if ! grep -Fxq "$file_no_prefix" "$PATH_TO_EXAMPLES"; then
+                      rm "$file"
+                  fi
+              fi
+          done
+      
+      - name: Restore Keep Files
+        run: |          
           # Restore the keep files back from $PATH_TO_EXAMPLES to the repository root preserving structure.
           # rsync will merge the file structure back.
           rsync -a "$PATH_TO_EXAMPLES"/ ./
