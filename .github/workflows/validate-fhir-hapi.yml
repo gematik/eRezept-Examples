@@ -185,6 +185,7 @@ jobs:
             # Read the file line by line without using a pipe
             while read file; do
               echo "Validating $file..."
+              cat $file
               VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
               echo "$VALIDATION_OUTPUT" 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
