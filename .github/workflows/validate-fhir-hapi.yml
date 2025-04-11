@@ -88,9 +88,6 @@ jobs:
           find . -maxdepth 1 -mindepth 1 -type d ! -name "$EXCLUDE_DIR" -exec rm -rf {} +
         shell: bash
 
-
-
-      
       - name: Restore Keep Files
         run: |          
           # Restore the keep files back from $PATH_TO_EXAMPLES to the repository root preserving structure.
@@ -105,9 +102,11 @@ jobs:
           echo "Number of files kept: $REMAIN_COUNT"
         shell: bash
 
-
-
-
+      - name: List all files and folders on root
+        run: |
+          echo "Listing all files and folders in the repository root:"
+          ls -la .
+        shell: bash
 
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
@@ -194,13 +193,6 @@ jobs:
         run: fhir scope && fhir logging Debug
         shell: bash
 
-      - name: Remove all other folders
-        run: |
-          # Delete all files and folders except ./temp_folder, package.json, and fhirpkg.lock.json
-          echo "Deleting all files and folders except ./temp_folder, package.json, and fhirpkg.lock.json..."
-          find . -mindepth 1 -not -path "./temp_folder*" -not -name "package.json" -not -name "fhirpkg.lock.json" -exec rm -rf {} +
-          echo "Cleanup completed."
-        shell: bash
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
     # --------------------------------------------------------------------------------------------------- #
