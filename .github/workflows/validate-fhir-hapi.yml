@@ -415,17 +415,26 @@ jobs:
                 ")
               echo -e "$formattedOutput"
                 
-              # Check for errors in the output and capture them
+              # Replace the error message collection section with:
               if echo "$javaValidatorOutput" | grep -q "Error "; then                    
-                # Extract error messages
-                errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
-                  
-                # Append to the failure message with proper formatting
-                if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
+                # Extract error messages (simpler approach)
+                errorMessages=$(echo "$javaValidatorOutput" | grep -E "Error |Validate |[*]FAILURE[*]" | tr -d '\r')
+                
+                # Initialize the Java Validator section if it doesn't exist
+                if [[ "$OUTPUT_FAILURE_MESSAGE" != *"Java Validator:"* ]]; then
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Java Validator:
+                ===============
+
+                "
                 fi
-                OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
+                # Add error without complex formatting
+                OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file
+                Errors: 
+                $errorMessages
+                -----------------------
+                "
               fi
+
             else
               echo "No XML or JSON files found to validate"
             fi
@@ -435,7 +444,7 @@ jobs:
             
             # Export the failure message to GITHUB_ENV using proper heredoc syntax
             echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE" | tr -d '\r' >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
       
             # Set the failure flag if errors were found
@@ -449,11 +458,26 @@ jobs:
       - name: Check whether errors occurred 
         run: |
           if [ "$OUTPUT_FAILURE" = "true" ]; then
-            echo "$OUTPUT_FAILURE_MESSAGE"
+            # Print the .NET Validator errors (these are working fine)
+            if [[ "$OUTPUT_FAILURE_MESSAGE" == *".NET Validator:"* ]]; then
+              echo "Displaying .NET Validator Errors:"
+              echo "$OUTPUT_FAILURE_MESSAGE" | sed -n '/.NET Validator:/,/Java Validator:/p' | sed '$d'
+            fi
+            
+            # Print Java Validator errors (this part is failing)
+            if [[ "$OUTPUT_FAILURE_MESSAGE" == *"Java Validator:"* ]]; then
+              echo "Displaying Java Validator Errors:"
+              echo "$OUTPUT_FAILURE_MESSAGE" | sed -n '/Java Validator:/,$p'
+            fi
+            
+            # Fail the build with a cleaner exit
+            echo "Validation errors found. Please check the logs above."
             exit 1
           else
             echo "No errors found"
-          fi 
+          fi
+        shell: bash 
+      
         
       - name: Cleanup
         if: always()
