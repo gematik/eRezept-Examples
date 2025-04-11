@@ -329,6 +329,9 @@ jobs:
           OK=$'\033[0;32m'
           NC=$'\033[0m'
       
+          # Create a fresh error log file
+          touch java_errors.txt
+
           # Initialize failure message variable
           if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
             OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
@@ -417,22 +420,10 @@ jobs:
                 
               # Replace the error message collection section with:
               if echo "$javaValidatorOutput" | grep -q "Error "; then                    
-                # Extract error messages (simpler approach)
-                errorMessages=$(echo "$javaValidatorOutput" | grep -E "Error |Validate |[*]FAILURE[*]" | tr -d '\r')
-                
-                # Initialize the Java Validator section if it doesn't exist
-                if [[ "$OUTPUT_FAILURE_MESSAGE" != *"Java Validator:"* ]]; then
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Java Validator:
-                ===============
-
-                "
-                fi
-                # Add error without complex formatting
-                OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file
-                Errors: 
-                $errorMessages
-                -----------------------
-                "
+                echo -e "\n==== JAVA VALIDATION ERROR in $file ====\n" >> java_errors.txt
+                echo "$javaValidatorOutput" | grep -A 2 "Error " >> java_errors.txt
+                echo -e "\n----------------------------------------\n" >> java_errors.txt
+                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
               fi
 
             else
@@ -464,10 +455,12 @@ jobs:
               echo "$OUTPUT_FAILURE_MESSAGE" | sed -n '/.NET Validator:/,/Java Validator:/p' | sed '$d'
             fi
             
-            # Print Java Validator errors (this part is failing)
+            # Print Java Validator errors
             if [[ "$OUTPUT_FAILURE_MESSAGE" == *"Java Validator:"* ]]; then
-              echo "Displaying Java Validator Errors:"
-              echo "$OUTPUT_FAILURE_MESSAGE" | sed -n '/Java Validator:/,$p'
+              echo -e "\nDisplaying Java Validator Errors:"
+              echo "=================================="
+              cat java_errors.txt
+              has_errors=true
             fi
             
             # Fail the build with a cleaner exit
