@@ -329,8 +329,9 @@ jobs:
           OK=$'\033[0;32m'
           NC=$'\033[0m'
       
-          # Create a fresh error log file
-          touch java_errors.txt
+          # Create fresh error logs
+          echo "" > java_validator_output.log
+          echo "" > java_errors.txt
 
           # Initialize failure message variable
           if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
@@ -399,33 +400,26 @@ jobs:
       
             # Check if we found any files
             if [ -s "$TEMP_FILE" ]; then
-              echo "Found files to validate:"
+              echo "Files to validate:"
               cat "$TEMP_FILE"
 
               # Convert file list to space-separated string
               FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
         
               echo "Validating all files at once..."
-              javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
-        
-    
-              # Format the output with colors
-              formattedOutput=$(echo "$javaValidatorOutput" | sed -E "
-                s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
-                s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
-                s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
-                s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
-                ")
-              echo -e "$formattedOutput"
-                
-              # Replace the error message collection section with:
-              if echo "$javaValidatorOutput" | grep -q "Error "; then                    
-                echo -e "\n==== JAVA VALIDATION ERROR in $file ====\n" >> java_errors.txt
-                echo "$javaValidatorOutput" | grep -A 2 "Error " >> java_errors.txt
-                echo -e "\n----------------------------------------\n" >> java_errors.txt
+              # javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+              java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES | tee java_validator_output.log || true
+            
+              # Check for errors and extract them
+              if grep -q "Error " java_validator_output.log; then
+                echo "Found validation errors!"
+                # Extract errors with context (3 lines after each error)
+                grep -A 3 "Error " java_validator_output.log > java_errors.txt
+                # Set failure flag
                 echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              else
+                echo "No Java validation errors found"
               fi
-
             else
               echo "No XML or JSON files found to validate"
             fi
@@ -434,15 +428,15 @@ jobs:
             rm "$TEMP_FILE"
             
             # Export the failure message to GITHUB_ENV using proper heredoc syntax
-            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-            echo "$OUTPUT_FAILURE_MESSAGE" | tr -d '\r' >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
+            # echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+            # echo "$OUTPUT_FAILURE_MESSAGE" | tr -d '\r' >> $GITHUB_ENV
+            # echo "EOF" >> $GITHUB_ENV
       
             # Set the failure flag if errors were found
-            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-              echo "Java validation failed with errors"
-            fi
+            # if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+              # echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              # echo "Java validation failed with errors"
+            # fi
           fi
         shell: bash  
 
@@ -456,10 +450,18 @@ jobs:
             fi
             
             # Print Java Validator errors
-            if [[ "$OUTPUT_FAILURE_MESSAGE" == *"Java Validator:"* ]]; then
+            echo "Debug - listing files:"
+            ls -la *.txt || true
+    
+            if [ -f "java_errors.txt" ] && [ -s "java_errors.txt" ]; then
               echo -e "\nDisplaying Java Validator Errors:"
               echo "=================================="
               cat java_errors.txt
+              has_errors=true
+            elif [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+              echo -e "\nDisplaying Java Validator Errors (from log):"
+              echo "=================================="
+              grep -A 3 "Error " java_validator_output.log
               has_errors=true
             fi
             
