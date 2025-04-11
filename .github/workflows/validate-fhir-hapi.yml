@@ -41,7 +41,7 @@ jobs:
           node-version: '20'
 
       # Identify and Copy Changed .json and .xml Files
-      # Delete All Files Except Changed Files Plus Additional Keeps
+      # Delete All Files Except Changed Files Plus Essential Files, Handling Spaces in Filenames
       - name: Delete All Files Except Changes and Essential Files
         run: |
           # Get changed files, handling case when git diff returns nothing
@@ -52,11 +52,11 @@ jobs:
             FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
             
             # Further filter: exclude index.json, package.json, files with "negativ" and XML files with <soap in them
-            for file in $FILTERED_FILES; do
+            while IFS= read -r file; do
               if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
                 FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
-            done
+            done <<< "$FILTERED_FILES"
             
             # Remove empty lines
             FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
@@ -68,21 +68,24 @@ jobs:
             KEEP_FILES=$(echo -e "$KEEP_FILES\n$FINAL_FILES")
           fi
 
-          echo "Files to keep can be reviewed below:"
+          echo "Files to keep:"
           echo "$KEEP_FILES"
 
           # Create a temporary file to store the keep list (ensuring it is not part of the repository files)
           TMP_FILE=$(mktemp)
           echo "$KEEP_FILES" > "$TMP_FILE"
 
-          # Iterate over all files (excluding the temporarily created keep list file) and delete those not in the keep list
-          for file in $(find . -type f | sed 's|^\./||'); do
-            # Exclude the temporary file by comparing the basename
-            if [ "$file" != "$(basename "$TMP_FILE")" ]; then
-              if ! grep -Fxq "$file" "$TMP_FILE"; then
-                rm "$file"
+          # Iterate over all files using find with null-delimited output
+          find . -type f -print0 | while IFS= read -r -d '' file; do
+              # Strip the leading './' for matching
+              file_no_prefix="${file#./}"
+              
+              # Exclude the temporary file itself
+              if [ "$file_no_prefix" != "$(basename "$TMP_FILE")" ]; then
+                  if ! grep -Fxq "$file_no_prefix" "$TMP_FILE"; then
+                      rm "$file"
+                  fi
               fi
-            fi
           done
 
           rm "$TMP_FILE"
@@ -91,6 +94,7 @@ jobs:
           REMAIN_COUNT=$(find . -type f 2>/dev/null | wc -l)
           echo "Number of files kept: $REMAIN_COUNT"
         shell: bash
+
 
 
 
