@@ -378,33 +378,41 @@ jobs:
             TEMP_FILE=$(mktemp)
             find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
       
-            echo "Validating examples in $PATH_TO_EXAMPLES"
-            while read file; 
-              do                                                                             
-                echo "Commencing with validating"
-                javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+            # Check if we found any files
+            if [ -s "$TEMP_FILE" ]; then
+              echo "Found files to validate:"
+              cat "$TEMP_FILE"
+
+              # Convert file list to space-separated string
+              FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
+        
+              echo "Validating all files at once..."
+              javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+        
     
-                # Format the output with colors
-                formattedOutput=$(echo "$javaValidatorOutput" | sed -E "
-                  s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
-                  s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
-                  s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
-                  s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
-                  ")
-                echo -e "$formattedOutput"
+              # Format the output with colors
+              formattedOutput=$(echo "$javaValidatorOutput" | sed -E "
+                s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
+                s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
+                s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
+                s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
+                ")
+              echo -e "$formattedOutput"
                 
-                # Check for errors in the output and capture them
-                if echo "$javaValidatorOutput" | grep -q "Error "; then                    
-                  # Extract error messages
-                  errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
+              # Check for errors in the output and capture them
+              if echo "$javaValidatorOutput" | grep -q "Error "; then                    
+                # Extract error messages
+                errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
                   
-                  # Append to the failure message with proper formatting
-                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
-                  fi
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
+                # Append to the failure message with proper formatting
+                if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
                 fi
-              done < "$TEMP_FILE"
+                OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
+              fi
+            else
+              echo "No XML or JSON files found to validate"
+            fi
 
             # Clean up the temporary file
             rm "$TEMP_FILE"
