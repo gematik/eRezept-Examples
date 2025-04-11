@@ -209,7 +209,7 @@ jobs:
             
             # Use a temporary file to store the list of files to validate
             TEMP_FILE=$(mktemp)
-            find ./ -type f -name "*.json" -o -name "*.xml" > "$TEMP_FILE"
+            find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
             
             # Read the file line by line without using a pipe
             while read file; do
