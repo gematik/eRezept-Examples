@@ -373,8 +373,12 @@ jobs:
             
             echo "Extracted IG dependencies: $IG_DEPENDENCIES"
               
+            # Use a temporary file to store the list of files to validate
+            TEMP_FILE=$(mktemp)
+            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+
             echo "Validating examples in $PATH_TO_EXAMPLES"
-            for p in $PATH_TO_EXAMPLES; 
+            for p in $TEMP_FILE; 
               do
                 
                 # Ensure directory ends with "/"
@@ -386,7 +390,7 @@ jobs:
                 UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
                 
                 # Use find to get files (without piping to avoid subshell issues)
-                files=$(find "$GITHUB_WORKSPACE/$p" -type f -name "*.xml" -o -type f -name "*.json")
+                files=$(find "$GITHUB_WORKSPACE/$p" -type f \( -name "*.xml" -o -name "*.json" \) -not -name "package.json" -not -name "fhirpkg.lock.json")
       
                 echo "Commencing with validating"
                 if [ -n "$files" ]; then
