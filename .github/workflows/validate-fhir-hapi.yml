@@ -79,6 +79,13 @@ jobs:
           echo "Number of changed files to validate: $FILE_COUNT"
         shell: bash
       
+        # Run a shell script to list all files and folders
+      - name: List all files and folders
+        run: |
+          echo "Listing all folders and files in the repository:"
+          find . -type d -print | sed 's/^/Directory: /'
+          find . -type f -print | sed 's/^/File: /'
+          
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
         uses: actions/setup-java@v4
