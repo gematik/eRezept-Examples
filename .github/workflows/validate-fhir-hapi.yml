@@ -121,8 +121,16 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Cache .NET tools
+        uses: actions/cache@v3
+        id: cache-dotnet-tools
+        with:
+          path: ~/.dotnet/tools
+          key: dotnet-tools-${{ env.FIRELY_TERMINAL_VERSION }}
+
       # Install Firely.Terminal
       - name: Install Firely.Terminal
+        if: steps.cache-dotnet-tools.outputs.cache-hit != 'true' && (env.DOTNET_VALIDATION_ENABLED == 'true' || env.SUSHI_ENABLED == 'true')
         run: |
           if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
             if ! command -v fhir &> /dev/null
@@ -270,8 +278,8 @@ jobs:
             fhirCacheLocation=$(fhir cache location --path)
             rm -rf $fhirCacheLocation
           fi
-        shell: bash
-    
+        shell: bash          
+
       - name: Check if Java is installed
         run: |
           if $JAVA_VALIDATION_ENABLED; then
@@ -283,7 +291,15 @@ jobs:
           fi
         shell: bash
     
+      - name: Cache Java Validator
+        uses: actions/cache@v3
+        id: cache-java-validator
+        with:
+          path: validator_cli.jar
+          key: validator-${{ env.VALIDATOR_VERSION }}
+
       - name: Download Java Validator
+        if: steps.cache-java-validator.outputs.cache-hit != 'true' && env.JAVA_VALIDATION_ENABLED == 'true'
         run: |
           if $JAVA_VALIDATION_ENABLED; then
             CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
