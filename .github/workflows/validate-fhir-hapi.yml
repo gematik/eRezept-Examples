@@ -24,6 +24,7 @@ env:
   JAVA_SNAPSHOT_ENABLED: false 
   OUTPUT_FAILURE: false
   OUTPUT_FAILURE_MESSAGE: ""
+  FIRELY_TERMINAL_VERSION: 3.1.0
 
 jobs:
   CI_EXAMPLES_VALIDATION:
@@ -101,8 +102,6 @@ jobs:
             fi
           fi
         shell: bash
-        env:
-          FIRELY_TERMINAL_VERSION: 3.3.2
 
       # Test Firely.Terminal install
       - name: Check Firely Terminal Version
@@ -185,7 +184,6 @@ jobs:
             # Read the file line by line without using a pipe
             while read file; do
               echo "Validating $file..."
-              cat $file
               VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
               echo "$VALIDATION_OUTPUT" 
               if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
