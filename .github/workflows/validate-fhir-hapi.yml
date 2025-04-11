@@ -82,11 +82,12 @@ jobs:
           done <<< "$KEEP_FILES"
         shell: bash
 
-      - name: Delete all other files 
+      - name: Delete all folders except $PATH_TO_EXAMPLES on root
         run: |
           EXCLUDE_DIR=$(basename "$PATH_TO_EXAMPLES")
-          find . -mindepth 1 -path "./$EXCLUDE_DIR" -prune -o -exec rm -rf {} +
+          find . -maxdepth 1 -mindepth 1 -type d ! -name "$EXCLUDE_DIR" -exec rm -rf {} +
         shell: bash
+
 
 
       
