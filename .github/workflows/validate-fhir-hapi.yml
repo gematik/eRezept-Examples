@@ -41,43 +41,57 @@ jobs:
           node-version: '20'
 
       # Identify and Copy Changed .json and .xml Files
-      - name: Identify and Copy Changed .json and .xml Files
+      # Delete All Files Except Changed Files Plus Additional Keeps
+      - name: Delete All Files Except Changes and Essential Files
         run: |
-          mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
-          
           # Get changed files, handling the case where git diff returns nothing
           CHANGED_FILES=$(git diff --name-only origin/main || echo "")
           
-          # If there are any changed files, filter and copy them
+          FINAL_FILES=""
           if [ -n "$CHANGED_FILES" ]; then
+            # Filter for .json and .xml files and exclude certain paths/keywords
             FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
             
             # Further exclude index.json, files with "negativ" in the name, and XML files containing "soap"
-            FINAL_FILES=""
             for file in $FILTERED_FILES; do
               if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
                 FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
             done
-
-            # Trim leading newline from FINAL_FILES
+            
+            # Remove any empty lines
             FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
-
-            if [ -n "$FINAL_FILES" ]; then
-              echo "Copying changed files that match criteria..."
-              echo "$FINAL_FILES" | xargs -d '\n' -I {} cp --parents "{}" "$PATH_TO_EXAMPLES/"
-              echo "Files copied successfully."
-            else
-              echo "No files matching the criteria were changed."
-            fi
-          else
-            echo "No files were changed."
           fi
-          
-          # Count files to validate, handling empty directory
-          FILE_COUNT=$(find $PATH_TO_EXAMPLES -type f 2>/dev/null | wc -l)
-          echo "Number of changed files to validate: $FILE_COUNT"
+
+          # Build a list of files to keep; always include package.json, fhirpkg.lock.json and $SUSHI_CONFIG_FILE
+          KEEP_FILES=$(echo -e "package.json\nfhirpkg.lock.json\n${SUSHI_CONFIG_FILE}")
+          if [ -n "$FINAL_FILES" ]; then
+            KEEP_FILES=$(echo -e "$KEEP_FILES\n$FINAL_FILES")
+          fi
+
+          echo "Files to keep:"
+          echo "$KEEP_FILES"
+
+          # Write the keep list to a temporary file
+          echo "$KEEP_FILES" > keep_list.txt
+
+          # Iterate over all files in the repo (relative paths) and delete those not in the keep list
+          for file in $(find . -type f | sed 's|^\./||'); do
+            if ! grep -Fxq "$file" keep_list.txt; then
+              echo "Deleting $file"
+              rm "$file"
+            else
+              echo "Keeping $file"
+            fi
+          done
+
+          rm keep_list.txt
+
+          # Optionally list the count of remaining files
+          FILE_COUNT=$(find . -type f 2>/dev/null | wc -l)
+          echo "Number of files kept: $FILE_COUNT"
         shell: bash
+
 
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
