@@ -372,54 +372,42 @@ jobs:
             done < "$SUSHI_CONFIG_FILE"
             
             echo "Extracted IG dependencies: $IG_DEPENDENCIES"
+            UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
               
             # Use a temporary file to store the list of files to validate
             TEMP_FILE=$(mktemp)
             find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
-
+      
             echo "Validating examples in $PATH_TO_EXAMPLES"
-            for p in $TEMP_FILE; 
-              do
-                echo -e $p
-                # Ensure directory ends with "/"
-                if [[ ! "$p" =~ .*/$ ]]; then
-                  p="$p/"
-                fi        
-                      
-                echo "Loading filenames into memory..."  
-                UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
-                
-                # Use find to get files (without piping to avoid subshell issues)
-                files=$(find "$GITHUB_WORKSPACE/$p" -type f \( -name "*.xml" -o -name "*.json" \) -not -name "package.json" -not -name "fhirpkg.lock.json")
-      
+            while read file; 
+              do                                                                             
                 echo "Commencing with validating"
-                if [ -n "$files" ]; then
-                  javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
-      
-                  # Format the output with colors
-                  formattedOutput=$(echo "$javaValidatorOutput" | sed -E "
-                    s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
-                    s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
-                    s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
-                    s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
-                    ")
-                  echo -e "$formattedOutput"
+                javaValidatorOutput=$(java -jar validator_cli.jar $files -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+    
+                # Format the output with colors
+                formattedOutput=$(echo "$javaValidatorOutput" | sed -E "
+                  s/(:[[:space:]]*)Error([[:space:]]+-)/\1${ERROR}Error${NC}\2/g;
+                  s/(:[[:space:]]*)Warning([[:space:]]+-)/\1${WARN}Warning${NC}\2/g;
+                  s/(:[[:space:]]*)Information([[:space:]]+-)/\1${INFO}Information${NC}\2/g;
+                  s/(-[[:space:]]+)All OK/\1${OK}All OK${NC}/g
+                  ")
+                echo -e "$formattedOutput"
+                
+                # Check for errors in the output and capture them
+                if echo "$javaValidatorOutput" | grep -q "Error "; then                    
+                  # Extract error messages
+                  errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
                   
-                  # Check for errors in the output and capture them
-                  if echo "$javaValidatorOutput" | grep -q "Error "; then                    
-                    # Extract error messages
-                    errorMessages=$(echo "$javaValidatorOutput" | grep -A 1 -E "Error |Validate \/home\/|[*]FAILURE[*]")
-                    
-                    # Append to the failure message with proper formatting
-                    if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                      OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
-                    fi
-                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
+                  # Append to the failure message with proper formatting
+                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                    OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
                   fi
-                else
-                  echo "No XML or JSON files found in $p"
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}Directory: $p Validation Errors: $errorMessages\n\n"
                 fi
-              done
+              done < "$TEMP_FILE"
+
+            # Clean up the temporary file
+            rm "$TEMP_FILE"
             
             # Export the failure message to GITHUB_ENV using proper heredoc syntax
             echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
