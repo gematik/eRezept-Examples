@@ -80,22 +80,15 @@ jobs:
               cp --parents "$file" "$PATH_TO_EXAMPLES/"
             fi
           done <<< "$KEEP_FILES"
+        shell: bash
 
       - name: Delete all other files 
-        run: |          
-          # Delete all files and directories except $PATH_TO_EXAMPLES.
-          # Iterate over all files using find with null-delimited output
-          find . -type f -print0 | while IFS= read -r -d '' file; do
-              # Strip the leading './' for matching
-              file_no_prefix="${file#./}"
-              
-              # Exclude the temporary file itself
-              if [ "$file_no_prefix" != "$(basename "$PATH_TO_EXAMPLES")" ]; then
-                  if ! grep -Fxq "$file_no_prefix" "$PATH_TO_EXAMPLES"; then
-                      rm "$file"
-                  fi
-              fi
-          done
+        run: |
+          # Delete all files and directories except the $PATH_TO_EXAMPLES directory
+          EXCLUDE_DIR=$(basename "$PATH_TO_EXAMPLES")
+          find . -mindepth 1 -not -path "./$EXCLUDE_DIR" -not -path "./$EXCLUDE_DIR/*" -exec rm -rf {} +
+        shell: bash
+
       
       - name: Restore Keep Files
         run: |          
