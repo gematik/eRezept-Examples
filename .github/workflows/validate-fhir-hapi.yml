@@ -42,27 +42,32 @@ jobs:
 
       # Identify and Copy Changed .json and .xml Files
       # Delete All Files Except Changed Files Plus Essential Files, Handling Spaces in Filenames
-      - name: Delete All Files Except Changes and Essential Files
+      # Copy keep files to $PATH_TO_EXAMPLES, delete all other files, and restore them back preserving folder structure
+      - name: Preserve Changed and Essential Files Only
         run: |
-          # Get changed files, handling case when git diff returns nothing
+          # Ensure the temporary folder exists and is empty
+          rm -rf "$PATH_TO_EXAMPLES"
+          mkdir -p "$PATH_TO_EXAMPLES"
+          
+          # Get changed files, handling when git diff returns nothing
           CHANGED_FILES=$(git diff --name-only origin/main || echo "")
           FINAL_FILES=""
           if [ -n "$CHANGED_FILES" ]; then
             # Filter for .json and .xml files, excluding unwanted folders and keywords
             FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
             
-            # Further filter: exclude index.json, package.json, files with "negativ" and XML files with <soap in them
+            # Further filter: exclude index.json, package.json, files with "negativ" and XML files containing "<soap"
             while IFS= read -r file; do
               if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
                 FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
             done <<< "$FILTERED_FILES"
             
-            # Remove empty lines
+            # Remove blank lines from FINAL_FILES
             FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
           fi
 
-          # Build a keep list: always include package.json, fhirpkg.lock.json, and the file from $SUSHI_CONFIG_FILE
+          # Build the list of files to keep, including essential files
           KEEP_FILES=$(echo -e "package.json\nfhirpkg.lock.json\n${SUSHI_CONFIG_FILE}")
           if [ -n "$FINAL_FILES" ]; then
             KEEP_FILES=$(echo -e "$KEEP_FILES\n$FINAL_FILES")
@@ -71,29 +76,29 @@ jobs:
           echo "Files to keep:"
           echo "$KEEP_FILES"
 
-          # Create a temporary file to store the keep list (ensuring it is not part of the repository files)
-          TMP_FILE=$(mktemp)
-          echo "$KEEP_FILES" > "$TMP_FILE"
-
-          # Iterate over all files using find with null-delimited output
-          find . -type f -print0 | while IFS= read -r -d '' file; do
-              # Strip the leading './' for matching
-              file_no_prefix="${file#./}"
-              
-              # Exclude the temporary file itself
-              if [ "$file_no_prefix" != "$(basename "$TMP_FILE")" ]; then
-                  if ! grep -Fxq "$file_no_prefix" "$TMP_FILE"; then
-                      rm "$file"
-                  fi
-              fi
-          done
-
-          rm "$TMP_FILE"
+          # Copy each keep file to $PATH_TO_EXAMPLES preserving the folder structure
+          while IFS= read -r file; do
+            if [ -n "$file" ]; then
+              cp --parents "$file" "$PATH_TO_EXAMPLES/"
+            fi
+          done <<< "$KEEP_FILES"
           
-          # Optionally, show a summary count of remaining files
+          # Delete all files and directories except $PATH_TO_EXAMPLES.
+          # Using find with -mindepth 1 avoids deleting the root directory.
+          find . -mindepth 1 -not -path "./$(basename "$PATH_TO_EXAMPLES")" -not -path "./$(basename "$PATH_TO_EXAMPLES")/*" -exec rm -rf {} +
+          
+          # Restore the keep files back from $PATH_TO_EXAMPLES to the repository root preserving structure.
+          # rsync will merge the file structure back.
+          rsync -a "$PATH_TO_EXAMPLES"/ ./
+          
+          # Clean up the temporary folder once done.
+          rm -rf "$PATH_TO_EXAMPLES"
+
+          # Optionally, output how many files remain.
           REMAIN_COUNT=$(find . -type f 2>/dev/null | wc -l)
           echo "Number of files kept: $REMAIN_COUNT"
         shell: bash
+
 
 
 
