@@ -33,12 +33,12 @@ jobs:
           node-version: '20'
 
       # Identify and Copy Changed .json and .xml Files
-      - name: Identify and Copy Changed .json and .xml Files
-        run: |
-          mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
-          # git fetch origin main:main
-          git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
-          echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
+      # - name: Identify and Copy Changed .json and .xml Files
+      #   run: |
+      #     mkdir -p $PATH_TO_EXAMPLES # Create a temp folder
+      #     # git fetch origin main:main
+      #     git diff --name-only origin/main | grep -E '\.(json|xml)$' | xargs -I {} cp {} $PATH_TO_EXAMPLES/
+      #     echo "Number of changed files to validate: " && ls -1 $PATH_TO_EXAMPLES | wc -l
       
       # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
       - name: Setup Java JDK
@@ -52,44 +52,44 @@ jobs:
     #                                            JAVA Validator                                           #
     # --------------------------------------------------------------------------------------------------- #
       
-      - name: Check if Java is installed
-        run: |
-          if ! command -v java &> /dev/null
-          then
-              echo "java could not be found. Please see actions/setup-java to set it up before running this action."
-              exit 1
-          fi
-        shell: bash
+      # - name: Check if Java is installed
+      #   run: |
+      #     if ! command -v java &> /dev/null
+      #     then
+      #         echo "java could not be found. Please see actions/setup-java to set it up before running this action."
+      #         exit 1
+      #     fi
+      #   shell: bash
       
-      - name: Download Java Validator
-        run: |
-          CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
-          echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
-          wget -q https://github.com/gematik/app-referencevalidator/releases/download/$REFERENZVALIDATOR_VERSION/referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar
-          echo "REFERENZVALIDATOR_VERSION: $REFERENZVALIDATOR_VERSION"
-        shell: bash
+      # - name: Download Java Validator
+      #   run: |
+      #     CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
+      #     echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
+      #     wget -q https://github.com/gematik/app-referencevalidator/releases/download/$REFERENZVALIDATOR_VERSION/referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar
+      #     echo "REFERENZVALIDATOR_VERSION: $REFERENZVALIDATOR_VERSION"
+      #   shell: bash
         
-      - name: Install jq
-        run: |
-          sudo apt-get update > /dev/null
-          sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
-        shell: bash
+      # - name: Install jq
+      #   run: |
+      #     sudo apt-get update > /dev/null
+      #     sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
+      #   shell: bash
           
-      - name: Validate all example resources in scope of the repository
-        run: |        
-          for p in $PATH_TO_EXAMPLES; 
-          do         
+      # - name: Validate all example resources in scope of the repository
+      #   run: |        
+      #     for p in $PATH_TO_EXAMPLES; 
+      #     do         
             
-            # Ensure directory ends with "/"
-            if [[ ! "$p" =~ .*/$ ]]; then
-              p="$p/"
-            fi
+      #       # Ensure directory ends with "/"
+      #       if [[ ! "$p" =~ .*/$ ]]; then
+      #         p="$p/"
+      #       fi
 
-            for f in $p*;
-            do 
-              java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $f --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
-            done
-          done
+      #       for f in $p*;
+      #       do 
+      #         java -jar referencevalidator-cli-$REFERENZVALIDATOR_VERSION.jar erp $f --accepted-encodings xml --accepted-encodings json --no-profile-validity-period-check
+      #       done
+      #     done
 
       - name: Cleanup
         if: always()

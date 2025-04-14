@@ -40,6 +40,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install rsync
+        run: |
+          apt-get update
+          apt-get install -y rsync
+        shell: bash
+
       # Identify and Copy Changed .json and .xml Files
       - name: Preserve Changed and Essential Files to PATH_TO_EXAMPLES
         run: |
@@ -116,50 +122,7 @@ jobs:
           distribution: 'microsoft'
           java-version: '21'
         
-      # Install .NET runtime
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Cache .NET tools
-        uses: actions/cache@v3
-        id: cache-dotnet-tools
-        with:
-          path: ~/.dotnet/tools
-          key: dotnet-tools-${{ env.FIRELY_TERMINAL_VERSION }}
-
-      # Install Firely.Terminal
-      - name: Install Firely.Terminal
-        if: steps.cache-dotnet-tools.outputs.cache-hit != 'true' && (env.DOTNET_VALIDATION_ENABLED == 'true' || env.SUSHI_ENABLED == 'true')
-        run: |
-          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            if ! command -v fhir &> /dev/null
-            then
-              dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION > /dev/null
-            fi
-          fi
-        shell: bash
-
-      # Test Firely.Terminal install
-      - name: Check Firely Terminal Version
-        run: |
-          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            CHECK_FIRELY_TERMINAL_VERSION=$(fhir -v | tr '\n' ' ') # Print everything in a single line
-            echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
-          fi
-        shell: bash
-    
-      # Simplifier Login
-      - name: Simplifier login
-        run: |
-          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            fhir login email=$INPUT_SIMPLIFIER_USERNAME password=$INPUT_SIMPLIFIER_PASSWORD
-          fi
-        shell: bash
-        env:
-          INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
-          INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
+      
        
     # --------------------------------------------------------------------------------------------------- #
     #                                            JAVA Validator                                           #
@@ -317,11 +280,55 @@ jobs:
             rm "$TEMP_FILE"            
           fi
         shell: bash  
-
-
+        
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
     # --------------------------------------------------------------------------------------------------- #
+
+      # Install .NET runtime
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Cache .NET tools
+        uses: actions/cache@v3
+        id: cache-dotnet-tools
+        with:
+          path: ~/.dotnet/tools
+          key: dotnet-tools-${{ env.FIRELY_TERMINAL_VERSION }}
+
+      # Install Firely.Terminal
+      - name: Install Firely.Terminal
+        if: steps.cache-dotnet-tools.outputs.cache-hit != 'true' && (env.DOTNET_VALIDATION_ENABLED == 'true' || env.SUSHI_ENABLED == 'true')
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            if ! command -v fhir &> /dev/null
+            then
+              dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION > /dev/null
+            fi
+          fi
+        shell: bash
+
+      # Test Firely.Terminal install
+      - name: Check Firely Terminal Version
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            CHECK_FIRELY_TERMINAL_VERSION=$(fhir -v | tr '\n' ' ') # Print everything in a single line
+            echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
+          fi
+        shell: bash
+    
+      # Simplifier Login
+      - name: Simplifier login
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            fhir login email=$INPUT_SIMPLIFIER_USERNAME password=$INPUT_SIMPLIFIER_PASSWORD
+          fi
+        shell: bash
+        env:
+          INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
+          INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
                 
       # Restore all dependencies listed in the package.json file (need to be on the root level)
       - name: FHIR Dependency restore
