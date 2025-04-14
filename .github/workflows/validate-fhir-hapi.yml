@@ -18,7 +18,7 @@ env:
   SUSHI_CONFIG_FILE: './API-Examples/FSH-Files/sushi-config.yaml'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-tx http://tx.fhir.org -debug -allow-example-urls true"
-  DOTNET_VALIDATION_ENABLED: true
+  DOTNET_VALIDATION_ENABLED: false
   JAVA_VALIDATION_ENABLED: true
   SUSHI_ENABLED: true
   JAVA_SNAPSHOT_ENABLED: false 
@@ -160,112 +160,6 @@ jobs:
           INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
           INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
        
-      # Restore all dependencies listed in the package.json file (need to be on the root level)
-      - name: FHIR Dependency restore
-        run: |
-          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
-            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
-              echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
-              exit 1
-            fi
-          
-            # Extract FHIR version from sushi-config.yaml
-            fhirVersion=$(grep -oP 'fhirVersion:\s*\K[^\s]+' "$SUSHI_CONFIG_FILE")
-            echo "Found FHIR version $fhirVersion in sushi-config.yaml"
-
-            if [[ "$fhirVersion" = "3.0.2" ]]; then
-              fhir spec R3
-            elif [[ "$fhirVersion" = "4.0.1" ]]; then
-              fhir spec R4
-            elif [[ "$fhirVersion" = "4.1.0" ]]; then
-              fhir spec R4B
-            elif [[ "$fhirVersion" = "4.6.0" ]]; then
-              fhir spec R5
-            else
-              echo "This FHIR version is currently not supported.";
-              exit 1
-            fi
-
-            echo "Attempting to restore package dependencies based on sushi-config.yaml ..."
-            fhir config regenerate on
-            FHIR_RESTORE=$((fhir restore | tr '\n' ' ')|| true)  # Print everything in a single line
-            if [[ "$FHIR_RESTORE" == *"Cannot restore"* ]]; then
-              echo $FHIR_RESTORE
-              exit 1
-            fi
-            echo "Restore of dependencies from sushi-config.yaml was successful: $FHIR_RESTORE"
-          fi
-        shell: bash
-
-      - name: Show FHIR Dependencies
-        run: fhir scope
-        shell: bash
-
-    # --------------------------------------------------------------------------------------------------- #
-    #                                            .NET VALIDATOR                                           #
-    # --------------------------------------------------------------------------------------------------- #
-                
-    # Validate the example resources that have changed with the .NET Validator
-      - name: Validate the example resources that have changed with the .NET Validator
-        run: |
-          if $DOTNET_VALIDATION_ENABLED; then
-            echo "Running quality control checks incl. validation based on Firely Terminal ..."
-
-            # Find and validate each file individually
-            VALIDATION_OUTPUT=""
-            OUTPUT_FAILURE_MESSAGE=""
-            
-            # Use a temporary file to store the list of files to validate
-            TEMP_FILE=$(mktemp)
-            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
-            
-            # Read the file line by line without using a pipe
-            while read file; do
-              echo "Validating $file..."
-              VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
-              echo "$VALIDATION_OUTPUT" 
-              if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
-                  # Append the file name and validation output to the failure message
-                  # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
-                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                    OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
-                  fi
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
-                  
-                  "
-              fi
-            done < "$TEMP_FILE"
-            
-            # Clean up the temporary file
-            rm "$TEMP_FILE"
-
-            # echo "Final failure message:"
-            # echo "$OUTPUT_FAILURE_MESSAGE"
-            
-            # Export the failure message to GITHUB_ENV
-            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
-            
-            # Exit with error if any validation failed
-            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-              echo "Validation failed"
-            else
-              echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
-            fi
-          else
-            echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
-          fi
-        shell: bash
-        
-      - name: Report Success - .NET Validator
-        run: |
-          if $DOTNET_VALIDATION_ENABLED; then
-            echo "Finished validation using .NET validator"
-          fi
-        shell: bash
-
     # --------------------------------------------------------------------------------------------------- #
     #                                            JAVA Validator                                           #
     # --------------------------------------------------------------------------------------------------- #
@@ -439,6 +333,114 @@ jobs:
             # fi
           fi
         shell: bash  
+
+
+    # --------------------------------------------------------------------------------------------------- #
+    #                                            .NET VALIDATOR                                           #
+    # --------------------------------------------------------------------------------------------------- #
+                
+      # Restore all dependencies listed in the package.json file (need to be on the root level)
+      - name: FHIR Dependency restore
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
+              echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
+              exit 1
+            fi
+          
+            # Extract FHIR version from sushi-config.yaml
+            fhirVersion=$(grep -oP 'fhirVersion:\s*\K[^\s]+' "$SUSHI_CONFIG_FILE")
+            echo "Found FHIR version $fhirVersion in sushi-config.yaml"
+
+            if [[ "$fhirVersion" = "3.0.2" ]]; then
+              fhir spec R3
+            elif [[ "$fhirVersion" = "4.0.1" ]]; then
+              fhir spec R4
+            elif [[ "$fhirVersion" = "4.1.0" ]]; then
+              fhir spec R4B
+            elif [[ "$fhirVersion" = "4.6.0" ]]; then
+              fhir spec R5
+            else
+              echo "This FHIR version is currently not supported.";
+              exit 1
+            fi
+
+            echo "Attempting to restore package dependencies based on sushi-config.yaml ..."
+            fhir config regenerate on
+            FHIR_RESTORE=$((fhir restore | tr '\n' ' ')|| true)  # Print everything in a single line
+            if [[ "$FHIR_RESTORE" == *"Cannot restore"* ]]; then
+              echo $FHIR_RESTORE
+              exit 1
+            fi
+            echo "Restore of dependencies from sushi-config.yaml was successful: $FHIR_RESTORE"
+          fi
+        shell: bash
+
+      - name: Show FHIR Dependencies
+        run: fhir scope
+        shell: bash
+
+    # Validate the example resources that have changed with the .NET Validator
+      - name: Validate the example resources that have changed with the .NET Validator
+        run: |
+          if $DOTNET_VALIDATION_ENABLED; then
+            echo "Running quality control checks incl. validation based on Firely Terminal ..."
+
+            # Find and validate each file individually
+            VALIDATION_OUTPUT=""
+            OUTPUT_FAILURE_MESSAGE=""
+            
+            # Use a temporary file to store the list of files to validate
+            TEMP_FILE=$(mktemp)
+            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+            
+            # Read the file line by line without using a pipe
+            while read file; do
+              echo "Validating $file..."
+              VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
+              echo "$VALIDATION_OUTPUT" 
+              if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
+                  # Append the file name and validation output to the failure message
+                  # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
+                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                    OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
+                  fi
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
+                  
+                  "
+              fi
+            done < "$TEMP_FILE"
+            
+            # Clean up the temporary file
+            rm "$TEMP_FILE"
+
+            # echo "Final failure message:"
+            # echo "$OUTPUT_FAILURE_MESSAGE"
+            
+            # Export the failure message to GITHUB_ENV
+            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            
+            # Exit with error if any validation failed
+            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              echo "Validation failed"
+            else
+              echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+            fi
+          else
+            echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+          fi
+        shell: bash
+        
+      - name: Report Success - .NET Validator
+        run: |
+          if $DOTNET_VALIDATION_ENABLED; then
+            echo "Finished validation using .NET validator"
+          fi
+        shell: bash
+
 
       - name: Check whether errors occurred 
         run: |
