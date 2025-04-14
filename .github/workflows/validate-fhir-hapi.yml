@@ -331,12 +331,11 @@ jobs:
       
           # Create fresh error logs
           echo "" > java_validator_output.log
-          echo "" > java_errors.txt
 
           # Initialize failure message variable
-          if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-            OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
-          fi
+          # if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            # OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}"$'\n\n'"Java Validator:"$'\n'"==============="$'\n\n'
+          # fi
           # OUTPUT_FAILURE_MESSAGE=""
             
           if $JAVA_VALIDATION_ENABLED; then
@@ -408,46 +407,14 @@ jobs:
         
               echo "Validating all files at once..."
               # javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
-              java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES | tee java_validator_output.log || true
+              java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
             
-              # Check for errors and extract them
+              # Display the output
+              cat java_validator_output.log
+        
+              # Check for errors with simple grep
               if grep -q "Error " java_validator_output.log; then
                 echo "Found validation errors!"
-                # Process the log to extract errors with filenames
-                echo "# Java Validator Errors" > java_errors.txt
-                echo "================================" >> java_errors.txt
-                
-                # Extract each Validating line to find file references
-                grep "Validating " java_validator_output.log | while read -r line; do
-                  # Extract filename from the Validating line
-                  filename=$(echo "$line" | sed -n 's/.*Validating \(.*\)/\1/p')
-                  
-                  if [ -n "$filename" ]; then
-                    # Look for errors in the lines following this filename
-                    error_lines=$(grep -A 5 "Error " -B 1 java_validator_output.log | grep -B 1 -A 5 "$filename" || true)
-                    
-                    if [ -n "$error_lines" ]; then
-                      echo -e "\n## File: $filename" >> java_errors.txt
-                      echo "```" >> java_errors.txt
-                      echo "$error_lines" >> java_errors.txt
-                      echo "```" >> java_errors.txt
-                    fi
-                  fi
-                done
-                
-                # Alternative approach: Extract from each error message
-                echo -e "\n## Errors by Message" >> java_errors.txt
-                grep "Error " java_validator_output.log | while read -r error_line; do
-                  # Try to extract filename from the error context
-                  context=$(grep -B 2 -A 2 "$error_line" java_validator_output.log || true)
-                  filename=$(echo "$context" | grep -o '[^ ]*\.\(json\|xml\)' | head -1 || echo "Unknown file")
-                  
-                  echo -e "\n### Error in file: $filename" >> java_errors.txt
-                  echo "```" >> java_errors.txt
-                  echo "$error_line" >> java_errors.txt
-                  echo "```" >> java_errors.txt
-                done
-
                 # Set failure flag
                 echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
               else
@@ -475,35 +442,34 @@ jobs:
 
       - name: Check whether errors occurred 
         run: |
-          if [ "$OUTPUT_FAILURE" = "true" ]; then
-            # Print the .NET Validator errors (these are working fine)
-            if [[ "$OUTPUT_FAILURE_MESSAGE" == *".NET Validator:"* ]]; then
-              echo "Displaying .NET Validator Errors:"
-              echo "$OUTPUT_FAILURE_MESSAGE" | sed -n '/.NET Validator:/,/Java Validator:/p' | sed '$d'
-            fi
+          has_errors=false
+          
+          # Check .NET errors
+          if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            echo -e "\n.NET Validator Errors:"
+            echo "=================================="
+            echo "$OUTPUT_FAILURE_MESSAGE"
+            has_errors=true
+          fi
+          
+          # Check Java errors - simpler approach
+          if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+            echo -e "\nJava Validator Errors:"
+            echo "=================================="
             
-            # Print Java Validator errors
-            echo "Debug - listing files:"
-            ls -la *.txt || true
-    
-            if [ -f "java_errors.txt" ] && [ -s "java_errors.txt" ]; then
-              echo -e "\nDisplaying Java Validator Errors:"
-              echo "=================================="
-              cat java_errors.txt
-              has_errors=true
-            elif [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
-              echo -e "\nDisplaying Java Validator Errors (from log):"
-              echo "=================================="
-              grep -A 3 "Error " java_validator_output.log
-              has_errors=true
-            fi
+            # First try to show errors with some context
+            echo "Errors with context:"
+            grep -B 1 -A 2 "Error " java_validator_output.log || echo "Error extraction failed"
             
-            # Fail the build with a cleaner exit
-            echo "Validation errors found. Please check the logs above."
+            has_errors=true
+          fi
+          
+          if [ "$has_errors" = "true" ]; then
+            echo -e "\nValidation errors found. Please check the logs above."
             exit 1
           else
             echo "No errors found"
-          fi
+          fi      
         shell: bash 
       
         
