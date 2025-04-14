@@ -441,46 +441,39 @@ jobs:
             echo -e "\nJava Validator Errors:"
             echo "=================================="
             
-            # First try to show errors with some context
-            #echo "Errors with context:"
-            #grep -B 1 -A 2 "Error " java_validator_output.log || echo "Error extraction failed"
-
-            # Extract filenames and error messages
-            echo "Errors with filenames and context:"
-            # Process the log file to group errors by filename
-            awk '
-              BEGIN {
-                current_file = ""
-              }
-              # Match lines with filenames (e.g., .json or .xml)
-              /\.json|\.xml/ {
-                # If we have errors for the previous file, print them before moving on
-                if (current_file != "" && errors != "") {
-                  print "---------------------------------------"
-                  print "File: " current_file
-                  print "---------------------------------------"
-                  print errors
-                  errors = ""
-                }
-                current_file = $0
-                next
-              }
-              # Match lines with "Error" and collect them
-              /Error/ {
-                if (current_file != "") {
-                  errors = errors $0 "\n"
-                }
-              }
-              # At the end, print any remaining errors
-              END {
-                if (current_file != "" && errors != "") {
-                  print "---------------------------------------"
-                  print "File: " current_file
-                  print "---------------------------------------"
-                  print errors
-                }
-              }
-            ' java_validator_output.log > "$temp_file"
+            # Create a temporary file for storing grouped errors
+            temp_file=$(mktemp)
+            touch "$temp_file"
+            
+            # Process the log file line by line
+            current_file=""
+            declare -A file_errors
+            
+            while IFS= read -r line; do
+              # Check if line contains a file path (.json or .xml)
+              if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+                current_file="$line"
+                # Initialize the array entry if it doesn't exist
+                if [[ -z "${file_errors[$current_file]}" ]]; then
+                  file_errors["$current_file"]=""
+                fi
+              # Check if line contains an error (and we have a current file)
+              elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+                # Append the error to the current file's error list
+                file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
+              fi
+            done < java_validator_output.log
+            
+            # Print the collected errors by file
+            for file in "${!file_errors[@]}"; do
+              if [[ -n "${file_errors[$file]}" ]]; then
+                echo "---------------------------------------"
+                echo "File: $file"
+                echo "---------------------------------------"
+                echo -e "${file_errors[$file]}"
+                echo ""
+              fi
+            done
             
             has_errors=true
           fi
