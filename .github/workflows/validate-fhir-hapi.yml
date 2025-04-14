@@ -46,21 +46,21 @@ jobs:
           # Ensure the temporary folder exists and is empty
           rm -rf "$PATH_TO_EXAMPLES"
           mkdir -p "$PATH_TO_EXAMPLES"
-          
-          # Get changed files, handling when git diff returns nothing
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/main || echo "")
+
+          # Get changed files, ignoring deleted files
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/main || echo "")
           FINAL_FILES=""
           if [ -n "$CHANGED_FILES" ]; then
             # Filter for .json and .xml files, excluding unwanted folders and keywords
             FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
-            
+
             # Further filter: exclude index.json, package.json, files with "negativ" and XML files containing "<soap"
             while IFS= read -r file; do
               if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
                 FINAL_FILES="$FINAL_FILES"$'\n'"$file"
               fi
             done <<< "$FILTERED_FILES"
-            
+
             # Remove blank lines from FINAL_FILES
             FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
           fi
@@ -76,13 +76,12 @@ jobs:
 
           # Copy each keep file to $PATH_TO_EXAMPLES preserving the folder structure
           while IFS= read -r file; do
-            if [ -n "$file" ] && [ -e "$file" ]; then
+            if [ -n "$file" ]; then
               cp --parents "$file" "$PATH_TO_EXAMPLES/"
-            else
-              echo "Warning: File '$file' does not exist and will be skipped."
             fi
           done <<< "$KEEP_FILES"
         shell: bash
+
 
       - name: Delete all folders except $PATH_TO_EXAMPLES on root
         run: |
