@@ -447,35 +447,40 @@ jobs:
 
             # Extract filenames and error messages
             echo "Errors with filenames and context:"
-            # Group errors by filename and display them
+            # Process the log file to group errors by filename
             awk '
+              BEGIN {
+                current_file = ""
+              }
               # Match lines with filenames (e.g., .json or .xml)
               /\.json|\.xml/ {
-                current_file = $0
-                if (current_file != "") {
-                  if (file_has_errors) {
-                    print "--------\n"
-                  }
-                  print "---------"
-                  print current_file
-                  print "---------"
-                  file_has_errors = 1
+                # If we have errors for the previous file, print them before moving on
+                if (current_file != "" && errors != "") {
+                  print "---------------------------------------"
+                  print "File: " current_file
+                  print "---------------------------------------"
+                  print errors
+                  errors = ""
                 }
+                current_file = $0
                 next
               }
-              # Match lines with "Error" and associate them with the current file
+              # Match lines with "Error" and collect them
               /Error/ {
                 if (current_file != "") {
-                  print $0
-                  file_has_errors = 1
+                  errors = errors $0 "\n"
                 }
               }
+              # At the end, print any remaining errors
               END {
-                if (file_has_errors) {
-                  print "--------"
+                if (current_file != "" && errors != "") {
+                  print "---------------------------------------"
+                  print "File: " current_file
+                  print "---------------------------------------"
+                  print errors
                 }
               }
-            ' java_validator_output.log || echo "Error extraction failed"
+            ' java_validator_output.log > "$temp_file"
             
             has_errors=true
           fi
