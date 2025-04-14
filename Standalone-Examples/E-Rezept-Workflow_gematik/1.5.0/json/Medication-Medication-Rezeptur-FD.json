@@ -6,12 +6,72 @@
       "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
     ]
   },
+  "contained": [
+    {
+      "resourceType": "Medication",
+      "id": "MedicationHydrocortison-FD",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "781405001",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "03424249",
+            "display": "Hydrocortison 1% Creme"
+          }
+        ],
+        "text": "Hydrocortison 1% Creme"
+      }
+    },
+    {
+      "resourceType": "Medication",
+      "id": "MedicationDexpanthenol-FD",
+      "meta": {
+        "profile": [
+          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+        ]
+      },
+      "extension": [
+        {
+          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+          "valueCoding": {
+            "system": "http://snomed.info/sct",
+            "code": "781405001",
+            "display": "Medicinal product package (product)"
+          }
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/ifa/pzn",
+            "code": "16667195",
+            "display": "Dexpanthenol 5% Creme"
+          }
+        ],
+        "text": "Dexpanthenol 5% Creme"
+      }
+    }
+  ],
   "extension": [
     {
       "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
       "valueCoding": {
-        "code": "00",
-        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+        "code": "00"
       }
     },
     {
@@ -29,12 +89,18 @@
     {
       "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
       "valueCoding": {
-        "code": "1208954007",
         "system": "http://snomed.info/sct",
+        "code": "1208954007",
         "display": "Extemporaneous preparation (product)"
       }
     }
   ],
+  "code": {
+    "text": "Hydrocortison-Dexpanthenol-Salbe"
+  },
+  "form": {
+    "text": "Salbe"
+  },
   "amount": {
     "numerator": {
       "extension": [
@@ -95,71 +161,5 @@
         }
       }
     }
-  ],
-  "contained": [
-    {
-      "resourceType": "Medication",
-      "id": "MedicationHydrocortison-FD",
-      "meta": {
-        "profile": [
-          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-        ]
-      },
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
-          "valueCoding": {
-            "code": "781405001",
-            "system": "http://snomed.info/sct",
-            "display": "Medicinal product package (product)"
-          }
-        }
-      ],
-      "code": {
-        "coding": [
-          {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "03424249",
-            "display": "Hydrocortison 1% Creme"
-          }
-        ],
-        "text": "Hydrocortison 1% Creme"
-      }
-    },
-    {
-      "resourceType": "Medication",
-      "id": "MedicationDexpanthenol-FD",
-      "meta": {
-        "profile": [
-          "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
-        ]
-      },
-      "extension": [
-        {
-          "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
-          "valueCoding": {
-            "code": "781405001",
-            "system": "http://snomed.info/sct",
-            "display": "Medicinal product package (product)"
-          }
-        }
-      ],
-      "code": {
-        "coding": [
-          {
-            "system": "http://fhir.de/CodeSystem/ifa/pzn",
-            "code": "16667195",
-            "display": "Dexpanthenol 5% Creme"
-          }
-        ],
-        "text": "Dexpanthenol 5% Creme"
-      }
-    }
-  ],
-  "code": {
-    "text": "Hydrocortison-Dexpanthenol-Salbe"
-  },
-  "form": {
-    "text": "Salbe"
-  }
+  ]
 }

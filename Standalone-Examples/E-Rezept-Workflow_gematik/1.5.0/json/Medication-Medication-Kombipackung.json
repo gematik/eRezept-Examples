@@ -6,39 +6,6 @@
       "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
     ]
   },
-  "extension": [
-    {
-      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
-      "valueBoolean": false
-    },
-    {
-      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
-      "valueCoding": {
-        "code": "00",
-        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
-        "display": "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
-      }
-    }
-  ],
-  "code": {
-    "coding": [
-      {
-        "system": "http://fhir.de/CodeSystem/ifa/pzn",
-        "code": "1746517",
-        "display": "CROMO-RATIOPHARM Kombipackung"
-      }
-    ]
-  },
-  "status": "active",
-  "form": {
-    "coding": [
-      {
-        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
-        "code": "KPG"
-      }
-    ],
-    "text": "Kombipackung"
-  },
   "contained": [
     {
       "resourceType": "Medication",
@@ -52,8 +19,8 @@
         {
           "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
           "valueCoding": {
-            "code": "373873005",
             "system": "http://snomed.info/sct",
+            "code": "373873005",
             "display": "Pharmaceutical / biologic product (product)"
           }
         }
@@ -98,8 +65,8 @@
         {
           "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
           "valueCoding": {
-            "code": "373873005",
             "system": "http://snomed.info/sct",
+            "code": "373873005",
             "display": "Pharmaceutical / biologic product (product)"
           }
         }
@@ -133,8 +100,38 @@
       ]
     }
   ],
-  "batch": {
-    "lotNumber": "56498416854"
+  "extension": [
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-is-vaccine-extension",
+      "valueBoolean": false
+    },
+    {
+      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+      "valueCoding": {
+        "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+        "code": "00",
+        "display": "Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt"
+      }
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://fhir.de/CodeSystem/ifa/pzn",
+        "code": "1746517",
+        "display": "CROMO-RATIOPHARM Kombipackung"
+      }
+    ]
+  },
+  "status": "active",
+  "form": {
+    "coding": [
+      {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+        "code": "KPG"
+      }
+    ],
+    "text": "Kombipackung"
   },
   "ingredient": [
     {
@@ -147,5 +144,8 @@
         "reference": "#Augentropfen"
       }
     }
-  ]
+  ],
+  "batch": {
+    "lotNumber": "56498416854"
+  }
 }
