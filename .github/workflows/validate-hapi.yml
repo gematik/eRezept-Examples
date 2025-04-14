@@ -447,19 +447,33 @@ jobs:
 
             # Extract filenames and error messages
             echo "Errors with filenames and context:"
-            # Extract filenames and associate errors/warnings with them
+            # Group errors by filename and display them
             awk '
               # Match lines with filenames (e.g., .json or .xml)
               /\.json|\.xml/ {
                 current_file = $0
+                if (current_file != "") {
+                  if (file_has_errors) {
+                    print "--------\n"
+                  }
+                  print "---------"
+                  print current_file
+                  print "---------"
+                  file_has_errors = 1
+                }
                 next
               }
-              # Match lines with "Error" or "Warning" and associate them with the current file
+              # Match lines with "Error" and associate them with the current file
               /Error/ {
                 if (current_file != "") {
-                  print "File: " current_file
+                  print $0
+                  file_has_errors = 1
                 }
-                print $0 "\n"
+              }
+              END {
+                if (file_has_errors) {
+                  print "--------"
+                }
               }
             ' java_validator_output.log || echo "Error extraction failed"
             
