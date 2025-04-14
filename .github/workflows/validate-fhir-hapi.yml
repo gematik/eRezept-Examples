@@ -319,18 +319,7 @@ jobs:
             fi
 
             # Clean up the temporary file
-            rm "$TEMP_FILE"
-            
-            # Export the failure message to GITHUB_ENV using proper heredoc syntax
-            # echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-            # echo "$OUTPUT_FAILURE_MESSAGE" | tr -d '\r' >> $GITHUB_ENV
-            # echo "EOF" >> $GITHUB_ENV
-      
-            # Set the failure flag if errors were found
-            # if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-              # echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-              # echo "Java validation failed with errors"
-            # fi
+            rm "$TEMP_FILE"            
           fi
         shell: bash  
 
@@ -413,9 +402,6 @@ jobs:
             
             # Clean up the temporary file
             rm "$TEMP_FILE"
-
-            # echo "Final failure message:"
-            # echo "$OUTPUT_FAILURE_MESSAGE"
             
             # Export the failure message to GITHUB_ENV
             echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
