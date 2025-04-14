@@ -48,7 +48,7 @@ jobs:
           mkdir -p "$PATH_TO_EXAMPLES"
           
           # Get changed files, handling when git diff returns nothing
-          CHANGED_FILES=$(git diff --name-only origin/main || echo "")
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/main || echo "")
           FINAL_FILES=""
           if [ -n "$CHANGED_FILES" ]; then
             # Filter for .json and .xml files, excluding unwanted folders and keywords
@@ -76,8 +76,10 @@ jobs:
 
           # Copy each keep file to $PATH_TO_EXAMPLES preserving the folder structure
           while IFS= read -r file; do
-            if [ -n "$file" ]; then
+            if [ -n "$file" ] && [ -e "$file" ]; then
               cp --parents "$file" "$PATH_TO_EXAMPLES/"
+            else
+              echo "Warning: File '$file' does not exist and will be skipped."
             fi
           done <<< "$KEEP_FILES"
         shell: bash
