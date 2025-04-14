@@ -442,8 +442,22 @@ jobs:
             echo "=================================="
             
             # First try to show errors with some context
-            echo "Errors with context:"
-            grep -B 1 -A 2 "Error " java_validator_output.log || echo "Error extraction failed"
+            #echo "Errors with context:"
+            #grep -B 1 -A 2 "Error " java_validator_output.log || echo "Error extraction failed"
+
+            # Extract filenames and error messages
+            echo "Errors with filenames and context:"
+            awk '
+              /Error / {
+                error_line = $0
+                getline prev_line
+                if (prev_line ~ /\.json|\.xml/) {
+                  print "File: " prev_line "\nError: " error_line "\n"
+                } else {
+                  print "Error: " error_line "\n"
+                }
+              }
+            ' java_validator_output.log || echo "Error extraction failed"
             
             has_errors=true
           fi
