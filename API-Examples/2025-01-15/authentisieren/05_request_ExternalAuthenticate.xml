@@ -1,15 +1,34 @@
-<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
-    <soap-env:Body>
-        <ns0:ExternalAuthenticate xmlns:ns0="http://ws.gematik.de/conn/SignatureService/v7.4">
-            <ns1:CardHandle xmlns:ns1="http://ws.gematik.de/conn/ConnectorCommon/v5.0">smc-b_2</ns1:CardHandle>
-            <ns2:Context xmlns:ns2="http://ws.gematik.de/conn/ConnectorContext/v2.0">
-                <ns3:MandantId xmlns:ns3="http://ws.gematik.de/conn/ConnectorCommon/v5.0">Mandant1</ns3:MandantId>
-                <ns4:ClientSystemId xmlns:ns4="http://ws.gematik.de/conn/ConnectorCommon/v5.0">myPVS</ns4:ClientSystemId>
-                <ns5:WorkplaceId xmlns:ns5="http://ws.gematik.de/conn/ConnectorCommon/v5.0">WP1</ns5:WorkplaceId>
-            </ns2:Context>
-            <ns0:BinaryString>
-                <ns7:Base64Data xmlns:ns7="urn:oasis:names:tc:dss:1.0:core:schema">lCOIgrJKqt5BlQ7O5airFMQZbtTF2dLfo0T9/WOicmI=</ns7:Base64Data>
-            </ns0:BinaryString>
-        </ns0:ExternalAuthenticate>
-    </soap-env:Body>
-</soap-env:Envelope>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header />
+  <S:Body>
+    <ns4:ExternalAuthenticate xmlns:ns4="http://ws.gematik.de/conn/SignatureService/v7.4"
+      xmlns="http://ws.gematik.de/conn/ConnectorCommon/v5.0"
+      xmlns:ns10="http://ws.gematik.de/conn/ConnectorContext/v2.0"
+      xmlns:ns11="http://ws.gematik.de/conn/CertificateServiceCommon/v2.0"
+      xmlns:ns12="urn:oasis:names:tc:SAML:1.0:assertion"
+      xmlns:ns13="urn:oasis:names:tc:SAML:2.0:assertion"
+      xmlns:ns14="http://www.w3.org/2001/04/xmlenc#"
+      xmlns:ns2="urn:oasis:names:tc:dss:1.0:core:schema"
+      xmlns:ns3="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:ns5="urn:oasis:names:tc:dss-x:1.0:profiles:SignaturePolicy:schema#"
+      xmlns:ns6="http://ws.gematik.de/tel/error/v2.0"
+      xmlns:ns7="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#"
+      xmlns:ns8="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns9="http://uri.etsi.org/02231/v2#">
+      <CardHandle>SMC-B-15</CardHandle>
+      <ns10:Context>
+        <MandantId>Mandant1</MandantId>
+        <ClientSystemId>CS1</ClientSystemId>
+        <WorkplaceId>AP1</WorkplaceId>
+        <UserId>user1</UserId>
+      </ns10:Context>
+      <ns4:OptionalInputs>
+        <ns2:SignatureType>urn:bsi:tr:03111:ecdsa</ns2:SignatureType>
+      </ns4:OptionalInputs>
+      <ns4:BinaryString>
+        <ns2:Base64Data MimeType="application/octet-stream">
+          EGvRHN8ZHbaFVSaMBoKLVO3CqW6SjWM8fVeIZyClkQw=</ns2:Base64Data>
+      </ns4:BinaryString>
+    </ns4:ExternalAuthenticate>
+  </S:Body>
+</S:Envelope>
