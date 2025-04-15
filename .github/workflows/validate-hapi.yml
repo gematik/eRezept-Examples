@@ -1,0 +1,492 @@
+name: Validate Examples - HAPI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  VALIDATOR_VERSION: 6.5.15
+  JAVA_VALIDATOR_DOWNLOAD_LOCATION: "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$VALIDATOR_VERSION/validator_cli.jar"
+  PATH_TO_EXAMPLES: './temp_folder/'
+  SUSHI_CONFIG_FILE: './API-Examples/FSH-Files/sushi-config.yaml'
+  FHIR_VERSION: "4.0"
+  INPUT_JAVA_VALIDATION_OPTIONS: "-debug -tx n/a -allow-example-urls true -ig kbv.all.st"
+  DOTNET_VALIDATION_ENABLED: false
+  JAVA_VALIDATION_ENABLED: true
+  SUSHI_ENABLED: true
+  JAVA_SNAPSHOT_ENABLED: false 
+  OUTPUT_FAILURE: false
+  OUTPUT_FAILURE_MESSAGE: ""
+  FIRELY_TERMINAL_VERSION: 3.3.2
+
+jobs:
+  CI_EXAMPLES_VALIDATION:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Identify and Copy Changed .json and .xml Files
+      - name: Preserve Changed and Essential Files to PATH_TO_EXAMPLES
+        run: |
+          # Ensure the temporary folder exists and is empty
+          rm -rf "$PATH_TO_EXAMPLES"
+          mkdir -p "$PATH_TO_EXAMPLES"
+
+          # Get changed files, ignoring deleted files
+          CHANGED_FILES=$(git diff --name-only --diff-filter=d origin/main || echo "")
+          FINAL_FILES=""
+          if [ -n "$CHANGED_FILES" ]; then
+            # Filter for .json and .xml files, excluding unwanted folders and keywords
+            FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(json|xml)$' | grep -v "Negative-Examples/" | grep -v -i "invalid" || echo "")
+
+            # Further filter: exclude index.json, package.json, files with "negativ" and XML files containing "<soap"
+            while IFS= read -r file; do
+              if [[ "$file" != *"index.json" ]] && [[ "$file" != *"package.json" ]] && [[ "$file" != *"negativ"* ]] && ! ( [[ "$file" == *.xml ]] && grep -qi "<soap" "$file" ); then
+                FINAL_FILES="$FINAL_FILES"$'\n'"$file"
+              fi
+            done <<< "$FILTERED_FILES"
+
+            # Remove blank lines from FINAL_FILES
+            FINAL_FILES=$(echo "$FINAL_FILES" | sed '/^$/d')
+          fi
+
+          # Build the list of files to keep, including essential files
+          KEEP_FILES=$(echo -e "package.json\nfhirpkg.lock.json\n${SUSHI_CONFIG_FILE}")
+          if [ -n "$FINAL_FILES" ]; then
+            KEEP_FILES=$(echo -e "$KEEP_FILES\n$FINAL_FILES")
+          fi
+
+          echo "Files to keep:"
+          echo "$KEEP_FILES"
+
+          # Copy each keep file to $PATH_TO_EXAMPLES preserving the folder structure
+          while IFS= read -r file; do
+            if [ -n "$file" ]; then
+              cp --parents "$file" "$PATH_TO_EXAMPLES/"
+            fi
+          done <<< "$KEEP_FILES"
+        shell: bash
+
+
+      - name: Delete all folders except $PATH_TO_EXAMPLES on root
+        run: |
+          EXCLUDE_DIR=$(basename "$PATH_TO_EXAMPLES")
+          find . -maxdepth 1 -mindepth 1 -type d ! -name "$EXCLUDE_DIR" -exec rm -rf {} +
+        shell: bash
+
+      - name: Restore Keep Files
+        run: |          
+          # Restore the keep files back from $PATH_TO_EXAMPLES to the repository root preserving structure.
+          # rsync will merge the file structure back.
+          rsync -a "$PATH_TO_EXAMPLES"/ ./
+          
+          # Clean up the temporary folder once done.
+          rm -rf "$PATH_TO_EXAMPLES"
+
+          # Optionally, output how many files remain.
+          REMAIN_COUNT=$(find . -type f 2>/dev/null | wc -l)
+          echo "Number of files kept: $REMAIN_COUNT"
+        shell: bash
+
+      - name: List all files and folders on root
+        run: |
+          echo "Listing all files and folders in the repository root:"
+          ls -la .
+        shell: bash
+
+      # Install Java runtime (only needed if you want to run the offical HL7 Java validator)
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '21'
+        
+      
+       
+    # --------------------------------------------------------------------------------------------------- #
+    #                                            JAVA Validator                                           #
+    # --------------------------------------------------------------------------------------------------- #
+    
+    # Offical HL7 Java validator steps
+
+      - name: Remove package cache to enable the Java  validator to create snapshots
+        run: |
+          if $JAVA_SNAPSHOT_ENABLED; then
+            fhirCacheLocation=$(fhir cache location --path)
+            rm -rf $fhirCacheLocation
+          fi
+        shell: bash          
+
+      - name: Check if Java is installed
+        run: |
+          if $JAVA_VALIDATION_ENABLED; then
+            if ! command -v java &> /dev/null
+            then
+              echo "java could not be found. Please see actions/setup-java to set it up before running this action."
+              exit 1
+            fi
+          fi
+        shell: bash
+    
+      - name: Cache Java Validator
+        uses: actions/cache@v3
+        id: cache-java-validator
+        with:
+          path: validator_cli.jar
+          key: validator-${{ env.VALIDATOR_VERSION }}
+
+      - name: Download Java Validator
+        if: steps.cache-java-validator.outputs.cache-hit != 'true' && env.JAVA_VALIDATION_ENABLED == 'true'
+        run: |
+          if $JAVA_VALIDATION_ENABLED; then
+            CHECK_JAVA_VERSION=$(java -version 2>&1 | head -1 | cut -d'"' -f2)
+            echo "JAVA_VERSION: $CHECK_JAVA_VERSION"
+            echo "VALIDATOR_VERSION: $VALIDATOR_VERSION"
+            JAVA_VALIDATOR_DOWNLOAD_LOCATION=$(eval echo "$JAVA_VALIDATOR_DOWNLOAD_LOCATION")
+            echo "JAVA_VALIDATOR_DOWNLOAD_LOCATION: $JAVA_VALIDATOR_DOWNLOAD_LOCATION"
+          
+            wget -q $JAVA_VALIDATOR_DOWNLOAD_LOCATION -O validator_cli.jar
+          fi
+        shell: bash
+      
+      - name: Install jq
+        run: |
+          if $JAVA_VALIDATION_ENABLED; then 
+            sudo apt-get update > /dev/null
+            sudo apt-get install --no-install-recommends -y jq findutils curl ca-certificates > /dev/null
+          fi
+        shell: bash
+          
+      - name: Validate the example resources that have changed with the Java Validator
+        run: |    
+          # Define color codes
+          ERROR=$'\033[0;31m'
+          WARN=$'\033[0;33m'
+          INFO=$'\033[0;34m'
+          OK=$'\033[0;32m'
+          NC=$'\033[0m'
+      
+          # Create fresh error logs
+          echo "" > java_validator_output.log
+            
+          if $JAVA_VALIDATION_ENABLED; then
+            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
+              echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
+              exit 1
+            fi
+
+            IG_DEPENDENCIES=""
+
+            # Process regular dependencies
+            in_dependencies=false
+            while IFS= read -r line; do
+              # Check if we're in the dependencies section
+              if [[ "$line" =~ ^dependencies: ]]; then
+                in_dependencies=true
+                continue
+              fi
+              
+              # Check if we've moved out of the dependencies section (another top-level key)
+              if [[ "$in_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                in_dependencies=false
+              fi
+              
+              # Process dependency lines
+              if [[ "$in_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                dep_key="${BASH_REMATCH[1]}"
+                dep_value="${BASH_REMATCH[2]}"
+                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+              fi
+            done < "$SUSHI_CONFIG_FILE"
+
+            # Process zts-dependencies if they exist in the SUSHI config
+            in_zts_dependencies=false
+            while IFS= read -r line; do
+              # Check if we're in the zts-dependencies section
+              if [[ "$line" =~ ^zts-dependencies: ]]; then
+                in_zts_dependencies=true
+                continue
+              fi
+              
+              # Check if we've moved out of the zts-dependencies section
+              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                in_zts_dependencies=false
+              fi
+              
+              # Process dependency lines
+              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                dep_key="${BASH_REMATCH[1]}"
+                dep_value="${BASH_REMATCH[2]}"
+                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+              fi
+            done < "$SUSHI_CONFIG_FILE"
+            
+            echo "Extracted IG dependencies: $IG_DEPENDENCIES"
+            UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
+              
+            # Use a temporary file to store the list of files to validate
+            TEMP_FILE=$(mktemp)
+            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+      
+            # Check if we found any files
+            if [ -s "$TEMP_FILE" ]; then
+              echo "Files to validate:"
+              cat "$TEMP_FILE"
+
+              # Convert file list to space-separated string
+              FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
+        
+              echo "Validating all files at once..."
+              # javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
+              java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
+            
+              # Display the output
+              cat java_validator_output.log
+        
+              # Check for errors with simple grep
+              if grep -q "Error " java_validator_output.log; then
+                echo "Found validation errors!"
+                # Set failure flag
+                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              else
+                echo "No Java validation errors found"
+              fi
+            else
+              echo "No XML or JSON files found to validate"
+            fi
+
+            # Clean up the temporary file
+            rm "$TEMP_FILE"            
+          fi
+        shell: bash  
+        
+    # --------------------------------------------------------------------------------------------------- #
+    #                                            .NET VALIDATOR                                           #
+    # --------------------------------------------------------------------------------------------------- #
+
+      # Install .NET runtime
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Cache .NET tools
+        uses: actions/cache@v3
+        id: cache-dotnet-tools
+        with:
+          path: ~/.dotnet/tools
+          key: dotnet-tools-${{ env.FIRELY_TERMINAL_VERSION }}
+
+      # Install Firely.Terminal
+      - name: Install Firely.Terminal
+        if: steps.cache-dotnet-tools.outputs.cache-hit != 'true' && (env.DOTNET_VALIDATION_ENABLED == 'true' || env.SUSHI_ENABLED == 'true')
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            if ! command -v fhir &> /dev/null
+            then
+              dotnet tool install --global Firely.Terminal --version $FIRELY_TERMINAL_VERSION > /dev/null
+            fi
+          fi
+        shell: bash
+
+      # Test Firely.Terminal install
+      - name: Check Firely Terminal Version
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            CHECK_FIRELY_TERMINAL_VERSION=$(fhir -v | tr '\n' ' ') # Print everything in a single line
+            echo "FIRELY_TERMINAL_VERSION: $CHECK_FIRELY_TERMINAL_VERSION"
+          fi
+        shell: bash
+    
+      # Simplifier Login
+      - name: Simplifier login
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            fhir login email=$INPUT_SIMPLIFIER_USERNAME password=$INPUT_SIMPLIFIER_PASSWORD
+          fi
+        shell: bash
+        env:
+          INPUT_SIMPLIFIER_USERNAME: ${{ secrets.SIMPLIFIER_USERNAME }}
+          INPUT_SIMPLIFIER_PASSWORD: ${{ secrets.SIMPLIFIER_PASSWORD }}
+                
+      # Restore all dependencies listed in the package.json file (need to be on the root level)
+      - name: FHIR Dependency restore
+        run: |
+          if $DOTNET_VALIDATION_ENABLED || $SUSHI_ENABLED; then
+            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
+              echo "sushi-config.yaml does not exist. Please add it to the root folder and add all project dependencies."
+              exit 1
+            fi
+          
+            # Extract FHIR version from sushi-config.yaml
+            fhirVersion=$(grep -oP 'fhirVersion:\s*\K[^\s]+' "$SUSHI_CONFIG_FILE")
+            echo "Found FHIR version $fhirVersion in sushi-config.yaml"
+
+            if [[ "$fhirVersion" = "3.0.2" ]]; then
+              fhir spec R3
+            elif [[ "$fhirVersion" = "4.0.1" ]]; then
+              fhir spec R4
+            elif [[ "$fhirVersion" = "4.1.0" ]]; then
+              fhir spec R4B
+            elif [[ "$fhirVersion" = "4.6.0" ]]; then
+              fhir spec R5
+            else
+              echo "This FHIR version is currently not supported.";
+              exit 1
+            fi
+
+            echo "Attempting to restore package dependencies based on sushi-config.yaml ..."
+            fhir config regenerate on
+            FHIR_RESTORE=$((fhir restore | tr '\n' ' ')|| true)  # Print everything in a single line
+            if [[ "$FHIR_RESTORE" == *"Cannot restore"* ]]; then
+              echo $FHIR_RESTORE
+              exit 1
+            fi
+            echo "Restore of dependencies from sushi-config.yaml was successful: $FHIR_RESTORE"
+          fi
+        shell: bash
+
+      - name: Show FHIR Dependencies
+        run: fhir scope
+        shell: bash
+
+    # Validate the example resources that have changed with the .NET Validator
+      - name: Validate the example resources that have changed with the .NET Validator
+        run: |
+          if $DOTNET_VALIDATION_ENABLED; then
+            echo "Running quality control checks incl. validation based on Firely Terminal ..."
+
+            # Find and validate each file individually
+            VALIDATION_OUTPUT=""
+            OUTPUT_FAILURE_MESSAGE=""
+            
+            # Use a temporary file to store the list of files to validate
+            TEMP_FILE=$(mktemp)
+            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+            
+            # Read the file line by line without using a pipe
+            while read file; do
+              echo "Validating $file..."
+              VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
+              echo "$VALIDATION_OUTPUT" 
+              if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
+                  # Append the file name and validation output to the failure message
+                  # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
+                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
+                    OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
+                  fi
+                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
+                  
+                  "
+              fi
+            done < "$TEMP_FILE"
+            
+            # Clean up the temporary file
+            rm "$TEMP_FILE"
+            
+            # Export the failure message to GITHUB_ENV
+            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            
+            # Exit with error if any validation failed
+            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+              echo "Validation failed"
+            else
+              echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+            fi
+          else
+            echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+          fi
+        shell: bash
+        
+      - name: Report Success - .NET Validator
+        run: |
+          if $DOTNET_VALIDATION_ENABLED; then
+            echo "Finished validation using .NET validator"
+          fi
+        shell: bash
+
+
+      - name: Check whether errors occurred 
+        run: |
+          has_errors=false
+          
+          # Check .NET errors
+          if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            echo -e "\n.NET Validator Errors:"
+            echo "=================================="
+            echo "$OUTPUT_FAILURE_MESSAGE"
+            has_errors=true
+          fi
+          
+          # Check Java errors - simpler approach
+          if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+            echo -e "\nJava Validator Errors:"
+            echo "=================================="
+            
+            # Create a temporary file for storing grouped errors
+            temp_file=$(mktemp)
+            touch "$temp_file"
+            
+            # Process the log file line by line
+            current_file=""
+            declare -A file_errors
+            
+            while IFS= read -r line; do
+              # Check if line contains a file path (.json or .xml)
+              if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+                current_file="$line"
+                # Initialize the array entry if it doesn't exist
+                if [[ -z "${file_errors[$current_file]}" ]]; then
+                  file_errors["$current_file"]=""
+                fi
+              # Check if line contains an error (and we have a current file)
+              elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+                # Append the error to the current file's error list
+                file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
+              fi
+            done < java_validator_output.log
+            
+            # Print the collected errors by file
+            for file in "${!file_errors[@]}"; do
+              if [[ -n "${file_errors[$file]}" ]]; then
+                echo "---------------------------------------"
+                echo "File: $file"
+                echo -e "${file_errors[$file]}"
+                echo ""
+              fi
+            done
+            
+            has_errors=true
+          fi
+          
+          if [ "$has_errors" = "true" ]; then
+            echo -e "\nValidation errors found. Please check the logs above."
+            exit 1
+          else
+            echo "No errors found"
+          fi      
+        shell: bash 
+      
+        
+      - name: Cleanup
+        if: always()
+        run: rm -rf temp_folder
+       

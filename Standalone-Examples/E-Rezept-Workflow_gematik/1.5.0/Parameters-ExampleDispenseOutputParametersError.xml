@@ -1,0 +1,25 @@
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="ExampleDispenseOutputParametersError" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_DispenseOperation_Output|1.5" />
+  </meta>
+  <parameter>
+    <name value="rxDispensation" />
+    <part>
+      <name value="operationOutcome" />
+      <resource>
+        <OperationOutcome>
+          <id value="ExampleOperationDispenseError" />
+          <issue>
+            <severity value="error" />
+            <code value="invalid" />
+            <details>
+              <text value="FHIR-Validation error" />
+            </details>
+            <diagnostics value="MedicationDispense.performer[0].actor.identifier.system: error: value must match fixed value: &#xA;&quot;https://gematik.de/fhir/sid/telematik-id&quot; (but is &quot;https://fhir.de/fhir/sid/telematik-id&quot;) &#xA;(from profile: http://fhir.de/StructureDefinition/identifier-telematik-id|1.5.0);" />
+          </issue>
+        </OperationOutcome>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>
