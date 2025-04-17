@@ -1,22 +1,26 @@
-<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-    <S:Body>
-        <ns8:ReadCardCertificate xmlns:ns2="http://ws.gematik.de/conn/CertificateServiceCommon/v2.0"
-            xmlns:ns3="urn:oasis:names:tc:dss:1.0:core:schema"
-            xmlns:ns4="http://www.w3.org/2000/09/xmldsig#"
-            xmlns:ns5="http://ws.gematik.de/conn/ConnectorCommon/v5.0"
-            xmlns:ns6="http://ws.gematik.de/tel/error/v2.0"
-            xmlns:ns7="urn:oasis:names:tc:SAML:1.0:assertion"
-            xmlns:ns8="http://ws.gematik.de/conn/CertificateService/v7.4"
-            xmlns:ns9="http://ws.gematik.de/conn/ConnectorContext/v2.0">
-            <ns5:CardHandle>smc-b_2</ns5:CardHandle>
-            <ns9:Context>
-                <ns5:MandantId>Mandant1</ns5:MandantId>
-                <ns5:ClientSystemId>myPVS</ns5:ClientSystemId>
-                <ns5:WorkplaceId>WP1</ns5:WorkplaceId>
-            </ns9:Context>
-            <ns8:CertRefList>
-                <ns8:CertRef>C.AUT</ns8:CertRef>
-            </ns8:CertRefList>
-        </ns8:ReadCardCertificate>
-    </S:Body>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header />
+  <S:Body>
+    <ns4:ReadCardCertificate xmlns:ns4="http://ws.gematik.de/conn/CertificateService/v6.0"
+      xmlns="http://ws.gematik.de/tel/error/v2.0"
+      xmlns:ns2="http://ws.gematik.de/conn/ConnectorCommon/v5.0"
+      xmlns:ns3="http://ws.gematik.de/conn/ConnectorContext/v2.0"
+      xmlns:ns5="http://ws.gematik.de/conn/CertificateServiceCommon/v2.0"
+      xmlns:ns6="urn:oasis:names:tc:dss:1.0:core:schema"
+      xmlns:ns7="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:ns8="urn:oasis:names:tc:SAML:1.0:assertion">
+      <ns2:CardHandle>SMC-B-15</ns2:CardHandle>
+      <ns3:Context>
+        <ns2:MandantId>Mandant1</ns2:MandantId>
+        <ns2:ClientSystemId>CS1</ns2:ClientSystemId>
+        <ns2:WorkplaceId>AP1</ns2:WorkplaceId>
+        <ns2:UserId>user1</ns2:UserId>
+      </ns3:Context>
+      <ns4:CertRefList>
+        <ns4:CertRef>C.AUT</ns4:CertRef>
+      </ns4:CertRefList>
+      <ns4:Crypt>ECC</ns4:Crypt>
+    </ns4:ReadCardCertificate>
+  </S:Body>
 </S:Envelope>
