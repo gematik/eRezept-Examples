@@ -240,8 +240,9 @@ jobs:
                 
             # Use a temporary file to store the list of files to validate
             TEMP_FILE=$(mktemp)
-            # Back to scanning the whole repo
-            find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+            
+            # Fixed find command with proper escaping and quoting
+            find ./ -type f $$-name '*.json' -o -name '*.xml'$$ -not -path '*/\.*' -not -name 'package.json' -not -name 'fhirpkg.lock.json' > "$TEMP_FILE"
 
             # Check if we found any files
             if [ -s "$TEMP_FILE" ]; then
@@ -282,7 +283,7 @@ jobs:
                     # No validation errors
                     if [ "$IS_NEGATIVE" = true ]; then
                     echo "${ERROR}✗ $file PASSED validation (unexpected for a negative example)${NC}"
-                    NEGATIVE_PASSED_FILES="$NEGATIVE_PASSED_FILES\n  - $file"
+                    NEGATIVE_PASSED_FILES="$NEGATIVE_PASSED_FILES"$'\n'"  - $file"
                     else
                     echo "${OK}✓ $file passes validation${NC}"
                     fi
@@ -312,6 +313,7 @@ jobs:
             rm "$TEMP_FILE"            
             fi
         shell: bash
+
 
       - name: Report Success - Java Validator
         run: |
