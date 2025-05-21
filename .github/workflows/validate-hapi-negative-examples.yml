@@ -187,110 +187,127 @@ jobs:
             echo "" > java_validator_output.log
             
             if $JAVA_VALIDATION_ENABLED; then
-            echo "Java validation is enabled"
-            
-            if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
-                echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
-                exit 1
-            fi
-
-            echo "Processing dependencies from $SUSHI_CONFIG_FILE"
-            IG_DEPENDENCIES=""
-
-            # Process regular dependencies - simplified
-            grep -A 100 "^dependencies:" "$SUSHI_CONFIG_FILE" | grep -B 100 -m 1 "^[a-zA-Z]" | grep -v "^dependencies:" | grep -v "^[a-zA-Z]" | while read -r line; do
-                if [[ "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
-                dep_key="${BASH_REMATCH[1]}"
-                dep_value="${BASH_REMATCH[2]}"
-                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+                echo "Java validation is enabled"
+                
+                if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
+                    echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
+                    exit 1
                 fi
-            done
-            
-            # Process zts-dependencies - simplified
-            grep -A 100 "^zts-dependencies:" "$SUSHI_CONFIG_FILE" 2>/dev/null | grep -B 100 -m 1 "^[a-zA-Z]" 2>/dev/null | grep -v "^zts-dependencies:" 2>/dev/null | grep -v "^[a-zA-Z]" 2>/dev/null | while read -r line; do
-                if [[ "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
-                dep_key="${BASH_REMATCH[1]}"
-                dep_value="${BASH_REMATCH[2]}"
-                IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
-                fi
-            done || true
-            
-            echo "Extracted IG dependencies: $IG_DEPENDENCIES"
-            UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
-            
-            echo "Finding files to validate..."
-            # Create a temporary file to list all files
-            TEMP_FILE=$(mktemp)
-            echo "Created temp file: $TEMP_FILE"
-            
-            # Find json files excluding package.json and fhirpkg.lock.json
-            echo "Finding JSON files..."
-            find . -name "*.json" 2>/dev/null | grep -v "package.json" | grep -v "fhirpkg.lock.json" > "$TEMP_FILE" || true
-            
-            # Find xml files and append to the list
-            echo "Finding XML files..."
-            find . -name "*.xml" 2>/dev/null >> "$TEMP_FILE" || true
-            
-            # Debug the list
-            echo "Files found:"
-            cat "$TEMP_FILE" || true
-            
-            # Check if the list contains any files
-            if [ -s "$TEMP_FILE" ]; then
-                echo "Files will be validated"
-                # Convert file list to space-separated string
-                FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
-                
-                echo "Running Java validator..."
-                # Run the validator with arguments
-                echo "Command: java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES"
-                java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
-                
-                echo "Validation complete, checking results..."
-                
-                # Display output
-                cat java_validator_output.log || true
-                
-                # Identify negative examples
-                echo "Identifying negative examples..."
-                grep -E '(Negative-Examples/|negativ|[Ii][Nn][Vv][Aa][Ll][Ii][Dd])' "$TEMP_FILE" > negative_examples.txt || true
-                
-                if [ -s "negative_examples.txt" ]; then
-                echo "Checking validation results for negative examples..."
-                for file in $(cat negative_examples.txt); do
-                    if grep -q "$file" java_validator_output.log && grep -q "Error" java_validator_output.log; then
-                    echo "${OK}✓ Negative example $file correctly fails validation${NC}"
-                    else
-                    echo "${ERROR}✗ Negative example $file might have passed validation${NC}"
-                    echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+
+                echo "Processing dependencies from $SUSHI_CONFIG_FILE"
+                IG_DEPENDENCIES=""
+
+                # Process regular dependencies - simplified
+                grep -A 100 "^dependencies:" "$SUSHI_CONFIG_FILE" | grep -B 100 -m 1 "^[a-zA-Z]" | grep -v "^dependencies:" | grep -v "^[a-zA-Z]" | while read -r line; do
+                    if [[ "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                    dep_key="${BASH_REMATCH[1]}"
+                    dep_value="${BASH_REMATCH[2]}"
+                    IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
                     fi
                 done
+                
+                # Process zts-dependencies - simplified
+                grep -A 100 "^zts-dependencies:" "$SUSHI_CONFIG_FILE" 2>/dev/null | grep -B 100 -m 1 "^[a-zA-Z]" 2>/dev/null | grep -v "^zts-dependencies:" 2>/dev/null | grep -v "^[a-zA-Z]" 2>/dev/null | while read -r line; do
+                    if [[ "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                    dep_key="${BASH_REMATCH[1]}"
+                    dep_value="${BASH_REMATCH[2]}"
+                    IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
+                    fi
+                done || true
+                
+                echo "Extracted IG dependencies: $IG_DEPENDENCIES"
+                UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
+                
+                echo "Finding files to validate..."
+                # Create a temporary file to list all files
+                TEMP_FILE=$(mktemp)
+                echo "Created temp file: $TEMP_FILE"
+                
+                # Find json files excluding package.json and fhirpkg.lock.json
+                echo "Finding JSON files..."
+                find . -name "*.json" 2>/dev/null | grep -v "package.json" | grep -v "fhirpkg.lock.json" > "$TEMP_FILE" || true
+                
+                # Find xml files and append to the list
+                echo "Finding XML files..."
+                find . -name "*.xml" 2>/dev/null >> "$TEMP_FILE" || true
+                
+                # Debug the list
+                echo "Files found:"
+                cat "$TEMP_FILE" || true
+                
+                # Check if the list contains any files
+                if [ -s "$TEMP_FILE" ]; then
+                    echo "Files will be validated"
+                    # Convert file list to space-separated string
+                    FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
+                    
+                    echo "Running Java validator..."
+                    # Run the validator with arguments
+                    echo "Command: java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES"
+                    java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
+                    
+                    echo "Validation complete, checking results..."
+                    
+                    # Display output
+                    cat java_validator_output.log || true
+                    
+                    # Identify negative examples
+                    echo "Identifying negative examples..."
+                    grep -E '(Negative-Examples/|negativ|[Ii][Nn][Vv][Aa][Ll][Ii][Dd])' "$TEMP_FILE" > negative_examples.txt || true
+                    
+                    # Initialize failure flag for negative examples that pass validation
+                    NEGATIVE_EXAMPLES_PASSING=false
+                    
+                    if [ -s "negative_examples.txt" ]; then
+                        echo "Checking validation results for negative examples..."
+                        
+                        # Create a file to store passing negative examples
+                        touch passing_negative_examples.txt
+                        
+                        for file in $(cat negative_examples.txt); do
+                            # Extract just the filename for better logging
+                            filename=$(basename "$file")
+                            
+                            # Check if this file has validation errors by looking for lines with the file path and "Error"
+                            if grep -q "$file" java_validator_output.log && grep -q "$file.*Error" java_validator_output.log; then
+                                echo "${OK}✓ Negative example $filename correctly fails validation${NC}"
+                            else
+                                echo "${ERROR}⚠ UNEXPECTED: Negative example $filename passed validation${NC}"
+                                echo "$filename" >> passing_negative_examples.txt
+                                NEGATIVE_EXAMPLES_PASSING=true
+                            fi
+                        done
+                        
+                        # If any negative examples passed validation, set the failure flag
+                        if [ "$NEGATIVE_EXAMPLES_PASSING" = "true" ]; then
+                            echo "${ERROR}ERROR: Some negative examples passed validation unexpectedly.${NC}"
+                            echo "Files that should have failed but passed validation:"
+                            cat passing_negative_examples.txt
+                            echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+                            echo "OUTPUT_FAILURE_MESSAGE=Negative examples passed validation unexpectedly" >> $GITHUB_ENV
+                        else
+                            echo "${OK}SUCCESS: All negative examples failed validation as expected.${NC}"
+                        fi
+                        
+                        # Clean up
+                        rm -f passing_negative_examples.txt || true
+                    else
+                        echo "No negative examples found"
+                    fi
                 else
-                echo "No negative examples found"
+                    echo "No files to validate"
                 fi
                 
-                # Check for errors in the output
-                if grep -q "Error " java_validator_output.log; then
-                echo "Found validation errors!"
-                # Original behavior retained
-                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-                else
-                echo "No Java validation errors found"
-                fi
+                # Clean up
+                echo "Cleaning up temporary files..."
+                rm -f "$TEMP_FILE" negative_examples.txt || true
             else
-                echo "No files to validate"
-            fi
-            
-            # Clean up
-            echo "Cleaning up temporary files..."
-            rm -f "$TEMP_FILE" negative_examples.txt || true
-            else
-            echo "Java validation is disabled, skipping..."
+                echo "Java validation is disabled, skipping..."
             fi
             
             echo "Validation script completed"
         shell: bash
-        
+
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
     # --------------------------------------------------------------------------------------------------- #
@@ -442,18 +459,18 @@ jobs:
 
       - name: Check whether errors occurred 
         run: |
-            has_errors=false
-            
-            # Check .NET errors
-            if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+          has_errors=false
+          
+          # Check .NET errors
+          if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
             echo -e "\n.NET Validator Errors:"
             echo "=================================="
             echo "$OUTPUT_FAILURE_MESSAGE"
             has_errors=true
-            fi
-            
-            # Check Java errors - with special handling for negative examples
-            if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+          fi
+          
+          # Check Java errors - simpler approach
+          if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
             echo -e "\nJava Validator Errors:"
             echo "=================================="
             
@@ -461,88 +478,45 @@ jobs:
             temp_file=$(mktemp)
             touch "$temp_file"
             
-            # First, identify all negative examples
-            NEGATIVE_EXAMPLES=$(find . -type f $$-name "*.json" -o -name "*.xml"$$ | grep -E '(Negative-Examples/|negativ|[Ii][Nn][Vv][Aa][Ll][Ii][Dd])' || true)
-            
             # Process the log file line by line
             current_file=""
             declare -A file_errors
-            non_negative_errors_found=false
             
             while IFS= read -r line; do
-                # Check if line contains a file path (.json or .xml)
-                if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+              # Check if line contains a file path (.json or .xml)
+              if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
                 current_file="$line"
                 # Initialize the array entry if it doesn't exist
                 if [[ -z "${file_errors[$current_file]}" ]]; then
-                    file_errors["$current_file"]=""
+                  file_errors["$current_file"]=""
                 fi
-                # Check if line contains an error (and we have a current file)
-                elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+              # Check if line contains an error (and we have a current file)
+              elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
                 # Append the error to the current file's error list
                 file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
-                
-                # Check if this is a regular file (not a negative example)
-                is_negative=false
-                for negative_file in $NEGATIVE_EXAMPLES; do
-                    if [[ "$current_file" == *"$negative_file"* ]]; then
-                    is_negative=true
-                    break
-                    fi
-                done
-                
-                # Only mark as error if it's not a negative example
-                if [ "$is_negative" = false ]; then
-                    non_negative_errors_found=true
-                fi
-                fi
+              fi
             done < java_validator_output.log
             
             # Print the collected errors by file
             for file in "${!file_errors[@]}"; do
-                if [[ -n "${file_errors[$file]}" ]]; then
-                # Check if this is a negative example
-                is_negative=false
-                for negative_file in $NEGATIVE_EXAMPLES; do
-                    if [[ "$file" == *"$negative_file"* ]]; then
-                    is_negative=true
-                    break
-                    fi
-                done
-                
+              if [[ -n "${file_errors[$file]}" ]]; then
                 echo "---------------------------------------"
-                if [ "$is_negative" = true ]; then
-                    echo "File: $file (EXPECTED TO FAIL - Negative Example)"
-                else
-                    echo "File: $file"
-                fi
+                echo "File: $file"
                 echo -e "${file_errors[$file]}"
                 echo ""
-                fi
+              fi
             done
             
-            # Only set has_errors if we found errors in non-negative files
-            if [ "$non_negative_errors_found" = true ]; then
-                has_errors=true
-            else
-                echo "All validation errors were in negative examples (which are expected to fail)"
-            fi
-            fi
-            
-            # Check for negative examples that unexpectedly passed validation
-            if [ "$NEGATIVE_EXAMPLES_PASSED" = "true" ]; then
-            echo -e "\nWARNING: Some negative examples unexpectedly PASSED validation"
-            echo "These examples should be fixed to ensure they actually test error conditions"
             has_errors=true
-            fi
-            
-            if [ "$has_errors" = "true" ]; then
+          fi
+          
+          if [ "$has_errors" = "true" ]; then
             echo -e "\nValidation errors found. Please check the logs above."
             exit 1
-            else
-            echo "No unexpected errors found"
-            fi      
-        shell: bash
+          else
+            echo "No errors found"
+          fi      
+        shell: bash 
         
       - name: Cleanup
         if: always()
