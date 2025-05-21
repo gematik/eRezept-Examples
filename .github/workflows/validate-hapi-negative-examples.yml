@@ -182,6 +182,9 @@ jobs:
             OK=$'\033[0;32m'
             NC=$'\033[0m'
 
+            # At the start, explicitly set this as a negative examples workflow
+            echo "IS_NEGATIVE_EXAMPLES_WORKFLOW=true" >> $GITHUB_ENV
+
             echo "Starting validation script..."
             # Create fresh error logs
             echo "" > java_validator_output.log
@@ -312,6 +315,12 @@ jobs:
                 rm -f "$TEMP_FILE" unexpected_passing_files.log || true
             else
                 echo "Java validation is disabled, skipping..."
+            fi
+
+            if [ "$HAS_UNEXPECTED_PASSING" = "true" ]; then
+                echo "NEGATIVE_EXAMPLES_PASSED=true" >> $GITHUB_ENV
+            else
+                echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
             fi
             
             echo "Validation script completed"
@@ -472,23 +481,38 @@ jobs:
             
             # Check .NET errors
             if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-            echo -e "\n.NET Validator Errors:"
-            echo "=================================="
-            echo "$OUTPUT_FAILURE_MESSAGE"
-            has_errors=true
+                echo -e "\n.NET Validator Errors:"
+                echo "=================================="
+                echo "$OUTPUT_FAILURE_MESSAGE"
+                has_errors=true
             fi
             
-            # Handle negative examples differently
-            if [ "$NEGATIVE_EXAMPLES_PASSED" = "true" ]; then
-            echo -e "\nERROR: Negative examples passed validation, which is unexpected!"
-            echo "=================================="
-            echo "Some negative examples passed validation when they should have failed."
-            echo "This indicates that the validators are not properly detecting invalid resources."
-            has_errors=true
+            # First, check if this is a negative examples workflow
+            if [ "$IS_NEGATIVE_EXAMPLES_WORKFLOW" = "true" ]; then
+                echo "Processing results for negative examples workflow..."
+                
+                # For negative examples, we only care if any unexpectedly passed validation
+                if [ "$NEGATIVE_EXAMPLES_PASSED" = "true" ]; then
+                    echo -e "\nERROR: Negative examples passed validation unexpectedly!"
+                    echo "=================================="
+                    echo "Some negative examples passed validation when they should have failed."
+                    echo "This indicates that the validators are not properly detecting invalid resources."
+                    
+                    # Extract the files that passed unexpectedly from our custom log entry
+                    if grep -q "==== NEGATIVE EXAMPLES VALIDATION ERRORS ====" java_validator_output.log; then
+                        echo "Files that should have failed validation but passed:"
+                        grep -A 100 "The following files unexpectedly PASSED validation:" java_validator_output.log | 
+                        grep -v "The following files unexpectedly PASSED validation:" | 
+                        grep -B 100 "These files should have FAILED validation" | 
+                        grep -v "These files should have FAILED validation"
+                    fi
+                    
+                    has_errors=true
+                else
+                    echo "All negative examples failed validation as expected. No errors to report."
+                fi
+            # If not a negative examples workflow, use the original error checking logic
             elif [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
-            # Check Java errors only if we're not dealing with negative examples
-            # OR if we're dealing with regular examples that should pass validation
-            if [[ "$GITHUB_WORKFLOW" != *"negative"* ]]; then
                 echo -e "\nJava Validator Errors:"
                 echo "=================================="
                 
@@ -501,39 +525,38 @@ jobs:
                 declare -A file_errors
                 
                 while IFS= read -r line; do
-                # Check if line contains a file path (.json or .xml)
-                if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
-                    current_file="$line"
-                    # Initialize the array entry if it doesn't exist
-                    if [[ -z "${file_errors[$current_file]}" ]]; then
-                    file_errors["$current_file"]=""
+                    # Check if line contains a file path (.json or .xml)
+                    if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+                        current_file="$line"
+                        # Initialize the array entry if it doesn't exist
+                        if [[ -z "${file_errors[$current_file]}" ]]; then
+                            file_errors["$current_file"]=""
+                        fi
+                    # Check if line contains an error (and we have a current file)
+                    elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+                        # Append the error to the current file's error list
+                        file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
                     fi
-                # Check if line contains an error (and we have a current file)
-                elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
-                    # Append the error to the current file's error list
-                    file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
-                fi
                 done < java_validator_output.log
                 
                 # Print the collected errors by file
                 for file in "${!file_errors[@]}"; do
-                if [[ -n "${file_errors[$file]}" ]]; then
-                    echo "---------------------------------------"
-                    echo "File: $file"
-                    echo -e "${file_errors[$file]}"
-                    echo ""
-                fi
+                    if [[ -n "${file_errors[$file]}" ]]; then
+                        echo "---------------------------------------"
+                        echo "File: $file"
+                        echo -e "${file_errors[$file]}"
+                        echo ""
+                    fi
                 done
                 
                 has_errors=true
             fi
-            fi
             
             if [ "$has_errors" = "true" ]; then
-            echo -e "\nValidation errors found. Please check the logs above."
-            exit 1
+                echo -e "\nValidation errors found. Please check the logs above."
+                exit 1
             else
-            echo "No errors found"
+                echo "No errors found"
             fi
         shell: bash
         
