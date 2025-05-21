@@ -185,8 +185,8 @@ jobs:
             echo "Starting validation script..."
             # Create fresh error logs
             echo "" > java_validator_output.log
-            # Create a file to track unexpected validation successes
-            echo "" > unexpected_passing_files.log
+            # Make sure the unexpected passing files log is empty at start
+            > unexpected_passing_files.log
             
             if $JAVA_VALIDATION_ENABLED; then
                 echo "Java validation is enabled"
@@ -251,8 +251,11 @@ jobs:
                     
                     echo "Validation complete, checking results..."
                     
-                    # Display output (without changing the main log file)
+                    # Display output for debugging
                     cat java_validator_output.log
+                    
+                    # Flag to track if any files passed validation unexpectedly
+                    HAS_UNEXPECTED_PASSING=false
                     
                     # Process each file
                     while IFS= read -r file; do
@@ -260,29 +263,39 @@ jobs:
                         filename=$(basename "$file")
                         shortpath=$(echo "$file" | sed 's|\./||')
                         
-                        # Look for validation results for this file
+                        # Debug output
+                        echo "Checking results for: $shortpath"
+                        
+                        # Check if file was validated
                         if grep -q "Validat.*$shortpath" java_validator_output.log; then
-                            # Check if validation failed (which is GOOD for negative examples)
-                            if grep -A 10 "Validat.*$shortpath" java_validator_output.log | grep -q "\*FAILURE\*"; then
+                            # Extract the validation block for this file
+                            grep -A 20 "Validat.*$shortpath" java_validator_output.log > temp_validation.log
+                            
+                            # Check for failure indication
+                            if grep -q "\*FAILURE\*" temp_validation.log; then
                                 echo "${OK}✓ $shortpath correctly fails validation (expected for negative examples)${NC}"
                             else
-                                # No failure found = file passed validation = BAD for negative examples
                                 echo "${ERROR}⚠ UNEXPECTED: $shortpath passed validation but should have failed!${NC}"
                                 echo "$shortpath" >> unexpected_passing_files.log
+                                HAS_UNEXPECTED_PASSING=true
                             fi
                         else
                             echo "${WARN}! Warning: Couldn't find validation results for $shortpath${NC}"
                         fi
                     done < "$TEMP_FILE"
                     
-                    # Check if any files unexpectedly passed validation
-                    if [ -s "unexpected_passing_files.log" ]; then
+                    # Clean up temp file
+                    rm -f temp_validation.log || true
+                    
+                    # Check if any files unexpectedly passed validation using the flag
+                    if [ "$HAS_UNEXPECTED_PASSING" = "true" ]; then
                         echo "${ERROR}ERROR: Some files passed validation unexpectedly. For negative examples, all files should fail validation.${NC}"
                         echo "Files that should have failed but passed validation:"
                         cat unexpected_passing_files.log
                         
                         # Modify the java_validator_output.log to include our inverted error information
-                        echo "\n\n==== NEGATIVE EXAMPLES VALIDATION ERRORS ====" >> java_validator_output.log
+                        echo "" >> java_validator_output.log
+                        echo "==== NEGATIVE EXAMPLES VALIDATION ERRORS ====" >> java_validator_output.log
                         echo "The following files unexpectedly PASSED validation:" >> java_validator_output.log
                         cat unexpected_passing_files.log >> java_validator_output.log
                         echo "These files should have FAILED validation since they are negative examples." >> java_validator_output.log
@@ -296,7 +309,7 @@ jobs:
                 
                 # Clean up
                 echo "Cleaning up temporary files..."
-                rm -f "$TEMP_FILE" || true
+                rm -f "$TEMP_FILE" unexpected_passing_files.log || true
             else
                 echo "Java validation is disabled, skipping..."
             fi
