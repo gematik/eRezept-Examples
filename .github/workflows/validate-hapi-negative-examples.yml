@@ -173,20 +173,20 @@ jobs:
           
       - name: Validate the example resources that have changed with the Java Validator
         run: |    
-          # Define color codes
-          ERROR=$'\033[0;31m'
-          WARN=$'\033[0;33m'
-          INFO=$'\033[0;34m'
-          OK=$'\033[0;32m'
-          NC=$'\033[0m'
-      
-          # Create fresh error logs
-          echo "" > java_validator_output.log
+            # Define color codes
+            ERROR=$'\033[0;31m'
+            WARN=$'\033[0;33m'
+            INFO=$'\033[0;34m'
+            OK=$'\033[0;32m'
+            NC=$'\033[0m'
+
+            # Create fresh error logs
+            echo "" > java_validator_output.log
             
-          if $JAVA_VALIDATION_ENABLED; then
+            if $JAVA_VALIDATION_ENABLED; then
             if [ ! -f "$SUSHI_CONFIG_FILE" ]; then
-              echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
-              exit 1
+                echo "$SUSHI_CONFIG_FILE does not exist. Please add it to the root folder and add all project dependencies."
+                exit 1
             fi
 
             IG_DEPENDENCIES=""
@@ -194,85 +194,132 @@ jobs:
             # Process regular dependencies
             in_dependencies=false
             while IFS= read -r line; do
-              # Check if we're in the dependencies section
-              if [[ "$line" =~ ^dependencies: ]]; then
+                # Check if we're in the dependencies section
+                if [[ "$line" =~ ^dependencies: ]]; then
                 in_dependencies=true
                 continue
-              fi
-              
-              # Check if we've moved out of the dependencies section (another top-level key)
-              if [[ "$in_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                fi
+                
+                # Check if we've moved out of the dependencies section (another top-level key)
+                if [[ "$in_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
                 in_dependencies=false
-              fi
-              
-              # Process dependency lines
-              if [[ "$in_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                fi
+                
+                # Process dependency lines
+                if [[ "$in_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
                 dep_key="${BASH_REMATCH[1]}"
                 dep_value="${BASH_REMATCH[2]}"
                 IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
-              fi
+                fi
             done < "$SUSHI_CONFIG_FILE"
 
             # Process zts-dependencies if they exist in the SUSHI config
             in_zts_dependencies=false
             while IFS= read -r line; do
-              # Check if we're in the zts-dependencies section
-              if [[ "$line" =~ ^zts-dependencies: ]]; then
+                # Check if we're in the zts-dependencies section
+                if [[ "$line" =~ ^zts-dependencies: ]]; then
                 in_zts_dependencies=true
                 continue
-              fi
-              
-              # Check if we've moved out of the zts-dependencies section
-              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
+                fi
+                
+                # Check if we've moved out of the zts-dependencies section
+                if [[ "$in_zts_dependencies" == true && "$line" =~ ^[a-zA-Z]+: && ! "$line" =~ ^[[:space:]] ]]; then
                 in_zts_dependencies=false
-              fi
-              
-              # Process dependency lines
-              if [[ "$in_zts_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
+                fi
+                
+                # Process dependency lines
+                if [[ "$in_zts_dependencies" == true && "$line" =~ ^[[:space:]]+([a-zA-Z0-9._-]+):[[:space:]]*([a-zA-Z0-9._-]+) ]]; then
                 dep_key="${BASH_REMATCH[1]}"
                 dep_value="${BASH_REMATCH[2]}"
                 IG_DEPENDENCIES="$IG_DEPENDENCIES -ig $dep_key#$dep_value"
-              fi
+                fi
             done < "$SUSHI_CONFIG_FILE"
             
             echo "Extracted IG dependencies: $IG_DEPENDENCIES"
             UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
-              
+                
             # Use a temporary file to store the list of files to validate
             TEMP_FILE=$(mktemp)
-            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
-      
+            # Back to scanning the whole repo
+            find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+
             # Check if we found any files
             if [ -s "$TEMP_FILE" ]; then
-              echo "Files to validate:"
-              cat "$TEMP_FILE"
+                echo "Files to validate:"
+                cat "$TEMP_FILE"
 
-              # Convert file list to space-separated string
-              FILES_TO_VALIDATE=$(cat "$TEMP_FILE" | tr '\n' ' ')
-        
-              echo "Validating all files at once..."
-              # javaValidatorOutput=$(java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES || true)
-              java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
-            
-              # Display the output
-              cat java_validator_output.log
-        
-              # Check for errors with simple grep
-              if grep -q "Error " java_validator_output.log; then
-                echo "Found validation errors!"
-                # Set failure flag
+                # Track files that should fail validation but don't
+                NEGATIVE_PASSED_FILES=""
+                
+                # Process each file individually
+                while IFS= read -r file; do
+                # Check if this is a negative example that should fail validation
+                if [[ "$file" == *"Negative-Examples/"* ]] || [[ "$file" == *"negativ"* ]] || [[ "$file" =~ [Ii][Nn][Vv][Aa][Ll][Ii][Dd] ]]; then
+                    IS_NEGATIVE=true
+                    echo "Validating negative example: $file..."
+                else
+                    IS_NEGATIVE=false
+                    echo "Validating regular file: $file..."
+                fi
+                
+                TEMP_OUTPUT=$(mktemp)
+                java -jar validator_cli.jar "$file" -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > "$TEMP_OUTPUT" 2>&1 || true
+                
+                # Append to the main log file
+                echo "===== Validation for $file =====" >> java_validator_output.log
+                cat "$TEMP_OUTPUT" >> java_validator_output.log
+                echo "" >> java_validator_output.log
+                
+                # Check validation result
+                if grep -q "Error " "$TEMP_OUTPUT"; then
+                    # Has validation errors
+                    if [ "$IS_NEGATIVE" = true ]; then
+                    echo "${OK}✓ $file correctly fails validation (as expected for a negative example)${NC}"
+                    else
+                    echo "${ERROR}✗ $file has validation errors${NC}"
+                    fi
+                else
+                    # No validation errors
+                    if [ "$IS_NEGATIVE" = true ]; then
+                    echo "${ERROR}✗ $file PASSED validation (unexpected for a negative example)${NC}"
+                    NEGATIVE_PASSED_FILES="$NEGATIVE_PASSED_FILES\n  - $file"
+                    else
+                    echo "${OK}✓ $file passes validation${NC}"
+                    fi
+                fi
+                
+                rm "$TEMP_OUTPUT"
+                done < "$TEMP_FILE"
+                
+                # Display the output summary for negative examples
+                if [ -n "$NEGATIVE_PASSED_FILES" ]; then
+                echo "${ERROR}WARNING: The following negative examples unexpectedly PASSED validation:${NC}"
+                echo -e "$NEGATIVE_PASSED_FILES"
                 echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-              else
-                echo "No Java validation errors found"
-              fi
+                fi
+                
+                # Check for overall validation errors with the original logic
+                if grep -q "Error " java_validator_output.log; then
+                echo "Found validation errors in the results!"
+                else
+                echo "No validation errors found in any files"
+                fi
             else
-              echo "No XML or JSON files found to validate"
+                echo "No XML or JSON files found to validate"
             fi
 
             # Clean up the temporary file
             rm "$TEMP_FILE"            
+            fi
+        shell: bash
+
+      - name: Report Success - Java Validator
+        run: |
+          if $JAVA_VALIDATION_ENABLED; then
+            echo "Finished validation using Java validator"
           fi
-        shell: bash  
+        shell: bash
+
         
     # --------------------------------------------------------------------------------------------------- #
     #                                            .NET VALIDATOR                                           #
