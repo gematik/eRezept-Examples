@@ -434,10 +434,10 @@ jobs:
                 
                 # Use a temporary file to store the list of files to validate
                 TEMP_FILE=$(mktemp)
-                find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+                find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -path "*/package.json" -not -path "*/fhirpkg.lock.json" > "$TEMP_FILE" || { echo "Find command failed"; exit 1; }
                 
                 # Read the file line by line without using a pipe
-                while read file; do
+                while IFS= read -r file; do
                 echo "Validating $file..."
                 VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
                 echo "$VALIDATION_OUTPUT" 
@@ -461,7 +461,7 @@ jobs:
                 done < "$TEMP_FILE"
                 
                 # Clean up the temporary file
-                rm "$TEMP_FILE"
+                rm -f "$TEMP_FILE"
                 
                 # Export the unexpected passing message to GITHUB_ENV if any
                 if [ -n "$UNEXPECTED_PASSING" ]; then
