@@ -18,7 +18,7 @@ env:
   SUSHI_CONFIG_FILE: './API-Examples/FSH-Files/sushi-config.yaml'
   FHIR_VERSION: "4.0"
   INPUT_JAVA_VALIDATION_OPTIONS: "-debug -tx n/a -allow-example-urls true -ig kbv.all.st"
-  DOTNET_VALIDATION_ENABLED: false
+  DOTNET_VALIDATION_ENABLED: true
   JAVA_VALIDATION_ENABLED: true
   SUSHI_ENABLED: true
   JAVA_SNAPSHOT_ENABLED: false 
@@ -419,52 +419,67 @@ jobs:
     # Validate the example resources that have changed with the .NET Validator
       - name: Validate the example resources that have changed with the .NET Validator
         run: |
-          if $DOTNET_VALIDATION_ENABLED; then
-            echo "Running quality control checks incl. validation based on Firely Terminal ..."
+            # Explicitly set this as a negative examples workflow
+            echo "IS_NEGATIVE_EXAMPLES_WORKFLOW=true" >> $GITHUB_ENV
+            
+            if $DOTNET_VALIDATION_ENABLED; then
+                echo "Running quality control checks incl. validation based on Firely Terminal ..."
 
-            # Find and validate each file individually
-            VALIDATION_OUTPUT=""
-            OUTPUT_FAILURE_MESSAGE=""
-            
-            # Use a temporary file to store the list of files to validate
-            TEMP_FILE=$(mktemp)
-            find ./ -type f \( -name "*.json" -o -name "*.xml" \) -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
-            
-            # Read the file line by line without using a pipe
-            while read file; do
-              echo "Validating $file..."
-              VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
-              echo "$VALIDATION_OUTPUT" 
-              if echo "$VALIDATION_OUTPUT" | grep -q "Result: INVALID"; then
-                  # Append the file name and validation output to the failure message
-                  # Check if OUTPUT_FAILURE_MESSAGE is empty and add header if it is
-                  if [ -z "$OUTPUT_FAILURE_MESSAGE" ]; then
-                    OUTPUT_FAILURE_MESSAGE=".NET Validator:"$'\n'"==============="$'\n\n'
-                  fi
-                  OUTPUT_FAILURE_MESSAGE="${OUTPUT_FAILURE_MESSAGE}File: $file Validation Error: $VALIDATION_OUTPUT
-                  
-                  "
-              fi
-            done < "$TEMP_FILE"
-            
-            # Clean up the temporary file
-            rm "$TEMP_FILE"
-            
-            # Export the failure message to GITHUB_ENV
-            echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
-            echo "$OUTPUT_FAILURE_MESSAGE" >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
-            
-            # Exit with error if any validation failed
-            if [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
-              echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-              echo "Validation failed"
+                # Find and validate each file individually
+                VALIDATION_OUTPUT=""
+                OUTPUT_FAILURE_MESSAGE=""
+                
+                # Track whether any negative examples unexpectedly passed validation
+                UNEXPECTED_PASSING=""
+                
+                # Use a temporary file to store the list of files to validate
+                TEMP_FILE=$(mktemp)
+                find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -name "package.json" -not -name "fhirpkg.lock.json" > "$TEMP_FILE"
+                
+                # Read the file line by line without using a pipe
+                while read file; do
+                echo "Validating $file..."
+                VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
+                echo "$VALIDATION_OUTPUT" 
+
+                # For negative examples workflow, we EXPECT files to be INVALID
+                # So files that are VALID are unexpected and should be reported as errors
+                if echo "$VALIDATION_OUTPUT" | grep -q "Result: VALID"; then
+                    # This is a negative example that unexpectedly passed validation
+                    echo "⚠️ ERROR: Negative example $file unexpectedly passed validation!"
+                    
+                    # Append the file name and validation output to the unexpected passing message
+                    if [ -z "$UNEXPECTED_PASSING" ]; then
+                        UNEXPECTED_PASSING=".NET Validator - Unexpected Passing Negative Examples:"$'\n'"================================================="$'\n\n'
+                    fi
+                    UNEXPECTED_PASSING="${UNEXPECTED_PASSING}File: $file unexpectedly PASSED validation when it should have FAILED.
+                    
+                    "
+                else
+                    echo "✓ Negative example $file correctly failed validation (expected)"
+                fi
+                done < "$TEMP_FILE"
+                
+                # Clean up the temporary file
+                rm "$TEMP_FILE"
+                
+                # Export the unexpected passing message to GITHUB_ENV if any
+                if [ -n "$UNEXPECTED_PASSING" ]; then
+                echo "OUTPUT_FAILURE_MESSAGE<<EOF" >> $GITHUB_ENV
+                echo "$UNEXPECTED_PASSING" >> $GITHUB_ENV
+                echo "EOF" >> $GITHUB_ENV
+                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+                echo "NEGATIVE_EXAMPLES_PASSED=true" >> $GITHUB_ENV
+                echo "Error: Some negative examples unexpectedly passed validation"
+                else
+                echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+                echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
+                echo "Success: All negative examples failed validation as expected"
+                fi
             else
-              echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+                echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
+                echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
             fi
-          else
-            echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
-          fi
         shell: bash
         
       - name: Report Success - .NET Validator
