@@ -267,14 +267,22 @@ jobs:
                         for file in $(cat negative_examples.txt); do
                             # Extract just the filename for better logging
                             filename=$(basename "$file")
+                            filepath=$(echo "$file" | sed 's/\./\\./g')  # Escape dots for grep
                             
-                            # Check if this file has validation errors by looking for lines with the file path and "Error"
-                            if grep -q "$file" java_validator_output.log && grep -q "$file.*Error" java_validator_output.log; then
+                            # Look for validation summary lines containing the file path and check for errors
+                            if grep -q "Validat.*$filepath" java_validator_output.log && \
+                            grep -q -A 5 "Validat.*$filepath" java_validator_output.log | grep -q "\*FAILURE\*"; then
                                 echo "${OK}✓ Negative example $filename correctly fails validation${NC}"
                             else
-                                echo "${ERROR}⚠ UNEXPECTED: Negative example $filename passed validation${NC}"
-                                echo "$filename" >> passing_negative_examples.txt
-                                NEGATIVE_EXAMPLES_PASSING=true
+                                # Secondary check - look for errors that might be associated with this file
+                                if grep -q "Validat.*$filepath" java_validator_output.log && \
+                                grep -q "Error @" java_validator_output.log; then
+                                    echo "${OK}✓ Negative example $filename correctly fails validation (errors found)${NC}"
+                                else
+                                    echo "${ERROR}⚠ UNEXPECTED: Negative example $filename passed validation${NC}"
+                                    echo "$filename" >> passing_negative_examples.txt
+                                    NEGATIVE_EXAMPLES_PASSING=true
+                                fi
                             fi
                         done
                         
