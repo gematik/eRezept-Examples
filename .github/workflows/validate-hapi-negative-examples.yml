@@ -429,33 +429,29 @@ jobs:
                 VALIDATION_OUTPUT=""
                 UNEXPECTED_PASSING=""
                 
-                # Use a much simpler approach to find files
                 echo "Finding files to validate..."
                 
-                # First find all JSON files (excluding package.json and fhirpkg.lock.json)
-                find_json_cmd="find . -name '*.json' | grep -v 'package.json' | grep -v 'fhirpkg.lock.json'"
-                echo "JSON find command: $find_json_cmd"
-                json_files=$(eval $find_json_cmd) || echo "No JSON files found"
+                # Create an empty temporary file for listing files
+                FILES_LIST=$(mktemp)
                 
-                # Then find all XML files
-                find_xml_cmd="find . -name '*.xml'"
-                echo "XML find command: $find_xml_cmd"
-                xml_files=$(eval $find_xml_cmd) || echo "No XML files found"
+                # Find JSON files (excluding package.json and fhirpkg.lock.json)
+                echo "Looking for JSON files..."
+                find . -name "*.json" 2>/dev/null | grep -v "package.json" | grep -v "fhirpkg.lock.json" >> "$FILES_LIST" || true
                 
-                # Combine the results
-                all_files=$(echo -e "$json_files\n$xml_files" | grep .)
+                # Find XML files
+                echo "Looking for XML files..."
+                find . -name "*.xml" 2>/dev/null >> "$FILES_LIST" || true
                 
-                if [ -z "$all_files" ]; then
-                echo "No files found to validate"
-                else
+                # Check if we found any files
+                if [ -s "$FILES_LIST" ]; then
                 echo "Files to validate:"
-                echo "$all_files"
+                cat "$FILES_LIST"
                 
                 # Process each file
-                echo "$all_files" | while IFS= read -r file; do
+                while IFS= read -r file; do
                     if [ -f "$file" ]; then
                     echo "Validating $file..."
-                    VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
+                    VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1 || echo "Validation command failed")
                     echo "$VALIDATION_OUTPUT" 
 
                     # For negative examples workflow, we EXPECT files to be INVALID
@@ -470,22 +466,19 @@ jobs:
                         UNEXPECTED_PASSING="${UNEXPECTED_PASSING}File: $file unexpectedly PASSED validation when it should have FAILED.
                         
                         "
-                        # Write to a temp file to preserve across loop iterations
-                        echo "$UNEXPECTED_PASSING" > unexpected_passing.txt
                     else
                         echo "✓ Negative example $file correctly failed validation (expected)"
                     fi
                     else
                     echo "Warning: File not found: $file"
                     fi
-                done
+                done < "$FILES_LIST"
+                else
+                echo "No files found to validate"
+                fi
                 
-                # Read back the unexpected passing file if it exists
-                if [ -f "unexpected_passing.txt" ]; then
-                    UNEXPECTED_PASSING=$(cat unexpected_passing.txt)
-                    rm -f unexpected_passing.txt
-                fi
-                fi
+                # Clean up
+                rm -f "$FILES_LIST" || true
                 
                 # Export the unexpected passing message to GITHUB_ENV if any
                 if [ -n "$UNEXPECTED_PASSING" ]; then
@@ -501,6 +494,7 @@ jobs:
                 echo "Success: All negative examples failed validation as expected"
                 fi
             else
+                echo ".NET validation is disabled, skipping..."
                 echo "OUTPUT_FAILURE=false" >> $GITHUB_ENV
                 echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
             fi
