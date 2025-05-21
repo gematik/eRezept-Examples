@@ -427,41 +427,65 @@ jobs:
 
                 # Find and validate each file individually
                 VALIDATION_OUTPUT=""
-                OUTPUT_FAILURE_MESSAGE=""
-                
-                # Track whether any negative examples unexpectedly passed validation
                 UNEXPECTED_PASSING=""
                 
-                # Use a temporary file to store the list of files to validate
-                TEMP_FILE=$(mktemp)
-                find ./ -type f $$-name "*.json" -o -name "*.xml"$$ -not -path "*/package.json" -not -path "*/fhirpkg.lock.json" > "$TEMP_FILE" || { echo "Find command failed"; exit 1; }
+                # Use a much simpler approach to find files
+                echo "Finding files to validate..."
                 
-                # Read the file line by line without using a pipe
-                while IFS= read -r file; do
-                echo "Validating $file..."
-                VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
-                echo "$VALIDATION_OUTPUT" 
-
-                # For negative examples workflow, we EXPECT files to be INVALID
-                # So files that are VALID are unexpected and should be reported as errors
-                if echo "$VALIDATION_OUTPUT" | grep -q "Result: VALID"; then
-                    # This is a negative example that unexpectedly passed validation
-                    echo "⚠️ ERROR: Negative example $file unexpectedly passed validation!"
-                    
-                    # Append the file name and validation output to the unexpected passing message
-                    if [ -z "$UNEXPECTED_PASSING" ]; then
-                        UNEXPECTED_PASSING=".NET Validator - Unexpected Passing Negative Examples:"$'\n'"================================================="$'\n\n'
-                    fi
-                    UNEXPECTED_PASSING="${UNEXPECTED_PASSING}File: $file unexpectedly PASSED validation when it should have FAILED.
-                    
-                    "
+                # First find all JSON files (excluding package.json and fhirpkg.lock.json)
+                find_json_cmd="find . -name '*.json' | grep -v 'package.json' | grep -v 'fhirpkg.lock.json'"
+                echo "JSON find command: $find_json_cmd"
+                json_files=$(eval $find_json_cmd) || echo "No JSON files found"
+                
+                # Then find all XML files
+                find_xml_cmd="find . -name '*.xml'"
+                echo "XML find command: $find_xml_cmd"
+                xml_files=$(eval $find_xml_cmd) || echo "No XML files found"
+                
+                # Combine the results
+                all_files=$(echo -e "$json_files\n$xml_files" | grep .)
+                
+                if [ -z "$all_files" ]; then
+                echo "No files found to validate"
                 else
-                    echo "✓ Negative example $file correctly failed validation (expected)"
-                fi
-                done < "$TEMP_FILE"
+                echo "Files to validate:"
+                echo "$all_files"
                 
-                # Clean up the temporary file
-                rm -f "$TEMP_FILE"
+                # Process each file
+                echo "$all_files" | while IFS= read -r file; do
+                    if [ -f "$file" ]; then
+                    echo "Validating $file..."
+                    VALIDATION_OUTPUT=$(fhir validate "$file" 2>&1)              
+                    echo "$VALIDATION_OUTPUT" 
+
+                    # For negative examples workflow, we EXPECT files to be INVALID
+                    if echo "$VALIDATION_OUTPUT" | grep -q "Result: VALID"; then
+                        # This is a negative example that unexpectedly passed validation
+                        echo "⚠️ ERROR: Negative example $file unexpectedly passed validation!"
+                        
+                        # Append to the unexpected passing message
+                        if [ -z "$UNEXPECTED_PASSING" ]; then
+                            UNEXPECTED_PASSING=".NET Validator - Unexpected Passing Negative Examples:"$'\n'"================================================="$'\n\n'
+                        fi
+                        UNEXPECTED_PASSING="${UNEXPECTED_PASSING}File: $file unexpectedly PASSED validation when it should have FAILED.
+                        
+                        "
+                        # Write to a temp file to preserve across loop iterations
+                        echo "$UNEXPECTED_PASSING" > unexpected_passing.txt
+                    else
+                        echo "✓ Negative example $file correctly failed validation (expected)"
+                    fi
+                    else
+                    echo "Warning: File not found: $file"
+                    fi
+                done
+                
+                # Read back the unexpected passing file if it exists
+                if [ -f "unexpected_passing.txt" ]; then
+                    UNEXPECTED_PASSING=$(cat unexpected_passing.txt)
+                    rm -f unexpected_passing.txt
+                fi
+                fi
                 
                 # Export the unexpected passing message to GITHUB_ENV if any
                 if [ -n "$UNEXPECTED_PASSING" ]; then
