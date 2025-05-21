@@ -442,18 +442,18 @@ jobs:
 
       - name: Check whether errors occurred 
         run: |
-          has_errors=false
-          
-          # Check .NET errors
-          if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            has_errors=false
+            
+            # Check .NET errors
+            if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
             echo -e "\n.NET Validator Errors:"
             echo "=================================="
             echo "$OUTPUT_FAILURE_MESSAGE"
             has_errors=true
-          fi
-          
-          # Check Java errors - simpler approach
-          if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+            fi
+            
+            # Check Java errors - with special handling for negative examples
+            if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
             echo -e "\nJava Validator Errors:"
             echo "=================================="
             
@@ -461,46 +461,88 @@ jobs:
             temp_file=$(mktemp)
             touch "$temp_file"
             
+            # First, identify all negative examples
+            NEGATIVE_EXAMPLES=$(find . -type f $$-name "*.json" -o -name "*.xml"$$ | grep -E '(Negative-Examples/|negativ|[Ii][Nn][Vv][Aa][Ll][Ii][Dd])' || true)
+            
             # Process the log file line by line
             current_file=""
             declare -A file_errors
+            non_negative_errors_found=false
             
             while IFS= read -r line; do
-              # Check if line contains a file path (.json or .xml)
-              if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+                # Check if line contains a file path (.json or .xml)
+                if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
                 current_file="$line"
                 # Initialize the array entry if it doesn't exist
                 if [[ -z "${file_errors[$current_file]}" ]]; then
-                  file_errors["$current_file"]=""
+                    file_errors["$current_file"]=""
                 fi
-              # Check if line contains an error (and we have a current file)
-              elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+                # Check if line contains an error (and we have a current file)
+                elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
                 # Append the error to the current file's error list
                 file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
-              fi
+                
+                # Check if this is a regular file (not a negative example)
+                is_negative=false
+                for negative_file in $NEGATIVE_EXAMPLES; do
+                    if [[ "$current_file" == *"$negative_file"* ]]; then
+                    is_negative=true
+                    break
+                    fi
+                done
+                
+                # Only mark as error if it's not a negative example
+                if [ "$is_negative" = false ]; then
+                    non_negative_errors_found=true
+                fi
+                fi
             done < java_validator_output.log
             
             # Print the collected errors by file
             for file in "${!file_errors[@]}"; do
-              if [[ -n "${file_errors[$file]}" ]]; then
+                if [[ -n "${file_errors[$file]}" ]]; then
+                # Check if this is a negative example
+                is_negative=false
+                for negative_file in $NEGATIVE_EXAMPLES; do
+                    if [[ "$file" == *"$negative_file"* ]]; then
+                    is_negative=true
+                    break
+                    fi
+                done
+                
                 echo "---------------------------------------"
-                echo "File: $file"
+                if [ "$is_negative" = true ]; then
+                    echo "File: $file (EXPECTED TO FAIL - Negative Example)"
+                else
+                    echo "File: $file"
+                fi
                 echo -e "${file_errors[$file]}"
                 echo ""
-              fi
+                fi
             done
             
+            # Only set has_errors if we found errors in non-negative files
+            if [ "$non_negative_errors_found" = true ]; then
+                has_errors=true
+            else
+                echo "All validation errors were in negative examples (which are expected to fail)"
+            fi
+            fi
+            
+            # Check for negative examples that unexpectedly passed validation
+            if [ "$NEGATIVE_EXAMPLES_PASSED" = "true" ]; then
+            echo -e "\nWARNING: Some negative examples unexpectedly PASSED validation"
+            echo "These examples should be fixed to ensure they actually test error conditions"
             has_errors=true
-          fi
-          
-          if [ "$has_errors" = "true" ]; then
+            fi
+            
+            if [ "$has_errors" = "true" ]; then
             echo -e "\nValidation errors found. Please check the logs above."
             exit 1
-          else
-            echo "No errors found"
-          fi      
-        shell: bash 
-      
+            else
+            echo "No unexpected errors found"
+            fi      
+        shell: bash
         
       - name: Cleanup
         if: always()
