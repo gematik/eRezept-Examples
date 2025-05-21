@@ -238,73 +238,85 @@ jobs:
             echo "Extracted IG dependencies: $IG_DEPENDENCIES"
             UNESCPAED_IG_DEPENDENCIES=$(echo $IG_DEPENDENCIES | tr -d '"')
                 
-            # Use a temporary file to store the list of files to validate
+            # Use two simple find commands and concatenate results
             TEMP_FILE=$(mktemp)
-            
-            # Fixed find command with proper escaping and quoting
-            find ./ -type f $$-name '*.json' -o -name '*.xml'$$ -not -path '*/\.*' -not -name 'package.json' -not -name 'fhirpkg.lock.json' > "$TEMP_FILE"
+            find . -name "*.json" | grep -v "package.json" | grep -v "fhirpkg.lock.json" > "$TEMP_FILE"
+            find . -name "*.xml" >> "$TEMP_FILE"
 
             # Check if we found any files
             if [ -s "$TEMP_FILE" ]; then
                 echo "Files to validate:"
                 cat "$TEMP_FILE"
 
-                # Track files that should fail validation but don't
-                NEGATIVE_PASSED_FILES=""
+                # Process negative examples separately to check their validation results
+                NEGATIVE_EXAMPLES_FILE=$(mktemp)
+                REGULAR_FILES_FILE=$(mktemp)
                 
-                # Process each file individually
+                # Sort files into negative examples and regular files
                 while IFS= read -r file; do
-                # Check if this is a negative example that should fail validation
                 if [[ "$file" == *"Negative-Examples/"* ]] || [[ "$file" == *"negativ"* ]] || [[ "$file" =~ [Ii][Nn][Vv][Aa][Ll][Ii][Dd] ]]; then
-                    IS_NEGATIVE=true
-                    echo "Validating negative example: $file..."
+                    echo "$file" >> "$NEGATIVE_EXAMPLES_FILE"
                 else
-                    IS_NEGATIVE=false
-                    echo "Validating regular file: $file..."
+                    echo "$file" >> "$REGULAR_FILES_FILE"
                 fi
-                
-                TEMP_OUTPUT=$(mktemp)
-                java -jar validator_cli.jar "$file" -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > "$TEMP_OUTPUT" 2>&1 || true
-                
-                # Append to the main log file
-                echo "===== Validation for $file =====" >> java_validator_output.log
-                cat "$TEMP_OUTPUT" >> java_validator_output.log
-                echo "" >> java_validator_output.log
-                
-                # Check validation result
-                if grep -q "Error " "$TEMP_OUTPUT"; then
-                    # Has validation errors
-                    if [ "$IS_NEGATIVE" = true ]; then
-                    echo "${OK}✓ $file correctly fails validation (as expected for a negative example)${NC}"
-                    else
-                    echo "${ERROR}✗ $file has validation errors${NC}"
-                    fi
-                else
-                    # No validation errors
-                    if [ "$IS_NEGATIVE" = true ]; then
-                    echo "${ERROR}✗ $file PASSED validation (unexpected for a negative example)${NC}"
-                    NEGATIVE_PASSED_FILES="$NEGATIVE_PASSED_FILES"$'\n'"  - $file"
-                    else
-                    echo "${OK}✓ $file passes validation${NC}"
-                    fi
-                fi
-                
-                rm "$TEMP_OUTPUT"
                 done < "$TEMP_FILE"
                 
-                # Display the output summary for negative examples
-                if [ -n "$NEGATIVE_PASSED_FILES" ]; then
-                echo "${ERROR}WARNING: The following negative examples unexpectedly PASSED validation:${NC}"
-                echo -e "$NEGATIVE_PASSED_FILES"
-                echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+                # Validate regular files as a batch first (if any)
+                if [ -s "$REGULAR_FILES_FILE" ]; then
+                echo "Validating regular files..."
+                FILES_TO_VALIDATE=$(cat "$REGULAR_FILES_FILE" | tr '\n' ' ')
+                java -jar validator_cli.jar $FILES_TO_VALIDATE -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > java_validator_output.log 2>&1 || true
+                
+                # Display the output
+                cat java_validator_output.log
+                
+                # Check for errors in regular files
+                if grep -q "Error " java_validator_output.log; then
+                    echo "${ERROR}Found validation errors in regular files!${NC}"
+                    echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
+                else
+                    echo "${OK}All regular files pass validation${NC}"
+                fi
                 fi
                 
-                # Check for overall validation errors with the original logic
-                if grep -q "Error " java_validator_output.log; then
-                echo "Found validation errors in the results!"
+                # Validate negative examples individually
+                if [ -s "$NEGATIVE_EXAMPLES_FILE" ]; then
+                echo "${INFO}Validating negative examples...${NC}"
+                NEGATIVE_PASSED_FILES=""
+                
+                while IFS= read -r file; do
+                    echo "Checking negative example: $file"
+                    TEMP_OUTPUT=$(mktemp)
+                    java -jar validator_cli.jar "$file" -version $FHIR_VERSION $INPUT_JAVA_VALIDATION_OPTIONS $UNESCPAED_IG_DEPENDENCIES > "$TEMP_OUTPUT" 2>&1 || true
+                    
+                    # For negative examples, we EXPECT validation to fail
+                    if grep -q "Error " "$TEMP_OUTPUT"; then
+                    echo "${OK}✓ $file correctly fails validation (as expected for a negative example)${NC}"
+                    else
+                    echo "${ERROR}✗ $file PASSED validation (unexpected for a negative example)${NC}"
+                    NEGATIVE_PASSED_FILES="$NEGATIVE_PASSED_FILES"$'\n'"  - $file"
+                    fi
+                    
+                    # Append to main log
+                    echo "===== Validation for negative example: $file =====" >> java_validator_output.log
+                    cat "$TEMP_OUTPUT" >> java_validator_output.log
+                    echo "" >> java_validator_output.log
+                    
+                    rm "$TEMP_OUTPUT"
+                done < "$NEGATIVE_EXAMPLES_FILE"
+                
+                # Report any negative examples that unexpectedly passed validation
+                if [ -n "$NEGATIVE_PASSED_FILES" ]; then
+                    echo "${ERROR}WARNING: The following negative examples unexpectedly PASSED validation:${NC}"
+                    echo -e "$NEGATIVE_PASSED_FILES"
+                    echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
                 else
-                echo "No validation errors found in any files"
+                    echo "${OK}All negative examples fail validation as expected${NC}"
                 fi
+                fi
+                
+                # Clean up temporary files
+                rm "$NEGATIVE_EXAMPLES_FILE" "$REGULAR_FILES_FILE"
             else
                 echo "No XML or JSON files found to validate"
             fi
@@ -313,7 +325,6 @@ jobs:
             rm "$TEMP_FILE"            
             fi
         shell: bash
-
 
       - name: Report Success - Java Validator
         run: |
