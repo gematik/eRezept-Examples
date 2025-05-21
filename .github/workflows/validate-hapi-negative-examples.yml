@@ -248,10 +248,7 @@ jobs:
                     
                     echo "Validation complete, checking results..."
                     
-                    # Display output
-                    cat java_validator_output.log || true
-                    
-                    # Identify negative examples
+                    # Create a separate file for negative examples analysis
                     echo "Identifying negative examples..."
                     grep -E '(Negative-Examples/|negativ|[Ii][Nn][Vv][Aa][Ll][Ii][Dd])' "$TEMP_FILE" > negative_examples.txt || true
                     
@@ -259,51 +256,56 @@ jobs:
                     NEGATIVE_EXAMPLES_PASSING=false
                     
                     if [ -s "negative_examples.txt" ]; then
-                        echo "Checking validation results for negative examples..."
+                        echo "Found negative examples to check:"
+                        cat negative_examples.txt
                         
                         # Create a file to store passing negative examples
                         touch passing_negative_examples.txt
                         
+                        # Display output (without changing the main log file)
+                        cat java_validator_output.log | tee validation_display.log > /dev/null
+                        
                         for file in $(cat negative_examples.txt); do
                             # Extract just the filename for better logging
                             filename=$(basename "$file")
-                            filepath=$(echo "$file" | sed 's/\./\\./g')  # Escape dots for grep
+                            shortpath=$(echo "$file" | sed 's|\./||')
                             
-                            # Look for validation summary lines containing the file path and check for errors
-                            if grep -q "Validat.*$filepath" java_validator_output.log && \
-                            grep -q -A 5 "Validat.*$filepath" java_validator_output.log | grep -q "\*FAILURE\*"; then
-                                echo "${OK}✓ Negative example $filename correctly fails validation${NC}"
-                            else
-                                # Secondary check - look for errors that might be associated with this file
-                                if grep -q "Validat.*$filepath" java_validator_output.log && \
-                                grep -q "Error @" java_validator_output.log; then
-                                    echo "${OK}✓ Negative example $filename correctly fails validation (errors found)${NC}"
+                            # Look specifically for failure indications for this file
+                            if grep -q "Validat.*$shortpath" validation_display.log; then
+                                # Found the file being validated, now check if it has failures
+                                if grep -A 10 "Validat.*$shortpath" validation_display.log | grep -q "\*FAILURE\*"; then
+                                    echo "${OK}✓ Negative example $shortpath correctly fails validation${NC}"
                                 else
-                                    echo "${ERROR}⚠ UNEXPECTED: Negative example $filename passed validation${NC}"
-                                    echo "$filename" >> passing_negative_examples.txt
+                                    echo "${ERROR}⚠ UNEXPECTED: Negative example $shortpath passed validation${NC}"
+                                    echo "$shortpath" >> passing_negative_examples.txt
                                     NEGATIVE_EXAMPLES_PASSING=true
                                 fi
+                            else
+                                echo "${WARN}! Warning: Couldn't find validation results for $shortpath${NC}"
                             fi
                         done
                         
-                        # If any negative examples passed validation, set the failure flag
+                        # If any negative examples passed validation, set a separate failure flag
                         if [ "$NEGATIVE_EXAMPLES_PASSING" = "true" ]; then
                             echo "${ERROR}ERROR: Some negative examples passed validation unexpectedly.${NC}"
                             echo "Files that should have failed but passed validation:"
                             cat passing_negative_examples.txt
-                            echo "OUTPUT_FAILURE=true" >> $GITHUB_ENV
-                            echo "OUTPUT_FAILURE_MESSAGE=Negative examples passed validation unexpectedly" >> $GITHUB_ENV
+                            echo "NEGATIVE_EXAMPLES_PASSED=true" >> $GITHUB_ENV
+                            # Don't set OUTPUT_FAILURE here as it will conflict with the check errors step
                         else
                             echo "${OK}SUCCESS: All negative examples failed validation as expected.${NC}"
+                            echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
                         fi
                         
                         # Clean up
-                        rm -f passing_negative_examples.txt || true
+                        rm -f passing_negative_examples.txt validation_display.log || true
                     else
                         echo "No negative examples found"
+                        echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
                     fi
                 else
                     echo "No files to validate"
+                    echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
                 fi
                 
                 # Clean up
@@ -311,6 +313,7 @@ jobs:
                 rm -f "$TEMP_FILE" negative_examples.txt || true
             else
                 echo "Java validation is disabled, skipping..."
+                echo "NEGATIVE_EXAMPLES_PASSED=false" >> $GITHUB_ENV
             fi
             
             echo "Validation script completed"
@@ -467,64 +470,74 @@ jobs:
 
       - name: Check whether errors occurred 
         run: |
-          has_errors=false
-          
-          # Check .NET errors
-          if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
+            has_errors=false
+            
+            # Check .NET errors
+            if [ "$OUTPUT_FAILURE" = "true" ] && [ -n "$OUTPUT_FAILURE_MESSAGE" ]; then
             echo -e "\n.NET Validator Errors:"
             echo "=================================="
             echo "$OUTPUT_FAILURE_MESSAGE"
             has_errors=true
-          fi
-          
-          # Check Java errors - simpler approach
-          if [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
-            echo -e "\nJava Validator Errors:"
+            fi
+            
+            # Handle negative examples differently
+            if [ "$NEGATIVE_EXAMPLES_PASSED" = "true" ]; then
+            echo -e "\nERROR: Negative examples passed validation, which is unexpected!"
             echo "=================================="
-            
-            # Create a temporary file for storing grouped errors
-            temp_file=$(mktemp)
-            touch "$temp_file"
-            
-            # Process the log file line by line
-            current_file=""
-            declare -A file_errors
-            
-            while IFS= read -r line; do
-              # Check if line contains a file path (.json or .xml)
-              if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
-                current_file="$line"
-                # Initialize the array entry if it doesn't exist
-                if [[ -z "${file_errors[$current_file]}" ]]; then
-                  file_errors["$current_file"]=""
-                fi
-              # Check if line contains an error (and we have a current file)
-              elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
-                # Append the error to the current file's error list
-                file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
-              fi
-            done < java_validator_output.log
-            
-            # Print the collected errors by file
-            for file in "${!file_errors[@]}"; do
-              if [[ -n "${file_errors[$file]}" ]]; then
-                echo "---------------------------------------"
-                echo "File: $file"
-                echo -e "${file_errors[$file]}"
-                echo ""
-              fi
-            done
-            
+            echo "Some negative examples passed validation when they should have failed."
+            echo "This indicates that the validators are not properly detecting invalid resources."
             has_errors=true
-          fi
-          
-          if [ "$has_errors" = "true" ]; then
+            elif [ -f "java_validator_output.log" ] && grep -q "Error " java_validator_output.log; then
+            # Check Java errors only if we're not dealing with negative examples
+            # OR if we're dealing with regular examples that should pass validation
+            if [[ "$GITHUB_WORKFLOW" != *"negative"* ]]; then
+                echo -e "\nJava Validator Errors:"
+                echo "=================================="
+                
+                # Create a temporary file for storing grouped errors
+                temp_file=$(mktemp)
+                touch "$temp_file"
+                
+                # Process the log file line by line
+                current_file=""
+                declare -A file_errors
+                
+                while IFS= read -r line; do
+                # Check if line contains a file path (.json or .xml)
+                if [[ "$line" == *".json"* ]] || [[ "$line" == *".xml"* ]]; then
+                    current_file="$line"
+                    # Initialize the array entry if it doesn't exist
+                    if [[ -z "${file_errors[$current_file]}" ]]; then
+                    file_errors["$current_file"]=""
+                    fi
+                # Check if line contains an error (and we have a current file)
+                elif [[ "$line" == *"Error "* ]] && [[ -n "$current_file" ]]; then
+                    # Append the error to the current file's error list
+                    file_errors["$current_file"]="${file_errors["$current_file"]}$line\n"
+                fi
+                done < java_validator_output.log
+                
+                # Print the collected errors by file
+                for file in "${!file_errors[@]}"; do
+                if [[ -n "${file_errors[$file]}" ]]; then
+                    echo "---------------------------------------"
+                    echo "File: $file"
+                    echo -e "${file_errors[$file]}"
+                    echo ""
+                fi
+                done
+                
+                has_errors=true
+            fi
+            fi
+            
+            if [ "$has_errors" = "true" ]; then
             echo -e "\nValidation errors found. Please check the logs above."
             exit 1
-          else
+            else
             echo "No errors found"
-          fi      
-        shell: bash 
+            fi
+        shell: bash
         
       - name: Cleanup
         if: always()
