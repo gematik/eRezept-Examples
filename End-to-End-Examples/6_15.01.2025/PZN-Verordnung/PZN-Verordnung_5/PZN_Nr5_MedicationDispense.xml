@@ -15,7 +15,7 @@
     <part>
       <name value="medicationDispense"/>
       <resource>
-        <MedicationDispense>
+         <MedicationDispense xmlns="http://hl7.org/fhir">
           <id value="61cbdbb3-c397-4e6d-909f-7b0dc520177c"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
@@ -42,6 +42,11 @@
               </identifier>
             </actor>
           </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1" />
+            <system value="http://unitsofmeasure.org" />
+            <code value="{Package}" />
+          </quantity>
           <whenHandedOver value="2025-01-27"/>
         </MedicationDispense>
       </resource>
@@ -49,7 +54,7 @@
     <part>
       <name value="medication"/>
       <resource>
-        <Medication>
+         <Medication xmlns="http://hl7.org/fhir">
           <id value="7167febd-5c16-4d20-981a-ba5268dbbd0d"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
@@ -73,7 +78,7 @@
               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
                 <valueString value="35"/>
               </extension>
-              <unit value="Stück"/>
+              <unit value="St"/>
             </numerator>
             <denominator>
               <value value="1"/>

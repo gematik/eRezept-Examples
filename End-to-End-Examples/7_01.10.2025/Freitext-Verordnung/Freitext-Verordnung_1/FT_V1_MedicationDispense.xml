@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="50f6e05b-2742-49d6-9ba6-2c1b2b1cdb57"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"/>
+    <!--tag>
+      <display value="Beispiel MedicationDispense Freitext Bsp V1 -&gt; PZN Abgabe"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag-->
+  </meta>
+  <parameter>
+    <name value="rxDispensation"/>
+    <part>
+      <name value="medicationDispense"/>
+      <resource>
+        <MedicationDispense>
+          <id value="ee46e774-0d9d-4f8a-b108-463d600b955c"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"/>
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="160.100.000.000.023.70"/>
+          </identifier>
+          <status value="completed"/>
+          <medicationReference>
+            <reference value="urn:uuid:208929ac-7835-4c9f-9051-29055ecd3214"/>
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10"/>
+              <value value="S040464113"/>
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-07.2.1234560000.10.789"/>
+              </identifier>
+            </actor>
+          </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1"/>
+            <unit value="Packung"/>
+          </quantity>
+          <whenHandedOver value="2025-10-27"/>
+          <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
+            <wasSubstituted value="false"/>
+          </substitution>
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication"/>
+      <resource>
+        <Medication>
+          <id value="208929ac-7835-4c9f-9051-29055ecd3214"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"/>
+          </meta>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+              <code value="02950964"/>
+            </coding>
+            <text value="METFORMIN 850-1A Pharma Filmtabletten 180 Stk"/>
+          </code>
+          <form>
+            <coding>
+              <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+              <code value="FTA"/>
+              <display value="Filmtabletten"/>
+            </coding>
+          </form>
+          <amount>
+            <numerator>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                <valueString value="180"/>
+              </extension>
+              <unit value="St"/>
+            </numerator>
+            <denominator>
+              <value value="1"/>
+            </denominator>
+          </amount>
+          <ingredient>
+            <itemCodeableConcept>
+              <text value="Metformin hydrochlorid"/>
+            </itemCodeableConcept>
+            <strength>
+              <numerator>
+                <value value="850"/>
+                <unit value="mg"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+                <unit value="Filmtbl."/>
+              </denominator>
+            </strength>
+          </ingredient>
+          <batch>
+            <lotNumber value="P987654321-8"/>
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>

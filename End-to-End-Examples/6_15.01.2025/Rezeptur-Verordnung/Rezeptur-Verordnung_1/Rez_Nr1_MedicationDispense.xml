@@ -15,7 +15,7 @@
     <part>
       <name value="medicationDispense"/>
       <resource>
-        <MedicationDispense>
+         <MedicationDispense xmlns="http://hl7.org/fhir">
           <id value="a8df5484-df7e-41fc-870d-2c4edb8a89ad"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
@@ -42,20 +42,25 @@
               </identifier>
             </actor>
           </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1" />
+            <system value="http://unitsofmeasure.org" />
+            <code value="{Package}" />
+          </quantity>
           <whenHandedOver value="2025-01-27"/>
           <!--dosageInstruction> ====> nur angeben wenn geändert/korrigiert durch Apotheke
               <text value="1–3mal/Tag auf die erkrankten Hautstellen auftragen"/>
           </dosageInstruction-->
-          <!--substitution>
+          <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
             <wasSubstituted value="false"/>
-          </substitution-->
+          </substitution>
         </MedicationDispense>
       </resource>
     </part>
     <part>
       <name value="medication"/>
       <resource>
-        <Medication>
+         <Medication xmlns="http://hl7.org/fhir">
           <id value="30724002-2ba6-464e-92d2-463bb1117aed"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>

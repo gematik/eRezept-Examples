@@ -4,10 +4,10 @@
   <meta>
     <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.4"/>
     <!--tag>
-      <display value="Beispiel MedicationDispense PZN Bsp aut idem"/>
+        <display value="Beispiel MedicationDispense PZN Bsp aut idem"/>
     </tag>
     <tag>
-      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+        <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
     </tag-->
   </meta>
   <parameter>
@@ -16,22 +16,28 @@
       <name value="medicationDispense"/>
       <resource>
         <MedicationDispense>
-          <id value="a7e1d25f-0b0a-40f7-b529-afda48e51b46"/>
+          <id value="c85a4b74-bd21-4249-8395-d4eb773610c9"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+            <!--tag>
+                <display value="Beispiel MedicationDispense PZN Bsp aut idem"/>
+            </tag>
+            <tag>
+                <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+            </tag-->
           </meta>
           <identifier>
             <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
-            <value value="160.000.764.737.300.50"/>
+            <value value="160.100.000.000.007.21"/>
           </identifier>
           <status value="completed"/>
           <medicationReference>
-            <reference value="urn:uuid:8e2e5e65-4c5d-49f2-8efc-c30e40838273"/>
+            <reference value="urn:uuid:1ac4a722-e9dd-459f-9498-117c3fd5a194"/>
           </medicationReference>
           <subject>
             <identifier>
               <system value="http://fhir.de/sid/gkv/kvid-10"/>
-              <value value="X234567890"/>
+              <value value="S040464113"/>
             </identifier>
           </subject>
           <performer>
@@ -42,12 +48,17 @@
               </identifier>
             </actor>
           </performer>
-          <whenHandedOver value="2025-01-30"/>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="{Package}"/>
+          </quantity>
+          <whenHandedOver value="2025-01-27"/>
           <!--dosageInstruction> ====> nur angeben wenn geändert/korrigiert durch Apotheke
-            <text value="1-0-1-0"/>
+            <text value="1x täglich"/>
           </dosageInstruction-->
           <substitution>
-            <wasSubstituted value="true"/>
+            <wasSubstituted value="false"/>
           </substitution>
         </MedicationDispense>
       </resource>
@@ -56,30 +67,30 @@
       <name value="medication"/>
       <resource>
         <Medication>
-          <id value="8e2e5e65-4c5d-49f2-8efc-c30e40838273"/>
+          <id value="1ac4a722-e9dd-459f-9498-117c3fd5a194"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
           </meta>
           <code>
             <coding>
               <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
-              <code value="05454378"/>
+              <code value="08850519"/>
             </coding>
-            <text value="SUMATRIPTAN Aurobindo 100 mg Tabletten"/>
+            <text value="Olanzapin Heumann 20mg 70 Schmelztbl. N3"/>
           </code>
           <form>
             <coding>
               <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
-              <code value="TAB"/>
-              <display value="Tabletten"/>
+              <code value="SMT"/>
+              <display value="Schmelztabletten"/>
             </coding>
           </form>
           <amount>
             <numerator>
               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
-                <valueString value="12"/>
+                <valueString value="70"/>
               </extension>
-              <unit value="Stück"/>
+              <unit value="St"/>
             </numerator>
             <denominator>
               <value value="1"/>
@@ -87,11 +98,11 @@
           </amount>
           <ingredient>
             <itemCodeableConcept>
-              <text value="Sumatriptan"/>
+              <text value="Olanzapin"/>
             </itemCodeableConcept>
             <strength>
               <numerator>
-                <value value="100"/>
+                <value value="20"/>
                 <unit value="mg"/>
                 <system>
                   <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">

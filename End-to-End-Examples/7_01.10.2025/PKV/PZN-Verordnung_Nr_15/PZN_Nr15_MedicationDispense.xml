@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="589bd8b5-8800-48e0-bf67-4ae1a33a0be9"/>
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"/>
+    <!--tag>
+      <display value="Beispiel MedicationDispense PKV PZN Bsp 15"/>
+    </tag>
+    <tag>
+      <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+    </tag-->
+  </meta>
+  <parameter>
+    <name value="rxDispensation"/>
+    <part>
+      <name value="medicationDispense"/>
+      <resource>
+        <MedicationDispense>
+          <id value="290f4ffc-48d6-4952-a54d-b7293e1203aa"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"/>
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+            <value value="200.385.450.404.964.44"/>
+          </identifier>
+          <status value="completed"/>
+          <medicationReference>
+            <reference value="urn:uuid:3b752104-eea5-4371-9ff1-bb6ec67f678f"/>
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10"/>
+              <value value="P123464319"/>
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                <value value="3-abc-1234567890"/>
+              </identifier>
+            </actor>
+          </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="2"/>
+            <unit value="Packung"/>
+          </quantity>
+          <whenHandedOver value="2025-11-03"/>
+          <dosageInstruction>  <!-- ====> nur angeben wenn geändert/korrigiert durch Apotheke -->
+            <text value="2-0-0-0"/>
+          </dosageInstruction>
+          <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
+            <wasSubstituted value="true"/>
+          </substitution>
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication"/>
+      <resource>
+        <Medication>
+          <id value="3b752104-eea5-4371-9ff1-bb6ec67f678f"/>
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"/>
+          </meta>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+              <code value="04351707"/>
+            </coding>
+            <text value="Benazepril AL 10mg 98 Filmtabletten N3"/>
+          </code>
+          <form>
+            <coding>
+              <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+              <code value="FTA"/>
+              <display value="Filmtabletten"/>
+            </coding>
+          </form>
+          <amount>
+            <numerator>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                <valueString value="98"/>
+              </extension>
+              <unit value="St"/>
+            </numerator>
+            <denominator>
+              <value value="1"/>
+            </denominator>
+          </amount>
+          <ingredient>
+            <itemCodeableConcept>
+              <text value="Benazepril hydrochlorid"/>
+            </itemCodeableConcept>
+            <strength>
+              <numerator>
+                <value value="10"/>
+                <unit value="mg"/>
+              </numerator>
+              <denominator>
+                <value value="1"/>
+                <unit value="Filmtbl."/>
+              </denominator>
+            </strength>
+          </ingredient>
+          <batch>
+            <lotNumber value="A123456789-1"/>
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>
