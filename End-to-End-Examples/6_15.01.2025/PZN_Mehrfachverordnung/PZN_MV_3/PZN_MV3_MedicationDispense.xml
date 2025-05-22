@@ -15,7 +15,7 @@
     <part>
       <name value="medicationDispense"/>
       <resource>
-        <MedicationDispense>
+         <MedicationDispense xmlns="http://hl7.org/fhir">
           <id value="b60dfbab-3463-4a69-81e8-90501674ffd3"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
@@ -42,17 +42,22 @@
               </identifier>
             </actor>
           </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1" />
+            <system value="http://unitsofmeasure.org" />
+            <code value="{Package}" />
+          </quantity>
           <whenHandedOver value="2025-06-15"/>
-          <!--substitution>
+          <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
             <wasSubstituted value="false"/>
-          </substitution-->
+          </substitution>
         </MedicationDispense>
       </resource>
     </part>
     <part>
       <name value="medication"/>
       <resource>
-        <Medication>
+         <Medication xmlns="http://hl7.org/fhir">
           <id value="eeba484b-996d-42cf-8152-4e6add8ff372"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
@@ -76,7 +81,7 @@
               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
                 <valueString value="100"/>
               </extension>
-              <unit value="Stück"/>
+              <unit value="St"/>
             </numerator>
             <denominator>
               <value value="1"/>
