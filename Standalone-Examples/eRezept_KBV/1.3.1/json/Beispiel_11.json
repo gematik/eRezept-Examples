@@ -1,0 +1,535 @@
+{
+  "resourceType": "Bundle",
+  "id": "690a7f01-058e-492a-b1dc-d6d8c8a30a59",
+  "meta": {
+    "profile": [
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.3"
+    ]
+  },
+  "identifier": {
+    "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+    "value": "160.100.000.000.003.33"
+  },
+  "type": "document",
+  "timestamp": "2024-05-20T08:30:00+00:00",
+  "entry": [
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Composition/8c5aad28-6029-452d-8f97-0bf213b1a0e3",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "8c5aad28-6029-452d-8f97-0bf213b1a0e3",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Legal_basis",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN",
+              "code": "00"
+            }
+          }
+        ],
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_FORMULAR_ART",
+              "code": "e16A"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/42a5830f-667a-4ee9-bf08-8529f3a5044b"
+        },
+        "date": "2024-05-20T08:00:00Z",
+        "author": [
+          {
+            "reference": "Practitioner/e33d2afd-44c8-462b-80e5-52dbe5ebf359",
+            "type": "Practitioner"
+          },
+          {
+            "type": "Device",
+            "identifier": {
+              "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_FOR_Pruefnummer",
+              "value": "Y/400/2107/36/999"
+            }
+          }
+        ],
+        "title": "elektronische Arzneimittelverordnung",
+        "custodian": {
+          "reference": "Organization/d2b30a70-9830-4968-ab97-688472b6f9a3"
+        },
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type",
+                  "code": "Prescription"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "MedicationRequest/e538cd5e-883e-4645-af3a-49352fece39b"
+              }
+            ]
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Section_Type",
+                  "code": "Coverage"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "Coverage/76696615-4c18-410e-bcf9-382590c6df3b"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/MedicationRequest/e538cd5e-883e-4645-af3a-49352fece39b",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "e538cd5e-883e-4645-af3a-49352fece39b",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment",
+              "code": "1"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_EmergencyServicesFee",
+            "valueBoolean": true
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
+            "valueBoolean": false
+          },
+          {
+            "extension": [
+              {
+                "url": "Kennzeichen",
+                "valueBoolean": false
+              }
+            ],
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "medicationReference": {
+          "reference": "Medication/a0da7cea-dd87-45ab-988d-0f7c26bd3d0b"
+        },
+        "subject": {
+          "reference": "Patient/42a5830f-667a-4ee9-bf08-8529f3a5044b"
+        },
+        "authoredOn": "2024-05-20",
+        "requester": {
+          "reference": "Practitioner/e33d2afd-44c8-462b-80e5-52dbe5ebf359"
+        },
+        "insurance": [
+          {
+            "reference": "Coverage/76696615-4c18-410e-bcf9-382590c6df3b"
+          }
+        ],
+        "dosageInstruction": [
+          {
+            "extension": [
+              {
+                "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
+                "valueBoolean": true
+              }
+            ],
+            "text": "1x, im Bedarfsfall noch 1x nach 1h (max. 3 Stk in 48 h)"
+          }
+        ],
+        "dispenseRequest": {
+          "quantity": {
+            "value": 1,
+            "unit": "Packung"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": true
+        }
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Medication/a0da7cea-dd87-45ab-988d-0f7c26bd3d0b",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "a0da7cea-dd87-45ab-988d-0f7c26bd3d0b",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_PZN|1.3"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "version": "http://snomed.info/sct/11000274103/version/20240515",
+                  "code": "763158003",
+                  "display": "Medicinal product (product)"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category",
+              "code": "00"
+            }
+          },
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/normgroesse",
+            "valueCode": "N1"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/ifa/pzn",
+              "code": "03386388"
+            }
+          ],
+          "text": "INFECTOCORTIKRUPP® Zäpfchen 100 mg 3 Supp. N1"
+        },
+        "form": {
+          "coding": [
+            {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+              "code": "SUP"
+            }
+          ]
+        },
+        "ingredient": [
+          {
+            "itemCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/ask",
+                  "code": "01270"
+                }
+              ],
+              "text": "Prednisolon"
+            },
+            "strength": {
+              "numerator": {
+                "value": 89.55,
+                "unit": "mg"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "Stück"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Patient/42a5830f-667a-4ee9-bf08-8529f3a5044b",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "42a5830f-667a-4ee9-bf08-8529f3a5044b",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.2"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+                  "code": "KVZ10"
+                }
+              ]
+            },
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "M310119814"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Klein",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Klein"
+                }
+              ]
+            },
+            "given": [
+              "Teddy"
+            ]
+          }
+        ],
+        "birthDate": "2020-02-29",
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Roritzerstraße 1"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "1"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Roritzerstraße"
+                  }
+                ]
+              }
+            ],
+            "city": "Regensburg",
+            "postalCode": "93047",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Practitioner/e33d2afd-44c8-462b-80e5-52dbe5ebf359",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "e33d2afd-44c8-462b-80e5-52dbe5ebf359",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.2"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "LANR"
+                }
+              ]
+            },
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_ANR",
+            "value": "456456534"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Weber",
+            "_family": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/humanname-own-name",
+                  "valueString": "Weber"
+                }
+              ]
+            },
+            "given": [
+              "Maximilian"
+            ],
+            "prefix": [
+              "Dr."
+            ],
+            "_prefix": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier",
+                    "valueCode": "AC"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Qualification_Type",
+                  "code": "00"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Berufsbezeichnung",
+                  "code": "Berufsbezeichnung"
+                }
+              ],
+              "text": "Facharzt für Kinder- und Jugendmedizin"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Organization/d2b30a70-9830-4968-ab97-688472b6f9a3",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "d2b30a70-9830-4968-ab97-688472b6f9a3",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.2"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "BSNR"
+                }
+              ]
+            },
+            "system": "https://fhir.kbv.de/NamingSystem/KBV_NS_Base_BSNR",
+            "value": "687777700"
+          }
+        ],
+        "name": "Kinderarztpraxis",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "09411234567"
+          }
+        ],
+        "address": [
+          {
+            "type": "both",
+            "line": [
+              "Yorckstraße 15",
+              "Hinterhaus"
+            ],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                    "valueString": "15"
+                  },
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                    "valueString": "Yorckstraße"
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+                    "valueString": "Hinterhaus"
+                  }
+                ]
+              }
+            ],
+            "city": "Regensburg",
+            "postalCode": "93049",
+            "country": "D"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "http://pvs.praxis.local/fhir/Coverage/76696615-4c18-410e-bcf9-382590c6df3b",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "76696615-4c18-410e-bcf9-382590c6df3b",
+        "meta": {
+          "profile": [
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.2"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/besondere-personengruppe",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PERSONENGRUPPE",
+              "code": "00"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/dmp-kennzeichen",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DMP",
+              "code": "00"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/wop",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_ITA_WOP",
+              "code": "72"
+            }
+          },
+          {
+            "url": "http://fhir.de/StructureDefinition/gkv/versichertenart",
+            "valueCoding": {
+              "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS",
+              "code": "3"
+            }
+          }
+        ],
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "system": "http://fhir.de/CodeSystem/versicherungsart-de-basis",
+              "code": "GKV"
+            }
+          ]
+        },
+        "beneficiary": {
+          "reference": "Patient/42a5830f-667a-4ee9-bf08-8529f3a5044b"
+        },
+        "payor": [
+          {
+            "identifier": {
+              "system": "http://fhir.de/sid/arge-ik/iknr",
+              "value": "108416214"
+            },
+            "display": "AOK Bayern Die Gesundh."
+          }
+        ]
+      }
+    }
+  ]
+}
