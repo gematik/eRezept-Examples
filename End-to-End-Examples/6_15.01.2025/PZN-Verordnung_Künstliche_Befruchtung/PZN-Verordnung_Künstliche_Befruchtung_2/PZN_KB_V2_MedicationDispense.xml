@@ -15,7 +15,7 @@
     <part>
       <name value="medicationDispense"/>
       <resource>
-        <MedicationDispense>
+         <MedicationDispense xmlns="http://hl7.org/fhir">
           <id value="22871e5b-7404-43b9-ac6f-a1addd635931"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
@@ -42,8 +42,13 @@
               </identifier>
             </actor>
           </performer>
+          <quantity> <!-- Angabe der abgegebenen Packungsanzahl -->
+            <value value="1" />
+            <system value="http://unitsofmeasure.org" />
+            <code value="{Package}" />
+          </quantity>
           <whenHandedOver value="2025-01-27"/>
-          <substitution>
+          <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
             <wasSubstituted value="true"/>
           </substitution>
         </MedicationDispense>
@@ -52,7 +57,7 @@
     <part>
       <name value="medication"/>
       <resource>
-        <Medication>
+         <Medication xmlns="http://hl7.org/fhir">
           <id value="3cf35263-531b-4fe5-8282-858c3c3a35c4"/>
           <meta>
             <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
