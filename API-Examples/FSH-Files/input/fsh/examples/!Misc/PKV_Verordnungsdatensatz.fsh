@@ -75,6 +75,7 @@ Usage: #inline
   * strength.numerator.value = 800
   * strength.numerator.unit = "mg"
   * strength.denominator.value = 1
+  * strength.denominator.unit = "Tablette"
 
 Instance: d8463daf-258e-4cad-a86a-6fd42fac1PKV
 InstanceOf: KBV_PR_FOR_Practitioner

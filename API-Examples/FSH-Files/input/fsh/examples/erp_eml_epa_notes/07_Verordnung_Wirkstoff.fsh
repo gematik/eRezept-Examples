@@ -12,3 +12,4 @@ Usage: #example
   * strength.numerator.value = 12
   * strength.numerator.unit = "mg"
   * strength.denominator.value = 1
+  * strength.denominator.unit = "Tablette"

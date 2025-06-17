@@ -17,3 +17,6 @@ Usage: #example
   * strength.numerator
     * value = 100
     * unit = "mg"
+  * strength.denominator
+    * value = 1
+    * unit = "Tablette"
