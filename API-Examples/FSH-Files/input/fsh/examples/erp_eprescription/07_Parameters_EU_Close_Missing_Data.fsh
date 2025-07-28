@@ -43,7 +43,7 @@ Title: "Example EU-Close Parameters with Missing Data"
     * resource = Example-MedicationDispense-EU
   * part[medication]
     * name = "medication"
-    * resource = SumatripanMedication
+    * resource = SumatripanMedication-EU
 
 
 Instance: Example-EU-Practitioner-Missing-Data
