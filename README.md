@@ -30,48 +30,8 @@ Further this repository contains "end to end" examples. Each folder contains fil
 
 ## Usage
 
-This project carries the following folder structure: startDateOfNewProfiles/UseCase/VersionOfUseCase/file
-See the following example:
-
-``` text
-E-Rezept-Examples
-│   README.md
-└─End-to-End-Examples
-│  └─1_01.07.2021
-│  │   │
-│  │   └──Freitext-Verordnung
-│  │   │    │
-│  │   │    └─Freitext_Verordnung_1
-│  │   │    │   │ example1.json
-│  │   │    │   │ example2.xml
-│  │   │    │   │ ...
-│  │   │    │
-│  │   │    └─Freitext_Verordnung_2
-│  │   │        │ example1.json
-│  │   │        │ example2.xml
-│  │   │        │ ...
-│  │   │
-│  │   └──PZN-Verordnung_Noctu
-│  │   │    │
-│  │   │    └─PZN-Verordnung_Noctu_1
-│  │   │    │   │ example1.json
-│  │   │    │   │ example2.json
-│  │   │    │   │ ...
-│  │   │
-│  │   │
-│  │   ...
-│  │
-│  │
-│  └─── ...
-│
-└─Standalone-Examples
-│  └─eRezept(KBV)
-│  │  └─1.0.2
-│  │  │  └─...
-│  │  └─1.1.0
-│  └─E-Rezept-Workflow(gematik)
-...
-```
+This project contains various branches that always reflect the version configuration of that date. For further Information regarding the transitions of FHIR Profiles see https://github.com/gematik/api-erp/blob/master/docs/erp_fhirversion.adoc.
+By switching a branch you can see all of the examples in the version of that configuration.
 
 ### Notes on the folder structure
 
