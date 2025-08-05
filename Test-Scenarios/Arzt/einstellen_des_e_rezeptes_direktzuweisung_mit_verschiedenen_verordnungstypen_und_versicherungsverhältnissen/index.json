@@ -1,0 +1,58 @@
+{
+  "id" : "41df5aca-b9ae-4046-a6a0-c1e9461fa9ed",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen des E-Rezeptes Direktzuweisung mit verschiedenen Verordnungstypen und Versicherungsverhältnissen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_02", "@TESTFALL:positiv", "@AFO-ID:A_24034", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept in den Variationen Frteitext-, Wirkstoff- und Rezepturverordnung.",
+  "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
+  "featureFile" : "GKV_PKV_MedicationVariation",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die PKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtige Wirkstoff Verordnung verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name | Freitext | PZN | Menge |\n| Harnsäure Hemmer | Ibuprofen und Paracetamol -> beides und viel und so weiter | 16588573 | 1 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/209.000.000.156.243.54",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/209.000.000.156.243.54/$activate",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/209.000.000.156.243.54",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 209.000.000.156.243.54 with AccessCode 69938fd2bff65f9dbda3b4bc00b208324ba45ded679ec7ec5c4e0fde18bff7d9",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/006_dmc_209.000.000.156.243.54.png"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/710a7753-8db0-4b02-9d83-f3f8f1ab25ae",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/209.000.000.156.243.54/$close?secret=d23512f2313a3f4497c3479023dd29f7d508d4009f8c6ef92ba83a4706f6ae9d",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/d1536202-0000-0000-0003-000000000000",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/009_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_24034" ]
+}

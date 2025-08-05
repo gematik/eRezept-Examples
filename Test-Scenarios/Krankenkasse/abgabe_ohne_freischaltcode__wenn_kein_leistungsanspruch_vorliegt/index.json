@@ -1,0 +1,83 @@
+{
+  "id" : "023cde13-5e21-44d0-b4d4-7018a94b0fe0",
+  "mainActor" : "Krankenkasse",
+  "name" : "Abgabe ohne Freischaltcode, wenn kein Leistungsanspruch vorliegt",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_04" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVGDA E-Rezept verschreibt",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/162.000.000.007.899.19",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000163949 on Soft-Konn",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000163949 on Soft-Konn",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/162.000.000.007.899.19/$activate",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/162.000.000.007.899.19",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 162.000.000.007.899.19 with AccessCode a509da18eba6227af0376771f917af72565a96a53873dba268b2b7e167549eb6",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/006_dmc_162.000.000.007.899.19.png"
+    } ]
+  }, {
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVGDA E-Rezept ihrem Kostenträger AOK Bremen zuweist",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/f3518c7b-c98a-40a9-8e44-1a30e541884a",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/007_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/008_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebe577-fa4e-1818-18a5-8565dd3a79ef",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/009_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte EVGDA E-Rezept der Versicherten Hanna Bäcker akzeptieren",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/320e034b-745d-4ddc-8e40-532345269b59",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/010_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/cc5b9fae-4aef-4299-b871-239be6fff2ae",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/011_Response_Bundle.xml"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/012_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebe577-fa59-c078-84b4-8bda91ce89a9",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/013_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Und der Kostenträger AOK Bremen kann für die letzte EVGDA der Versicherten Hanna Bäcker Abgabeinformationen ohne Freischaltcode bereitstellen",
+    "dumps" : [ {
+      "operation" : "POST /Task/162.000.000.007.899.19/$close?secret=875a1adf20c2ffb29758c4ed3cd4530ac030243dd0ec4a122ead93cde5623894",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/014_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a2db1e00-0000-0000-0003-000000000000",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/015_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVGDA keinen Freischaltcode abrufen"
+  }, {
+    "name" : "Hanna bäcker performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/23120a11-f07c-4e03-a67f-da010adaba17",
+      "file" : "Krankenkasse/abgabe_ohne_freischaltcode__wenn_kein_leistungsanspruch_vorliegt/016_Response_Bundle.json"
+    } ]
+  } ]
+}

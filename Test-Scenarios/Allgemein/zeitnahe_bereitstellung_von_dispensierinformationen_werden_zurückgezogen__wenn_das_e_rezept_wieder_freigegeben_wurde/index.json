@@ -1,0 +1,81 @@
+{
+  "id" : "1deb170b-3dc4-4246-85b5-570100664911",
+  "name" : "Zeitnahe Bereitstellung von Dispensierinformationen werden zurückgezogen, wenn das E-Rezept wieder freigegeben wurde",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_06", "@TESTFALL:positiv" ],
+  "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "ZeitnaheBereitstellung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.114.328.543.26",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.114.328.543.26/$activate",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.114.328.543.26",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.114.328.543.26 with AccessCode 3723d224b0b24c9f827f0ef7e165b0bdfd1303ac683806aaae0f38fb551af6ee",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/006_dmc_160.000.114.328.543.26.png"
+    } ]
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/429e1ee2-bfa7-4ab4-bc95-84c8a3e3eebd",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/007_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/bcc84974-b2eb-4c62-bca3-ebfdb36f993c",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen für das letzte akzeptierte E-Rezept von Sina Hüllmann die Dispensierinformationen zeitnah bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.114.328.543.26/$dispense?secret=75d5e043a3f5d64ec6f4f91e9b9e6d9f91703e4ddeac1cfb0d679fc8eff57fea",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/ff54142b-fcb4-4495-92f4-6d3f210591c2",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte Rezept zurückweist",
+    "dumps" : [ {
+      "operation" : "Response 204: Basic 20250805_103557",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/011_Response_Basic.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann 0 Dispensierinformationen für ihr letztes E-Rezept abrufen"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/72d5805e-3327-4d65-98c7-84bb5a673d68",
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_zurückgezogen__wenn_das_e_rezept_wieder_freigegeben_wurde/012_Response_Bundle.json"
+    } ]
+  } ]
+}

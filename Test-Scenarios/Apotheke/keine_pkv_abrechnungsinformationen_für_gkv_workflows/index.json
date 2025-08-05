@@ -1,0 +1,80 @@
+{
+  "id" : "161b814a-3edc-49a5-aa47-9f7fe7162352",
+  "mainActor" : "Apotheke",
+  "name" : "Keine PKV-Abrechnungsinformationen für GKV Workflows",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Versicherung:GKV", "@TCID:ERP_EE_GKV_ABRECHNUNGSINFO_01", "@TESTFALL:negativ", "@AFO-ID:A_22731", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Keine PKV-Abrechnungsinformationen bereitstellen bei Workflow 169 und 160",
+  "feature" : "Keine Abrechnungsinformationen für GKV-Rezepte",
+  "featureFile" : "gkv/GKV-Abrechnungsinformationen",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Hanna Bäcker folgendes apothekenpflichtiges Medikament verschreibt:\n| Workflow |\n| 169 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/169.000.002.416.971.96",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/169.000.002.416.971.96/$activate",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/169.000.002.416.971.96",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 169.000.002.416.971.96 with AccessCode 009fe27e61e53fe96ee8366a284934c50ed176d5bae88d0799f2f7c85e621cb6",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/006_dmc_169.000.002.416.971.96.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Hanna Bäcker sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/f4f5d4e7-ba1e-4b32-98b5-b1a96478b9f3",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Hanna Bäcker dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/169.000.002.416.971.96/$close?secret=6e3e7241e8a29584e4e994060cacb88b929b999447ca82b58bc923683df11344",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a94be124-0000-0000-0003-000000000000",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/009_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/885f8448-605e-4ed6-aadf-16556619c71e",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/010_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil es kein PKV-Rezept ist"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/011_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/012_signed_document.b64"
+    }, {
+      "operation" : "POST /ChargeItem?task=169.000.002.416.971.96&secret=6e3e7241e8a29584e4e994060cacb88b929b999447ca82b58bc923683df11344",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/013_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 400: OperationOutcome 20250805_103733",
+      "file" : "Apotheke/keine_pkv_abrechnungsinformationen_für_gkv_workflows/014_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ],
+  "requirements" : [ "A_22731" ]
+}

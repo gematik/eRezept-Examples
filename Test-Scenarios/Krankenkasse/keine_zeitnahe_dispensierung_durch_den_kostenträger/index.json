@@ -1,0 +1,79 @@
+{
+  "id" : "b958b816-9086-48d8-9f07-05a0f0cc43ff",
+  "mainActor" : "Krankenkasse",
+  "name" : "keine zeitnahe Dispensierung durch den Kostenträger",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_06" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVGDA E-Rezept verschreibt",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/162.000.000.007.901.13",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000163949 on Soft-Konn",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000163949 on Soft-Konn",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/162.000.000.007.901.13/$activate",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/162.000.000.007.901.13",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 162.000.000.007.901.13 with AccessCode 37dedbd6bd0c2fbcd86f9a774596e8322f57762389007b4b75926ba88abc58db",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/006_dmc_162.000.000.007.901.13.png"
+    } ]
+  }, {
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVGDA E-Rezept ihrem Kostenträger AOK Bremen zuweist",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/86c11963-68cf-46d9-916e-fadbd5fd8515",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/007_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/008_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebe577-fa9d-bad0-c9cc-581118227276",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/009_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte EVGDA E-Rezept der Versicherten Hanna Bäcker akzeptieren",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/975d4ff4-d106-48b2-bea3-302809fe62be",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/010_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/30f85ffc-6f73-4f9d-b29a-f1db8f8a9aa5",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/011_Response_Bundle.xml"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/012_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebe577-faa9-2898-891c-eb50728d9564",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/013_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Und der Kostenträger AOK Bremen kann für die letzte akzeptierte EVGDA keine zeitnahe Dispensierung durchführen"
+  }, {
+    "name" : "Aok bremen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/162.000.000.007.901.13/$dispense?secret=435376ae24ab420b30ed1eb3702ecc4efc67079bcda1a8de816592e69a218fa0",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/014_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20250805_103714",
+      "file" : "Krankenkasse/keine_zeitnahe_dispensierung_durch_den_kostenträger/015_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Aok bremen performable predicate"
+  } ]
+}

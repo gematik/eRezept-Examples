@@ -1,0 +1,84 @@
+{
+  "id" : "42158718-a478-4644-9e8b-0f374d83cfff",
+  "mainActor" : "Apotheke",
+  "name" : "Quittung erneut abfragen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_04", "@TESTFALL:positiv", "@AFO-ID:A_19117", "@AFO-ID:A_19226", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke kann nach erfolgreicher Dispensierung die Quittung erneut abrufen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/quittung_erneut_abfragen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.114.328.487.97",
+      "file" : "Apotheke/quittung_erneut_abfragen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/quittung_erneut_abfragen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/quittung_erneut_abfragen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.114.328.487.97/$activate",
+      "file" : "Apotheke/quittung_erneut_abfragen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.114.328.487.97",
+      "file" : "Apotheke/quittung_erneut_abfragen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.114.328.487.97 with AccessCode 3a3f96b2e5e46aa5db5aa891270eb6cdc9ee91ad62c66c7d238f64a13410899b",
+      "file" : "Apotheke/quittung_erneut_abfragen/006_dmc_160.000.114.328.487.97.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/5cd543e1-61d9-4333-ab05-136edd6ed840",
+      "file" : "Apotheke/quittung_erneut_abfragen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.114.328.487.97/$close?secret=813349f5a3fb9c2ff15625250dbeb2acf4a842bd743cfae6ea022f2140e42ce1",
+      "file" : "Apotheke/quittung_erneut_abfragen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0a783d0-0600-0000-0003-000000000000",
+      "file" : "Apotheke/quittung_erneut_abfragen/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die letzte Quittung erneut abrufen",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/fe7cd478-d1f1-4df6-9e3e-a5f75b73f17d",
+      "file" : "Apotheke/quittung_erneut_abfragen/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann hat die Apotheke Am Flughafen genau 2 Quittungen vorliegen"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die Signatur der letzten Quittung erfolgreich mit dem Konnektor validieren"
+  }, {
+    "name" : "Am flughafen verify receipt signature"
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "answeredBy: Am Flughafen"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19117", "A_19226" ]
+}
