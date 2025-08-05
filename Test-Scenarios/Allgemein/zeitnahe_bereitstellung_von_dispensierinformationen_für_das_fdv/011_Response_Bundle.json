@@ -1,0 +1,102 @@
+{
+  "resourceType": "Bundle",
+  "id": "94bc71b6-e97b-4474-ae42-8c76f858c08a",
+  "type": "searchset",
+  "timestamp": "2025-03-28T08:06:32.168+00:00",
+  "total": 0,
+  "entry": [ {
+    "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.239.761.431.58",
+    "resource": {
+      "resourceType": "MedicationDispense",
+      "id": "160.000.239.761.431.58",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4" ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.239.761.431.58"
+      } ],
+      "status": "completed",
+      "medicationReference": {
+        "reference": "urn:uuid:bf1df717-2f93-4c22-b602-0e8980d27856"
+      },
+      "subject": {
+        "identifier": {
+          "system": "http://fhir.de/sid/gkv/kvid-10",
+          "value": "X110614233"
+        }
+      },
+      "performer": [ {
+        "actor": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "3-SMC-B-Testkarte--883110000163973"
+          }
+        }
+      } ],
+      "whenPrepared": "2025-03-28",
+      "whenHandedOver": "2025-03-28",
+      "substitution": {
+        "wasSubstituted": false
+      }
+    },
+    "search": {
+      "mode": "match"
+    }
+  }, {
+    "fullUrl": "urn:uuid:bf1df717-2f93-4c22-b602-0e8980d27856",
+    "resource": {
+      "resourceType": "Medication",
+      "id": "bf1df717-2f93-4c22-b602-0e8980d27856",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4" ]
+      },
+      "extension": [ {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+        "valueCoding": {
+          "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+          "code": "00"
+        }
+      }, {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+        "valueBoolean": false
+      }, {
+        "url": "http://fhir.de/StructureDefinition/normgroesse",
+        "valueCode": "NB"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://fhir.de/CodeSystem/ifa/pzn",
+          "code": "12345678"
+        } ],
+        "text": "Schmerzmittel"
+      },
+      "form": {
+        "coding": [ {
+          "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+          "code": "TAB"
+        } ]
+      },
+      "amount": {
+        "numerator": {
+          "extension": [ {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+            "valueString": "1"
+          } ],
+          "value": 1,
+          "unit": "Stk"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "5492638658",
+        "expirationDate": "2025-04-08T18:32:37+02:00"
+      }
+    },
+    "search": {
+      "mode": "include"
+    }
+  } ]
+}

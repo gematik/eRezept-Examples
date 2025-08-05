@@ -1,0 +1,60 @@
+{
+  "id" : "e3a2ac0f-588d-4651-afd6-525d3b0db3b4",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen des E-Rezeptes Direktzuweisung mit verschiedenen Verordnungstypen und Versicherungsverhältnissen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_02", "@TESTFALL:positiv", "@AFO-ID:A_24034", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept in den Variationen Frteitext-, Wirkstoff- und Rezepturverordnung.",
+  "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
+  "featureFile" : "GKV_PKV_MedicationVariation",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die PKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtige Wirkstoff Verordnung verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name | Freitext | PZN | Menge |\n| Harnsäure Hemmer | Ibuprofen und Paracetamol -> beides und viel und so weiter | 16588573 | 1 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/209.000.000.120.116.86",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/209.000.000.120.116.86/$activate",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/209.000.000.120.116.86",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 209.000.000.120.116.86 with AccessCode 3b8bad0482bfbdfe523b5d550ac9d21bd3ab65e8ec452ac268203d4fd7858301",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/006_dmc_209.000.000.120.116.86.png"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/dd7b3b5b-708e-40d1-997d-a99641a256d3",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/209.000.000.120.116.86/$close?secret=f7ff1a49fa61d7d06e310df13612b6749286d48d1a3ebdccbb0d4fa5f5f20421",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/d134d501-0000-0000-0003-000000000000",
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/009_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_24034" ]
+}

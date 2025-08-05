@@ -1,0 +1,65 @@
+{
+  "id" : "5fed2192-3e2f-4fcd-a245-e7512669f3a6",
+  "mainActor" : "Apotheke",
+  "name" : "Abrufen des E-Rezepts nach Akzeptieren durch Apotheke A durch Apotheke B nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_27", "@TESTFALL:negativ", "@AFO-ID:A_24176", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Versicherte schickt das Rezept via DMC zu einer Apotheke (A).\n  Auf dem Weg dorthin geht sie in eine andere Apotheke (B) und weist dieser Das Rezept via DMC zu.\n  Die Apotheke versucht das zugewiesene Rezept abzurufen. Das wird durch den Fachdienst verhindert.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Harnsäure Hemmer | 16588573 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.397.63",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.397.63/$activate",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.397.63",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.397.63 with AccessCode 8a086fb712d63ca810dbd1891caadbdb9afb426f8be71fa8d35f1e5aab7352ef",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/006_dmc_160.000.239.761.397.63.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/c817394a-de83-4cce-8116-297689c1d767",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Waldesrand via Data Matrix Code zuweist"
+  }, {
+    "name" : "Dann kann die Apotheke Am Waldesrand das letzte zugewiesene E-Rezept nicht beim Fachdienst abrufen, weil das E-Rezept noch nicht akzeptiert ist"
+  }, {
+    "name" : "Am waldesrand check the return code",
+    "dumps" : [ {
+      "operation" : "Response 412: OperationOutcome 20250328_090457",
+      "file" : "Apotheke/abrufen_des_e_rezepts_nach_akzeptieren_durch_apotheke_a_durch_apotheke_b_nicht_möglich/008_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am waldesrand performable predicate"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_24176" ]
+}

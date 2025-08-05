@@ -1,0 +1,102 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="fb4a7ed6-db04-4036-83cd-5340a61075c7"/>
+   <type value="searchset"/>
+   <timestamp value="2025-03-28T08:06:38.431+00:00"/>
+   <total value="0"/>
+   <entry>
+      <fullUrl value="https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.239.761.433.52"/>
+      <resource>
+         <MedicationDispense xmlns="http://hl7.org/fhir">
+            <id value="160.000.239.761.433.52"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.4"/>
+            </meta>
+            <identifier>
+               <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+               <value value="160.000.239.761.433.52"/>
+            </identifier>
+            <status value="completed"/>
+            <medicationReference>
+               <reference value="urn:uuid:fe5fbd1f-36b3-40f5-9f2f-bfa429fb59be"/>
+            </medicationReference>
+            <subject>
+               <identifier>
+                  <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                  <value value="X110614233"/>
+               </identifier>
+            </subject>
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                     <value value="3-SMC-B-Testkarte--883110000163973"/>
+                  </identifier>
+               </actor>
+            </performer>
+            <whenPrepared value="2025-03-28"/>
+            <whenHandedOver value="2025-03-28"/>
+            <substitution>
+               <wasSubstituted value="false"/>
+            </substitution>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fe5fbd1f-36b3-40f5-9f2f-bfa429fb59be"/>
+      <resource>
+         <Medication xmlns="http://hl7.org/fhir">
+            <id value="fe5fbd1f-36b3-40f5-9f2f-bfa429fb59be"/>
+            <meta>
+               <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.4"/>
+            </meta>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+               <valueCoding>
+                  <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"/>
+                  <code value="00"/>
+               </valueCoding>
+            </extension>
+            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+               <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://fhir.de/StructureDefinition/normgroesse">
+               <valueCode value="NB"/>
+            </extension>
+            <code>
+               <coding>
+                  <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                  <code value="12345678"/>
+               </coding>
+               <text value="Schmerzmittel"/>
+            </code>
+            <form>
+               <coding>
+                  <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                  <code value="TAB"/>
+               </coding>
+            </form>
+            <amount>
+               <numerator>
+                  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                     <valueString value="1"/>
+                  </extension>
+                  <value value="1"/>
+                  <unit value="Stk"/>
+               </numerator>
+               <denominator>
+                  <value value="1"/>
+               </denominator>
+            </amount>
+            <batch>
+               <lotNumber value="9658788926"/>
+               <expirationDate value="2025-04-18T01:18:58+02:00"/>
+            </batch>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

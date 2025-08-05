@@ -1,0 +1,87 @@
+{
+  "id" : "f59f87d3-439d-4c0a-b770-6356e4ecc7e7",
+  "mainActor" : "Fachdienst",
+  "name" : "Fachdienst löscht alle Nachrichten zu einem E-Rezept nach dem Einlösen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_06", "@TESTFALL:positiv", "@AFO-ID:A_20513", "@Hauptdarsteller:Fachdienst" ],
+  "description" : "Der Testfall überprüft, ob alle Nachrichten, die sich auf ein E-Rezept beziehen, nach dem erfolgreichem Einlösen vom Fachdienst gelöscht wurden.",
+  "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
+  "featureFile" : "GKV_WF_160/Communication",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und der GKV Versicherte Günther Angermänn hat Zugriff auf seine eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.367.56",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.367.56/$activate",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.367.56",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.367.56 with AccessCode d309691d11c89130fa2c20fe6153fa1d726792f2eb240491e307749c0746f638",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/006_dmc_160.000.239.761.367.56.png"
+    } ]
+  }, {
+    "name" : "Wenn die Versicherte Sina Hüllmann ihr letztes E-Rezept der Apotheke Am Flughafen per Nachricht zuweist",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/79550797-41fd-44e2-9069-54abbe65b07d",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/007_Response_Bundle.json"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/008_Request_Communication.json"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebdb40-5a59-8450-18af-19fc87d5acf1",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/009_Response_Communication.json"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen die letzte Zuweisung per Nachricht von Sina Hüllmann akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/8914ad44-5157-47f4-b7d0-9cc422c78307",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/010_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/17ead328-e337-41f5-9ad2-de66508d5d4f",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/011_Response_Bundle.xml"
+    }, {
+      "operation" : "POST /Communication",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/012_Request_Communication.xml"
+    }, {
+      "operation" : "Response 201: Communication Communication/01ebdb40-5a65-1158-b63b-59a0dc935a0f",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/013_Response_Communication.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.367.56/$close?secret=aae522183926fa9fc5440a50a699e83f273be23acddb5aa3648d17c933d090d5",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/014_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0d7774a-0e00-0000-0003-000000000000",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/015_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Versicherte Sina Hüllmann nicht mehr die Nachrichten zu ihrem letzten E-Rezept abrufen"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/e43f4dbb-bcd8-4d52-963c-4880a31e4821",
+      "file" : "Fachdienst/fachdienst_löscht_alle_nachrichten_zu_einem_e_rezept_nach_dem_einlösen/016_Response_Bundle.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20513" ]
+}

@@ -1,0 +1,57 @@
+{
+  "id" : "a5756858-22f7-46e7-aa24-47f5f23e8da7",
+  "mainActor" : "Apotheke",
+  "name" : "Abrufen eines E-Rezeptes ohne vorheriges Akzeptieren",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_26", "@TESTFALL:negativ", "@AFO-ID:A_24176", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke versucht ein E-Rezept einzulösen. Sie hat aber vorher vergessen es zu akzeptieren.\n  Das wird durch den Fachdienst verhindert. (GetTaskById -> dafür ResponseOfGetTaskById) ohne vorher zu akzeptieren (AcceptTask)",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Harnsäure Hemmer | 16588573 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.396.66",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.396.66/$activate",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.396.66",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.396.66 with AccessCode bd85122a07daeb5ea8af3d15837139666c9a178b0c6e75a9cde340249ed2bda2",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/006_dmc_160.000.239.761.396.66.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst abrufen, weil das E-Rezept noch nicht akzeptiert ist"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Response 412: OperationOutcome 20250328_090454",
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/007_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_24176" ]
+}

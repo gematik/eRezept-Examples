@@ -1,0 +1,97 @@
+{
+  "id" : "758dd003-07e5-44f1-aec6-2a6c9ef3e466",
+  "name" : "Änderungen von Dispensierinformationen nach Abschluss des Workflows nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_03", "@TESTFALL:positiv" ],
+  "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "ZeitnaheBereitstellung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.433.52",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.433.52/$activate",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.433.52",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.433.52 with AccessCode 6af201c8814ad973a67d48a39c07a0802c1747c180563b134339afeaeff1eba3",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/006_dmc_160.000.239.761.433.52.png"
+    } ]
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/630f0b35-60d2-48d0-a5bd-0ac173b2f4bf",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/007_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/696c10bb-b4cf-4757-bc17-b1d6b6d0540c",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/008_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen für das letzte akzeptierte E-Rezept von Sina Hüllmann die Dispensierinformationen zeitnah bereitstellt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.433.52/$dispense?secret=8b20077918dd466278abd4bd957e1874a4ce404ddec688af4387a0b8b9837230",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/fb4a7ed6-db04-4036-83cd-5340a61075c7",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den Workflow abschliessen",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/a019784a-0e00-0000-0003-000000000000",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/011_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen die Dispensierinformationen für das letzte E-Rezept von Sina Hüllmann nicht mehr ändern"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.433.52/$dispense?secret=8b20077918dd466278abd4bd957e1874a4ce404ddec688af4387a0b8b9837230",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/012_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20250328_090638",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/013_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.433.52/$close?secret=8b20077918dd466278abd4bd957e1874a4ce404ddec688af4387a0b8b9837230",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/014_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20250328_090638",
+      "file" : "Allgemein/änderungen_von_dispensierinformationen_nach_abschluss_des_workflows_nicht_möglich/015_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  } ]
+}

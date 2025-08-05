@@ -1,0 +1,72 @@
+{
+  "id" : "18c32d80-2738-4446-aaea-21cd608709ae",
+  "mainActor" : "Apotheke",
+  "name" : "Zurückgeben mit falschem Secret nicht möglich",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_19", "@TESTFALL:negativ", "@AFO-ID:A_19171", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Der Fachdienst muss beim Zurückgeben das mitgelieferte Secret prüfen und bei ungültigem Secret die HTTP-POST-Operation\n  über /Task/<id>/$reject ablehnen.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.239.761.388.90",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.239.761.388.90/$activate",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.239.761.388.90",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.239.761.388.90 with AccessCode 39e4d1575ff9f83c10fba61cf878451372c0e0e967b537dcb0963bae94f23c4f",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/006_dmc_160.000.239.761.388.90.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/3bfb65b8-06ad-4dba-b296-51acbbd1a317",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht mit dem falschen Secret fgdkjfgd zurückgeben"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20250328_090413",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/008_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.239.761.388.90/$close?secret=647cf7ea65d674da787aaa5cea3426457a0f957303fa7730f899ea17544bd084",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/009_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0ec774a-0e00-0000-0003-000000000000",
+      "file" : "Apotheke/zurückgeben_mit_falschem_secret_nicht_möglich/010_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19171" ]
+}
