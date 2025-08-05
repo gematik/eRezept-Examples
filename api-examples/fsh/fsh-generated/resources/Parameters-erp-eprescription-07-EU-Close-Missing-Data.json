@@ -1,0 +1,291 @@
+{
+  "resourceType": "Parameters",
+  "id": "erp-eprescription-07-EU-Close-Missing-Data",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_PAR_CloseOperation_Input|1.0"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "160.000.000.000.000.01",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_MedicationDispense|1.0"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.000.000.000.000.01"
+              }
+            ],
+            "status": "completed",
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "X123456789"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "reference": "PractitionerRole/ebe39d92-276b-436d-a9ea-9dd5e042637b"
+                }
+              }
+            ],
+            "whenHandedOver": "2025-10-01",
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication-EU"
+            }
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "SumatripanMedication-EU",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_Medication|1.0"
+              ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                "valueBoolean": false
+              },
+              {
+                "url": "http://fhir.de/StructureDefinition/normgroesse",
+                "valueCode": "N1"
+              }
+            ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "20"
+                  }
+                ],
+                "unit": "St"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "code": {
+              "coding": [
+                {
+                  "code": "06313728",
+                  "system": "http://fhir.de/CodeSystem/ifa/pzn"
+                }
+              ],
+              "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+            },
+            "form": {
+              "coding": [
+                {
+                  "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+                  "code": "TAB",
+                  "display": "Tabletten"
+                }
+              ]
+            },
+            "ingredient": [
+              {
+                "itemCodeableConcept": {
+                  "text": "Sumatriptan"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 100,
+                    "unit": "mg"
+                  },
+                  "denominator": {
+                    "value": 1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "requestData",
+      "part": [
+        {
+          "name": "kvnr",
+          "valueIdentifier": {
+            "system": "http://fhir.de/sid/gkv/kvid-10",
+            "value": "X123456789"
+          }
+        },
+        {
+          "name": "accessCode",
+          "valueIdentifier": {
+            "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_EU_AccessCode",
+            "value": "ABC123"
+          }
+        },
+        {
+          "name": "countryCode",
+          "valueCoding": {
+            "system": "urn:iso:std:iso:3166",
+            "code": "BE"
+          }
+        },
+        {
+          "name": "practitionerName",
+          "valueString": "Pedro Sanches"
+        },
+        {
+          "name": "practitionerRole",
+          "valueCoding": {
+            "code": "2262",
+            "system": "urn:oid:2.16.840.1.113883.2.9.6.2.7",
+            "display": "Pharmacists"
+          }
+        },
+        {
+          "name": "pointOfCare",
+          "valueString": "Pharmacia de Santa Maria"
+        },
+        {
+          "name": "healthcare-facility-type",
+          "valueCoding": {
+            "code": "1.2.276.0.76.4.54",
+            "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+            "display": "Öffentliche Apotheke"
+          }
+        }
+      ]
+    },
+    {
+      "name": "practitionerData",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "Example-EU-Practitioner-Missing-Data",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_Practitioner|1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "1234567890"
+          }
+        ],
+        "name": [
+          {
+            "family": "Sanches",
+            "given": [
+              "Pedro"
+            ],
+            "text": "Pedro Sanches"
+          }
+        ]
+      }
+    },
+    {
+      "name": "organizationData",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "Example-EU-Organization-Missing-Data",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_Organization|1.0"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "1234567890"
+          },
+          {
+            "value": "136ad69f"
+          }
+        ],
+        "name": "Pharmacia de Santa Maria",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "1.2.276.0.76.4.54",
+                "system": "https://gematik.de/fhir/directory/CodeSystem/OrganizationProfessionOID",
+                "display": "Öffentliche Apotheke"
+              }
+            ]
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "Rua da Alegria, 123"
+            ],
+            "city": "Lisbon",
+            "country": "Portugal",
+            "_state": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "not-applicable"
+                }
+              ]
+            },
+            "_postalCode": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                  "valueCode": "unknown"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "practitionerRoleData",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "Example-EU-PractitionerRole-Missing-Data",
+        "meta": {
+          "profile": [
+            "https://gematik.de/fhir/erp-eu/StructureDefinition/GEM_ERPEU_PR_PractitionerRole|1.0"
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/Example-EU-Practitioner-Missing-Data"
+        },
+        "organization": {
+          "reference": "Organization/Example-EU-Organization-Missing-Data"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "2262",
+                "system": "urn:oid:2.16.840.1.113883.2.9.6.2.7",
+                "display": "Pharmacists"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
