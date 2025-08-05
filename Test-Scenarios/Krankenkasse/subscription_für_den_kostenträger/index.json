@@ -1,0 +1,30 @@
+{
+  "id" : "6458ada4-f55e-4e9b-826c-a1b745d5f80a",
+  "mainActor" : "Krankenkasse",
+  "name" : "Subscription für den Kostenträger",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_10" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und der Kostenträger AOK Bremen sich beim E-Rezept Fachdienst registriert",
+    "dumps" : [ {
+      "operation" : "POST /Subscription",
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/000_Request_Subscription.xml"
+    }, {
+      "operation" : "Response 200: Subscription Subscription/d6cb23afcde2ff91105dcb10f16faaca",
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/001_Response_Subscription.xml"
+    } ]
+  }, {
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVGDA E-Rezept verschreibt"
+  }, {
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVGDA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+  }, {
+    "name" : "Dann wird der Kostenträger AOK Bremen über die neue Zuweisungen informiert"
+  } ]
+}

@@ -1,0 +1,225 @@
+{
+  "resourceType": "Parameters",
+  "id": "erp-abrufen-06-request-taskClose-rezeptur",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "medicationDispense",
+          "resource": {
+            "resourceType": "MedicationDispense",
+            "id": "erp-abrufen-06-request-taskClose-medicationDispense-rezeptur",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
+              ]
+            },
+            "identifier": [
+              {
+                "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+                "value": "160.000.000.000.000.01"
+              }
+            ],
+            "status": "completed",
+            "subject": {
+              "identifier": {
+                "system": "http://fhir.de/sid/gkv/kvid-10",
+                "value": "X123456789"
+              }
+            },
+            "performer": [
+              {
+                "actor": {
+                  "identifier": {
+                    "system": "https://gematik.de/fhir/sid/telematik-id",
+                    "value": "3-2-APO-XanthippeVeilchenblau01"
+                  }
+                }
+              }
+            ],
+            "medicationReference": {
+              "reference": "Medication/rezeptur-medication"
+            },
+            "quantity": {
+              "value": 1,
+              "code": "{Package}",
+              "system": "http://unitsofmeasure.org"
+            },
+            "whenHandedOver": "2025-10-01",
+            "dosageInstruction": [
+              {
+                "text": "1-0-1-0"
+              }
+            ]
+          }
+        },
+        {
+          "name": "medication",
+          "resource": {
+            "resourceType": "Medication",
+            "id": "rezeptur-medication",
+            "meta": {
+              "profile": [
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
+              ]
+            },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+                "valueCoding": {
+                  "code": "00",
+                  "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+                "valueCoding": {
+                  "code": "1208954007",
+                  "system": "http://snomed.info/sct",
+                  "display": "Extemporaneous preparation (product)"
+                }
+              },
+              {
+                "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+                "valueBoolean": false
+              }
+            ],
+            "amount": {
+              "numerator": {
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+                    "valueString": "100"
+                  }
+                ],
+                "unit": "ml"
+              },
+              "denominator": {
+                "value": 1
+              }
+            },
+            "ingredient": [
+              {
+                "itemReference": {
+                  "reference": "#MedicationSalicylsaeure-close"
+                },
+                "strength": {
+                  "numerator": {
+                    "value": 5,
+                    "code": "g",
+                    "system": "http://unitsofmeasure.org"
+                  },
+                  "denominator": {
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "strength": {
+                  "extension": [
+                    {
+                      "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-amount-extension",
+                      "valueString": "Ad 100 g"
+                    }
+                  ],
+                  "numerator": {
+                    "_value": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  },
+                  "denominator": {
+                    "_value": {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+                          "valueCode": "unknown"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "itemReference": {
+                  "reference": "#MedicationPropanol-close"
+                }
+              }
+            ],
+            "contained": [
+              {
+                "resourceType": "Medication",
+                "id": "MedicationPropanol-close",
+                "meta": {
+                  "profile": [
+                    "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+                  ]
+                },
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+                    "valueCoding": {
+                      "code": "781405001",
+                      "system": "http://snomed.info/sct",
+                      "display": "Medicinal product package (product)"
+                    }
+                  }
+                ],
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                      "code": "987654321",
+                      "display": "2-propanol 70 %"
+                    }
+                  ],
+                  "text": "2-propanol 70 %"
+                }
+              },
+              {
+                "resourceType": "Medication",
+                "id": "MedicationSalicylsaeure-close",
+                "meta": {
+                  "profile": [
+                    "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient"
+                  ]
+                },
+                "extension": [
+                  {
+                    "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension",
+                    "valueCoding": {
+                      "code": "781405001",
+                      "system": "http://snomed.info/sct",
+                      "display": "Medicinal product package (product)"
+                    }
+                  }
+                ],
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://fhir.de/CodeSystem/ifa/pzn",
+                      "code": "063137289",
+                      "display": "Salicylsäure"
+                    }
+                  ],
+                  "text": "Salicylsäure"
+                }
+              }
+            ],
+            "form": {
+              "text": "Lösung"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

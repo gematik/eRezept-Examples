@@ -1,0 +1,80 @@
+{
+  "id" : "67b842c3-caef-4caa-8aec-d3e23c733383",
+  "mainActor" : "Arztpraxis",
+  "name" : "Löschen des E-Rezepts nicht möglich, weil durch Apotheke reserviert",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_07", "@TESTFALL:negativ", "@AFO-ID:A_19120-03", "@Hauptdarsteller:Arztpraxis" ],
+  "description" : "Der Arzt verschreibt der GKV-Versicherten ein E-Rezept für ein apothekenpflichtiges Rezept. Dieses Rezept kann er nicht mehr löschen,\n  sobald es von einer Apotheke akzeptiert wurde.",
+  "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
+  "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/160.000.114.328.490.88",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/160.000.114.328.490.88/$activate",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/160.000.114.328.490.88",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 160.000.114.328.490.88 with AccessCode d69645c4d7f4aab743a7f20a478e172c8ccbe398730a1f31abdc574ae979d74a",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/006_dmc_160.000.114.328.490.88.png"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/7ad86913-53dc-4bd0-a5fe-32509dab6908",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Dann kann die Ärztin Dr. Schraßer das letzte von ihr eingestellte E-Rezept nicht löschen, weil sie nicht das Recht dazu hat"
+  }, {
+    "name" : "Dr. schraßer check the return code",
+    "dumps" : [ {
+      "operation" : "Response 403: OperationOutcome 20250805_103211",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/008_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Dr. schraßer performable predicate"
+  }, {
+    "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/80150598-4448-4127-82ef-45371d70863e",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/009_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
+    "dumps" : [ {
+      "operation" : "POST /Task/160.000.114.328.490.88/$close?secret=c550bf9e91a722dae1027844c70a01150b38b8b35f9a0eb4b3bf8da0198399f8",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/010_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a0aa83d0-0600-0000-0003-000000000000",
+      "file" : "Arztpraxis/löschen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_reserviert/011_Response_Bundle.xml"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19120-03" ]
+}

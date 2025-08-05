@@ -1,0 +1,97 @@
+{
+  "id" : "a856b0c6-3a3c-4970-878a-3d78dfdc5f68",
+  "mainActor" : "Apotheke",
+  "name" : "Keine Abrechnungsinformationen bereitstellen ohne Einwilligung (WF 209)",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:209", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@Versicherung:PKV", "@TCID:ERP_EE_WF209_04", "@AFO-ID:A_22209", "@TESTFALL:negativ", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Nach der erfolgreichen Dispensierung darf die Apotheke die Abrechnungsinformationen zum E-Rezept nicht bereitstellen, weil keine Einwilligung des Versicherten vorliegt.",
+  "feature" : "Direktzuweisung für PKV-Rezepte",
+  "featureFile" : "pkv/PKV-Versicherter_WF209",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/209.000.000.156.251.30",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/209.000.000.156.251.30/$activate",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/209.000.000.156.251.30",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 209.000.000.156.251.30 with AccessCode 508a6cab1fa0ee3ab9f63d2123b23d80c9cdc55cde70b1e7d9942e0b62444324",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/006_dmc_209.000.000.156.251.30.png"
+    } ]
+  }, {
+    "name" : "Angenommen der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen widerrufen",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/3f6f8bb3-bb1b-4d8d-a9d7-a5940ac06e96",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/007_Response_Bundle.json"
+    }, {
+      "operation" : "Response 204: Basic 20250805_104046",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/008_Response_Basic.json"
+    } ]
+  }, {
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/135001db-3228-412b-987b-51087595d1ab",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/209.000.000.156.251.30/$close?secret=26caa71ce5830096ded45b6460f9841e0954e626875b7774ee61b2e1a6961b60",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/010_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/d15b6202-0000-0000-0003-000000000000",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/011_Response_Bundle.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/777cd1df-5e37-4338-942f-d9cb0990ad92",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/012_Response_Bundle.json"
+    } ]
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil keine Einwilligung vorliegt"
+  }, {
+    "name" : "Am flughafen check the return code",
+    "dumps" : [ {
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/013_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/014_signed_document.b64"
+    }, {
+      "operation" : "POST /ChargeItem?task=209.000.000.156.251.30&secret=26caa71ce5830096ded45b6460f9841e0954e626875b7774ee61b2e1a6961b60",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/015_Request_ChargeItem.xml"
+    }, {
+      "operation" : "Response 403: OperationOutcome 20250805_104047",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/016_Response_OperationOutcome.xml"
+    } ]
+  }, {
+    "name" : "Am flughafen performable predicate"
+  }, {
+    "name" : "Und der Versicherte Günther Angermänn kann für das letzte E-Rezept keine PKV-Abrechnungsinformationen abrufen"
+  }, {
+    "name" : "Günther angermänn check the return code",
+    "dumps" : [ {
+      "operation" : "Response 404: OperationOutcome 20250805_104047",
+      "file" : "Apotheke/keine_abrechnungsinformationen_bereitstellen_ohne_einwilligung__wf_209_/017_Response_OperationOutcome.json"
+    } ]
+  }, {
+    "name" : "Günther angermänn performable predicate"
+  } ],
+  "requirements" : [ "A_18502", "A_18503", "A_22209" ]
+}

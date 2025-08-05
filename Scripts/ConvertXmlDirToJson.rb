@@ -10,7 +10,8 @@ xmlFileDirectory = ARGV[0]
 outputDirectory = ARGV[1]
 outputDirectory = File.join(File.expand_path(xmlFileDirectory), "json") unless ARGV[1]
 
-puts "Folder: #{xmlFileDirectory}"
+puts "Input Folder: #{xmlFileDirectory}"
+puts "Output Folder: #{outputDirectory}"
 
 `hash fhir 2>/dev/null`
 if $?.exitstatus != 0
@@ -30,15 +31,10 @@ end
 inputFiles = Array.new
 
 # copy all xmls
-Dir.glob("#{xmlFileDirectory}/*.xml").each do |file|
-  inputFiles.append(File.basename(file))
-end
-
-script = File.join(File.expand_path(File.dirname(__FILE__)), "ConvertXmlFileToJson.rb")
-
-inputFiles.each do |file|
-  puts "#{File.join(xmlFileDirectory, file)}"
-  `#{script} "#{File.join(xmlFileDirectory, file)}" "#{outputDirectory}"`
+puts `fhir clear`
+puts `fhir push #{xmlFileDirectory}/`
+Dir.chdir(outputDirectory) do
+  puts `fhir save --all --json --pretty`
 end
 
 # Remove all .xml files from the tmp directory

@@ -1,0 +1,71 @@
+{
+  "id" : "5e790b3d-ae97-426e-b4cf-c15545adf5e4",
+  "mainActor" : "Versicherter",
+  "name" : "Löschen möglich erst nach der Dispensierung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:169", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AF-ID:AF_10111", "@AF-ID:AF_10112", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF169_05", "@TESTFALL:positiv", "@AFO-ID:A_22102", "@Hauptdarsteller:Versicherter" ],
+  "description" : "Der Versicherte kann das E-Rezept erst löschen nachdem die Apotheke das Rezept dispensiert hat",
+  "feature" : "Direktzuweisung für GKV-Rezepte",
+  "featureFile" : "GKV_WF_169/GKV-Versicherter_WF_169",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika |",
+    "dumps" : [ {
+      "operation" : "POST /Task/$create",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/000_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 201: Task Task/169.000.002.416.960.32",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/001_Response_Task.xml"
+    }, {
+      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/002_document_to_sign.xml"
+    }, {
+      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/003_signed_document.b64"
+    }, {
+      "operation" : "POST /Task/169.000.002.416.960.32/$activate",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/004_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Task Task/169.000.002.416.960.32",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/005_Response_Task.xml"
+    }, {
+      "operation" : "DMC for 169.000.002.416.960.32 with AccessCode 670aca6c000cb80a55d2d5e0f53c11130ba699e6a6d252c93e845aa77804b107",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/006_dmc_169.000.002.416.960.32.png"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
+    "dumps" : [ {
+      "operation" : "Response 200: Bundle Bundle/05a50ca0-f1c7-4530-8c80-7d6902c180ec",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/007_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensiert",
+    "dumps" : [ {
+      "operation" : "POST /Task/169.000.002.416.960.32/$close?secret=2adb77114be750b507432bcb15b479984aca46c97e114b59302e149b8e7b8860",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/008_Request_Parameters.xml"
+    }, {
+      "operation" : "Response 200: Bundle Bundle/a940e124-0000-0000-0003-000000000000",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/009_Response_Bundle.xml"
+    } ]
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht",
+    "dumps" : [ {
+      "operation" : "Response 204: Basic 20250805_103348",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/010_Response_Basic.json"
+    } ]
+  }, {
+    "name" : "Dann wird das letzte gelöschte E-Rezept der Versicherten nicht mehr angezeigt"
+  }, {
+    "name" : "Sina hüllmann performable predicate",
+    "dumps" : [ {
+      "operation" : "Response 410: OperationOutcome 20250805_103348",
+      "file" : "Versicherter/löschen_möglich_erst_nach_der_dispensierung/011_Response_OperationOutcome.json"
+    } ]
+  } ],
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_22102" ],
+  "useCases" : [ "AF_10111", "AF_10112" ]
+}

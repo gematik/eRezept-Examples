@@ -1,0 +1,101 @@
+{
+  "resourceType": "Medication",
+  "id": "erp-eml-epa-notes-13-ibm-medication-compounding-amount",
+  "meta": {
+    "profile": [
+      "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Compounding|1.3"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "version": "http://snomed.info/sct/11000274103/version/20240515",
+            "code": "1208954007",
+            "display": "Extemporaneous preparation (product)"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Category",
+      "valueCoding": {
+        "code": "00",
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Category"
+      }
+    },
+    {
+      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine",
+      "valueBoolean": false
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_ERP_Medication_Type",
+        "code": "rezeptur"
+      }
+    ],
+    "text": "Sumatriptan-1a Pharma 100 mg Tabletten"
+  },
+  "amount": {
+    "denominator": {
+      "value": 1
+    },
+    "numerator": {
+      "extension": [
+        {
+          "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_PackagingSize",
+          "valueString": "12"
+        }
+      ],
+      "unit": "TAB"
+    }
+  },
+  "ingredient": [
+    {
+      "strength": {
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount",
+            "valueString": "100 mg"
+          }
+        ]
+      },
+      "itemCodeableConcept": {
+        "text": "1st ingredient",
+        "coding": [
+          {
+            "code": "12343219",
+            "system": "http://fhir.de/CodeSystem/ifa/pzn"
+          }
+        ]
+      }
+    },
+    {
+      "strength": {
+        "extension": [
+          {
+            "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Ingredient_Amount",
+            "valueString": "10 g"
+          }
+        ]
+      },
+      "itemCodeableConcept": {
+        "text": "2nd ingredient",
+        "coding": [
+          {
+            "code": "56781239",
+            "system": "http://fhir.de/CodeSystem/ifa/pzn"
+          }
+        ]
+      }
+    }
+  ],
+  "form": {
+    "text": "TAB"
+  }
+}

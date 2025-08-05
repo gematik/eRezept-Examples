@@ -1,0 +1,33 @@
+{
+  "resourceType": "Parameters",
+  "id": "ExampleDispenseOutputParametersError",
+  "meta": {
+    "profile": [
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_DispenseOperation_Output|1.5"
+    ]
+  },
+  "parameter": [
+    {
+      "name": "rxDispensation",
+      "part": [
+        {
+          "name": "operationOutcome",
+          "resource": {
+            "resourceType": "OperationOutcome",
+            "id": "ExampleOperationDispenseError",
+            "issue": [
+              {
+                "severity": "error",
+                "code": "invalid",
+                "details": {
+                  "text": "FHIR-Validation error"
+                },
+                "diagnostics": "MedicationDispense.performer[0].actor.identifier.system: error: value must match fixed value: \n\"https://gematik.de/fhir/sid/telematik-id\" (but is \"https://fhir.de/fhir/sid/telematik-id\") \n(from profile: http://fhir.de/StructureDefinition/identifier-telematik-id|1.5.0);"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
