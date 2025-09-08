@@ -5,7 +5,7 @@ Usage: #example
 * insert DateTimeStamp(timestamp)
 * total = 0
 * link.relation = "self"
-* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=160.000.000.000.000.01"
+* link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense?identifier=https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId|160.000.000.000.000.01"
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.000.000.000.01"
 * entry[=].resource = Example-MedicationDispense-EU
 * entry[=].search.mode = #match
