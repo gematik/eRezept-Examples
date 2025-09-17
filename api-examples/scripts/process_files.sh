@@ -214,6 +214,8 @@ files_to_copy=(
     "Medication-erp-eml-epa-notes-20-verordnung-pzn-Mapped.json"
     "Medication-erp-eml-epa-notes-22-ibm-medication-compounding-txt-amnt-Mapped.json"
 
+    "01_notification_payload.json"
+
     "Bundle-erp-versicherte-01-response-taskGetAll.json"
     "Bundle-erp-versicherte-02-response-taskGetSingle.json"
     "Bundle-erp-versicherte-03-response-GetLocation.json"
