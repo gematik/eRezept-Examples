@@ -55,7 +55,7 @@ Usage: #inline
 * requester = Reference(407974ea-b5c7-47e5-be09-9310a00afb31)
 * insurance = Reference(a2ef1193-0739-46de-bc77-65f13feaa7d3)
 * note.text = "Dummy-Hinweis für die Apotheke"
-* dosageInstruction.extension[Dosierungskennzeichen].valueBoolean = false
+* extension[Dosierungskennzeichen].valueBoolean = false
 * dispenseRequest.quantity = 2 '{Package}'
 
 Instance: 746a8246-4b21-43a2-a422-9821cdc7caf3

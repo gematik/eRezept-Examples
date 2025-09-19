@@ -3,7 +3,7 @@
   "id": "erp-eml-epa-notes-01-Parameters-ExampleCloseInputParameters",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6"
     ]
   },
   "parameter": [
@@ -17,7 +17,7 @@
             "id": "Example-MedicationDispense",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"
               ]
             },
             "identifier": [
@@ -27,10 +27,13 @@
               }
             ],
             "status": "completed",
+            "medicationReference": {
+              "reference": "Medication/SumatripanMedication"
+            },
             "subject": {
               "identifier": {
-                "system": "http://fhir.de/sid/gkv/kvid-10",
-                "value": "X123456789"
+                "value": "X123456789",
+                "system": "http://fhir.de/sid/gkv/kvid-10"
               }
             },
             "performer": [
@@ -43,9 +46,6 @@
                 }
               }
             ],
-            "medicationReference": {
-              "reference": "Medication/SumatripanMedication"
-            },
             "whenHandedOver": "2025-10-01"
           }
         },
@@ -56,7 +56,7 @@
             "id": "SumatripanMedication",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"
               ]
             },
             "extension": [

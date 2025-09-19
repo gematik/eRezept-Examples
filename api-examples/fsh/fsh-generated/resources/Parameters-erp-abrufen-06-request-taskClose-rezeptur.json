@@ -3,7 +3,7 @@
   "id": "erp-abrufen-06-request-taskClose-rezeptur",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6"
     ]
   },
   "parameter": [
@@ -17,7 +17,7 @@
             "id": "erp-abrufen-06-request-taskClose-medicationDispense-rezeptur",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"
               ]
             },
             "identifier": [
@@ -27,10 +27,13 @@
               }
             ],
             "status": "completed",
+            "medicationReference": {
+              "reference": "Medication/rezeptur-medication"
+            },
             "subject": {
               "identifier": {
-                "system": "http://fhir.de/sid/gkv/kvid-10",
-                "value": "X123456789"
+                "value": "X123456789",
+                "system": "http://fhir.de/sid/gkv/kvid-10"
               }
             },
             "performer": [
@@ -43,9 +46,6 @@
                 }
               }
             ],
-            "medicationReference": {
-              "reference": "Medication/rezeptur-medication"
-            },
             "quantity": {
               "value": 1,
               "code": "{Package}",
@@ -66,7 +66,7 @@
             "id": "rezeptur-medication",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"
               ]
             },
             "extension": [

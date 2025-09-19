@@ -19,7 +19,7 @@
         "id": "160.000.000.000.000.01",
         "meta": {
           "profile": [
-            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.5"
+            "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Task|1.6"
           ]
         },
         "intent": "order",
@@ -53,12 +53,6 @@
             "value": "777bea0e13cc9c42ceec14aec3ddee2263325dc2c6c699db115f58fe423607ea"
           }
         ],
-        "for": {
-          "identifier": {
-            "system": "http://fhir.de/sid/gkv/kvid-10",
-            "value": "X123456789"
-          }
-        },
         "input": [
           {
             "type": {
@@ -75,6 +69,12 @@
           }
         ],
         "status": "ready",
+        "for": {
+          "identifier": {
+            "value": "X123456789",
+            "system": "http://fhir.de/sid/gkv/kvid-10"
+          }
+        },
         "authoredOn": "2025-10-01T15:29:00+00:00",
         "lastModified": "2025-10-01T15:29:00.434+00:00",
         "performerType": [
@@ -98,7 +98,7 @@
         "id": "414ca393-dde3-4082-9a3b-3752e629e4aa",
         "meta": {
           "profile": [
-            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.3"
+            "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Bundle|1.4"
           ],
           "lastUpdated": "2025-10-01T15:29:00.434+00:00"
         },
@@ -116,7 +116,7 @@
               "id": "b0e22b86-e7e9-46c1-80fe-e6e24442d77c",
               "meta": {
                 "profile": [
-                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.3"
+                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Composition|1.4"
                 ]
               },
               "status": "final",
@@ -207,7 +207,7 @@
               "id": "f58f4403-7a3a-4a12-bb15-b2fa25b02561",
               "meta": {
                 "profile": [
-                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.3"
+                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Prescription|1.4"
                 ]
               },
               "status": "active",
@@ -277,6 +277,10 @@
                     }
                   ],
                   "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident"
+                },
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
+                  "valueBoolean": false
                 }
               ],
               "dispenseRequest": {
@@ -285,16 +289,6 @@
                   "value": 2
                 }
               },
-              "dosageInstruction": [
-                {
-                  "extension": [
-                    {
-                      "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
-                      "valueBoolean": false
-                    }
-                  ]
-                }
-              ],
               "medicationReference": {
                 "reference": "Medication/e3a4efa7-84fc-465b-b14c-720195097783"
               },
@@ -324,7 +318,7 @@
               "id": "e3a4efa7-84fc-465b-b14c-720195097783",
               "meta": {
                 "profile": [
-                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.3"
+                  "https://fhir.kbv.de/StructureDefinition/KBV_PR_ERP_Medication_Ingredient|1.4"
                 ]
               },
               "extension": [

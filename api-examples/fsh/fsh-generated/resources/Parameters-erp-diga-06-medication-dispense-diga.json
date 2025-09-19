@@ -3,7 +3,7 @@
   "id": "erp-diga-06-medication-dispense-diga",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"
+      "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6"
     ]
   },
   "parameter": [
@@ -17,7 +17,7 @@
             "id": "erp-diga-06-medication-dispense-medicationDispense",
             "meta": {
               "profile": [
-                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense_DiGA|1.5"
+                "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense_DiGA|1.6"
               ]
             },
             "identifier": [
@@ -34,10 +34,16 @@
               },
               "display": "Gematico Diabetestherapie"
             },
+            "extension": [
+              {
+                "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_RedeemCode",
+                "valueString": "DE12345678901234"
+              }
+            ],
             "subject": {
               "identifier": {
-                "system": "http://fhir.de/sid/gkv/kvid-10",
-                "value": "X123456789"
+                "value": "X123456789",
+                "system": "http://fhir.de/sid/gkv/kvid-10"
               }
             },
             "performer": [
@@ -48,12 +54,6 @@
                     "value": "8-SMC-B-Testkarte-883110000116873"
                   }
                 }
-              }
-            ],
-            "extension": [
-              {
-                "url": "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_EX_RedeemCode",
-                "valueString": "DE12345678901234"
               }
             ],
             "whenHandedOver": "2024-04-03"

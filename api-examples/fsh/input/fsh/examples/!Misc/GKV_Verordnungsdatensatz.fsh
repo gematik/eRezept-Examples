@@ -60,7 +60,7 @@ Usage: #inline
 * requester = Reference(d8463daf-258e-4cad-a86a-6fd42fac161c)
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-GKV)
 * note.text = "Dummy-Hinweis für die Apotheke"
-* dosageInstruction.extension[Dosierungskennzeichen].valueBoolean = false
+* extension[Dosierungskennzeichen].valueBoolean = false
 * dispenseRequest.quantity.value = 2
 * dispenseRequest.quantity.unit = "Packung"
 
