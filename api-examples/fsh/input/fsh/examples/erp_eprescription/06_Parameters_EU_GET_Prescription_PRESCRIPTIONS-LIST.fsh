@@ -9,7 +9,7 @@ Title: "Example EU-GET Prescription Parameters"
     * valueCoding = GEM_ERPEU_CS_RequestType#e-prescriptions-list
   * part[kvnr]
     * name = "kvnr"
-    * valueIdentifier.value = "X123456789"
+    * insert GKV_Identifier(valueIdentifier)
   * part[accessCode]
     * name = "accessCode"
     * valueIdentifier.value = "123456"

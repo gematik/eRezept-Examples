@@ -21,9 +21,10 @@ Title: "Example EU-GET Prescription Parameters"
     * valueIdentifier.value = "160.000.000.000.000.04"
   * part[kvnr]
     * name = "kvnr"
-    * valueIdentifier.value = "X123456789"
+    * insert GKV_Identifier(valueIdentifier)
   * part[accessCode]
     * name = "accessCode"
+    * valueIdentifier.system = "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_EU_AccessCode"
     * valueIdentifier.value = "123456"
   * part[countryCode]
     * name = "countryCode"

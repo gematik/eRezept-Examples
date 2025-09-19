@@ -5,6 +5,7 @@ RuleSet: ChargeItem
 * insert ChargeItemIdentifier
 * insert PKV_Identifier(subject.identifier)
 * code = $data-absent-reason-cs#not-applicable
+* enterer.identifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * enterer.identifier.value = "3-SMC-B-Testkarte-883110000116873"
 * insert DateTimeStamp(enteredDate)
 

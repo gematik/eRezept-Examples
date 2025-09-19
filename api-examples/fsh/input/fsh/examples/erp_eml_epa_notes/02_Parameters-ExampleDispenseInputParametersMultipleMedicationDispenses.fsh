@@ -16,7 +16,7 @@ Usage: #example
     * resource = Example-MedicationDispense-2
   * part[medication]
     * name = "medication"
-    * resource = MedicationDexpanthenol
+    * resource = FlusarionMedication
 
 
 Instance: Example-MedicationDispense-2
@@ -28,4 +28,4 @@ Description: "Example of another Medication Dispense."
 * insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * insert Date(whenHandedOver)
-* medicationReference = Reference(MedicationDexpanthenol)
+* medicationReference = Reference(FlusarionMedication)

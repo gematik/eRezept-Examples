@@ -4,7 +4,7 @@ RuleSet: TaskExension(flowType)
 * insert ExpiryDate(extension[expiryDate].valueDate)
 
 RuleSet: Task162Exension
-* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#162 "Muster 16 (Digitale Gesundheitsanwendungen)"
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#162 "Flowtype für Digitale Gesundheitsanwendungen"
 * insert DiGAExpiryDate(extension[acceptDate].valueDate) // Expiry, weil so festgelegt beide Daten 3 Monate
 * insert DiGAExpiryDate(extension[expiryDate].valueDate)
 
@@ -67,7 +67,7 @@ RuleSet: KTRTelematikID(field)
 RuleSet: GKV_Task(status)
 * status = #{status}
 * insert TaskExension(160)
-* extension[flowType].valueCoding.display = "Muster 16 (Apothekenpflichtige Arzneimittel)"
+* extension[flowType].valueCoding.display = "Flowtype für Apothekenpflichtige Arzneimittel"
 * insert TaskIdentifier(160)
 * insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
@@ -77,7 +77,7 @@ RuleSet: GKV_Task(status)
 RuleSet: DiGA_Task(status)
 * status = #{status}
 * insert Task162Exension
-* extension[flowType].valueCoding.display = "Muster 16 (Digitale Gesundheitsanwendungen)"
+* extension[flowType].valueCoding.display = "Flowtype für Digitale Gesundheitsanwendungen"
 * insert TaskIdentifier(162)
 * insert GKV_Identifier(for.identifier)
 * insert TaskMiscInfo
@@ -87,7 +87,7 @@ RuleSet: DiGA_Task(status)
 RuleSet: PKV_Task(status)
 * status = #{status}
 * insert TaskExension(200)
-* extension[flowType].valueCoding.display = "PKV (Apothekenpflichtige Arzneimittel)"
+* extension[flowType].valueCoding.display = "Flowtype für Apothekenpflichtige Arzneimittel (PKV)"
 * insert TaskIdentifier(200)
 * insert PKV_Identifier(for.identifier)
 * insert TaskMiscInfo
@@ -97,7 +97,7 @@ RuleSet: PKV_Task(status)
 RuleSet: WF169_Task(status)
 * status = #{status}
 * insert TaskExension(169)
-* extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
+* extension[flowType].valueCoding.display = "Flowtype zur Workflow-Steuerung durch Leistungserbringer"
 * insert TaskIdentifier(169)
 * insert TaskIdentifierAccessCode
 * insert GKV_Identifier(for.identifier)
@@ -108,7 +108,7 @@ RuleSet: WF169_Task(status)
 RuleSet: WF169_Task_Create(status)
 * status = #{status}
 * extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#169
-* extension[flowType].valueCoding.display = "Muster 16 (Direkte Zuweisung)"
+* extension[flowType].valueCoding.display = "Flowtype zur Workflow-Steuerung durch Leistungserbringer"
 * insert TaskIdentifier(169)
 * insert TaskIdentifierAccessCode
 * insert TaskMiscInfo

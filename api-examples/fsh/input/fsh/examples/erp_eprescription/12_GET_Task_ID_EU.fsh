@@ -5,7 +5,7 @@ Usage: #example
 * type = #searchset
 * insert DateTimeStamp(timestamp)
 * total = 1
-* entry.fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/3ceaecda-af6e-432b-a7f6-09b2eb1302a0"
+* entry.fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/Task/160.000.000.000.000.01"
 * entry.resource = 160.000.000.000.000.01-3
 
 Instance: 160.000.000.000.000.01-3

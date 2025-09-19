@@ -42,9 +42,8 @@ Usage: #inline
 * contained.id = "8fe0eea1-6379-41ce-bb51-efd33f02e853"
 * contained.resourceType = "HealthcareService"
 * contained.active = true
-* contained.coverageArea.extension.url = "https://ngda.de/fhir/extensions/ServiceCoverageRange"
-* contained.coverageArea.extension.valueQuantity.value = 5000
-* contained.coverageArea.extension.valueQuantity.unit = "m"
+* contained.coverageArea.extension.url = "https://gematik.de/fhir/directory/StructureDefinition/ServiceCoverageArea"
+* contained.coverageArea.extension.valueQuantity = 5000 'm' "m"
 * contained.location.reference = "/Location/354d16fa-ceff-4a18-b1b7-c583ee211cea"
 * contained.type = $service-type#498 "Mobile Services"
 * address.use = #work

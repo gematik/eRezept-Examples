@@ -4,7 +4,7 @@ Usage: #example
 * id = "160.000.000.000.000.01"
 * meta.id = "Task-erp-bereitstellen-01-response-taskCreate"
 * status = #draft
-* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
+* extension[flowType].valueCoding = $GEM_ERP_CS_FlowType#160 "Flowtype für Apothekenpflichtige Arzneimittel"
 * insert TaskIdentifier(160)
 * insert TaskIdentifierAccessCode
 * insert TaskMiscInfo

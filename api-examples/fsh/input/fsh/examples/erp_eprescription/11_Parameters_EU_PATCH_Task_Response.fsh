@@ -3,7 +3,7 @@ InstanceOf: GEM_ERP_PR_Task
 Title:   "Task activated by (Z)PVS/KIS via $activate operation that carries a dispensable ePrescription"
 Usage: #example
 * meta.tag.display = "Task in READY state activated by (Z)PVS/KIS via $activate operation"
-* extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
+* extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Flowtype für Apothekenpflichtige Arzneimittel"
 * extension[acceptDate].valueDate = "2026-04-02"
 * extension[expiryDate].valueDate = "2026-06-02"
 * extension[eu-isRedeemableByProperties].valueBoolean = true

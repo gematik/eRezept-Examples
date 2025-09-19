@@ -111,7 +111,7 @@ Usage: #inline
 * extension[=].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type"
 * extension[=].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
-* extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/900000000000207008/version/20220331"
+* extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/11000274103/version/20240515"
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"
@@ -150,7 +150,7 @@ Usage: #inline
 * extension[=].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_Base_Medication_Type"
 * extension[=].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"
-* extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/900000000000207008/version/20220331"
+* extension[=].valueCodeableConcept.coding.version = "http://snomed.info/sct/11000274103/version/20240515"
 * extension[+].url = "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Medication_Vaccine"
 * extension[=].valueBoolean = false
 * extension[+].url = "http://fhir.de/StructureDefinition/normgroesse"

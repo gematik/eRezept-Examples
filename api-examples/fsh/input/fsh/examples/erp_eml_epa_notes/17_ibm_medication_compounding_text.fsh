@@ -13,11 +13,13 @@ Usage: #example
 * amount.denominator.value = 1
 
 * ingredient[+]
-  * strength.numerator = 1 '{tbl}' "TAB"
+  * strength.numerator.value = 1
+  * strength.numerator.unit = "Stück"
   * strength.denominator.value = 1
   * itemCodeableConcept.text = "1st ingredient"
 * ingredient[+]
-  * strength.numerator = 2 '{tbl}' "TAB"
+  * strength.numerator.value = 2
+  * strength.numerator.unit = "Stück"
   * strength.denominator.value = 1
   * itemCodeableConcept.text = "2nd ingredient"
 

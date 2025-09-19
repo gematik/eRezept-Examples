@@ -43,12 +43,12 @@ Usage: #inline
 * extension[Notdienstgebuehr].valueBoolean = false
 * extension[SER].valueBoolean = false
 * extension[Unfallinformationen].extension[Unfallkennzeichen].valueCoding = $KBV_CS_FOR_Ursache_Type#1
-* extension[Unfallinformationen].extension[Unfalltag].valueDate = "2023-07-01"
+* insert Date(extension[Unfallinformationen].extension[Unfalltag].valueDate)
 * extension[Mehrfachverordnung].extension[Kennzeichen].valueBoolean = true
 * extension[Mehrfachverordnung].extension[Nummerierung].valueRatio.numerator.value = 2
 * extension[Mehrfachverordnung].extension[Nummerierung].valueRatio.denominator.value = 4
-* extension[Mehrfachverordnung].extension[Zeitraum].valuePeriod.start = "2023-07-02"
-* extension[Mehrfachverordnung].extension[Zeitraum].valuePeriod.end = "2023-09-30"
+* insert Date(extension[Mehrfachverordnung].extension[Zeitraum].valuePeriod.start)
+* insert DatePlus30days(extension[Mehrfachverordnung].extension[Zeitraum].valuePeriod.end)
 * extension[Mehrfachverordnung].extension[ID].valueIdentifier.system = "urn:ietf:rfc:3986"
 * extension[Mehrfachverordnung].extension[ID].valueIdentifier.value = "urn:uuid:24e2e10d-e962-4d1c-be4f-8760e690a5f0"
 * medicationReference = Reference(e3a4efa7-84fc-465b-b14c-720195097PKV)
@@ -58,7 +58,7 @@ Usage: #inline
 * insurance = Reference(1b1ffb6e-eb05-43d7-87eb-Cov-PKV)
 * note.text = "Dummy-Hinweis für die Apotheke"
 * extension[Dosierungskennzeichen].valueBoolean = false
-* dispenseRequest.quantity = 2 '{Package}'
+* dispenseRequest.quantity.value = 2
 
 Instance: e3a4efa7-84fc-465b-b14c-720195097PKV
 InstanceOf: KBV_PR_ERP_Medication_Ingredient

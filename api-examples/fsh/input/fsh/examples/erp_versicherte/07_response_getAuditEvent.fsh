@@ -44,7 +44,6 @@ InstanceOf: GEM_ERP_PR_AuditEvent
 Usage: #inline
 * meta.versionId = "1"
 * insert DateTimeStamp(meta.lastUpdated)
-* meta.source = "#IkMt252YovlsJTAE"
 * type = $audit-event-type#rest
 * subtype = $restful-interaction#read
 * action = #R
@@ -68,7 +67,6 @@ InstanceOf: GEM_ERP_PR_AuditEvent
 Usage: #inline
 * meta.versionId = "1"
 * insert DateTimeStamp(meta.lastUpdated)
-* meta.source = "#IkMt252YovlsJTAE"
 * type = $audit-event-type#rest
 * subtype = $restful-interaction#update
 * action = #U

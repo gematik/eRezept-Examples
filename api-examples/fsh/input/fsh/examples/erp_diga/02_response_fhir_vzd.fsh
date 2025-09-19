@@ -28,10 +28,11 @@ InstanceOf: OrganizationDirectory
 Usage: #inline
 * meta.versionId = "2"
 * insert DateTimeStamp(meta.lastUpdated)
-* meta.source = "#2WkZQ3ZhfsTF9vgi"
 * meta.tag[Origin] = $Origin#ldap "Synchronized from LDAP Directory"
 * meta.tag[+].userSelected = false
+* identifier[TelematikID].system = "https://gematik.de/fhir/sid/telematik-id"
 * identifier[TelematikID].value = "8-01-0000000232"
+* identifier[IKNR].system = "http://fhir.de/sid/arge-ik/iknr"
 * identifier[IKNR].value = "107815761"
 * active = true
 * type[providerType] = $OrganizationProfessionOID#1.2.276.0.76.4.59 "Betriebsstätte Kostenträger"

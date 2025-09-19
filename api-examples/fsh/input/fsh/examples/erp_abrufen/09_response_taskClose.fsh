@@ -29,6 +29,7 @@ Usage: #inline
 Instance: c624cf47-e235-4624-af71-0a09dc9254dc
 InstanceOf: GEM_ERP_PR_Composition
 Usage: #inline
+* extension[Beneficiary].valueIdentifier.system = "https://gematik.de/fhir/sid/telematik-id"
 * extension[Beneficiary].valueIdentifier.value = "3-SMC-B-Testkarte-883110000129070"
 * type = $GEM_ERP_CS_DocumentType#3 "Receipt"
 * insert DateTimeStamp(date)

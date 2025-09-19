@@ -18,6 +18,6 @@ Usage: #example
 * entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Organization/6a3c8c57-0870-476e-90e3-25b7562799d3"
 * entry[=].resource = Example-EU-Organization
 * entry[=].search.mode = #include
-* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/7c342123-ca23-4a98-a5c2-b2005ceece45"
+* entry[+].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Medication/SumatripanMedication"
 * entry[=].resource = SumatripanMedication
 * entry[=].search.mode = #include
