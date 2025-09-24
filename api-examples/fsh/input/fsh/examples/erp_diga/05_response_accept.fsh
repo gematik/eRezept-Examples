@@ -7,8 +7,8 @@ Usage: #example
 * link.url = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/162.000.000.000.000.01/$accept/"
 * entry[0].fullUrl = "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/Task/162.000.000.000.000.01"
 * entry[=].resource = Inline-Instance-for-d5e04846-e753-4a91-ab60-9e4c6fb4b533-1
-* entry[+].fullUrl = "urn:uuid:aed2e8ed-6dd6-4e94-80f4-3ab9e418513a"
-* entry[=].resource = aed2e8ed-6dd6-4e94-80f4-3ab9e418513a
+* entry[+].fullUrl = "urn:uuid:ChargeItem-Abgabedaten-Binary"
+* entry[=].resource = ChargeItem-Abgabedaten-Binary
 
 Instance: Inline-Instance-for-d5e04846-e753-4a91-ab60-9e4c6fb4b533-1
 InstanceOf: GEM_ERP_PR_Task
@@ -17,4 +17,4 @@ Usage: #inline
 * insert DiGA_Task(ready)
 * insert TaskSecret
 * insert KTRTelematikID(owner.identifier)
-* insert TaskInputQES(aed2e8ed-6dd6-4e94-80f4-3ab9e418513a)
+* insert TaskInputQES(ChargeItem-Abgabedaten-Binary)
