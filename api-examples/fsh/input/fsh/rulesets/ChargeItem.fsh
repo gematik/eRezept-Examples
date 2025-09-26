@@ -18,22 +18,22 @@ RuleSet: ChargeItemExtension
   * extension[subsidy].valueBoolean = false
   * extension[taxOffice].valueBoolean = false
 
-Instance: d9a98ce4-9585-4031-ba85-3719bf0fc14a
+Instance: ChargeItem-KBV-Bundle
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #inline
 * insert PKV_Verordnungsdatensatz
 
-Instance: f1909de6-7d21-443b-a2ae-230b9cb62f70-1
+Instance: ChargeItem-Receipt-Bundle
 InstanceOf: GEM_ERP_PR_Bundle
 Usage: #inline
 * insert GEM_ERP_PR_Bundle
 
-Instance: d45fa5b0-7b01-457f-a41f-b1ea28982963
+Instance: ChargeItem-Abgabedaten-Bundle
 InstanceOf: DAV_PKV_PR_ERP_AbgabedatenBundle
 Usage: #inline
 * insert PKV_Abgabedatensatz
 
-Instance: aed2e8ed-6dd6-4e94-80f4-3ab9e418513a
+Instance: ChargeItem-Abgabedaten-Binary
 InstanceOf: Binary
 Usage: #inline
 * contentType = #application/pkcs7-mime

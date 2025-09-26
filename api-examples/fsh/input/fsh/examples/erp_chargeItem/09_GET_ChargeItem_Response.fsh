@@ -5,29 +5,29 @@ Usage: #example
 * insert DateTimeStamp(timestamp)
 * entry[0].fullUrl = "https://erp-dev.zentral.erp.splitdns.ti-dienste.de/ChargeItem/200.000.000.000.000.01"
 * entry[=].resource = 200.000.000.000.000.01-7
-* entry[+].fullUrl = "urn:uuid:f1909de6-7d21-443b-a2ae-230b9cb62f70-1"
-* entry[=].resource = f1909de6-7d21-443b-a2ae-230b9cb62f70-1
-* entry[+].fullUrl = "urn:uuid:42a8260d-579f-4cde-a288-4de0bfb6e6d9"
-* entry[=].resource = 42a8260d-579f-4cde-a288-4de0bfb6e6d9
-* entry[+].fullUrl = "urn:uuid:42772ecc-3d67-4351-a719-2d728426a06b"
-* entry[=].resource = 42772ecc-3d67-4351-a719-2d728426a06b
+* entry[+].fullUrl = "urn:uuid:ChargeItem-Receipt-Bundle"
+* entry[=].resource = ChargeItem-Receipt-Bundle
+* entry[+].fullUrl = "urn:uuid:ChargeItem-PKV-KBV-Bundle"
+* entry[=].resource = ChargeItem-PKV-KBV-Bundle
+* entry[+].fullUrl = "urn:uuid:ChargeItem-PKV-Abgabedaten-Bundle"
+* entry[=].resource = ChargeItem-PKV-Abgabedaten-Bundle
 
 Instance: 200.000.000.000.000.01-7
 InstanceOf: GEM_ERPCHRG_PR_ChargeItem
 Usage: #inline
 * insert ChargeItemWithAccessCode
 // * insert ChargeItemExtension //TODO: Ist nicht im FD dabei, sollte es?
-* supportingInformation[prescriptionItemBundle] = Reference(urn:uuid:42a8260d-579f-4cde-a288-4de0bfb6e6d9)
-* supportingInformation[dispenseItemBundle] = Reference(urn:uuid:f1909de6-7d21-443b-a2ae-230b9cb62f70-1)
-* supportingInformation[receiptBundle] = Reference(urn:uuid:42772ecc-3d67-4351-a719-2d728426a06b)
+* supportingInformation[prescriptionItemBundle] = Reference(urn:uuid:ChargeItem-PKV-KBV-Bundle)
+* supportingInformation[dispenseItemBundle] = Reference(urn:uuid:ChargeItem-PKV-Abgabedaten-Bundle)
+* supportingInformation[receiptBundle] = Reference(urn:uuid:ChargeItem-Receipt-Bundle)
 
-Instance: 42772ecc-3d67-4351-a719-2d728426a06b
+Instance: ChargeItem-PKV-Abgabedaten-Bundle
 InstanceOf: DAV_PKV_PR_ERP_AbgabedatenBundle
 Usage: #inline
 * insert PKV_Abgabedatensatz
 * signature = GEM-ERP-PR-Signature
 
-Instance: 42a8260d-579f-4cde-a288-4de0bfb6e6d9
+Instance: ChargeItem-PKV-KBV-Bundle
 InstanceOf: KBV_PR_ERP_Bundle
 Usage: #inline
 * insert PKV_Verordnungsdatensatz
