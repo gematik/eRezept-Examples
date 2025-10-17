@@ -4,6 +4,7 @@ Usage: #example
 * insert GKV_VerordnungsDatensatz(160.000.000.000.000.01)
 
 RuleSet: GKV_VerordnungsDatensatz(task-id)
+* meta.versionId = "1"
 * insert DateTimeStamp(meta.lastUpdated)
 * insert DateTimeStamp(timestamp)
 * identifier.value = "{task-id}"
@@ -28,6 +29,7 @@ RuleSet: GKV_VerordnungsDatensatz(task-id)
 Instance: b0e22b86-e7e9-46c1-80fe-e6e24442d77c
 InstanceOf: KBV_PR_ERP_Composition
 Usage: #inline
+* meta.versionId = "1"
 * extension[Rechtsgrundlage].valueCoding = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN#00
 * subject = Reference(9774f67f-a238-4daf-b4e6-Pat-GKV)
 * insert DateTimeStamp(date)
@@ -42,6 +44,9 @@ Usage: #inline
 Instance: f58f4403-7a3a-4a12-bb15-b2fa25b02561
 InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
+* meta.versionId = "1"
+* status = #active
+* intent = #order
 * extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#0
 * extension[Notdienstgebuehr].valueBoolean = false
 * extension[SER].valueBoolean = false
@@ -67,6 +72,7 @@ Usage: #inline
 Instance: e3a4efa7-84fc-465b-b14c-720195097783
 InstanceOf: KBV_PR_ERP_Medication_Ingredient
 Usage: #inline
+* meta.versionId = "1"
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
 * form.text = "Tabletten"

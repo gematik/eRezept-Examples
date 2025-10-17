@@ -12,6 +12,7 @@ Description: "This example demonstrates a wrong mixed reference."
 Instance: Invalid-Example-Composition
 InstanceOf: KBV_PR_ERP_Composition
 Usage: #inline
+* meta.versionId = "1"
 * id = "b0e22b86-e7e9-46c1-80fe-e6e24442d77c"
 * subject = Reference(Patient/17b0721b-d538-4455-b1bb-2c2dfc19d234)
 * insert DateTimeStamp(date)

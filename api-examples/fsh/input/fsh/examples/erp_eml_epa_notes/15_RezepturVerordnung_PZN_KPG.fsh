@@ -1,6 +1,7 @@
 Instance: erp-eml-epa-notes-15-KPGVerordnung-PZN
 InstanceOf: KBV_PR_ERP_Medication_PZN
 Usage: #example
+* meta.versionId = "1"
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
 * extension[Kategorie].valueCodeableConcept.coding = $sct#763158003 "Medicinal product (product)"

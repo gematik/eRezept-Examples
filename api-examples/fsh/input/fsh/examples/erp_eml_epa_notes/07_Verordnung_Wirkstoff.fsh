@@ -1,6 +1,7 @@
 Instance: erp-eml-epa-notes-07-verordnung-wirkstoff
 InstanceOf: KBV_PR_ERP_Medication_Ingredient
 Usage: #example
+* meta.versionId = "1"
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
 * extension[Normgroesse].valueCode = #N1

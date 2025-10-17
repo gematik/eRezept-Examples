@@ -1,6 +1,7 @@
 Instance: erp-eml-epa-notes-21-ibm-medication-compounding-text-amount
 InstanceOf: KBV_PR_ERP_Medication_Compounding
 Usage: #example
+* meta.versionId = "1"
 * code = $KBV_CS_ERP_Medication_Type#rezeptur
 * code.text = "Sumatriptan-1a Pharma 100 mg Tabletten"
 * form.text = "TAB"

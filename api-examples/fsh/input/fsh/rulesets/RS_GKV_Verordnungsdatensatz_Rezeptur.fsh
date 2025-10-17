@@ -23,6 +23,7 @@ RuleSet: GKV_VerordnungsDatensatz_Rezeptur(task-id)
 Instance: df0538d0-77dd-4266-a4fe-1664fe907751
 InstanceOf: KBV_PR_ERP_Composition
 Usage: #inline
+* meta.versionId = "1"
 * extension[Rechtsgrundlage].valueCoding = $KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN#00
 * subject = Reference(17b0721b-d538-4455-b1bb-2c2dfc19d234)
 * insert DateTimeStamp(date)
@@ -37,6 +38,9 @@ Usage: #inline
 Instance: 4e8c932a-bef5-443d-9e85-64bca6d53d53
 InstanceOf: KBV_PR_ERP_Prescription
 Usage: #inline
+* meta.versionId = "1"
+* status = #active
+* intent = #order
 * extension[Zuzahlungsstatus].valueCoding = $KBV_CS_FOR_StatusCoPayment#0
 * extension[Notdienstgebuehr].valueBoolean = false
 * extension[SER].valueBoolean = false
@@ -61,6 +65,7 @@ Usage: #inline
 Instance: 746a8246-4b21-43a2-a422-9821cdc7caf3
 InstanceOf: KBV_PR_ERP_Medication_Compounding
 Usage: #inline
+* meta.versionId = "1"
 * extension[Arzneimittelkategorie].valueCoding = $KBV_CS_ERP_Medication_Category#00
 * extension[Impfstoff].valueBoolean = false
 * extension[Kategorie].valueCodeableConcept.coding.code = #1208954007
