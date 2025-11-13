@@ -254,6 +254,22 @@
                   }
                 ]
               },
+              "extension": [
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Legal_basis",
+                  "valueCoding": {
+                    "code": "00",
+                    "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_STATUSKENNZEICHEN"
+                  }
+                },
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_PKV_Tariff",
+                  "valueCoding": {
+                    "code": "03",
+                    "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_PKV_TARIFF"
+                  }
+                }
+              ],
               "section": [
                 {
                   "code": {
@@ -312,7 +328,8 @@
                   "valueBoolean": false
                 },
                 {
-                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER"
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_SER",
+                  "valueBoolean": false
                 },
                 {
                   "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_Multiple_Prescription",
@@ -347,6 +364,29 @@
                       "url": "ID"
                     }
                   ]
+                },
+                {
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_StatusCoPayment",
+                  "valueCoding": {
+                    "code": "0",
+                    "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_StatusCoPayment"
+                  }
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "Unfallkennzeichen",
+                      "valueCoding": {
+                        "code": "1",
+                        "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_FOR_Ursache_Type"
+                      }
+                    },
+                    {
+                      "url": "Unfalltag",
+                      "valueDate": "2023-07-01"
+                    }
+                  ],
+                  "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_FOR_Accident"
                 },
                 {
                   "url": "https://fhir.kbv.de/StructureDefinition/KBV_EX_ERP_DosageFlag",
@@ -467,7 +507,8 @@
               "meta": {
                 "profile": [
                   "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Patient|1.3"
-                ]
+                ],
+                "versionId": "1"
               },
               "name": [
                 {
@@ -535,7 +576,8 @@
               "meta": {
                 "profile": [
                   "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Practitioner|1.3"
-                ]
+                ],
+                "versionId": "1"
               },
               "name": [
                 {
@@ -601,7 +643,8 @@
               "meta": {
                 "profile": [
                   "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Organization|1.3"
-                ]
+                ],
+                "versionId": "1"
               },
               "telecom": [
                 {
@@ -658,7 +701,8 @@
               "meta": {
                 "profile": [
                   "https://fhir.kbv.de/StructureDefinition/KBV_PR_FOR_Coverage|1.3"
-                ]
+                ],
+                "versionId": "1"
               },
               "status": "active",
               "payor": [
@@ -920,7 +964,7 @@
                     "url": "http://fhir.abda.de/eRezeptAbgabedaten/StructureDefinition/DAV-EX-ERP-Gesamtzuzahlung",
                     "valueMoney": {
                       "currency": "EUR",
-                      "value": 0
+                      "value": 0.00
                     }
                   }
                 ],
@@ -954,7 +998,7 @@
                               "url": "Kostenbetrag",
                               "valueMoney": {
                                 "currency": "EUR",
-                                "value": 0
+                                "value": 0.00
                               }
                             }
                           ]

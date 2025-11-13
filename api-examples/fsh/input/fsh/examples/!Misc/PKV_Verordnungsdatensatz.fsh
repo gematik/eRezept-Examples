@@ -86,6 +86,7 @@ Usage: #inline
 Instance: d8463daf-258e-4cad-a86a-6fd42fac1PKV
 InstanceOf: KBV_PR_FOR_Practitioner
 Usage: #inline
+* meta.versionId = "1"
 * identifier[ANR].value = "838382210"
 * name[name]
   * use = #official
@@ -98,6 +99,7 @@ Usage: #inline
 Instance: cf042e44-086a-4d51-9c77-172f9a972PKV
 InstanceOf: KBV_PR_FOR_Organization
 Usage: #inline
+* meta.versionId = "1"
 * identifier[Betriebsstaettennummer].value = "031234567"
 * name = "Hausarztpraxis Dr. Topp-Glücklich"
 * telecom[telefon].value = "0301234567"
@@ -112,6 +114,7 @@ Usage: #inline
 Instance: 9774f67f-a238-4daf-b4e6-Pat-PKV
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
+* meta.versionId = "1"
 * identifier[versichertenId].value = "P123464117"
 * name[name]
   * .use = #official
@@ -130,6 +133,7 @@ Usage: #inline
 Instance: 1b1ffb6e-eb05-43d7-87eb-Cov-PKV
 InstanceOf: KBV_PR_FOR_Coverage
 Usage: #inline
+* meta.versionId = "1"
 * extension[BesonderePersonengruppe].valueCoding = $KBV_CS_SFHIR_KBV_PERSONENGRUPPE#00
 * extension[DMPKennzeichen].valueCoding = $KBV_CS_SFHIR_KBV_DMP#00
 * extension[Versichertenart].valueCoding = $KBV_CS_SFHIR_KBV_VERSICHERTENSTATUS#1

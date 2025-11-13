@@ -12,6 +12,7 @@ Description: "This example demonstrates mismatch between id in fullUrl and id in
 Instance: erp-fhir-infos-Invalid-Example-Patient
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
+* meta.versionId = "1"
 * id = "43ed0c32-27e0-429c-a2fb-8f92518de721"
 * identifier[versichertenId].value = "X234567890"
 * name[name]

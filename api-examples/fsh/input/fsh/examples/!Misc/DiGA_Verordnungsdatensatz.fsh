@@ -57,6 +57,7 @@ Usage: #inline
 Instance: 40acd463-b25d-4ede-8b1f-2b0994f29aa5
 InstanceOf: KBV_PR_FOR_Patient
 Usage: #inline
+* meta.versionId = "1"
 * identifier[versichertenId].value = "X234567890"
 * name[name]
   * .use = #official
@@ -75,6 +76,7 @@ Usage: #inline
 Instance: 1228772e-1c72-493b-8b5c-5ae54d25843d
 InstanceOf: KBV_PR_FOR_Practitioner
 Usage: #inline
+* meta.versionId = "1"
 * identifier[ANR].value = "838382210"
 * name[name]
   * use = #official
@@ -103,6 +105,7 @@ Usage: #inline
 Instance: 2d3a92c2-c93c-47ad-8ab5-49b275be97ee
 InstanceOf: KBV_PR_FOR_Coverage
 Usage: #inline
+* meta.versionId = "1"
 * extension[BesonderePersonengruppe].valueCoding = $KBV_CS_SFHIR_KBV_PERSONENGRUPPE#00
 * extension[DMPKennzeichen].valueCoding = $KBV_CS_SFHIR_KBV_DMP#00
 * extension[WOP].valueCoding = $KBV_CS_SFHIR_ITA_WOP#03
