@@ -1,0 +1,170 @@
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="ExampleDispenseInputParametersKombipackung" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_DispenseOperation_Input|1.6" />
+  </meta>
+  <parameter>
+    <name value="rxDispensation" />
+    <part>
+      <name value="medicationDispense" />
+      <resource>
+        <MedicationDispense>
+          <id value="Example-MedicationDispense-Kombipackung" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" />
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+            <value value="160.000.033.491.280.78" />
+          </identifier>
+          <status value="completed" />
+          <medicationReference>
+            <reference value="Medication/Medication-Kombipackung" />
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10" />
+              <value value="X123456789" />
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id" />
+                <value value="3-SMC-B-Testkarte-883110000095957" />
+              </identifier>
+            </actor>
+          </performer>
+          <whenHandedOver value="2026-04-01" />
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication" />
+      <resource>
+        <Medication>
+          <id value="Medication-Kombipackung" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" />
+          </meta>
+          <contained>
+            <Medication>
+              <id value="Augentropfen" />
+              <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product" />
+              </meta>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="373873005" />
+                  <display value="Pharmaceutical / biologic product (product)" />
+                </valueCoding>
+              </extension>
+              <ingredient>
+                <itemCodeableConcept>
+                  <coding>
+                    <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+                    <version value="1.4.0" />
+                    <code value="R01AC01" />
+                    <display value="Natriumcromoglicat" />
+                  </coding>
+                </itemCodeableConcept>
+                <strength>
+                  <numerator>
+                    <value value="20" />
+                    <unit value="mg" />
+                    <system value="http://unitsofmeasure.org" />
+                    <code value="mg" />
+                  </numerator>
+                  <denominator>
+                    <value value="1" />
+                    <unit value="ml" />
+                    <system value="http://unitsofmeasure.org" />
+                    <code value="ml" />
+                  </denominator>
+                </strength>
+              </ingredient>
+            </Medication>
+          </contained>
+          <contained>
+            <Medication>
+              <id value="NasenSpray" />
+              <meta>
+                <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product" />
+              </meta>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+                <valueCoding>
+                  <system value="http://snomed.info/sct" />
+                  <code value="373873005" />
+                  <display value="Pharmaceutical / biologic product (product)" />
+                </valueCoding>
+              </extension>
+              <ingredient>
+                <itemCodeableConcept>
+                  <coding>
+                    <system value="http://fhir.de/CodeSystem/bfarm/atc" />
+                    <version value="1.4.0" />
+                    <code value="R01AC01" />
+                    <display value="Natriumcromoglicat" />
+                  </coding>
+                </itemCodeableConcept>
+                <strength>
+                  <numerator>
+                    <value value="2.8" />
+                    <unit value="mg" />
+                    <system value="http://unitsofmeasure.org" />
+                    <code value="mg" />
+                  </numerator>
+                  <denominator>
+                    <value value="1" />
+                    <unit value="Sprühstoß" />
+                    <system value="http://unitsofmeasure.org" />
+                    <code value="1" />
+                  </denominator>
+                </strength>
+              </ingredient>
+            </Medication>
+          </contained>
+          <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+            <valueBoolean value="false" />
+          </extension>
+          <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+            <valueCoding>
+              <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs" />
+              <code value="00" />
+              <display value="Arzneimittel oder in die Arzneimittelversorgung nach § 31 SGB V einbezogenes Produkt" />
+            </valueCoding>
+          </extension>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="1746517" />
+              <display value="CROMO-RATIOPHARM Kombipackung" />
+            </coding>
+          </code>
+          <status value="active" />
+          <form>
+            <coding>
+              <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM" />
+              <code value="KPG" />
+            </coding>
+            <text value="Kombipackung" />
+          </form>
+          <ingredient>
+            <itemReference>
+              <reference value="#NasenSpray" />
+            </itemReference>
+          </ingredient>
+          <ingredient>
+            <itemReference>
+              <reference value="#Augentropfen" />
+            </itemReference>
+          </ingredient>
+          <batch>
+            <lotNumber value="56498416854" />
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>

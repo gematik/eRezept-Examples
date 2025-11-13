@@ -1,0 +1,130 @@
+<Medication xmlns="http://hl7.org/fhir">
+  <id value="Medication-Rezeptur-FD" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" />
+  </meta>
+  <contained>
+    <Medication>
+      <id value="MedicationHydrocortison-FD" />
+      <meta>
+        <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient" />
+      </meta>
+      <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+        <valueCoding>
+          <system value="http://snomed.info/sct" />
+          <code value="781405001" />
+          <display value="Medicinal product package (product)" />
+        </valueCoding>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+          <code value="03424249" />
+          <display value="Hydrocortison 1% Creme" />
+        </coding>
+        <text value="Hydrocortison 1% Creme" />
+      </code>
+    </Medication>
+  </contained>
+  <contained>
+    <Medication>
+      <id value="MedicationDexpanthenol-FD" />
+      <meta>
+        <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pzn-ingredient" />
+      </meta>
+      <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+        <valueCoding>
+          <system value="http://snomed.info/sct" />
+          <code value="781405001" />
+          <display value="Medicinal product package (product)" />
+        </valueCoding>
+      </extension>
+      <code>
+        <coding>
+          <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+          <code value="16667195" />
+          <display value="Dexpanthenol 5% Creme" />
+        </coding>
+        <text value="Dexpanthenol 5% Creme" />
+      </code>
+    </Medication>
+  </contained>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+    <valueCoding>
+      <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs" />
+      <code value="00" />
+    </valueCoding>
+  </extension>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-manufacturing-instructions-extension">
+    <valueString value="Bitte kühl zubereiten und lagern." />
+  </extension>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-formulation-packaging-extension">
+    <valueString value="Tube" />
+  </extension>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+    <valueBoolean value="false" />
+  </extension>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-type-extension">
+    <valueCoding>
+      <system value="http://snomed.info/sct" />
+      <code value="1208954007" />
+      <display value="Extemporaneous preparation (product)" />
+    </valueCoding>
+  </extension>
+  <code>
+    <text value="Hydrocortison-Dexpanthenol-Salbe" />
+  </code>
+  <form>
+    <text value="Salbe" />
+  </form>
+  <amount>
+    <numerator>
+      <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+        <valueString value="100" />
+      </extension>
+      <value value="20" />
+      <unit value="ml" />
+    </numerator>
+    <denominator>
+      <value value="1" />
+    </denominator>
+  </amount>
+  <ingredient>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension">
+      <valueString value="Salbe" />
+    </extension>
+    <itemReference>
+      <reference value="#MedicationHydrocortison-FD" />
+    </itemReference>
+    <isActive value="true" />
+    <strength>
+      <numerator>
+        <value value="50" />
+        <unit value="g" />
+      </numerator>
+      <denominator>
+        <value value="100" />
+        <unit value="g" />
+      </denominator>
+    </strength>
+  </ingredient>
+  <ingredient>
+    <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-ingredient-darreichungsform-extension">
+      <valueString value="Salbe" />
+    </extension>
+    <itemReference>
+      <reference value="#MedicationDexpanthenol-FD" />
+    </itemReference>
+    <isActive value="true" />
+    <strength>
+      <numerator>
+        <value value="50" />
+        <unit value="g" />
+      </numerator>
+      <denominator>
+        <value value="100" />
+        <unit value="g" />
+      </denominator>
+    </strength>
+  </ingredient>
+</Medication>

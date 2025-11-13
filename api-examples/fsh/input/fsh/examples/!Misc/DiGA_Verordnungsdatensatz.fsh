@@ -87,6 +87,7 @@ Usage: #inline
 Instance: b87b9d90-c8db-4660-93eb-fed916caa2da
 InstanceOf: KBV_PR_FOR_Organization
 Usage: #inline
+* meta.versionId = "1"
 * identifier[Betriebsstaettennummer].value = "031234567"
 * name = "Hausarztpraxis Dr. Topp-Glücklich"
 * telecom[telefon].value = "0301234567"

@@ -1,0 +1,151 @@
+<Parameters xmlns="http://hl7.org/fhir">
+  <id value="ExampleCloseInputParametersMultipleMedicationDispenses" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6" />
+  </meta>
+  <parameter>
+    <name value="rxDispensation" />
+    <part>
+      <name value="medicationDispense" />
+      <resource>
+        <MedicationDispense>
+          <id value="Example-MedicationDispense" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" />
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+            <value value="160.000.033.491.280.78" />
+          </identifier>
+          <status value="completed" />
+          <medicationReference>
+            <reference value="Medication/SumatripanMedication" />
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10" />
+              <value value="X123456789" />
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id" />
+                <value value="3-SMC-B-Testkarte-883110000095957" />
+              </identifier>
+            </actor>
+          </performer>
+          <whenHandedOver value="2026-04-01" />
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication" />
+      <resource>
+        <Medication>
+          <id value="SumatripanMedication" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" />
+          </meta>
+          <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+            <valueCoding>
+              <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs" />
+              <code value="00" />
+            </valueCoding>
+          </extension>
+          <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+            <valueBoolean value="false" />
+          </extension>
+          <extension url="http://fhir.de/StructureDefinition/normgroesse">
+            <valueCode value="N1" />
+          </extension>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="06313728" />
+            </coding>
+            <text value="Sumatriptan-1a Pharma 100 mg Tabletten" />
+          </code>
+          <form>
+            <coding>
+              <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM" />
+              <code value="TAB" />
+            </coding>
+          </form>
+          <amount>
+            <numerator>
+              <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+                <valueString value="20" />
+              </extension>
+              <value value="20" />
+              <unit value="St" />
+            </numerator>
+            <denominator>
+              <value value="1" />
+            </denominator>
+          </amount>
+          <batch>
+            <lotNumber value="1234567890" />
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+  <parameter>
+    <name value="rxDispensation" />
+    <part>
+      <name value="medicationDispense" />
+      <resource>
+        <MedicationDispense>
+          <id value="Example-MedicationDispense-2" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" />
+          </meta>
+          <identifier>
+            <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+            <value value="160.000.033.491.280.78" />
+          </identifier>
+          <status value="completed" />
+          <medicationReference>
+            <reference value="Medication/SimpleMedication" />
+          </medicationReference>
+          <subject>
+            <identifier>
+              <system value="http://fhir.de/sid/gkv/kvid-10" />
+              <value value="X123456789" />
+            </identifier>
+          </subject>
+          <performer>
+            <actor>
+              <identifier>
+                <system value="https://gematik.de/fhir/sid/telematik-id" />
+                <value value="3-SMC-B-Testkarte-883110000095957" />
+              </identifier>
+            </actor>
+          </performer>
+          <whenHandedOver value="2026-04-01" />
+        </MedicationDispense>
+      </resource>
+    </part>
+    <part>
+      <name value="medication" />
+      <resource>
+        <Medication>
+          <id value="SimpleMedication" />
+          <meta>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" />
+          </meta>
+          <code>
+            <coding>
+              <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+              <code value="06313728" />
+            </coding>
+          </code>
+          <batch>
+            <lotNumber value="1234567890" />
+          </batch>
+        </Medication>
+      </resource>
+    </part>
+  </parameter>
+</Parameters>

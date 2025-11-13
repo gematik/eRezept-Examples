@@ -1,0 +1,46 @@
+<Medication xmlns="http://hl7.org/fhir">
+  <id value="SumatripanMedication" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" />
+  </meta>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension">
+    <valueCoding>
+      <system value="https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs" />
+      <code value="00" />
+    </valueCoding>
+  </extension>
+  <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+    <valueBoolean value="false" />
+  </extension>
+  <extension url="http://fhir.de/StructureDefinition/normgroesse">
+    <valueCode value="N1" />
+  </extension>
+  <code>
+    <coding>
+      <system value="http://fhir.de/CodeSystem/ifa/pzn" />
+      <code value="06313728" />
+    </coding>
+    <text value="Sumatriptan-1a Pharma 100 mg Tabletten" />
+  </code>
+  <form>
+    <coding>
+      <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM" />
+      <code value="TAB" />
+    </coding>
+  </form>
+  <amount>
+    <numerator>
+      <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension">
+        <valueString value="20" />
+      </extension>
+      <value value="20" />
+      <unit value="St" />
+    </numerator>
+    <denominator>
+      <value value="1" />
+    </denominator>
+  </amount>
+  <batch>
+    <lotNumber value="1234567890" />
+  </batch>
+</Medication>

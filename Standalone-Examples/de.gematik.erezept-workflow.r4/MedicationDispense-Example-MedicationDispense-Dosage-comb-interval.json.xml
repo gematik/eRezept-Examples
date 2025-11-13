@@ -1,0 +1,76 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+  <id value="Example-MedicationDispense-Dosage-comb-interval" />
+  <meta>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" />
+  </meta>
+  <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction">
+    <valueMarkdown value="alle 2 Tage: 08:00 Uhr — je 1 Stück; 18:00 Uhr — je 2 Stück" />
+  </extension>
+  <extension url="http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta">
+    <extension url="algorithmVersion">
+      <valueString value="1.0.0" />
+    </extension>
+    <extension url="language">
+      <valueCode value="de-DE" />
+    </extension>
+  </extension>
+  <identifier>
+    <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId" />
+    <value value="160.000.033.491.280.78" />
+  </identifier>
+  <status value="completed" />
+  <medicationReference>
+    <reference value="Medication/SumatripanMedication" />
+  </medicationReference>
+  <subject>
+    <identifier>
+      <system value="http://fhir.de/sid/gkv/kvid-10" />
+      <value value="X123456789" />
+    </identifier>
+  </subject>
+  <performer>
+    <actor>
+      <identifier>
+        <system value="https://gematik.de/fhir/sid/telematik-id" />
+        <value value="3-SMC-B-Testkarte-883110000095957" />
+      </identifier>
+    </actor>
+  </performer>
+  <whenHandedOver value="2026-04-01" />
+  <dosageInstruction>
+    <timing>
+      <repeat>
+        <frequency value="1" />
+        <period value="2" />
+        <periodUnit value="d" />
+        <timeOfDay value="08:00:00" />
+      </repeat>
+    </timing>
+    <doseAndRate>
+      <doseQuantity>
+        <value value="1" />
+        <unit value="Stück" />
+        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT" />
+        <code value="1" />
+      </doseQuantity>
+    </doseAndRate>
+  </dosageInstruction>
+  <dosageInstruction>
+    <timing>
+      <repeat>
+        <frequency value="1" />
+        <period value="2" />
+        <periodUnit value="d" />
+        <timeOfDay value="18:00:00" />
+      </repeat>
+    </timing>
+    <doseAndRate>
+      <doseQuantity>
+        <value value="2" />
+        <unit value="Stück" />
+        <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT" />
+        <code value="1" />
+      </doseQuantity>
+    </doseAndRate>
+  </dosageInstruction>
+</MedicationDispense>
