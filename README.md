@@ -66,5 +66,8 @@ We strongly encourage contributing examples to this repository.
 ## License
 This project is licensed under the Apache 2.0 license.
 
+## Additional Notes and Disclaimer from gematik GmbH
+See [License](./LICENSE)
+
 ## Contact
 If you have questions or want to get in contact please use the "issues" function on GitHub.
