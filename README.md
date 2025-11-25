@@ -68,7 +68,7 @@ Copyright 2022-2025 gematik GmbH
 
 Apache License, Version 2.0
 
-See the `link:./LICENSE[LICENSE]` for the specific language governing permissions and limitations under the License
+See the [LICENSE](./LICENSE) for the specific language governing permissions and limitations under the License
 
 ## Additional Notes and Disclaimer from gematik GmbH
 1. Copyright notice: Each published work result is accompanied by an explicit statement of the license conditions for use. These are regularly typical conditions in connection with open source or free software. Programs described/provided/linked here are free software, unless otherwise stated.
