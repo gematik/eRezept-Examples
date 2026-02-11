@@ -2,7 +2,7 @@
 <Parameters xmlns="http://hl7.org/fhir">
   <id value="d2b7cf5f-0114-4c40-b105-ce3cd40adf90"/>
   <meta>
-    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"/>
+    <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6"/>
     <!--tag>
       <display value="Beispiel MedicationDispense PKV PZN Bsp 6"/>
     </tag>
@@ -18,8 +18,19 @@
         <MedicationDispense>
           <id value="f8b26827-40d3-4472-8c0c-fa97c8ad5438"/>
           <meta>
-            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"/>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"/>
           </meta>
+          <!--extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction">
+            <valueMarkdown value="1-0-0-0 Stück"/>
+          </extension>
+          <extension url="http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta">
+            <extension url="algorithmVersion">
+              <valueString value="1.0.0"/>
+            </extension>
+            <extension url="language">
+              <valueCode value="de-DE"/>
+            </extension>
+          </extension-->
           <identifier>
             <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
             <value value="200.280.604.133.110.12"/>
@@ -46,9 +57,24 @@
             <value value="1"/>
             <unit value="Packung"/>
           </quantity>
-          <whenHandedOver value="2025-11-03"/>
+          <whenHandedOver value="2026-07-03"/>
           <!--dosageInstruction>  ====> nur angeben wenn geändert/korrigiert durch Apotheke
-            <text value="1-0-0-0"/>
+            <timing>
+              <repeat>
+                <frequency value="1"/>
+                <period value="1"/>
+                <periodUnit value="d"/>
+                <when value="MORN"/>
+              </repeat>
+            </timing>
+            <doseAndRate>
+              <doseQuantity>
+                <value value="1"/>
+                <unit value="Stück"/>
+                <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT"/>
+                <code value="1"/>
+              </doseQuantity>
+            </doseAndRate>
           </dosageInstruction-->
           <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
             <wasSubstituted value="true"/>
@@ -62,7 +88,7 @@
         <Medication>
           <id value="323c7581-f323-40b3-a86a-6605e0f0a364"/>
           <meta>
-            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"/>
+            <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"/>
           </meta>
           <code>
             <coding>

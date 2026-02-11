@@ -1,107 +1,743 @@
-<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>elektronische Arzneimittelverordnung</title><style type="text/css" media="all">
-					html {
-						height: 100%;
-					}
-					body { 
-						padding-left:2em;
-						margin-top:1em;
-						height: 100%;
-					}
-					p {
-						font-family: "Courier New", "Nimbus Mono L", monospace;
-						font-size: small;
-					}
-					.in-black {
-						font-size: 7pt;
-						color: #000000;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					.tiny {
-						font-size: 7pt;
-						color: #000000;
-						font-weight: bold;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					.daten {
-						font-family: "Courier New", "Nimbus Mono L", monospace;
-						font-size: 12pt; 
-					}
-					.nowrap {
-						white-space: nowrap;
-					}
-					.overflow {
-						overflow:hidden
-					}
-					.breakword {
-						word-wrap: break-word;
-					}
-					.thin-space {
-						font-size: 12pt;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					
-					ul {
-						list-style-type:none;
-						margin:0; 
-						padding:0;
-					}
-					fieldset {
-						border:1px solid black;
-						padding:0 2px;
-						margin:0 0 9px 9px;
-						width:48em;
-					}
-					#gesamtrahmen {
-						border:1px solid black; 
-						width:53em; 
-					}
-					#kaestchen_bereich_links {
-						float:left;
-						padding-top:1em;
-					}
-					.kaestchen {
-						display: inline-flex;
-						font-size:2em;
-						font-weight: normal;
-						line-height:0.7;
-						align:center;
-					}
-					.mittig {
-						text-align:center;
-					}
-					.abstand_unten {
-						margin-bottom:1em;
-					}
-					.kein_abstand {
-						margin:0;
-						padding:0;
-					}
-					.abstand_links {
-						padding-left:10px;
-					}
-					.footer {
-						font-size: 7pt;
-					}					
-					@media print {
-						@page {
-								size: A5;
-								margin: 0;
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="author" content="ABDA/DAV"><link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB71BMVEUAAAD//Pz50tX////97vD/+/z97e774OL73eD73uDscHzdAA3bAADaAADjKjv509f98/TmP0786evoTVv62dz////3vsPtdYDpWGXwiZP98vP////1r7XsbHjlOUnhFSjiIjTqX2z1sLf////////ugIrkMkLlOEjvg43////pVmTjKDrgDyPmQlH74uTpVmPvgozrYm/hFyrmO0v73d/pWWftdoH2trzjKjvmPEv73eD2t73wj5nscHvtd4LvhI7jJDbueoTtcn7xk5zpVWPkLj/lNEXmPk7hFSjmPEv62Nvzo6vrYm7lOUnugIv3wMXjKjvhGSvqXGn1rrX74uXue4bkL0Dtd4L1tbvjKDnhGSvvhY/2t73mQVHlM0TymKD50NToTVzmQlL3wMX6297ymKHqXmzkLj/nSVfynKT2vcPrZXHiIjTjJTfwjJb////0qrHsanbsbXn3wMX++/vwiJLvg4397u/fCR3gESTfBxvfBxzgDiLfCBzfDSDfBhvgEiXkMEDnQ1LlN0fnR1bjJDbqWmjkM0PufYfwjpfufIbvgozqXWrhGy3fCx/gEybnRFP1srj2vcPufonjKzzgDyLeBBjjKTvsb3rhGi3eBBnkLj/tc37iHTDlOEjpVmTiHjDfDCDhFSjgECP///95m2A4AAAAeHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAADLpHYcg0GN5Lg/veqMgECgu/kcAW0+/7cG7Sfqv3dHLNwNPLdHDRu06+N+H9/a/H76uD94iRY5Px/RvP8sDkNcutxM/L+mm7t7lEfzdQrEUup7c1LJZ/2914IRK+tJwp0nwwtze6SAAAAAWJLR0QDEQxM8gAAAAd0SU1FB+gKAgoaARzHrP4AAAD1SURBVBjTY2AAAUZRMXEJSSkmZjCPmUVaRlZOvkJBUUmZFSygoqpWWVVVUV2jriHNBhLQ1KqtrdPWqa2o19VjBwvoV9Q2GBga1VYZm3CABUwbm5rNzC2qqiytOBkYuKxtbFta2+zsHaAC3I7tHZ1d3T29fRUQAR6n/gkTJ02eUlsBFeB1mjpt+oyZs6pqoQJ8zi6us+fMdXP3qK3y9OJnEFDx9vGdN3+Bn39AVW1gUDBDSGhYbdXCmkXhEZFVFVVR0QwxsX1VFbUVcfEJiZXVFUnJDCmpaemL+zMyRQWzsnNy83gZmIXyCwqLioWZmUVKSsvK2QFueUtyDUTGcgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0xMC0wMlQxMDoyNjowMSswMDowMNzwyJMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMTAtMDJUMTA6MjY6MDErMDA6MDCtrXAvAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC"><style>
+                        @charset "UTF-8";
+
+                        /*!
+                        * Bootstrap  v5.3.0 (https://getbootstrap.com/)
+                        * Copyright 2011-2023 The Bootstrap Authors
+                        * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+                        */
+                        :root {
+                        --bs-blue: #0d6efd;
+                        --bs-indigo: #6610f2;
+                        --bs-purple: #6f42c1;
+                        --bs-pink: #d63384;
+                        --bs-red: #dc3545;
+                        --bs-orange: #fd7e14;
+                        --bs-yellow: #ffc107;
+                        --bs-green: #198754;
+                        --bs-teal: #20c997;
+                        --bs-cyan: #0dcaf0;
+                        --bs-black: #000;
+                        --bs-white: #fff;
+                        --bs-gray: #6c757d;
+                        --bs-gray-dark: #343a40;
+                        --bs-gray-100: #f8f9fa;
+                        --bs-gray-200: #e9ecef;
+                        --bs-gray-300: #dee2e6;
+                        --bs-gray-400: #ced4da;
+                        --bs-gray-500: #adb5bd;
+                        --bs-gray-600: #6c757d;
+                        --bs-gray-700: #495057;
+                        --bs-gray-800: #343a40;
+                        --bs-gray-900: #212529;
+                        --bs-primary: #0d6efd;
+                        --bs-secondary: #6c757d;
+                        --bs-success: #198754;
+                        --bs-info: #0dcaf0;
+                        --bs-warning: #ffc107;
+                        --bs-danger: #dc3545;
+                        --bs-light: #f8f9fa;
+                        --bs-dark: #212529;
+                        --bs-primary-rgb: 13, 110, 253;
+                        --bs-secondary-rgb: 108, 117, 125;
+                        --bs-success-rgb: 25, 135, 84;
+                        --bs-info-rgb: 13, 202, 240;
+                        --bs-warning-rgb: 255, 193, 7;
+                        --bs-danger-rgb: 220, 53, 69;
+                        --bs-light-rgb: 248, 249, 250;
+                        --bs-dark-rgb: 33, 37, 41;
+                        --bs-primary-text-emphasis: #052c65;
+                        --bs-secondary-text-emphasis: #2b2f32;
+                        --bs-success-text-emphasis: #0a3622;
+                        --bs-info-text-emphasis: #055160;
+                        --bs-warning-text-emphasis: #664d03;
+                        --bs-danger-text-emphasis: #58151c;
+                        --bs-light-text-emphasis: #495057;
+                        --bs-dark-text-emphasis: #495057;
+                        --bs-primary-bg-subtle: #cfe2ff;
+                        --bs-secondary-bg-subtle: #e2e3e5;
+                        --bs-success-bg-subtle: #d1e7dd;
+                        --bs-info-bg-subtle: #cff4fc;
+                        --bs-warning-bg-subtle: #fff3cd;
+                        --bs-danger-bg-subtle: #f8d7da;
+                        --bs-light-bg-subtle: #fcfcfd;
+                        --bs-dark-bg-subtle: #ced4da;
+                        --bs-primary-border-subtle: #9ec5fe;
+                        --bs-secondary-border-subtle: #c4c8cb;
+                        --bs-success-border-subtle: #a3cfbb;
+                        --bs-info-border-subtle: #9eeaf9;
+                        --bs-warning-border-subtle: #ffe69c;
+                        --bs-danger-border-subtle: #f1aeb5;
+                        --bs-light-border-subtle: #e9ecef;
+                        --bs-dark-border-subtle: #adb5bd;
+                        --bs-white-rgb: 255, 255, 255;
+                        --bs-black-rgb: 0, 0, 0;
+                        --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                        --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                        --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+                        --bs-body-font-family: var(--bs-font-sans-serif);
+                        --bs-body-font-size: 1rem;
+                        --bs-body-font-weight: 400;
+                        --bs-body-line-height: 1.5;
+                        --bs-body-color: #212529;
+                        --bs-body-color-rgb: 33, 37, 41;
+                        --bs-body-bg: #fff;
+                        --bs-body-bg-rgb: 255, 255, 255;
+                        --bs-emphasis-color: #000;
+                        --bs-emphasis-color-rgb: 0, 0, 0;
+                        --bs-secondary-color: rgba(33, 37, 41, 0.75);
+                        --bs-secondary-color-rgb: 33, 37, 41;
+                        --bs-secondary-bg: #e9ecef;
+                        --bs-secondary-bg-rgb: 233, 236, 239;
+                        --bs-tertiary-color: rgba(33, 37, 41, 0.5);
+                        --bs-tertiary-color-rgb: 33, 37, 41;
+                        --bs-tertiary-bg: #f8f9fa;
+                        --bs-tertiary-bg-rgb: 248, 249, 250;
+                        --bs-heading-color: inherit;
+                        --bs-link-color: #0d6efd;
+                        --bs-link-color-rgb: 13, 110, 253;
+                        --bs-link-decoration: underline;
+                        --bs-link-hover-color: #0a58ca;
+                        --bs-link-hover-color-rgb: 10, 88, 202;
+                        --bs-code-color: #d63384;
+                        --bs-highlight-bg: #fff3cd;
+                        --bs-border-width: 1px;
+                        --bs-border-style: solid;
+                        --bs-border-color: #dee2e6;
+                        --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+                        --bs-border-radius: 0.375rem;
+                        --bs-border-radius-sm: 0.25rem;
+                        --bs-border-radius-lg: 0.5rem;
+                        --bs-border-radius-xl: 1rem;
+                        --bs-border-radius-xxl: 2rem;
+                        --bs-border-radius-2xl: var(--bs-border-radius-xxl);
+                        --bs-border-radius-pill: 50rem;
+                        --bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                        --bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                        --bs-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+                        --bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+                        --bs-focus-ring-width: 0.25rem;
+                        --bs-focus-ring-opacity: 0.25;
+                        --bs-focus-ring-color: rgba(13, 110, 253, 0.25);
+                        --bs-form-valid-color: #198754;
+                        --bs-form-valid-border-color: #198754;
+                        --bs-form-invalid-color: #dc3545;
+                        --bs-form-invalid-border-color: #dc3545
+                        }
+
+                        *,
+                        ::after,
+                        ::before {
+                        box-sizing: border-box
+                        }
+
+                        @media (prefers-reduced-motion:no-preference) {
+                        :root {
+                        scroll-behavior: smooth
+                        }
+                        }
+
+                        body {
+                            margin: 0;
+                            font-family: var(--bs-body-font-family);
+                            font-size: var(--bs-body-font-size);
+                            font-weight: var(--bs-body-font-weight);
+                            line-height: var(--bs-body-line-height);
+                            color: var(--bs-body-color);
+                            text-align: var(--bs-body-text-align);
+                            background-color: var(--bs-body-bg);
+                            -webkit-text-size-adjust: 100%;
+                            -webkit-tap-highlight-color: transparent
+                        }
+
+                        hr {
+                            margin: 1rem 0;
+                            color: inherit;
+                            border: 0;
+                            border-top: var(--bs-border-width) solid;
+                            opacity: .25
+                        }
+
+                        .h1,
+                        .h4,
+                        .h5,
+                        h1,
+                        h4,
+                        h5 {
+                            margin-top: 0;
+                            margin-bottom: .5rem;
+                            font-weight: 500;
+                            line-height: 1.2;
+                            color: var(--bs-heading-color)
+                        }
+
+                        .h1,
+                        h1 {
+                            font-size: calc(1.375rem + 1.5vw)
+                        }
+
+                        @media (min-width:1200px) {
+                            .h1,
+                            h1 {
+                               font-size: 2.5rem
+                            }
+                        }
+
+                        .h4,
+                        h4 {
+                            font-size: calc(1.275rem + .3vw)
+                        }
+
+                        @media (min-width:1200px) {
+                            .h4,
+                            h4 {
+                                font-size: 1.5rem
+                            }
+                        }
+
+                        .h5,
+                        h5 {
+                            font-size: calc(1.000rem + .1.5vw);
+                        }
+
+                        @media (min-width:1200px) {
+                            .h5,
+                            h5 {
+                                font-size: 1.5rem
+                            }
+                        }
+
+                        label {
+                        display: inline-block
+                        }
+
+                        input,
+                        textarea {
+                            margin: 0;
+                            font-family: inherit;
+                            font-size: inherit;
+                            line-height: inherit
+                        }
+
+                        ::-moz-focus-inner {
+                        padding: 0;
+                        border-style: none
+                        }
+
+                        textarea {
+                            resize: vertical
+                        }
+
+                        ::-webkit-datetime-edit-day-field,
+                        ::-webkit-datetime-edit-fields-wrapper,
+                        ::-webkit-datetime-edit-hour-field,
+                        ::-webkit-datetime-edit-minute,
+                        ::-webkit-datetime-edit-month-field,
+                        ::-webkit-datetime-edit-text,
+                        ::-webkit-datetime-edit-year-field {
+                        padding: 0
+                        }
+
+                        ::-webkit-inner-spin-button {
+                        height: auto
+                        }
+
+                        ::-webkit-search-decoration {
+                        -webkit-appearance: none
+                        }
+
+                        ::-webkit-color-swatch-wrapper {
+                        padding: 0
+                        }
+
+                        ::-webkit-file-upload-button {
+                        font: inherit;
+                        -webkit-appearance: button
+                        }
+
+                        ::file-selector-button {
+                        font: inherit;
+                        -webkit-appearance: button
+                        }
+
+                        :root {
+                        --bs-breakpoint-xs: 0;
+                        --bs-breakpoint-sm: 576px;
+                        --bs-breakpoint-md: 768px;
+                        --bs-breakpoint-lg: 992px;
+                        --bs-breakpoint-xl: 1200px;
+                        --bs-breakpoint-xxl: 1400px
+                        }
+
+                        .row {
+                        --bs-gutter-x: 1.5rem;
+                        --bs-gutter-y: 0;
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin-top: calc(-1 * var(--bs-gutter-y));
+                        margin-right: calc(-.5 * var(--bs-gutter-x));
+                        margin-left: calc(-.5 * var(--bs-gutter-x))
+                        }
+
+                        .row>* {
+                        flex-shrink: 0;
+                        width: 100%;
+                        max-width: 100%;
+                        padding-right: calc(var(--bs-gutter-x) * .5);
+                        padding-left: calc(var(--bs-gutter-x) * .5);
+                        margin-top: var(--bs-gutter-y)
+                        }
+
+                        .col {
+                        flex: 1 0 0%
+                        }
+
+                        .col-1 {
+                        flex: 0 0 auto;
+                        width: 8.33333333%
+                        }
+
+                        .col-2 {
+                        flex: 0 0 auto;
+                        width: 16.66666667%
+                        }
+
+                        .col-3 {
+                        flex: 0 0 auto;
+                        width: 25%
+                        }
+
+                        .col-4 {
+                        flex: 0 0 auto;
+                        width: 33.33333333%
+                        }
+
+                        .col-6 {
+                        flex: 0 0 auto;
+                        width: 50%
+                        }
+
+                        .col-8 {
+                        flex: 0 0 auto;
+                        width: 66.66666667%
+                        }
+
+                        .col-9 {
+                        flex: 0 0 auto;
+                        width: 75%
+                        }
+
+                        .col-10 {
+                        flex: 0 0 auto;
+                        width: 83.33333333%
+                        }
+
+                        .col-12 {
+                        flex: 0 0 auto;
+                        width: 100%
+                        }
+
+                        .g-1 {
+                        --bs-gutter-x: 0.25rem
+                        }
+
+                        .g-1 {
+                        --bs-gutter-y: 0.25rem
+                        }
+
+                        .g-2 {
+                        --bs-gutter-x: 0.5rem
+                        }
+
+                        .g-2 {
+                        --bs-gutter-y: 0.5rem
+                        }
+
+                        @media (min-width:768px) {
+                        .col-md-6 {
+                        flex: 0 0 auto;
+                        width: 50%
+                        }
+                        }
+
+                        @keyframes progress-bar-stripes {
+                        0% {
+                        background-position-x: 1rem
+                        }
+                        }
+
+                        @keyframes spinner-border {
+                        to {
+                        transform: rotate(360deg)
+                        }
+                        }
+
+                        @keyframes spinner-grow {
+                        0% {
+                        transform: scale(0)
+                        }
+
+                        50% {
+                        opacity: 1;
+                        transform: none
+                        }
+                        }
+
+                        @keyframes placeholder-glow {
+                        50% {
+                        opacity: .2
+                        }
+                        }
+
+                        @keyframes placeholder-wave {
+                        100% {
+                        -webkit-mask-position: -200% 0%;
+                        mask-position: -200% 0%
+                        }
+                        }
+
+                        .border-1 {
+                        border-width: 1px !important
+                        }
+
+                        .flex-grow-1 {
+                        flex-grow: 1 !important
+                        }
+                        /* Bootstrap Ende */
+                    </style><style>
+                    /* Internes Stylesheet */
+                    :root{
+                    --background-color-ges: #ffffff; /* #F7B8CA M16 -> Farbauswertung Rezeptarten */
+                    --border-background-color-ges: #F7B8CA; /* #F48BAA M16 -> Farbauswertung Rezeptarten */
+                    --text-color-ges: #EA6769; /* #bf5473; */
+                    --text-color-inputs: #000000;
+                    --background-stripes-color: #e9e9e9;
+                    --outter-div-bg-color: #ffffff;
+                    --background-color-int: var(--border-background-color-ges);
+                    --border-background-color-int: var(--border-background-color-ges);
+                    }
+
+                    body {
+                    width: 210mm;
+                    max-width: 210mm;
+                    min-width: 210mm;
+                    left:0;
+                    top: 0;
+                    margin: 0px;
+                    padding: 5mm;
+                    font-size: 12px;
+                    font-family: Arial, sans-serif;
+                    background: repeating-linear-gradient(
+                    135deg,
+                    var(--background-stripes-color),
+                    var(--background-stripes-color) 10px,
+                    transparent 10px,
+                    transparent 20px
+                    );
+                    }
+
+                    .background-container-ges{
+                    background-color: var(--background-color-ges);
+                    border: 1px solid var(--border-background-color-ges);
+                    }
+
+                    h1{
+                    font-size: large;
+                    font-weight: bold;
+                    }
+
+                    h4{
+                    margin-top: 2mm;
+                    color:var(--text-color-ges);
+                    font-size: medium;
+                    font-weight: bold;
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
+                    }
+
+                    h5{
+                        margin-top: 2mm;
+                        color:var(--text-color-ges);
+                        font-size: x-small;
+                        font-weight: bold;
+                        padding-bottom: 0px;
+                        margin-bottom: 0px;
+                    }
+
+                    input{
+                        border: 1px solid c3c3c3;
+                        outline: none;
+                    }
+
+                    input:hover{
+                        border: 1px solid c3c3c3;
+                        outline: none;
+                    }
+
+                    input:focus{
+                        border: 1px solid c3c3c3;
+                        outline: none;
+                    }
+
+                    input:hover{
+                        outline: none;
+                    }
+
+                    .input-container {
+                        position: relative;
+                        display: inline-block;
+                        width: 100%;
+                    }
+
+                    .input-container label {
+                        position: absolute;
+                        top: -0px;
+                        left: 0px;
+                        padding: 0 5px;
+                        font-size: 10px;
+                        color: var(--text-color-ges);
+                    }
+
+                    .text-input{
+                        font-family: Consolas, sans-serif;
+                        height: 10mm;
+                        width: 100%;
+                        text-align: left;
+                        border: 1px solid var(--text-color-ges);
+                        box-shadow: none;
+                        appearance: none;
+                        outline: none;
+                        background-color: var(--background-color-ges);
+                        padding-top: 14px;
+                        padding-left: 10px;
+                        color: var(--text-color-inputs);
+                    }
+
+                    .text-input div{
+                        margin-left: 10px;
+                    }
+
+                    .intern-container{
+                        background-color: var(--background-color-int);
+                        padding:2mm;
+                    }
+                    .intern-container2{
+                        background-color: var(--background-color-ges);
+                        padding:2mm;
+                    }
+                    .row{
+                        padding-top: 0px;
+                        padding-bottom: 3px;
+                    }
+                    #txt-area{
+                        overflow: hidden;
+                        resize: none;
+                        line-height: 0.8;
+                        padding-top: 15px;
+                    }
+                    .container{
+                        width: 297mm;
+                        max-width: 297mm;
+                        min-width: 297mm;
+                    }
+
+                    hr{
+                        margin-top: 1mm;
+                        margin-bottom: 1mm;
+                        background-color: var(--text-color-ges);
+                    }
+                    .container, .container-fluid {
+                        width: 100% !important;
+                        max-width: none !important;
+                    }
+
+                    .col, .col-*, .row {
+                        flex: none !important;
+                        width: auto !important;
+                    }
+
+                    .checkbox-container {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row-reverse; /* Position checkbox to the left and label to the right */
+                        margin-left: 0px;
+                        font-size: 10px;
+                        color: var(--text-color-ges);
+                    }
+
+                    .checkbox-container > label {
+                        margin-left: 4px; /* Adjust spacing between checkbox and label */
+                        margin-right: 0; /* Remove right margin to ensure consistency */
+                        font-size: 8px;
+                        width:100%;
+                    }
+
+                    /* Hide the default checkbox */
+                    input[type="checkbox"] {
+                    margin-left: 3px;
+                    accent-color: var(--text-color-ges);
+                    border: 1px solid var(--text-color-ges);
+                    outline: var(--text-color-ges);
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none; /* Removes default styling */
+                    width: 15px;
+                    min-width: 15px;
+                    height: 15px;
+                    border: 1px solid var(--text-color-ges); /* Default border color */
+                    background-color: var(--background-color-ges); /* Default background color */
+                    cursor: pointer;
+                    }
+
+                    /* Change the background color when checked */
+                    input[type="checkbox"]:checked {
+                    background-color: var(--background-color-ges); /* Green when checked */
+                    border-color: var(--text-color-ges); /* Green border when checked */
+                    }
+
+                    /* Add a checkmark */
+                    input[type="checkbox"]:checked::before {
+                    content: "x";
+                    display: block;
+                    text-align: center;
+                    font-size: 16px;
+                    line-height: 11px; /* Align the checkmark vertically */
+                    top: -10px;
+                    width: 15px;
+                    height: 15px;
+                    min-width: 15px;
+                    margin-left: -1px;
+                    }
+
+                    .row .col-2 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start; /* Aligns all checkboxes to the left edge */
+                    }
+
+                    .outter-div {
+                        background-color: var(--outter-div-bg-color);
+                        overflow: hidden;
+                        width: 210mm;
+                        max-width: 210mm;
+                        min-width: 210mm;
+                        /*
+                            height: 297mm;
+                            max-height: 297mm;
+                            min-height: 297mm;
+                        */
+                        padding:5mm;
+                    }
+
+                    .col-1-5{
+                    flex: 0 0 auto;
+                    width: 12.5%;
+                    }
+                    .col-2-5{
+                    flex: 0 0 auto;
+                    width: 20.8333333333333%;
+                    }
+
+                    @media print {
+                    @page {
+                    size: A4;
+                    margin: 0;
+                    }
+                    body {
+                    margin: 0;
+                    padding: 0;
+                    }
+                    }
+
+                    .width-100{ width: 100%; }
+                    .padding-1{ padding: 0.5%; }
+                    .border-l{ border-left: 0px solid var(--border-color-dark); }
+                    .height-15mm{ height: 15mm; }
+                    .height-18mm{ height: 18mm; }
+                    .height-25mm{ height: 25mm; }
+                    .padding-bot-2{ padding-bottom: 2mm; }
+                    .vertical-align{ margin-top: 10px; }
+                    .padding-top-bot-0{ padding-top: 0px; padding-bottom: 0px; }
+                    .margin-top-minus-6px{ margin-top: -6px; }
+                    .margin-left-min-2{ margin-left: -2px; }
+                    .margin-right-min-2{ margin-right: -2px; }
+                    .margin-top-min-5{ margin-top: -5px; }
+                    .margin-top-min-6{ margin-top: -6px; }
+                    .margin-top-5{ margin-top: 5px; }
+                    .margin-top-min-1{ margin-top: -1px; }
+                    .text-align-right{ text-align: right; }
+                    .no-bottom-border{ border-bottom: none0; }
+                    .border-dotted-t{ border-top: 1px dotted var(--border-color-dark); }
+                    .border-right-none{ border-right: none; }
+                    .border-dotted-t-l{
+                    border-top: 1px dotted var(--border-color-dark);
+                    border-left: 1px dotted var(--border-color-dark);
+                    }
+                    .border-left{
+                    border: 1px solid var(--border-color-dark);
+                    border-right: none;
+                    border-left: 1px dotted var(--border-color-dark);
+                    }
+                    .border-right{
+                    border: 1px solid var(--border-color-dark);
+                    border-right: 1px dotted var(--border-color-dark);
+                    border-left: none;
+                    }
+                    .border-left-right{
+                    border: 1px solid var(--border-color-dark);
+                    border-left: 1px dotted var(--border-color-dark);
+                    }
+                    .border-right-left{
+                    border: 1px solid var(--border-color-dark);
+                    border-right: none;
+                    }
+                    /* Internes Stylesheet Ende */
+                </style><title>DAV Stylesheet Verordnung</title><script>
+                    
+						function calcHeight(value) {
+                            let numberOfLineBreaks = (value.match(/\n/g) || []).length;
+                            numberOfLineBreaks = Math.max(numberOfLineBreaks, 1)
+
+                            newHeight = 20 + (Math.max(numberOfLineBreaks, Math.round((value.length/35))) * 25);
+                            return newHeight;
+                        }
+
+						function formatHeightOfTextarea() {
+							const fields = ['resize_ta1','resize_ta2','resize_ta3','resize_ta4','resize_ta5','resize_ta6','resize_ta7','resize_ta8','resize_ta9','resize_ta10','resize_ta11','resize_ta12','resize_ta13','resize_ta14','resize_ta15','resize_ta16','resize_ta17','resize_ta18','resize_ta19','resize_ta20','resize_ta21','resize_ta22','resize_ta23', 'resize_ta24', 'resize_ta25'];
+							fields.forEach(id => {
+								const el = document.getElementById(id);
+								if (el) {
+                                    el.style.height = calcHeight(el.value) + "px";
+							    };
+                            });
 						}
-						body { 
-							margin: 0; 
-							padding: 0; 
-						} 
-					}					
-				</style></head><body><div id="gesamtrahmen"><div id="kaestchen_bereich_links"><ul class="mittig"><li class="tiny">Gebühr<br/>frei</li><li class="kaestchen">☐</li><li class="tiny">Geb.-<br/>pfl.</li><li class="kaestchen">☒</li><li class="tiny"><br/>noctu</li><li class="kaestchen abstand_unten">☐</li><li class="tiny">Unfall</li><li class="kaestchen">☐</li><li class="tiny">Arbeits-<br/>unfall</li><li class="kaestchen">☐</li><li class="tiny">Berufs-<br/>krankheit</li><li class="kaestchen abstand_unten">☐</li><li class="tiny">aut<br/>idem</li><li class="kaestchen">☐</li></ul></div><table><tbody><tr><td><table cellspacing="10"><colgroup><col style="width:27em"/><col style="width:20em"/></colgroup><tbody><tr><td valign="top"><table style="width: 27em;  border-spacing:0; cellspacing:0; border-collapse:collapse; "><colgroup><col style="width:27em"/></colgroup><tbody><tr><td><table style=" border: 1px solid black; width:27em;  border-spacing: 0; cellspacing: 0; border-collapse: collapse; background-color:white; "><tbody><tr><td><table style="border-bottom:1px solid black; border-collapse: collapse; width: 27em; height: 2em; border-spacing: 0; cellspacing: 0; table-layout:fixed "><colgroup><col style="width:9em"/><col style="width:9em"/><col style="width:9em"/></colgroup><tbody><tr><td colspan="3" class="in-black">Krankenkasse bzw. Kostenträger</td></tr><tr><td colspan="2" class="daten nowrap">AOK Nordost - Die Gesundheitskasse</td><td colspan="1" class="daten" style="text-align:right;">17</td></tr></tbody></table></td></tr><tr><td><table style=" border-collapse: collapse; border-spacing: 0; cellspacing: 0;  width: 27em; table-layout:fixed "><colgroup><col style="width:7em; "/><col style="width:13em; "/><col style="width:7em; "/></colgroup><tbody><tr><td class="in-black" colspan="3">Name, Vorname des Versicherten</td></tr><tr><td colspan="2" width="100%" class="nowrap daten overflow">Königsstein</td><td class="in-black mittig"><div>geb. am</div></td></tr><tr><td colspan="2" width="100%" class="nowrap daten overflow">Ludger </td><td class="daten" style="text-align:right; ">22.06.1935</td></tr><tr><td colspan="3" style="border-bottom:1px solid black; width: 100%" class="nowrap daten  overflow">Blumenweg <br/>D 26427 Esens</td></tr></tbody></table></td></tr><tr><td><table style="border-collapse: collapse; border-bottom:1px solid black; width: 27em;  border-spacing: 0; cellspacing: 0; height: 2em; table-layout:fixed"><colgroup><col style="width:9em;"/><col style="width:10em;"/><col style="width:8em;"/></colgroup><tbody><tr><td class="in-black">Kostenträgerkennung</td><td class="in-black">Versicherten-Nr.</td><td class="in-black">Status </td></tr><tr><td class="nowrap daten">109719018</td><td style="border-left:1px solid black;" class="daten">K220635158</td><td style="  border-left:1px solid black;" class="nowrap"><span class="daten">5</span><span class="thin-space"> </span><span class="daten">00</span><span class="thin-space"> </span><span class="daten">05</span><span class="thin-space"> </span><span class="daten">00</span></td></tr></tbody></table></td></tr><tr><td><table style="border-collapse: collapse; width: 27em;  border-spacing: 0; cellspacing: 0; height: 2em; table-layout:fixed "><colgroup><col style="width: 9em"/><col style="width: 9em"/><col style="width: 9em"/></colgroup><tbody><tr><td class="in-black">Betriebsstätten-Nr.</td><td class="in-black">Arzt-Nr.</td><td class="in-black">Datum</td></tr><tr><td class="daten">724444400</td><td style="border-left:1px solid black;" class="daten">754236701</td><td style="border-left:1px solid black;" class="daten">27.01.2025</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td><td valign="top"><table style="width:19.4em;  table-layout:fixed"><tbody><tr><td><table cellpadding="0" cellspacing="0"><tbody><tr class="mittig"><td><ul><li class="tiny"><br/>BVG</li><li class="kaestchen">☐</li></ul></td><td><ul><li class="tiny">Impf-<br/>stoff</li><li class="kaestchen">☐</li></ul></td><td><ul><li class="tiny">Spr.St.-<br/>Bedarf</li><li class="kaestchen">☐</li></ul></td></tr></tbody></table></td></tr><tr><td><div style="background-color:white; width:20em;  border:1px solid black;" class="daten overflow breakword">Hausarztpraxis<br/>724444400<br/>Herbert-Lewin-Platz 2<br/>Erdgeschoss<br/>10623 Berlin<br/>
-						Tel: 030321654987<br/>
-						E-Mail: hausarztpraxis@e-mail.de<br/>Ben Schulz<br/>Facharzt für Allgemeinmedizin<br/>754236701<br/><div class="in-black" style=" width:100%; text-align: center; size:-2;">Angaben Praxis / verordnende Person</div></div></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td><table><tbody><tr><td><fieldset><legend align="right" class="in-black">Wirkstoff-Verordnung</legend><p class="daten">Mehrfachverordnung 
-														2<text> von </text>2<text>: Einlösbar</text><text> ab </text>15.03.2025</p><p class="daten" style="max-width: 50em;">1<text>x </text>Simvastatin<text> </text>20<text> </text>mg<text> </text><text>ASK-Nr: </text>23816<text> </text>Tabletten<text> </text>N3<text> </text></p><p class="daten" style="max-width: 50em;"><text>Dosieranweisung / Medikationsplan mitgegeben</text></p></fieldset></td></tr><tr><td class="abstand_links in-black">Unfallinformationen</td></tr><tr><td class="abstand_links in-black"><table style="border-collapse: collapse; width: 100%; "><colgroup><col style="width:14%"/><col style="width:45%"/><col style="witdh:21%"/><col style="width:20%"/></colgroup><tbody><tr><td class="in-black" style="border-left:1px solid black; border-top:1px solid black; border-right:1px solid black;">Unfalltag</td><td class="in-black" style="border-left:1px solid black; border-top:1px solid black; border-right:1px solid black;">Unfallbetrieb oder Arbeitgebernummer</td><td> </td><td class="in-black" style="border-left:1px solid black; border-top:1px solid black; border-right:1px solid black;">Kostenträgertyp</td></tr><tr><td class="daten nowrap" style="border-left:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"> </td><td class="daten nowrap" style="border-left:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"> </td><td> </td><td class="daten nowrap" style="border-left:1px solid black; border-bottom:1px solid black; border-right:1px solid black;">GKV</td></tr></tbody></table></td></tr><tr><td class="abstand_links"><table style=" width:42em;  table-layout:fixed"><colgroup><col style="width:28em"/><col style="width:14em"/></colgroup><tbody><tr><td><span class="footer">Dokumentenversion: 
-															<span class="footer">1.1.0</span><br/>
-															Dokumententyp: 
-																e16A</span></td><td><span class="footer">PRF.NR.: 
-															Y/410/2107/36/999<br/>
-															DOK.ID: 
-															160.100.000.000.027.58</span></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></div></body></html>
+						document.addEventListener('DOMContentLoaded', formatHeightOfTextarea);
+					
+                </script></head><body><h1>Verordnung</h1><div class="background-container-ges outter-div"><div class="row g-1 intern-container"><div class="col-md-6 border-1"><h4>Patient</h4><div class="row g-1 g-1"><div class="col-6"><div class="input-container"><label>Kostenträger Typ / Vers. Art.</label><div class="text-input">GKV Rentner(5)
+                                </div></div></div><div class="col-3"><div class="input-container"><label>Kostenträger IK</label><div class="text-input">109719018</div></div></div><div class="col-3"><div class="input-container"><label>Vers.-Nr.(GKV)</label><div class="text-input">K220635158</div></div></div></div><div class="row g-1"><div class="col-10"><div class="input-container"><label>Kostenträger</label><div class="text-input">AOK Nordost - Die Gesundheitskasse</div></div></div><div class="col-2"><div class="input-container"><label>WOP</label><div class="text-input">17</div></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>Rechtsgrundlage</label><div class="text-input">ohne Ersatzverordnungskennzeichen (00)
+                                            </div></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>DMP-Kennzeichen</label><div class="text-input"> Asthma (05)
+                                </div></div></div></div><div class="row g-1"><div class="col-8"><div class="input-container"><label>Name u. Vorname d. Versicherten</label><textarea id="resize_ta1" class="text-input" rows="auto" readonly="">Ludger Königsstein</textarea></div></div><div class="col-4"><div class="input-container"><label>Geburtstag</label><div class="text-input">22.06.1935</div></div></div></div><div class="row g-1"><div class="col-10"><div class="input-container"><label>Straßenadresse</label><textarea id="resize_ta2" class="text-input" rows="auto" readonly="">Blumenweg</textarea></div></div><div class="col-2"><div class="input-container"><label>Land</label><div class="text-input">D</div></div></div></div><div class="row g-1"><div class="col-3"><div class="input-container"><label>PLZ</label><div class="text-input">26427</div></div></div><div class="col-9"><div class="input-container"><label>Ort</label><div class="text-input">Esens</div></div></div></div><h4>Rezeptdaten</h4><div class="row g-1"><div class="col-4"><div class="input-container"><label>Ausstellungsdatum</label><div class="text-input">27.07.2026</div></div></div><div class="col-8"><div class="input-container"><label>Rezept ID</label><div class="text-input">160.100.000.000.027.58</div></div></div></div><div class="row g-1 intern-container"><div class="row g-2"><div class="col-2-5"><div class="checkbox-container"><label>Gebühr frei</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms" value="coding"></div></div><div class="col-2-5"><div class="checkbox-container"><label>SER</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div><div class="col-2-5"><div class="checkbox-container"><label>Noctu</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div><div class="col-2-5"><div class="checkbox-container"><label>Impfstoff</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms" y=""></div></div></div><div class="row g-2"><div class="col-2-5"><div class="checkbox-container"><label>Gebühr pfl.</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms" checked=""></div></div><div class="col-2-5"><div class="checkbox-container"><label>Unfall</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div><div class="col-2-5"><div class="checkbox-container"><label>Arbeitsunfall</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div><div class="col-3"><div class="checkbox-container"><label>Berufskrankheit</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div></div></div></div><div class="col-md-6 border-l"><h4>Verordner</h4><div class="row g-1"><div class="col-12"><div class="input-container"><label>Name u. Vorname</label><textarea id="resize_ta3" class="text-input" rows="auto" readonly="">Ben Schulz</textarea></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>Berufsbezeichnung</label><textarea id="resize_ta4" class="text-input" rows="auto" readonly="">Facharzt für Allgemeinmedizin</textarea></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>Qualifikation</label><div class="text-input">Arzt = 00</div></div></div></div><div class="row g-1"><div class="col-6"><div class="input-container"><label>LANR</label><div class="text-input">754236701</div></div></div><div class="col-6"><div class="input-container"><label>Betriebsstättennummer</label><div class="text-input">724444400</div></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>Einrichtung</label><textarea id="resize_ta5" class="text-input" rows="auto" readonly="">Hausarztpraxis</textarea></div></div></div><div class="row g-1"><div class="col-10"><div class="input-container"><label>Straßenadresse</label><textarea id="resize_ta6" class="text-input" rows="auto" readonly="">Herbert-Lewin-Platz 2
+Erdgeschoss
+</textarea></div></div><div class="col-2"><div class="input-container"><label>Land</label><div class="text-input">D</div></div></div></div><div class="row g-1"><div class="col-3"><div class="input-container"><label>PLZ</label><div class="text-input">10623</div></div></div><div class="col-9"><div class="input-container"><label>Ort</label><div class="text-input">Berlin</div></div></div></div><div class="row g-1"><div class="col-6"><div class="input-container"><label>Telefon</label><div class="text-input">030321654987</div></div></div></div><div class="row g-1"><div class="col-12"><div class="input-container"><label>E-Mail</label><div class="text-input">hausarztpraxis@e-mail.de </div></div></div></div></div></div><div class="intern-container background-container-ges margin-left-min-2 margin-right-min-2 margin-top-min-5"><div class="row g-1 width-100"><h5>Mehrfachverordnung</h5><div class="col-12"><div class="row g-1"><div class="col-2"><div class="input-container"><label>Zähler / Nenner</label><div class="text-input">2 / 2</div></div></div><div class="col-2"><div class="input-container"><label>Begin Einloesefrist</label><div class="text-input">15.10.2026</div></div></div><div class="col-2"><div class="input-container"><label>Ende Einloesefrist</label><div class="text-input"> </div></div></div><div class="col-6"><div class="input-container"><label>ID</label><div class="text-input">urn:uuid:807f02b0-0431-4f36-b052-77ae77f4157b</div></div></div></div></div><div class="col-12"><div class="row g-1"><div class="col-1"><div class="checkbox-container vertical-align"><label>Aut Idem</label><input type="checkbox" class="chckbox" disabled="disabled" name="terms"></div></div><div class="col-3"><div class="input-container"><label>Anzahl der verordneten Packungen</label><div class="text-input">1</div></div></div><div class="col-8"><div class="input-container"><label>Kategorie</label><textarea id="resize_ta11" type="text" class="text-input" readonly="">AM oder in die AM-Versorgung nach § 31 SGB V einbezogenes Produkt (00)</textarea></div></div></div><div class="row g-1"><div class="col-1"><div class="input-container"><label>Position</label><div class="text-input">1 
+          
+            
+              
+              
+            
+            
+          
+          
+            
+              
+              
+            
+            
+              
+              
+            
+          
+        </div></div></div><div class="col-1"><div class="input-container"><label>ASK-Nr</label><div class="text-input" style="font-weight: bold;">23816</div></div></div><div class="col-6"><div class="input-container"><label>Wirkstoffname</label><div class="text-input" style="font-weight: bold;">Simvastatin</div></div></div><div class="col-4"><div class="input-container"><label>Wirkstärke</label><div class="text-input">20 mg / 1 Filmtbl.</div></div></div></div><div class="row g-1"><div class="col-4"><div class="input-container"><label>Darreichungsform</label><textarea id="resize_ta12" class="text-input" rows="auto" readonly="">Tabletten</textarea></div></div><div class="col-4"><div class="input-container"><label>Packungsgroesse nach N-Bezeichnung</label><div class="text-input">Normgrösse (N3)
+                                                </div></div></div></div><div class="row g-1"><div class="col"><div class="input-container"><label>Dosierung</label><div class="text-input">Dosierung laut schriftlicher Dosierungsanweisung oder laut Medikationsplan</div></div></div></div></div></div></div><p align="right">Instanzversion:
+                <b>1.4</b> PRF.NR.:<b>Y/410/2107/36/999</b>
+                Stylesheet: <b>v1.6</b></p></div></body>
