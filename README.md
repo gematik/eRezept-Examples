@@ -41,6 +41,8 @@ This folder contains artifacts for a given usecase which can be identified via f
 * dispense information for ePrescription Service
 * dispense information for billing
 
+Please see [E2E-Readme](./End-to-End-Examples/Readme.md) for further details.
+
 #### Standalone-Examples
 This folder is a collection of examples that are published on the simplifier.net websites of the respective projects and contain various examples that the IG-creators provided.
 
