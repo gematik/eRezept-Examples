@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Parameters xmlns="http://hl7.org/fhir">
+    <id value="0c1f9234-30fc-49f4-bd47-13d105129aa8"/>
+    <meta>
+        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.5"/>
+        <tag>
+            <display value="Beispiel MedicationDispense PZN Bsp 34"/>
+        </tag>
+        <tag>
+            <display value="ACHTUNG! Der fachlich korrekte Inhalt der Beispielinstanz kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge."/>
+        </tag>
+    </meta>
+    <parameter>
+        <name value="rxDispensation"/>
+        <part>
+            <name value="medicationDispense"/>
+            <resource>
+                <MedicationDispense>
+                    <id value="de992007-6349-4bba-b68e-3c257ca1fa57"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.5"/>
+                    </meta>
+                    <identifier>
+                        <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                        <value value="160.040.473.209.886.22"/>
+                    </identifier>
+                    <status value="completed"/>
+                    <medicationReference>
+                        <reference value="urn:uuid:51a91baa-7769-48c1-a6f5-21f6ed8ebcb1"/>
+                    </medicationReference>
+                    <subject>
+                        <identifier>
+                            <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                            <value value="K220645120"/>
+                        </identifier>
+                    </subject>
+                    <performer>
+                        <actor>
+                            <identifier>
+                                <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                                <value value="3-07.2.1234560000.10.789"/>
+                            </identifier>
+                        </actor>
+                    </performer>
+                    <quantity>
+                        <value value="2"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="{Package}"/>
+                    </quantity>
+                    <whenHandedOver value="2025-10-19"/>
+                    <substitution>
+                        <wasSubstituted value="false"/>
+                    </substitution>
+                </MedicationDispense>
+            </resource>
+        </part>
+        <part>
+            <name value="medication"/>
+            <resource>
+                <Medication>
+                    <id value="51a91baa-7769-48c1-a6f5-21f6ed8ebcb1"/>
+                    <meta>
+                        <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.5"/>
+                    </meta>
+                    <code>
+                        <coding>
+                            <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                            <code value="03935613"/>
+                        </coding>
+                        <text value="P DRAGEES blau"/>
+                    </code>
+                    <form>
+                        <coding>
+                            <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                            <code value="UTA"/>
+                            <display value="Überzogene Tabletten"/>
+                        </coding>
+                    </form>
+                    <amount>
+                        <numerator>
+                            <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                                <valueString value="100"/>
+                            </extension>
+                            <unit value="St"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                        </denominator>
+                    </amount>
+                    <ingredient>
+                        <itemCodeableConcept>
+                            <text value="keine Angabe"/>
+                        </itemCodeableConcept>
+                        <strength>
+                            <numerator>
+                                <value value="0"/>
+                                <unit value="k.A."/>
+                            </numerator>
+                            <denominator>
+                                <value value="0"/>
+                                <unit value="k.A."/>
+                            </denominator>
+                        </strength>
+                    </ingredient>
+                    <batch>
+                        <lotNumber value="A9876543210123-45678"/>
+                    </batch>
+                </Medication>
+            </resource>
+        </part>
+    </parameter>
+</Parameters>
