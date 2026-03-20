@@ -25,7 +25,7 @@
                     </extension>
                     <extension url="http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta">
                         <extension url="algorithmVersion">
-                            <valueString value="1.0.0"/>
+                            <valueString value="1.0.1"/>
                         </extension>
                         <extension url="language">
                             <valueCode value="de-DE"/>
@@ -58,6 +58,9 @@
                         <unit value="Packung"/>
                     </quantity>
                     <whenHandedOver value="2026-07-19"/>
+                    <!--dosageInstruction>  ==> v1.5 oder als Freitext -> Achtung übernahme in renderedDosageInstruction
+                        <text value="2-0-0-0"/>
+                    </dosageInstruction-->
                     <dosageInstruction> <!-- nur angeben, wenn geändert/korrigiert durch Apotheke -->
                         <timing>
                             <repeat>
@@ -77,7 +80,7 @@
                         </doseAndRate>
                     </dosageInstruction>
                     <substitution> <!-- "Austausch/ersetzen des Arzneimittels bei Abgabe" z.B.: Wenn bei einer PZN Verordnung die abgegebene PZN nicht der verordneten entspricht. -->
-                        <wasSubstituted value="false"/>
+                        <wasSubstituted value="true"/>
                     </substitution>
                 </MedicationDispense>
             </resource>

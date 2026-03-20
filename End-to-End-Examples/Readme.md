@@ -1,4 +1,4 @@
-## FHIR-Beispiele zum E-Rezept (Profile zum 01.10.2025)
+## FHIR-Beispiele zum E-Rezept (Profile zum 01.07.2026)
 
 Die Dateien im Ordner `End-to-End-Examples` sind Beispiele der DAV für die bei der Verarbeitung von E-Rezepten auftretenden Dateien in der Apotheke und dem Apothekenrechenzentrum. Es wurde darauf geachtet, dass die zu einem Beispiel gehörenden Dateien fachlich und technisch zusammenpassen und soweit wie möglich realistische Informationen enthalten.
 
@@ -13,7 +13,7 @@ Die Dateien im Ordner `End-to-End-Examples` sind Beispiele der DAV für die bei 
 ### Beispielerstellung
 
 Auf Grund verschiedener Versionen der Profile, wurden die Beispiele entsprechend der Profil-Version und des Instanzdatums (Instanz-Gültigkeitskontrolle) angepasst. Die fachlichen Daten der Instanzen wurden nicht aktualisiert (z.B. Preise/Rabattverträge).  
-Der "main" Branch enthält den aktuellsten Stand. Beispiele entsprechender Profilversionen sind in den Branches "2021-07-01", "2022-01-01", "2022-07-01", "2023-07-01", "2024-11-01", "2025-10-15" und "2025-10-01" zu entnehmen.
+Der "main" Branch enthält den aktuellen Stand. Beispiele entsprechender Profilversionen sind in den Branches (z.B.: "2021-07-01", "2022-01-01", etc.) zu entnehmen.
 
 <span style="color:red"> Der fachlich korrekte Inhalt der Beispielinstanzen kann nicht gewährleistet werden. Wir sind jederzeit dankbar für Hinweise auf Fehler oder für Verbesserungsvorschläge.</span>
 
@@ -62,8 +62,8 @@ Das Zertifikat für die Signierung ist selbst erzeugt und mathematisch gültig, 
 *Im Ordner "TA7_Sammelrechnung_Bundle-proKasse" wurden mehrere Beispiele (Techniker-Krankenkasse, IK-Kostenträgerreinheit) zusammengefasst und zusätzlich als Dateisplit bereitgestellt.*
 
 **<span style="color:yellow">Visualisierung der eVorordnungs- und eAbgabedaten</span>**
-- Für die Visualisierung der Verordnung wurde der von der KBV bereitgestellte Stylesheet (https://update.kbv.de/ita-update/DigitaleMuster/ERP/eRP_Stylesheet_V1.1.0.zip) verwendet. 
-- Für die Darstellung der eAbgabedaten, im Rahmen von Test oder Fehlersuche, wurde ein Stylesheet (Ordner\Stylesheet eAbgabedaten) durch den GKV-SV erstellt. **<span style="color:red">Für die korrekte und fachlich vollständige Darstellung wird keine Gewährleistung übernommen!</span>** 
+- Für die Darstellung der E-Rezeptinstanzen, wurden die Stylesheets ([Ordner\Stylesheets](https://github.com/DAV-ABDA/eRezept-Stylesheets)) genutzt. Für die korrekte und fachlich vollständige Darstellung wird keine Gewährleistung übernommen.
+- Das für die Verordnungsprüfung (P4-02) bereitgestellte Stylesheet der KBV ist unter https://update.kbv.de/ita-update/DigitaleMuster/ERP/ [eRP_Stylesheet_[Version].zip]) abrufbar. 
 
 ### ErgänzendeInformationen zu den einzelnen Beispielen
 
