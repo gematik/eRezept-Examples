@@ -1,146 +1,526 @@
-<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ERezeptAbgabedaten</title><style type="text/css" media="all">
-					@media print{
-						@page {
-								size: A4;
-								margin: 0;
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="author" content="ABDA/DAV"><link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB71BMVEUAAAD//Pz50tX////97vD/+/z97e774OL73eD73uDscHzdAA3bAADaAADjKjv509f98/TmP0786evoTVv62dz////3vsPtdYDpWGXwiZP98vP////1r7XsbHjlOUnhFSjiIjTqX2z1sLf////////ugIrkMkLlOEjvg43////pVmTjKDrgDyPmQlH74uTpVmPvgozrYm/hFyrmO0v73d/pWWftdoH2trzjKjvmPEv73eD2t73wj5nscHvtd4LvhI7jJDbueoTtcn7xk5zpVWPkLj/lNEXmPk7hFSjmPEv62Nvzo6vrYm7lOUnugIv3wMXjKjvhGSvqXGn1rrX74uXue4bkL0Dtd4L1tbvjKDnhGSvvhY/2t73mQVHlM0TymKD50NToTVzmQlL3wMX6297ymKHqXmzkLj/nSVfynKT2vcPrZXHiIjTjJTfwjJb////0qrHsanbsbXn3wMX++/vwiJLvg4397u/fCR3gESTfBxvfBxzgDiLfCBzfDSDfBhvgEiXkMEDnQ1LlN0fnR1bjJDbqWmjkM0PufYfwjpfufIbvgozqXWrhGy3fCx/gEybnRFP1srj2vcPufonjKzzgDyLeBBjjKTvsb3rhGi3eBBnkLj/tc37iHTDlOEjpVmTiHjDfDCDhFSjgECP///95m2A4AAAAeHRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAADLpHYcg0GN5Lg/veqMgECgu/kcAW0+/7cG7Sfqv3dHLNwNPLdHDRu06+N+H9/a/H76uD94iRY5Px/RvP8sDkNcutxM/L+mm7t7lEfzdQrEUup7c1LJZ/2914IRK+tJwp0nwwtze6SAAAAAWJLR0QDEQxM8gAAAAd0SU1FB+gKAgoaARzHrP4AAAD1SURBVBjTY2AAAUZRMXEJSSkmZjCPmUVaRlZOvkJBUUmZFSygoqpWWVVVUV2jriHNBhLQ1KqtrdPWqa2o19VjBwvoV9Q2GBga1VYZm3CABUwbm5rNzC2qqiytOBkYuKxtbFta2+zsHaAC3I7tHZ1d3T29fRUQAR6n/gkTJ02eUlsBFeB1mjpt+oyZs6pqoQJ8zi6us+fMdXP3qK3y9OJnEFDx9vGdN3+Bn39AVW1gUDBDSGhYbdXCmkXhEZFVFVVR0QwxsX1VFbUVcfEJiZXVFUnJDCmpaemL+zMyRQWzsnNy83gZmIXyCwqLioWZmUVKSsvK2QFueUtyDUTGcgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0xMC0wMlQxMDoyNjowMSswMDowMNzwyJMAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMTAtMDJUMTA6MjY6MDErMDA6MDCtrXAvAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC"><style>
+                        @charset "UTF-8";
+
+                        /* Minimales optimiertes Bootstrap Grid System v5.3.0 (https://getbootstrap.com/)
+                        * Copyright 2011-2023 The Bootstrap Authors
+                        * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) */
+                        :root {
+                            --bs-body-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                            --bs-body-font-size: 1rem;
+                            --bs-body-font-weight: 400;
+                            --bs-body-line-height: 1.5;
+                            --bs-body-color: #212529;
+                            --bs-body-bg: #fff;
+                            --bs-heading-color: inherit;
+                            --bs-border-width: 1px;
+                        }
+
+                        *,
+                        ::after,
+                        ::before {
+                            box-sizing: border-box;
+                        }
+
+                        body {
+                            margin: 0;
+                            font-family: var(--bs-body-font-family);
+                            font-size: var(--bs-body-font-size);
+                            font-weight: var(--bs-body-font-weight);
+                            line-height: var(--bs-body-line-height);
+                            color: var(--bs-body-color);
+                            background-color: var(--bs-body-bg);
+                            -webkit-text-size-adjust: 100%;
+                            -webkit-tap-highlight-color: transparent;
+                        }
+
+                        hr {
+                            margin: 1rem 0;
+                            color: inherit;
+                            border: 0;
+                            border-top: var(--bs-border-width) solid;
+                            opacity: .25;
+                        }
+
+                        h1, h4 {
+                            margin-top: 0;
+                            margin-bottom: .5rem;
+                            font-weight: 500;
+                            line-height: var(--bs-body-line-height);
+                        }
+
+                        h1 {
+                            font-size: calc(1.375rem + 1.5vw);
+                        }
+
+                        @media (min-width:1200px) {
+                            h1 {
+                                font-size: 2.5rem;
+                            }
+                        }
+
+                        h4 {
+                            font-size: calc(1.275rem + .3vw);
+                        }
+
+                        @media (min-width:1200px) {
+                            h4 {
+                                font-size: 1.5rem;
+                            }
+                        }
+
+                        label {
+                            display: inline-block;
+                        }
+
+                        input,
+                        textarea {
+                            margin: 0;
+                            font-family: inherit;
+                            font-size: inherit;
+                            line-height: inherit;
+                        }
+
+                        textarea {
+                            resize: vertical;
+                        }
+
+                        .row {
+                            --bs-gutter-x: 1.5rem;
+                            --bs-gutter-y: 0;
+                            display: flex;
+                            flex-wrap: wrap;
+                            margin-top: calc(-1 * var(--bs-gutter-y));
+                            margin-right: calc(-.5 * var(--bs-gutter-x));
+                            margin-left: calc(-.5 * var(--bs-gutter-x));
+                        }
+
+                        .row>* {
+                            flex-shrink: 0;
+                            width: 100%;
+                            max-width: 100%;
+                            padding-right: calc(var(--bs-gutter-x) * .5);
+                            padding-left: calc(var(--bs-gutter-x) * .5);
+                            margin-top: var(--bs-gutter-y);
+                        }
+
+                        .col {
+                            flex: 1 0 0%;
+                        }
+
+                        .col-1 {
+                            flex: 0 0 auto;
+                            width: 8.33333333%;
+                        }
+
+                        .col-2 {
+                            flex: 0 0 auto;
+                            width: 16.66666667%;
+                        }
+
+                        .col-3 {
+                            flex: 0 0 auto;
+                            width: 25%;
+                        }
+
+                        .col-4 {
+                            flex: 0 0 auto;
+                            width: 33.33333333%
+                        }
+
+                        .col-5 {
+                            flex: 0 0 auto;
+                            width: 41.66666667%
+                        }
+
+                        .col-6 {
+                            flex: 0 0 auto;
+                            width: 50%;
+                        }
+
+                        .col-8 {
+                            flex: 0 0 auto;
+                            width: 66.66666667%;
+                        }
+
+                        .col-9 {
+                            flex: 0 0 auto;
+                            width: 75%;
+                        }
+
+                        .col-10 {
+                            flex: 0 0 auto;
+                            width: 83.33333333%;
+                        }
+
+                        .col-12 {
+                            flex: 0 0 auto;
+                            width: 100%;
+                        }
+
+                        .g-0 {
+                            --bs-gutter-x: 0;
+                            --bs-gutter-y: 0;
+                        }
+
+                        .g-1 {
+                            --bs-gutter-x: 0.25rem;
+                            --bs-gutter-y: 0.25rem;
+                        }
+
+                        .g-2 {
+                            --bs-gutter-x: 0.5rem;
+                            --bs-gutter-y: 0.5rem;
+                        }
+
+                        @media (min-width:768px) {
+                            .col-md-6 {
+                                flex: 0 0 auto;
+                                width: 50%;
+                            }
+                        }
+
+                        .border-1 {
+                            border-width: 1px !important;
+                        }
+                        /* Bootstrap Ende */
+                    </style><style>
+                    /* Internes Stylesheet */
+                    /* Globale Variablen */
+                    :root{
+                        --background-color-ges: #ffffff;
+                        --border-background-color-ges: #d8c5ff; /* #F7B8CA; */
+                        --text-color-ges: #9f6dff; /* #bf5473; */
+                        --text-color-inputs: #000000;
+
+                        --background-stripes-color: #e9e9e9;
+                        --outter-div-bg-color: #F7B8CA;
+                        --background-color-int: var(--border-background-color-ges);
+                        --border-background-color-int: var(--border-background-color-ges);
+                    }
+
+                    body {
+                        width: 210mm;
+                        max-width: 210mm;
+                        min-width: 210mm;
+                        left:0;
+                        top: 0;
+                        margin: 0px;
+                        padding: 5mm;
+                        font-size: 12px;
+                        font-family: Arial, sans-serif;
+                        /*
+                        background: repeating-linear-gradient(
+                            135deg,
+                            var(--background-stripes-color),
+                            var(--background-stripes-color) 10px,
+                            transparent 10px,
+                            transparent 20px
+                        );
+                        */
+                    }
+
+                    .background-container-ges{
+                        background-color: var(--background-color-ges);
+                        border: 1px solid var(--border-background-color-ges);
+                        /*
+                        color: var(--text-color-ges);
+                        */
+                    }
+
+                    h1 {
+                        font-size: large;
+                        font-weight: bold;
+                    }
+
+                    h4 {
+                        margin-top: 2mm;
+                        color:var(--text-color-ges);
+                        font-size: medium;
+                        font-weight: bold;
+                        padding-bottom: 0px;
+                        margin-bottom: 0px;
+                    }
+
+                    input {
+                        border: 1px solid #c3c3c3;
+                        outline: none;
+                    }
+
+                    .input-container {
+                        position: relative;
+                        width: 100%;
+                    }
+
+                    .input-container label {
+                        position: absolute;
+                        top: -0px;
+                        left: 0px;
+                        padding: 0 5px;
+                        font-size: 10px;
+                        color: var(--text-color-ges);
+                        z-index: 1;
+                    }
+
+                    .text-input, .hzp{
+                        font-family: Consolas, sans-serif;
+                        height: 10mm;
+                        width: 100%;
+                        text-align: left;
+                        border: 1px solid var(--text-color-ges);
+                        box-shadow: none;
+                        appearance: none;
+                        outline: none;
+                        background-color: var(--background-color-ges);
+                        padding-top: 14px;
+                        padding-left: 10px;
+                        color: var(--text-color-inputs);
+                    }
+
+                    /* Textarea mit dynamischer Höhenanpassung */
+                    textarea.text-input {
+                        font-family: Consolas, sans-serif;
+                        height: auto;
+                        text-align: left;
+                        border: 1px solid var(--text-color-ges);
+                        box-shadow: none;
+                        appearance: none;
+                        outline: none;
+                        background-color: var(--background-color-ges);
+                        padding-top: 14px;
+                        padding-left: 10px;
+                        color: var(--text-color-inputs);
+                        min-height: 10mm;
+                        max-height: none;
+                        resize: vertical;
+                        overflow-y: auto;
+                        outline: none;
+                        field-sizing: content;
+                        line-height: var(--bs-body-line-height);
+                    }
+
+                    textarea.text-input-fix {
+                        font-family: Consolas, sans-serif;
+                        width: 100%;
+                        text-align: left;
+                        border: 1px solid var(--text-color-ges);
+                        box-shadow: none;
+                        appearance: none;
+                        outline: none;
+                        background-color: var(--background-color-ges);
+                        padding-top: 14px;
+                        padding-left: 10px;
+                        color: var(--text-color-inputs);
+                        min-height: 10mm;
+                        max-height: none;
+                        resize: vertical;
+                        overflow-y: auto;
+                        outline: none;
+                        field-sizing: content;
+                        line-height: var(--bs-body-line-height);
+                    }
+
+                    .text-input div{
+                        margin-left: 2px;
+                    }
+
+                    [data-tooltip] {
+                      position: relative;
+                      cursor: pointer;
+                    }
+
+                    [data-tooltip]::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      /* Tooltip Styling */
+                      background-color: var(--background-color-ges);
+                      color: var(--text-color-ges);
+                      padding: 5px;
+                      border-radius: 4px;
+                      z-index: 500;
+
+                      /* Verstecken */
+                      opacity: 0;
+                      visibility: hidden;
+                      transition: opacity 0.3s;
+                    }
+
+                    [data-tooltip]:hover::after {
+                      opacity: 1;
+                      visibility: visible;
+                    }
+
+                    .intern-container{
+                        background-color: var(--background-color-int);
+                        padding:2mm;
+                    }
+
+                    .row{
+                        padding-top: 0px;
+                        padding-bottom: 3px;
+                    }
+
+                    hr{
+                        margin-top: 1mm;
+                        margin-bottom: 1mm;
+                        background-color: var(--text-color-ges);
+                    }
+
+                    .col, .col-*, .row {
+                        flex: none !important;
+                        width: auto !important;
+                    }
+
+                    .outter-div {
+                        background-color: var(--outter-div-bg-color);
+                        overflow: hidden;
+                        width: 210mm;
+                        max-width: 210mm;
+                        min-width: 210mm;
+                        padding:5mm;
+                    }
+
+                    .row .col-1-5{
+                        flex: 0 0 auto;
+                        width: 12.49%;
+                    }
+
+                    .row .col-2-5{
+                        flex: 0 0 auto;
+                        width: 20.8333333333333%;
+                    }
+
+                    .row .col-5-5{
+                        flex: 0 0 auto;
+                        width: 45.8333333333333%;
+                    }
+
+                    @media print {
+                        @page {
+                            size: A4;
+                            margin: 0;
+                        }
+                        body {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+
+                    .width-100{ width: 100%; }
+                    .padding-1{ padding: 0.5%; }
+                    .height-12mm{ height: 12mm; }
+                    .height-15mm{ height: 15mm; }
+                    .height-25mm{ height: 25mm; }
+                    .padding-bot-2{ padding-bottom: 2mm; }
+                    .vertical-align{ margin-top: 10px; }
+                    .padding-top-bot-0{ padding-top: 0px; padding-bottom: 0px; }
+                    .margin-top-minus-6px{ margin-top: -6px; }
+                    .margin-left-min-2{ margin-left: -2px; }
+                    .margin-right-min-2{ margin-right: -2px; }
+                    .margin-top-min-5{ margin-top: -5px; }
+                    .margin-top-min-6{ margin-top: -6px; }
+                    .margin-top-5{ margin-top: 5px; }
+
+                    /* Zusatzattribute Tabelle */
+                    .zusatz-attributes-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        border: 1px solid var(--text-color-ges);
+                        font-size: 10px;
+                        margin-top: 4px;
+                        background-color: var(--background-color-ges);
+                    }
+                    .zusatz-attributes-table thead {
+                        background-color: var(--background-color-ges);
+                    }
+                    .zusatz-attributes-table th {
+                        border: 1px solid var(--text-color-ges);
+                        padding: 4px 6px;
+                        text-align: left;
+                        font-weight: bold;
+                        color: var(--text-color-ges);
+                        background-color: var(--background-color-ges);
+                    }
+                    .zusatz-attributes-table td {
+                        border: 1px solid var(--text-color-ges);
+                        padding: 3px 6px;
+                        text-align: left;
+                        background-color: var(--background-color-ges);
+                    }
+                    .zusatz-attributes-table tbody tr:nth-child(odd) {
+                        background-color: transparent;
+                    }
+                    /* Dokumentationszeilen in Zusatzattribute-Tabelle */
+                    .zusatz-doc-row {
+                        background-color: transparent;
+                    }
+                    .zusatz-doc-row td {
+                        padding-left: 4.5em !important;
+                        color: #555;
+                        font-style: italic;
+                        padding-top: 2px !important;
+                        padding-bottom: 2px !important;
+                        background-color: var(--background-color-ges);
+                    }
+                    /* Internes Stylesheet Ende */
+                    </style><title>DAV Stylesheet Abgabedaten</title></head><body><div class="background-container-ges outter-div"><h1>Abgabedatensatz</h1><div class="row g-1 intern-container"><div class="col-md-1 border-1"><div class="row g-1"><div class="col-3"><div class="input-container"><label>Rezept ID</label><div class="text-input">160.100.000.000.020.79</div></div></div><div class="col-3"><div class="input-container"><label>Abgabedatum</label><div class="text-input">27.10.2025</div></div></div><div class="col-3"><div class="input-container"><label>Gesamtbetrag</label><div class="text-input">24,92 EUR</div></div></div><div class="col-3"><div class="input-container"><label>Gesamtzuzahlung</label><div class="text-input">0,00 EUR</div></div></div></div><div class="row g-1"><div class="col-4"><div class="input-container"><label>abgebende Apotheke</label><textarea class="text-input" readonly="">Adler-Apotheke</textarea></div></div><div class="col-2"><div class="input-container"><label>IKNR</label><div class="text-input">308412345</div></div></div></div><div class="row g-1"><div class="col-6"><div class="input-container"><label>Adresse</label><textarea class="text-input" readonly="">Taunusstraße 89</textarea></div></div></div><div class="row g-1"><div class="col-1"><div class="input-container"><label>PLZ</label><div class="text-input">63225</div></div></div><div class="col-4"><div class="input-container"><label>Ort</label><textarea class="text-input" readonly="">Langen</textarea></div></div><div class="col-1"><div class="input-container"><label>Land</label><div class="text-input">D</div></div></div></div></div></div><div class="intern-container background-container-ges margin-left-min-2 margin-right-min-2 margin-top-min-5"><div class="row g-1 width-100"><div class="col-12"><h4>Abrechnungszeilen</h4><div class="row g-0"><div class="col-1"><div class="input-container"><label>Pos</label><div class="text-input">1</div></div></div><div class="col-2"><div class="input-container"><label>PZN</label><div class="text-input" data-tooltip="#PZN;00407552">00407552</div></div></div><div class="col-1"><div class="input-container"><label>Faktor</label><div class="text-input">1</div></div></div><div class="col-1"><div class="input-container"><label>MwSt</label><div class="text-input">19,00</div></div></div><div class="col-2"><div class="input-container"><label>Ges.Brutto</label><div class="text-input">24,92 EUR</div></div></div><div class="col-5"><div class="input-container"><label>Kosten Versicherter</label><textarea class="text-input" readonly="">Zuzahlung           (0):  0,00 EUR</textarea></div></div></div><div class="row g-0" style="padding-top: 0px !important; margin-top: -8px !important;"><div class="col-4" style="margin-top:4px;"><div class="input-container"><label>Chargennummer(n)</label><textarea class="text-input height-15mm">A123456789-1</textarea></div></div><div class="col-8"><table class="zusatz-attributes-table"><thead><tr><th>Zusatzattribut-<br>Gruppe</th><th><br>Wert (Schlüssel)</th></tr></thead><tbody><tr><td>Markt (Grp1)</td><td>Generika (1)</td></tr><tr><td>Rabattvertragserfüllung (Grp2)</td><td>nicht relevant (0)</td></tr><tr><td>Preisgünstiges FAM (Grp3)</td><td>ja, abgegeben (1)</td></tr><tr><td>Import-FAM (Grp4)</td><td>nicht relevant (0)</td></tr></tbody></table></div></div></div></div></div><p align="right">FHIR-Instanzversion:
+                <b>1.5</b> Stylesheet: <b>v1.8</b></p></div><script>
+                
+				    function formatGermanDateTime(isoString) {
+					    if (!isoString) return '';
+						const date = new Date(isoString);
+						if (isNaN(date)) return '';
+						return date.toLocaleString('de-DE', {
+						    timeZone: 'Europe/Berlin',
+							day: '2-digit',
+							month: '2-digit',
+							year: 'numeric',
+							hour: '2-digit',
+							minute: '2-digit',
+							second: '2-digit',
+							hour12: false
+						}).replace(',', ' -');
+					}
+
+                    function formatWhenReady() {
+					    const mySelektor = ".hzp";
+                        const elementWithClass = document.querySelectorAll(mySelektor);
+
+                        let allSet = true;
+                        elementWithClass.forEach(el => {
+						    if (el) {
+							    const raw = el.textContent?.trim();
+								if (raw && raw.includes('T')) { // && !raw.includes('.')
+								    el.textContent = formatGermanDateTime(raw) + " Uhr";
+								} else if (!raw) {
+								    allSet = false;
+								}
 							}
+                        });
+						if (!allSet) {
+						    setTimeout(formatWhenReady, 50); // Retry in 50ms
+						}
 					}
-					html {
-						height: 100%;
-					}
-					body {
-						padding-left:2em;
-						padding-right:2em;
-						margin-top:1em;
-						height: 100%;
-					}
-					p {
-						
-						font-size: 16px;
-						margin:0;
-						paddin:0;
-					}
-					.in-black {
-						font-size: 7pt;
-						color: #000000;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					.tiny {
-						font-size: 7pt;
-						color: #000000;
-						font-weight: bold;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					.daten {
-						font-family: "Courier New", "Nimbus Mono L", monospace;
-						font-size: 12pt;
-					}
-					.nowrap {
-						white-space: nowrap;
-					}
-					.overflow {
-						overflow:hidden
-					}
-					.thin-space {
-						font-size: 12pt;
-						font-weight: normal;
-						font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-					}
-					
-					ul {
-						list-style-type:none;
-						margin:0;
-						padding:0;
-					}
-					#gesamtrahmen {
-						border:1px solid black;
-						
-						background-color: rgb(255, 204, 204);
-					}
-					#kaestchen_bereich_links {
-						float:left;
-						padding-top:1em;
-					}
-					.kaestchen {
-						display: inline-flex;
-						font-size:2em;
-						font-weight: normal;
-						line-height:0.7;
-						align:center;
-					}
-					.mittig {
-						text-align:center;
-					}
-					.abstand_unten {
-						margin-bottom:1em;
-					}
-					.kein_abstand, h1 {
-						margin:0;
-						padding:0;
-					}
-					.abstand_links {
-						padding-left:10px;
-					}
-					table {
-						border-collapse:collapse;
-					}
-					thead {
-						background-color:black;
-						color:rgb(255, 204, 204);
-					}
-					td {
-						vertical-align:baseline;
-						border:1px solid grey;
-					}
-					h1 {
-						font-size:18px;
-						font-weight: bold;
-					}
-					.abstand_oben {
-						margin-top:1em;
-					}
-					.schrift_grau {
-						color:grey;
-					}
-					.fliessend {
-						float:right;
-					}
-					.hg_weiss {
-						background-color:white;
-					}
-					.abstand_links {
-						margin-left:20px;
-					}
-					.abstand_oben {
-						padding-top:20px;
-					}
-				</style></head><body><div id="gesamtrahmen"><div class="fliessend"><b><u>abgebende Apotheke:</u></b><br/><b>IKNR:</b> 308412345<br/><br/>Adler-Apotheke<br/>Taunusstraße 89<br/>D
-						 
-						63225
-						 
-						Langen</div><div><p><b>Abgabeinformationen für Abgabe</b> am
-							27.01.2025<br/><br/></p><table width="80%"><thead><tr><th>Position</th><th>PZN / SKZ /<br/>HMNR</th><th>Chargen-<br/>bezeichnung</th><th>Preiskomponente</th><th>Zusatzattribute</th></tr></thead><tbody><tr><td colspan="5"><b>Abrechnungszeilen</b></td></tr><tr><td colspan="3">gesamte Abgabe</td><td>24,92 
-		EUR<p class="abstand_links">
-			Gesamtzuzahlung: 
-			0,00 
-			EUR</p></td><td> </td></tr><tr><td>1</td><td>00407552 
-				(PZN)</td><td>A123456789-1</td><td>24,92
-		 
-		EUR
-		, Menge = 
-		1
-		 
-		
-		 (MwSt: 
-		19,00)
-	<p class="abstand_links">Kosten Versicherter:<br/>0,00
-		 
-		EUR
-		 
-		Zuzahlung<br/></p><br/><p class="abstand_links"/></td><td><table width="100%"><tbody><tr><td>Markt</td><td>Generika</td></tr><tr><td>Rabattvertragserfüllung</td><td>nicht relevant</td></tr><tr><td>Preisgünstiges FAM</td><td>ja, abgegeben</td></tr><tr><td>Import-FAM</td><td>nicht relevant</td></tr></tbody></table></td></tr></tbody></table><div class="fliessend">
-							RezID: 
-							160.100.000.000.020.79
-							 Abgabedaten: 
-							1.4</div></div></div></body></html>
+					document.addEventListener('DOMContentLoaded', formatWhenReady);
+
+					function autoResizeTextarea() {
+                        const textareas = document.querySelectorAll('textarea.text-input');
+                        textareas.forEach(textarea => {
+                            // Fallback für Browser ohne field-sizing Support
+                            function adjustHeight() {
+                                textarea.style.height = 'auto';
+                                textarea.style.height = Math.max(textarea.scrollHeight, 40) + 'px';
+                            }
+                            // Initial resize
+                            adjustHeight();
+                        });
+				    }
+					document.addEventListener('DOMContentLoaded', autoResizeTextarea);
+                    // Auch bei Seitenladefertigstellung neu anpassen
+					window.addEventListener('load', () => {
+                        document.querySelectorAll('textarea.text-input').forEach(ta => {
+                            ta.style.height = 'auto';
+                            ta.style.height = Math.max(ta.scrollHeight, 40) + 'px';
+                        });
+				    });
+				
+            </script></body></html>
