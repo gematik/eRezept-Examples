@@ -193,8 +193,10 @@ files_to_copy=(
     "Communication-erp-communication-01-request-PostPatientToPharmacy.json"
     "Communication-erp-communication-02-response-PostPatientToPharmacy.json"
     "Communication-erp-communication-05-request-RezeptZuweisen.json"
-    "Communication-erp-communication-06-response-RezeptZuweisen.json"
+    "Communication-erp-communication-06-response-RezeptZuweisen.json"    
     "Bundle-erp-communication-07-response-GetMessages.json"
+    "Communication-erp-communication-09-request-MessagePharmacy.json"
+    "Communication-erp-communication-10-response-MessagePharmacy.json"
 
     "Consent-erp-consent-01-request-PostConsent.json"
     "Consent-erp-consent-02-response-PostConsent.json"
