@@ -9,4 +9,4 @@ Usage: #example
 * extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
 * insert ApoTelematikID(recipient.identifier)
 * insert GKV_Identifier(sender.identifier)
-* payload.contentString = "{ \"transactionID\": \"ABCD-EFGH-IJKL-MNOP\", \"version\": 3, \"communicationType\": \"order\", \"supplyOptionsType\": \"onPremise\", \"firstname\": \"Maximilian\", \"lastname\": \"von Muster\", \"address\": \"Bundesallee 312\", \"postcode\": \"12345\" , \"city\": \"Berlin\", \"country\": \"DE\", \"phone\": \"004916094858168\" }"
+* payload.contentString = "{ \"transactionID\": \"ABCD-EFGH-IJKL-MNOP\", \"version\": 3, \"communicationType\": \"order\", \"supplyOptionsType\": \"onPremise\", \"phone\": \"004916094858168\" }"
