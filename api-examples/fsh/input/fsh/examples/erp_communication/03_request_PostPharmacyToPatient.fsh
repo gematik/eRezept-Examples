@@ -4,4 +4,4 @@ Usage: #example
 * status = #unknown
 * insert GKV_Identifier(recipient.identifier)
 * basedOn = Reference(160.000.000.000.000.01)
-* payload.contentString = "{\"version\": 1, \"supplyOptionsType\": \"onPremise\", \"info_text\": \"Wir möchten Sie informieren, dass Ihre bestellten Medikamente zur Abholung bereitstehen. Den Abholcode finden Sie anbei.\", \"pickUpCodeHR\": \"12341234\", \"pickUpCodeDMC\": \"\", \"url\": \"\"}"
+* payload.contentString = "{\"version\": 3, \"communicationType\": \"pickupCodeHR\", \"text\": \"Wir möchten Sie informieren, dass Ihre bestellten Medikamente zur Abholung bereitstehen. Den Abholcode finden Sie anbei.\", \"pickupCodeHR\": \"12341234\", \"transactionID\": \"ABCD-EFGH-IJKL-MNOP\"}"

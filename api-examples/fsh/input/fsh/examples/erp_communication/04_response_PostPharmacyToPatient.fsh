@@ -6,4 +6,4 @@ Usage: #example
 * insert GKV_Identifier(recipient.identifier)
 * insert ApoTelematikID(sender.identifier)
 * basedOn = Reference(160.000.000.000.000.01)
-* payload.contentString = "{\"version\": 1,\"supplyOptionsType\": \"onPremise\",\"info_text\": \"Hallo, wir haben das Medikament vorraetig. Kommen Sie gern in die Filiale oder wir schicken einen Boten.\",\"url\": \"https://sonnenschein-apotheke.de\"}"
+* payload.contentString = "{\"version\": 3, \"communicationType\": \"pickupCodeHR\", \"text\": \"Wir möchten Sie informieren, dass Ihre bestellten Medikamente zur Abholung bereitstehen. Den Abholcode finden Sie anbei.\", \"pickupCodeHR\": \"12341234\", \"transactionID\": \"ABCD-EFGH-IJKL-MNOP\"}"

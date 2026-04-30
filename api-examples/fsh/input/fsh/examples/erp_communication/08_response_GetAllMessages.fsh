@@ -20,4 +20,4 @@ Usage: #inline
 * insert DateTimeStamp(sent)
 * status = #unknown
 * extension[flowType].valueCoding = https://gematik.de/fhir/erp/CodeSystem/GEM_ERP_CS_FlowType#160 "Muster 16 (Apothekenpflichtige Arzneimittel)"
-* payload.contentString = "{ \"version\": 1, \"supplyOptionsType\": \"onPremise\", \"name\": \"Dr. Maximilian von Muster\", \"address\": [ \"wohnhaft bei Emilia Fischer\", \"Bundesallee 312\", \"123. OG\", \"12345 Berlin\" ], \"phone\": \"004916094858168\" }"
+* payload.contentString = "{ \"transactionID\": \"ABCD-EFGH-IJKL-MNOP\", \"version\": 3, \"communicationType\": \"order\", \"supplyOptionsType\": \"onPremise\", \"firstname\": \"Maximilian\", \"lastname\": \"von Muster\", \"address\": \"Bundesallee 312\", \"postcode\": \"12345\" , \"city\": \"Berlin\", \"country\": \"DE\", \"phone\": \"004916094858168\" }"
