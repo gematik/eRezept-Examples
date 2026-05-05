@@ -90,6 +90,7 @@ Instance: MedicationDispense-1-2
 InstanceOf: MedicationDispense
 Usage: #inline
 * id = "160.000.000.000.000.04"
+* insert StructuredDosage("1-0-1-0")
 * medicationReference = Reference(Medication-1-2)
 * contained = Medication-1-2
 * dosageInstruction.text = "1-0-1-0"
@@ -129,6 +130,7 @@ Instance: MedicationDispense-1-3
 InstanceOf: MedicationDispense
 Usage: #inline
 * id = "160.000.000.000.000.05"
+* insert StructuredDosage("1-0-1-0")
 * medicationReference = Reference(Medication-1-3)
 * contained = Medication-1-3
 * dosageInstruction.text = "1-0-1-0"

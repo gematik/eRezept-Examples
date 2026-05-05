@@ -19,6 +19,7 @@ Usage: #inline
 * status = #completed
 * id = "200.000.000.000.000.01"
 * identifier[prescriptionID].value = "200.000.000.000.000.01"
+* insert StructuredDosage("1-0-1-0")
 * insert GKV_Identifier(subject.identifier)
 * insert ApoTelematikID(performer.actor.identifier)
 * dosageInstruction.text = "1-0-1-0"
