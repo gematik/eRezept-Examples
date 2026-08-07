@@ -1,10 +1,11 @@
 {
-  "id" : "d3c52305-45c7-4c92-a4bf-f2edb46c9ac7",
+  "id" : "20df8598-3149-486a-9531-d9b6fc50295e",
   "mainActor" : "Apotheke",
   "name" : "Löschen des E-Rezepts durch Apotheke nicht möglich, weil nicht akzeptiert",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_13", "@TESTFALL:negativ", "@AFO-ID:A_19146", "@Hauptdarsteller:Apotheke" ],
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19146" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -16,41 +17,43 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/000_Request_Parameters.xml"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.496.70",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/001_Response_Task.xml"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.147.49"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/002_document_to_sign.xml"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/003_signed_document.b64"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.496.70/$activate",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/004_Request_Parameters.xml"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.147.49/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.496.70",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/005_Response_Task.xml"
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.147.49"
     }, {
-      "operation" : "DMC for 160.000.114.328.496.70 with AccessCode 42fc196cd6071cf6843e28a997f3504d9db8197d4971ac725ddc58265d2cf352",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/006_dmc_160.000.114.328.496.70.png"
-    } ]
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/006_dmc_160.000.277.274.147.49.png",
+      "operation" : "DMC for 160.000.277.274.147.49 with AccessCode b79d07dfd8eaf93fa08864776d02c24eff3ef85fcd9e37bff6a453d76cb88c1e"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept ohne zu akzeptieren nicht löschen"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Response 403: OperationOutcome 20250805_103227",
-      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/007_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.147.49/$abort"
+    }, {
+      "file" : "Apotheke/löschen_des_e_rezepts_durch_apotheke_nicht_möglich__weil_nicht_akzeptiert/008_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_093742"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19146" ]
+  } ]
 }

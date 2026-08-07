@@ -1,10 +1,11 @@
 {
-  "id" : "166979ac-dfdd-4755-a342-779b894ebe6a",
+  "id" : "689f46e2-1951-4a33-b2bf-36d82dccb40e",
   "mainActor" : "Therapeut",
   "name" : "Psychotherapeuten dürfen keine Apothekenpflichtigen E-Rezepte erstellen",
-  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@AFO-ID:A_19225-02", "@AFO-ID:A_A_25990", "@Hauptdarsteller:Therapeut", "@TCID:ERP_EE_WF162_01" ],
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@AFO-ID:A_19225-02", "@AFO-ID:A_25990", "@Hauptdarsteller:Therapeut", "@TCID:ERP_EE_WF162_01" ],
   "feature" : "DiGA negativ Anwendungsfälle",
   "featureFile" : "diga/diga_negative_usecases",
+  "requirements" : [ "A_19225-02", "A_25990" ],
   "steps" : [ {
     "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
   }, {
@@ -14,28 +15,27 @@
   }, {
     "name" : "Dann kann der Kinderpsychotherapeut Peter Kleinschmidt der Versicherten Hanna Bäcker kein apothekenpflichtiges Rezept verschreiben"
   }, {
-    "name" : "Peter kleinschmidt check the return code",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/000_Request_Parameters.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.550.05",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/001_Response_Task.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.239.64"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000163950 on Soft-Konn",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/002_document_to_sign.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000163950 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000163950 on Soft-Konn",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/003_signed_document.b64"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000163950 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.550.05/$activate",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/004_Request_Parameters.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.239.64/$activate"
     }, {
-      "operation" : "Response 400: OperationOutcome 20250805_103609",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/005_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_apothekenpflichtigen_e_rezepte_erstellen/005_Response_OperationOutcome.xml",
+      "operation" : "Response 400: OperationOutcome 20260807_094704"
+    } ],
+    "name" : "Peter kleinschmidt check the return code"
   }, {
     "name" : "Peter kleinschmidt performable predicate"
-  } ],
-  "requirements" : [ "A_19225-02", "A_A_25990" ]
+  } ]
 }

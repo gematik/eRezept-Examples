@@ -1,0 +1,69 @@
+{
+  "id" : "ba383fa0-5ada-4814-b1d2-8ddce52389ca",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen eines Apothekenpflichtigen E-Rezeptes mit einer PZN- Kombipackung und Versicherungsverhältnissen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_03", "@TESTFALL:positiv", "@AFO-ID:A_24034", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept als Kombipackung und erstellt eine MedicationDispense mit contained Medications für die zwei enthaltenen Produkte.",
+  "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
+  "featureFile" : "GKV_PKV_MedicationVariation",
+  "requirements" : [ "A_24034" ],
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.106.75"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.106.75/$activate"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.106.75"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/006_dmc_160.000.277.274.106.75.png",
+      "operation" : "DMC for 160.000.277.274.106.75 with AccessCode 8f682bb800367724af87405ae5fad04953194f41d2bbadd6f0bd325f3f28ebaf"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtiges Medikament verschreibt:\n| Name | Freitext | PZN | Menge | Impfung | WirkstoffMenge | WirkstoffMengeEinheit | Bezugsmenge | BezugsmengeEinheit | Wirkstoffname | Darreichungsform |\n| Otowaxol Kombipackung, 10 ml | beides und so weiter | 01038246 | 2 | false | 0.15 | mg | 0.5 | L | Azelastin hydrochlorid | KPG |"
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.106.75/$accept"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/d6458143-e75e-4d60-a796-2ea1b1e88cb4"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.106.75/$close?secret=2bb03f95ab34d4153db729c1314b1125a2674e67a2eefcb5bcad383643bce44e"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a0fadd86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.106.75"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_einer_pzn__kombipackung_und_versicherungsverhältnissen/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/34cd0ae2-5d64-4bb4-b65e-d17629697bdf"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept mit den folgenden Medikamenten korrekt an Sina Hüllmann dispensiert:\n| Name | PZN | Kategorie | Normgröße | Menge | Einheit | Darreichungsform | WirkstoffmengeNum | WirkstoffEinheitNum | WirkstoffmengeDenom | WirkstoffeinheitDemon | Wirkstoffname |\n| Allergodil Augentropfen | 01038246 | 00 | N1 | 1 | Stk | KPG | 0.015 | mg | 1.5 | Tropfen | Azelastin hydrochlorid |\n| Allergodil Nasenspray | 01038246 | 00 | N1 | 1 | Stk | KPG | 0.14 | mg | 1.2 | Sprühstoß | Azelastin hydrochlorid |"
+  } ]
+}

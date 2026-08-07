@@ -1,11 +1,12 @@
 {
-  "id" : "4fd38202-051b-4679-9abe-f90157621466",
+  "id" : "57a328e5-31a4-4ed0-8ade-9365d65a8ee7",
   "mainActor" : "Apotheke",
   "name" : "Bereitstellen der Abrechnungsinformationen durch die Apotheke (WF 209)",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Direktzuweisung", "@Workflow:209", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@Versicherung:PKV", "@TCID:ERP_EE_WF209_03", "@TESTFALL:positiv", "@Hauptdarsteller:Apotheke" ],
   "description" : "Nach der erfolgreichen Dispensierung kann die Apotheke die Abrechnungsinformationen zum E-Rezept bereitstellen.",
   "feature" : "Direktzuweisung für PKV-Rezepte",
   "featureFile" : "pkv/PKV-Versicherter_WF209",
+  "requirements" : [ "A_18502", "A_18503" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -13,80 +14,91 @@
   }, {
     "name" : "Und der PKV Versicherte Günther Angermänn hat Zugriff auf seine digitale Identität"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/000_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/209.000.000.156.250.33",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/001_Response_Task.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/209.000.000.224.452.97"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/002_document_to_sign.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/003_signed_document.b64"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/209.000.000.156.250.33/$activate",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/004_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/004_Request_Parameters.xml",
+      "operation" : "POST /Task/209.000.000.224.452.97/$activate"
     }, {
-      "operation" : "Response 200: Task Task/209.000.000.156.250.33",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/005_Response_Task.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/209.000.000.224.452.97"
     }, {
-      "operation" : "DMC for 209.000.000.156.250.33 with AccessCode 89eda237f13a19bb9f7631b6706bffaa6784d6e6bccf2e5080354ae2dc618921",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/006_dmc_209.000.000.156.250.33.png"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/006_dmc_209.000.000.224.452.97.png",
+      "operation" : "DMC for 209.000.000.224.452.97 with AccessCode 09fff675f18103068d4fc0840209760ddf0a833f2fde0b923527ca80918a4f7c"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes Medikament verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name |\n| Zytostatika_WF209 |"
   }, {
-    "name" : "Angenommen der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/2bee4784-2634-4c8e-86ce-21544692c91a",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/007_Response_Bundle.json"
-    } ]
-  }, {
-    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
-    "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/2d39c8b1-0df4-4284-b464-e6c8456ba366",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/008_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/209.000.000.156.250.33/$close?secret=1609066f0d22891a8c810661e5eebd0504bbb48cf6d87bc69f01113026a3fe77",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/009_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/007_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
     }, {
-      "operation" : "Response 200: Bundle Bundle/d15a6202-0000-0000-0003-000000000000",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/010_Response_Bundle.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/1883ca88-cdcb-41c8-a4f0-3592d561758f"
+    } ],
+    "name" : "Angenommen der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/009_Request_Basic.xml",
+      "operation" : "POST /Task/209.000.000.224.452.97/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/d149c471-ab6d-4dc5-a4e3-fe35e8ded845",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/011_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/7cf158af-c182-47cf-ad7c-8ec6f8290b31"
+    } ],
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/011_Request_Parameters.xml",
+      "operation" : "POST /Task/209.000.000.224.452.97/$close?secret=b31bc4258cc9051d120194a3d98aaa32a14395f83b0ba87a2345a4b274cd4d3c"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/d1c46c03-0000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C209.000.000.224.452.97"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/6d050410-b4b1-4f94-a62e-224f893a46f5"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
   }, {
     "name" : "Und die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/012_document_to_sign.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/015_document_to_sign.xml",
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/013_signed_document.b64"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/016_signed_document.b64",
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "POST /ChargeItem?task=209.000.000.156.250.33&secret=1609066f0d22891a8c810661e5eebd0504bbb48cf6d87bc69f01113026a3fe77",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/014_Request_ChargeItem.xml"
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/017_Request_ChargeItem.xml",
+      "operation" : "POST /ChargeItem?task=209.000.000.224.452.97&secret=b31bc4258cc9051d120194a3d98aaa32a14395f83b0ba87a2345a4b274cd4d3c"
     }, {
-      "operation" : "Response 201: ChargeItem ChargeItem/209.000.000.156.250.33",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/015_Response_ChargeItem.xml"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/018_Response_ChargeItem.xml",
+      "operation" : "Response 201: ChargeItem ChargeItem/209.000.000.224.452.97"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
   }, {
     "name" : "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen für das letzte dispensierte Medikament beim Fachdienst vorliegen"
   }, {
-    "name" : "Günther angermänn performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/25964a46-4edc-4003-9c3e-7c02bf06da2e",
-      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/016_Response_Bundle.json"
-    } ]
-  } ],
-  "requirements" : [ "A_18502", "A_18503" ]
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/019_Request_Basic.json",
+      "operation" : "GET /ChargeItem/209.000.000.224.452.97"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_abrechnungsinformationen_durch_die_apotheke__wf_209_/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/c1f72bb0-b7ea-4730-bb72-196a1f437085"
+    } ],
+    "name" : "Günther angermänn performable predicate"
+  } ]
 }

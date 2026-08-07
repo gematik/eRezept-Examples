@@ -1,0 +1,120 @@
+{
+  "id" : "b1de76a8-eda4-4096-8edb-c51229f9e42c",
+  "mainActor" : "Krankenkasse",
+  "name" : "Ein Psychotherapeut verschreibt der Versicherten Hanna Bäcker ein EVDGA E-Rezept.",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_03" ],
+  "description" : "Der Kostenträger \"AOK Bremen\" akzeptiert und generiert den Freischaltcode und die Abgabeinformationen.",
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Arzt Gündüla Gunther hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.688.78"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000161759 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000161759 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.688.78/$activate"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.688.78"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/006_dmc_162.000.000.022.688.78.png",
+      "operation" : "DMC for 162.000.000.022.688.78 with AccessCode dae7fd4f6fdf6662e4408c6aa19a740d1b21fc75eb86986d38158c05b87ffccb"
+    } ],
+    "name" : "Und der Zahnarzt Gündüla Gunther der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/007_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.688.78"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/e54733c8-dc7a-4506-8ff2-018f6bb4d022"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/010_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-147a-8c38-042e-c961ec3b6936"
+    } ],
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/011_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/dc2847fb-c474-4e96-abdc-17db474ce797"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/013_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.688.78/$accept"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/2ae0ffdf-74c7-4bf7-9ad0-6cc24daf8682"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/015_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/016_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-151e-a7f0-571f-b58f0e20f895"
+    } ],
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte EVDGA E-Rezept der Versicherten Hanna Bäcker akzeptieren"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/017_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.688.78/$close?secret=395f40d8ff8a840c04ad0deceb4db6042a480dc12d370340cb3088d2811a8810"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/018_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a2a05800-0000-0000-0003-000000000000"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen kann für die letzte EVDGA der Versicherten Hanna Bäcker Abgabeinformationen mit Freischaltcode bereitstellen"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVDGA den Freischaltcode abrufen"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/019_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C162.000.000.022.688.78"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/cb676119-c866-4f19-b07b-bb037c0ee56b"
+    } ],
+    "name" : "Hanna bäcker performable predicate"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/021_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.688.78?_revinclude=AuditEvent%3Aentity.what"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/022_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/cf6bea8b-7bd6-4e92-9341-f62440ee9cc2"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/023_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.688.78"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/024_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/48b25c7e-ca5c-4b2f-87d5-70a58f304f67"
+    } ],
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVDGA Informationen im Protokoll einsehen"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/025_Request_Basic.json",
+      "operation" : "POST /Task/162.000.000.022.688.78/$abort"
+    }, {
+      "file" : "Krankenkasse/ein_psychotherapeut_verschreibt_der_versicherten_hanna_bäcker_ein_evdga_e_rezept_/026_Response_Basic.json",
+      "operation" : "Response 204: Basic 20260807_094847"
+    } ],
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann das letzte EVDGA mit dem FdV löschen"
+  } ]
+}

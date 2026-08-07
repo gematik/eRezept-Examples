@@ -1,11 +1,12 @@
 {
-  "id" : "908ae86b-d258-4dc7-b099-bb44292f4651",
+  "id" : "a0d64d53-f1c5-406c-9c75-98509773780c",
   "mainActor" : "Apotheke",
   "name" : "Einlösen des E-Rezepts nicht möglich, weil durch Apotheke zurückgegeben",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_08", "@TESTFALL:negativ", "@AFO-ID:A_18512", "@AFO-ID:A_19172", "@Hauptdarsteller:Apotheke" ],
   "description" : "Die Apotheke gibt das zugewiesene Rezept zurück. Anschließend kann sie es nicht einlösen.",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_18512", "A_19172" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -17,56 +18,61 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/000_Request_Parameters.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.491.85",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/001_Response_Task.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.142.64"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/002_document_to_sign.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/003_signed_document.b64"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.491.85/$activate",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/004_Request_Parameters.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.142.64/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.491.85",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/005_Response_Task.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.142.64"
     }, {
-      "operation" : "DMC for 160.000.114.328.491.85 with AccessCode 809f162b639f67f5eb2490fcefc3e98ba5b480e7d00bd289a848ef07b0dac64f",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/006_dmc_160.000.114.328.491.85.png"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/006_dmc_160.000.277.274.142.64.png",
+      "operation" : "DMC for 160.000.277.274.142.64 with AccessCode a971221ad45bf1f7688a933a73974454493c2bea10725ec931072dd6871beae5"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/ac6b3a0d-ed4b-48a7-b80b-03b20161fcd4",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/007_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.142.64/$accept"
+    }, {
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/ad4c6fb1-a17e-4079-86c0-459abe88f9de"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte Rezept zurückweist",
     "dumps" : [ {
-      "operation" : "Response 204: Basic 20250805_103214",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/008_Response_Basic.xml"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.142.64/$reject?secret=b2b101b459371b777cd6d5222581f9967a25a47e9822247076db278633997432"
+    }, {
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/010_Response_Basic.xml",
+      "operation" : "Response 204: Basic 20260807_093701"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte Rezept zurückweist"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept nicht dispensieren, weil sie nicht das Recht dazu hat"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.491.85/$close?secret=b00d34a6759c133577610e8257d88cc18abbf436e7e0671ff30ab55f00ca09a8",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/009_Request_Parameters.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/011_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.142.64/$close?secret=b2b101b459371b777cd6d5222581f9967a25a47e9822247076db278633997432"
     }, {
-      "operation" : "Response 403: OperationOutcome 20250805_103214",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/010_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_apotheke_zurückgegeben/012_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_093701"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_18512", "A_19172" ]
+  } ]
 }

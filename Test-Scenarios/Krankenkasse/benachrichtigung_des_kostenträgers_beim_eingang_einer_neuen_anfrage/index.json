@@ -1,0 +1,99 @@
+{
+  "id" : "af2c3995-8535-44b6-ae5f-b3ab4e0e24b1",
+  "mainActor" : "Krankenkasse",
+  "name" : "Benachrichtigung des Kostenträgers beim Eingang einer neuen Anfrage",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_13", "@TESTFALL:positiv", "@Funktionalität:Subscription", "@Hauptdarsteller:Krankenkasse" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Adelheid Ulmenwald hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.696.54"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.696.54/$activate"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.696.54"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/006_dmc_162.000.000.022.696.54.png",
+      "operation" : "DMC for 162.000.000.022.696.54 with AccessCode b086204567d7d7feedf98e7dd3c66027cae100413ecf740ab18dfacde148d1a2"
+    } ],
+    "name" : "Und der Psychotherapeut Adelheid Ulmenwald der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/007_Request_Subscription.xml",
+      "operation" : "POST /Subscription"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/008_Response_Subscription.xml",
+      "operation" : "Response 200: Subscription Subscription/3b33c2e9d56a15e8100caf742ac1b32e"
+    } ],
+    "name" : "Wenn der Kostenträger AOK Bremen sich für die Subscription Communication registriert"
+  }, {
+    "name" : "Und der Kostenträger AOK Bremen sich mit dem Subscription Service verbindet"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/009_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.696.54"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/010_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/111afc93-953b-4b98-908c-a9b6290b389b"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/011_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/012_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-1cb4-a460-4919-9e31e13ee99f"
+    } ],
+    "name" : "Und die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+  }, {
+    "name" : "Dann wird der Kostenträger AOK Bremen durch den Subscription Service informiert"
+  }, {
+    "name" : "Aok bremen performable predicate"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/013_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/01ed920a-48e8-4ce1-b9a4-ec49815fffa9"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/015_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.696.54/$accept"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/016_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/43c78363-e5ef-440e-bd08-eb9ada09319c"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/017_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/018_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-1d72-d7c8-a5e5-5e6cba1f4c09"
+    } ],
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte EVDGA E-Rezept der Versicherten Hanna Bäcker akzeptieren"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/019_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.696.54/$close?secret=e85feb01b3c91300ac0b30f548e90c8dcffa639163e44ecb5cf37bce624d0eee"
+    }, {
+      "file" : "Krankenkasse/benachrichtigung_des_kostenträgers_beim_eingang_einer_neuen_anfrage/020_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a2a85800-0000-0000-0003-000000000000"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen kann für die letzte EVDGA der Versicherten Hanna Bäcker Abgabeinformationen mit Freischaltcode bereitstellen"
+  } ]
+}

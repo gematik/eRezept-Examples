@@ -1,0 +1,66 @@
+{
+  "id" : "3207cf91-c8f6-43e3-9b06-c6f801a4c4af",
+  "mainActor" : "Apotheke",
+  "name" : "Einstellen eines Apothekenpflichtigen E-Rezeptes mit mit menschenlesbaren Dosierungsanweisungen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_D_DGMP_04", "@TESTFALL:positiv", "@Hauptdarsteller:Apotheke" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept.",
+  "feature" : "Apothekenpflichtige Verordnung für Versicherte mit dgMP",
+  "featureFile" : "StrukturierteDosierung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.212.48"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.212.48/$activate"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.212.48"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/006_dmc_160.000.277.274.212.48.png",
+      "operation" : "DMC for 160.000.277.274.212.48 with AccessCode 5dac0a244d78f1dae72f930a1f6406dd3ce9b2d6662529dd383a1d8477e571d1"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtiges Medikament verschreibt:\n| status | PZN | renderedDosageInstruction | frequency | period | periodUnit | dayOfWeek | when | value | unit |\n| unknown | 00766713 | montags 1-0-1-0 Stück; freitags 1-0-1-0 Stück | 4 | 1 | wk | mon fri | MORN EVE | 1 | Stück |"
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.212.48/$accept"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/d81ad84b-c820-4b00-86cc-c84c041179b2"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.212.48/$close?secret=a00aa205a8166e8736e70dc36129d54a4ff4e0936ef4f47e38fb83e7f8b3ab64"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a064de86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.212.48"
+    }, {
+      "file" : "Apotheke/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/9b312c0b-1770-4ad0-a7ad-60c1b2113aeb"
+    } ],
+    "name" : "Wenn die Apotheke das letzte akzeptierte E-Rezept mit den folgenden Medikamenten korrekt an Sina Hüllmann dispensiert:\n| Name | PZN | frequency | period | periodUnit | dayOfWeek | when | value | unit |\n| RAMIPRIL-1A Pharma 5 mg Tabletten neu | 00766759 | 4 | 1 | wk | mon fri | MORN EVE | 1 | Stück |"
+  } ]
+}

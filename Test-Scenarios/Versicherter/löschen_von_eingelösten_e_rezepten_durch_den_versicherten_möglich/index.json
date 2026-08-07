@@ -1,10 +1,11 @@
 {
-  "id" : "b331415f-e074-4b89-a373-5f27d23568d4",
+  "id" : "223bb21d-b4b6-4b4d-9ab1-f7466a237bbd",
   "mainActor" : "Versicherter",
   "name" : "Löschen von eingelösten E-Rezepten durch den Versicherten möglich",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_15", "@TESTFALL:negativ", "@Hauptdarsteller:Versicherter" ],
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -16,52 +17,64 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/000_Request_Parameters.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.498.64",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/001_Response_Task.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.150.40"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/002_document_to_sign.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/003_signed_document.b64"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.498.64/$activate",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/004_Request_Parameters.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.150.40/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.498.64",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/005_Response_Task.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.150.40"
     }, {
-      "operation" : "DMC for 160.000.114.328.498.64 with AccessCode 9bfd0a3e8bbb6d2c7f37b0fa4a6037c718e2072e5affb09fa6f17a92b11c4d78",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/006_dmc_160.000.114.328.498.64.png"
-    } ]
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/006_dmc_160.000.277.274.150.40.png",
+      "operation" : "DMC for 160.000.277.274.150.40 with AccessCode d4cca0994f2e689d7e195d0cbcb6fb3a2ce160ebd56826a43b4811c364f98cdf"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/67a3c13a-5baf-432e-9d30-60533204f1ef",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/007_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.498.64/$close?secret=1cecd12d17d63ff1d3b3b4419d9433a674e04f8b55e84573b40353ac34021eff",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/008_Request_Parameters.xml"
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.150.40/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a0b283d0-0600-0000-0003-000000000000",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/009_Response_Bundle.xml"
-    } ]
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/b7e9cdde-da2a-4e6c-8388-9f43ff99263f"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht",
     "dumps" : [ {
-      "operation" : "Response 204: Basic 20250805_103232",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/010_Response_Basic.json"
-    } ]
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.150.40/$close?secret=9af291a9f5affa592163fe2bc187205d3f0eac10ab46115790585656ae0fed96"
+    }, {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a026de86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.150.40"
+    }, {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/ea0c2cd8-0d96-4bf6-bda0-340b51954328"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/013_Request_Basic.json",
+      "operation" : "POST /Task/160.000.277.274.150.40/$abort"
+    }, {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/014_Response_Basic.json",
+      "operation" : "Response 204: Basic 20260807_093832"
+    } ],
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht"
   }, {
     "name" : "Und hat der Versicherte Sina Hüllmann genau 1 Medikamente erhalten"
   }, {
@@ -69,11 +82,13 @@
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann ihr letztes gelöschte E-Rezept nicht mehr angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 410: OperationOutcome 20250805_103232",
-      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/011_Response_OperationOutcome.json"
-    } ]
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503" ]
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/015_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.150.40"
+    }, {
+      "file" : "Versicherter/löschen_von_eingelösten_e_rezepten_durch_den_versicherten_möglich/016_Response_OperationOutcome.json",
+      "operation" : "Response 410: OperationOutcome 20260807_093832"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
+  } ]
 }

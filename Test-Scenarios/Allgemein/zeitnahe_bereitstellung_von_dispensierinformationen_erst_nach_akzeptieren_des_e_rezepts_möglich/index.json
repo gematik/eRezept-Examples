@@ -1,5 +1,5 @@
 {
-  "id" : "1844833d-c647-435d-8eb1-ad12fea403b9",
+  "id" : "4706e52c-5c4e-4e94-80ec-ea6efd1384df",
   "name" : "Zeitnahe Bereitstellung von Dispensierinformationen erst nach akzeptieren des E-Rezepts möglich",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_05", "@TESTFALL:positiv" ],
   "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
@@ -11,51 +11,54 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/000_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.542.29",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/001_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.230.91"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/002_document_to_sign.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/003_signed_document.b64"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.542.29/$activate",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/004_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.230.91/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.542.29",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/005_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.230.91"
     }, {
-      "operation" : "DMC for 160.000.114.328.542.29 with AccessCode 8b530a45537bc8043f00c38cb217b91c4429d8da7659a26f5973e2723d0bb9a4",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/006_dmc_160.000.114.328.542.29.png"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/006_dmc_160.000.277.274.230.91.png",
+      "operation" : "DMC for 160.000.277.274.230.91 with AccessCode d2dfce2e1df3526ec06f23442dd49493d38d15ae836b6a3cd12c061aa4be5619"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/ebf3b0f5-ff35-49b2-83b9-05333672383a",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/007_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.230.91"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/700f4be4-6d79-4a2c-91a4-255f98291338"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
     "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst nicht akzeptiert"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen für das letzte E-Rezept von Sina Hüllmann keine Dispensierinformationen zeitnah bereitstellen"
   }, {
-    "name" : "Am flughafen performable predicate",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.542.29/$dispense",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/008_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.230.91/$dispense"
     }, {
-      "operation" : "Response 403: OperationOutcome 20250805_103554",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/009_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_erst_nach_akzeptieren_des_e_rezepts_möglich/010_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094631"
+    } ],
+    "name" : "For Am Flughafen: Then response of dispense medication without acceptance should be (true)"
   } ]
 }

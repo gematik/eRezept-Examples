@@ -1,11 +1,12 @@
 {
-  "id" : "0bd5d94d-2a46-403f-a153-4f201413f67d",
+  "id" : "43e23512-15cb-4886-9290-a599abc4c517",
   "mainActor" : "Versicherter",
   "name" : "Zuweisung an sich selbst nicht möglich",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_05", "@TESTFALL:negativ", "@AFO-ID:A_20231", "@Hauptdarsteller:Versicherter" ],
   "description" : "Der E-Rezept-Fachdienst muss eine Nachricht mit Empfänger gleich Absender ablehnen",
   "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
   "featureFile" : "GKV_WF_160/Communication",
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20231" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -15,45 +16,47 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/000_Request_Parameters.xml"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.482.15",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/001_Response_Task.xml"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.118.39"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/002_document_to_sign.xml"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/003_signed_document.b64"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.482.15/$activate",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/004_Request_Parameters.xml"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.118.39/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.482.15",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/005_Response_Task.xml"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.118.39"
     }, {
-      "operation" : "DMC for 160.000.114.328.482.15 with AccessCode a5504fe5d8f2b22367b71f18ec639f4b0d9d5cd3cbd5ed5bf8a7388f6feaa633",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/006_dmc_160.000.114.328.482.15.png"
-    } ]
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/006_dmc_160.000.277.274.118.39.png",
+      "operation" : "DMC for 160.000.277.274.118.39 with AccessCode aa032eaa26d74a356c3b11a1d1aba53df8122586817b8898862860af2bee4745"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
     "name" : "Dann kann die Versicherte Sina Hüllmann ihr letztes E-Rezept nicht per Nachricht an den Vertreter Sina Hüllmann schicken"
   }, {
-    "name" : "Sina hüllmann check the return code",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/2baf074c-a7b0-4ce9-944d-c95bbddd5cdf",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/007_Response_Bundle.json"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.118.39"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/008_Request_Communication.json"
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/8f8c5345-c7da-4221-b956-87955f45124d"
     }, {
-      "operation" : "Response 400: OperationOutcome 20250805_103148",
-      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/009_Response_OperationOutcome.json"
-    } ]
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Versicherter/zuweisung_an_sich_selbst_nicht_möglich/010_Response_OperationOutcome.json",
+      "operation" : "Response 400: OperationOutcome 20260807_093453"
+    } ],
+    "name" : "Sina hüllmann check the return code"
   }, {
     "name" : "Sina hüllmann performable predicate"
-  } ],
-  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013", "A_20231" ]
+  } ]
 }

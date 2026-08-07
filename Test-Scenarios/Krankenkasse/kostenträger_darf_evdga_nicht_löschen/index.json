@@ -1,0 +1,88 @@
+{
+  "id" : "6cb8cdb3-331e-4655-b654-9bdd78b0f014",
+  "mainActor" : "Krankenkasse",
+  "name" : "Kostenträger darf EVDGA nicht löschen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_07" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.692.66"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.692.66/$activate"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.692.66"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/006_dmc_162.000.000.022.692.66.png",
+      "operation" : "DMC for 162.000.000.022.692.66 with AccessCode 12e26ecd0011f3a30faa838ce0ee054938defebcc191f5436b2f7c0c49c58ad4"
+    } ],
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/007_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.692.66"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/ef4c19a4-c7a8-421e-b562-9adb29db16ff"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/010_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-1871-5178-5cf6-f8a64c556e06"
+    } ],
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/011_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a9986587-9738-4646-9787-1cc12f7a2ae4"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/013_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.692.66/$accept"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/d4a42661-60aa-466e-a1af-f6ac65d58044"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/015_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/016_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-1914-7718-ab00-478a8d9b4d39"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen das letzte EVDGA der Versicherten Hanna Bäcker akzeptiert"
+  }, {
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte akzeptierte EVDGA nicht löschen"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/017_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.692.66/$abort?secret=b87ff7661f08581c89e3e263f9e0208762a7d8f0ee35932ed6731ca625b019e5"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_nicht_löschen/018_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094953"
+    } ],
+    "name" : "Aok bremen check the return code"
+  }, {
+    "name" : "Aok bremen performable predicate"
+  } ]
+}

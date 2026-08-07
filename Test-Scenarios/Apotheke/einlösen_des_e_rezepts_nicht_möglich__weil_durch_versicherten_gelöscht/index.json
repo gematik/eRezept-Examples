@@ -1,11 +1,12 @@
 {
-  "id" : "94ac7277-fbb6-41b4-8609-b9cfd479f0b1",
+  "id" : "1c3b9ab3-a07e-4866-b4b6-0c4c1ee1d9cd",
   "mainActor" : "Apotheke",
   "name" : "Einlösen des E-Rezepts nicht möglich, weil durch Versicherten gelöscht",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_12", "@TESTFALL:negativ", "@AFO-ID:A_19121", "@Hauptdarsteller:Apotheke" ],
   "description" : "Der Versicherte löscht das Rezept nach der Zuweisung an eine Apotheke. Die Apotheke kann es deshalb nicht akzeptieren.",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19121" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -17,47 +18,52 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/000_Request_Parameters.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.495.73",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/001_Response_Task.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.146.52"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/002_document_to_sign.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/003_signed_document.b64"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.495.73/$activate",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/004_Request_Parameters.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.146.52/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.495.73",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/005_Response_Task.xml"
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.146.52"
     }, {
-      "operation" : "DMC for 160.000.114.328.495.73 with AccessCode 6d65e7e784372f9b58eedb4f54320af4d11ed257dd89a039846ca457e6e450bd",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/006_dmc_160.000.114.328.495.73.png"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/006_dmc_160.000.277.274.146.52.png",
+      "operation" : "DMC for 160.000.277.274.146.52 with AccessCode b155707b16454d0cf51d9956b3369d9f7008fd58ca8b226ef2edf9ae8a957b43"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht",
     "dumps" : [ {
-      "operation" : "Response 204: Basic 20250805_103225",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/007_Response_Basic.json"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/007_Request_Basic.json",
+      "operation" : "POST /Task/160.000.277.274.146.52/$abort"
+    }, {
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/008_Response_Basic.json",
+      "operation" : "Response 204: Basic 20260807_093740"
+    } ],
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes E-Rezept löscht"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es nicht mehr existiert"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Response 410: OperationOutcome 20250805_103225",
-      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/008_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.146.52/$accept"
+    }, {
+      "file" : "Apotheke/einlösen_des_e_rezepts_nicht_möglich__weil_durch_versicherten_gelöscht/010_Response_OperationOutcome.xml",
+      "operation" : "Response 410: OperationOutcome 20260807_093740"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19121" ]
+  } ]
 }

@@ -1,10 +1,11 @@
 {
-  "id" : "0f27ce77-bd40-4e06-b49a-35ced83bd4fe",
+  "id" : "a6f9997d-44ab-4930-adbd-5b1dc84ff190",
   "mainActor" : "Arztpraxis",
   "name" : "Entlassrezept nicht als Mehrfachverordnung",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_05", "@AFO-ID:A_22632", "@Funktionalität:Entlassrezept", "@TESTFALL:negativ", "@Hauptdarsteller:Arztpraxis" ],
   "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
   "featureFile" : "MVO/MVO",
+  "requirements" : [ "A_22632" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -14,26 +15,25 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| KBV_Statuskennzeichen | MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| 14 | true | 4 | 1 | 0 | 90 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/000_Request_Parameters.xml"
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.520.95",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/001_Response_Task.xml"
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.188.23"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/002_document_to_sign.xml"
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/003_signed_document.b64"
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.520.95/$activate",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/004_Request_Parameters.xml"
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.188.23/$activate"
     }, {
-      "operation" : "Response 400: OperationOutcome 20250805_103511",
-      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/005_Response_OperationOutcome.xml"
-    } ]
-  } ],
-  "requirements" : [ "A_22632" ]
+      "file" : "Arztpraxis/entlassrezept_nicht_als_mehrfachverordnung/005_Response_OperationOutcome.xml",
+      "operation" : "Response 400: OperationOutcome 20260807_094304"
+    } ],
+    "name" : "Dann darf die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| KBV_Statuskennzeichen | MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| 14 | true | 4 | 1 | 0 | 90 |"
+  } ]
 }

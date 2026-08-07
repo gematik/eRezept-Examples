@@ -1,11 +1,12 @@
 {
-  "id" : "5b1ea7c2-6031-4575-93df-12db059e6a3e",
+  "id" : "10188126-6d09-4da3-b81e-ebebd311a698",
   "mainActor" : "Apotheke",
   "name" : "Dispensierung des E-Rezeptes mit unterschiedlichen Normgrößen",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:mehrereMedicationDispense", "@Versicherung:GKV", "@TCID:ERP_EE_MEHRERE_MEDICATION_DISPENSES_01", "@TESTFALL:positiv", "@AFO-ID:A_22069", "@AFO-ID:A_22070", "@Hauptdarsteller:Apotheke" ],
   "description" : "Die Apotheke dispensiert das akzeptierte E-Rezept über mehrere Packungen unterschiedlicher Größe.\n  In diesem Szenario verschreibt der Arzt eine große Packung (N3) mit 50 Stk Inhalt.\n  Die Apotheke dispensiert hingegen eine kleine (N1) Packung mit 10 Stk und zwei mittlere (N2) mit 20 Stk Inhalt.\n  Die Dispensierung der drei Packungen erzeugt nur eine Quittung.",
   "feature" : "Mehrere Medication Dispenses",
   "featureFile" : "GKV_WF_160/mehrere_MedicationDispenses",
+  "requirements" : [ "A_22069", "A_22070" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -13,46 +14,55 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer folgendes E-Rezept an die Versicherte Sina Hüllmann verschreibt:\n| Name | PZN | Substitution | Normgröße | Darreichungsform | Dosierung | Menge |\n| IBUFLAM akut | 11648419 | true | N3 | FTA | 1-0-0-1 | 50 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/000_Request_Parameters.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.514.16",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/001_Response_Task.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.168.83"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/002_document_to_sign.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/003_signed_document.b64"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.514.16/$activate",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/004_Request_Parameters.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.168.83/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.514.16",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/005_Response_Task.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.168.83"
     }, {
-      "operation" : "DMC for 160.000.114.328.514.16 with AccessCode 03767196384f49df92ee8808834663fc9e9acff9ab7e307670a564925e9002ea",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/006_dmc_160.000.114.328.514.16.png"
-    } ]
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/006_dmc_160.000.277.274.168.83.png",
+      "operation" : "DMC for 160.000.277.274.168.83 with AccessCode 2e3ad009ea060b08c2198b82271a14fc019e3ab190a6f0c1a9c3e07100e86cd5"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer folgendes E-Rezept an die Versicherte Sina Hüllmann verschreibt:\n| Name | PZN | Substitution | Normgröße | Darreichungsform | Dosierung | Menge |\n| IBUFLAM akut | 11648419 | true | N3 | FTA | 1-0-0-1 | 50 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/5fd4d5c8-3f07-4b3d-afc8-6a7c221a07d3",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/007_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke das letzte akzeptierte E-Rezept mit den folgenden Medikamenten korrekt an Sina Hüllmann dispensiert:\n| Name | PZN | Normgröße | Menge | Einheit | Darreichungsform |\n| IBUFLAM akut | 04100230 | N1 | 10 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |",
-    "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.514.16/$close?secret=5eaf5507214f649326029cb15dde66698d4c3a008e8091b9841ee53977dca90b",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/008_Request_Parameters.xml"
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.168.83/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a0c283d0-0600-0000-0003-000000000000",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/009_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/739f36d8-d35a-46b4-9d9a-3c484cd06d1c"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.168.83/$close?secret=acab0600355e16a3b4f86e312933844ea22d9544ced095de49a7a5cbafbd0def"
+    }, {
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a038de86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.168.83"
+    }, {
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/58758690-5f6a-493f-8665-eb59669e5d5e"
+    } ],
+    "name" : "Und die Apotheke das letzte akzeptierte E-Rezept mit den folgenden Medikamenten korrekt an Sina Hüllmann dispensiert:\n| Name | PZN | Normgröße | Menge | Einheit | Darreichungsform |\n| IBUFLAM akut | 04100230 | N1 | 10 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |\n| IBUFLAM akut | 04100218 | N2 | 20 | Stk | FTA |"
   }, {
     "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung für Sina Hüllmann vorliegen"
   }, {
@@ -60,11 +70,13 @@
   }, {
     "name" : "Dann kann die Versicherte Sina Hüllmann 3 Dispensierinformationen für ihr letztes E-Rezept abrufen"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/dfe120e6-ba4b-400e-87ea-617ac798c644",
-      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/010_Response_Bundle.json"
-    } ]
-  } ],
-  "requirements" : [ "A_22069", "A_22070" ]
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.168.83"
+    }, {
+      "file" : "Apotheke/dispensierung_des_e_rezeptes_mit_unterschiedlichen_normgrößen/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/432de858-1fe1-49d2-8d83-8713c11435cd"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
+  } ]
 }

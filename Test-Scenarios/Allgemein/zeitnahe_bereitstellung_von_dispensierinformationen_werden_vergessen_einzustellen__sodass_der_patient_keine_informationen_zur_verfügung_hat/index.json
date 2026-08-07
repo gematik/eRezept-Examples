@@ -1,5 +1,5 @@
 {
-  "id" : "9ce36059-0953-4bc4-a5af-64ef0d898a39",
+  "id" : "fc090665-a157-42cf-bd14-1000e14c412f",
   "name" : "Zeitnahe Bereitstellung von Dispensierinformationen werden Vergessen einzustellen, sodass der Patient keine informationen zur verfügung hat",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_07", "@TESTFALL:negativ" ],
   "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
@@ -11,50 +11,59 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/000_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.544.23",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/001_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.233.82"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/002_document_to_sign.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/003_signed_document.b64"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.544.23/$activate",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/004_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.233.82/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.544.23",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/005_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.233.82"
     }, {
-      "operation" : "DMC for 160.000.114.328.544.23 with AccessCode 75ef5d7285c525a9836958a30d064ed596c4bfba1d9a40e4104402e02495ecd9",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/006_dmc_160.000.114.328.544.23.png"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/006_dmc_160.000.277.274.233.82.png",
+      "operation" : "DMC for 160.000.277.274.233.82 with AccessCode 22285297512ee6fb41c83f76d3aecbe2ecc890b3ff4792c5bb44aee8c29af8e7"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/b5fabb9d-eaba-48dd-8f4f-56a459af5edc",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/007_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.233.82"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/db14aa28-8ba9-4e0f-ac0d-1b310a2d223c"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/54384e1c-33f3-4872-94fa-f96bd787b3e8",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/008_Response_Bundle.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.233.82/$accept"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/1782e567-93ca-45fd-bd82-11b45e823125"
+    } ],
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den Workflow nicht abschliessen",
     "dumps" : [ {
-      "operation" : "Response 403: OperationOutcome 20250805_103559",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/009_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/011_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.233.82/$close?secret=614e599db5ed259582e9c15ad487cf2c8b1501aa07d6e2470e32d4cdb39f5fc6"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_werden_vergessen_einzustellen__sodass_der_patient_keine_informationen_zur_verfügung_hat/012_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094655"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den Workflow nicht abschliessen"
   } ]
 }

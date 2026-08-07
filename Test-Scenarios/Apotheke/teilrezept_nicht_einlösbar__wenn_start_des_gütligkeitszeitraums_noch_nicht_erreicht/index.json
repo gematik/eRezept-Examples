@@ -1,10 +1,11 @@
 {
-  "id" : "6936ceb9-f6c1-4b56-863b-87a541120412",
+  "id" : "f2c9624c-5167-4cbf-9042-27cbb33607ad",
   "mainActor" : "Apotheke",
   "name" : "Teilrezept nicht einlösbar, wenn Start des Gütligkeitszeitraums noch nicht erreicht",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_07", "@AFO-ID:A_22635", "@TESTFALL:negativ", "@Hauptdarsteller:Apotheke" ],
   "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
   "featureFile" : "MVO/MVO",
+  "requirements" : [ "A_22635" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -14,49 +15,54 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 90 | 180 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/000_Request_Parameters.xml"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.525.80",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/001_Response_Task.xml"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.194.05"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/002_document_to_sign.xml"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/003_signed_document.b64"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.525.80/$activate",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/004_Request_Parameters.xml"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.194.05/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.525.80",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/005_Response_Task.xml"
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.194.05"
     }, {
-      "operation" : "DMC for 160.000.114.328.525.80 with AccessCode 2d7e485180bc5cc42ecfeb44ef721e3ac72ff90a3ecb0d1e4983497e3119fa11",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/006_dmc_160.000.114.328.525.80.png"
-    } ]
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/006_dmc_160.000.277.274.194.05.png",
+      "operation" : "DMC for 160.000.277.274.194.05 with AccessCode 2529585c710796d47fb0b489d65120cc42356819fb855c3bc7c069aad47dc017"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 90 | 180 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/ae57c768-a1bd-4f02-a0e5-aafaa7924246",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/007_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.194.05"
+    }, {
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/c9405338-9d98-4bf0-898b-2cc0ed8d742b"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es noch nicht gültig ist"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Response 403: OperationOutcome 20250805_103523",
-      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/008_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.194.05/$accept"
+    }, {
+      "file" : "Apotheke/teilrezept_nicht_einlösbar__wenn_start_des_gütligkeitszeitraums_noch_nicht_erreicht/010_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094323"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_22635" ]
+  } ]
 }

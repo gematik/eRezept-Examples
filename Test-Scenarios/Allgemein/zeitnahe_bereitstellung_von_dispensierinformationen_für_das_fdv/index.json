@@ -1,5 +1,5 @@
 {
-  "id" : "f1ff0c0c-dd0d-4202-a545-14a071a6bb17",
+  "id" : "a1eb4c7e-539f-4be0-9459-dc2aaa44277b",
   "name" : "Zeitnahe Bereitstellung von Dispensierinformationen für das FdV",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Funktionalität:ZeitnaheBereitstellung", "@Versicherung:GKV", "@TCID:ERP_EE_ZBD_01", "@TESTFALL:positiv" ],
   "feature" : "Zeitnahe Bereitstellung von Dispensierinformationen für Apothekenpflichtige Medikamente für GKV-Versicherte",
@@ -11,84 +11,102 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/000_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.538.41",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/001_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.215.39"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/002_document_to_sign.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/003_signed_document.b64"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.538.41/$activate",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/004_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.215.39/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.538.41",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/005_Response_Task.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.215.39"
     }, {
-      "operation" : "DMC for 160.000.114.328.538.41 with AccessCode 51fad1afdc9d2833098badef11b8ef1f3e8092956a88fba455d41c93e37d08f8",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/006_dmc_160.000.114.328.538.41.png"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/006_dmc_160.000.277.274.215.39.png",
+      "operation" : "DMC for 160.000.277.274.215.39 with AccessCode a1895aa426d9c86241ec63d4af29bab988bcf1a0dba02bf7d81367552f7b3388"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/b03e88a6-5b73-4e83-ba73-0037d191c4c3",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/007_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.215.39"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/1dc2882f-fc9a-49e3-8839-f1bfda44a324"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/308ac82e-1c1b-446f-be46-1421b2f1f2f8",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/008_Response_Bundle.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.215.39/$accept"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/3d9af85b-bebf-4ba8-b374-3b225ac010f0"
+    } ],
+    "name" : "Wenn die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
     "name" : "Und die Apotheke Am Flughafen für das letzte akzeptierte E-Rezept von Sina Hüllmann die Dispensierinformationen zeitnah bereitstellt"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.538.41/$dispense?secret=eb6618dec4a267c753e6a4e9378f19a7b9fc2d17a20509d36c87b6066d1b3ae1",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/009_Request_Parameters.xml"
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/011_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.215.39/$dispense?secret=f67b357b008a80a84d8193ad969086899d17eaa99d2b4bac4a02a0e1bb9b554a"
     }, {
-      "operation" : "Response 200: Bundle Bundle/8af2256b-bd4a-4309-831e-5dfa2914ec09",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/010_Response_Bundle.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/012_Response_Basic.xml",
+      "operation" : "Response 204: Basic 20260807_094459"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
   }, {
     "name" : "Dann kann die Versicherte Sina Hüllmann 1 Dispensierinformationen für ihr letztes E-Rezept abrufen"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/e5b47f58-f861-47ce-ade4-a88d3113fad6",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/011_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.215.39"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/8ba7c7b2-6519-4539-9da8-c9f60bd456a1"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann kann im FdV einsehen, dass ihr letztes E-Rezept von einer Apotheke abgegeben wurde",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/e4ac6ac4-a8de-4d23-b369-e95ce8d7da6a",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/012_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/015_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.215.39"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/016_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/72273f8b-585f-4794-9369-14f313a30f72"
+    } ],
+    "name" : "Und die Versicherte Sina Hüllmann kann im FdV einsehen, dass ihr letztes E-Rezept von einer Apotheke abgegeben wurde"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann kann im Protokoll für ihr letztes E-Rezept einsehen, dass es von der Apotheke Am Flughafen abgegeben wurde",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/98f7f9aa-7f31-4e91-b62d-5e4a3d9da266",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/013_Response_Bundle.json"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/017_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.215.39?_revinclude=AuditEvent%3Aentity.what"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/018_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/412f2d08-e417-4445-b5f9-dd5f78feaf95"
+    } ],
+    "name" : "Und die Versicherte Sina Hüllmann kann im Protokoll für ihr letztes E-Rezept einsehen, dass es von der Apotheke Am Flughafen abgegeben wurde"
   }, {
-    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den Workflow abschliessen",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/a0da83d0-0600-0000-0003-000000000000",
-      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/014_Response_Bundle.xml"
-    } ]
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/019_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.215.39/$close?secret=f67b357b008a80a84d8193ad969086899d17eaa99d2b4bac4a02a0e1bb9b554a"
+    }, {
+      "file" : "Allgemein/zeitnahe_bereitstellung_von_dispensierinformationen_für_das_fdv/020_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a067de86-1000-0000-0003-000000000000"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den Workflow abschliessen"
   }, {
     "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
   }, {

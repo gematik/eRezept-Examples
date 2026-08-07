@@ -1,11 +1,12 @@
 {
-  "id" : "87726dad-6067-4bfd-b970-34e692e9b560",
+  "id" : "30831b38-46f0-47ce-92ea-79e42018b00e",
   "mainActor" : "Apotheke",
   "name" : "E-Rezept kann nicht durch eine zweite Apotheke reserviert werden",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_11", "@TESTFALL:negativ", "@AFO-ID:A_19168", "@Hauptdarsteller:Apotheke" ],
   "description" : "Die Apotheke akzeptiert das Rezept. Anschließend versucht eine zweite Apotheke das Rezept einzulösen. Das wird durch den Fachdienst verhindert.",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19168" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -17,58 +18,63 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/000_Request_Parameters.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.494.76",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/001_Response_Task.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.145.55"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/002_document_to_sign.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/003_signed_document.b64"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.494.76/$activate",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/004_Request_Parameters.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.145.55/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.494.76",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/005_Response_Task.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.145.55"
     }, {
-      "operation" : "DMC for 160.000.114.328.494.76 with AccessCode 29e2a2614e2ff1a07c5e748e8715f9a20b2ef37c2f1b6604a8152a5ace07ddf4",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/006_dmc_160.000.114.328.494.76.png"
-    } ]
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/006_dmc_160.000.277.274.145.55.png",
+      "operation" : "DMC for 160.000.277.274.145.55 with AccessCode 5a4175168f9c1d95f31dd164fcc446786ce8e5f7ca1c2035f2afb4bd45d3752c"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Stadtapotheke via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Stadtapotheke via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/bfd8e493-49c3-4f9b-8a86-f2ec70fe1c4f",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/007_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.145.55/$accept"
+    }, {
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/2632d59d-4528-4e96-9c34-1243745d9cf9"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
     "name" : "Dann kann die Apotheke Stadtapotheke das letzte zugewiesene E-Rezept nicht beim Fachdienst akzeptieren, weil es einen Konflikt gibt"
   }, {
-    "name" : "Stadtapotheke check the return code",
     "dumps" : [ {
-      "operation" : "Response 409: OperationOutcome 20250805_103223",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/008_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/009_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.145.55/$accept"
+    }, {
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/010_Response_OperationOutcome.xml",
+      "operation" : "Response 409: OperationOutcome 20260807_093738"
+    } ],
+    "name" : "Stadtapotheke check the return code"
   }, {
     "name" : "Stadtapotheke performable predicate"
   }, {
-    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.494.76/$close?secret=1959ce6d80f4eb166de895d3138799f4303a8c6e058474ba0206900062c3f56d",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/009_Request_Parameters.xml"
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/011_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.145.55/$close?secret=7c1cbc3b52945bb49f6c441208931d30ddb84d1af080375f8fe7b115afbdf30f"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a0ae83d0-0600-0000-0003-000000000000",
-      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/010_Response_Bundle.xml"
-    } ]
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19168" ]
+      "file" : "Apotheke/e_rezept_kann_nicht_durch_eine_zweite_apotheke_reserviert_werden/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a021de86-1000-0000-0003-000000000000"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren"
+  } ]
 }

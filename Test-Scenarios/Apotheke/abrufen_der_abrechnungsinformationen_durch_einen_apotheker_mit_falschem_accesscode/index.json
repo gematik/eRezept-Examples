@@ -1,10 +1,11 @@
 {
-  "id" : "fc6039a3-9f81-49f5-95a8-609327880a71",
+  "id" : "401c75a5-95d5-47d1-b33f-55daee98c964",
   "mainActor" : "Apotheke",
   "name" : "Abrufen der Abrechnungsinformationen durch einen Apotheker mit falschem AccessCode",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_16", "@TESTFALL:negativ", "@AFO-ID:A_22611-01", "@Hauptdarsteller:Apotheke" ],
   "feature" : "Abrechnungsinformationen für PKV-Rezepte",
   "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "requirements" : [ "A_18822", "A_18827", "A_22611-01" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -12,101 +13,118 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/9ef0a110-747f-4e34-b11f-35ba9c4f397a",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/000_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/000_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/001_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/29375409-4d07-4f49-812b-cec8420adccd"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/001_Request_Parameters.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/002_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/200.000.003.558.247.83",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/002_Response_Task.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/003_Response_Task.xml",
+      "operation" : "Response 201: Task Task/200.000.005.213.923.37"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/003_document_to_sign.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/004_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/004_signed_document.b64"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/005_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/200.000.003.558.247.83/$activate",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/005_Request_Parameters.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/006_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.923.37/$activate"
     }, {
-      "operation" : "Response 200: Task Task/200.000.003.558.247.83",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/006_Response_Task.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/007_Response_Task.xml",
+      "operation" : "Response 200: Task Task/200.000.005.213.923.37"
     }, {
-      "operation" : "DMC for 200.000.003.558.247.83 with AccessCode a3de27f8073ccdd6824910a3103a811b28f5f33097c2d86683a7415fdb561d89",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/007_dmc_200.000.003.558.247.83.png"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/008_dmc_200.000.005.213.923.37.png",
+      "operation" : "DMC for 200.000.005.213.923.37 with AccessCode 4fd38855d05f88896af60c8b4fddf854f120ff8ea5a7d83bbbe948852d0fcac5"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/ec9b6a6a-a1be-4cff-b977-58ada0495e16",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/008_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/009_Request_Basic.xml",
+      "operation" : "POST /Task/200.000.005.213.923.37/$accept"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/ecf115b5-9050-44db-abac-de92c0c1cadc"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
     "dumps" : [ {
-      "operation" : "POST /Task/200.000.003.558.247.83/$close?secret=15aefdb203b980e865584f64c81399239b25cdcb3fbc44b1854e31268b87fff7",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/009_Request_Parameters.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/011_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.923.37/$close?secret=5dae9e516e4df2a63430bbe176fb5a62729d7ff488299ff0fa7bfa23445f8fc4"
     }, {
-      "operation" : "Response 200: Bundle Bundle/c8674b36-0000-0000-0003-000000000000",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/010_Response_Bundle.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/c8e38e4f-0000-0000-0003-000000000000"
     }, {
-      "operation" : "Response 200: Bundle Bundle/1646e378-e7a3-4bf4-9889-02a97b201c5c",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/011_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C200.000.005.213.923.37"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/7ac74f04-4845-4c90-85f4-801b46b30701"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
   }, {
     "name" : "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/012_document_to_sign.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/015_document_to_sign.xml",
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/013_signed_document.b64"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/016_signed_document.b64",
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "POST /ChargeItem?task=200.000.003.558.247.83&secret=15aefdb203b980e865584f64c81399239b25cdcb3fbc44b1854e31268b87fff7",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/014_Request_ChargeItem.xml"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/017_Request_ChargeItem.xml",
+      "operation" : "POST /ChargeItem?task=200.000.005.213.923.37&secret=5dae9e516e4df2a63430bbe176fb5a62729d7ff488299ff0fa7bfa23445f8fc4"
     }, {
-      "operation" : "Response 201: ChargeItem ChargeItem/200.000.003.558.247.83",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/015_Response_ChargeItem.xml"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/018_Response_ChargeItem.xml",
+      "operation" : "Response 201: ChargeItem ChargeItem/200.000.005.213.923.37"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
   }, {
     "name" : "Und der Versicherte Günther Angermänn für das letzte E-Rezept die PKV-Abrechnungsinformationen abruft"
   }, {
-    "name" : "Günther angermänn performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/8b824d43-62b9-407c-b7e4-2321c2d97c8d",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/016_Response_Bundle.json"
-    } ]
-  }, {
-    "name" : "Und der Versicherte Günther Angermänn die Apotheke Am Flughafen via Data Matrix Code zum Ändern des letzten PKV-Abgabedatensatzes berechtigt",
-    "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/de72e007-3764-4da6-826f-ae132d055fe1",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/017_Response_Bundle.json"
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/019_Request_Basic.json",
+      "operation" : "GET /ChargeItem/200.000.005.213.923.37"
     }, {
-      "operation" : "DMC for 200.000.003.558.247.83 with AccessCode 2729091a874e4b844bbc93fa5dd837e4f86a4a46327a3ec38098bb2f5b449f87",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/018_charge_item_auth_200.000.003.558.247.83.png"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/db2d8209-12ee-4faa-a8ab-ac325ccaac46"
+    } ],
+    "name" : "Günther angermänn performable predicate"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/021_Request_Basic.json",
+      "operation" : "GET /ChargeItem/200.000.005.213.923.37"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/022_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/48053c10-4fc0-4d15-971f-07d3bd34cd87"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/023_charge_item_auth_200.000.005.213.923.37.png",
+      "operation" : "DMC for 200.000.005.213.923.37 with AccessCode baa2c93b5b912c47002f4a1a1d25f9361d6e5a98e300d0f9c6c9208acfb0cb2a"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn die Apotheke Am Flughafen via Data Matrix Code zum Ändern des letzten PKV-Abgabedatensatzes berechtigt"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept den PKV-Abrechnungsinformationen nicht mit dem falschen AccessCode abc vom Fachdienst abrufen"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Response 403: OperationOutcome 20250805_104034",
-      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/019_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/024_Request_Basic.xml",
+      "operation" : "GET /ChargeItem/200.000.005.213.923.37?ac=abc"
+    }, {
+      "file" : "Apotheke/abrufen_der_abrechnungsinformationen_durch_einen_apotheker_mit_falschem_accesscode/025_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_100052"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18822", "A_18827", "A_22611-01" ]
+  } ]
 }

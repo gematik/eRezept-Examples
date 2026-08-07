@@ -1,8 +1,8 @@
 {
-  "id" : "2bab53f3-88c2-4e79-8453-4e860c52d9f4",
+  "id" : "e10e3e16-2192-4cc6-b0af-096043bd780c",
   "mainActor" : "Krankenkasse",
   "name" : "Kostenträger erklärt die Ablehnung der DiGA mit Hilfe des Fachdienstes",
-  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_11" ],
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_12" ],
   "feature" : "DiGA Anwendungsfälle",
   "featureFile" : "diga/diga_usecases",
   "steps" : [ {
@@ -12,85 +12,97 @@
   }, {
     "name" : "Angenommen der Psychotherapeut Adelheid Ulmenwald hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
   }, {
-    "name" : "Und der Psychotherapeut Adelheid Ulmenwald der Versicherten Hanna Bäcker ein EVGDA E-Rezept verschreibt",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/000_Request_Parameters.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/162.000.000.007.904.04",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/001_Response_Task.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.695.57"
     }, {
-      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konn",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/002_document_to_sign.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konn",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/003_signed_document.b64"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/162.000.000.007.904.04/$activate",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/004_Request_Parameters.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.695.57/$activate"
     }, {
-      "operation" : "Response 200: Task Task/162.000.000.007.904.04",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/005_Response_Task.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.695.57"
     }, {
-      "operation" : "DMC for 162.000.000.007.904.04 with AccessCode c8e974c72fa96b7ddc94858169c2a91749e5dd2e7a2423be96a996699898880a",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/006_dmc_162.000.000.007.904.04.png"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/006_dmc_162.000.000.022.695.57.png",
+      "operation" : "DMC for 162.000.000.022.695.57 with AccessCode 75908deeec406800e8fa24c927bd667d238ba25d6f4f0344b4ed065e929ae98a"
+    } ],
+    "name" : "Und der Psychotherapeut Adelheid Ulmenwald der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
   }, {
-    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVGDA E-Rezept ihrem Kostenträger AOK Bremen zuweist",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/b4d4352b-06a8-4c7d-9484-e771b85b9353",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/007_Response_Bundle.json"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/007_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.695.57"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/008_Request_Communication.json"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/4d95bda1-1810-4c21-8c7e-51714e57d0f5"
     }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-fb54-b2a8-0b18-994f13901ff1",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/009_Response_Communication.json"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/010_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-1a64-c4d8-8972-465bb1ba6e6a"
+    } ],
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
   }, {
-    "name" : "Und der Kostenträger AOK Bremen das letzte EVGDA der Versicherten Hanna Bäcker akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/059cf60e-eab6-412c-9c73-1df602e1806b",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/010_Response_Bundle.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/011_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
     }, {
-      "operation" : "Response 200: Bundle Bundle/4c414129-cb32-4da2-8305-4eb9e1bb6b9b",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/011_Response_Bundle.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/fb7b3dd7-b768-4f01-bc72-f70821d0c155"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/012_Request_Communication.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/013_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.695.57/$accept"
     }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-fb60-7660-6f07-b48eb48d4c9b",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/013_Response_Communication.xml"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/9a178ece-dd87-46c9-ad78-55dfac19ecfc"
+    }, {
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/015_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/016_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-1b07-bb98-7dcd-a6c126a20922"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen das letzte EVDGA der Versicherten Hanna Bäcker akzeptiert"
   }, {
-    "name" : "Und der Kostenträger AOK Bremen kann für die letzte EVGDA der Versicherten Hanna Bäcker Abgabeinformationen ohne Freischaltcode bereitstellen",
     "dumps" : [ {
-      "operation" : "POST /Task/162.000.000.007.904.04/$close?secret=8a50eebff0283031dcf49babc8b4f2ba7dd25cb3ae2c4d3521cc02ef327a674a",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/014_Request_Parameters.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/017_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.695.57/$close?secret=e8ded290e43af4b4b4d8c1ccfc99d17fcfe2629398909658f6ae39345e7a23f3"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a2e01e00-0000-0000-0003-000000000000",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/015_Response_Bundle.xml"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/018_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a2a75800-0000-0000-0003-000000000000"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen kann für die letzte EVDGA der Versicherten Hanna Bäcker Abgabeinformationen ohne Freischaltcode bereitstellen"
   }, {
-    "name" : "Dann kann der Kostenträger AOK Bremen für das letzte akzeptierte EVGDA E-Rezept der Versicherten Hanna Bäcker eine Begründung senden"
+    "name" : "Dann kann der Kostenträger AOK Bremen für das letzte akzeptierte EVDGA E-Rezept der Versicherten Hanna Bäcker eine Begründung senden"
   }, {
-    "name" : "Aok bremen check the return code",
     "dumps" : [ {
-      "operation" : "POST /Communication",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/016_Request_Communication.xml"
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/019_Request_Communication.xml",
+      "operation" : "POST /Communication"
     }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-fb66-5e18-e9d1-7c660c47de73",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/017_Response_Communication.xml"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/020_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-1b0b-6900-871a-8a1df3f25f32"
+    } ],
+    "name" : "Aok bremen check the return code"
   }, {
     "name" : "Aok bremen performable predicate"
   }, {
-    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVGDA Verordnung Informationen vom Kostenträger AOK Bremen im FdV einsehen"
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVDGA Verordnung Informationen vom Kostenträger AOK Bremen im FdV einsehen"
   }, {
-    "name" : "Hanna bäcker performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/95353264-b9d0-4087-b725-0bf6d64eacf1",
-      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/018_Response_Bundle.json"
-    } ]
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/021_Request_Basic.json",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
+    }, {
+      "file" : "Krankenkasse/kostenträger_erklärt_die_ablehnung_der_diga_mit_hilfe_des_fachdienstes/022_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/b82c7a8f-db66-4a05-ac24-24001a67d95a"
+    } ],
+    "name" : "Hanna bäcker performable predicate"
   } ]
 }

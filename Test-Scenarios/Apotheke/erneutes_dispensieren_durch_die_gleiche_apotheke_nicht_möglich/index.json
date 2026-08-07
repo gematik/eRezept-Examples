@@ -1,11 +1,12 @@
 {
-  "id" : "370b998e-9e91-4209-98d0-3bd49b2b3e1e",
+  "id" : "fbedde84-7219-4cd8-8f30-277c4e92cbb2",
   "mainActor" : "Apotheke",
   "name" : "Erneutes Dispensieren durch die gleiche Apotheke nicht möglich",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_16", "@TESTFALL:negativ", "@AFO-ID:A_19232", "@Hauptdarsteller:Apotheke" ],
   "description" : "Die Apotheke kann nach erfolgreicher Dispensierung den Task nicht noch einmal mit einem /Task/<id>/$close-Operation beenden,\n  weil der Task im Status \"completed\" ist.",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19232" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -17,59 +18,67 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/000_Request_Parameters.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.499.61",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/001_Response_Task.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.152.34"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/002_document_to_sign.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/003_signed_document.b64"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.499.61/$activate",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/004_Request_Parameters.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.152.34/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.499.61",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/005_Response_Task.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.152.34"
     }, {
-      "operation" : "DMC for 160.000.114.328.499.61 with AccessCode 4bf730f15bd35f1c883f5fbd7ece9ce7e52a259e2be3cf8643ebf631296b89ed",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/006_dmc_160.000.114.328.499.61.png"
-    } ]
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/006_dmc_160.000.277.274.152.34.png",
+      "operation" : "DMC for 160.000.277.274.152.34 with AccessCode de9efbdbf1bdcab4d3306cc69edbf41c08ec7fd187964a5c837206bc147551ac"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/ef2aa8ba-40df-4d25-922d-e9aa8beadad7",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/007_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.499.61/$close?secret=3aa8d785b558f46e43a387dd0311a953eab955ede560c55f7cc4be465c02a29c",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/008_Request_Parameters.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.152.34/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a0b383d0-0600-0000-0003-000000000000",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/009_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/82422aa0-b5c2-4982-83f9-69ef895093b8"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.152.34/$close?secret=1822c425d96e53c444547001ce534b4f6c0053319d417d1347cb5f91f16f37b0"
+    }, {
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a028de86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.152.34"
+    }, {
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/50716544-1590-49d5-b643-39a866c569cb"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte dispensierte E-Rezept nicht erneut dispensieren"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.499.61/$close?secret=3aa8d785b558f46e43a387dd0311a953eab955ede560c55f7cc4be465c02a29c",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/010_Request_Parameters.xml"
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/013_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.152.34/$close?secret=1822c425d96e53c444547001ce534b4f6c0053319d417d1347cb5f91f16f37b0"
     }, {
-      "operation" : "Response 403: OperationOutcome 20250805_103235",
-      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/011_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/erneutes_dispensieren_durch_die_gleiche_apotheke_nicht_möglich/014_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_093845"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19232" ]
+  } ]
 }

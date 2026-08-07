@@ -1,11 +1,12 @@
 {
-  "id" : "e2f72f97-027b-4fc0-ae2d-6d749b75267e",
+  "id" : "144974b8-bcec-460f-b560-0e1c3f5e6b6f",
   "mainActor" : "Versicherter",
   "name" : "Zuweisung per Nachricht",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Nachrichten", "@Versicherung:GKV", "@AFO-ID:A_18508", "@AFO-ID:A_18617", "@AFO-ID:A_18618", "@AFO-ID:A_19013", "@TCID:ERP_EE_NACHRICHTEN_01", "@TESTFALL:positiv", "@Hauptdarsteller:Versicherter" ],
   "description" : "Der Versicherte weist das gerade erhaltene E-Rezept per Nachricht einer Apotheke zu.\n  Diese kann das Rezept erfolgreich akzeptieren und einlösen.",
   "feature" : "Nachrichten zwischen Versicherten und Apotheke austauschen",
   "featureFile" : "GKV_WF_160/Communication",
+  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -15,65 +16,80 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Versicherter/zuweisung_per_nachricht/000_Request_Parameters.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.479.24",
-      "file" : "Versicherter/zuweisung_per_nachricht/001_Response_Task.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.113.54"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/zuweisung_per_nachricht/002_document_to_sign.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/zuweisung_per_nachricht/003_signed_document.b64"
+      "file" : "Versicherter/zuweisung_per_nachricht/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.479.24/$activate",
-      "file" : "Versicherter/zuweisung_per_nachricht/004_Request_Parameters.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.113.54/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.479.24",
-      "file" : "Versicherter/zuweisung_per_nachricht/005_Response_Task.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.113.54"
     }, {
-      "operation" : "DMC for 160.000.114.328.479.24 with AccessCode 28c6a32e27fc75eac4cbac1204993ea863450186f0ff6f8c6f3a76c340e874f9",
-      "file" : "Versicherter/zuweisung_per_nachricht/006_dmc_160.000.114.328.479.24.png"
-    } ]
+      "file" : "Versicherter/zuweisung_per_nachricht/006_dmc_160.000.277.274.113.54.png",
+      "operation" : "DMC for 160.000.277.274.113.54 with AccessCode 6f289e1f2b75bb783f5c9a64248fed7e7b827051af2d34cd72e22a7fa18af236"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
   }, {
-    "name" : "Wenn die Versicherte Sina Hüllmann ihr letztes E-Rezept der Apotheke Am Flughafen per Nachricht zuweist",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/8d5d89ed-7223-4e83-937d-e08c31bd1b63",
-      "file" : "Versicherter/zuweisung_per_nachricht/007_Response_Bundle.json"
+      "file" : "Versicherter/zuweisung_per_nachricht/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.113.54"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Versicherter/zuweisung_per_nachricht/008_Request_Communication.json"
+      "file" : "Versicherter/zuweisung_per_nachricht/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/88999913-1322-4274-9b6e-890d54cf240a"
     }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-e4a8-8390-587e-899fac3b241e",
-      "file" : "Versicherter/zuweisung_per_nachricht/009_Response_Communication.json"
-    } ]
+      "file" : "Versicherter/zuweisung_per_nachricht/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Versicherter/zuweisung_per_nachricht/010_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024d-dea2-94e8-2ca5-57ff3cbf1ad3"
+    } ],
+    "name" : "Wenn die Versicherte Sina Hüllmann ihr letztes E-Rezept der Apotheke Am Flughafen per Nachricht zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen die letzte Zuweisung per Nachricht von Sina Hüllmann akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/7c8fb2aa-8fad-4a91-8e6a-ec1014208508",
-      "file" : "Versicherter/zuweisung_per_nachricht/010_Response_Bundle.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/011_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
     }, {
-      "operation" : "Response 200: Bundle Bundle/629f500a-3d14-435d-a4ec-2dbe1fb5aa59",
-      "file" : "Versicherter/zuweisung_per_nachricht/011_Response_Bundle.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/850a571e-3b26-429e-996e-94bb5aeac269"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Versicherter/zuweisung_per_nachricht/012_Request_Communication.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/013_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.113.54/$accept"
     }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-e4fd-2b70-18bd-ad7191b2ee3d",
-      "file" : "Versicherter/zuweisung_per_nachricht/013_Response_Communication.xml"
-    } ]
+      "file" : "Versicherter/zuweisung_per_nachricht/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/10414412-167c-44e0-a1fb-56eaf6c49c3d"
+    }, {
+      "file" : "Versicherter/zuweisung_per_nachricht/015_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Versicherter/zuweisung_per_nachricht/016_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024d-df47-e538-f215-c612de153f50"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen die letzte Zuweisung per Nachricht von Sina Hüllmann akzeptiert"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
     "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.479.24/$close?secret=01c5ac299702d6e46484e2a5002057e88399d2424aebd433c001efec798d46c0",
-      "file" : "Versicherter/zuweisung_per_nachricht/014_Request_Parameters.xml"
+      "file" : "Versicherter/zuweisung_per_nachricht/017_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.113.54/$close?secret=f4f4ae57ccf7f878328ff9295b0b2d588fee69ca3ac2d9cbcf1b87511e61a723"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a09f83d0-0600-0000-0003-000000000000",
-      "file" : "Versicherter/zuweisung_per_nachricht/015_Response_Bundle.xml"
-    } ]
+      "file" : "Versicherter/zuweisung_per_nachricht/018_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a001de86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Versicherter/zuweisung_per_nachricht/019_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.113.54"
+    }, {
+      "file" : "Versicherter/zuweisung_per_nachricht/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/3016cf59-93e7-467c-b49f-a8b19fbe97c7"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert"
   }, {
     "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
   }, {
@@ -82,6 +98,5 @@
     "name" : "Und die Versicherte Sina Hüllmann hat genau 1 Medikament erhalten"
   }, {
     "name" : "Sina hüllmann performable predicate"
-  } ],
-  "requirements" : [ "A_18508", "A_18617", "A_18618", "A_19013" ]
+  } ]
 }
