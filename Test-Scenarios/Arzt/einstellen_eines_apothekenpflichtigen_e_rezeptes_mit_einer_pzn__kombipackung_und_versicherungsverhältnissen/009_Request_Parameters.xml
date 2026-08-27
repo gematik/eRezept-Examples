@@ -1,0 +1,171 @@
+<Parameters xmlns="http://hl7.org/fhir">
+   <id value="4b00428c-0934-4caf-b2a1-d21afbda3dc0"/>
+   <meta>
+      <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_PAR_CloseOperation_Input|1.6"/>
+   </meta>
+   <parameter>
+      <name value="rxDispensation"/>
+      <part>
+         <name value="medicationDispense"/>
+         <resource>
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+               <id value="a97dffb1-9242-4b45-80a1-668d729d9f90"/>
+               <meta>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6"/>
+               </meta>
+               <identifier>
+                  <system value="https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId"/>
+                  <value value="160.000.277.274.106.75"/>
+               </identifier>
+               <status value="completed"/>
+               <medicationReference>
+                  <reference value="58f90093-2bd7-488e-a8bf-18e4efda4381"/>
+               </medicationReference>
+               <subject>
+                  <identifier>
+                     <type>
+                        <coding>
+                           <system value="http://fhir.de/CodeSystem/identifier-type-de-basis"/>
+                           <code value="KVZ10"/>
+                        </coding>
+                     </type>
+                     <system value="http://fhir.de/sid/gkv/kvid-10"/>
+                     <value value="X110614233"/>
+                  </identifier>
+               </subject>
+               <performer>
+                  <actor>
+                     <identifier>
+                        <system value="https://gematik.de/fhir/sid/telematik-id"/>
+                        <value value="3-SMC-B-Testkarte--883110000163973"/>
+                     </identifier>
+                  </actor>
+               </performer>
+               <whenPrepared value="2026-08-07"/>
+               <whenHandedOver value="2026-08-07"/>
+               <substitution>
+                  <wasSubstituted value="true"/>
+               </substitution>
+            </MedicationDispense>
+         </resource>
+      </part>
+      <part>
+         <name value="medication"/>
+         <resource>
+            <Medication xmlns="http://hl7.org/fhir">
+               <id value="58f90093-2bd7-488e-a8bf-18e4efda4381"/>
+               <meta>
+                  <versionId value="1"/>
+                  <profile value="https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6"/>
+               </meta>
+               <contained>
+                  <Medication xmlns="http://hl7.org/fhir">
+                     <id value="da0c71da-7521-468a-af25-42880f603ec2"/>
+                     <meta>
+                        <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"/>
+                     </meta>
+                     <code>
+                        <text value="Allergodil Augentropfen"/>
+                     </code>
+                     <ingredient>
+                        <itemCodeableConcept>
+                           <coding>
+                              <system value="http://fhir.de/CodeSystem/bfarm/atc"/>
+                              <version value="2026"/>
+                              <code value="R01AC03"/>
+                              <display value="Natriumcromoglicat"/>
+                           </coding>
+                           <text value="Azelastin hydrochlorid"/>
+                        </itemCodeableConcept>
+                        <strength>
+                           <numerator>
+                              <value value="0.015"/>
+                              <unit value="mg"/>
+                           </numerator>
+                           <denominator>
+                              <value value="1.5"/>
+                              <unit value="Tropfen"/>
+                           </denominator>
+                        </strength>
+                     </ingredient>
+                  </Medication>
+               </contained>
+               <contained>
+                  <Medication xmlns="http://hl7.org/fhir">
+                     <id value="11b7950f-0404-47f8-b17b-db89c08ad389"/>
+                     <meta>
+                        <profile value="https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product"/>
+                     </meta>
+                     <code>
+                        <text value="Allergodil Nasenspray"/>
+                     </code>
+                     <ingredient>
+                        <itemCodeableConcept>
+                           <coding>
+                              <system value="http://fhir.de/CodeSystem/bfarm/atc"/>
+                              <version value="2026"/>
+                              <code value="R01AC03"/>
+                              <display value="Natriumcromoglicat"/>
+                           </coding>
+                           <text value="Azelastin hydrochlorid"/>
+                        </itemCodeableConcept>
+                        <strength>
+                           <numerator>
+                              <value value="0.14"/>
+                              <unit value="mg"/>
+                           </numerator>
+                           <denominator>
+                              <value value="1.2"/>
+                              <unit value="Sprühstoß"/>
+                           </denominator>
+                        </strength>
+                     </ingredient>
+                  </Medication>
+               </contained>
+               <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension">
+                  <valueBoolean value="false"/>
+               </extension>
+               <code>
+                  <coding>
+                     <system value="http://fhir.de/CodeSystem/ifa/pzn"/>
+                     <code value="01038246"/>
+                  </coding>
+               </code>
+               <form>
+                  <coding>
+                     <system value="https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM"/>
+                     <code value="KPG"/>
+                  </coding>
+                  <text value="Allergodil Augentropfen"/>
+               </form>
+               <amount>
+                  <numerator>
+                     <extension url="https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension">
+                        <valueString value="1"/>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="Stk"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                  </denominator>
+               </amount>
+               <ingredient>
+                  <itemReference>
+                     <reference value="#da0c71da-7521-468a-af25-42880f603ec2"/>
+                  </itemReference>
+               </ingredient>
+               <ingredient>
+                  <itemReference>
+                     <reference value="#11b7950f-0404-47f8-b17b-db89c08ad389"/>
+                  </itemReference>
+               </ingredient>
+               <batch>
+                  <lotNumber value="1005921889"/>
+                  <expirationDate value="2026-08-30T18:28:01+02:00"/>
+               </batch>
+            </Medication>
+         </resource>
+      </part>
+   </parameter>
+</Parameters>

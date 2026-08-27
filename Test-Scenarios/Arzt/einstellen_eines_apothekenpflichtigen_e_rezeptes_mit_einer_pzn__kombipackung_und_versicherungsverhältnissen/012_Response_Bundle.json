@@ -1,0 +1,170 @@
+{
+  "resourceType": "Bundle",
+  "id": "34cd0ae2-5d64-4bb4-b65e-d17629697bdf",
+  "type": "searchset",
+  "timestamp": "2026-08-07T07:33:28.989+00:00",
+  "total": 0,
+  "entry": [ {
+    "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.277.274.106.75",
+    "resource": {
+      "resourceType": "MedicationDispense",
+      "id": "160.000.277.274.106.75",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" ]
+      },
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.277.274.106.75"
+      } ],
+      "status": "completed",
+      "medicationReference": {
+        "reference": "urn:uuid:e995ee0c-5735-4605-b6f6-89a4bb7bc8d4"
+      },
+      "subject": {
+        "identifier": {
+          "type": {
+            "coding": [ {
+              "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+              "code": "KVZ10"
+            } ]
+          },
+          "system": "http://fhir.de/sid/gkv/kvid-10",
+          "value": "X110614233"
+        }
+      },
+      "performer": [ {
+        "actor": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "3-SMC-B-Testkarte--883110000163973"
+          }
+        }
+      } ],
+      "whenPrepared": "2026-08-07",
+      "whenHandedOver": "2026-08-07",
+      "substitution": {
+        "wasSubstituted": true
+      }
+    },
+    "search": {
+      "mode": "match"
+    }
+  }, {
+    "fullUrl": "urn:uuid:e995ee0c-5735-4605-b6f6-89a4bb7bc8d4",
+    "resource": {
+      "resourceType": "Medication",
+      "id": "e995ee0c-5735-4605-b6f6-89a4bb7bc8d4",
+      "meta": {
+        "versionId": "1",
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" ]
+      },
+      "contained": [ {
+        "resourceType": "Medication",
+        "id": "da0c71da-7521-468a-af25-42880f603ec2",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product" ]
+        },
+        "code": {
+          "text": "Allergodil Augentropfen"
+        },
+        "ingredient": [ {
+          "itemCodeableConcept": {
+            "coding": [ {
+              "system": "http://fhir.de/CodeSystem/bfarm/atc",
+              "version": "2026",
+              "code": "R01AC03",
+              "display": "Natriumcromoglicat"
+            } ],
+            "text": "Azelastin hydrochlorid"
+          },
+          "strength": {
+            "numerator": {
+              "value": 0.015,
+              "unit": "mg"
+            },
+            "denominator": {
+              "value": 1.5,
+              "unit": "Tropfen"
+            }
+          }
+        } ]
+      }, {
+        "resourceType": "Medication",
+        "id": "11b7950f-0404-47f8-b17b-db89c08ad389",
+        "meta": {
+          "profile": [ "https://gematik.de/fhir/epa-medication/StructureDefinition/epa-medication-pharmaceutical-product" ]
+        },
+        "code": {
+          "text": "Allergodil Nasenspray"
+        },
+        "ingredient": [ {
+          "itemCodeableConcept": {
+            "coding": [ {
+              "system": "http://fhir.de/CodeSystem/bfarm/atc",
+              "version": "2026",
+              "code": "R01AC03",
+              "display": "Natriumcromoglicat"
+            } ],
+            "text": "Azelastin hydrochlorid"
+          },
+          "strength": {
+            "numerator": {
+              "value": 0.14,
+              "unit": "mg"
+            },
+            "denominator": {
+              "value": 1.2,
+              "unit": "Sprühstoß"
+            }
+          }
+        } ]
+      } ],
+      "extension": [ {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+        "valueBoolean": false
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://fhir.de/CodeSystem/ifa/pzn",
+          "code": "01038246"
+        } ]
+      },
+      "form": {
+        "coding": [ {
+          "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+          "code": "KPG"
+        } ],
+        "text": "Allergodil Augentropfen"
+      },
+      "amount": {
+        "numerator": {
+          "extension": [ {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-packaging-size-extension",
+            "valueString": "1"
+          } ],
+          "value": 1,
+          "unit": "Stk"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "ingredient": [ {
+        "itemReference": {
+          "reference": "#da0c71da-7521-468a-af25-42880f603ec2"
+        }
+      }, {
+        "itemReference": {
+          "reference": "#11b7950f-0404-47f8-b17b-db89c08ad389"
+        }
+      } ],
+      "batch": {
+        "lotNumber": "1005921889",
+        "expirationDate": "2026-08-30T18:28:01+02:00"
+      }
+    },
+    "search": {
+      "mode": "include"
+    }
+  } ]
+}

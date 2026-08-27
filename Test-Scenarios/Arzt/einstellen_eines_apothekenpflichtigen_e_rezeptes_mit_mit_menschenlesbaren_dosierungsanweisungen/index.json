@@ -1,0 +1,60 @@
+{
+  "id" : "0c880030-a16a-4052-b702-35c5fb446348",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen eines Apothekenpflichtigen E-Rezeptes mit mit menschenlesbaren Dosierungsanweisungen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_D_DGMP_03", "@TESTFALL:positiv", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept.",
+  "feature" : "Apothekenpflichtige Verordnung für Versicherte mit dgMP",
+  "featureFile" : "StrukturierteDosierung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.210.54"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.210.54/$activate"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.210.54"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/006_dmc_160.000.277.274.210.54.png",
+      "operation" : "DMC for 160.000.277.274.210.54 with AccessCode 751d3275306c99b8c1751fdc2bcf40d044c9600e4fa63f53fcb3754e54d3cfae"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtiges Medikament verschreibt:\n| status | PZN | renderedDosageInstruction | frequency | period | periodUnit | dayOfWeek | when | value | unit |\n| unknown | 00766713 | montags 1-0-1-0 Stück; freitags 1-0-1-0 Stück | 4 | 1 | wk | mon fri | MORN EVE | 1 | Stück |"
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.210.54/$accept"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/70cd862a-6f93-48d9-b9db-de85d9dea85a"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.210.54/$close?secret=845908849e322a9f705142098380b8d429fa990efbcfb0009f597f37c8ad474e"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_mit_menschenlesbaren_dosierungsanweisungen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a062de86-1000-0000-0003-000000000000"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren"
+  } ]
+}

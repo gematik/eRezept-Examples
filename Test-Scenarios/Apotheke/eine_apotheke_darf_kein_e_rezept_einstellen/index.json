@@ -1,11 +1,12 @@
 {
-  "id" : "94e89ecd-7e2f-4138-a4c9-09b96d823234",
+  "id" : "a177986c-d053-4d2e-87c5-cf303c1fbfdd",
   "mainActor" : "Apotheke",
   "name" : "Eine Apotheke darf kein E-Rezept einstellen",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_21", "@TESTFALL:negativ", "@AFO-ID:A_19018", "@Hauptdarsteller:Apotheke" ],
   "description" : "Der Fachdienst muss das Anlegen eines E-Rezepts ablehnen, wenn der Access-Token nicht eine der folgendes OID aufweist:\n  oid_arzt\n  oid_zahnarzt\n  oid_praxis_arzt\n  oid_zahnarztpraxis\n  oid_praxis_psychotherapeut\n  oid_krankenhaus\n\n  In diesem Testfall wird versucht mit der SMC-B einer Apotheke ein Create-Aufruf zum Fachdienst zu schicken.",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19018" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -19,14 +20,13 @@
   }, {
     "name" : "Angenommen die Ärztin Keine Arztpraxis hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
-    "name" : "Dann darf der Arzt Keine Arztpraxis der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| Name | PZN |\n| Schmerzmittel | 12345678 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/000_Request_Parameters.xml"
+      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 403: OperationOutcome 20250805_103313",
-      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/001_Response_OperationOutcome.xml"
-    } ]
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_19018" ]
+      "file" : "Apotheke/eine_apotheke_darf_kein_e_rezept_einstellen/001_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094003"
+    } ],
+    "name" : "Dann darf der Arzt Keine Arztpraxis der Versicherten Sina Hüllmann das folgende E-Rezept nicht ausstellen:\n| Name | PZN |\n| Schmerzmittel | 12345678 |"
+  } ]
 }

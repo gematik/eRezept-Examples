@@ -1,10 +1,11 @@
 {
-  "id" : "418698be-b4ed-420e-8461-f241923ac9c1",
+  "id" : "af8ec442-41d6-496a-b570-bafd79772387",
   "mainActor" : "Apotheke",
   "name" : "Bereitstellen der PKV-Abrechnungsinformationen nicht möglich, weil E-Rezept gelöscht wurde",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_13", "@TESTFALL:negativ", "@AFO-ID:A_22131", "@Hauptdarsteller:Apotheke" ],
   "feature" : "Abrechnungsinformationen für PKV-Rezepte",
   "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "requirements" : [ "A_18822", "A_18827", "A_22131" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -12,80 +13,91 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/5dc08c3c-6a4e-4d0e-895b-10daf24cc13c",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/000_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/000_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/001_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/dfc7a5fc-1fbf-4862-9534-962387ba70c0"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/001_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/002_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/200.000.003.558.244.92",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/002_Response_Task.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/003_Response_Task.xml",
+      "operation" : "Response 201: Task Task/200.000.005.213.920.46"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/003_document_to_sign.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/004_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/004_signed_document.b64"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/005_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/200.000.003.558.244.92/$activate",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/005_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/006_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.920.46/$activate"
     }, {
-      "operation" : "Response 200: Task Task/200.000.003.558.244.92",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/006_Response_Task.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/007_Response_Task.xml",
+      "operation" : "Response 200: Task Task/200.000.005.213.920.46"
     }, {
-      "operation" : "DMC for 200.000.003.558.244.92 with AccessCode e307832f33bf020df31dde3b551bb14b798c4fb663229b5b5efc1ed90a7c955d",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/007_dmc_200.000.003.558.244.92.png"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/008_dmc_200.000.005.213.920.46.png",
+      "operation" : "DMC for 200.000.005.213.920.46 with AccessCode 61cee090c3abfec507227666ba9bb785e33297b012805130a2b0aa95fcd02469"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/578e4b76-2b25-4226-a39e-549374c9557b",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/008_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/200.000.003.558.244.92/$close?secret=23935da140789f51f53da37b1ed1f5a435fc1ee45b69c09b063b1b5ba6e808aa",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/009_Request_Parameters.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/009_Request_Basic.xml",
+      "operation" : "POST /Task/200.000.005.213.920.46/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/c8644b36-0000-0000-0003-000000000000",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/010_Response_Bundle.xml"
-    }, {
-      "operation" : "Response 200: Bundle Bundle/1a802ccc-cfcf-416f-a643-5678910fb5e3",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/011_Response_Bundle.json"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/71c4f950-6dad-455d-8f14-967be63ebf0d"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Wenn der Versicherte Günther Angermänn sein letztes E-Rezept löscht",
     "dumps" : [ {
-      "operation" : "Response 204: Basic 20250805_104022",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/012_Response_Basic.json"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/011_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.920.46/$close?secret=d2601f3243314ff5e8ad569f527cd6396adfadafc90a6234b9e8f38146a2cad4"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/c8e08e4f-0000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C200.000.005.213.920.46"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/7770fcc1-eca5-4615-a4c7-413aaf96c968"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/015_Request_Basic.json",
+      "operation" : "POST /Task/200.000.005.213.920.46/$abort"
+    }, {
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/016_Response_Basic.json",
+      "operation" : "Response 204: Basic 20260807_095945"
+    } ],
+    "name" : "Wenn der Versicherte Günther Angermänn sein letztes E-Rezept löscht"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen für das letzte dispensierte E-Rezept keine PKV-Abrechnungsinformationen bereitstellen, weil der Task nicht mehr existiert"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/013_document_to_sign.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/017_document_to_sign.xml",
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/014_signed_document.b64"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/018_signed_document.b64",
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "POST /ChargeItem?task=200.000.003.558.244.92&secret=23935da140789f51f53da37b1ed1f5a435fc1ee45b69c09b063b1b5ba6e808aa",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/015_Request_ChargeItem.xml"
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/019_Request_ChargeItem.xml",
+      "operation" : "POST /ChargeItem?task=200.000.005.213.920.46&secret=d2601f3243314ff5e8ad569f527cd6396adfadafc90a6234b9e8f38146a2cad4"
     }, {
-      "operation" : "Response 409: OperationOutcome 20250805_104022",
-      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/016_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/bereitstellen_der_pkv_abrechnungsinformationen_nicht_möglich__weil_e_rezept_gelöscht_wurde/020_Response_OperationOutcome.xml",
+      "operation" : "Response 409: OperationOutcome 20260807_095946"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18822", "A_18827", "A_22131" ]
+  } ]
 }

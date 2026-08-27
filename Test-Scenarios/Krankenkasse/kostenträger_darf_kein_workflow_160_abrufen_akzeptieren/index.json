@@ -1,10 +1,11 @@
 {
-  "id" : "4deb3394-c5f8-42de-910b-33eeec1d9559",
+  "id" : "fb041657-7afb-4d0f-897e-6bd29229c1ba",
   "mainActor" : "Krankenkasse",
   "name" : "Kostenträger darf kein Workflow 160 abrufen/akzeptieren",
-  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_09" ],
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@AFO-ID:A_27767-01", "@TCID:ERP_EE_WF162_09" ],
   "feature" : "DiGA Anwendungsfälle",
   "featureFile" : "diga/diga_usecases",
+  "requirements" : [ "A_27767-01" ],
   "steps" : [ {
     "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
   }, {
@@ -12,53 +13,39 @@
   }, {
     "name" : "Angenommen der Arzt Adelheid Ulmenwald hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
   }, {
-    "name" : "Und der Arzt Adelheid Ulmenwald der Versicherten Hanna Bäcker ein apothekenpflichtiges Medikament verschreibt",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/000_Request_Parameters.xml"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.551.02",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/001_Response_Task.xml"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.245.46"
     }, {
-      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konn",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/002_document_to_sign.xml"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konn",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/003_signed_document.b64"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.551.02/$activate",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/004_Request_Parameters.xml"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.245.46/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.551.02",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/005_Response_Task.xml"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.245.46"
     }, {
-      "operation" : "DMC for 160.000.114.328.551.02 with AccessCode d73628650abb62c091804197c984243d63bcc976d11052cdb19a85a6598d0a94",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/006_dmc_160.000.114.328.551.02.png"
-    } ]
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/006_dmc_160.000.277.274.245.46.png",
+      "operation" : "DMC for 160.000.277.274.245.46 with AccessCode af320077dd8a0b842d3bb22265c1610ea89e6c4401331efa678d5796a36f0f73"
+    } ],
+    "name" : "Und der Arzt Adelheid Ulmenwald der Versicherten Hanna Bäcker ein apothekenpflichtiges Medikament verschreibt"
   }, {
-    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes E-Rezept ihrem Kostenträger AOK Bremen zuweist",
+    "name" : "Und die Versicherte Hanna Bäcker ihr letztes ausgestelltes E-Rezept dem Kostenträger AOK Bremen via Data Matrix Code zuweist"
+  }, {
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/6f116596-d551-4f46-8050-a2e095dae936",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/007_Response_Bundle.json"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.245.46/$accept"
     }, {
-      "operation" : "POST /Communication",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/008_Request_Communication.json"
-    }, {
-      "operation" : "Response 201: Communication Communication/01ebe577-fb24-8a88-458c-4f1860d4fe8d",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/009_Response_Communication.json"
-    } ]
-  }, {
-    "name" : "Dann kann der Kostenträger AOK Bremen das letzte E-Rezept der Versicherten Hanna Bäcker nicht akzeptieren"
-  }, {
-    "name" : "Aok bremen check the return code",
-    "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/80dd6aea-dd40-429c-a133-3858af2bd072",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/010_Response_Bundle.xml"
-    }, {
-      "operation" : "Response 403: OperationOutcome 20250805_103722",
-      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/011_Response_OperationOutcome.xml"
-    } ]
-  }, {
-    "name" : "Aok bremen performable predicate"
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_abrufen_akzeptieren/008_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_095007"
+    } ],
+    "name" : "Dann darf der Kostenträger AOK Bremen das letzte EVDGA E-Rezept der Versicherten Hanna Bäcker nicht beim Fachdienst akzeptieren"
   } ]
 }

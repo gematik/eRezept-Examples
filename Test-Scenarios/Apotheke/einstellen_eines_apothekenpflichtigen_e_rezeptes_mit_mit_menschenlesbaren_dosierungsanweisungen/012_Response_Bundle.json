@@ -1,0 +1,140 @@
+{
+  "resourceType": "Bundle",
+  "id": "9b312c0b-1770-4ad0-a7ad-60c1b2113aeb",
+  "type": "searchset",
+  "timestamp": "2026-08-07T07:44:47.348+00:00",
+  "total": 0,
+  "entry": [ {
+    "fullUrl": "https://erp-ref.zentral.erp.splitdns.ti-dienste.de/MedicationDispense/160.000.277.274.212.48",
+    "resource": {
+      "resourceType": "MedicationDispense",
+      "id": "160.000.277.274.212.48",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_MedicationDispense|1.6" ]
+      },
+      "extension": [ {
+        "url": "http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta",
+        "extension": [ {
+          "url": "algorithmVersion",
+          "valueString": "1.0.1"
+        }, {
+          "url": "language",
+          "valueCode": "de-DE"
+        } ]
+      }, {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction",
+        "valueMarkdown": "montags 1-0-1-0 Stück; freitags 1-0-1-0 Stück"
+      } ],
+      "identifier": [ {
+        "system": "https://gematik.de/fhir/erp/NamingSystem/GEM_ERP_NS_PrescriptionId",
+        "value": "160.000.277.274.212.48"
+      } ],
+      "status": "completed",
+      "medicationReference": {
+        "reference": "urn:uuid:bbdfd423-72ba-41de-904d-1edc1c7d1900"
+      },
+      "subject": {
+        "identifier": {
+          "type": {
+            "coding": [ {
+              "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+              "code": "KVZ10"
+            } ]
+          },
+          "system": "http://fhir.de/sid/gkv/kvid-10",
+          "value": "X110614233"
+        }
+      },
+      "performer": [ {
+        "actor": {
+          "identifier": {
+            "system": "https://gematik.de/fhir/sid/telematik-id",
+            "value": "3-SMC-B-Testkarte--883110000163973"
+          }
+        }
+      } ],
+      "whenPrepared": "2026-08-07",
+      "whenHandedOver": "2026-08-07",
+      "dosageInstruction": [ {
+        "timing": {
+          "repeat": {
+            "frequency": 4,
+            "period": 1,
+            "periodUnit": "wk",
+            "dayOfWeek": [ "mon", "fri" ],
+            "when": [ "MORN", "EVE" ]
+          }
+        },
+        "doseAndRate": [ {
+          "doseQuantity": {
+            "value": 1.0,
+            "unit": "Stück",
+            "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_BMP_DOSIEREINHEIT",
+            "code": "1"
+          }
+        } ]
+      } ],
+      "substitution": {
+        "wasSubstituted": true
+      }
+    },
+    "search": {
+      "mode": "match"
+    }
+  }, {
+    "fullUrl": "urn:uuid:bbdfd423-72ba-41de-904d-1edc1c7d1900",
+    "resource": {
+      "resourceType": "Medication",
+      "id": "bbdfd423-72ba-41de-904d-1edc1c7d1900",
+      "meta": {
+        "profile": [ "https://gematik.de/fhir/erp/StructureDefinition/GEM_ERP_PR_Medication|1.6" ]
+      },
+      "extension": [ {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/drug-category-extension",
+        "valueCoding": {
+          "system": "https://gematik.de/fhir/epa-medication/CodeSystem/epa-drug-category-cs",
+          "code": "01"
+        }
+      }, {
+        "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-id-vaccine-extension",
+        "valueBoolean": false
+      }, {
+        "url": "http://fhir.de/StructureDefinition/normgroesse",
+        "valueCode": "N2"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://fhir.de/CodeSystem/ifa/pzn",
+          "code": "00766759"
+        } ],
+        "text": "RAMIPRIL-1A Pharma 5 mg Tabletten neu"
+      },
+      "form": {
+        "coding": [ {
+          "system": "https://fhir.kbv.de/CodeSystem/KBV_CS_SFHIR_KBV_DARREICHUNGSFORM",
+          "code": "IIM"
+        } ]
+      },
+      "amount": {
+        "numerator": {
+          "extension": [ {
+            "url": "https://gematik.de/fhir/epa-medication/StructureDefinition/medication-total-quantity-formulation-extension",
+            "valueString": "6"
+          } ],
+          "value": 6,
+          "unit": "Stk"
+        },
+        "denominator": {
+          "value": 1
+        }
+      },
+      "batch": {
+        "lotNumber": "5643951389",
+        "expirationDate": "2026-08-19T21:12:31+02:00"
+      }
+    },
+    "search": {
+      "mode": "include"
+    }
+  } ]
+}

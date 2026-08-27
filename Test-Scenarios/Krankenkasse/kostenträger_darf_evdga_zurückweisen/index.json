@@ -1,0 +1,95 @@
+{
+  "id" : "ddbd6ad8-57bb-4eaa-a206-abc80037c0f0",
+  "mainActor" : "Krankenkasse",
+  "name" : "Kostenträger darf EVDGA zurückweisen",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_08" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Psychotherapeut Adelheid Ulmenwald hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.693.63"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.693.63/$activate"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.693.63"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/006_dmc_162.000.000.022.693.63.png",
+      "operation" : "DMC for 162.000.000.022.693.63 with AccessCode 262fb47a8515440e331d260374cd058419a17b4c9cd67e8b6c47451c502f74b2"
+    } ],
+    "name" : "Und der Psychotherapeut Adelheid Ulmenwald der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/007_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.693.63"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/d99d99e2-ae65-4c9d-b01a-4fd393886443"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/010_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-1933-2690-728d-bc3e3a3ddd17"
+    } ],
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/011_Request_Basic.xml",
+      "operation" : "GET /Communication?received=NULL&_sort=-sent"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/7a98a444-2f3b-4fa7-b6e0-c2d400bcac86"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/013_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.693.63/$accept"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/7f0847b6-4095-445b-9e65-5b3e540a499a"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/015_Request_Communication.xml",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/016_Response_Communication.xml",
+      "operation" : "Response 201: Communication Communication/01ec024e-19d6-fbf8-54bc-52bc095e7e31"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen das letzte EVDGA der Versicherten Hanna Bäcker akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/017_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.693.63/$reject?secret=dfcabb310992ff6c11c16543ccfbf563abb4f7f6648c33baaf85b82339dd08c3"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/018_Response_Basic.xml",
+      "operation" : "Response 204: Basic 20260807_095005"
+    } ],
+    "name" : "Dann kann der Kostenträger AOK Bremen das letzte akzeptierte EVDGA zurückweisen"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker kann für die letzte EVDGA keinen Freischaltcode abrufen"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/019_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C162.000.000.022.693.63"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_evdga_zurückweisen/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/ff743a7b-27ba-4ba3-89b4-fc0fff38be87"
+    } ],
+    "name" : "Hanna bäcker performable predicate"
+  } ]
+}

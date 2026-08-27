@@ -1,0 +1,52 @@
+{
+  "id" : "c5b9c453-3879-4cc3-9e05-aabb927593a0",
+  "mainActor" : "Krankenkasse",
+  "name" : "Abgabe einer EVDGA als Apotheke",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_05" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.690.72"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/004_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.690.72/$activate"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.690.72"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/006_dmc_162.000.000.022.690.72.png",
+      "operation" : "DMC for 162.000.000.022.690.72 with AccessCode e5a5e6d24c6fca2cc49c1e3490bb33b91eb190a7b1d71a077cc797a244b41883"
+    } ],
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
+  }, {
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/007_Request_Basic.xml",
+      "operation" : "POST /Task/162.000.000.022.690.72/$accept"
+    }, {
+      "file" : "Krankenkasse/abgabe_einer_evdga_als_apotheke/008_Response_OperationOutcome.xml",
+      "operation" : "Response 403: OperationOutcome 20260807_094902"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte EVDGA E-Rezept nicht akzeptieren"
+  } ]
+}

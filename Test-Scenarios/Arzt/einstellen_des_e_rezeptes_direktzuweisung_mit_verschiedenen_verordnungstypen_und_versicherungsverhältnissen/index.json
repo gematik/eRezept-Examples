@@ -1,11 +1,12 @@
 {
-  "id" : "41df5aca-b9ae-4046-a6a0-c1e9461fa9ed",
+  "id" : "ab636da0-72fa-45c1-9d0e-46ca1b77c10a",
   "mainActor" : "Arzt",
   "name" : "Einstellen des E-Rezeptes Direktzuweisung mit verschiedenen Verordnungstypen und Versicherungsverhältnissen",
   "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_02", "@TESTFALL:positiv", "@AFO-ID:A_24034", "@Hauptdarsteller:Arzt" ],
   "description" : "Die Apotheke akzeptiert das zugewiesene Rezept in den Variationen Frteitext-, Wirkstoff- und Rezepturverordnung.",
   "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
   "featureFile" : "GKV_PKV_MedicationVariation",
+  "requirements" : [ "A_24034" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -15,44 +16,46 @@
   }, {
     "name" : "Und die PKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtige Wirkstoff Verordnung verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name | Freitext | PZN | Menge |\n| Harnsäure Hemmer | Ibuprofen und Paracetamol -> beides und viel und so weiter | 16588573 | 1 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/000_Request_Parameters.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/209.000.000.156.243.54",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/001_Response_Task.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/209.000.000.224.445.21"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/002_document_to_sign.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/003_signed_document.b64"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/209.000.000.156.243.54/$activate",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/004_Request_Parameters.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/209.000.000.224.445.21/$activate"
     }, {
-      "operation" : "Response 200: Task Task/209.000.000.156.243.54",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/005_Response_Task.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/209.000.000.224.445.21"
     }, {
-      "operation" : "DMC for 209.000.000.156.243.54 with AccessCode 69938fd2bff65f9dbda3b4bc00b208324ba45ded679ec7ec5c4e0fde18bff7d9",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/006_dmc_209.000.000.156.243.54.png"
-    } ]
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/006_dmc_209.000.000.224.445.21.png",
+      "operation" : "DMC for 209.000.000.224.445.21 with AccessCode a07833c7a53ca69f85335d6c8ea60233f747aa31474d6f937548e7730b218c7e"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtige Wirkstoff Verordnung verschreibt und der Apotheke Am Flughafen direkt zuweist:\n| Name | Freitext | PZN | Menge |\n| Harnsäure Hemmer | Ibuprofen und Paracetamol -> beides und viel und so weiter | 16588573 | 1 |"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/710a7753-8db0-4b02-9d83-f3f8f1ab25ae",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/007_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren",
-    "dumps" : [ {
-      "operation" : "POST /Task/209.000.000.156.243.54/$close?secret=d23512f2313a3f4497c3479023dd29f7d508d4009f8c6ef92ba83a4706f6ae9d",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/008_Request_Parameters.xml"
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/007_Request_Basic.xml",
+      "operation" : "POST /Task/209.000.000.224.445.21/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/d1536202-0000-0000-0003-000000000000",
-      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/009_Response_Bundle.xml"
-    } ]
-  } ],
-  "requirements" : [ "A_24034" ]
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/ee11ce3a-bce0-40b8-90ff-cc430fb48096"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/209.000.000.224.445.21/$close?secret=c331420cf3ef7d72e729d98daef7ff72ccf2a8765af91c5e396e39076477f2ba"
+    }, {
+      "file" : "Arzt/einstellen_des_e_rezeptes_direktzuweisung_mit_verschiedenen_verordnungstypen_und_versicherungsverhältnissen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/d1bd6c03-0000-0000-0003-000000000000"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren"
+  } ]
 }

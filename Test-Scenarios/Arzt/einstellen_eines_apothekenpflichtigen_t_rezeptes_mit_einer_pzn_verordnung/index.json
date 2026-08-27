@@ -1,0 +1,34 @@
+{
+  "id" : "50d7c2fe-8515-4aba-aba1-619a1a9e6cce",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen eines Apothekenpflichtigen T-Rezeptes mit einer PZN-Verordnung",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_REZEPTVARIANTEN_04", "@TESTFALL:positiv", "@AFO-ID:A_27827", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept als  und erstellt eine MedicationDispense mit contained Medications für die zwei enthaltenen Produkte.",
+  "feature" : "Apothekenpflichtige Verordnungstypen für Versicherte und Selbstzahler",
+  "featureFile" : "GKV_PKV_MedicationVariation",
+  "requirements" : [ "A_27827" ],
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die Apotheke Stadtapotheke hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_t_rezeptes_mit_einer_pzn_verordnung/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_t_rezeptes_mit_einer_pzn_verordnung/001_Response_OperationOutcome.xml",
+      "operation" : "Response 400: OperationOutcome 20260807_093330"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtiges Medikament verschreibt:\n| Name | PZN | Menge | Impfung | Verordnungskategorie | Reichdauer in Wochen | WirkstoffMenge | WirkstoffMengeEinheit | Bezugsmenge | BezugsmengeEinheit | Wirkstoffname | Darreichungsform | Workflow |\n| Pomalidomid Accord 1 mg 21 x 1 Hartkapseln | 19201712 | 2 | false | 02 | 3 | 0.15 | mg | 0.5 | L | Pomalidomid | KMR | 166 |"
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren"
+  } ]
+}

@@ -1,11 +1,12 @@
 {
-  "id" : "43bb0616-b8ce-4f12-ab71-101494315f9b",
+  "id" : "1742d5fc-5010-4fb1-8bd8-f890be61c0bb",
   "mainActor" : "Versicherter",
   "name" : "Einwilligung durch Versicherten erteilen",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_03", "@TESTFALL:positiv", "@AFO-ID:A_22161", "@AF-ID:AF_10084", "@AF-ID:AF_10086", "@Hauptdarsteller:Versicherter" ],
   "description" : "Der Versicherte kann im FdV die Einwilligung zum Speichern der PKV-Abrechnungsinformationen beim Fachdienst erteilen. Diese wird ihm im FdV angezeigt",
   "feature" : "Abrechnungsinformationen für PKV-Rezepte",
   "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "requirements" : [ "A_18822", "A_18827", "A_22161" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -13,74 +14,88 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/c3fce5c5-41ef-45b2-8a51-ba0e1747dfa0",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/000_Response_Bundle.json"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/000_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
     }, {
-      "operation" : "POST /Consent",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/001_Request_Consent.json"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/001_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/9b2c5899-e75b-443d-9b9b-50cb81ba35c3"
     }, {
-      "operation" : "Response 201: Consent Consent/CHARGCONS-X110645443",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/002_Response_Consent.json"
-    } ]
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/002_Request_Consent.json",
+      "operation" : "POST /Consent"
+    }, {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/003_Response_Consent.json",
+      "operation" : "Response 201: Consent Consent/CHARGCONS-X110645443"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/003_Request_Parameters.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/200.000.003.558.208.06",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/004_Response_Task.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/005_Response_Task.xml",
+      "operation" : "Response 201: Task Task/200.000.005.213.895.24"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/005_document_to_sign.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/006_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/006_signed_document.b64"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/007_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/200.000.003.558.208.06/$activate",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/007_Request_Parameters.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/008_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.895.24/$activate"
     }, {
-      "operation" : "Response 200: Task Task/200.000.003.558.208.06",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/008_Response_Task.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/009_Response_Task.xml",
+      "operation" : "Response 200: Task Task/200.000.005.213.895.24"
     }, {
-      "operation" : "DMC for 200.000.003.558.208.06 with AccessCode e59a2fd78b7078ac48c71116b6da8d09c80bd79b7a570cb8b09aa6012caf7001",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/009_dmc_200.000.003.558.208.06.png"
-    } ]
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/010_dmc_200.000.005.213.895.24.png",
+      "operation" : "DMC for 200.000.005.213.895.24 with AccessCode 5f8c1daf00686af4c3fa1e796b791e63f14440d3d32301211895ab865bb63ad6"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/dce14b8b-6aa6-4bba-a86f-bd7f00991e91",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/010_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/200.000.003.558.208.06/$close?secret=0298b05552757c5c936ee413cd1599486cc9d327a440d9b801df44f5a5a97e88",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/011_Request_Parameters.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/011_Request_Basic.xml",
+      "operation" : "POST /Task/200.000.005.213.895.24/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/c8404b36-0000-0000-0003-000000000000",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/012_Response_Bundle.xml"
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/abd5cd93-b2cc-472d-9885-3e108ea381e9"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/013_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.895.24/$close?secret=2ec522ddda9ab1edef461704c2c75908b89a89623f2b1e73cdde3e60a6a7c229"
     }, {
-      "operation" : "Response 200: Bundle Bundle/d87059eb-1769-4bcd-a1b5-a6e5a9e85c9a",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/013_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/014_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/c8c78e4f-0000-0000-0003-000000000000"
+    }, {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/015_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C200.000.005.213.895.24"
+    }, {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/016_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/6341cbe1-ac95-482f-97c9-c15278b064f1"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
   }, {
-    "name" : "Wenn der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/bafdb2d1-5240-41be-a845-1363e81e7bfc",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/014_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/017_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
+    }, {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/018_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/b15a9b95-9d99-47d9-9b2a-94175cb2e5c7"
+    } ],
+    "name" : "Wenn der Versicherte Günther Angermänn seine Einwilligung zur Speicherung der PKV-Abrechnungsinformationen erteilt"
   }, {
-    "name" : "Dann kann der Versicherte Günther Angermänn seine Einwilligung abrufen",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/09fe3dec-8341-467b-afdb-dde04c6844e6",
-      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/015_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/019_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
+    }, {
+      "file" : "Versicherter/einwilligung_durch_versicherten_erteilen/020_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/9d3f6059-7607-46af-9419-ecd10da391f6"
+    } ],
+    "name" : "Dann kann der Versicherte Günther Angermänn seine Einwilligung abrufen"
   } ],
-  "requirements" : [ "A_18822", "A_18827", "A_22161" ],
   "useCases" : [ "AF_10084", "AF_10086" ]
 }

@@ -1,0 +1,58 @@
+{
+  "id" : "3f4896c8-11b6-4612-8bba-39414977765b",
+  "mainActor" : "Krankenkasse",
+  "name" : "Kostenträger darf kein Workflow 160 zugewiesen werden",
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_10" ],
+  "feature" : "DiGA Anwendungsfälle",
+  "featureFile" : "diga/diga_usecases",
+  "steps" : [ {
+    "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
+  }, {
+    "name" : "Und die GKV Versicherte Hanna Bäcker hat Zugriff auf ihre eGK"
+  }, {
+    "name" : "Angenommen der Arzt Adelheid Ulmenwald hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.246.43"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276001011699901501 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.246.43/$activate"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.246.43"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/006_dmc_160.000.277.274.246.43.png",
+      "operation" : "DMC for 160.000.277.274.246.43 with AccessCode 63534ae325781db2c6919eb5f4bc3666ee9361b4e593d6c153e9bbc7d07d2ec1"
+    } ],
+    "name" : "Und der Arzt Adelheid Ulmenwald der Versicherten Hanna Bäcker ein apothekenpflichtiges Medikament verschreibt"
+  }, {
+    "name" : "Dann kann die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes E-Rezept ihrem Kostenträger AOK Bremen nicht zuweisen"
+  }, {
+    "dumps" : [ {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.246.43"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/ca35d385-6dc3-49f3-863b-a09c973dc499"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/009_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/kostenträger_darf_kein_workflow_160_zugewiesen_werden/010_Response_OperationOutcome.json",
+      "operation" : "Response 403: OperationOutcome 20260807_095009"
+    } ],
+    "name" : "Hanna bäcker check the return code"
+  }, {
+    "name" : "Hanna bäcker performable predicate"
+  } ]
+}

@@ -1,10 +1,11 @@
 {
-  "id" : "1dbdecaa-d0e3-411a-9609-af92ee539c74",
+  "id" : "91b73aac-3aa5-442d-a2de-3cc6ca286662",
   "mainActor" : "Therapeut",
   "name" : "Psychotherapeuten dürfen keine E-Rezepte Direktzuweisung erstellen",
-  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@AFO-ID:A_19225-02", "@AFO-ID:A_A_25990", "@Hauptdarsteller:Therapeut", "@TCID:ERP_EE_WF162_02" ],
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@AFO-ID:A_19225-02", "@AFO-ID:A_25990", "@Hauptdarsteller:Therapeut", "@TCID:ERP_EE_WF162_02" ],
   "feature" : "DiGA negativ Anwendungsfälle",
   "featureFile" : "diga/diga_negative_usecases",
+  "requirements" : [ "A_19225-02", "A_25990" ],
   "steps" : [ {
     "name" : "Angenommen der Kostenträger AOK Bremen hat Zugriff auf seine SMC-B KTR"
   }, {
@@ -14,28 +15,27 @@
   }, {
     "name" : "Dann kann der Kinderpsychotherapeut Peter Kleinschmidt der Versicherten Hanna Bäcker kein Rezept als Direktzuweisung verschreiben"
   }, {
-    "name" : "Peter kleinschmidt check the return code",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/000_Request_Parameters.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/169.000.002.416.970.02",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/001_Response_Task.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/169.000.011.891.914.50"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000163950 on Soft-Konn",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/002_document_to_sign.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000163950 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000163950 on Soft-Konn",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/003_signed_document.b64"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000163950 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/169.000.002.416.970.02/$activate",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/004_Request_Parameters.xml"
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/169.000.011.891.914.50/$activate"
     }, {
-      "operation" : "Response 400: OperationOutcome 20250805_103618",
-      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/005_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Therapeut/psychotherapeuten_dürfen_keine_e_rezepte_direktzuweisung_erstellen/005_Response_OperationOutcome.xml",
+      "operation" : "Response 400: OperationOutcome 20260807_094712"
+    } ],
+    "name" : "Peter kleinschmidt check the return code"
   }, {
     "name" : "Peter kleinschmidt performable predicate"
-  } ],
-  "requirements" : [ "A_19225-02", "A_A_25990" ]
+  } ]
 }

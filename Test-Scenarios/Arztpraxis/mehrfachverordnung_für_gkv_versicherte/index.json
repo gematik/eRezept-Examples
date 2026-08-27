@@ -1,11 +1,12 @@
 {
-  "id" : "0af2b094-ca3f-4222-ba8d-d2857cbb36d3",
+  "id" : "cb4c110a-1575-4840-b6ca-1e36b8a1a09b",
   "mainActor" : "Arztpraxis",
   "name" : "Mehrfachverordnung für GKV-Versicherte",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_01", "@AFO-ID:A_22627-01", "@TESTFALL:positiv", "@Workflow:160", "@Versicherung:GKV", "@Hauptdarsteller:Arztpraxis" ],
   "description" : "Gutfall: E-Rezepte für GKV-Versicherte als Mehrfachverordnung (WF 160)",
   "feature" : "Mehrfachverordnung von apothekenpflichtigen Arzneimitteln",
   "featureFile" : "MVO/MVO",
+  "requirements" : [ "A_22627-01" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -15,37 +16,39 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/000_Request_Parameters.xml"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.518.04",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/001_Response_Task.xml"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.186.29"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/002_document_to_sign.xml"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/003_signed_document.b64"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.518.04/$activate",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/004_Request_Parameters.xml"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.186.29/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.518.04",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/005_Response_Task.xml"
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.186.29"
     }, {
-      "operation" : "DMC for 160.000.114.328.518.04 with AccessCode f9e79f0315ff54148d1958e1dc7663c30d31ac0c3865b43d0ebaf49fc240d5ee",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/006_dmc_160.000.114.328.518.04.png"
-    } ]
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/006_dmc_160.000.277.274.186.29.png",
+      "operation" : "DMC for 160.000.277.274.186.29 with AccessCode 86ada4efcd62ec84043c49d520d8f207615e1234b2449ce9f30243384b3870e6"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 4 | 270 | leer |"
   }, {
     "name" : "Dann wird der Versicherten Sina Hüllmann das neue E-Rezept angezeigt"
   }, {
-    "name" : "Sina hüllmann performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/fe1f49a2-8bef-4806-88e1-63eb006edf83",
-      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/007_Response_Bundle.json"
-    } ]
-  } ],
-  "requirements" : [ "A_22627-01" ]
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/007_Request_Basic.json",
+      "operation" : "GET /Task/160.000.277.274.186.29"
+    }, {
+      "file" : "Arztpraxis/mehrfachverordnung_für_gkv_versicherte/008_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/565d1362-9c52-4f26-9554-ca73f74dfd99"
+    } ],
+    "name" : "Sina hüllmann performable predicate"
+  } ]
 }

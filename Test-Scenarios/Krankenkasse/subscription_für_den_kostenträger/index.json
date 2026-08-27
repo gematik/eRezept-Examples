@@ -1,8 +1,8 @@
 {
-  "id" : "6458ada4-f55e-4e9b-826c-a1b745d5f80a",
+  "id" : "2a0e1e42-f56e-47ee-a90b-26596bdc7dd0",
   "mainActor" : "Krankenkasse",
   "name" : "Subscription für den Kostenträger",
-  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_10" ],
+  "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:DiGA", "@Workflow:162", "@Versicherung:GKV", "@Hauptdarsteller:Krankenkasse", "@TCID:ERP_EE_WF162_11" ],
   "feature" : "DiGA Anwendungsfälle",
   "featureFile" : "diga/diga_usecases",
   "steps" : [ {
@@ -12,19 +12,56 @@
   }, {
     "name" : "Angenommen der Psychotherapeut Finn Stauffenberg hat Zugriff auf seinen HBA und auf die SMC-B der Praxis"
   }, {
-    "name" : "Und der Kostenträger AOK Bremen sich beim E-Rezept Fachdienst registriert",
     "dumps" : [ {
-      "operation" : "POST /Subscription",
-      "file" : "Krankenkasse/subscription_für_den_kostenträger/000_Request_Subscription.xml"
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/000_Request_Subscription.xml",
+      "operation" : "POST /Subscription"
     }, {
-      "operation" : "Response 200: Subscription Subscription/d6cb23afcde2ff91105dcb10f16faaca",
-      "file" : "Krankenkasse/subscription_für_den_kostenträger/001_Response_Subscription.xml"
-    } ]
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/001_Response_Subscription.xml",
+      "operation" : "Response 200: Subscription Subscription/3b33c2e9d56a15e8100caf742ac1b32e"
+    } ],
+    "name" : "Und der Kostenträger AOK Bremen sich beim E-Rezept Fachdienst registriert"
   }, {
-    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVGDA E-Rezept verschreibt"
+    "dumps" : [ {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/002_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/003_Response_Task.xml",
+      "operation" : "Response 201: Task Task/162.000.000.022.694.60"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/004_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/005_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000163949 on Soft-Konnektor"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/006_Request_Parameters.xml",
+      "operation" : "POST /Task/162.000.000.022.694.60/$activate"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/007_Response_Task.xml",
+      "operation" : "Response 200: Task Task/162.000.000.022.694.60"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/008_dmc_162.000.000.022.694.60.png",
+      "operation" : "DMC for 162.000.000.022.694.60 with AccessCode 3eaf8d38b8060b60e0ff59c794ddd836613e8941c281e03461f4a1bba33d7456"
+    } ],
+    "name" : "Und der Psychotherapeut Finn Stauffenberg der Versicherten Hanna Bäcker ein EVDGA E-Rezept verschreibt"
   }, {
-    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVGDA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
+    "dumps" : [ {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/009_Request_Basic.json",
+      "operation" : "GET /Task/162.000.000.022.694.60"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/010_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/66135531-3b7c-470a-afa4-8818dd3234bb"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/011_Request_Communication.json",
+      "operation" : "POST /Communication"
+    }, {
+      "file" : "Krankenkasse/subscription_für_den_kostenträger/012_Response_Communication.json",
+      "operation" : "Response 201: Communication Communication/01ec024e-1a2c-20d8-bf75-93777b3d6aee"
+    } ],
+    "name" : "Wenn die GKV Versicherte Hanna Bäcker ihr letztes ausgestelltes EVDGA E-Rezept ihrem Kostenträger AOK Bremen zuweist"
   }, {
     "name" : "Dann wird der Kostenträger AOK Bremen über die neue Zuweisungen informiert"
+  }, {
+    "name" : "For AOK Bremen: Then has new subscription ping should be (true)"
   } ]
 }

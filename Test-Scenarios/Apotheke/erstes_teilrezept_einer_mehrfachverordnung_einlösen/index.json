@@ -1,5 +1,5 @@
 {
-  "id" : "9daa67dd-013b-4dad-8840-fbf5d3d489de",
+  "id" : "fcec85aa-9391-48ea-8b5d-8b343636b6fb",
   "mainActor" : "Apotheke",
   "name" : "Erstes Teilrezept einer Mehrfachverordnung einlösen",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:MVO", "@TCID:ERP_EE_MVO_06", "@TESTFALL:positiv", "@Hauptdarsteller:Apotheke" ],
@@ -14,46 +14,55 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 1 | 0 | 90 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/000_Request_Parameters.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.521.92",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/001_Response_Task.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.189.20"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/002_document_to_sign.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/003_signed_document.b64"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.521.92/$activate",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/004_Request_Parameters.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.189.20/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.521.92",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/005_Response_Task.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.189.20"
     }, {
-      "operation" : "DMC for 160.000.114.328.521.92 with AccessCode 200b995a826ad68852a17c517eaac1219e0bdb2e4b29af7f8ade722d50e75156",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/006_dmc_160.000.114.328.521.92.png"
-    } ]
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/006_dmc_160.000.277.274.189.20.png",
+      "operation" : "DMC for 160.000.277.274.189.20 with AccessCode 19895dd38d2790685b97331f311835c7605ea92bf843148fcc6bc601192ffc22"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| MVO | Denominator | Numerator | Gueltigkeitsstart | Gueltigkeitsende |\n| true | 4 | 1 | 0 | 90 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/2e77e59b-337f-44ea-854a-3ea2b4116b03",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/007_Response_Bundle.xml"
-    } ]
-  }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert",
-    "dumps" : [ {
-      "operation" : "POST /Task/160.000.114.328.521.92/$close?secret=85903077b7baec40192e3ebe8f0e90d4d0cb7d272dff49beb27d90ed8e3c9d17",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/008_Request_Parameters.xml"
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.189.20/$accept"
     }, {
-      "operation" : "Response 200: Bundle Bundle/a0c983d0-0600-0000-0003-000000000000",
-      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/009_Response_Bundle.xml"
-    } ]
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/ef7984cd-767b-4d8f-b919-2eb9ba01a888"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.189.20/$close?secret=fe425d1bd53f93c7ec993bd9d315c7742ef6635128a8e028156efb532f1adf4c"
+    }, {
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a04dde86-1000-0000-0003-000000000000"
+    }, {
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/011_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C160.000.277.274.189.20"
+    }, {
+      "file" : "Apotheke/erstes_teilrezept_einer_mehrfachverordnung_einlösen/012_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/0b2c5758-b5be-4857-8589-7157bb46faa9"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Sina Hüllmann dispensiert"
   }, {
     "name" : "Dann hat die Apotheke Am Flughafen genau 1 Quittung vorliegen"
   }, {

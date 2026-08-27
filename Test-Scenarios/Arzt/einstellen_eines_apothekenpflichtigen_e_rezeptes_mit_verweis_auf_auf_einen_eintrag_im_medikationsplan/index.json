@@ -1,0 +1,60 @@
+{
+  "id" : "4d2c9d66-e83d-40f0-9aac-70aa8ad93b00",
+  "mainActor" : "Arzt",
+  "name" : "Einstellen eines Apothekenpflichtigen E-Rezeptes mit Verweis auf auf einen Eintrag im Medikationsplan",
+  "tags" : [ "@PRODUKT:eRp_FD", "@TCID:ERP_EE_EMP_ID_01", "@TESTFALL:positiv", "@Hauptdarsteller:Arzt" ],
+  "description" : "Die Apotheke akzeptiert das zugewiesene Rezept.",
+  "feature" : "Apothekenpflichtige Verordnung für Versicherte mit dgMP",
+  "featureFile" : "StrukturierteDosierung",
+  "steps" : [ {
+    "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
+  }, {
+    "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
+  }, {
+    "name" : "Und die GKV Versicherte Sina Hüllmann hat Zugriff auf ihre eGK"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.207.63"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.207.63/$activate"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.207.63"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/006_dmc_160.000.277.274.207.63.png",
+      "operation" : "DMC for 160.000.277.274.207.63 with AccessCode 0546d29841562c6dff43ce44e5e4e6141fd9df1cb78574a29ca81bf5abccb088"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgende apothekenpflichtiges Medikament verschreibt:\n| Name | PZN | Normgröße | Menge | Einheit | Darreichungsform | Dosierung | emp-identifier  (will be red automatically) |\n| RAMIPRIL-1A Pharma | 00766759 | N1 | 100 | Stk | TAB | morgens 1 Tablette | session:MedicationPlanIdentifier  (Dummy) |"
+  }, {
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/007_Request_Basic.xml",
+      "operation" : "POST /Task/160.000.277.274.207.63/$accept"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/008_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/f4665e2f-087e-4359-ad3d-d29c00ecf38f"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
+  }, {
+    "dumps" : [ {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/009_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.207.63/$close?secret=9dbffbdfcdff7bbdeb1515cce5799abba1ec632ab9845d95a80385a0031b5085"
+    }, {
+      "file" : "Arzt/einstellen_eines_apothekenpflichtigen_e_rezeptes_mit_verweis_auf_auf_einen_eintrag_im_medikationsplan/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/a05fde86-1000-0000-0003-000000000000"
+    } ],
+    "name" : "Dann kann die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt dispensieren"
+  } ]
+}

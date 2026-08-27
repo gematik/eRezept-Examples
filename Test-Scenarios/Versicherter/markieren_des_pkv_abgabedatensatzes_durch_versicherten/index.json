@@ -1,10 +1,11 @@
 {
-  "id" : "aaf79dd2-8ee2-4ea4-b271-18aac9b96456",
+  "id" : "ab05f8ca-0b54-4d68-8c82-5015c7098537",
   "mainActor" : "Versicherter",
   "name" : "Markieren des PKV-Abgabedatensatzes durch Versicherten",
   "tags" : [ "@PRODUKT:eRp_FD", "@Funktionalität:Abrechnungsinformationen", "@Workflow:200", "@Versicherung:PKV", "@AFO-ID:A_18822", "@AFO-ID:A_18827", "@TCID:ERP_EE_WF200_ABRECHNUNGSINFO_10", "@TESTFALL:positiv", "@AF-ID:AF_10089", "@Hauptdarsteller:Versicherter" ],
   "feature" : "Abrechnungsinformationen für PKV-Rezepte",
   "featureFile" : "pkv/PKV-Abrechnungsinformationen",
+  "requirements" : [ "A_18822", "A_18827" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -12,92 +13,103 @@
   }, {
     "name" : "Und die Apotheke Am Flughafen hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/974d8971-678f-433e-b1fc-f195e35bf615",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/000_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/000_Request_Basic.json",
+      "operation" : "GET /Consent?category=CHARGCONS"
+    }, {
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/001_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/59951389-8ac8-4ace-9047-bac1aaf27e8a"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn hat seine Einwilligung zum Speichern der PKV-Abrechnungsinformationen erteilt"
   }, {
-    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/001_Request_Parameters.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/002_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/200.000.003.558.234.25",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/002_Response_Task.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/003_Response_Task.xml",
+      "operation" : "Response 201: Task Task/200.000.005.213.909.79"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/003_document_to_sign.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/004_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/004_signed_document.b64"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/005_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/200.000.003.558.234.25/$activate",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/005_Request_Parameters.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/006_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.909.79/$activate"
     }, {
-      "operation" : "Response 200: Task Task/200.000.003.558.234.25",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/006_Response_Task.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/007_Response_Task.xml",
+      "operation" : "Response 200: Task Task/200.000.005.213.909.79"
     }, {
-      "operation" : "DMC for 200.000.003.558.234.25 with AccessCode 8db1d75b9fac21601cd3a47cca04ac0a7e2e7b0bbc493d0c3cade8a3337cbe81",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/007_dmc_200.000.003.558.234.25.png"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/008_dmc_200.000.005.213.909.79.png",
+      "operation" : "DMC for 200.000.005.213.909.79 with AccessCode e0bf63f62a471826b360f27d7097c42b0b0558e3182a008cb451151fd702b7d3"
+    } ],
+    "name" : "Und die Ärztin Dr. Schraßer dem Versicherten Günther Angermänn folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | Workflow |\n| Schmerzmittel | 200 |"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und der Versicherte Günther Angermänn sein letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/17e29ac5-3e6c-4739-9c7a-3aa3b9ec512a",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/008_Response_Bundle.xml"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/009_Request_Basic.xml",
+      "operation" : "POST /Task/200.000.005.213.909.79/$accept"
+    }, {
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/010_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/983b1e16-f7e7-4deb-b8f8-532d83386944"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte zugewiesene E-Rezept beim Fachdienst akzeptiert"
   }, {
-    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert",
     "dumps" : [ {
-      "operation" : "POST /Task/200.000.003.558.234.25/$close?secret=81ba74b7403643a634ba7db76876ac50380d0bc5aaceaee5dd19ada586c6ea9c",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/009_Request_Parameters.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/011_Request_Parameters.xml",
+      "operation" : "POST /Task/200.000.005.213.909.79/$close?secret=542ff515ad1f94239fc6bace3eb715a46032bebe97c87b8b57254c396c892eac"
     }, {
-      "operation" : "Response 200: Bundle Bundle/c85a4b36-0000-0000-0003-000000000000",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/010_Response_Bundle.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/012_Response_Bundle.xml",
+      "operation" : "Response 200: Bundle Bundle/c8d58e4f-0000-0000-0003-000000000000"
     }, {
-      "operation" : "Response 200: Bundle Bundle/3f92778f-8c1f-4017-91b9-947b0c59d38c",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/011_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/013_Request_Basic.json",
+      "operation" : "GET /MedicationDispense?identifier=https%3A%2F%2Fgematik.de%2Ffhir%2Ferp%2FNamingSystem%2FGEM_ERP_NS_PrescriptionId%7C200.000.005.213.909.79"
+    }, {
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/014_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/79563d02-c586-4ba2-9526-30fba5c76ca4"
+    } ],
+    "name" : "Und die Apotheke Am Flughafen das letzte akzeptierte E-Rezept korrekt an Günther Angermänn dispensiert"
   }, {
     "name" : "Wenn die Apotheke Am Flughafen für das letzte dispensierte E-Rezept die PKV-Abrechnungsinformationen bereitstellt"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/012_document_to_sign.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/015_document_to_sign.xml",
+      "operation" : "Document to sign with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konn",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/013_signed_document.b64"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/016_signed_document.b64",
+      "operation" : "Signed Document with SMC-B 80276883110000163973 on Soft-Konnektor"
     }, {
-      "operation" : "POST /ChargeItem?task=200.000.003.558.234.25&secret=81ba74b7403643a634ba7db76876ac50380d0bc5aaceaee5dd19ada586c6ea9c",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/014_Request_ChargeItem.xml"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/017_Request_ChargeItem.xml",
+      "operation" : "POST /ChargeItem?task=200.000.005.213.909.79&secret=542ff515ad1f94239fc6bace3eb715a46032bebe97c87b8b57254c396c892eac"
     }, {
-      "operation" : "Response 201: ChargeItem ChargeItem/200.000.003.558.234.25",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/015_Response_ChargeItem.xml"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/018_Response_ChargeItem.xml",
+      "operation" : "Response 201: ChargeItem ChargeItem/200.000.005.213.909.79"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
   }, {
-    "name" : "Und der Versicherte Günther Angermänn die Markierungen für die PKV-Abrechnungsinformationen des letzten E-Rezept setzt:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |",
     "dumps" : [ {
-      "operation" : "PATCH /ChargeItem/200.000.003.558.234.25",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/016_Request_Parameters.json"
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/019_Request_Parameters.json",
+      "operation" : "PATCH /ChargeItem/200.000.005.213.909.79"
     }, {
-      "operation" : "Response 200: ChargeItem ChargeItem/200.000.003.558.234.25",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/017_Response_ChargeItem.json"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/020_Response_ChargeItem.json",
+      "operation" : "Response 200: ChargeItem ChargeItem/200.000.005.213.909.79"
+    } ],
+    "name" : "Und der Versicherte Günther Angermänn die Markierungen für die PKV-Abrechnungsinformationen des letzten E-Rezept setzt:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |"
   }, {
     "name" : "Dann hat der Versicherte Günther Angermänn die PKV-Abrechnungsinformationen des letzten E-Rezepts mit folgenden Markierungen:\n| Versicherung | Beihilfe | Finanzamt |\n| false | false | false |"
   }, {
-    "name" : "Günther angermänn performable predicate",
     "dumps" : [ {
-      "operation" : "Response 200: Bundle Bundle/83fc366d-301e-48c0-ba20-1af9f75dbba5",
-      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/018_Response_Bundle.json"
-    } ]
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/021_Request_Basic.json",
+      "operation" : "GET /ChargeItem/200.000.005.213.909.79"
+    }, {
+      "file" : "Versicherter/markieren_des_pkv_abgabedatensatzes_durch_versicherten/022_Response_Bundle.json",
+      "operation" : "Response 200: Bundle Bundle/ead38233-e5bb-4559-8e78-4cf421b2820e"
+    } ],
+    "name" : "Günther angermänn performable predicate"
   } ],
-  "requirements" : [ "A_18822", "A_18827" ],
   "useCases" : [ "AF_10089" ]
 }

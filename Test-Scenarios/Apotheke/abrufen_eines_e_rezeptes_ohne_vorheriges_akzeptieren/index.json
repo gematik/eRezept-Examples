@@ -1,11 +1,12 @@
 {
-  "id" : "4f55cc30-7398-4c37-b0ce-713196bbe4b2",
+  "id" : "9d87505a-a56e-4bef-9fe9-bab3117b8c89",
   "mainActor" : "Apotheke",
   "name" : "Abrufen eines E-Rezeptes ohne vorheriges Akzeptieren",
   "tags" : [ "@PRODUKT:eRp_FD", "@Workflow:160", "@Versicherung:GKV", "@AFO-ID:A_18827", "@AFO-ID:A_18502", "@AFO-ID:A_18503", "@TCID:ERP_EE_WF160_26", "@TESTFALL:negativ", "@AFO-ID:A_24176", "@Hauptdarsteller:Apotheke" ],
   "description" : "Die Apotheke versucht ein E-Rezept einzulösen. Sie hat aber vorher vergessen es zu akzeptieren.\n  Das wird durch den Fachdienst verhindert. (GetTaskById -> dafür ResponseOfGetTaskById) ohne vorher zu akzeptieren (AcceptTask)",
   "feature" : "Apothekenpflichtige Medikamente für GKV-Versicherte",
   "featureFile" : "GKV_WF_160/GKV-Versicherter_WF_160",
+  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_24176" ],
   "steps" : [ {
     "name" : "Angenommen die Ärztin Dr. Schraßer hat Zugriff auf ihren HBA und auf die SMC-B der Praxis"
   }, {
@@ -17,41 +18,43 @@
   }, {
     "name" : "Und die Apotheke Am Waldesrand hat Zugriff auf ihre SMC-B"
   }, {
-    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Harnsäure Hemmer | 16588573 |",
     "dumps" : [ {
-      "operation" : "POST /Task/$create",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/000_Request_Parameters.xml"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/000_Request_Parameters.xml",
+      "operation" : "POST /Task/$create"
     }, {
-      "operation" : "Response 201: Task Task/160.000.114.328.508.34",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/001_Response_Task.xml"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/001_Response_Task.xml",
+      "operation" : "Response 201: Task Task/160.000.277.274.162.04"
     }, {
-      "operation" : "Document to sign with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/002_document_to_sign.xml"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/002_document_to_sign.xml",
+      "operation" : "Document to sign with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "Signed Document with HBA 80276883110000095767 on Soft-Konn",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/003_signed_document.b64"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/003_signed_document.b64",
+      "operation" : "Signed Document with HBA 80276883110000170943 on Soft-Konnektor"
     }, {
-      "operation" : "POST /Task/160.000.114.328.508.34/$activate",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/004_Request_Parameters.xml"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/004_Request_Parameters.xml",
+      "operation" : "POST /Task/160.000.277.274.162.04/$activate"
     }, {
-      "operation" : "Response 200: Task Task/160.000.114.328.508.34",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/005_Response_Task.xml"
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/005_Response_Task.xml",
+      "operation" : "Response 200: Task Task/160.000.277.274.162.04"
     }, {
-      "operation" : "DMC for 160.000.114.328.508.34 with AccessCode deb101329cb48a90ca1b3543b4bbdfdb2a9a852d4a1c88b73e2bc1c58c3df016",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/006_dmc_160.000.114.328.508.34.png"
-    } ]
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/006_dmc_160.000.277.274.162.04.png",
+      "operation" : "DMC for 160.000.277.274.162.04 with AccessCode bd0cfa32afa1360cebfba7562c95ce4915eeb61874c7d9ff3ae225ab3a184222"
+    } ],
+    "name" : "Wenn die Ärztin Dr. Schraßer der Versicherten Sina Hüllmann folgendes apothekenpflichtiges Medikament verschreibt:\n| Name | PZN |\n| Harnsäure Hemmer | 16588573 |"
   }, {
-    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestellte E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
+    "name" : "Und die Versicherte Sina Hüllmann ihr letztes ausgestelltes E-Rezept der Apotheke Am Flughafen via Data Matrix Code zuweist"
   }, {
     "name" : "Dann kann die Apotheke Am Flughafen das letzte zugewiesene E-Rezept nicht beim Fachdienst abrufen, weil das E-Rezept noch nicht akzeptiert ist"
   }, {
-    "name" : "Am flughafen check the return code",
     "dumps" : [ {
-      "operation" : "Response 412: OperationOutcome 20250805_103327",
-      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/007_Response_OperationOutcome.xml"
-    } ]
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/007_Request_Basic.xml",
+      "operation" : "GET /Task/160.000.277.274.162.04"
+    }, {
+      "file" : "Apotheke/abrufen_eines_e_rezeptes_ohne_vorheriges_akzeptieren/008_Response_OperationOutcome.xml",
+      "operation" : "Response 412: OperationOutcome 20260807_094036"
+    } ],
+    "name" : "Am flughafen check the return code"
   }, {
     "name" : "Am flughafen performable predicate"
-  } ],
-  "requirements" : [ "A_18827", "A_18502", "A_18503", "A_24176" ]
+  } ]
 }
